@@ -1,0 +1,130 @@
+.job-item{margin-bottom: 30px;padding: 40px;background-color: #fff;}
+.job-item .title a{
+	    margin-top: 0;
+    color: #37474f;
+    text-transform: capitalize;
+	font-weight: bold;}
+.job-item .info{
+    margin-bottom: 0px;
+    font-size: 14px;
+    font-weight: 300;
+    color: #a3afb7;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #f3f3f3;
+}
+.job-item .info span{margin-right: 10px;}
+.job-item .content{
+	margin-top: 30px;
+}
+
+#joblist{padding:15px}
+#joblist dl{padding:10px 5px 10px;margin-top:30px;border:1px solid #ddd}
+#joblist dt{padding:0 10px;font-size:16px;font-weight:bold}
+#joblist dd .dtail{padding:5px 10px 0;border-top:1px solid #ddd}
+#joblist dd .dtail span{margin-right:15px}
+#joblist dd .dtail a{color:#1c57c4}
+#joblist dd .editor{padding:10px}
+#joblist dd .mis{padding:5px 10px;border-bottom:1px solid #ddd;font-size:12px}
+#joblist dd .mis span{margin-right:15px;color:#999}
+#showjob h1.title{font-size:24px;padding:15px 5px;border-bottom:1px solid #ddd;margin-bottom:30px}
+#showjob .ctitle{margin:30px 0 10px;padding:0 10px;font-size:16px;font-weight:normal;height:40px;line-height:40px;border-bottom:1px solid #ddd}
+#showjob .met_editor{padding:0 10px}
+#cvlist{padding:15px}
+#showjob .paralist{background:#8c989f;padding:5px 10px;color:#fff;visibility:hidden;margin-top:30px;visibility:hidden}
+#showjob .paralist li{list-style:none;padding:8px 5px 8px 90px;min-height:20px;position:relative;border-bottom:1px solid #ddd}
+#showjob .paralist li:last-cfhild{border-bottom:0}
+#showjob .paralist li a{color:#fff}
+#showjob .paralist li span{position:absolute;left:0;top:0;width:80px;padding:8px 5px;overflow:hidden;word-wrap:break-word}
+#showjob .info_cv{margin-top:30px;margin-left:10px}
+#showjob .info_cv a{display:inline-block;background:#23b7e5;height:35px;line-height:35px;padding:0 35px;color:#fff;border-radius:2px}
+#showjob .info_cv a:hover{background:#38c4f0}
+#showjob .info_cv a.active{background:#1ba4cf}
+#messagelist{padding:15px}
+#messagelist .metlist{margin-top:30px;border:1px solid #ddd;padding:5px}
+#messagelist .metlist dt{padding:5px}
+#messagelist .metlist dt span.name{color:#2c7199}
+#messagelist .metlist dt span.time{padding-left:5px;color:#aaa;font-size:12px}
+#messagelist .metlist dt span.tt{float:right;padding-right:5px;color:#aaa}
+#messagelist .metlist dd.info span.tt{display:none;clear:both}
+#messagelist .metlist dd.info span.text{display:block;line-height:1.5;padding:0 5px 10px;border-bottom:1px solid #ddd}
+#messagelist .metlist dd.reinfo span.tt{display:block;padding:10px 5px 0;color:#2c7199}
+#messagelist .metlist dd.reinfo span.text{display:block;line-height:1.5;padding:5px 5px 10px}
+#messagelist .v52fmbx{margin:30px 0 0}
+#linklist{padding:15px 15px 25px}
+#linklist .ctitle{margin:10px 0 10px;padding:5px 10px;border-bottom:1px solid #ddd}
+#linklist .inside{padding:15px 0 0}
+#linklist .metlist .img li{list-style:none;display:inline;padding-right:5px}
+#linklist .metlist .img img{width:88px;height:31px}
+#linklist .metlist .txt li{list-style:none;float:left;width:88px;height:20px;line-height:20px;margin-right:5px;overflow:hidden}
+#linksubmit{padding:15px}
+#linksubmit table{margin:0 auto}
+#memberbox{padding:15px}
+ul.searchnavlist{list-style:none;padding:0 20px;margin:0}
+ul.searchnavlist li{padding:5px 0}
+ul.searchnavlist .advsearch_searchword input{width:90%;height:28px;line-height:28px\9;padding:2px 5px;border:1px solid #dcdfe0;background-color:#fff;color:#333;outline:0;border-radius:2px}
+ul.searchnavlist .searchgo{display:block;background:#23b7e5;border:0 none;height:34px;line-height:26px;padding:0 35px;color:#fff;cursor:pointer;border-radius:2px;font-family:'Microsoft YaHei',Tahoma,Verdana,'Simsun'}
+ul.searchnavlist .searchgo:hover{background:#38c4f0}
+ul.searchnavlist .searchgo:active{background:#1ba4cf}
+#searchlist{padding:15px 0}
+#searchlist li{padding-left:10px;margin-bottom:6px;line-height:1.5}
+#searchlist ul{list-style:none;padding:0;margin:0}
+#searchlist ul li{padding:3px 5px;margin-bottom:10px}
+#searchlist ul li img{display:none}
+#searchlist .search_title{display:block;padding:2px 0}
+#searchlist .search_title a{font-size:16px;color:#12C;text-decoration:underline}
+#searchlist .search_title em{color:#c00;text-decoration:underline;font-style:normal}
+#searchlist .search_detail{display:block}
+#searchlist .search_detail a{text-decoration:underline;color:#12C}
+#searchlist .search_content em{color:#c00;font-style:normal}
+#searchlist .search_updatetime{display:block;margin-top:5px;color:green}
+#searchlist a:hover{text-decoration:underline}
+#sitemaplist dl{margin-top:30px;padding:20px;border:1px solid #ddd}
+#sitemaplist dt h2{font-size:18px;font-weight:normal;padding:10px 0;border-bottom:1px solid #ddd}
+#sitemaplist dt h2 i{font-size:22px;margin-left:10px;font-weight:normal;color:#888;position:relative;top:2px}
+#sitemaplist dd ul{float:left;width:25%;list-style:none;margin-top:20px}
+#sitemaplist dd li{margin-top:5px}
+#sitemaplist dd li h4 a{font-weight:normal;color:#666}
+.v52fmbx_hr{border-top:1px solid #ddd;margin:0;padding:0 5px 0 15px;font-weight:bold;font-size:16px;background:#ddd;height:60px;line-height:60px;}
+:-ms-input-placeholder{color:#999}
+.met-focus{border:1px solid #23b7e5!important}
+.v52fmbx{border:1px solid #ddd;border-top:0;overflow:hidden;text-align:left}
+.v52fmbx dl:after{display:block;clear:both;content:"";visibility:hidden;height:0}
+.v52fmbx dl{width:100%;zoom:1;background:#fff}
+.v52fmbx dl{border-top:1px solid #ddd;margin:0;display:-webkit-box;display:-moz-box;display:box;display:-ms-flexbox;position:relative;padding:5px 0}
+.v52fmbx dl dt{padding:15px 15px 10px 15px;width:105px;text-align:left;font-weight:normal;overflow:hidden;line-height:1.2}
+.v52fmbx dl dd{-moz-box-flex:1.0;-webkit-box-flex:1.0;box-flex:1.0;-ms-flex:1;padding:2px 0 0 15px;margin:10px 0}
+.v52fmbx dl dd label input{position:relative;top:1px;margin-right:3px}
+.v52fmbx dl dd .fbox{margin:0 10px 0 0}
+.v52fmbx dl dd .tips{color:#aaa}
+.v52fmbx dl dd .tips:hover{color:#f00}
+.v52fmbx dl dd.labelinline label{display:inline}
+.v52fmbx dl dt.addimgdt{padding:10px 5px 10px}
+.v52fmbx dl dt.addimgdt p{height:30px;line-height:30px;margin-bottom:8px}
+.v52fmbx dl.noborder{border-bottom:0}
+.formerror{margin-top:6px;height:20px;line-height:20px}
+.formerror .fa-times{color:#fff;border-radius:3px;padding:1px 2px;font-size:16px;margin-right:5px;background:red}
+.formerror .fa-check{color:#fff;border-radius:3px;padding:2px;font-size:14px;margin-right:5px;background:#10aa00}
+.formerrorbox{border:2px solid #f00!important}
+.v52fmbx dl dd.ftype_description{color:#fff;padding:8px;margin:0 5px;background:#6c6fbf}
+.ftype_input .fbox{float:left}
+.ftype_input .tips{float:left;padding-top:5px}
+.ftype_input .fbox input{width:350px;height:28px;line-height:28px\9;padding:2px 5px;border:1px solid #dcdfe0;background-color:#fff;color:#333;outline:0;border-radius:2px}
+.placeholder-ie{position:relative}
+.placeholder-ie label{position:absolute;left:8px;top:7px;cursor:text;color:#999}
+.ftype_textarea .tips{display:block}
+.ftype_textarea textarea{width:350px;line-height:1.5;height:100px;padding:7px 5px;border:1px solid #dcdfe0;background-color:#fff;color:#333;outline:0}
+.ftype_select .tips,.ftype_select-linkage .tips{display:block;margin-top:5px}
+select{line-height:31px;height:31px;vertical-align:middle;background-color:#fff;outline:0;border:1px solid #ccc;padding:4px;color:#656565}
+.ftype_radio .fbox label{font-weight:normal;height:28px;line-height:28px;margin:0;display:block}
+.ftype_radio .fbox input[type='radio']{border-radius:100%;bottom:3px;height:15px;position:relative;vertical-align:middle;width:15px;margin:0;position:relative;top:-1px;margin-right:6px}
+.ftype_radio .formerror{margin-top:0}
+.ftype_checkbox .fbox input[type='checkbox']{border-radius:100%;bottom:3px;height:15px;position:relative;vertical-align:middle;width:15px;margin:0}
+.ftype_checkbox .fbox label{font-weight:normal;height:28px;line-height:28px;margin:0;display:block}
+.ftype_checkbox .fbox input{position:relative;top:-1px;margin-right:6px!important}
+.ftype_checkbox .formerror{margin-top:0}
+.ftype_transverse .fbox label{display:inline;margin-right:15px}
+.submit{display:block;background:#23b7e5;border:0 none;height:34px;line-height:26px;padding:0 35px;color:#fff;cursor:pointer;border-radius:2px;font-family:'Microsoft YaHei',Tahoma,Verdana,'Simsun'}
+.submit:hover{background:#38c4f0}
+.submit.active{background:#1ba4cf}
+.v52fmbx dl dd.ftype_code input{width:80px;margin-right:10px}
+.v52fmbx dl dd.ftype_code img{height:30px;position:relative;bottom:2px}

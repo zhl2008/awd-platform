@@ -1,0 +1,334 @@
+@charset "utf-8";
+
+@import "reset.css";
+
+body {
+	background-color: white;
+	font-family: 'DejaVu Sans', 'Bitstream Vera Sans', Verdana, sans-serif;
+	font-size: 100%;
+	line-height: 1.5em;
+}
+
+/* Main ids */
+#menuheader {
+	background-image: url(image/back.jpg);
+	border-bottom: 1px solid #CCCCCC;
+	height: 100px;
+}
+
+#menuheader img {
+	vertical-align: middle;
+}
+
+#menu {
+	float: left;
+	height: 100px;
+}
+
+#menu > li {
+	display: block;
+	width: auto;
+	color: #B6B6B6;
+	font-size: 14px;
+	text-align: center;
+	text-decoration: none;
+	float: left;
+	color: gray;
+	position: relative;
+	bottom: 8px;
+}
+
+#menu a {
+	display: inline-block;
+	height: 38px;
+	padding: 70px 9px 0px 9px;
+}
+
+#menu a:hover {
+	background-image: url(image/back_hover.jpg);
+	color: #3766AC;
+}
+
+#menu2 {
+	margin-top: 66px;
+	float: left;
+}
+
+#menu2 li {
+	color: #B6B6B6;
+	font-size: 20px;
+}
+
+.submenu {
+	display:none;
+	list-style: none;
+	margin-left: -1px;
+	position: absolute;
+	border-top:1px solid #CCCCCC;
+}
+
+#menu li:hover .submenu {
+	display: block;
+}
+
+ul.submenu  li {
+	min-width: 200px;
+	color: #B6B6B6;
+	font-size: 12px;
+	text-align: left;
+	text-decoration: none;
+	position: relative;
+	background-color:#fff;
+}
+
+ul.submenu li a {
+	padding:20px 9px 0 !important;
+	height:32px !important;
+}
+
+ul.submenu li:hover {
+	background-image: url(image/back_hover.jpg);
+	color: #3766AC;
+}
+
+#statusbox {
+	border-left: 1px dotted #CCCCCC;
+	height: 80%;
+	padding-left: 15px;
+	float: right;
+	margin: 10px 25px 10px 0;
+	border-bottom-left-radius:1.1em;
+}
+
+#statusbox li {
+	font-size: 11px;
+	margin-top: 10px;
+}
+
+#content {
+	margin: 30px 75px 0;
+}
+
+#copyright {
+	border-top: 1px dashed gray;
+	color: gray;
+	font-size: 12px;
+	margin-top: 30px;
+	padding-top: 5px;
+}
+
+#copyright a {
+	color: #3766AC;
+}
+
+#copyright a:hover {
+	color: gray;
+}
+
+/* HTML elements */
+a {
+	color: gray;
+	text-decoration: none;
+}
+
+a:hover {
+	color: #3766AC;
+	text-decoration: none;
+}
+
+button, input, textarea, a.cancel {
+	font-size: 14px;
+	background-color: #F4F4F4;
+	border: 1px solid gray;
+	color: gray;
+	padding: 2px 8px;
+	border-radius:1.1em;
+}
+select {
+	border-radius:1.1em;
+}
+
+input:focus, textarea:focus {
+	border-color: #3766AC;
+	border-radius:1.1em;
+}
+
+input.white, textarea.white {
+	background-color: white;
+	border-radius:1.1em;
+}
+
+a.cancel {
+	background-image: url(image/button_cancel.png);
+	border-radius:1.1em;
+}
+
+input[type="submit"].save {
+	background-image: url(image/button_document_save.png);
+	border-radius:1.1em;
+}
+
+input[type="submit"] {
+	background-image: url(image/button_save.png);
+	border-radius:1.1em;
+}
+
+input[type="submit"], a.cancel {
+	cursor: pointer;
+	background-repeat: no-repeat;
+	background-position: left center;
+	padding-left: 22px;
+	border-radius:1.1em;
+}
+
+p {
+	margin-bottom: 15px;
+}
+
+h1 {
+	color: #3766AC;
+	font-size: 35px;
+	font-weight: bold;
+	float: left;
+	margin: 60px 25px 0 75px;
+}
+
+h2 {
+	color: #3766AC;
+	font-weight: bold;
+	font-size: 30px;
+	margin-bottom: 15px;
+}
+
+h3 {
+	font-weight: bold;
+}
+
+/* Classes */
+.kop2 {
+	color: #3766AC;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+}
+
+.kop3, .kop4 {
+	color: gray;
+}
+
+.kop3 {
+	font-size: 22px;
+}
+
+.kop4 {
+	font-size: 12px;
+}
+
+.menudiv {
+	background-color: #F4F4F4;
+	border: 1px dotted gray;
+	padding: 5px;
+	margin: 10px;
+	border-radius:1.1em;
+}
+
+.menudiv .title-page, .menudiv .title-module {
+	width: 350px;
+	font-size: 23px;
+	overflow: hidden;
+	/* This is CSS3 */
+	text-overflow: ellipsis;
+}
+
+.menudiv .title-page .small, .menudiv .title-module .small {
+	font-size: 14px;
+}
+
+.menudiv .title-module {
+	color: gray;
+}
+
+.menudiv .module-text {
+	display: none;
+	padding-left: 43px;
+}
+
+.menudiv span {
+	display: inline-block;
+	vertical-align: middle;
+	padding-left: 2px;
+}
+
+.menudiv span span a {
+	font-size: 23px;
+}
+
+.menudiv span .more {
+	font-size: 12px;
+	color: gray;
+}
+
+.menudiv p {
+	margin: 0;
+}
+
+.rightmenu {
+	color: #3766AC;
+	float: right;
+	font-size: 12px;
+	width: 30%;
+}
+
+.smallmenu {
+	text-align: right;
+	margin-bottom: -8px;
+	font-size: 13px;
+	color: gray;
+	height: 25px;
+	width: 98%;
+}
+
+.smallmenu_button {
+	margin-left: 10px;
+}
+
+.smallmenu_button a {
+	padding-left: 22px;
+}
+
+/* From Blueprint CSS - http://blueprintcss.org/ */
+.error, .notice, .success {
+	padding: .8em;
+	padding-left: 50px;
+	margin-bottom: 0.5em;
+	margin-top: 0.5em;
+	border: 2px solid #ddd;
+	border-radius: 1.1em;
+}
+
+.error {
+	background: #FBE3E4;
+	color: #8a1f11;
+	border-color: #FBC2C4;
+	background-image: url(image/error_1.png);
+	background-repeat: no-repeat;
+	background-position: 1% center;
+}
+
+.notice {
+	background: #FFF6BF;
+	color: #514721;
+	border-color: #FFD324;
+	background-image: url(image/error_2.png);
+	background-repeat: no-repeat;
+	background-position: 1% center;
+}
+
+.success {
+	background: #E6EFC2;
+	color: #264409;
+	border-color: #C6D880;
+	background-image: url(image/error_3.png);
+	background-repeat: no-repeat;
+	background-position: 1% center;
+}

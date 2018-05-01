@@ -1,0 +1,13 @@
+.product-list{background-color: #fff;padding: 20px;}
+.product-item{margin:20px 20px 10px;}
+.product-item .row{margin:0 auto;}
+.product-item .title a{color:#37474f;font-weight: bold;font-size: 14px;}
+.product-item .product-thumb,{width:182px;height: 112px;}
+.product-item .product-thumb img{width:180px;height: 110px;}
+.product-item .title{text-align: center;}
+.product-item .price{text-align: center;color:red;}
+.product-detail{background-color: #fff;padding:20px;}
+.product-detail .product-title{text-align: center;padding:0 30px;}
+.product-detail .product-info{text-align: center;margin: 10px;padding:0 30px;}
+.product-detail .product-info span{color:#76838f;margin: 0 10px;}
+.product-detail .product-content{text-indent:2em;margin-top: 30px;padding:0 30px;}
