@@ -1,2 +1,1 @@
-team1:ctf:146fd62f2bb86b4d668b7cfb96a32305
-team2:ctf:f1fbdc96ee2db0bca80d7d09468cdcbc
+test
