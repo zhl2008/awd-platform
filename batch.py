@@ -21,7 +21,7 @@ cd /var/www/html
 service ssh start
 service apache2 start
 service mysql start
-python flag.py &
+python flag.py &  2>&1 1>/dev/null
 echo ctf:%s | chpasswd
 /bin/bash""" % generate_pass(teamno)
     
@@ -29,7 +29,7 @@ echo ctf:%s | chpasswd
 
 def generate_docker_sh(teamno):
     content = """#!/bin/sh
-docker run -p %d:80  -p %d:22 -v `pwd`:/var/www/html -d  --name team%d -ti web_14.04 
+docker run -p %d:80  -p %d:22 -v `pwd`:/var/www/html -d  --name team%d -ti web_14.04 /var/www/html/run.sh 
 """% (8800 + teamno, 2200 + teamno,teamno)
     return content
 
