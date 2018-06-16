@@ -21,6 +21,7 @@ cd /var/www/html
 service ssh start
 service apache2 start
 service mysql start
+python flag.py &
 echo ctf:%s | chpasswd
 /bin/bash""" % generate_pass(teamno)
     
@@ -32,6 +33,9 @@ docker run -p %d:80  -p %d:22 -v `pwd`:/var/www/html -d  --name team%d -ti web_1
 """% (8800 + teamno, 2200 + teamno,teamno)
     return content
 
+def generate_flag_py(teamno):
+    content = open('flag.py').read()
+    return content
 
 def main():
     dir = sys.argv[1]
@@ -48,7 +52,9 @@ def main():
 	print '[*] write run.sh %s' % team_dir
 	open(team_dir + '/docker.sh','w').write(generate_docker_sh(i+1))
 	print '[*] write docker.sh %s' % team_dir
-	os.system('chmod 700 %s/run.sh %s/docker.sh' % (team_dir,team_dir))
+	open(team_dir + '/flag.py','w').write(generate_flag_py(i+1))
+	print '[*] write flag.py %s' % team_dir
+	os.system('chmod 700 %s/run.sh %s/docker.sh %s/flag.py' % (team_dir,team_dir,team_dir))
 	print '[*] chmod run.sh & docker.sh %s' % team_dir
 
 if __name__ == '__main__':
