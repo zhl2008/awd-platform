@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import requests
+import hashlib
 
 port = 9999
 time_span = 2 * 60
@@ -15,7 +16,7 @@ password_list = {}
 host_list = {}
 
 for passwd in passwds:
-	teamno,password = passwd.strip().split(':')
+	teamno,user,password = passwd.strip().split(':')
 	password_list[teamno] = password
 
 for host in hosts:
@@ -24,7 +25,7 @@ for host in hosts:
 
 
 while True:
-	open(record_path,'w').write()
+	open(record_path,'w').write('')
 	for teamno in host_list:
 		flag = hashlib.md5().hexdigest(password_list[teamno] +  host_list[teamno] +  str(int(time.time())/time_span))
 
