@@ -45,12 +45,50 @@ def generate_host_list(team_number):
 	for i in range(team_number):
 		fp.write('team%d:172.17.0.%d\n'%(i+1,i+2))
 
+def generate_flag_run_sh(team_number):
+	content = '''#!/bin/sh
+cd /var/www/html
+service apache2 stop
+service apache2 start
+python new.py %d
+/bin/bash''' % team_number
+	return content
+
+def generate_flag_config(team_number):
+	content = '''<?php
+
+$team_number = %d;
+$user_list = [];
+$token_list = array();
+$ip_list = array();
+for ($i=1; $i <= $team_number; $i++) { 
+    array_push($user_list,'team'.$i);
+    $token_list['team'.$i] = $i - 1;
+    $ip_list['172.17.0.'.($i+1)] = $i - 1;
+}
+
+$key = '744def038f39652db118a68ab34895dc';
+$time_file = './time.txt';
+$min_time_span = 120;
+$record = './score.txt';
+
+
+// var_dump($user_list);
+// var_dump($token_list);
+// var_dump($ip_list);''' % team_number
+	return content
+
+
 def main():
 	dir = sys.argv[1]
 	team_number = int(sys.argv[2])  
 
 	open('./check_server/pass.txt','w').write("")
 	open('pass.txt','w').write('')
+
+	open('./flag_server/run.sh','w').write(generate_flag_run_sh(team_number))
+
+	open('./flag_server/config.php','w').write(generate_flag_config(team_number))    
 
 	generate_host_list(team_number)
     
