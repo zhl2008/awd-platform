@@ -1,5 +1,5 @@
-team1:ctf:c3c480c200c96f798e14a55b2adbf5cc
-team2:ctf:fb3bcc5ed286ff8a6ec9d249c688ce2b
-team3:ctf:5123203704b46eef8001e429eb385221
-team4:ctf:d3390eedfbb35a617d869e2ac28b1f02
-team5:ctf:5a9fb6199ae4d676f7868d113448ef8f
+team1:ctf:16685b5e2f550aaeffb0590a6ecb3d2e
+team2:ctf:00c24e1640fa2cc200d3a1e781d52ffb
+team3:ctf:adb8c20f3c2ee218eb0636e45fc1f2d9
+team4:ctf:32a2fd3caebdcde0bf9b22014cc63ded
+team5:ctf:9185ca9eba3ab8946664bcbe4ecd5b97

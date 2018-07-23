@@ -1,9 +1,9 @@
 <?php
 
 require 'config.php';
-require 'pass.php';
+#require 'pass.php';
 $now_time = time();
-$flag_file = 'xxxxxxxx_flag'
+$flag_file = 'xxxxxxxx_flag';
 
 function check_time($attack_uid,$victim_uid){
     global $time_file;
@@ -30,9 +30,12 @@ function update_time($attack_uid,$victim_uid){
     file_put_contents($time_file,implode('|' , $now_times));
 }
 
-function match_flag($flag){
-    $flags = explode('|',file_get_contents($flag_file));
-    foreach ($flags as $host => $real_flag) {
+function match_flag($flag,$flag_file){
+    $flags = explode("\n",file_get_contents($flag_file));
+    foreach ($flags as $real_flag) {
+	$tmp = explode(":",$real_flag);
+	$host = $tmp[0];
+	$real_flag = $tmp[1];
         if($flag==$real_flag){
             return $host;
         }
@@ -48,7 +51,7 @@ if(isset($_REQUEST['token']) && isset($_REQUEST['flag'])){
     if(!array_key_exists($token , $token_list)){
 	die('error: no such token');
     }
-    $ip = match_flag($flag)
+    $ip = match_flag($flag,$flag_file);
     if(!$ip){
 	die('error: no such flag');
     }
