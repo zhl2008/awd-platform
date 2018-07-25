@@ -1,6 +1,6 @@
 <?php
 
-$team_number = 5;
+$team_number = 4;
 $user_list = [];
 $token_list = array();
 $ip_list = array();
