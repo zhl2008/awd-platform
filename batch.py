@@ -19,6 +19,7 @@ def generate_run_sh(teamno,password):
 	content = """#!/bin/sh
 cd /var/www/html
 service ssh start
+a2enmod rewrite
 service apache2 start
 service mysql start
 python flag.py &  2>&1 1>/dev/null
