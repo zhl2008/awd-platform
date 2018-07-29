@@ -26,7 +26,7 @@ python flag.py &  2>&1 1>/dev/null
 useradd ctf
 echo ctf:%s | chpasswd
 sleep 2
-mysql -uroot < *.sql
+mysql -uroot -proot < *.sql
 /bin/bash""" % password
 	
 	return content

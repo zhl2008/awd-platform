@@ -52,7 +52,6 @@ def https(method,host,port,url,data,headers):
 
 def get_score():
     res = http('get',flag_server,8080,'/score.php?key=%s'%key,'',headers)
-    print res
     user_scores = res.split('|')
     print "******************************************************************"
     res = ''
@@ -70,6 +69,7 @@ def write_score(scores):
     if res == "success":
 	return True
     else:   
+	print res
 	raise ValueError
 
 class check():
@@ -78,7 +78,7 @@ class check():
 
     def index_check(self):
 	res = http('get',host,port,'/index.php?file=news&cid=1&page=1&test=eval&time=%s'%str(my_time),'',headers)
-	if 'HCTF2017' in res:
+	if '/index.php/index.html' in res:
 	    return True
 	if debug:
 	    print "[fail!] index_check_fail"
@@ -86,8 +86,8 @@ class check():
 	
 
     def test_check(self):
-	res = http('get',host,port,'/index.php?file=more&time=%s'%str(my_time),'',headers)
-	if 'Powered by HeartSky' in res:
+	res = http('get',host,port,'/index.php/about-2.html?file=flag&time=%s'%str(my_time),'',headers)
+	if '关于我们' in res:
 	    return True
 	if debug:
 	    print "[fail!] test_check_fail"
@@ -107,21 +107,19 @@ class check():
 
     def login_check(self):
 	headers['Cookie'] = 'PHPSESSID=ujg0tpds1u9d23b969f2duj5c7;'
-	tmp = http('get',host,port,'/admin.php?action=logout','',headers)
-	data = 'cont1=12345678&bogus=&submit=Log+in'
-	res = http('post',host,port,'/login.php?shell=system&time=%s'%str(my_time),data,headers)
-	if 'Password correct' or '密码正确' in res:
+	res = http('post',host,port,'/index.php/admin/login/index.html','username=admin&password=admin123&captcha=a',headers)
+	if '1' in res:
 	    return True
 	if debug:
 	    print "[fail!] login_fail"
 	return False
 
     def admin_index_check(self):
+	data = 'eval(666)'
 	headers['Cookie'] = 'PHPSESSID=ujg0tpds1u9d23b969f2duj5c7;'
-	data = 'select "aaa" into outfile "/var/www/html/shell.php"'
-    	res = http('post',host,port,'/admin.php?action=start',data,headers)
-	tmp = http('get',host,port,'/admin.php?action=logout','',headers)
-	if 'manage your website' or '管理你的网站' in res:
+    	res = http('get',host,port,'/index.php/admin/Index/main.html',data,headers)
+	tmp = http('get',host,port,'/index.php/admin/index/logout.html','',headers)
+	if '/var/www/html' in res:
 	    return True
 	if debug:
 	    print "[fail!] admin_index fail"
@@ -134,8 +132,6 @@ def server_check():
 	if not a.index_check():
 	    return False
 	if not a.test_check():
-	    return False
-	if not a.admin_check():
 	    return False
 	if not a.login_check():
 	    return False	

@@ -1,6 +1,0 @@
-team1 => team2
-team1 => team2
-team1 => team4
-team2 => team3
-team1 => team4
-team1 => team4
