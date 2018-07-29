@@ -108,7 +108,7 @@ class check():
 
     def login_check(self):
 	headers['Cookie'] = 'PHPSESSID=ujg0tpds1u9d23b969f2duj5c7;'
-	res = http('get',host,port,'/login.php','',headers)
+	res = http('get',host,port,'loging.php','username=admin&password=admin123&captcha=a',headers)
 	if 'Forgot password' in res:
 	    return True
 	if debug:
