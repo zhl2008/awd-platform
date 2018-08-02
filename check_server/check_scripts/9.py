@@ -99,10 +99,10 @@ class check():
 	headers['Cookie'] = ''
 	data = 'key=1'
 	res = http('get',host,port,'/url.php',data,headers)
-	if 'phpMyAdmin' in res:
+	if '欢迎使用' in res:
 	    return True
 	if debug:
-	    print "[fail!] test_2_fail"
+	    print "[fail!] flag_fail"
 	return False
 	
 
