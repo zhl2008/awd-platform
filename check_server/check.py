@@ -79,7 +79,7 @@ class check():
 
     def index_check(self):
 	res = http('get',host,port,'/index.php?file=news&cid=1&page=1&test=eval&time=%s'%str(my_time),'',headers)
-	if 'welcome to use sqlgun 新闻发布系统' in res:
+	if 'lalalala' in res:
 	    return True
 	if debug:
 	    print "[fail!] index_fail"
@@ -87,8 +87,8 @@ class check():
 	
 
     def test_check(self):
-	res = http('get',host,port,'/sqlgunclass.php?id=4','',headers)
-	if '电极植入美男子脊髓 成全球首例站立瘫痪者' in res:
+	res = http('get',host,port,'/admin/download.php?file=/var/www/html/admin/download.php','',headers)
+	if 'readfile' in res:
 	    return True
 	if debug:
 	    print "[fail!] test_fail"
@@ -98,8 +98,8 @@ class check():
     def test_check_2(self):
 	headers['Cookie'] = ''
 	data = 'key=1'
-	res = http('post',host,port,'/sqlgunsearch.php',data,headers)
-	if '法国“蜘蛛人”登上261米大厦' in res:
+	res = http('get',host,port,'/admin/index.php',data,headers)
+	if 'Forgot your password?' in res:
 	    return True
 	if debug:
 	    print "[fail!] flag_fail"

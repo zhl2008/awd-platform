@@ -1,0 +1,3 @@
+需要修改site url成你当前的ip和端口使访问正常：
+如：
+mysql -uroot -proot -e "use tcho;update type_options set value='http://47.105.121.116:8801' where name='siteUrl'"

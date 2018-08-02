@@ -1,0 +1,9 @@
+/usr/bin/python: can't find '__main__' module in 'check_server/'
+Traceback (most recent call last):
+  File "check_server/check.py", line 22, in <module>
+    hosts = open('host.lists','r').readlines()
+IOError: [Errno 2] No such file or directory: 'host.lists'
+Traceback (most recent call last):
+  File "check_server/check.py", line 22, in <module>
+    hosts = open('host.lists','r').readlines()
+IOError: [Errno 2] No such file or directory: 'host.lists'

