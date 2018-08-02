@@ -1,0 +1,153 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:12px;
+	background:#E8E8D0;
+}
+li{
+	list-style-type:none;
+}
+#head{
+	background:url(../images/top_bg.gif);
+	width:auto;
+	height:153px;
+}
+#head #head1{
+	height:98px;
+	width:960px;
+	margin:0 auto;
+}
+#head #head1 h1{
+	float:left;
+	width:163px;
+	height:50px;
+	background:url(../images/logo.gif);
+	margin:25px 0 0 0;
+}
+#head #head1 form{
+	float:right;
+	width:310px;
+	height:64px;
+	background:url(../images/serch_bg.gif);
+	margin:16px 0 0 0;
+}
+#head #head1 form ul{
+	width:260px;
+	height:50px;
+	margin:14px 0 0 50px;
+}
+#head #head1 form ul li.li1{
+	float:left;
+	height:26px;
+	width:200px;
+	line-height:26px;
+}
+#head #head1 form ul li.li1 input.input1{
+	width:200px;
+	height:21px;
+	border:1px solid black;
+}
+#head #head1 form ul li.li2{
+	float:right;
+	width:60px;	
+	height:26px;
+	line-height:26px;
+}
+#head #head1 form ul li.li2 input.input2{
+	width:36px;
+	height:21px;
+	border:none;
+	cursor:pointer;
+	margin-left:12px;
+	background:url(../images/btn_go.gif);	
+}
+#head #head1 form ul li.li3{
+	clear:both;
+	width:260px;
+	height:21px;
+	line-height:21px;
+	color:yellow;
+	text-indent:2px;
+}
+#head #head2{
+	height:26px;
+	width:960px;
+	margin:0 auto;	
+}
+#head #head2 ul{
+	text-align:center;
+	height:26px;
+	line-height:26px;
+}
+#head #head2 ul li{
+	color:white;
+	float:left;	
+	width:82px;
+	height:26px;
+	margin:0 3px 0 0;
+	background:url(../images/nav_bg.gif);
+}
+#head #head2 ul li a{
+	color:white;
+	text-decoration:none;
+	display:block;
+}
+#head #head2 ul li a:hover{
+	color:black;	
+	background:url(../images/nav_bg_hover.gif);	
+}
+#head #head3{
+	height:29px;
+	width:960px;
+	margin:0 auto;
+}
+#head #head3 ul{
+	height:29px;
+	line-height:29px;
+}
+#head #head3 ul li{
+	color:#333;
+	float:left;	
+	background:url(../images/nav_div.gif) right center no-repeat;
+	padding:0 10px;
+}
+#head #head3 ul li a{
+	color:#333;
+	text-decoration:none;
+	display:block;	
+}
+#head #head3 ul li a:hover{
+	color:firebrick;
+}
+
+#foot{
+	clear:both;
+	width:auto;
+	height:109px;
+	background:url(../images/footer_bg.gif) repeat-x;
+}
+#foot #footin{
+	width:960px;
+	margin:0 auto;
+	height:109px;
+}
+#foot #footin ul{
+	margin-top:20px;
+	width:694px;
+	float:right;
+	color:white;
+}
+#foot #footin ul li{
+	float:left;
+	display:inline-block;
+	padding:5px 0;
+}
+#foot #footin p{
+	margin-top:7px;	
+	color:#ffdd00;	
+	width:694px;
+	float:right;	
+} 

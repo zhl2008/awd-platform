@@ -1,0 +1,101 @@
+{include file="common/head"/}
+<body>
+<div class="header">
+    <div class="main">
+        <a class="logo" href="{:url('index/index')}" title="CLTPHP">CLTPHP</a>
+        <div class="nav-user">
+        </div>
+    </div>
+</div>
+
+<div class="main layui-clear">
+
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief">
+            <ul class="layui-tab-title">
+                <li><a href="{:url('index')}">登入</a></li>
+                <li class="layui-this">注册</li>
+            </ul>
+            <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-form layui-form-pane">
+                        <form method="post">
+                            <div class="layui-form-item">
+                                <label for="L_email" class="layui-form-label">帐　　号</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_email" name="email" lay-verify="required" placeholder="请输入邮箱或者手机号" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_username" class="layui-form-label">昵　　称</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_username" name="username" lay-verify="required" placeholder="请输入昵称" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_pass" class="layui-form-label">密　　码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_pass" name="password" lay-verify="required"  placeholder="6到16个字符" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_repass" class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_repass" name="password2" lay-verify="required" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_vercode" class="layui-form-label">验  证  码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_vercode" name="vercode" lay-verify="required"  placeholder="请输入验证码" autocomplete="off" class="layui-input">
+                                </div>
+                                <div class="layui-form-mid captcha">
+                                    <img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src+'?'+'id='+Math.random()"/>
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button type="button" class="layui-btn" lay-filter="sub" lay-submit>立即注册</button>
+                            </div>
+                            <div class="layui-form-item fly-form-app">
+                                <span>或者直接使用社交账号快捷注册</span>
+                                {volist name="plugin" id="v"}
+                                {if condition="$v['code'] eq 'qq' AND is_qq() neq 1"}
+                                <a href="{:url('loginApi/login',array('oauth'=>'qq'))}" onclick="layer.msg('正在通过QQ登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-qq" title="QQ登入"></a>
+                                {/if}
+                                <!--{if condition="$v['code'] eq 'weixin' AND is_weixin() neq 1"}
+                                <a href="{:url('loginApi/login',array('oauth'=>'weixin'))}" onclick="layer.msg('正在通过微博登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="微博登入"></a>
+                                {/if}-->
+                                {if condition="$v['code'] eq 'alipay' AND is_alipay() neq 1"}
+                                <a href="{:url('loginApi/login',array('oauth'=>'alipay'))}" onclick="layer.msg('正在通过支付宝登入', {icon:16, shade: 0.1, time:0})" class="iconfont icon-weibo" title="支付宝登入"></a>
+                                {/if}
+                                {/volist}
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/footer"/}
+<script>
+    layui.use(['form', 'layer'], function () {
+        var form = layui.form,$ = layui.jquery;
+        // 登录提交监听
+        form.on('submit(sub)', function (data) {
+            var loading = layer.load(1, {shade: [0.1, '#fff']});
+            $.post("{:url('reg')}",data.field,function(res){
+                layer.close(loading);
+                if(res.code > 0){
+                    layer.msg(res.msg,{time:1000,icon:1},function(){
+                        location.href = "{:url('index/index')}";
+                    });
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>

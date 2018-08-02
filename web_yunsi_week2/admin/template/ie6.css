@@ -1,0 +1,29 @@
+﻿
+#sidebar .snav li.upload {
+	padding:5px 15px 5px 15px !important;
+	margin-left:0 !important;
+}
+#sidebar .snav li a {
+	margin-bottom:-15px;
+	padding:5px 15px 5px 15px !important;
+	margin-left:0 !important;
+	}
+#sidebar .snav li a:link, #sidebar .snav li a:visited {
+	background-image: none !important!;
+	padding:5px 15px 5px 15px !important;
+	margin-left:0 !important;
+	}
+#sidebar .snav li a.current {
+	color:#FFF !important;
+	background-image: none !important!
+	padding:5px 15px 5px 15px !important;
+	margin-left:0 !important;
+	}
+#sidebar .snav li a:hover {
+	background-image: none !important!;
+	padding:5px 15px 5px 15px !important;
+	margin-left:0 !important;
+	}
+
+
+/* still a problem with the page options toggle */

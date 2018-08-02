@@ -1,0 +1,74 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit" ng-app="hd" ng-controller="ctrl">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{$title}</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('module')}{:lang('name')}</label>
+            <div class="layui-input-4">
+                <input type="text" name="title" ng-model="field.title" lay-verify="required" placeholder="必填：模型名称" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('table')}</label>
+            <div class="layui-input-4">
+                <input type="text" name="name" ng-model="field.name" placeholder="必填：模型表名" lay-verify="required" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">列表页字段</label>
+            <div class="layui-input-4">
+                <input type="text" name="listfields" ng-model="field.listfields" placeholder="{:lang('pleaseEnter')}列表页调用字段" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">{:lang('detail')}</label>
+            <div class="layui-input-block">
+                <textarea name="description" ng-model="field.description" placeholder="{:lang('pleaseEnter')}内容" class="layui-textarea"></textarea>
+            </div>
+        </div>
+        {if condition="$info eq 'null'"}
+        <div class="layui-form-item">
+            <label class="layui-form-label">新建表字段</label>
+            <div class="layui-input-block">
+                <input type="radio" name="emptytable" ng-model="field.emptytable" ng-value="1" title="空表字段">
+                <input type="radio" name="emptytable" ng-model="field.emptytable" ng-value="0" checked title="普通文章表字段">
+            </div>
+        </div>
+        {/if}
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" lay-submit="" lay-filter="submit">{:lang('submit')}</button>
+                <a href="{:url('index')}" class="layui-btn layui-btn-primary">{:lang('back')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="common/foot"/}
+<script src="__STATIC__/common/js/angular.min.js"></script>
+<script>
+    var m = angular.module('hd',[]);
+    m.controller('ctrl',['$scope',function($scope) {
+        $scope.field = '{$info}'!='null'?{$info}:{title:'',field:'',name:'',listfields:'*',emptytable:0};
+        layui.use(['form'], function () {
+            var form = layui.form,$= layui.jquery;
+            form.on('submit(submit)', function (data) {
+                loading =layer.load(1, {shade: [0.1,'#fff']});
+                // 提交到方法 默认为本身
+                data.field.id = $scope.field.id;
+                $.post("", data.field, function (res) {
+                    layer.close(loading);
+                    if (res.code > 0) {
+                        layer.msg(res.msg, {time: 1000, icon: 1}, function () {
+                            location.href = res.url;
+                        });
+                    } else {
+                        layer.msg(res.msg, {time: 1000, icon: 2});
+                    }
+                });
+            })
+        });
+    }]);
+</script>

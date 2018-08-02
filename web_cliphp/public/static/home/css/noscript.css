@@ -1,0 +1,76 @@
+/***** No Script Stylesheet *****/
+#mainmenu li:hover ul {
+display:block;		
+}
+
+#slideshow-noscript {
+width:100%;
+height:440px;
+text-align:center;
+background:url(../images/slideshow/bg-slide1.jpg) no-repeat;
+display:block;
+}
+
+#slideshow-noscript h4 {
+width:650px;
+margin:0 auto;
+padding-top:190px;
+text-align:center;
+text-transform:uppercase;
+}
+
+#twitter-box {
+display:none;
+}
+
+#twitter-noscript {
+width:100%;
+border: 1px solid #e2e2e2; 
+background-color:#f2f2f2;
+background: -moz-linear-gradient(top, #f8f8f8, #f2f2f2);
+background: -webkit-linear-gradient(top, #f8f8f8, #f2f2f2);
+background: -o-linear-gradient(top, #f8f8f8, #f2f2f2);
+-webkit-box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset; 
+-moz-box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset; 
+box-shadow: 0 1px 0 rgba(255, 255, 255, 1) inset;	
+-webkit-border-radius: 4px;
+-moz-border-radius: 4px;
+border-radius: 4px;
+margin:25px auto 0;
+display:block;	
+}
+
+#twitter-noscript p{
+width:85%;
+font-family:Georgia, "Times New Roman", Times, serif;
+font-style:italic;
+font-size:14px;
+line-height:22px;
+margin:9px auto -9px auto;
+text-align:center;
+}
+
+.tab_container > div:last-child, .tab_container > div:first-child {
+display:none;
+}
+
+#map_canvas {
+width:100%;	
+height:440px;
+background-image:url(../images/sample-images/noscript-map.jpg);
+background-repeat:no-repeat;
+display:block;
+}
+
+#flickr-noscript{
+display:block;
+}
+
+#flickr-noscript p{
+font-family:Georgia, "Times New Roman", Times, serif;
+font-style:italic;
+font-size:14px;
+line-height:22px;
+margin:42px auto 0px auto;
+text-align:center;
+}

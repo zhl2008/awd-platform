@@ -1,0 +1,143 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{:lang('systemSet')}</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane">
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('websiteName')}</label>
+            <div class="layui-input-4">
+                <input type="text"name="name" value="{$system.name}" lay-verify="required" placeholder="{:lang('pleaseEnter')}{:lang('websiteName')}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('WebsiteUrl')}</label>
+            <div class="layui-input-4">
+                <input type="text" name="url" value="{$system.url}" lay-verify="url" placeholder="{:lang('pleaseEnter')}{:lang('WebsiteUrl')}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('seoTitle')}</label>
+            <div class="layui-input-4">
+                <input type="text"name="title" value="{$system.title}"lay-verify="required" placeholder="{:lang('pleaseEnter')}{:lang('WebsiteUrl')}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">{:lang('seoKeyword')}</label>
+            <div class="layui-input-block">
+                <textarea name="key" lay-verify="required" placeholder="{:lang('pleaseEnter')}{:lang('seoKeyword')}" class="layui-textarea">{$system.key}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item layui-form-text">
+            <label class="layui-form-label">{:lang('description')}</label>
+            <div class="layui-input-block">
+                <textarea name="des" lay-verify="required" placeholder="{:lang('pleaseEnter')}{:lang('description')}" class="layui-textarea">{$system.des}</textarea>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">网站LOGO</label>
+            <input type="hidden" name="logo" id="logo" value="{$system.logo}">
+            <div class="layui-input-block">
+                <div class="layui-upload">
+                    <button type="button" class="layui-btn layui-btn-primary" id="logoBtn"><i class="icon icon-upload3"></i>点击上传</button>
+                    <div class="layui-upload-list">
+                        <img class="layui-upload-img" id="cltLogo">
+                        <p id="demoText"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('recordNum')}</label>
+            <div class="layui-input-3">
+                <input type="text" name="bah" value="{$system.bah}" placeholder="{:lang('pleaseEnter')}{:lang('recordNum')}" class="layui-input">
+            </div>
+        </div>
+
+        <div class="layui-form-item">
+            <label class="layui-form-label">Copyright</label>
+            <div class="layui-input-3">
+                <input type="text" name="copyright" value="{$system.copyright}" placeholder="{:lang('pleaseEnter')}Copyright" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('companyAddress')}</label>
+            <div class="layui-input-3">
+                <input type="text" name="ads" value="{$system.ads}" placeholder="{:lang('pleaseEnter')}{:lang('companyAddress')}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('tel')}</label>
+            <div class="layui-input-3">
+                <input type="text" name="tel" value="{$system.tel}" placeholder="{:lang('pleaseEnter')}{:lang('tel')}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">{:lang('email')}</label>
+            <div class="layui-input-3">
+                <input type="text" name="email" value="{$system.email}" placeholder="{:lang('pleaseEnter')}{:lang('email')}" class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" lay-submit="" lay-filter="sys">{:lang('submit')}</button>
+                <button type="reset" class="layui-btn layui-btn-primary">{:lang('reset')}</button>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="common/foot"/}
+<script>
+    layui.use(['form', 'layer','upload'], function () {
+        var form = layui.form,layer = layui.layer,upload = layui.upload,$ = layui.jquery;
+        if("{$system.logo}"){
+            cltLogo.src = "__PUBLIC__"+ "{$system.logo}";
+        }
+        //普通图片上传
+        var uploadInst = upload.render({
+            elem: '#logoBtn'
+            ,url: '{:url("UpFiles/upload")}'
+            ,before: function(obj){
+                //预读本地文件示例，不支持ie8
+                obj.preview(function(index, file, result){
+                    $('#cltLogo').attr('src', result); //图片链接（base64）
+                });
+            }
+            ,done: function(res){
+                //上传成功
+                if(res.code>0){
+                    $('#logo').val(res.url);
+                }else{
+                    //如果上传失败
+                    return layer.msg('上传失败');
+                }
+            }
+            ,error: function(){
+                //演示失败状态，并实现重传
+                var demoText = $('#demoText');
+                demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-mini demo-reload">重试</a>');
+                demoText.find('.demo-reload').on('click', function(){
+                    uploadInst.upload();
+                });
+            }
+        });
+        //提交监听
+        form.on('submit(sys)', function (data) {
+            loading =layer.load(1, {shade: [0.1,'#fff']});
+            $.post("{:url('system/system')}",data.field,function(res){
+                layer.close(loading);
+                if(res.code > 0){
+                    layer.msg(res.msg,{icon: 1, time: 1000},function(){
+                        location.href = res.url;
+                    });
+                }else{
+                    layer.msg(res.msg,{icon: 2, time: 1000});
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>

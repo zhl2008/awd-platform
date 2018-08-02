@@ -1,0 +1,100 @@
+{include file="common/head"/}
+<!-- pagetitle start here -->
+<section id="pagetitle-wrapper">
+    <div class="pagetitle-content">
+        <h2>{$title}</h2>
+    </div>
+</section>
+<!-- pagetitle end here -->
+
+<!-- breadcrumb start here -->
+<section id="breadcrumb-wrapper">
+    <div id="breadcrumb-content">
+        <ul>
+            <li><a href="{:url('home/index/index')}" title="{$sys.title}">首页</a></li>
+            <li><a href="{:url('home/'.MODULE_NAME.'/index',array('catId'=>input('catId')))}" title="{$title}">{$title}</a></li>
+            <li>{$info.title}</li>
+        </ul>
+    </div>
+</section>
+
+<section id="content-wrapper">
+    <div class="row">
+        <div class="six columns">
+            <h5>留下您宝贵的意见</h5>
+            <div id="contact-form-area">
+                <!-- Contact Form Start //-->
+                <form action="#" id="contactform" />
+                <fieldset>
+                    <label>标题 <em>*</em></label>
+                    <input type="text" name="title" class="textfield" id="title" value="" />
+                    <label>称呼 <em>*</em></label>
+                    <input type="text" name="name" class="textfield" id="name" value="" />
+                    <label>邮箱 <em>*</em></label>
+                    <input type="text" name="email" class="textfield" id="email" value="" />
+                    <textarea name="content" id="content" class="textarea" cols="2" rows="4"></textarea>
+                    <div class="clear"></div>
+                    <label>&nbsp;</label>
+                    <input type="button" name="submit" class="buttoncontact" id="buttonsend" value="提交" />
+                    <span class="loading" style="display: none;">Please wait..</span>
+                    <div class="clear"></div>
+                </fieldset>
+                </form>
+                <!-- Contact Form End //-->
+            </div>
+        </div>
+        <div class="six columns">
+            <div class="panel stamp">
+                <h5>联系信息</h5>
+                {$info.content}
+                <ul class="contact-info">
+                    <li class="address-icon"><a href="http://www.cltphp.com" title="CLTPHP">CLTPHP</a></li>
+                    <li class="qq-icon"><a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ebcb5f6099570a3a1429036f42f787b9eea835fdbf6ded8eaee2a546855cce97"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="CLTPHP交流群0002" title="CLTPHP交流群0002"></a></li>
+                    <li class="qq-icon">站长QQ号 : <a href="tencent://message/?uin=1109305987&Site=&Menu=yes" title="点击加好友">1109305987</a></li>
+                    <li class="email-icon">Email : 1109305987@qq.com</li>
+                    <li class="time-icon">当前时间: {:toDate(time(),'Y-m-d H:i:s')}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="twelve columns">
+
+        </div>
+    </div>
+</section>
+<script>
+    $('#buttonsend').click(function(){
+        var title = $('#title').val();
+        var name = $('#name').val();
+        var email = $('#email').val();
+        var content = $('#content').val();
+        if($.trim(title)==''){
+            alert('标题不能为空');
+            return false;
+        }
+        if($.trim(name)==''){
+            alert('称呼不能为空');
+            return false;
+        }
+        if($.trim(email)==''){
+            alert('邮箱不能为空');
+            return false;
+        }
+        if($.trim(content)==''){
+            alert('内容不能为空');
+            return false;
+        }
+        $.post("{:url('senMsg')}",{title:title,name:name,email:email,content:content},function(data){
+            if(data.status==1){
+                alert('留言成功！感谢您对我们的支持！');
+                window.location.href = "{:url('home/contact/index',array('catId'=>input('catId')))}"
+            }else{
+                alert('留言失败！重新提交试试！');
+            }
+        })
+    })
+</script>
+<!-- maincontent end here -->
+{include file="common/footer"/}

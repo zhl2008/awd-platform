@@ -1,0 +1,20 @@
+
+<div class="foot">
+ <div class="foot_nav">
+  <div class="foot_nav_left">
+  <div class="foot_nav_right">
+  {loop source=nav_bottom()}
+  <a href="{print $v['url']/}" title="{print $v['cate_name']/}">{print $v['cate_name']/}</a>|
+  {/loop}
+  </div>
+  </div>
+ </div>
+ {assign source=webinfo('web_address') name=address/}
+ {assign source=webinfo('web_phone') name=phone/}
+ {assign source=webinfo('web_mail') name=mail/}
+ <p>{if $address}Address：{print $address/}{/if}{if $phone}&nbsp;&nbsp;TEL：{print $phone/}{/if}{if $mail}&nbsp;&nbsp;E-MAIL：{print $mail/}{/if}</p>
+ <p>{print webinfo('web_powerby')/}</p>
+ <p>powerd by <a href="http://www.test.com" target="_blank">BEESCMS</a></p>
+</div><!--页脚-->
+{print webinfo('web_yinxiao')/}
+{include kefu/}

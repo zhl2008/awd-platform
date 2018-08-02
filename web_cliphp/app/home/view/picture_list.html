@@ -1,0 +1,60 @@
+{include file="common/head"/}
+
+<!-- pagetitle start here -->
+<section id="pagetitle-wrapper">
+    <div class="pagetitle-content">
+        <h2>{$title}</h2>
+    </div>
+</section>
+<!-- pagetitle end here -->
+
+<!-- breadcrumb start here -->
+<section id="breadcrumb-wrapper">
+    <div id="breadcrumb-content">
+        <ul>
+            <li><a href="{:url('home/index/index')}" title="{$sys.title}">首页</a></li>
+            <li><a href="#">{$title}</a></li>
+        </ul>
+    </div>
+</section>
+<!-- breadcrumb end here -->
+
+<!-- maincontent start here -->
+<section id="content-wrapper">
+    <div class="row">
+        <div class="twelve columns">
+            <div id="pf-filter">
+                <ul>
+                    <li><a href="" class="selected" data-filter="*">全部</a></li>
+                    {volist name="options" id="v"}
+                    <li><a href="" data-filter=".ll{$v.key}" title="{$v.val}">{$v.val}</a></li>
+                    {/volist}
+                </ul>
+            </div>
+
+            <!-- divider line start here -->
+            <div class="row">
+                <div class="twelve columns">
+                    <div class="divider"></div>
+                </div>
+            </div>
+            <!-- divider line end here -->
+
+            <ul class="pf-box-3col">
+                {volist name="$list" id="vo"}
+                <li class="ll{$vo.group}">
+                    <span class="link-zoom">
+                        <a class="fancybox" href="__PUBLIC__{$vo.pic}" data-fancybox-group="gallery" title="{$vo.title}">
+                            <img src="__PUBLIC__{$vo.pic}" alt="" class="fade" />
+                        </a>
+                    </span>
+                    <h5>{$vo.title}</h5>
+                    <p>{$vo.content}</p>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</section>
+<!-- maincontent end here -->
+{include file="common/footer"/}

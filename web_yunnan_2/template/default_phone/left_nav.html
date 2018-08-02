@@ -1,0 +1,33 @@
+<h2 class="title"><span>产品分类</span></h2>
+				<div class="al_list_ct" style="height:auto">
+					{assign source=get_tpl_list_nav(3,1) name=tree/}
+					<div id="category_tree">
+			{loop source=$tree item=$nav}
+    <dl>
+     <dt><a class="{print $nav['class']/}" href="{print $nav['url']/}" {print $nav['target']/} title="{print $nav['cate_name']/}">{print $nav['cate_name']/}({print $nav['content_num']/})</a></dt>
+	 {if $nav['child']}
+     <dd id="nav_16">
+	 <ul>
+	 {loop source=$nav['child']}
+	  	 <li><a class="{print $v['class']/}" href="{print $v['url']/}">{print $v['cate_name']/}({print $v['content_num']/})</a></li>
+     {/loop}
+     </ul>
+	 </dd>
+	 {else}
+	 {if $nav['content_num']}
+	 <dd id="nav_16">
+	 <ul>
+	 {loop source=$nav['content']}
+	  	 <li><a class="{print $v['class']/}" href="{print $v['url']/}">{print $v['title']/}</a></li>
+     {/loop}
+     </ul>
+	 </dd>
+	 {/if}
+	 {/if}
+   </dl>
+   {/loop}
+   
+   </div><!--分页导航-->
+					
+					
+				</div>

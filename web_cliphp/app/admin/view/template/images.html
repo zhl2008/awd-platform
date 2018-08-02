@@ -1,0 +1,94 @@
+{include file="common/head"/}
+<style>
+    a{text-decoration: none;}
+    .table-list ul.pic { list-style: none;}
+    .table-list ul.pic li {float:left;position:relative;margin:5px 10px;_margin:5px 8px;text-align: center;}
+    .table-list ul.pic li span { width:82px;height:82px;display: block;border: 1px solid #dedede;}
+    .table-list ul.pic li span a {border:1px solid #eee;width:80px;height:80px;*font-size: 75px;display: table-cell; vertical-align: middle; overflow: hidden;}
+    .table-list ul.pic li img  {max-height:80px;max-width:80px ;_width:80px;_height:80px;}
+    .table-list ul.pic li  b {display:block;line-height:20px;height:20px;font-weight:normal;width:82px;overflow:hidden;}
+    .table-list ul.pic li  em {position:absolute;right:25px;bottom:20px;font-style: normal;}
+    .table-list ul.pic li  em a{color: #f00;}
+</style>
+<div class="admin-main fadeInUp animated">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{$title}</legend>
+    </fieldset>
+    <div class="layui-field-box">
+        <blockquote class="layui-elem-quote">
+            <a href="{:url('index')}" class="layui-btn layui-btn-sm">
+            <i class="fa fa-file-code-o "></i> {:strtoupper($viewSuffix)}
+            </a>
+            <a href="{:url('index',array('type'=>'css'))}" class="layui-btn layui-btn-sm">
+            <i class="fa fa-css3"></i> CSS
+            </a>
+            <a href="{:url('index',array('type'=>'js'))}" class="layui-btn layui-btn-sm">
+            <i class="fa fa-file-text-o"></i> JS
+            </a>
+            <a href="{:url('images')}" class="layui-btn layui-btn-sm layui-btn-danger">
+                <i class="fa fa-file-image-o"></i> 媒体文件
+            </a>
+            <a href="{:url('add')}" style="float: right;" class="layui-btn layui-btn-sm layui-btn-normal">
+                <i class="fa fa-plus"></i> {:lang('add')}模版
+            </a>
+        </blockquote>
+        <div class="table-list">
+            <ul class="pic">
+                {if condition="$leve"}
+                <li>
+                    <span><a href="{:url('images')}?folder={$uppath}"><img src="__ADMIN__/images/upback.gif"></a></span>
+                    <b><font color="#665aff">返回上一级</font></b></li>
+                {/if}
+                {volist name="folders" id="vo"}
+                <li>
+                    <span><a href="{:url('images')}?folder={:input('folder')}{$vo['filename']}/"><img src="__ADMIN__/images/folder.gif"></a></span>
+                    <b>{$vo.filename}</b>
+                    <em>
+                        <a href="javascript:confirm_delete('{:input('folder')}','{$vo.filename}')">删除</a>
+                    </em>
+                </li>
+                {/volist}
+
+                {volist name="files" id="vo"}
+                <li>
+                    <span>
+                        <a href="__STATIC__/home/images/{:input('folder')}{$vo.filename}" target="_blank">
+                            {if condition="!empty($vo['ico'])"}
+                            <img src="__STATIC__/home/images/ext/{$vo['ext']}.png">
+                            {else /}
+                            <img src="__STATIC__/home/images/{:input('folder')}{$vo.filename}" >
+                            {/if}
+                        </a>
+                    </span>
+                    <b>{$vo.filename}</b>
+                    <em><a href="javascript:confirm_delete('{:input("folder")}','{$vo.filename}')">删除</a></em>
+                </li>
+                {/volist}
+            </ul>
+        </div>
+    </div>
+</div>
+{include file="common/foot"/}
+<script src="__STATIC__/common/js/jquery.2.1.1.min.js"></script>
+<script>
+    function confirm_delete(folder,filename) {
+        layer.confirm('你确定要删除吗？', {icon: 3}, function (index) {
+            layer.close(index);
+            var loading = layer.load(1, {shade: [0.1, '#fff']});
+            $.post("{:url('imgDel')}",{folder:folder,filename:filename},function(data){
+                layer.close(loading);
+                if(data.code==1){
+                    layer.alert(data.msg, {icon: 6}, function(index){
+                        layer.close(index);
+                        location.replace(location.href);
+                    });
+                }else{
+                    layer.alert(data.msg, {icon: 5}, function(index){
+                        layer.close(index);
+                    });
+                }
+            })
+        });
+    }
+
+</script>

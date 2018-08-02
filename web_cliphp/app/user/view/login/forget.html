@@ -1,0 +1,91 @@
+{include file="common/head"/}
+<body>
+<div class="header">
+    <div class="main">
+        <a class="logo" href="{:url('index/index')}" title="CLTPHP">CLTPHP</a>
+    </div>
+</div>
+
+<div class="main layui-clear">
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="user">
+            <ul class="layui-tab-title">
+                <li class="layui-this">找回密码</li>
+            </ul>
+            <div class="layui-form layui-tab-content" id="LAY_ucm" style="padding: 20px 0;">
+                <div class="layui-tab-item layui-show">
+                    <div class="layui-form layui-form-pane">
+                        <form method="post">
+                            <div class="layui-form-item">
+                                <label for="L_email" class="layui-form-label">邮　　箱</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_email" name="email" lay-verify="required" placeholder="请输入邮箱帐号" autocomplete="off" class="layui-input">
+
+                                </div>
+                                <button type="button" class="layui-btn layui-btn-normal" id="sentEmail">发送</button>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_vercode" class="layui-form-label">验  证  码</label>
+                                <div class="layui-input-inline">
+                                    <input type="text" id="L_vercode" name="code" lay-verify="required" placeholder="请输入您收到的验证码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_pass" class="layui-form-label">密　　码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_pass" name="password" lay-verify="required" placeholder="6到16个字符" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <label for="L_repass" class="layui-form-label">确认密码</label>
+                                <div class="layui-input-inline">
+                                    <input type="password" id="L_repass" name="password2" lay-verify="required" placeholder="请输入确认密码" autocomplete="off" class="layui-input">
+                                </div>
+                            </div>
+                            <div class="layui-form-item">
+                                <button type="button" class="layui-btn" lay-filter="sub" lay-submit>提交</button>
+                                <span style="padding-left:20px;"><a href="{:url('index')}">登录</a></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{include file="common/footer"/}
+<script>
+
+    layui.use('form', function () {
+        var form = layui.form,$ = layui.jquery;
+        $('#sentEmail').click(function () {
+            var email = $('#L_email').val();
+            var loading = layer.load(1, {shade: [0.1, '#fff']});
+            $.post("{:url('sendEmail')}",{email:email},function(res){
+                layer.close(loading);
+                if(res.code > 0){
+                    layer.msg(res.msg,{time:1000,icon:1});
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            });
+
+        });
+        // 登录提交监听
+        form.on('submit(sub)', function (data) {
+            var loading = layer.load(1, {shade: [0.1, '#fff']});
+            $.post("{:url('forget')}",data.field,function(res){
+                layer.close(loading);
+                if(res.code > 0){
+                    layer.msg(res.msg,{time:1800,icon:1},function(){
+                        location.href = "{:url('index/index')}";
+                    });
+                }else{
+                    layer.msg(res.msg,{time:1800,icon:2});
+                }
+            });
+        })
+    })
+</script>
+</body>
+</html>

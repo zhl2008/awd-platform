@@ -1,0 +1,305 @@
+{switch name="type" }
+{case value="title"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="120">标题图片</td>
+		<td>
+			<input type="radio" name="setup[thumb]" value="1" {if condition="$thumb==1"} checked{/if} title="是">
+			<input type="radio" name="setup[thumb]" value="0"{if condition="$thumb==0"} checked{/if} title="否">
+		</td>
+	</tr>
+	<tr>
+		<td>标题样式</td>
+		<td>
+			<input type="radio" name="setup[style]" value="1" {if condition="$style==1"} checked{/if} title="是">
+			<input type="radio" name="setup[style]" value="0" {if condition="$style==0"} checked{/if} title="否">
+		</td>
+	</tr>
+</table>
+{/case}
+{case value="text" }
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td>默认值</td>
+		<td> <input type="text" class="input-text layui-input" size="50"  name="setup[default]" value="{$default}" /></td>
+	</tr>
+	<tr>
+		<td>是否为密码框</td>
+		<td>
+			<input type="radio" name="setup[ispassword]" value="1" title="是" {if condition="$ispassword==1"} checked{/if}>
+			<input type="radio" name="setup[ispassword]" value="0" title="否" {if condition="$ispassword==0"} checked{/if}>
+		</td>
+	</tr>
+	<input type="hidden" id="varchar" name="setup[fieldtype]" value="varchar"/>
+</table>
+{/case}
+{case value="textarea" }
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td>字段类型</td>
+		<td>
+			<select name="setup[fieldtype]">
+				<option value="mediumtext" <?php if($fieldtype=='mediumtext') echo 'selected';?>>MEDIUMTEXT</option>
+				<option value="text" <?php if($fieldtype=='text') echo 'selected';?>>TEXT</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>默认值</td>
+		<td>
+			<textarea class="layui-textarea"   name="setup[default]" rows="3" cols="40">{$default}</textarea>
+		</td>
+	</tr>
+</table>
+{/case}
+{case value="select" }
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="120">选项列表:<br>例: <font color="red">选项名称|值</font></td>
+		<td>
+			<textarea class="layui-textarea"   name="setup[options]" rows="5" cols="40">{$options}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>选项类型</td>
+		<td>
+			<input type="radio" name="setup[multiple]" value="0" title="下拉框" {if condition="$multiple==0"} checked{/if}>
+			<input type="radio" name="setup[multiple]" value="1" title="多选列表框" {if condition="$multiple==1"} checked{/if}>
+		</td>
+	</tr>
+	<tr>
+		<td>字段类型</td>
+		<td>
+			<select name="setup[fieldtype]" onchange="javascript:numbertype(this.value);">
+				<option value="varchar" <?php if($fieldtype=='varchar') echo 'selected';?>>字符 VARCHAR</option>
+				<option value="tinyint" <?php if($fieldtype=='tinyint') echo 'selected';?>>整数 TINYINT(3)</option>
+				<option value="smallint" <?php if($fieldtype=='smallint') echo 'selected';?>>整数 SMALLINT(5)</option>
+				<option value="mediumint" <?php if($fieldtype=='mediumint') echo 'selected';?>>整数 MEDIUMINT(8)</option>
+				<option value="int" <?php if($fieldtype=='int') echo 'selected';?>>整数 INT(10)</option>
+			</select>
+			<span style="display:none;"  >
+				<input type="checkbox" name = "setup[numbertype]" value="1" checked  title="不包括负数"/>
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td>可见选项的数目</td>
+		<td>
+			<input type="text" class="input-text layui-input" size="5" name="setup[size]" value="{$size}" />
+		</td>
+	</tr>
+	<tr>
+		<td>默认值</td>
+		<td>
+			<input type="text" class="input-text layui-input" size="5"  name="setup[default]" value="{$default}" />
+		</td>
+	</tr>
+</table>
+
+{/case}
+{case value="editor"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="140">编辑器类型：</td>
+		<td><select name="setup[edittype]">
+			<option value="layedit" {if $edittype=='layedit'} selected{/if}>layedit</option>
+			<option value="UEditor" {if $edittype=='UEditor'} selected{/if}>UEditor</option>
+		</select></td>
+	</tr>
+</table>
+{/case}
+{case value="datetime"}
+
+{/case}
+{case value="groupid"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="120">选项类型</td>
+		<td>
+			<input type="radio" name="setup[inputtype]" value="checkbox" {if condition="$inputtype=='checkbox'"} checked{/if} title="复选框">
+			<input type="radio" name="setup[inputtype]" value="select" {if condition="$inputtype=='select'"} checked{/if} title="下拉列表框">
+			<input type="radio" name="setup[inputtype]" value="radio" {if condition="$inputtype=='radio'"} checked{/if} title="单选框">
+		</td>
+	</tr>
+	<tr>
+		<td>字段类型</td>
+		<td>
+			<select name="setup[fieldtype]"  onchange="javascript:numbertype(this.value);">
+				<option value="varchar" <?php if($fieldtype=='varchar') echo 'selected';?>>字符 VARCHAR</option>
+				<option value="tinyint" <?php if($fieldtype=='tinyint') echo 'selected';?>>整数 TINYINT(3)</option>
+			</select>
+			<span style="display:none;">
+				<input type="checkbox" name = "setup[numbertype]" value="1" checked title="不包括负数" />
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td>默认值</td>
+		<td>
+			<input type="text" class="input-text layui-input" size="5"  name="setup[default]" value="{$default}" />
+		</td>
+	</tr>
+</table>
+{/case}
+{case value="typeid"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="120">选项类型</td>
+		<td>
+			<input type="radio" name="setup[inputtype]" value="checkbox" {if condition="$inputtype=='checkbox'"} checked{/if} title="复选框">
+			<input type="radio" name="setup[inputtype]" value="select" {if condition="$inputtype=='select'"} checked{/if} title="下拉列表框">
+			<input type="radio" name="setup[inputtype]" value="radio" {if condition="$inputtype=='radio'"} checked{/if} title="单选框">
+		</td>
+	</tr>
+	<tr>
+		<td>字段类型</td>
+		<td>
+			<select name="setup[fieldtype]"  onchange="javascript:numbertype(this.value);">
+				<option value="varchar" <?php if($fieldtype=='varchar') echo 'selected';?>>字符 VARCHAR</option>
+				<option value="tinyint" <?php if($fieldtype=='tinyint') echo 'selected';?>>整数 TINYINT(3)</option>
+				<option value="smallint" <?php if($fieldtype=='smallint') echo 'selected';?>>整数 SMALLINT(5)</option>
+			</select>
+			<span style="display:none;"  >
+				<input type="checkbox" name = "setup[numbertype]" value="1" checked title="不包括负数" />
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td>顶级类别ID</td>
+		<td>
+			<input type="text" class="input-text layui-input" size="5"  name="setup[default]" value="{$default}" />
+		</td>
+	</tr>
+</table>
+{/case}
+{case value="posid"}
+{/case}
+{case value="radio"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="120">选项列表:<br>例: <font color="red">选项名称|值</font></td>
+		<td>
+			<textarea class="layui-textarea"   name="setup[options]" rows="5" cols="40">{$options}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>字段类型</td>
+		<td>
+			<select name="setup[fieldtype]" onchange="javascript:numbertype(this.value);">
+				<option value="varchar" <?php if($fieldtype=='varchar') echo 'selected';?>>字符 VARCHAR</option>
+				<option value="tinyint" <?php if($fieldtype=='tinyint') echo 'selected';?>>整数 TINYINT(3)</option>
+				<option value="smallint" <?php if($fieldtype=='smallint') echo 'selected';?>>整数 SMALLINT(5)</option>
+				<option value="mediumint" <?php if($fieldtype=='mediumint') echo 'selected';?>>整数 MEDIUMINT(8)</option>
+				<option value="int" <?php if($fieldtype=='int') echo 'selected';?>>整数 INT(10)</option>
+			</select>
+			<span style="display:none;"  >
+				<input type="checkbox" name = "setup[numbertype]" value="1" checked title="不包括负数" />
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td>默认值</td>
+		<td>
+			<input type="text" class="input-text layui-input" size="5"  name="setup[default]" value="{$default}" />
+		</td>
+	</tr>
+</table>
+
+{/case}
+{case value="checkbox"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td width="120">选项列表:<br>例: <font color="red">选项名称|值</font></td>
+		<td>
+			<textarea class="layui-textarea"  name="setup[options]" rows="5" cols="40">{$options}</textarea>
+		</td>
+	</tr>
+	<tr>
+		<td>字段类型</td>
+		<td>
+			<select name="setup[fieldtype]" onchange="javascript:numbertype(this.value);">
+				<option value="varchar" <?php if($fieldtype=='varchar') echo 'selected';?>>字符 VARCHAR</option>
+				<option value="tinyint" <?php if($fieldtype=='tinyint') echo 'selected';?>>整数 TINYINT(3)</option>
+				<option value="smallint" <?php if($fieldtype=='smallint') echo 'selected';?>>整数 SMALLINT(5)</option>
+				<option value="mediumint" <?php if($fieldtype=='mediumint') echo 'selected';?>>整数 MEDIUMINT(8)</option>
+				<option value="int" <?php if($fieldtype=='int') echo 'selected';?>>整数 INT(10)</option>
+			</select>
+			<span style="display:none;"  >
+				<input type="checkbox" name = "setup[numbertype]" value="1" checked title="不包括负数" />
+			</span>
+		</td>
+	</tr>
+	<tr>
+		<td>默认值</td>
+		<td>
+			<input type="text" class="input-text layui-input" size="5"  name="setup[default]" value="{$default}" />
+		</td>
+	</tr>
+</table>
+{/case}
+{case value="number"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td>是否包括负数：</td>
+		<td>
+			<input type="radio" name="setup[numbertype]" value="1" title="是" <?php if($numbertype ==1) echo 'checked';?>>
+			<input type="radio" name="setup[numbertype]" value="0" title="否" <?php if($numbertype ==0) echo 'checked';?>>
+		</td>
+	</tr>
+	<tr>
+		<td>小数位数：</td>
+		<td>
+			<select name="setup[decimaldigits]">
+				<option value="0"<?php if($decimaldigits==0) echo ' selected';?>>0</option>
+				<option value="1"<?php if($decimaldigits==1) echo ' selected';?>>1</option>
+				<option value="2"<?php if($decimaldigits==2) echo ' selected';?>>2</option>
+				<option value="3"<?php if($decimaldigits==3) echo ' selected';?>>3</option>
+				<option value="4"<?php if($decimaldigits==4) echo ' selected';?>>4</option>
+				<option value="5"<?php if($decimaldigits==5) echo ' selected';?>>5</option>
+			</select>
+		</td>
+	</tr>
+	<tr>
+		<td>默认值</td>
+		<td>
+			<input type="text" name="setup[default]" value="{$default}" size="40" class="input-text layui-input">
+		</td>
+	</tr>
+</table>
+{/case}
+{case value="image"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td>允许上传的图片类型</td>
+		<td><input type="text" name="setup[upload_allowext]" value="{$upload_allowext}" class="input-text layui-input"></td>
+	</tr>
+</table>
+{/case}
+{case value="images"}
+<table cellpadding="2" cellspacing="1" width="100%">
+</table>
+{/case}
+{case value="file"}
+<table cellpadding="2" cellspacing="1" width="100%">
+	<tr>
+		<td>允许上传的文件类型</td>
+		<td><input type="text" name="setup[upload_allowext]" value="{$upload_allowext}" class="input-text layui-input"></td>
+	</tr>
+</table>
+{/case}
+{case value="files"}
+<table cellpadding="2" cellspacing="1" width="100%">
+</table>
+{/case}
+{default /}
+{/switch}
+<script>
+    function numbertype(fieldtype){
+        if(fieldtype=='varchar'){
+            $('#numbertype').hide();
+        }else{
+            $('#numbertype').show();
+        }
+    }
+    {if condition="!empty($fieldtype) && $fieldtype!='varchar'"}$('#numbertype').show();{/if}
+</script>

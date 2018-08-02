@@ -1,0 +1,53 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{$title}</legend>
+    </fieldset>
+    <form class="layui-form layui-form-pane">
+        <input type="hidden" name="type" value="{:input('type')}">
+        <input type="hidden" name="code" value="{:input('code')}">
+        {volist name="info.config" id="vo"}
+        <div class="layui-form-item">
+            <label class="layui-form-label">{$vo.label}</label>
+            <div class="layui-input-4">
+                {if condition="$vo['type'] eq 'select'"}
+                <select name="config[{$vo['name']}]" class="col-select col-xs-12 col-md-3 selector">
+                    {volist name="vo.option" id="option" key="o"}
+                    <option {if condition="$config_value[$vo['name']] eq $o"}selected{/if}  value="{$o}">{$option}</option>
+                    {/volist}
+                </select>
+                {elseif condition="$vo['type'] eq 'textarea'"/}
+                <textarea lay-verify="required" name="config[{$vo['name']}]" placeholder="{:lang('pleaseEnter')}{$vo.label}" class="layui-textarea">{$config_value[$vo['name']]}</textarea>
+                {else /}
+                <input type="{$vo['type']}" name="config[{$vo['name']}]" value="{$config_value[$vo['name']]}" lay-verify="required" placeholder="{:lang('pleaseEnter')}{$vo.label}" class="layui-input">
+                {/if}
+            </div>
+        </div>
+        {/volist}
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button type="button" class="layui-btn" lay-submit="" lay-filter="submit">{:lang('submit')}</button>
+                <a href="{:url('login')}" class="layui-btn layui-btn-primary">{:lang('back')}</a>
+            </div>
+        </div>
+    </form>
+</div>
+{include file="common/foot"/}
+<script>
+    layui.use(['form', 'layer'], function () {
+        var form = layui.form, $ = layui.jquery;
+        form.on('submit(submit)', function (data) {
+            loading = layer.load(1, {shade: [0.1, '#fff']});
+            $.post("{:url('paySetUp')}", data.field, function (res) {
+                layer.close(loading);
+                if (res.code > 0) {
+                    layer.msg(res.msg, {time: 1800, icon: 1}, function () {
+                        location.href = res.url;
+                    });
+                } else {
+                    layer.msg(res.msg, {time: 1800, icon: 2});
+                }
+            });
+        })
+    });
+</script>

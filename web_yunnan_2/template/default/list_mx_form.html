@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print cateinfo('cate_info_seo')/}">
+<meta name="keywords" content="{print cateinfo('cate_key_seo')/}">
+<title>{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+<div class="div_margin"></div>
+<div class="contain">
+	<div class="contain_left">
+	{assign source=get_tpl_list_nav() name=tree/}
+	{if $tree}
+		<div class="box left_width">
+		<div class="box_left"></div>
+		<div class="box_right"></div>
+			<div class="left_title"><h2>产品导航</h2></div>
+			<div class="box_in">
+				
+				<div id="category_tree">
+			{loop source=$tree item=$nav}
+    <dl>
+     <dt><span class="c_icon"></span><a class="{print $nav['class']/}" href="{print $nav['url']/}" {print $nav['target']/} title="{print $nav['cate_name']/}">{print $nav['cate_name']/}</a></dt>
+	 
+     <dd style="display: none;" id="nav_16">
+	 <ul>
+	 {loop source=$nav['child']}
+	  	 <li><a class="{print $v['class']/}" href="{print $v['url']/}">{print $v['cate_name']/}</a></li>
+     {/loop}
+     </ul>
+	 </dd>
+   </dl>
+   {/loop}
+   
+   </div><!--分页导航-->
+ 
+			</div>
+			
+			
+		</div><!--容器结束-->
+		<div class="div_margin"></div>
+		{/if}
+		{assign source=get_else_content($cate_id='',$limit='0,5',$order_type='hits',$filter='',$pic='no',$order='desc',$lang='') name=hot_arc/}
+		{if $hot_arc}
+			<div class="box">
+			<div class="left_title"><h2>热门内容</h2></div>
+			<div class="box_in">
+				<div class="news_list">
+					 <ul>
+					 {loop source=$hot_arc}
+       					 <li><a title="{print $v['title']/}" href="{print $v['url']/}" {print $v['target']/} {if $v['style']}style="{print $v['style']/}"{/if}>{print cn_substr($v['title'],40)/}</a>{print date('m-d',$v['updatetime'])/}</li>
+				{/loop}
+	   				</ul>  
+				</div>  
+			</div>
+		</div><!--容器结束-->
+		{/if}
+			<div class="box">
+			<div class="box_left"></div>
+			<div class="box_right"></div>
+			<div class="left_title"><h2>联系方式</h2></div>
+			<div class="box_in">
+				<div class="contact">
+				{print get_block_content('contact_us')/}
+				</div>
+			</div>
+		</div><!--容器结束-->
+		
+	</div><!--左边内容-->
+	<div class="contain_right">
+		
+		<div class="box">
+			<div class="box_left"></div>
+			<div class="box_right"></div>
+			<div class="box_title"><h2 class="position"><span>当前位置:{position source=position/} > 内容列表</span></h2></div>
+			<div class="box_in">
+				<ul class="ul_list_article">
+  				{loop  source=list_article()}
+				<li><span class="time">{print date('Y-m-d 	H:m:s',$v['updatetime'])/}</span><a href="{print $v['url']/}" {print $v['target']/} style="{print $v['style']/}">{print $v['title']/}</a></li>
+				{/loop}
+  				</ul>
+ 				 <div class="list_page">
+   				<div class="page_fy">
+    			{print list_page()/}
+   				</div>
+  				</div>
+				<div class="clear"></div>
+			</div>
+		</div><!--容器结束-->
+	</div>
+	<div class="clear"></div>
+</div>
+{include foot/}
+</body>
+</html>

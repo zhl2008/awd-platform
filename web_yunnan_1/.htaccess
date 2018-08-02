@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteRule (.*)/([0-9]*).html$ $1/show_$1.php?id=$2
+RewriteRule (.*)-([0-9]*).html$ $1/$1.php?id=$2
+RewriteRule (.*)-([0-9]*)-p([0-9]*).html$ $1/$1.php?id=$2&page=$3
+RewriteRule (.*)/([0-9]*)-p([0-9]*).html$ $1/show_$1.php?id=$2&page=$3
+RewriteRule ([search|book|sitemap]*)-lang-(.*).html$ $1/$1.php?lang=$2
+RewriteRule index_(.*).html$ index.php?lang=$1
+

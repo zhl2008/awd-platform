@@ -1,0 +1,68 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:12px;
+}
+li{
+	list-style-type:none;
+}
+#addclass{
+	width:auto;
+	height:100%;
+	margin:3px;	
+}
+#addclass p{
+	height:24px;
+	background:#ddd;
+	border:1px solid #ccc;
+	line-height:24px;
+	text-align:center;
+	font-weight:bold;
+	margin-bottom:3px;
+}
+#addclass form{
+	width:auto;
+	height:100%;
+	background:#eee;
+}
+#addclass ul{
+	width:auto;
+	height:100%;
+}
+#addclass ul li{
+	padding:5px;
+	text-indent:12px;
+}
+
+
+
+#modify{
+	width:auto;
+	height:100%;
+	margin:3px;	
+}
+#modify p{
+	height:24px;
+	background:#ddd;
+	border:1px solid #ccc;
+	line-height:24px;
+	text-align:center;
+	font-weight:bold;
+	margin-bottom:3px;
+}
+#modify form{
+	width:auto;
+	height:100%;
+	background:#eee;
+}
+#modify ul{
+	width:auto;
+	height:100%;
+}
+#modify ul li{
+	padding:5px;
+	text-indent:12px;
+}

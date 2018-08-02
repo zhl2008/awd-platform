@@ -1,0 +1,22 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0
+}
+#bottom{
+	width:100%;
+	height:11px;
+	background:url(../images/bottomback.gif);
+}
+#bottom p.p1{
+	float:left;
+	width:165px;
+	height:11px;
+	background:url(../images/bottomleft.gif) no-repeat;
+}
+#bottom p.p2{
+	float:right;
+	width:17px;
+	height:11px;
+	background:url(../images/bottomright.gif) no-repeat;
+}

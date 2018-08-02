@@ -1,0 +1,13 @@
+</div>
+<div class="foot">
+	<div class="foot_nav">
+		{loop source=nav_bottom()}
+  <a href="{print $v['url']/}" title="{print $v['cate_name']/}">{print $v['cate_name']/}</a>{if !$v['last']}|{/if}
+  {/loop}
+	</div>
+	<div class="foot_pw">
+		{print webinfo('web_powerby')/}
+	</div>
+</div>
+{print webinfo('web_yinxiao')/}
+{include kefu/}

@@ -1,0 +1,131 @@
+    <style type="text/css">
+        /*浮动QQ在线客服*/
+        .kf_contain{z-index:99; width:143px; right:0; top:100px; position:absolute}
+        .kf_contain .kf_list{ width:142px; margin:0 auto; }
+		.kf_contain .kf_list .kf_top{width:143px;background:url({path template/}/images/kf_top.gif) no-repeat left top; height:119px;}
+        .kf_list h2{background:url({path template/}/images/kf_bg.png) no-repeat left top; height:18px; width:100px; text-align:center; line-height:18px; font-size:12px; font-weight:normal; color:#fff;margin-bottom:8px; margin-top:8px;}
+		.kf_top .kf_time{margin-left:40px; padding-top:35px;}
+		.kf_top .kf_time p{height:23px; line-height:23px; overflow:hidden; text-align:center}
+		.kf_contain .kf_list .kf_body{padding-top:5px; background:url({path template/}/images/kf_center.gif) repeat-y left top;padding-bottom:10px;overflow:hidden; text-align:center}
+       
+		.kf_body .kf_body_div{margin-left:40px; }
+        .kf_contain .kf_list .kf_body ul{padding:0; width:133px; background-color:#FFFFFF; border:#FFFFFF 1px solid}
+        .kf_contain .kf_list .kf_body li{font-size:9pt; list-style-type:none; height:25px; padding-right:5px; clear:both; display:block;}
+        .kf_contain .kf_list .kf_body li span{line-height:25px; margin-left:10px;  display:block; vertical-align:middle}
+		.kf_contain .kf_list .kf_body li span.lf{float:left}
+		.kf_contain .kf_list .kf_body li span.lr{float:right}
+		.kf_contain .kf_list  .kf_btm{height:32px; width:143px; background:url({path template/}/images/kf_btm.gif) no-repeat left top;}
+		.on_kf{width:32px; height:118px; float:right}
+        /*浮动QQ在线客服*/
+    </style>
+    <form id="form1" runat="server">
+    <div>
+	<div  class="kf_contain" id="kf_contain">
+		<div class="on_kf" id="on" onmouseover="kf_on();"><img src="{path template/}/images/kf_on.gif"  border="0" alt="客服"/></div>
+        <div >
+            <div class="kf_list" id="off" onmouseout="kf_off();" onmousemove="kf_on();">
+				<div class="kf_top">
+					<div class="kf_time">
+						<h2>Working time</h2>
+						<p>Monday to Sunday</p>
+						<p>9:00 - 23:00</p>
+					</div>
+				</div>
+                <div class="kf_body">
+				<div class="kf_body_div">
+					<h2>Online customer</h2>
+					{loop source=get_market()}
+					{if $v['market_type']=='1'}
+                        <p>
+						<span class="lf">
+                           <a target="_blank" href="http://wpa.qq.com/msgrd?v=3&uin={print $v['market_num']/}&site=qq&menu=yes"><img border="0" src="http://wpa.qq.com/pa?p=2:{print $v['market_num']/}:4" alt="点击这里给我发消息" title="点击这里给我发消息"></a>
+						   </span>
+						   <span class="lf">{print $v['market_name']/}</span>
+                        <p>
+					{/if}
+					{if $v['market_type']=='3'}	
+						<p>
+						<span class="lf">
+                          <a href="msnim:add?contact={print $v['market_num']/}" title="{print $v['market_num']/}"><img src="{path template/}/images/msn.gif" border="0"></a>
+						   </span>
+						   <span class="lf">{print $v['market_name']/}</span>
+                        </p>
+					{/if}	
+					{if $v['market_type']=='4'}
+						<p>
+						<span class="lf">
+                          <a href="skype:mengsajewel?call" onclick="return skypeCheck();"><img src=http://mystatus.skype.com/smallclassic/{print $v['market_num']/} style="border: none;" alt="Call me!" /></a> 
+						   </span>
+                       </p>
+						{/if}
+						{if $v['market_type']=='2'}
+						<p>
+						<span class="lf">
+                        <a target="_blank" title="{print $v['market_num']/}" href="http://amos1.taobao.com/msg.ww?v=2&uid={print $v['market_num']/}&s=2" ><img border="0" src="http://amos1.taobao.com/online.ww?v=2&uid={print $v['market_num']/}&s=2" alt="点击这里给我发消息" /></a>
+						   </span>
+						   <span class="lf">{print $v['market_name']/}</span>
+                       </p>
+						{/if}
+						{/loop}
+						{loop source=get_market()}
+						{if $v['market_type']=='5'}
+						<h2>Telephone</h2>
+						 <p>{print $v['market_num']/}</p>  
+						{/if}
+						{if $v['market_type']=='6'}
+						<h2>Mobile Phone</h2>
+						 <p>{print $v['market_num']/}</p>  
+						{/if}
+						{/loop}
+					</div>
+                </div><!--中间-->
+				<div class="kf_btm"></div><!--底部-->
+            </div>
+        </div>
+    </div>
+	</div>
+    </form>
+
+
+<script type="text/javascript">
+    var tips;
+    var theTop = 100/*这是默认高度,越大越往下*/;
+    var old = theTop;
+	var $on_e= document.getElementById("on");
+	var	$off_e=document.getElementById("off");
+    function initFloatTips() {
+        document.getElementById("off").style.display = "none";
+        tips = document.getElementById("kf_contain");
+        moveTips();
+    };
+    function moveTips() {
+        var sped = 50;
+        if (window.innerHeight) {
+            pos = window.pageYOffset
+        }
+        else if (document.documentElement && document.documentElement.scrollTop) {
+            pos = document.documentElement.scrollTop
+        }
+        else if (document.body) {
+            pos = document.body.scrollTop;
+        }
+        pos = pos - tips.offsetTop + theTop;
+        pos = tips.offsetTop + pos / 10;
+        if (pos < theTop) pos = theTop;
+        if (pos != old) {
+            tips.style.top = pos + "px";
+            sped = 10;
+        }
+        old = pos;
+        setTimeout(moveTips, sped);
+    }
+    initFloatTips();
+	function kf_on(){
+		$on_e.style.display = "none";
+		$off_e.style.display = "block";
+	}
+	function kf_off(){
+		$on_e.style.display = "block";
+		$off_e.style.display = "none";
+	}
+</script>

@@ -1,0 +1,243 @@
+.dn {
+	display: none
+}
+
+.di {
+	display: inline
+}
+
+.dib {
+	display: inline-block
+}
+
+.b_dib {
+	display: inline-block;
+	*display: inline;
+	*zoom: 1
+}
+
+.db {
+	display: block
+}
+
+.cell {
+	display: table-cell
+}
+
+.vh {
+	visibility: hidden
+}
+
+.vv {
+	visibility: visible
+}
+
+.static {
+	position: static
+}
+
+.rel {
+	position: relative
+}
+
+.abs {
+	position: absolute
+}
+
+.oh {
+	overflow: hidden
+}
+
+.z {
+	*zoom: 1
+}
+
+.l {
+	float: left
+}
+
+.r {
+	float: right
+}
+
+.fn {
+	float: none
+}
+
+.cl {
+	clear: both
+}
+
+.tc {
+	text-align: center
+}
+
+.tr {
+	text-align: right
+}
+
+.tl {
+	text-align: left
+}
+
+.tj, .tj_simple {
+	text-align: justify;
+	text-justify: distribute-all-lines;
+	text-align-last: justify;
+	font-size: 0
+}
+
+.tj:after {
+	content: ".";
+	display: inline-block;
+	width: 100%;
+	height: 0;
+	font-size: 0;
+	overflow: hidden
+}
+
+.tj_simple .last_child {
+	width: 100%;
+	height: 0;
+	font-size: 0;
+	overflow: hidden
+}
+
+.tj .tj_item, .tj_simple .tj_item {
+	font-size: 14px;
+	text-align: left;
+	text-justify: auto
+}
+
+.vt {
+	vertical-align: top
+}
+
+.vm {
+	vertical-align: middle
+}
+
+.vb {
+	vertical-align: bottom
+}
+
+.f0 {
+	font-size: 0
+}
+
+.fa {
+	/* font-family: Arial */
+}
+
+.fs {
+	font-family: SimSun
+}
+
+.fyh {
+	font-family: "Microsoft YaHei"
+}
+
+.indent {
+	text-indent: 2em
+}
+
+.n {
+	font-weight: 400;
+	font-style: normal
+}
+
+.b {
+	font-weight: 700
+}
+
+.i {
+	font-style: italic
+}
+
+.tdn {
+	text-decoration: none
+}
+
+.tdn:hover {
+	text-decoration: none
+}
+
+.del {
+	text-decoration: line-through
+}
+
+.poi {
+	cursor: pointer
+}
+
+.group {
+	*zoom: 1
+}
+
+.group:after {
+	content: "\200B";
+	display: block;
+	height: 0;
+	clear: both
+}
+
+.clearfix {
+	*zoom: 1
+}
+
+.clearfix:before, .clearfix:after {
+	display: table;
+	content: ''
+}
+
+.clearfix:after {
+	clear: both
+}
+
+.text_hide {
+	line-height: 999em;
+	overflow: hidden
+}
+
+.text_overflow {
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap
+}
+
+.drop_hl_extra {
+	padding-left: 999em;
+	margin-left: -999em
+}
+
+.drop_vb_extra {
+	padding-bottom: 999em;
+	margin-bottom: -999em
+}
+
+.prg {
+	margin-bottom: 1em
+}
+
+.tips_global {
+	color: #8d8d8d
+}
+
+.text_global {
+	color: #222
+}
+
+.link_global {
+	color: #459ae9;
+	cursor: pointer
+}
+
+.link_global.tail_link {
+	margin-left: 1em
+}
+
+span.bg_img {
+	background-repeat: no-repeat;
+	background-position: center center;
+	background-size: cover
+}

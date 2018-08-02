@@ -1,0 +1,46 @@
+@CHARSET "UTF-8";
+* {
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:12px;
+	background:white;
+}
+li{
+	list-style-type:none
+}
+#left{
+
+	width:147px;
+	height:auto;	
+}
+#left li{
+	width:147px;
+	height:auto;
+	line-height:23px;
+	background:url(../images/leftli.gif) no-repeat left center;
+	text-align:center;
+	margin:2px 0;
+}
+#left li a{
+	display:block;		
+	color:black;
+	text-decoration:none;
+	background:url(../images/leftli.gif) no-repeat left center;
+}
+#left li a:hover{
+	font-weight:bold;	
+}
+#left li ul{
+	width:147px;
+	height:auto;
+	background:white;	
+}
+#left li ul li.leftin a{
+	display:block;
+	width:147px;
+	height:auto;
+	line-height:23px;	
+	background:url(../images/leftli1.gif) no-repeat left center;
+}	

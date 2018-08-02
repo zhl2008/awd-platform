@@ -1,0 +1,60 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	font-size:12px;
+}
+li{
+	list-style-type:none;
+}
+#addnews{
+	width:auto;
+	height:100%;
+	margin:3px;
+}
+#addnews p{
+	height:24px;
+	line-height:24px;
+	text-align:center;
+	font-weight:bold;
+	background:#ddd;
+	margin-bottom:3px;
+	border:1px solid #ccc;
+}
+#addnews form{
+	width:auto;
+	height:100%;
+	background:#eee;	
+}
+#addnews ul{
+	width:auto;
+	height:100%;
+}
+#addnews ul li{
+	padding:3px;
+	text-indent:12px;
+}
+#addnews ul li input{
+	width:300px;
+}
+#addnews ul li.li1 input{
+	width:150px;
+}
+#addnews ul li.li2{
+	margin-left:85px;
+}
+#addnews ul li.li2 textarea{
+	width:700px;
+	height:300px;
+}
+#addnews ul li.li3{
+	margin-left:85px;
+	padding:10px 0;
+}
+#addnews ul li.li3 input{
+	width:50px;
+	text-align:center;
+	height:25px;
+}

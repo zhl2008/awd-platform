@@ -1,0 +1,46 @@
+<!-- footer start here -->
+<footer>
+    <div class="row">
+        <div class="three columns mobile-two">
+            <img src="__HOME__/images/logo2.png" alt="CLTPHP" class="img-left" />
+            <p class="copyright-text">
+                &copy;{$sys.copyright} <a href="http://www.cltphp.com/" style="color: #747373" rel="external" title="{$sys.title}">{$sys.title}</a><br>
+                <a href="http://www.miitbeian.gov.cn/" style="color: #747373" target="_blank" rel="nofollow">{$sys.bah}</a><br>
+            </p>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>联系我们</h5>
+            <ul>
+                <li class="address-icon"><a href="http://www.cltphp.com" title="{$sys.title}">{$sys.title}</a></li>
+                <li class="qq-icon"><a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=ebcb5f6099570a3a1429036f42f787b9eea835fdbf6ded8eaee2a546855cce97"><img border="0" src="//pub.idqqimg.com/wpa/images/group.png" alt="CLTPHP交流群0002" title="CLTPHP交流群0002"></a></li>
+                <li class="qq-icon">站长QQ号 : <a target="_blank" rel="nofollow" title="点击加好友" href="tencent://message/?uin=1109305987&Site=&Menu=yes">1109305987</a></li>
+                <li class="email-icon">Email : 1109305987@qq.com</li>
+            </ul>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>友情链接</h5>
+            <ul>
+                {volist name="linkList" id="vo"}
+                <li><a href="{$vo.url}" rel="external" title="{$vo.name}">{$vo.name}</a></li>
+                {/volist}
+                <li><a href="https://www.kancloud.cn/chichu/cltphp" target="_blank" rel="nofollow" title="CLTPHP操作开发手册">CLTPHP操作开发手册</a></li>
+            </ul>
+        </div>
+        <div class="three columns mobile-two">
+            <h5>扫码捐助</h5>
+            <div class="wxsq">
+                <img src="__HOME__/images/wxsq.png" alt="CLTPHP微信二维码" title="CLTPHP微信二维码">
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- footer end here -->
+<script>
+    $('#noscript').remove();
+    jQuery(function($){
+        //external加上target="_blank"
+        $("a[rel*=external]").attr("target","_blank");
+    });
+</script>
+</body>
+</html>

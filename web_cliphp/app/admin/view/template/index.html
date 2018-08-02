@@ -1,0 +1,64 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>模版管理</legend>
+    </fieldset>
+    <div>
+        <blockquote class="layui-elem-quote">
+            <a href="{:url('index')}" class="layui-btn layui-btn-sm {if condition="input('type') eq ''"}layui-btn-danger{/if}">
+                <i class="fa fa-file-code-o "></i> {:strtoupper($viewSuffix)}
+            </a>
+            <a href="{:url('index',array('type'=>'css'))}" class="layui-btn layui-btn-sm {if condition="input('type') eq 'css'"}layui-btn-danger{/if}">
+                <i class="fa fa-css3"></i> CSS
+            </a>
+            <a href="{:url('index',array('type'=>'js'))}" class="layui-btn layui-btn-sm {if condition="input('type') eq 'js'"}layui-btn-danger{/if}">
+                <i class="fa fa-file-text-o"></i> JS
+            </a>
+            <a href="{:url('images')}" class="layui-btn layui-btn-sm">
+            <i class="fa fa-file-image-o"></i> 媒体文件
+            </a>
+            <a href="{:url('add')}" style="float: right;" class="layui-btn layui-btn-sm layui-btn-normal">
+                <i class="fa fa-plus"></i> {:lang('add')}模版
+            </a>
+        </blockquote>
+        <div class="table-responsive">
+            <table class="layui-table table-hover">
+                <thead>
+                <tr>
+                    <th>文件名称</th>
+                    <th>文件大小</th>
+                    <th>修改时间</th>
+                    <th>管理操作</th>
+                </tr>
+                </thead>
+                <!--内容容器-->
+                <tbody id="con">
+                {volist name="templates" id="v"}
+                <tr>
+                    <td>{$v.filename}</td>
+                    <td>{$v.filesize}</td>
+                    <td>{$v.filemtime|date='Y-m-d h:i:s',###}</td>
+                    <td>
+                        <a href="{:url('edit',['file'=>$v['filename'],'type'=>input('param.type')])}" class="layui-btn layui-btn-xs">{:lang('edit')}</a>
+                        <a href="javascript:;" onclick="return del('{$v.filename}')" class="layui-btn layui-btn-xs layui-btn-danger">{:lang('del')}</a>
+                    </td>
+                </tr>
+                {/volist}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>
+{include file="common/foot"/}
+<script>
+    layui.use('form',function() {
+        var form = layui.form, $ = layui.jquery;
+    });
+    function del(file) {
+        layer.confirm('你确定要删除吗？', {icon: 3}, function (index) {
+            layer.close(index);
+            window.location.href = "{:url('delete')}?file=" + file;
+        });
+    }
+</script>

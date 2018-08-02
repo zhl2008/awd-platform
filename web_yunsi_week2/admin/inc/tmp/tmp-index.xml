@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<item><pubDate>Tue, 01 Sep 2009 18:35:53 -0700</pubDate><title><![CDATA[Welcome to website!]]></title><url><![CDATA[index]]></url><meta><![CDATA[website, easy, content management system]]></meta><metad></metad><menu><![CDATA[Home]]></menu><menuOrder><![CDATA[1]]></menuOrder><menuStatus><![CDATA[Y]]></menuStatus><template><![CDATA[template.php]]></template><parent></parent><content><![CDATA[&lt;p&gt;Thank you for using website. This is your homepage, so please change this text to be what you want.&lt;/p&gt;
+&lt;ul&gt;
+	&lt;li&gt;&lt;a href=\&quot;http://mywebsite.info/docs/\&quot;&gt;Mywebsite Documentation&lt;/a&gt;
+		&lt;ul&gt;
+				&lt;li&gt;&lt;a href=\&quot;http://mywebsite.info/docs/theme-creation\&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+		&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;&lt;a href=\&quot;http://mywebsite.info/forums/\&quot;&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Header 2&lt;/h2&gt;
+&lt;p&gt;Lorem ipsum &lt;em&gt;dolor sit amet&lt;/em&gt;, &lt;strong&gt;consectetur adipiscing elit&lt;/strong&gt;. Donec &lt;code&gt;this is code&lt;/code&gt; venenatis augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Integer vulputate pretium augue.&lt;/p&gt;
+&lt;h3&gt;Header 3&lt;/h3&gt;
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;#header h1 a { 
+	display: block; 
+	width: 300px; 
+	height: 80px; 
+}&lt;/code&gt;&lt;/pre&gt;
+&lt;h4&gt;Header 4&lt;/h4&gt;
+&lt;ol&gt;
+	&lt;li&gt;Lorem ipsum dolor sit amet&lt;/li&gt;
+	&lt;li&gt;Consectetur adipiscing elit&lt;/li&gt;
+	&lt;li&gt;Donec ut est risus, placerat venenatis augue&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;blockquote&gt;A blockquote. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec ut est risus, placerat venenatis augue. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.&lt;/blockquote&gt;
+]]></content><private></private></item>

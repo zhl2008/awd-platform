@@ -1,0 +1,68 @@
+<div class="head_login" id="user_login">
+<form name="form1" action="{path cms/}member.php" method="post">
+<label>User name:</label><input type="text" id="ajax_user" name="user" style="width:100px" />
+<label>Password:</label><input type="password" id="ajax_password" name="password" style="width:100px" />
+<label>Code:</label><input type="text" name="code" id="ajax_code" style="width:50px" /><img src="{path includes/}/code.php" name="code" border="0" id="code" style="display:block; float:left;cursor:pointer; margin-left:5px; display:inline"/>
+<input type="hidden" id="ajax_lang" value="{print get_web_param('lang')/}" name="lang" /><input type="button" style="border:0; margin-left:5px; display:inline; padding:0" src="{path template/}/images/login_input2.gif" name="go" id="ajax_login" />
+<label><a href="{path cms/}member/member.php?action=regist&lang={print get_web_param('lang')/}">Regist</a></label>
+</form>
+<div class="clear"></div>
+</div><!--登录-->
+<script type="text/javascript">
+$(document).ready(function(){
+	$('#code').click(function(){
+	$(this).attr('src','{path includes/}/code.php?tag='+new Date().getTime());
+	});
+	$.ajax({
+			type:"POST",
+			url:"{path cms/}member.php",
+			data:"action=is_ajax_login&lang="+"{print get_web_param('lang')/}",
+			dataType:"json",
+			success:function(data){
+				if(data.login==1){
+					$('#user_login').html(data.info);
+				}
+			}	
+	});
+	$('#ajax_login').click(function(){
+		$.ajax({
+			type:"POST",
+			url:"{path cms/}member.php",
+			data:"action=ajax_login&lang="+$('#ajax_lang').val()+"&password="+$('#ajax_password').val()+"&user="+$('#ajax_user').val()+"&code="+$('#ajax_code').val(),
+			dataType:"json",
+			success:function(data){
+				if(data.login==1){
+					$('#user_login').html(data.info);
+				}else{
+					alert(data.info);
+				}
+			}
+		});
+	});
+	
+});
+</script>
+
+<div class="contain">
+<div class="head">
+ <div class="head_top"><a href="#">Contact Us</a><a href="#">Add To Favorites</a>{loop source=lang()}<a href="{print $v['url']/}" {print $v['class']/}>{print $v['lang_name']/}</a>{/loop}</div>
+ <div class="head_logo">
+  <div class="logo"></div>
+  <div class="nav">
+  <div class="nav_right">
+   <ul>
+    <li class="nav_left"></li>
+	<li class="{print get_web_param('index_focus')/}"><a href="{path index/}">Home</a></li>
+	{loop source=nav_middle()}
+	<li class="{print $v['class']/}"><a href="{print $v['url']/}" {print $v['target']/} title="{print $v['cate_name']/}">{print $v['cate_name']/}</a></li>
+	{/loop}
+   </ul>
+   </div>
+   <div class="clear"></div>
+  </div>
+ </div><!--导航-->
+</div>
+</div><!--顶部-->
+<div class="flash">
+{flash/}
+</div><!--幻灯-->

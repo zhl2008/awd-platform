@@ -1,0 +1,72 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>会员组{:lang('list')}</legend>
+    </fieldset>
+    <blockquote class="layui-elem-quote">
+        <a href="{:url('groupAdd')}" class="layui-btn layui-btn-sm">
+            {:lang('add')}会员组
+        </a>
+    </blockquote>
+    <table class="layui-table" id="list" lay-filter="list"></table>
+</div>
+{include file="common/foot"/}
+<script type="text/html" id="bom">
+    {{d.bomlimit}}-{{d.toplimit}}
+</script>
+<script type="text/html" id="sort">
+    <input name="{{d.level_id}}" data-id="{{d.level_id}}" class="list_order layui-input" value=" {{d.sort}}" size="10"/>
+</script>
+<script type="text/html" id="action">
+    <a href="{:url('groupEdit')}?level_id={{d.level_id}}" class="layui-btn layui-btn-xs">{:lang('edit')}</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">{:lang('del')}</a>
+</script>
+<script>
+    layui.use('table', function() {
+        var table = layui.table, $ = layui.jquery;
+        table.render({
+            id: 'user',
+            elem: '#list',
+            url: '{:url("userGroup")}',
+            method: 'post',
+            cols: [[
+                {field: 'level_id', title: '{:lang("id")}', width: 80, fixed: true, sort: true},
+                {field: 'level_name', title: '名称', width: 120},
+                {field: 'bomlimit', title: '满足积分条件', width: 150,templet:'#bom'},
+                {field: 'sort',align: 'center',title: '{:lang("order")}', width: 120,templet:'#sort',sort: true},
+                {width: 160, align: 'center', toolbar: '#action'}
+            ]]
+        });
+        table.on('tool(list)', function(obj){
+            var data = obj.data;
+            if(obj.event === 'del'){
+                layer.confirm('您确定要删除该记录吗？', function(index){
+                    var loading = layer.load(1, {shade: [0.1, '#fff']});
+                    $.post("{:url('groupDel')}",{level_id:data.level_id},function(res){
+                        layer.close(loading);
+                        if(res.code==1){
+                            layer.msg(res.msg,{time:1000,icon:1});
+                            obj.del();
+                        }else{
+                            layer.msg(res.msg,{time:1000,icon:2});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+        $('body').on('blur','.list_order',function() {
+            var level_id = $(this).attr('data-id');
+            var sort = $(this).val();
+            $.post('{:url("groupOrder")}',{level_id:level_id,sort:sort},function(res){
+                if(res.code==1){
+                    layer.msg(res.msg,{time:1000,icon:1},function(){
+                        location.href = res.url;
+                    });
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            })
+        })
+    });
+</script>

@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('small_title')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+
+<div class="contain">
+	<div class="ct_left">
+	
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>关于我们</span></h2>
+				<div class="al_list_ct" style="height:auto">
+					{assign source=get_tpl_list_nav() name=tree/}
+					<div id="category_tree">
+			{loop source=$tree item=$nav}
+    <dl>
+     <dt><a class="{print $nav['class']/}" href="{print $nav['url']/}" {print $nav['target']/} title="{print $nav['cate_name']/}">{print $nav['cate_name']/}</a></dt>
+	 
+     <dd id="nav_16">
+	 <ul>
+	 {loop source=$nav['child']}
+	  	 <li><a class="{print $v['class']/}" href="{print $v['url']/}">{print $v['cate_name']/}({print $v['content_num']/})</a></li>
+     {/loop}
+     </ul>
+	 </dd>
+   </dl>
+   {/loop}
+   
+   </div><!--分页导航-->
+					
+					
+				</div>
+			</div>
+		</div><!--区域-->
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>联系方式</span></h2>
+				<div class="div_list_ct">
+					<div class="contact" style="height:auto">
+						{print get_block_content('contact_us')/}
+					</div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+	</div><!--左边-->
+	<div class="ct_right">
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>当前位置:&nbsp;{position source=position/}</span></h2>
+				<div class="content_ct">
+					<div class="content_ct2">
+						<div class="arc_title" style="{print content('style')/}">{print content('title')/}</div>
+						<div class="add_info"><p class="info"><span>点击次数:<script language="javascript" src="{path includes/}/hits.php?id={print content('id')/}"></script></span><span>更新时间:{print date('Y-m-d H:m:s',content('updatetime'))/}</span><span><a href="javascript:window.print()">【打印】</a></span><span><a href="javascript:self.close()">【关闭】</a></span></p></div>
+						
+						<div class="arc_body">
+ <table width='100%'>
+	<tr><td>{print content('content')/}</td></tr>
+  </table>
+  </div>
+  <div class="page_fy" style="float:none;margin-left:300px;">
+    {print body_pages()/}
+  </div>
+						
+				<div class="fx">
+				<div class="bdsharebuttonbox"><a href="#" class="bds_more" data-cmd="more">分享到：</a><a title="分享到QQ空间" href="#" class="bds_qzone" data-cmd="qzone">QQ空间</a><a title="分享到新浪微博" href="#" class="bds_tsina" data-cmd="tsina">新浪微博</a><a title="分享到腾讯微博" href="#" class="bds_tqq" data-cmd="tqq">腾讯微博</a><a title="分享到人人网" href="#" class="bds_renren" data-cmd="renren">人人网</a><a title="分享到微信" href="#" class="bds_weixin" data-cmd="weixin">微信</a></div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"1","bdMiniList":false,"bdPic":"","bdStyle":"0","bdSize":"16"},"share":{"bdSize":16}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='http://bdimg.share.baidu.com/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+</div>		
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>推荐产品</span></h2>
+				<div class="div_list_ct">
+					{assign source=get_tpl_cate_content($tpl_id='3',$limit='0,4',$order_type='',$filter='',$pic='no',$order='',$lang='') name=tj_pr/}
+					<ul class="tj_pr_list" id="colee1">
+					{loop source=$tj_pr['contents']}
+						<li>
+							<p><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" alt="{print $v['title']/}" /></a></p>
+							<p class="tj_title"><a href="{print $v['url']/}" title="{print $v['title']/}">{print $v['title']/}</a></p>
+						</li>
+					{/loop}	
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+		
+	</div><!--右边-->
+	<div class="clear"></div>
+</div>
+
+
+
+{include foot/}
+</body>
+</html>

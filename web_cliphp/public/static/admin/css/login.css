@@ -1,0 +1,47 @@
+.beg-login-box { width: 450px;margin: 10% auto;padding-bottom:30px;background-color: rgba(255, 255, 255, 0.407843); border-radius: 10px;}
+.beg-login-box header {  height: 39px;  padding: 10px;  border-bottom: 1px solid #666;  }
+.beg-login-box header h1 {text-align: center;font-size: 25px;line-height: 40px;}
+.beg-login-box .beg-login-main {padding: 30px 90px 0;}
+.beg-login-main .layui-form-item {  position: relative;  }
+.beg-login-main .layui-form-item .beg-login-icon {  position: absolute;  color: #cccccc;  top: 10px;  left: 10px;  }
+.beg-login-main .layui-form-item input { padding-left: 34px;}
+.beg-login-box footer { height: 35px;padding: 10px 10px 0 10px;}
+.beg-login-box footer p {line-height: 35px;text-align: center;}
+.btn-blog{width: 100%;}
+.beg-clear {clear: both;}
+.beg-login-code-box { position: relative;padding: 10px;}
+.beg-login-code-box input {position: absolute;width: 100px;}
+.beg-login-code-box img {cursor: pointer;position: absolute;left: 115px;height: 38px;}
+.layui-form-item .captcha { position: absolute;right: 1px;top: 1px; border-left: 1px solid #e6e6e6;}
+.layui-form-item .captcha img {height: 36px;cursor: pointer;}
+.beg-login-main .layui-form-item #captcha{padding-left: 8px;}
+
+/********************************北京动画*****************************/
+.large-header {position: relative;width: 100%; background: #333; overflow: hidden;background-size: cover;background-position: center center;z-index: 1;}
+.login .large-header {background-image: url('../images/login-bg.jpg');background-position: center bottom;}
+.main-title{position: absolute;margin: 0;padding: 0;color: #333;text-align: center;top: 30%;left: 50%;
+	-webkit-transform: translate3d(-50%,-30%,0);transform: translate3d(-50%,-30%,0);
+}
+.login .main-title {padding-left: 10px;text-shadow: 2px 2px 4px rgba(0,0,0,0.4);}
+@media screen and (max-width: 750px){
+	.beg-login-box { width: 80%;height: auto;margin: 10% auto;background-color: rgba(255, 255, 255, 0.407843); border-radius: 10px;color: aliceblue;}
+	.beg-login-box .beg-login-main {height: auto;padding: 15px 15px 0;}
+	.layui-btn{width: 100%;display: block;}
+	.layui-btn .layui-icon{display: none;}
+	.beg-login-remember{display: none;}
+	.beg-pull-right{float: none!important;}
+	.lfb{margin-bottom: 0;}
+	.main-title { position: absolute;width: 95%;margin: 0 auto;padding: 0;color: #333;text-align: center;}
+}
+
+
+
+
+
+
+
+
+
+
+
+

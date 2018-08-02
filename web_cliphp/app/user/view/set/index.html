@@ -1,0 +1,220 @@
+{include file="common/loginHead"/}
+<div class="main fly-user-main layui-clear">
+    <ul class="layui-nav layui-nav-tree layui-inline" lay-filter="user">
+        <li class="layui-nav-item">
+            <a href="{:url('index/index')}">
+                <i class="layui-icon">&#xe609;</i>
+                我的主页
+            </a>
+        </li>
+        <li class="layui-nav-item layui-this">
+            <a href="set.html">
+                <i class="layui-icon">&#xe620;</i>
+                基本设置
+            </a>
+        </li>
+    </ul>
+
+    <div class="site-tree-mobile layui-hide">
+        <i class="layui-icon">&#xe602;</i>
+    </div>
+    <div class="site-mobile-shade"></div>
+
+    <div class="fly-panel fly-panel-user" pad20>
+        <div class="layui-tab layui-tab-brief" lay-filter="user">
+            <ul class="layui-tab-title" id="LAY_mine">
+                <li class="layui-this" lay-id="info">我的资料</li>
+                <li lay-id="avatar">头像</li>
+                <li lay-id="pass">密码</li>
+                <li lay-id="bind">帐号绑定</li>
+            </ul>
+            <div class="layui-tab-content" style="padding: 20px 0;">
+                <div class="layui-form layui-form-pane layui-tab-item layui-show">
+                    <form method="post">
+                        <input type="hidden" name="id" value="{$userInfo.id}">
+                        <div class="layui-form-item">
+                            <label for="L_email" class="layui-form-label">邮箱</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="L_email" name="email" lay-verify="email" value="{$userInfo.email}" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">如果您在邮箱已激活的情况下，变更了邮箱，需<a href="activate.html" style="font-size: 12px; color: #4f99cf;">重新验证邮箱</a>。</div>
+
+
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">自定义验证</label>
+                            <div class="layui-input-inline">
+                                <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                            </div>
+                            <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+                        </div>
+
+                        <div class="layui-form-item">
+                            <label for="L_mobile" class="layui-form-label">手机号</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="L_mobile" name="mobile" lay-verify="mobile" value="{$userInfo.mobile}" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="L_username" class="layui-form-label">昵称</label>
+                            <div class="layui-input-inline">
+                                <input type="text" id="L_username" name="username" lay-verify="required" value="{$userInfo.username}" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">性别</label>
+                            <div class="layui-input-inline">
+                                <input type="radio" name="sex" value="1" {if condition="$userInfo['sex'] eq 1"}checked{/if} title="男">
+                                <input type="radio" name="sex" value="0" {if condition="$userInfo['sex'] eq 0"}checked{/if} title="女">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">地址</label>
+                            <div class="layui-input-inline">
+                                <select name="province" lay-filter="province">
+                                    <option value="">请选择省</option>
+                                    {volist name="province" id="vo"}
+                                    <option value="{$vo.id}" {if condition="$userInfo['province'] eq $vo['id']"}selected{/if}>{$vo.name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="city" lay-filter="city" id="city">
+                                    <option value="">请选择市</option>
+                                    {volist name="city" id="vo"}
+                                    <option value="{$vo.id}" {if condition="$userInfo['city'] eq $vo['id']"}selected{/if}>{$vo.name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                            <div class="layui-input-inline">
+                                <select name="district" id="district">
+                                    <option value="">请选择县/区</option>
+                                    {volist name="district" id="vo"}
+                                    <option value="{$vo.id}" {if condition="$userInfo['district'] eq $vo['id']"}selected{/if}>{$vo.name}</option>
+                                    {/volist}
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item layui-form-text">
+                            <label for="sign" class="layui-form-label">格言</label>
+                            <div class="layui-input-block">
+                                <textarea placeholder="随便写些什么刷下存在感" id="sign"  name="sign" class="layui-textarea" style="height: 80px;">{$userInfo.sign}</textarea>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="layui-btn" key="set-mine" lay-filter="*" lay-submit>确认修改</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-form layui-form-pane layui-tab-item">
+                    <div class="layui-form-item">
+                        <div class="avatar-add">
+                            <p>建议尺寸168*168，支持jpg、png、gif，最大不能超过30KB</p>
+                            <div class="upload-img">
+                                <!--<input type="file" name="avatar" id="avatar" lay-title="上传头像">-->
+                                <button class="layui-btn layui-btn-primary" id="avatar"><i class="layui-icon">&#xe61f;</i>上传头像</button>
+                            </div>
+                            {if condition="$userInfo['avatar']"}
+                            <img src="{:imgUrl($userInfo['avatar'])}" alt="{$userInfo.username}">
+                            {else/}
+                            <img src="__STATIC__/user/images/avatar/default.png" alt="{$userInfo.username}">
+                            {/if}
+                            <span class="loading"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="layui-form layui-form-pane layui-tab-item">
+                    <form action="{:url('repass')}" method="post">
+                        <div class="layui-form-item">
+                            <label for="L_nowpass" class="layui-form-label">当前密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" id="L_nowpass" name="nowpass" lay-verify="required" placeholder="当前密码" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="L_pass" class="layui-form-label">新密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" id="L_pass" name="pass" lay-verify="required" placeholder="6到16个字符" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <label for="L_repass" class="layui-form-label">确认密码</label>
+                            <div class="layui-input-inline">
+                                <input type="password" id="L_repass" name="repass" lay-verify="required" placeholder="确认密码" class="layui-input">
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <button class="layui-btn" key="repass" lay-filter="*" lay-submit>确认修改</button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="layui-form layui-form-pane layui-tab-item">
+                    <ul class="app-bind">
+                        <li class="fly-msg app-havebind">
+                            <i class="iconfont icon-qq"></i>
+                            {if condition="$userInfo['oauth'] eq qq")}
+                            <span>已成功绑定，您可以使用QQ帐号直接登录Fly社区，当然，您也可以</span>
+                            <a href="javascript:;" class="acc-unbind" type="qq_id">解除绑定</a>
+                            {else/}
+                            <a href="{:url('loginApi/login',array('oauth'=>'qq'))}" onclick="layer.msg('正在绑定QQ', {icon:16, shade: 0.1, time:0})" class="acc-bind" type="qq_id">立即绑定</a>
+                            <span>，即可使用QQ帐号登录CLTPHP</span>
+                            {/if}
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+{include file="common/footer"/}
+<script>
+    layui.use(['form', 'layer'], function () {
+        var form = layui.form, $ = layui.jquery;
+        form.on('select(province)', function (data) {
+            var pid = data.value;
+            $.get("{:url('getRegion')}?pid=" + pid, function (data) {
+                var html = '<option value="">请选择市</option>';
+                $.each(data, function (i, value) {
+                    html += '<option value="' + value.id + '">' + value.name + '</option>';
+                });
+                $('#city').html(html);
+                $('#district').html('<option value="">请选择县/区</option>');
+                form.render()
+            });
+        });
+        form.on('select(city)', function(data) {
+            var pid = data.value;
+            $.get("{:url('getRegion')}?pid=" + pid, function (data) {
+                var html='<option value="">请选择县/区</option>';
+                $.each(data, function (i, value) {
+                    html += '<option value="'+value.id+'">'+value.name+'</option>';
+                });
+                $('#district').html(html);
+                form.render()
+            });
+        });
+    });
+
+    layui.cache.page = 'user';
+    layui.cache.user = {
+        username: '游客'
+        ,uid: -1
+        ,avatar: '../../res/images/avatar/00.jpg'
+        ,experience: 83
+        ,sex: '男'
+    };
+    layui.config({
+        version: "2.0.0"
+        ,base: '__STATIC__/user/mods/'
+    }).extend({
+        fly: 'index'
+    }).use('fly');
+</script>
+
+</body>
+</html>

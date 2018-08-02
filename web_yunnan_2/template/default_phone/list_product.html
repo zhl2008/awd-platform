@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="{print cateinfo('cate_info_seo')/}">
+<meta name="keywords" content="{print cateinfo('cate_key_seo')/}">
+<title>{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+
+<div class="div_lan">
+	<a href="">【{print cateinfo('cate_name')/}】内容列表</a>
+</div>
+<div class="index_pr">
+	<ul>
+	{loop  source=list_article()}
+		<li><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" style="border:1px solid #ddd" /><p>{print $v['title']/}</p></a></li>
+	{/loop}	
+	</ul>
+	<div class="clear"></div>
+</div>
+
+<div class="list_page">
+   				<div class="page_fy">
+    			{print list_page()/}
+   				</div>
+  				</div>
+				<div class="clear"></div>
+
+
+
+{include foot/}
+</body>
+</html>

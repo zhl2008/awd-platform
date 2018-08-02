@@ -1,0 +1,54 @@
+{include file="common/head"/}
+<!-- pagetitle start here -->
+<section id="pagetitle-wrapper">
+    <div class="pagetitle-content">
+        <h2>{$info.title}</h2>
+    </div>
+</section>
+<!-- pagetitle end here -->
+<!-- breadcrumb start here -->
+<section id="breadcrumb-wrapper">
+    <div id="breadcrumb-content">
+        <ul>
+            <li><a href="{:url('home/index/index')}" title="CLTPHP">首页</a></li>
+            <li><a href="{:url('home/'.MODULE_NAME.'/index',array('catId'=>input('catId')))}" title="{$title}">{$title}</a></li>
+            <li>{$info.title}</li>
+        </ul>
+    </div>
+</section>
+<!-- breadcrumb end here -->
+<!-- maincontent start here -->
+<section id="content-wrapper">
+    <div class="row">
+        <div class="eight columns">
+            <!-- blog post 1 -->
+            <div class="blog-post">
+                <img src="{:imgUrl($info['thumb'],'__HOME__/images/sample-images/blog-post1.jpg')}" alt="{$info.title}" />
+                <div class="row">
+                    <div class="columns">
+                        {$info.content}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="four columns">
+            <aside>
+                <h5>推荐文章</h5>
+                <ul class="popular-list">
+                    {clt:list_join db='article' dbfield='catid' id='vo' joindb='category' joinfield='id' where="posid = 1 or posid=2" order="listorder asc,createtime desc" limit='8'}
+                    <li>
+                        <img src="{:imgUrl($vo['title_thumb'],'__HOME__/images/portfolio-thumb/p'.$k.'.jpg')}" alt="" class="img-border" />
+                        <p class="popular-title">
+                            <a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" style="{:style($vo['title_style'])}" title="{$vo.title}">{$vo.title}</a>
+                        </p>
+                        <p class="comment-count"><a href="single.html">{$vo.hits}</a></p>
+                        <p class="author-name">{$vo.username}</p>
+                    </li>
+                    {/clt:list_join}
+                </ul>
+            </aside>
+        </div>
+    </div>
+</section>
+<!-- maincontent end here -->
+{include file="common/footer"/}

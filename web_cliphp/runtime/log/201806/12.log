@@ -1,0 +1,135 @@
+---------------------------------------------------------------
+[ 2018-06-12T08:23:10+08:00 ] 172.16.1.23 GET /
+[ info ] 172.16.1.22/ [运行时间：0.467747s][吞吐率：2.14req/s] [内存消耗：695.83kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '172.16.1.22',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36',
+  'dnt' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002168s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.061991s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000596s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `parentid` = 0  AND `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.015619s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.000461s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_ad` [ RunTime:0.022454s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_ad` WHERE  `type_id` = 1  AND `open` = 1 ORDER BY sort asc LIMIT 4 [ RunTime:0.000897s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_link` [ RunTime:0.028937s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_link` WHERE  `open` = 1 ORDER BY sort asc [ RunTime:0.000836s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.001863s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.010745s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.001466s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.001154s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+---------------------------------------------------------------
+[ 2018-06-12T09:36:14+08:00 ] 172.16.1.23 GET /
+[ info ] 172.16.1.22/ [运行时间：0.583357s][吞吐率：1.71req/s] [内存消耗：696.25kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '172.16.1.22',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.79 Safari/537.36',
+  'dnt' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=07rer22qeoqa8utkhsaodve852',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.010463s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.060966s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000584s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `parentid` = 0  AND `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.068025s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.000529s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_ad` [ RunTime:0.011384s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_ad` WHERE  `type_id` = 1  AND `open` = 1 ORDER BY sort asc LIMIT 4 [ RunTime:0.000949s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_link` [ RunTime:0.001457s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_link` WHERE  `open` = 1 ORDER BY sort asc [ RunTime:0.001365s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.001853s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.009083s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.001373s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000666s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]

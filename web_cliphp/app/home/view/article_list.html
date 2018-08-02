@@ -1,0 +1,53 @@
+{include file="common/head"/}
+<!-- pagetitle start here -->
+<section id="pagetitle-wrapper">
+    <div class="pagetitle-content">
+        <h2>{$title}</h2>
+    </div>
+</section>
+<!-- pagetitle end here -->
+<!-- breadcrumb start here -->
+<section id="breadcrumb-wrapper">
+    <div id="breadcrumb-content">
+        <ul>
+            <li><a href="{:url('home/index/index')}" title="CLTPHP">首页</a></li>
+            <li><a href="#">{$title}</a></li>
+        </ul>
+    </div>
+</section>
+<!-- breadcrumb end here -->
+<!-- maincontent start here -->
+<section id="content-wrapper">
+    <div class="row">
+        <div class="eight columns">
+            <aside>
+                <ul class="popular-list">
+                    {volist name="list" id="vo"}
+                    <li>
+                        <a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" title="{$vo.title}">
+                            <img src="{$vo.title_thumb}" alt="" class="img-border" />
+                            <p class="popular-title" style="{$vo.title_color};{$vo.title_weight}">{$vo.title}</p>
+                            <p class="popular-title"></p>
+                            <p class="comment-count"><i title="点击次数">{$vo.hits}</i></p>
+                            <p class="author-name">{:toDate($vo['createtime'],'Y-m-d H:i:s')}</p>
+                        </a>
+                    </li>
+                    {/volist}
+                </ul>
+            </aside>
+            {$page}
+        </div>
+        <div class="four columns">
+            <aside>
+                <h5>推荐内容</h5>
+                <ul class="sidebar-list">
+                    {clt:list_join db='article' dbfield='catid' id='vo' joindb='category' joinfield='id' where='posid = 2 and catid in(".$arrchildid.") ' order="listorder asc,createtime desc" limit='10'}
+                       <li><a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" style="{:style($vo['title_style'])}" title="{$vo.title}">{$vo.services}{$vo.title}</a></li>
+                    {/clt:list_join}
+                </ul>
+            </aside>
+        </div>
+    </div>
+</section>
+<!-- maincontent end here -->
+{include file="common/footer"/}

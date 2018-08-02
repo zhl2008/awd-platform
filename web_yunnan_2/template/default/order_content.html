@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('title')/}_{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+
+<div class="contain">
+	<div class="ct_left">
+	
+		<div class="div_list">
+			<div class="div_list_body">
+				{include left_nav/}
+			</div>
+		</div><!--区域-->
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>联系方式</span></h2>
+				<div class="div_list_ct">
+					<div class="contact" style="height:auto">
+						{print get_block_content('contact_us')/}
+					</div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+		
+		
+	</div><!--左边-->
+	<div class="ct_right">
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>当前位置:&nbsp;{position source=position/}</span></h2>
+				<div class="content_ct">
+					<div class="content_ct2">
+						
+						{print get_form('5')/}
+				<div class="clear"></div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>推荐产品</span></h2>
+				<div class="div_list_ct">
+					{assign source=get_tpl_cate_content($tpl_id='3',$limit='0,4',$order_type='',$filter='',$pic='no',$order='',$lang='') name=tj_pr/}
+					<ul class="tj_pr_list" id="colee1">
+					{loop source=$tj_pr['contents']}
+						<li>
+							<p><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" alt="{print $v['title']/}" /></a></p>
+							<p class="tj_title"><a href="{print $v['url']/}" title="{print $v['title']/}">{print $v['title']/}</a></p>
+						</li>
+					{/loop}	
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+		
+	</div><!--右边-->
+	<div class="clear"></div>
+</div>
+
+
+
+{include foot/}
+</body>
+</html>

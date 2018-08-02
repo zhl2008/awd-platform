@@ -1,0 +1,103 @@
+@CHARSET "UTF-8";
+#index{
+	background:url(../images/body_bg.gif) repeat-x #E8E8D0;
+	padding:30px 0 30px 0;
+}
+#index #indexin{
+	min-height:500px;
+	width:960px;
+	margin:0 auto;
+	background:#E8E8D0;	
+}
+#index #indexin #indexin1{
+	width:240px;
+	float:left;
+	margin-bottom:10px;			
+}
+#index #indexin #indexin1 ul{
+	width:auto;
+	background:url(../images/left_head_1px.gif) repeat-x;
+}
+#index #indexin #indexin1 ul li{
+	width:auto;
+	height:26px;
+	background:url(../images/arrow_green.gif) no-repeat 15px center #DBDBBE;
+	border-top:1px solid #ccc;
+	line-height:26px;
+	text-indent:25px;
+}
+#index #indexin #indexin1 ul li.li1{
+	width:auto;
+	height:25px;
+	line-height:25px;
+	color:white;
+	background:url(../images/arrow.gif) no-repeat 10px center;
+	text-indent:25px;
+	border:1px solid black;
+	border-bottom:none;
+}
+#index #indexin #indexin1 ul li a{
+	color:#333;
+	text-decoration:none;
+}
+#index #indexin #indexin1 ul li:hover{
+	background:url(../images/arrow_green.gif) no-repeat 15px center #C6C6A5;	
+}
+#index #indexin #indexin1 ul li.li1:hover{
+	background:url(../images/arrow.gif) no-repeat 10px center;
+}
+#index #indexin #indexin2{
+	float:right;
+	width:694px;
+}
+#index #indexin #indexin2 #indexin21{
+	border-bottom:1px solid #999;
+	margin-bottom:10px;
+}
+#index #indexin #indexin2 #indexin21 p{
+	color:#333;
+	width:200px;
+	font-size:14px;
+	font-weight:bold;
+	padding-bottom:10px;
+}
+#index #indexin #indexin2 ul{
+	border-bottom:1px solid #999;
+	padding-bottom:10px;	
+}
+#index #indexin #indexin2 ul li{
+	color:#333;
+	height:20px;
+	line-height:20px;
+	background:url(../images/bullet.gif) no-repeat left center;
+	text-indent:20px;
+}
+#index #indexin #indexin2 ul li span{
+	float:right;
+}
+#index #indexin #indexin2 ul li a{
+	color:#333;
+	text-decoration:none;
+}
+#index #indexin #indexin2 ul li a:hover{
+	color:firebrick;
+	text-decoration:underline;
+}
+#index #indexin #indexin2 #indexin22{
+	width:auto;
+}
+#index #indexin #indexin2 #indexin22 ul{
+	float:right;
+	margin:10px 0;
+	padding:0;
+	border:none;
+}
+#index #indexin #indexin2 #indexin22 ul li{
+	float:left;
+	background:url(../images/to.gif) no-repeat left center;
+	margin:0 3px;
+	text-indent:18px;
+}
+#index #indexin #indexin2 #indexin22 ul li a{
+	color:firebrick;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$info.media_item.title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="{$info.media_item.title}">
+    <meta name="description" content="{$info.media_item.title}">
+    <link rel="stylesheet" href="__STATIC__/plugins/layui/css/layui.css">
+    <style>
+        .container{padding: 5px 10px;}
+        .title{text-align: center;}
+        .sun{padding: 15px 0;}
+        .sun i{font-style: normal;font-size: 16px;color: #666;}
+        .thumb img{width: 100%;}
+        .content{padding: 10px 0;border-bottom: 1px solid #ddd;}
+        .foot a{color: #00a0e9;}
+        .foot{margin:15px 0 30px 0;}
+        .foot em{font-style: normal;}
+    </style>
+</head>
+<div class="container">
+    <h1 class="title">{$info.media_item.title}</h1>
+    <div class="sun"><i>{:toDate($info.media_parent.create_time,'Y-m-d')}</i><i>　　{$info.media_item.author}</i></div>
+    {if condition="$info.media_item.show_cover_pic eq 1"}
+    <div class="thumb"><img src="__PUBLIC__{$info.media_item.cover}"></div>
+    {else/}
+    <hr>
+    {/if}
+    <div class="content">
+        {$info.media_item.content}
+    </div>
+    <div class="foot">
+        {if condition="$info.media_item.content_source_url"}
+            <a href="{$info.media_item.content_source_url}">阅读原文　</a>
+        {/if}
+        <em>阅读 {$info.media_item.hits}</em>
+    </div>
+</div>
+<script src="__STATIC__/plugins/layui/layui.js"></script>
+</body>
+</html>

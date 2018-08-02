@@ -1,0 +1,11 @@
+<div class="foot">
+	<div class="pw">{print webinfo('web_powerby')/}</div>
+	<div class="lang">
+		{loop source=lang()}
+		<a href="{print $v['url']/}" {print $v['class']/} {print $v['target']/}>{print $v['lang_name']/}</a>
+		{/loop}
+	</div>
+
+</div>
+
+</div>

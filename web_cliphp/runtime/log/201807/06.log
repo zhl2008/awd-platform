@@ -1,0 +1,1479 @@
+---------------------------------------------------------------
+[ 2018-07-06T00:00:43+08:00 ] 172.17.0.1 GET /admin/Wechat/materialmessage.html
+[ info ] 127.0.0.1/admin/Wechat/materialmessage.html [运行时间：0.136417s][吞吐率：7.33req/s] [内存消耗：539.48kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Wechat',
+    2 => 'materialmessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Wechat->materialmessage[ /var/www/html/app/admin/controller/Wechat.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/wechat/materialmessage.html [ array (
+  0 => 'type',
+  1 => 'child_menu_list',
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:00:44+08:00 ] 172.17.0.1 POST /admin/Wechat/materialmessage.html
+[ info ] 127.0.0.1/admin/Wechat/materialmessage.html [运行时间：0.067827s][吞吐率：14.74req/s] [内存消耗：700.62kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Wechat',
+    2 => 'materialmessage',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '21',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/Wechat/materialmessage.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+  'type' => '',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Wechat->materialmessage[ /var/www/html/app/admin/controller/Wechat.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000411s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000667s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `clt_wx_media` WHERE  `title` LIKE '%%' LIMIT 1 [ RunTime:0.000573s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `title` LIKE '%%' ORDER BY create_time desc LIMIT 0,10 [ RunTime:0.000322s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000776s ]
+[ sql ] [ SQL ] SELECT `title` FROM `clt_wx_media_item` WHERE  `media_id` = 5 [ RunTime:0.000380s ]
+[ sql ] [ SQL ] SELECT `title` FROM `clt_wx_media_item` WHERE  `media_id` = 1 [ RunTime:0.000281s ]
+[ sql ] [ SQL ] SELECT `title` FROM `clt_wx_media_item` WHERE  `media_id` = 4 [ RunTime:0.000222s ]
+[ sql ] [ SQL ] SELECT `title` FROM `clt_wx_media_item` WHERE  `media_id` = 2 [ RunTime:0.000219s ]
+[ sql ] [ SQL ] SELECT `title` FROM `clt_wx_media_item` WHERE  `media_id` = 3 [ RunTime:0.000211s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:00:45+08:00 ] 172.17.0.1 GET /admin/Wechat/replay.html
+[ info ] 127.0.0.1/admin/Wechat/replay.html [运行时间：0.083826s][吞吐率：11.93req/s] [内存消耗：1,134.76kb] [文件加载：57]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Wechat',
+    2 => 'replay',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Wechat->replay[ /var/www/html/app/admin/controller/Wechat.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /var/www/html/app/admin/view/wechat/replay.html [ array (
+  0 => 'child_menu_list',
+  1 => 'type',
+  2 => 'info',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000594s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_follow_replay` [ RunTime:0.000676s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_follow_replay` WHERE  `instance_id` = 0 LIMIT 1 [ RunTime:0.000310s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000577s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `media_id` = 1 LIMIT 1 [ RunTime:0.000375s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.001081s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 1 [ RunTime:0.000551s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:00:46+08:00 ] 172.17.0.1 POST /admin/Wechat/onloadmaterial.html
+[ info ] 127.0.0.1/admin/Wechat/onloadmaterial.html [运行时间：0.068038s][吞吐率：14.70req/s] [内存消耗：1,080.66kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Wechat',
+    2 => 'onloadmaterial',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '22',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/Wechat/replay.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+  'type' => '2',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Wechat->onloadMaterial[ /var/www/html/app/admin/controller/Wechat.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000426s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media` [ RunTime:0.000925s ]
+[ sql ] [ SQL ] SELECT COUNT(*) AS tp_count FROM `clt_wx_media` WHERE  `type` = '2'  AND `title` LIKE '%%' LIMIT 1 [ RunTime:0.000658s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media` WHERE  `type` = '2'  AND `title` LIKE '%%' ORDER BY `sort` LIMIT 0,10 [ RunTime:0.000556s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_wx_media_item` [ RunTime:0.000880s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 3 [ RunTime:0.000429s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_wx_media_item` WHERE  `media_id` = 5 [ RunTime:0.000342s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:00:48+08:00 ] 172.17.0.1 GET /admin/Plugin/login.html
+[ info ] 127.0.0.1/admin/Plugin/login.html [运行时间：0.077385s][吞吐率：12.92req/s] [内存消耗：1,256.07kb] [文件加载：57]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Plugin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Plugin->login[ /var/www/html/app/admin/controller/Plugin.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/plugin/login.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000507s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_plugin` [ RunTime:0.001480s ]
+[ sql ] [ SQL ] SELECT `code`,`type` FROM `clt_plugin` [ RunTime:0.000712s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_plugin` WHERE  `type` = 'login'  AND `code` = 'qq' LIMIT 1 [ RunTime:0.000806s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:00:48+08:00 ] 172.17.0.1 POST /admin/Plugin/login.html
+[ info ] 127.0.0.1/admin/Plugin/login.html [运行时间：0.058659s][吞吐率：17.05req/s] [内存消耗：1,206.13kb] [文件加载：54]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Plugin',
+    2 => 'login',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '15',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/Plugin/login.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Plugin->login[ /var/www/html/app/admin/controller/Plugin.php ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000536s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_plugin` [ RunTime:0.001180s ]
+[ sql ] [ SQL ] SELECT `code`,`type` FROM `clt_plugin` [ RunTime:0.000314s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_plugin` WHERE  `type` = 'login'  AND `code` = 'qq' LIMIT 1 [ RunTime:0.000384s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_plugin` WHERE  `type` = 'login' [ RunTime:0.000579s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:00:51+08:00 ] 172.17.0.1 GET /admin/Plugin/loginSet.html?type=login&code=qq
+[ info ] 127.0.0.1/admin/Plugin/loginSet.html?type=login&code=qq [运行时间：0.064116s][吞吐率：15.60req/s] [内存消耗：1,265.13kb] [文件加载：57]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Plugin',
+    2 => 'loginSet',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/Plugin/login.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'type' => 'login',
+  'code' => 'qq',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ RUN ] app\admin\controller\Plugin->loginSet[ /var/www/html/app/admin/controller/Plugin.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/plugin/loginSet.html [ array (
+  0 => 'title',
+  1 => 'info',
+  2 => 'config_value',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000616s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_plugin` [ RunTime:0.000717s ]
+[ sql ] [ SQL ] SELECT `code`,`type` FROM `clt_plugin` [ RunTime:0.000213s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_plugin` WHERE  `type` = 'login'  AND `code` = 'qq' LIMIT 1 [ RunTime:0.000294s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_plugin` WHERE  `type` = 'login'  AND `code` = 'qq' LIMIT 1 [ RunTime:0.000283s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:01:03+08:00 ] 172.17.0.1 GET /admin/Auth/adminList.html
+[ info ] 127.0.0.1/admin/Auth/adminList.html [运行时间：0.081353s][吞吐率：12.29req/s] [内存消耗：523.89kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'adminList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->adminList[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/auth/adminList.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:01:03+08:00 ] 172.17.0.1 POST /admin/Auth/adminList.html
+[ info ] 127.0.0.1/admin/Auth/adminList.html [运行时间：0.042148s][吞吐率：23.73req/s] [内存消耗：627.37kb] [文件加载：53]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'adminList',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '15',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/Auth/adminList.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->adminList[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000471s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_admin` [ RunTime:0.001145s ]
+[ sql ] [ SQL ] SELECT `a`.*,`ag`.`title` FROM `clt_admin` `a` LEFT JOIN `clt_auth_group` `ag` ON `a`.`group_id`=`ag`.`group_id` [ RunTime:0.000596s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:01:15+08:00 ] 172.17.0.1 GET /admin/Auth/adminRule.html
+[ info ] 127.0.0.1/admin/Auth/adminRule.html [运行时间：0.085666s][吞吐率：11.67req/s] [内存消耗：524.64kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'adminRule',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->adminRule[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/auth/adminRule.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:01:15+08:00 ] 172.17.0.1 POST /admin/Auth/adminRule.html
+[ info ] 127.0.0.1/admin/Auth/adminRule.html [运行时间：0.156268s][吞吐率：6.40req/s] [内存消耗：770.09kb] [文件加载：59]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'adminRule',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '15',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/Auth/adminRule.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->adminRule[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ CACHE ] INIT File
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000480s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_auth_rule` [ RunTime:0.000712s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_auth_rule` ORDER BY `sort`  asc [ RunTime:0.000498s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:01:49+08:00 ] 172.17.0.1 GET /admin/Auth/adminGroup.html
+[ info ] 127.0.0.1/admin/Auth/adminGroup.html [运行时间：0.080488s][吞吐率：12.42req/s] [内存消耗：519.52kb] [文件加载：50]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'adminGroup',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->adminGroup[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/auth/adminGroup.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:01:50+08:00 ] 172.17.0.1 POST /admin/Auth/adminGroup.html
+[ info ] 127.0.0.1/admin/Auth/adminGroup.html [运行时间：0.053608s][吞吐率：18.65req/s] [内存消耗：1,741.57kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'adminGroup',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'content-length' => '15',
+  'accept' => 'application/json, text/javascript, */*; q=0.01',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/Auth/adminGroup.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'page' => '1',
+  'limit' => '10',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->adminGroup[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000355s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_auth_group` [ RunTime:0.000653s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_auth_group` [ RunTime:0.000322s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:01:54+08:00 ] 172.17.0.1 GET /admin/Auth/groupEdit.html?id=1
+[ info ] 127.0.0.1/admin/Auth/groupEdit.html?id=1 [运行时间：0.083541s][吞吐率：11.97req/s] [内存消耗：1,795.76kb] [文件加载：58]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'Auth',
+    2 => 'groupEdit',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/Auth/adminGroup.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+  'id' => '1',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Auth->groupEdit[ /var/www/html/app/admin/controller/Auth.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /var/www/html/app/admin/view/auth/groupForm.html [ array (
+  0 => 'info',
+  1 => 'title',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000346s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_auth_group` [ RunTime:0.000622s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_auth_group` WHERE  `group_id` = 1 LIMIT 1 [ RunTime:0.000302s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:01:58+08:00 ] 172.17.0.1 GET /admin/System/email.html
+[ info ] 127.0.0.1/admin/System/email.html [运行时间：0.084455s][吞吐率：11.84req/s] [内存消耗：675.08kb] [文件加载：56]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'System',
+    2 => 'email',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\System->email[ /var/www/html/app/admin/controller/System.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ VIEW ] /var/www/html/app/admin/view/system/email.html [ array (
+  0 => 'info',
+) ]
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000339s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_config` [ RunTime:0.000601s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_config` WHERE  `inc_type` = 'smtp' [ RunTime:0.000260s ]
+---------------------------------------------------------------
+[ 2018-07-06T00:07:11+08:00 ] 172.17.0.1 GET /admin/index/logout.html
+[ info ] 127.0.0.1/admin/index/logout.html [运行时间：0.070337s][吞吐率：14.22req/s] [内存消耗：467.87kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'logout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'skin=0; UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->logout[ /var/www/html/app/admin/controller/Index.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:07:11+08:00 ] 172.17.0.1 GET /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.042558s][吞吐率：23.50req/s] [内存消耗：392.87kb] [文件加载：42]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/index/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ VIEW ] /var/www/html/app/admin/view/login/index.html [ array (
+) ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:07:11+08:00 ] 172.17.0.1 GET /captcha.html
+[ info ] 127.0.0.1/captcha.html [运行时间：0.058121s][吞吐率：17.21req/s] [内存消耗：322.24kb] [文件加载：32]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /var/www/html/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:07:41+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.077062s][吞吐率：12.98req/s] [内存消耗：691.25kb] [文件加载：54]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000437s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_admin` [ RunTime:0.000676s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_admin` WHERE  `username` = 'admin' LIMIT 1 [ RunTime:0.000230s ]
+[ error ] [8]未定义数组索引: avatar[/var/www/html/app/admin/model/Admin.php:12]
+---------------------------------------------------------------
+[ 2018-07-06T00:07:43+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.055218s][吞吐率：18.11req/s] [内存消耗：405.55kb] [文件加载：42]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:07:47+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.080828s][吞吐率：12.37req/s] [内存消耗：405.59kb] [文件加载：42]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:07:57+08:00 ] 172.17.0.1 POST /admin/logout/index.html
+[ info ] 127.0.0.1/admin/logout/index.html [运行时间：0.074683s][吞吐率：13.39req/s] [内存消耗：598.86kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'logout',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: logout[/var/www/html/app/admin/controller/EmptyController.php:11]
+[ error ] [2]Invalid argument supplied for foreach()[/var/www/html/app/admin/controller/EmptyController.php:14]
+---------------------------------------------------------------
+[ 2018-07-06T00:08:36+08:00 ] 172.17.0.1 POST /admin/logout/index.html
+[ info ] 127.0.0.1/admin/logout/index.html [运行时间：0.080110s][吞吐率：12.48req/s] [内存消耗：595.31kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'logout',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: logout[/var/www/html/app/admin/controller/EmptyController.php:11]
+[ error ] [2]Invalid argument supplied for foreach()[/var/www/html/app/admin/controller/EmptyController.php:14]
+---------------------------------------------------------------
+[ 2018-07-06T00:08:44+08:00 ] 172.17.0.1 POST /admin/logout
+[ info ] 127.0.0.1/admin/logout [运行时间：0.067754s][吞吐率：14.76req/s] [内存消耗：595.24kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'logout',
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+[ error ] [8]未定义数组索引: logout[/var/www/html/app/admin/controller/EmptyController.php:11]
+[ error ] [2]Invalid argument supplied for foreach()[/var/www/html/app/admin/controller/EmptyController.php:14]
+---------------------------------------------------------------
+[ 2018-07-06T00:09:12+08:00 ] 172.17.0.1 POST /admin/index/logout.html
+[ info ] 127.0.0.1/admin/index/logout.html [运行时间：0.075466s][吞吐率：13.25req/s] [内存消耗：469.98kb] [文件加载：48]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'index',
+    2 => 'logout',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Index->logout[ /var/www/html/app/admin/controller/Index.php ]
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:09:17+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.064286s][吞吐率：15.56req/s] [内存消耗：634.64kb] [文件加载：49]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '45',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'admin123',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:09:23+08:00 ] 172.17.0.1 POST /admin/login/index.html
+[ info ] 127.0.0.1/admin/login/index.html [运行时间：0.103295s][吞吐率：9.68req/s] [内存消耗：634.64kb] [文件加载：49]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'admin',
+    1 => 'login',
+    2 => 'index',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'content-length' => '47',
+  'accept' => '*/*',
+  'origin' => 'http://127.0.0.1',
+  'x-requested-with' => 'XMLHttpRequest',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'content-type' => 'application/x-www-form-urlencoded; charset=UTF-8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'username' => 'admin',
+  'password' => 'yuanlaoshi',
+  'captcha' => '4uxx',
+)
+[ info ] [ LANG ] /var/www/html/app/admin/lang/zh-cn.php
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ RUN ] app\admin\controller\Login->index[ /var/www/html/app/admin/controller/Login.php ]
+[ info ] [ DB ] INIT mysql
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:09:24+08:00 ] 172.17.0.1 GET /captcha.html?id=0.26118340824914466
+[ info ] 127.0.0.1/captcha.html?id=0.26118340824914466 [运行时间：0.036301s][吞吐率：27.55req/s] [内存消耗：322.45kb] [文件加载：32]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'method',
+  'method' => 
+  array (
+    0 => '\\think\\captcha\\CaptchaController',
+    1 => 'index',
+  ),
+  'var' => 
+  array (
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'image/webp,image/apng,image/*,*/*;q=0.8',
+  'referer' => 'http://127.0.0.1/admin/login/index.html',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+  'id' => NULL,
+)
+[ info ] [ RUN ] think\captcha\CaptchaController->index[ /var/www/html/vendor/topthink/think-captcha/src/CaptchaController.php ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:11:14+08:00 ] 172.17.0.1 GET /
+[ info ] 127.0.0.1/ [运行时间：0.098010s][吞吐率：10.20req/s] [内存消耗：900.85kb] [文件加载：55]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => '',
+    1 => NULL,
+    2 => NULL,
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'upgrade-insecure-requests' => '1',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,image/apng,*/*;q=0.8',
+  'accept-encoding' => 'gzip, deflate',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+  'connection' => 'close',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ DB ] INIT mysql
+[ info ] [ CACHE ] INIT File
+[ info ] [ RUN ] app\home\controller\Index->index[ /var/www/html/app/home/controller/Index.php ]
+[ info ] [ VIEW ] /var/www/html/app/home/view/index_index.html [ array (
+  0 => 'sys',
+  1 => 'action',
+  2 => 'controller',
+  3 => 'title',
+  4 => 'keywords',
+  5 => 'description',
+  6 => 'category',
+  7 => 'adList',
+  8 => 'linkList',
+) ]
+[ info ] [ SESSION ] INIT array (
+  'id' => '',
+  'var_session_id' => '',
+  'prefix' => 'think',
+  'type' => '',
+  'auto_start' => true,
+)
+[ info ] [ LOG ] INIT File
+[ sql ] [ DB ] CONNECT:[ UseTime:0.000392s ] mysql:host=127.0.0.1;port=3306;dbname=cltphp51_db;charset=utf8
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_category` [ RunTime:0.000718s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_category` WHERE  `id` IS NULL LIMIT 1 [ RunTime:0.000196s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_article` [ RunTime:0.000717s ]
+[ sql ] [ SQL ] SELECT `a`.*,`c`.`catdir` FROM `clt_article` `a` LEFT JOIN `clt_category` `c` ON `a`.`catid`=`c`.`id` WHERE  (  posid = 1 ) ORDER BY listorder asc,createtime desc LIMIT 4 [ RunTime:0.000214s ]
+[ sql ] [ SQL ] SHOW COLUMNS FROM `clt_debris` [ RunTime:0.000583s ]
+[ sql ] [ SQL ] SELECT * FROM `clt_debris` WHERE  (  type_id = 1 ) LIMIT 3 [ RunTime:0.000164s ]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:11]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:12]
+[ error ] [8]未定义变量: info[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:13]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+[ error ] [8]未定义数组索引: title_thumb[/var/www/html/runtime/temp/32d92f36780154d3751b0713101b4a3b.php:232]
+---------------------------------------------------------------
+[ 2018-07-06T00:14:25+08:00 ] 172.17.0.1 GET /usr/themes/default/grid.css
+[ info ] 127.0.0.1/usr/themes/default/grid.css [运行时间：0.088770s][吞吐率：11.27req/s] [内存消耗：305.13kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:14:25+08:00 ] 172.17.0.1 GET /usr/themes/default/style.css
+[ info ] 127.0.0.1/usr/themes/default/style.css [运行时间：0.088795s][吞吐率：11.26req/s] [内存消耗：305.11kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:14:56+08:00 ] 172.17.0.1 GET /usr/themes/default/grid.css
+[ info ] 127.0.0.1/usr/themes/default/grid.css [运行时间：0.069886s][吞吐率：14.31req/s] [内存消耗：305.13kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:14:56+08:00 ] 172.17.0.1 GET /usr/themes/default/style.css
+[ info ] 127.0.0.1/usr/themes/default/style.css [运行时间：0.069727s][吞吐率：14.34req/s] [内存消耗：305.11kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:14:57+08:00 ] 172.17.0.1 GET /usr/themes/default/grid.css
+[ info ] 127.0.0.1/usr/themes/default/grid.css [运行时间：0.039161s][吞吐率：25.54req/s] [内存消耗：305.09kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:14:57+08:00 ] 172.17.0.1 GET /usr/themes/default/style.css
+[ info ] 127.0.0.1/usr/themes/default/style.css [运行时间：0.038577s][吞吐率：25.92req/s] [内存消耗：305.07kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:15:00+08:00 ] 172.17.0.1 GET /usr/themes/default/style.css
+[ info ] 127.0.0.1/usr/themes/default/style.css [运行时间：0.053335s][吞吐率：18.75req/s] [内存消耗：305.92kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36 FirePHP/0.7.4',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File
+---------------------------------------------------------------
+[ 2018-07-06T00:15:00+08:00 ] 172.17.0.1 GET /usr/themes/default/grid.css
+[ info ] 127.0.0.1/usr/themes/default/grid.css [运行时间：0.053335s][吞吐率：18.75req/s] [内存消耗：305.94kb] [文件加载：33]
+[ info ] [ LANG ] /var/www/html/think/lang/zh-cn.php
+[ info ] [ ROUTE ] array (
+  'type' => 'module',
+  'module' => 
+  array (
+    0 => 'usr',
+    1 => 'themes',
+    2 => 'default',
+  ),
+)
+[ info ] [ HEADER ] array (
+  'host' => '127.0.0.1',
+  'connection' => 'keep-alive',
+  'pragma' => 'no-cache',
+  'cache-control' => 'no-cache',
+  'user-agent' => 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_13_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/67.0.3396.99 Safari/537.36 FirePHP/0.7.4',
+  'accept' => 'text/css,*/*;q=0.1',
+  'referer' => 'http://127.0.0.1:81/',
+  'accept-encoding' => 'gzip, deflate, br',
+  'accept-language' => 'zh-CN,zh;q=0.9,en;q=0.8,zh-TW;q=0.7,pl;q=0.6',
+  'cookie' => 'UM_distinctid=16121070c59257-0fcede727de3bb-32647403-13c680-16121070c5a581; CNZZDATA400379=cnzz_eid%3D2126425842-1516677567-%26ntime%3D1516691436; Hm_lvt_2ca0b0d15f83707f9a4b65802faf0f48=1516960997; CNZZDATA1261321738=1744104691-1516943081-http%253A%252F%252F127.0.0.1%253A8080%252F%7C1520591227; PHPSESSID=5mp0tk13gjuocf6dbstnack9k2',
+)
+[ info ] [ PARAM ] array (
+)
+[ info ] [ LOG ] INIT File

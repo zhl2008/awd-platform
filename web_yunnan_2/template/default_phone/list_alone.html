@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="{print content('info')/}">
+<meta name="keywords" content="{print content('keywords')/}">
+<title>{print content('small_title')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+
+<div class="div_lan">
+	<a href="">【{print content('title')/}】详细内容</a>
+</div>
+<div class="content_div">
+	
+	 <div class="arc_body">
+ <table width='100%'>
+	<tr><td>{print content('content')/}</td></tr>
+  </table>
+  </div>
+  <div class="page_fy" style="float:none;margin-left:300px;">
+    {print body_pages()/}
+  </div>
+
+ <div class="arc_link" style="clear:both">
+ {assign source=content('prev') name=prev/}
+ <div class="arc_link_div">{if $prev}<span>上一篇：<a href="{print $prev['url']/}">{print $prev['title']/}</a></span>{else}<span>上一篇：没有了</span>{/if}</div>
+  {assign source=content('next') name=next/}
+  <div class="arc_link_div">{if $next}<span>下一篇：<a href="{print $next['url']/}">{print $next['title']/}</a></span>{else}<span>下一篇：没有了</span>{/if}</div>
+ </div>
+
+</div>
+{assign source=get_tpl_cate_content($tpl_id='3',$limit='0,4',$order_type='id',$filter='',$pic='no',$order='desc',$lang='') name=pr/}
+<div class="div_lan">
+	<a href="">推荐产品</a>
+</div>
+<div class="index_pr">
+	<ul>
+	{loop source=$pr['contents']}
+		<li><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" style="border:1px solid #ddd" /><p>{print $v['title']/}</p></a></li>
+	{/loop}	
+	</ul>
+	<div class="clear"></div>
+</div>
+
+
+
+{include foot/}
+</body>
+</html>

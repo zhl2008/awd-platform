@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print cateinfo('cate_info_seo')/}">
+<meta name="keywords" content="{print cateinfo('cate_key_seo')/}">
+<title>{print cateinfo('cate_title_seo')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+</head>
+<body>
+{include head/}
+<div class="contain" style="margin-top:8px;">
+ <div class="main_left">
+  {assign source=get_tpl_list_nav() name=tree/}
+	{if $tree}
+  <h2 class="title"><span class="pr_icon">Product navigation</span></h2>
+  <ul class="pr_nav">
+   {loop source=$tree}
+   <li class="{print $v['class']/}"><a href="{print $v['url']/}" {print $v['target']/} title="{print $v['cate_name']/}">{print $v['cate_name']/}</a></li>
+   {/loop}
+  </ul>
+  {/if}
+  <h2 class="title" style="margin-top:15px;"><span class="link_icon">Contact</span></h2>
+  <div class="link">
+ {print get_block_content('contact_us')/}
+  </div>
+ </div><!--左边-->
+ <div class="main_right">
+  <h2 class="title2"><span>Location:{position source=position/} > {print weblangs('tpl_list')/}</span></h2>
+  <ul class="ul_list_article">
+   {loop source=list_article()}
+   <li><span class="title"><a href="{print $v['url']/}" {print $v['target']/} style="{print $v['style']/}">{print $v['title']/}</a></span><span class="time">{print date('Y-m-d H:m:s',$v['updatetime'])/}</span></li>
+  {/loop}
+  </ul>
+  <div class="page_fy">
+    {print list_page()/}
+   <div class="clear"></div>
+  </div>
+ </div><!--右边-->
+ <div class="clear"></div>
+</div><!--主体-->
+{include foot/}
+</body>
+</html>

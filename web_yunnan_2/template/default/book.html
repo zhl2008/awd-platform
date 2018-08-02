@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print weblangs('book')/}">
+<meta name="keywords" content="{print weblangs('book')/}">
+<title>{print weblangs('book')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+
+<div class="contain">
+	<div class="ct_left">
+	
+		<div class="div_list">
+			<div class="div_list_body">
+				{include left_nav/}
+			</div>
+		</div><!--区域-->
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>联系方式</span></h2>
+				<div class="div_list_ct">
+					<div class="contact" style="height:auto">
+						{print get_block_content('contact_us')/}
+					</div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+	</div><!--左边-->
+	<div class="ct_right">
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>当前位置:&nbsp;{position source=position/} 留言本</span></h2>
+				<div class="content_ct">
+					<div class="content_ct2">
+						
+						
+<div class="book_contain">
+	<h2>留言本：</h2>
+	{loop source=$book}
+	<div class="book">
+		<div class="book_head">[{print $v['book_type']/}]:{print $v['book_name']/}&nbsp;<span class="title">{print $v['book_title']/}</span><span style="color:#0000FF">&nbsp;{print $v['pr_title']/}</span><span class="time">{print date('Y-m-d H:m:s',$v['addtime'])/}</span></div>
+		<div class="book_content">{print $v['book_content']/}</div>
+		{if $v['reply']}
+		<div class="book_reply">回复：{print $v['reply']/}</div>
+		{/if}
+	</div><!--列表-->
+	{/loop}
+	<div class="page_fy">
+		{print $page/}
+ </div>
+</div>
+<div class="book_contain" style="margin-top:10px;">
+<div class="book_form">
+	<form action="?action=add&lang={print $lang/}" method="post" name="form">
+	{if $title}
+		<p><label>产品名称:</label>{print $title/}</p>
+	{/if}	
+		<p><label>留言名：</label><input name="book_name" style="width:200px; padding:2px 0" /></p>
+		<p><label>电子邮箱:</label><input name="mail" style="width:200px; padding:2px 0"/></p>
+		<p><label>类型：</label><input type="radio" name="book_type" value="0" checked="checked" style="margin:0 5px;"/>留言<input type="radio" name="book_type" value="1" style="margin:0 5px;"/>投诉<input type="radio" name="book_type" value="2" style="margin:0 5px;"/>询问<input type="radio" name="book_type" value="3" style="margin:0 5px;"/>售后</p>
+		<p><label>留言标题：</label><input name="book_title" style="width:400px;padding:2px 0" /></p>
+		<p style="height:100px;"><label>留言内容：</label><textarea name="book_content" style="width:400px; height:100px;border:1px solid #E3E3E3;"></textarea></p>
+		<p>
+		<label>验证码：</label><input name="book_code" value="" style="width:50px; height:20px; line-height:20px; display:block; float:left; margin-right:3px; display:inline"/><img src="{path includes/}/code.php" name="code" border="0" id="code" style="display:block; float:left; cursor:pointer"/>
+		</p>
+		<p><input type="hidden" name="pr_id" value="{print $pr_id/}"/><input style="margin-left:80px;" type="submit" name="submit" value="确定" /></p>
+	</form>
+</div>	
+</div>
+						
+						
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		
+		<div class="div_list">
+			<div class="div_list_body">
+				<h2 class="title"><span>推荐产品</span></h2>
+				<div class="div_list_ct">
+					{assign source=get_tpl_cate_content($tpl_id='3',$limit='0,4',$order_type='',$filter='',$pic='no',$order='',$lang='') name=tj_pr/}
+					<ul class="tj_pr_list" id="colee1">
+					{loop source=$tj_pr['contents']}
+						<li>
+							<p><a href="{print $v['url']/}"><img src="{print $v['thumb_pic']/}" border="0" alt="{print $v['title']/}" /></a></p>
+							<p class="tj_title"><a href="{print $v['url']/}" title="{print $v['title']/}">{print $v['title']/}</a></p>
+						</li>
+					{/loop}	
+					</ul>
+					<div class="clear"></div>
+				</div>
+			</div>
+		</div><!--区域-->
+		
+		
+	</div><!--右边-->
+	<div class="clear"></div>
+</div>
+
+
+
+{include foot/}
+</body>
+</html>

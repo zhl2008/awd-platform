@@ -1,0 +1,69 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:white;
+	font-size:12px;
+}
+li{
+	list-style-type:none;
+}
+#right{
+	height:334px;
+	width:auto;
+	background:lightblue;
+	margin:3px;
+}
+#right #daohang{
+	height:24px;
+	width:100%;
+	background:#444;
+}
+#right #daohang p{
+	float:left;	
+	color:#ccc;
+	width:100px;
+	height:24px;
+	line-height:24px;
+	background:url(../images/tb.gif) no-repeat left center;
+	text-indent:20px;
+	margin:0 0 0 5px;
+}
+#right #daohang ul{
+	width:150px;
+	float:right;
+}
+#right #daohang ul li{
+	float:left;
+	height:24px;
+	line-height:24px;
+	color:#ccc;
+	width:50px;
+	text-indent:15px;
+}
+#right #daohang ul li.li1{
+	background:url(../images/add.gif) no-repeat left center;
+}
+#right #daohang ul li.li2{
+	background:url(../images/del.gif) no-repeat left center;
+}
+#right #daohang ul li.li3{
+	background:url(../images/edit.gif) no-repeat left center;
+}
+#right #about{
+	height:250px;
+	margin:30px;
+	background:white;
+}
+#right #about p{
+	color:#444;
+	height:120px;
+	line-height:120px;
+	text-align:center;
+	font-size:16px;
+	font-weight:bold;
+	margin:5px;
+	background:#eee;
+}

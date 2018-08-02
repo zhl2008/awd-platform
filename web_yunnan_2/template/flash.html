@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print webinfo('description')/}">
+<meta name="keywords" content="{print webinfo('keywords')/}">
+<title>{print webinfo('webname')/}</title>
+<style type="text/css">
+*{margin:0; padding:0;}
+body{background:#666}
+a{font-size:12px; color:#FFFFFF; text-decoration:none}
+.contain{margin:0 auto;width:1004px;}
+.lang_btn{width:960px; margin:15px auto; text-align:center;}
+.lang_btn li{display:block; float:left; margin-right:5px; display:inline}
+.lang_btn li a{display:block; float:left; padding:5px; background:#999999}
+.lang_btn li a:hover{background:#CCCCCC;color:#666666}
+.clear{clear:both}
+</style>
+</head>
+<body>
+<div class="contain">
+  <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=7,0,19,0" width="1004" height="600">
+      <param name="movie" value="template/test.swf" />
+      <param name="quality" value="high" />
+      <embed src="template/test.swf" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer" type="application/x-shockwave-flash" width="1004" height="600"></embed>
+  </object>
+</div>
+<!--flash-->
+<div class="lang_btn">
+	<ul>
+	{loop source=lang()}
+		<li><a href="{print $v['url']/}">{print $v['lang_name']/}</a></li>
+	{/loop}
+	</ul>
+	<div class="clear"></div>
+</div><!--语言按钮-->
+</body>
+</html>

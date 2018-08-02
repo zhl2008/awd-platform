@@ -1,0 +1,62 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>{$title}</legend>
+    </fieldset>
+    <blockquote class="layui-elem-quote">
+        <a href="{:url('add')}" class="layui-btn layui-btn-sm">{:lang('add')}栏目</a>
+    </blockquote>
+    <table class="layui-table">
+        <thead>
+        <tr>
+            <th>编号</th>
+            <th>栏目名称<span id="cateNameMsg">(点击查看内容)</span></th>
+            <th>所属模型</th>
+            <th>导航</th>
+            <th>{:lang('order')}</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody id="con">
+        {$categorys}
+        </tbody>
+        <tfoot>
+    </table>
+</div>
+{include file="common/foot"/}
+<script src="__STATIC__/common/js/jquery.2.1.1.min.js"></script>
+<script>
+    layui.use('table', function(){
+        var $= layui.jquery;
+        $('body').on('blur','.list_order',function() {
+            var id = $(this).attr('data-id');
+            var listorder = $(this).val();
+            var loading = layer.load(1, {shade: [0.1, '#fff']});
+            $.post('{:url("cOrder")}',{id:id,listorder:listorder},function(res){
+                layer.close(loading);
+                if(res.code === 1){
+                    layer.msg(res.msg, {time: 1000, icon: 1}, function () {
+                        location.href = res.url;
+                    });
+                }else{
+                    layer.msg(res.msg,{time:1000,icon:2});
+                }
+            })
+        });
+    });
+    function del(id) {
+        layer.confirm('你确定要删除该栏目及其子栏目吗？', {icon: 3}, function (index) {
+            $.post('{:url("del")}', {id: id}, function (data) {
+                if (data.status === 1) {
+                    layer.alert(data.info, {icon: 6}, function(index){
+                        layer.close(index);
+                        window.location.href=data.url;
+                    });
+                }else{
+                    layer.msg(data.info,{icon:5});
+                }
+            });
+            layer.close(index);
+        });
+    }
+</script>

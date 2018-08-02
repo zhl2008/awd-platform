@@ -1,0 +1,64 @@
+{include file="common/head"/}
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>备份文件列表</legend>
+    </fieldset>
+    <table class="layui-table" id="list" lay-filter="list"></table>
+</div>
+{include file="common/foot"/}
+<script type="text/html" id="size">
+    {{d.sortSize}}
+</script>
+<script type="text/html" id="action">
+    <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="recover">恢复</a>
+    <a href="{:url('downFile')}?type=sql&file={{d.name}}" class="layui-btn layui-btn-xs">下载</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">{:lang('del')}</a>
+</script>
+<script>
+    layui.use('table', function() {
+        var table = layui.table, $ = layui.jquery;
+        table.render({
+            elem: '#list'
+            ,url: '{:url("restore")}',
+            method:'post'
+            ,cols: [[
+                {field:'name', title: '文件名称', width:250}
+                ,{field:'size', title: '文件大小', width:200,sort:true,templet:'#size'}
+                ,{field:'time', title: '备份时间', width:200,sort:true}
+                ,{field:'number', title: '卷号', width:150}
+                ,{width:160, align:'center', toolbar: '#action'}
+            ]]
+        });
+        table.on('tool(list)', function(obj) {
+            var data = obj.data;
+            if (obj.event === 'recover') {
+                loading = layer.load(1, {shade: [0.1, '#fff']});
+                layer.confirm('确认要导入数据吗？',{icon: 0}, function (index) {
+                    $.post("{:url('restoreData')}",{sqlfilepre:data.name},function(res){
+                        layer.close(loading);
+                        if(res.code==1){
+                            layer.msg(res.msg, {time: 1000,icon:1});
+                        }else{
+                            layer.msg(res.msg, {time: 1000,icon:2});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }else if(obj.event === 'del'){
+                layer.confirm('确认要删除该备份文件吗？', {icon: 3}, function (index) {
+                    loading = layer.load(1, {shade: [0.1, '#fff']});
+                    $.post('{:url("delSqlFiles")}',{sqlfilename: data.name}, function (res) {
+                        layer.close(loading);
+                        if (res.code == 1) {
+                            layer.msg(res.msg, {time: 1000,icon:1});
+                            obj.del();
+                        }else{
+                            layer.msg(res.info,{time: 1000,icon:2});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>

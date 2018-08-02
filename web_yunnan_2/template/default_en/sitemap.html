@@ -1,0 +1,33 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="description" content="{print weblangs('sitemap')/}">
+<meta name="keywords" content="{print weblangs('sitemap')/}">
+<title>{print weblangs('sitemap')/}_{print webinfo('web_name')/}</title>
+<link href="{path template/}/images/style.css" rel="stylesheet" type="text/css">
+<script type="text/javascript" src="{path template/}/images/jquery.js"></script>
+<script type="text/javascript" src="{path template/}/images/nav.js"></script>
+</head>
+<body>
+{include head/}
+<div class="div_margin"></div>
+<div class="contain">
+	<div class="sitemap">
+	  <div class="sitemap_box">
+	  {loop source=get_sitemap() item=$child}
+	  <h2><a href="{print $child['url']/}" title="{print $child['name']/}">{print $child['name']/}</a></h2>
+	  {if $child['child']}
+	    <ul>
+		{loop source=$child['child']}
+		 <li><a href="{print $v['url']/}" title="{print $v['name']/}">{print $v['name']/}</a></li>
+		 {/loop}
+		</ul>
+	  {/if}	
+		<div class="clear"></div>
+		{/loop}
+	  </div>	 
+	</div><!--网站地图-->
+</div>
+{include foot/}
+</body>
+</html>

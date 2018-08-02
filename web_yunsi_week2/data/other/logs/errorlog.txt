@@ -1,0 +1,136 @@
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:52:19 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:21 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Warning:  chmod(): Operation not permitted in /var/www/html/admin/install.php on line 44
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/install.php:0
+[20-Apr-2017 22:57:38 Asia/Chongqing] PHP   2. chmod() /var/www/html/admin/install.php:44
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Warning:  fopen(/var/www/html/.htaccess): failed to open stream: Permission denied in /var/www/html/admin/setup.php on line 125
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/setup.php:0
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   2. fopen() /var/www/html/admin/setup.php:125
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Warning:  fwrite() expects parameter 1 to be resource, boolean given in /var/www/html/admin/setup.php on line 126
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/setup.php:0
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   2. fwrite() /var/www/html/admin/setup.php:126
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Warning:  fclose() expects parameter 1 to be resource, boolean given in /var/www/html/admin/setup.php on line 127
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/setup.php:0
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   2. fclose() /var/www/html/admin/setup.php:127
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Warning:  rename(/var/www/html/temp.gsconfig.php,/var/www/html/gsconfig.php): Permission denied in /var/www/html/admin/setup.php on line 145
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP Stack trace:
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   1. {main}() /var/www/html/admin/setup.php:0
+[20-Apr-2017 22:58:51 Asia/Chongqing] PHP   2. rename() /var/www/html/admin/setup.php:145

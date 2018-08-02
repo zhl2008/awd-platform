@@ -1,0 +1,22 @@
+
+
+# prevent breaking plugin htaccess, prefer compat,  since require is not overridable by order
+
+# apache < 2.3
+<IfModule !mod_authz_core.c>
+	Deny from all
+</IfModule>
+
+# apache > 2.3 with mod_access_compat
+<IfModule mod_access_compat.c>
+	Deny from all
+</IfModule>
+
+# apache > 2.3 without mod_access_compat
+<IfModule mod_authz_core.c>
+
+	<IfModule !mod_access_compat.c>
+		Require all denied
+	</IfModule>
+
+</IfModule>	

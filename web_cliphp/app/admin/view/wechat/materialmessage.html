@@ -1,0 +1,84 @@
+{include file="common/head"/}
+<style>
+    .layui-table-cell{height: auto;}
+    .layui-table-cell ul li a{color: #1C8FEF;display: block;border: 1px solid #ececec;padding: 3px 8px;}
+    .layui-table-cell ul li a:hover{color: #005580}
+</style>
+<div class="admin-main layui-anim layui-anim-upbit">
+    <fieldset class="layui-elem-field layui-field-title">
+        <legend>消息素材</legend>
+    </fieldset>
+    <div class="demoTable">
+        {foreach name="child_menu_list" item="child_menu" key="k" }
+        {eq name="child_menu['active']" value="1"}
+        <a href="{$child_menu['url']}" class="layui-btn layui-btn-danger layui-btn-sm">{$child_menu.menu_name}</a>
+        {else/}
+        <a href="{$child_menu['url']}" class="layui-btn  layui-btn-primary layui-btn-sm">{$child_menu.menu_name}</a>
+        {/eq}
+        {/foreach}
+        <a href="{:url('addMedia',['url'=>'materialmessage'])}" class="layui-btn layui-btn-sm" style="float:right;margin-right: 15px;">{:lang('add')}</a>
+    </div>
+    <table class="layui-table" id="list" lay-filter="list"></table>
+</div>
+<script type="text/html" id="action">
+    <a href="{:url('updatemedia')}?media_id={{d.media_id}}" class="layui-btn layui-btn-xs">编辑</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+</script>
+<script type="text/html" id="title">
+    <ul>
+    {{# for(var l=0; l<d.item_list.length; l++){ }}
+        <li><a href="#">{{d.item_list[l]}}</a></li>
+    {{# } }}
+    </ul>
+</script>
+<script type="text/html" id="type">
+    {{# if(d.type=='1'){ }}
+    文本
+    {{# }else if(d.type=='2'){ }}
+    单图文
+    {{# }else{ }}
+    多图文
+    {{# } }}
+</script>
+{include file="common/foot"/}
+<script>
+    layui.use('table', function() {
+        var table = layui.table, $ = layui.jquery;
+        var tableIn = table.render({
+            id: 'user',
+            elem: '#list',
+            url: "{:url('materialmessage')}",
+            method: 'post',
+            where:{'type':"{:input('type')}"},
+            page: true,
+            even:true,
+            cols: [[
+                {field: 'type', title: '类型', width: 100,templet:'#type'},
+                {field: 'title',title: '{:lang("title")}', width: 320,style:'height: auto;',templet:'#title'},
+                {field: 'create_time', title: '创建时间', width: 180},
+                {width: 160, align: 'center', toolbar: '#action'}
+            ]],
+            limit: 10 //每页默认显示的数量
+        });
+        table.on('tool(list)', function(obj) {
+            var data = obj.data;
+            if (obj.event === 'del') {
+                layer.confirm('您确定要删除该信息吗？', function(index){
+                    var loading = layer.load(1, {shade: [0.1, '#fff']});
+                    $.post("{:url('deleteWeixinMedia')}",{media_id:data.media_id},function(res){
+                        layer.close(loading);
+                        if(res.code===1){
+                            layer.msg(res.msg,{time:1000,icon:1});
+                            tableIn.reload();
+                        }else{
+                            layer.msg('操作失败！',{time:1000,icon:2});
+                        }
+                    });
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

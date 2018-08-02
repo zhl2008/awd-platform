@@ -1,0 +1,58 @@
+{include file="common/head"/}
+
+<!-- pagetitle start here -->
+<section id="pagetitle-wrapper">
+    <div class="pagetitle-content">
+        <h2>{$title}</h2>
+    </div>
+</section>
+<!-- pagetitle end here -->
+
+<!-- breadcrumb start here -->
+<section id="breadcrumb-wrapper">
+    <div id="breadcrumb-content">
+        <ul>
+            <li><a href="{:url('home/index/index')}" title="CLTPHP">首页</a></li>
+            <li><a href="{:url('home/'.MODULE_NAME.'/index',array('catId'=>input('catId')))}" title="{$title}">{$title}</a></li>
+            <li>{$info.title}</li>
+        </ul>
+    </div>
+</section>
+<!-- breadcrumb end here -->
+
+<!-- maincontent start here -->
+<section id="content-wrapper">
+    <div class="row">
+        <div class="eight columns">
+            <!-- blog post 1 -->
+            <div class="blog-post">
+                <img src="{$info['title_thumb']}" alt="blog-img" />
+                <div class="post-info">
+                    <div class="big-date">{:toDate($info['createtime'],'d')}</div>
+                    <div class="small-month">{:toDate($info['createtime'],'Y/m')}</div>
+                    <ul>
+                        <li class="author-icon">{$info.username}</li>
+                        <li class="tag-icon"><a href="{$info.formlink}" target="_blank">{$info.copyfrom}</a></li>
+                        <!--<li class="comment-icon"><a href="#">8 Comments</a></li>-->
+                    </ul>
+                </div>
+                <div class="post-content">
+                    <h4 style="{$info.title_color};{$info.title_weight}">{$info.title}</h4>
+                    {$info.content}
+                </div>
+            </div>
+        </div>
+        <div class="four columns">
+            <aside>
+                <h5>推荐内容</h5>
+                <ul class="sidebar-list">
+                    {clt:list_join db='article' dbfield='catid' id='vo' joindb='category' joinfield='id' where='posid = 2 and catid=".input(catId)." ' order="listorder asc,createtime desc" limit='10'}
+                    <li><a href="{:url('home/'.$vo['catdir'].'/info',array('id'=>$vo['id'],'catId'=>$vo['catid']))}" style="{:style($vo['title_style'])}" title="{$vo.title}">{$vo.title}</a></li>
+                    {/clt:list_join}
+                </ul>
+            </aside>
+        </div>
+    </div>
+</section>
+<!-- maincontent end here -->
+{include file="common/footer"/}

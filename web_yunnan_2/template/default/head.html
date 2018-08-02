@@ -1,0 +1,30 @@
+<div class="head">
+	<div class="head_left"><a href="{path index/}"><img src="{path cms/}upload/{print webinfo('web_logo')/}" border="0"/></a></div>
+	<div class="head_right">
+		<div class="head_lang">
+			{loop source=lang()}
+		<a href="{print $v['url']/}" {print $v['class']/} {print $v['target']/}>{print $v['lang_name']/}</a>
+		{/loop}
+		</div>
+		<div class="head_search">
+			<form name="form1" action="{path search/}">
+				<div class="s_margin"><input name="key" class="key" id="key" style="color:#CCCCCC" value="请输入产品关键字"  type="text"/><input type="image" src="{path template/}/images/search_btn.gif" class="find" /><input type="hidden" value="{print get_web_param('lang')/}" name="lang" />
+		<div class="clear"></div>
+		</div>
+			</form>
+		</div><!--search-->
+	</div>
+</div>
+<div class="nav">
+	<ul>
+		<li class="{print get_web_param('index_focus')/}"><a href="{path index/}">首页</a></li>
+		{loop source=nav_middle() item=$nav_child} 
+		<li class="{print $nav_child['class']/}"><a href="{print $nav_child['url']/}" {print $nav_child['target']/}>{print $nav_child['cate_name']/}</a></li>
+		{/loop}
+	</ul>
+</div>
+
+<div class="ct_bg">
+<div class="flash">
+	{flash/}
+</div>

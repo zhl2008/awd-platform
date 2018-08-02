@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+
+<item>
+	<title>Website Default Admin</title>
+	<author>Chris Cagle</author>
+	<link>http://www.developer.com/</link>
+	<primary>
+		<darkest>
+			<!-- tab hover background, link hover -->
+			#0E1316
+		</darkest>
+		<darker>
+			<!-- non-active tab background, active main tab text hover -->
+			#182227
+		</darker>
+		<dark>
+			<!-- header bottom fade color -->
+			#283840
+		</dark>
+		<middle>
+			<!-- separators, active main tab text -->
+			#415A66
+		</middle>
+		<light>
+			<!-- header top fade color -->
+			#618899
+		</light>
+		<lighter>
+			<!-- site name link color -->
+			#E8EDF0
+		</lighter>
+		<lightest>
+			<!-- non-active tab text, separators -->
+			#AFC5CF
+		</lightest>
+	</primary>
+	<secondary>
+		<darkest>
+			<!-- side tab active shadow -->
+			#9F2C04
+		</darkest>
+		<lightest>
+			<!-- side tab active background, page subtitles -->
+			#CF3805
+		</lightest>
+	</secondary>
+</item>

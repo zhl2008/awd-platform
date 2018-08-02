@@ -1,0 +1,123 @@
+@CHARSET "UTF-8";
+*{
+	margin:0;
+	padding:0;
+}
+body{
+	background:#152753;
+}
+li{
+	list-style-type:none;
+}
+#login{
+	height:608px;
+	margin:0 auto;
+	background:url(../images/back.gif);
+}
+#login #load{
+	margin:0 auto;
+}
+#login #load dl{
+	margin:0 auto;
+	width:847px;	
+}
+#login #load dl dt{
+	width:847px;
+	height:318px;
+ 	background:url(../images/login.gif);
+}
+#login #load dl dd.center{
+	width:847px;
+	height:84px;
+}
+#login #load dl dd.center ul{
+	width:847px;
+	height:84px;
+}
+#login #load dl dd.center ul li{
+	float:left;
+}
+#login #load dl dd.center ul li.li1{
+	width:381px;
+	height:84px;
+	background:url(../images/loginli1.gif);
+}
+#login #load dl dd.center ul li.li2{
+	width:162px;
+	height:84px;
+	background:url(../images/loginli2.gif);
+}
+#login #load dl dd.center ul li.li2 ul{
+	margin:10px 0 0 0;
+	width:162px;		
+	height:64px;
+}
+#login #load dl dd.center ul li.li2 ul li{
+	padding:1px;	
+	width:162px;		
+	font-size:12px;
+	color:#87ADBF;
+	height:20px;
+	line-height:20px;
+}
+#login #load dl dd.center ul li.li2 ul li input{
+	border:1px solid #333;
+	width:100px;
+	background:#87ADBF;
+	height:15px;
+}
+#login #load dl dd.center ul li.li2 ul li input.yzm{
+	width:50px;
+	height:15px;	
+}
+#login #load dl dd.center ul li.li2 ul li span{
+	position:relative;
+	top:4px;
+	left:4px;
+	height:15px;
+	width:38px;
+}
+#login #load dl dd.center ul li.li3{
+	width:26px;
+	height:84px;
+	background:url(../images/loginli3.gif);
+}
+#login #load dl dd.center ul li.li4{
+	width:67px;
+	height:84px;
+	background:url(../images/loginli4.gif);
+}
+#login #load dl dd.center ul li.li4 ul{
+	width:57px;	
+	height:50px;
+	margin:17px auto;
+}
+#login #load dl dd.center ul li.li4 ul li{
+	clear:both;
+	margin:5px 0 0 0;
+	
+}
+#login #load dl dd.center ul li.li4 ul li input.lli1{
+	width:57px;
+	height:20px;
+	background:url(../images/dl.gif);
+	border:none;
+	cursor:pointer;
+}
+#login #load dl dd.center ul li.li4 ul li input.lli2{
+	width:57px;
+	height:20px;
+	background:url(../images/cz.gif);
+	border:none;
+	cursor:pointer;
+}
+#login #load dl dd.center ul li.li5{
+	width:211px;
+	height:84px;
+	background:url(../images/loginli5.gif);
+}
+#login #load dl dd.end{	
+	width:847px;
+	height:206px;
+ 	background:url(../images/loginend.gif);	
+}

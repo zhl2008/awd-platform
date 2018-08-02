@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="zh-cn"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="zh-cn"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="zh-cn"> <!--<![endif]-->
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{if condition="$info['title']"}{$info.title}{elseif condition="$title" /}{$title}{else}{$sys.title}{/if}</title>
+    <meta name="keywords" content="{if condition="$info['keywords']"}{$info.keywords}{elseif condition="$keywords" /}{$keywords}{else}{$sys.key}{/if}" />
+    <meta name="description" content="{if condition="$info['description']"}{$info.description}{elseif condition="$description" /}{$description}{else}{$sys.des}{/if}" />
+    <!-- ////////////////////////////////// -->
+    <!-- //      Stylesheets Files       // -->
+    <!-- ////////////////////////////////// -->
+    <link rel="stylesheet" href="__HOME__/css/base.css" id="camera-css" />
+    <link rel="stylesheet" href="__HOME__/css/framework.css" />
+    <link rel="stylesheet" href="__HOME__/css/style.css" />
+    <link rel="stylesheet" href="__HOME__/css/noscript.css" media="screen,all" id="noscript" />
+
+    <!-- ////////////////////////////////// -->
+    <!-- //     Google Webfont Files     // -->
+    <!-- ////////////////////////////////// -->
+
+
+    <!-- ////////////////////////////////// -->
+    <!-- //        Favicon Files         // -->
+    <!-- ////////////////////////////////// -->
+    <link rel="shortcut icon" href="__HOME__/images/favicon.ico" />
+
+    <!-- ////////////////////////////////// -->
+    <!-- //      Javascript Files        // -->
+    <!-- ////////////////////////////////// -->
+    <script>
+        var HOME = '__HOME__';
+    </script>
+    <script src="__HOME__/js/jquery.min.js"></script>
+    <script src="__HOME__/js/jquery.easing-1.3.min.js"></script>
+    <script src="__HOME__/js/tooltip.js"></script>
+    <script src="__HOME__/js/dropdown.js"></script>
+    <script src="__HOME__/js/tinynav.min.js"></script>
+    <script src="__HOME__/js/camera.min.js"></script>
+    <script src="__HOME__/js/jquery.fancybox.js?v=2.0.6"></script>
+    <script src="__HOME__/js/jquery.fancybox-media.js?v=1.0.3"></script>
+    <script src="__HOME__/js/jquery.ui.totop.min.js"></script>
+    <script src="__HOME__/js/ddaccordion.js"></script>
+    <script src="__HOME__/js/jquery.twitter.js"></script>
+    <script src="__HOME__/js/jflickrfeed.min.js"></script>
+    <script src="__HOME__/js/faq-functions.js"></script>
+    <script src="__HOME__/js/isotope.js"></script>
+    <script src="__HOME__/js/theme-functions.js"></script>
+    <script>
+        //设为首页 www.jb51.net
+        function SetHome(obj,url){
+            try{
+                obj.style.behavior='url(#default#homepage)';
+                obj.setHomePage(url);
+            }catch(e){
+                if(window.netscape){
+                    try{
+                        netscape.security.PrivilegeManager.enablePrivilege("UniversalXPConnect");
+                    }catch(e){
+                        alert("抱歉，此操作被浏览器拒绝！\n\n请在浏览器地址栏输入“about:config”并回车然后将[signed.applets.codebase_principal_support]设置为'true'");
+                    }
+                }else{
+                    alert("抱歉，您所使用的浏览器无法完成此操作。\n\n您需要手动将【"+url+"】设置为首页。");
+                }
+            }
+        }
+
+        //收藏本站 www.jb51.net
+        function AddFavorite(title, url) {
+            try {
+                window.external.addFavorite(url, title);
+            }
+            catch (e) {
+                try {
+                    window.sidebar.addPanel(title, url, "");
+                }
+                catch (e) {
+                    alert("抱歉，您所使用的浏览器无法完成此操作。\n\n加入收藏失败，请进入新网站后使用Ctrl+D进行添加");
+                }
+            }
+        }
+    </script>
+    <!-- IE Fix for HTML5 Tags -->
+    <!--[if lt IE 9]><script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+</head>
+<body>
+<div class="user">
+    <div id="top-social">
+        <div class="social-panel">
+            <ul>
+                <li><a href="javascript:void(0);" onclick="SetHome(this,'{:config('url_domain_root')}');">设为首页</a></li>
+                <li><a href="javascript:void(0);" onclick="AddFavorite('{:config('sys_name')}','{:config('url_domain_root')}')">加入收藏</a></li>
+                <li><a href="{:url('user/index/index')}" target="_blank">{if condition="session('user.username')"}{:session('user.username')}{else/}会员中心{/if}</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- header start here -->
+<header>
+    <div id="main-wrapper">
+        <!-- logo start here -->
+        <div id="logo">
+            <a href="{:url('home/index/index')}" title="CLTPHP内容管理系统"><img src="__PUBLIC__{$sys.logo}" alt="mainlogo" /></a>
+        </div>
+        <!-- logo end here -->
+        <!-- mainmenu start here -->
+        <nav id="mainmenu">
+            <ul id="menu">
+                <li {if condition="$controller eq 'index'"}class="selected"{/if}><a href="{:url('home/index/index')}" title="CLTPHP内容管理系统">首页</a></li>
+
+                {volist name="category" id="vo"}
+                <li {if condition="$controller eq $vo['catdir']"}class="selected"{/if}>
+                    <a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$vo['id']] )}" title="{$vo.catname}-CLTPHP内容管理系统">{$vo.catname}</a>
+                    {if condition="$vo['child'] eq 1"}
+                    <ul>
+                        {volist name="$vo.sub" id="v"}
+                            <li><a href="{:url('home/'.$vo['catdir'].'/index',['catId'=>$v['id']] )}" title="{$v.catname}-CLTPHP内容管理系统"><span>-</span> {$v.catname}</a></li>
+                        {/volist}
+                    </ul>
+                    {/if}
+                </li>
+                {/volist}
+            </ul>
+        </nav>
+        <!-- mainmenu end here -->
+
+    </div>
+</header>
+<!-- header end here -->

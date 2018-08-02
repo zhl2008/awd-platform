@@ -1,0 +1,162 @@
+a.abtn{
+	position:absolute;
+	top:50px;
+	display:block;
+	overflow:hidden;
+	text-indent:-20000px;
+	width:17px; height:54px;
+}
+a.aleft{
+	left:10px;
+	 background:url(pr_go_s_left.gif) no-repeat 0 center;
+}
+a.agrayleft{
+	
+}
+a.aright{
+	right:10px;
+	background:url(pr_go_s_right.gif) no-repeat right center;
+}
+a.agrayright{
+	
+}
+
+
+.productshow{
+	width:100%px;
+	height:170px;
+	padding:0;
+	position:relative;
+	background:#fff;
+}
+.productshow .scrollcontainer{
+	width:710px;
+	height:170px;
+	overflow:hidden;
+	position:relative;
+	margin:0 auto;
+}
+.productshow .scrollcontainer ul{
+	width:20000px;
+	position:absolute;
+	left:0px;
+	top:10px;
+}
+.productshow .scrollcontainer li{
+	float:left;
+	width:152px;
+	height:180px;
+	overflow:hidden;
+	margin:0 12px;
+	display:inline;
+}
+.productshow .scrollcontainer li img{
+	height:112px;
+	width:150px;
+	border:1px solid #ddd;
+}
+.productshow .scrollcontainer li.last{
+	background:none;
+}
+.productshow .scrollcontainer li div{
+	height:95px;
+	width:162px;
+	overflow:hidden;
+}
+.productshow .scrollcontainer a:hover img{
+	
+}
+.productshow .scrollcontainer li p{
+	padding-top:5px;
+}
+.productshow .scrollcontainer li a{}
+
+.vscroll{
+	width:540px;
+	height:120px;
+	overflow:hidden;
+	margin:20px auto;
+	position:relative;
+	text-align:left;
+	line-height:20px;
+}
+.vscroll .vscrollobj{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+.vscroll a.abtn{
+	background-color:#f1f1f1;
+	border:1px solid #666;
+	height:110px;
+}
+
+.videolistwraper{
+	width:206px;
+	height:243px;
+	margin:0 auto;
+	overflow:hidden;
+	text-align:center;
+	position:relative;
+}
+.videolist{
+	text-align:center;
+	width:106px;
+	height:200px;
+	overflow:hidden;
+	margin:25px auto 25px;
+	position:relative;
+}
+.videolist ul{
+	position:absolute;
+	left:0px;
+	top:0px;
+}
+.videolist li{
+	height:100px;
+	overflow:hidden;
+}
+.videolist .img{
+	position:relative;
+	width:106px;
+	height:53px;
+	cursor:pointer;
+}
+.videolist .img img{
+	width:100px;
+	height:47px;
+	border:3px solid #fff;
+}
+.videolist .img a{
+	display:block;
+	width:106px;
+	height:53px;
+	position:absolute;
+	left:0;
+	top:0;
+	filter:alpha(opacity=80);-moz-opacity:0.8;opacity:0.8;
+}
+.videolist .img a:hover{
+	display:block;
+	filter:alpha(opacity=100);-moz-opacity:1;opacity:1;
+}
+.videolist .img a.now{
+	background:none;
+}
+.videolist p{
+	margin-bottom:0;
+	font-family:微软雅黑;
+}
+.newslistwraper{
+	width:540px;
+	margin:0 auto 150px;
+	position:relative;
+}
+.newslistwraper a.abtn{height:20px;top:0;}
+.newslist{
+	height:20px; 
+	line-height:20px; 
+	overflow:hidden;
+	position:relative;
+}
+.newslist ul{position:absolute;left:0px;top:0px;width:540px;}

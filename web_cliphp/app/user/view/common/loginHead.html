@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>{$title}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="{$title}">
+    <meta name="description" content="{$title}">
+    <link rel="stylesheet" href="__STATIC__/plugins/layui/css/layui.css">
+    <link rel="stylesheet" href="__STATIC__/user/css/global.css">
+</head>
+<body>
+<div class="header">
+    <div class="main">
+        <a class="logo" href="/" title="CLTPHP">CLTPHP</a>
+        <div class="nav-user">
+            <a class="avatar" href="{:url('index/index')}">
+                {if condition="$userInfo['avatar']"}
+                <img src="{:imgUrl($userInfo['avatar'])}" alt="{$userInfo.username}">
+                {else/}
+                <img src="__STATIC__/user/images/avatar/default.png" alt="{$userInfo.username}">
+                {/if}
+                <cite>{$userInfo.username}</cite>
+                <i>{$userInfo.level_name}</i>
+            </a>
+            <div class="nav">
+                <a href="{:url('set/index')}"><i class="iconfont icon-shezhi"></i>设置</a>
+                <a href="{:url('index/logout')}"><i class="iconfont icon-tuichu" style="top: 0; font-size: 22px;"></i>退了</a>
+            </div>
+
+        </div>
+    </div>
+</div>
