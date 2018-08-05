@@ -1,0 +1,12 @@
+        <foreach name="lists" item="v">
+            <ul>
+                <li class="li3"><span>{$v[pay_name]}</span></li>
+                <li class="li2"><span>{:date('Y-m-d', $v[ctime])}</span></li>
+                <li class="li1"><span>{$v[account]}</span></li>
+                <li class="li4"><span class="red">
+                    <if condition="$v[pay_status] eq 0">待支付</if>
+                    <if condition="$v[pay_status] eq 1">已支付</if>
+                    <if condition="$v[pay_status] eq 2">支付失败</if>
+                </span></li>
+            </ul>
+        </foreach>

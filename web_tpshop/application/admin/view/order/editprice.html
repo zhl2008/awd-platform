@@ -1,0 +1,94 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <div class="container-fluid">
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> 订单价格修改</h3>
+            </div>
+            <div class="panel-body">
+                <form action="{:U('Admin/Order/editprice',array('order_id'=>$order['order_id']))}" method="post" id="edit_price">
+                    <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">商品总价：</td>
+                                <td class="text-left" colspan="3">
+                                    <p class="text-info">{$order.goods_price}</p>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">物流运费：</td>
+                                <td colspan="3">
+                                        <input type="text" name="shipping_price" class="input-sm" value="{$order.shipping_price}" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')">
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">订单价格微调：</td>
+                                <td colspan="3">
+                                    <input type="text" value="{$order.discount}" name="discount" onkeyup="this.value=this.value.replace(/[^-?\d.]/g,'')" onpaste="this.value=this.value.replace(/[^-?\d.]/g,'')" class="input-sm">
+                                    <p class="text-warning">请直接输入金额(可负数)</p>
+                                </td>
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">订单总金额：</td>
+                                <td colspan="3">
+                                    <p class="text-info">{$order.total_amount}</p>
+                                </td>
+
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">使用余额：</td>
+                                <td colspan="3">
+                                    <p class="text-info">{$order.user_money}</p>
+                                </td>
+
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">使用积分：</td>
+                                <td colspan="3">
+                                   <p class="text-info">{$order.integral}</p>
+                                </td>
+                            </div>
+                        </tr>
+                         <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">应付金额：</td>
+                                <td colspan="3">
+                                    <p class="text-info">{$order.order_amount}</p>
+                                </td>
+
+                            </div>
+                        </tr>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2"></td>
+                                <td colspan="3">
+                                    <button class="btn btn-default" type="button" onclick="javascript:history.go(-1)">取消</button>
+                                    <button class="btn btn-primary" type="submit">保存</button>
+                                </td>
+                            </div>
+                        </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+    </div>   
+   </section>
+</div>
+</body>
+</html>

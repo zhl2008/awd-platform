@@ -1,0 +1,141 @@
+<include file="public/layout"/>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span></div>
+        <ul>
+            <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>
+        </ul>
+    </div>
+    <form method="post" id="handlepost" action="{:U('System/handle')}">
+        <input type="hidden" name="inc_type" value="{$inc_type}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="smtp_server">邮件发送服务器(SMTP)</label>
+                </dt>
+                <dd class="opt">
+                    <input id="smtp_server" name="smtp_server" value="{$config.smtp_server}" class="input-txt" type="text"/>
+                    <p class="notic">发送邮箱的smtp地址。如: smtp.gmail.com或smtp.qq.com</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="smtp_port">服务器(SMTP)端口</label>
+                </dt>
+                <dd class="opt">
+                    <input id="smtp_port" name="smtp_port" value="{$config.smtp_port|default=25}" class="input-txt" type="text"/>
+                    <p class="notic">smtp的端口。默认为25。具体请参看各STMP服务商的设置说明 （如果使用Gmail，请将端口设为465）</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="smtp_user">邮箱账号</label>
+                </dt>
+                <dd class="opt">
+                    <input id="smtp_user" name="smtp_user" value="{$config.smtp_user}" class="input-txt" type="text"/>
+                    <p class="notic">使用发送邮件的邮箱账号</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="smtp_pwd">邮箱密码/授权码</label>
+                </dt>
+                <dd class="opt">
+                    <input id="smtp_pwd"  name="smtp_pwd" value="{$config.smtp_pwd}" class="input-txt" type="text"/>
+                    <p class="notic">使用发送邮件的邮箱密码,或者授权码。具体请参看各STMP服务商的设置说明</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">注册启用邮箱</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="regis_smtp_enable1" class="cb-enable <if condition='$config[regis_smtp_enable] eq 1'>selected</if>">开启</label>
+                        <label for="regis_smtp_enable0" class="cb-disable <if condition='$config[regis_smtp_enable] eq 0'>selected</if>">关闭</label>
+                        <input id="regis_smtp_enable1" name="regis_smtp_enable" <if condition="$config['regis_smtp_enable'] eq 1">checked="checked"</if> value="1" type="radio">
+                        <input id="regis_smtp_enable0" name="regis_smtp_enable" <if condition="$config['regis_smtp_enable'] eq 0">checked="checked"</if> value="0" type="radio">
+                    </div>
+                    <p class="notic">用户注册时使用邮箱验证</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">测试接收的邮件地址</dt>
+                <dd class="opt">
+                    <input value="{$config.test_eamil}" name="test_eamil" id="test_eamil" class="input-txt" type="text">
+                    <input value="测试" class="input-btn" onclick="sendEmail()" type="button">
+                    <p class="notic">首次请先保存配置再测试</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="adsubmit();">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<div id="goTop"><a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+<script>
+    var flag = true;
+    function adsubmit(){
+        check_form();
+        if(flag){
+            $('#handlepost').submit();
+        }
+    }
+
+    function check_form(){
+        if($('input[name="smtp_server"]').val() == ''){
+            layer.alert("请填写邮件发送服务器地址！",{icon:2});
+            flag = false;
+            return;
+        }
+        if($('input[name="smtp_user"]').val() == '' || !checkEmail($('input[name="smtp_user"]').val())){
+            layer.alert("请填写正确的邮箱账号！",{icon:2});
+            flag = false;
+            return;
+        }
+        if($('input[name="smtp_pwd"]').val() == ''){
+            layer.alert("请填写发送邮箱密码！",{icon:2});
+            flag = false;
+            return;
+        }
+    }
+    function sendEmail() {
+        var email = $('#test_eamil').val();
+        if (email == '') {
+            layer.alert("请填写正确的测试邮箱账号！",{icon:2});
+            return;
+        } else {
+            $.ajax({
+                type: "post",
+                data: $('#handlepost').serialize(),
+                dataType: 'json',
+                url: "{:U('System/send_email')}",
+                success: function (res) {
+                    if (res.status == 1) {
+                        layer.msg('发送成功', {icon: 1});
+                    } else {
+                        layer.msg(res.msg, {icon: 2, time: 2000});
+                    }
+                }
+            })
+        }
+    }
+</script>
+</body>
+</html>

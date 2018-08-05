@@ -1,0 +1,44 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>插件管理 - {$plugin.name}配置</h3>
+                <h5>网站系统插件管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="addEditSpecForm" method="post">
+        <div class="ncap-form-default">
+            <volist name="plugin.config" id="config">
+            <dl class="row">
+                <dt class="tit">
+                    <label>{$config.label}</label>
+                </dt>
+                <dd class="opt">
+                    <if condition="$config['type'] eq 'select'">
+                        <select name="config[{$config['name']}]">
+                            <foreach name="config.option" item="option" key="o">
+                                <option <if condition="$config_value[$config['name']] eq $o">selected</if>  value="{$o}">{$option}</option>
+                            </foreach>
+                        </select>
+                        <elseif condition="$config['type'] eq 'textarea'"/>
+                        <textarea rows="6" cols="90" class="tarea" name="config[{$config['name']}]">{$config_value[$config['name']]}</textarea>
+                        <else />
+                        <input type="{$config['type']}" value="{$config_value[$config['name']]}" name="config[{$config['name']}]" class="input-txt"/>
+                    </if>
+                    <p class="notic">{$config.label}</p>
+                </dd>
+            </dl>
+            </volist>
+            <div class="bot"><a href="JavaScript:void(0);" onClick=" $('#addEditSpecForm').submit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+        <input type="hidden" name="id" value="{$spec.id}">
+    </form>
+</div>
+</body>
+</html>

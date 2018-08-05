@@ -1,0 +1,162 @@
+<include file="public/min-header" />
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content ">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 添加优惠券</h3>
+                </div>
+                <div class="panel-body ">   
+                    <!--表单数据-->
+                    <form action="" method="post">              
+                        <!--通用信息-->
+                    <div class="tab-content col-md-10">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="col-sm-2">优惠券名称：</td>
+                                    <td class="col-sm-4">
+                                        <input type="text" value="{$coupon.name}" class="form-control" id="name" name="name" >
+                                        <span id="err_attr_name" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                    <td class="col-sm-4">请填写优惠券名称
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>优惠券面额：</td>
+                                    <td >
+                         				<input type="text" value="{$coupon.money}" class="form-control" id="money" name="money">
+                                    </td>
+                                    <td class="col-sm-4">优惠券可抵扣金额</td>
+                                </tr>  
+                                <tr>
+                                    <td>消费金额：</td>
+                                    <td>
+                      					<input type="text" value="{$coupon.condition}" class="form-control active" id="condition" name="condition">
+                                    </td>
+                                    <td class="col-sm-4">可使用最低消费金额</td>
+                                </tr>
+                                <tr>
+			                        <td>发放类型:</td>
+			                        <td id="order-status">
+			                            <input name="type" type="radio" value="1" <if condition="$coupon['type'] eq 1">checked</if> >按订单发放
+			                            <input name="type" type="radio" value="2" <if condition="$coupon['type'] eq 2">checked</if> >注册
+			                            <input name="type" type="radio" value="3" <if condition="$coupon['type'] eq 3">checked</if> >邀请
+			                            <input name="type" type="radio" value="4" <if condition="$coupon['type'] eq 4">checked</if> >按用户
+			                        </td>
+			                    </tr>   
+			                    <tr id="order_limit" <if condition="$coupon['type'] neq 1">style="display: none"</if>>
+			                        <td>订单下限:</td>
+			                        <td>
+			                              <input type="text" value="{$coupon.min_order}" class="form-control active" id="min_order" name="min_order">
+			                        </td>
+			                         <td class="col-sm-4">当订单满多少金额时才发放</td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>发放开始日期:</td>
+			                        <td>
+			                            <div class="input-prepend input-group">
+			                                <span class="add-on input-group-addon">
+			                                      <i class="glyphicon glyphicon-calendar fa fa-calendar">  </i>
+			                                </span>
+			                                <input type="text" value="{$coupon.send_start_time|date='Y-m-d',###}" class="form-control" id="send_start_time" name="send_start_time">
+			                            </div>
+			                        </td>
+			                        <td class="col-sm-4"></td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>发放结束日期:</td>
+			                        <td>
+			                            <div class="input-prepend input-group">
+			                                <span class="add-on input-group-addon">
+			                                        <i class="glyphicon glyphicon-calendar fa fa-calendar"> </i>
+			                                </span>
+			                                <input type="text" value="{$coupon.send_end_time|date='Y-m-d',###}" class="form-control" id="send_end_time" name="send_end_time">
+			                            </div>
+			                        </td>
+			                        <td class="col-sm-4"></td>
+			                    </tr>
+			
+			                    <tr>
+			                        <td>有效截止日期:</td>
+			                        <td>
+			                            <div class="input-prepend input-group">
+			                                <span class="add-on input-group-addon">
+			                                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+			                                </span>
+			                                <input type="text" value="{$coupon.use_end_time|date='Y-m-d',###}" class="form-control" id="use_end_time" name="use_end_time">
+			                            </div>
+			                        </td>
+			                        <td class="col-sm-4"></td>
+			                    </tr>                              
+                                </tbody> 
+                                <tfoot>
+                                	<tr>
+                                	<td><input type="hidden" name="act" value="{$act}">
+                                		<input type="hidden" name="link_id" value="{$info.link_id}">
+                                	</td>
+                                	<td class="col-sm-4"></td>
+                                	<td class="text-right"><input class="btn btn-primary" type="submit" value="保存"></td>
+                                	</tr>
+                                </tfoot>                               
+                            </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+$('input[type="radio"]').click(function(){
+    if($(this).val() == 1){
+        $('#order_limit').show();
+    }else{
+        $('#order_limit').hide();
+        $('#order_limit').find('input').val(0);
+    }
+})
+    $(function(){
+        data_pick('send_start_time');
+        data_pick('send_end_time');
+        data_pick('use_start_time');
+        data_pick('use_end_time');
+
+    })
+    function data_pick(id){
+        var myDate = new Date();
+        $('#'+id).daterangepicker({
+            singleDatePicker: true,
+            showDropdowns: true,
+            minDate:myDate.getFullYear()+'-'+myDate.getMonth()+'-'+myDate.getDate(),
+            maxDate:'2030-01-01',
+            format: 'YYYY-MM-DD',
+            locale : {
+                applyLabel : '确定',
+                cancelLabel : '取消',
+                fromLabel : '起始时间',
+                toLabel : '结束时间',
+                customRangeLabel : '自定义',
+                daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+                monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月',
+                    '七月', '八月', '九月', '十月', '十一月', '十二月' ],
+                firstDay : 1
+            }
+        });
+    }
+</script>
+</body>
+</html>

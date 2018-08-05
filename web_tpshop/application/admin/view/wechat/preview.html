@@ -1,0 +1,23 @@
+<include file="public/min-header" />
+
+    <!-- small box -->
+    <div class="small-box bg-aqua" style="border: solid 1px saddlebrown;word-break: break-all">
+
+        <div class="inner" style="text-align: center">
+            <img src="{$first.pic}" id="first-img" width="300" height="150" alt="">
+        </div>
+        <div class="icon">
+            <i class="ion ion-bag"></i>
+        </div>
+        <a class="small-box-footer" id="first-text" href="#">{$first.title}</a>
+        <volist name="lists" id="list">
+            <div class="inner" style="height: 70px;border:solid 1px saddlebrown">
+                <div class="pull-right">
+                    <img width="50" height="50" alt="" src="{$list.pic}">
+                </div>
+                <p>{$list.title}</p>
+            </div>
+        </volist>
+
+    </div>
+

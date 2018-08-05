@@ -1,0 +1,273 @@
+<include file="public/layout" />
+<style>
+    dd.opt table{
+        width: 100%;
+    }
+    dd.opt tr{
+        border: 1px solid #f4f4f4;
+        padding: 8px;
+    }
+    dd.opt tr td{
+        border: 1px solid #f4f4f4;
+    }
+</style>
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.config.js"/>
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.all.min.js"/>
+<script type="text/javascript" charset="utf-8" src="__ROOT__/public/plugins/Ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<style type="text/css">
+    html, body {
+        overflow: visible;
+    }
+</style>
+
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>优惠促销管理 - 编辑商品促销活动</h3>
+                <h5>网站系统编辑商品促销活动</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="promotion" action="{:U('Admin/Promotion/prom_order_save')}" method="post">
+        <input type="hidden" name="id" value="{$info.id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>促销活动名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="name" id="name" value="{$info.name}" class="input-txt">
+                    <p class="notic">促销活动名称</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>促销活动类型</label>
+                </dt>
+                <dd class="opt">
+                    <select id="prom_type" name="type">
+                        <option value="0" <if condition="$info[type] eq 0">selected</if>>直接打折</option>
+                        <option value="1" <if condition="$info[type] eq 1">selected</if>>减价优惠</option>
+                        <option value="2" <if condition="$info[type] eq 2">selected</if>>满额送积分</option>
+                        <option value="3" <if condition="$info[type] eq 3">selected</if>>买就赠代金券</option>
+                    </select>
+                    <p class="notic">促销活动类型</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>需要满足的金额</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="money" id="money" value="{$info.money}"  onpaste="this.value=this.value.replace(/[^\d.]/g,'')" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" class="input-txt">
+                    <p class="notic">单位:元</p>
+                </dd>
+            </dl>
+            <dl class="row" id="expression_dl">
+                <dt class="tit">
+                    <label><em>*</em>折扣</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" id="expression" name="expression"  value="{$info.expression}" class="input-txt">
+                    <p class="notic">% 折扣值(1-100 如果打9折，请输入90)</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>开始时间</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" id="start_time" name="start_time" value="{$info.start_time}"  class="input-txt">
+                    <p class="notic">优惠开始时间</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>结束时间</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" id="end_time" name="end_time" value="{$info.end_time}" class="input-txt">
+                    <p class="notic">优惠结束时间</p>
+                </dd>
+            </dl>
+            <!--<dl class="row">-->
+                <!--<dt class="tit">适合用户范围</dt>-->
+                <!--<dd class="opt">-->
+                    <!--<ul class="nc-row ncap-waybill-list">-->
+                        <!--<foreach name="level" item="vo">-->
+                            <!--<li><label class="label">-->
+                                <!--<input type="checkbox" <if condition="strripos($info['group'],$vo['level_id'].'') nheq false">checked</if> name="group[]" value="{$vo.level_id}">-->
+                                <!--{$vo.level_name}</label>-->
+                            <!--</li>-->
+                        <!--</foreach>-->
+                    <!--</ul>-->
+                <!--</dd>-->
+            <!--</dl>-->
+            <dl class="row">
+                <dt class="tit">
+                    <label>活动描述</label>
+                </dt>
+                <dd class="opt">
+                    <textarea class="span12 ckeditor" placeholder="请输入活动介绍" id="post_content" name="description" rows="6">{$info.description}</textarea>
+                    <p class="notic">活动描述</p>
+                </dd>
+            </dl>
+            <div class="bot"><a onclick="$('#promotion').submit();" class="ncap-btn-big ncap-btn-green">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $('#start_time').layDate();
+        $('#end_time').layDate();
+    });
+    
+    var url="{:url('Admin/Ueditor/index',array('savePath'=>'activity'))}";
+    var ue = UE.getEditor('post_content',{
+        serverUrl :url,
+        zIndex: 999,
+        initialFrameWidth: "100%", //初化宽度
+        initialFrameHeight: 350, //初化高度            
+        focus: false, //初始化时，是否让编辑器获得焦点true或false
+        maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign',//允许的最大字符数 'fullscreen',
+        pasteplain:false, //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
+        autoHeightEnabled: true
+    });
+//    function adsubmit(){
+//        if($('#name').val() ==''){
+//            layer.msg('活动名称不能为空');return false;
+//        }
+//        if($('input[name=expression]').val() ==''){
+//            layer.msg('优惠不能为空');return false;
+//        }
+//        $('#promotion').submit();
+//    }
+    function selectGoods(){
+        var goods_id = [];
+        //过滤选择重复商品
+        $('input[name*="goods_id"]').each(function(i,o){
+            goods_id.push($(o).val());
+        });
+        var url = '/index.php?m=Admin&c=Promotion&a=search_goods&goods_id='+goods_id+'&t='+Math.random();
+        layer.open({
+            type: 2,
+            title: '选择商品',
+            shadeClose: true,
+            shade: 0.3,
+            area: ['70%', '80%'],
+            content: url,
+        });
+    }
+
+    $("#prom_type").on("change",function(){
+        var type = parseInt($("#prom_type").val());
+        var expression = '';
+        switch(type){
+            case 0:{
+                expression = '<dt class="tit"><label><em>*</em>折扣</label></dt>'
+                        + '<dd class="opt"><input type="text" name="expression" pattern="([1-9]\\d?|100)" value="" class="input-txt">'
+                        + '<p class="notic">% 折扣值(1-100 如果打9折，请输入90)</p></dd>';
+                break;
+            }
+            case 1:{
+                expression = '<dt class="tit"><label><em>*</em>优惠金额</label></dt>'
+                        + '<dd class="opt"><input type="text" name="expression" pattern="float" value="" class="input-txt">'
+                        + '<p class="notic">立减金额（元）</p></dd>';
+                break;
+            }
+            case 2:{
+                expression = '<dt class="tit"><label><em>*</em>积分</label></dt>'
+                        + '<dd class="opt"><input type="text" name="expression" pattern="int" value="" class="input-txt">'
+                        + '<p class="notic">订单送积分额度</p></dd>';
+                break;
+            }
+            case 3:{
+                expression = '<dt class="tit"><label><em>*</em>代金券</label></dt><dd class="opt"><select name="expression">'
+                        + '<tpshop sql="select * from __PREFIX__coupon where type=0 AND use_end_time gt $template_now_time" item="v"><option value="{$v.id}" <if condition="$v[id] eq $info[expression]">selected</if>>{$v.name}</option></tpshop></select>'
+                        + '</dd>';
+                break;
+            }
+            case 4:{
+                expression = '';
+                break;
+            }
+        }
+        $("#expression_dl").html(expression);
+    });
+    $(function () {
+        $("#promotion").validate({
+            debug: false, //调试模式取消submit的默认提交功能
+            focusInvalid: false, //当为false时，验证无效时，没有焦点响应
+            onkeyup: false,
+            submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+                if($('input[name="group\[\]"]:checked').length ==0){
+                    layer.alert('请选择一个适合用户范围', {icon: 2});
+                    return ;
+                }else{
+                    form.submit();   //提交表单
+                }
+            },
+            submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form
+                var start_time=Date.parse($('#start_time').val());
+                var end_time=Date.parse($('#end_time').val());
+                if(start_time>=end_time){
+                    layer.msg('开始时间不得大于结束时间',{icon:2});
+                    return false;
+                }else{
+                    form.submit();   //提交表单
+                }
+            },
+            ignore:":button",	//不验证的元素
+            rules:{
+                name:{
+                    required:true
+                },
+                money:{
+                    required:true
+                },
+                expression:{
+                    required:true
+                },
+                start_time:{
+                    required:true
+                },
+                end_time:{
+                    required:true
+                },
+            },
+            messages:{
+                name:{
+                    required:"请填写名称"
+                },
+                money:{
+                    required:"请填写金额"
+                },
+                expression:{
+                    required:"请选择选项"
+                },
+                start_time:{
+                    required:"请选择时间"
+                },
+                end_time:{
+                    required:"请选择时间"
+                },
+            }
+        });
+    })
+    $(document).ready(function(){
+        $("#prom_type").trigger('change');
+        $('input[name=expression]').val("{$info.expression}");
+
+        $('#start_time').layDate();
+        $('#end_time').layDate();
+
+    })
+</script>
+</body>
+</html>

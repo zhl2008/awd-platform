@@ -1,0 +1,46 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/> 
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-list"></i> <if condition="$t eq 'pc'">PC端<else/>手机端</if>模板</h3>
+        </div>
+        <div class="panel-body">
+        <!-- 模板列表 -->
+            <div class="row">                
+		    <foreach name="template_config" item="val"  key="k" >
+                 <div class="col-sm-6 col-md-4">
+                     <style>
+                         .thumbnail img{ width:460px; height:270px; }
+                     </style>
+                   <div class="thumbnail">
+                     <img src="/template/{$t}/{$k}/{$val['img']}" />
+                     <div class="caption">
+                       <h3>{$val['name']}</h3>
+                       <p>{$val['remark']}</p>
+                       <p>                                
+                           <if condition="$default_theme == $k">
+                               <a href="{:U('Admin/template/changeTemplate',array('key'=>$k,'t'=>$t))}" class="btn btn-success" role="button">启用</a> 
+                           <else /> 
+                           <a href="{:U('Admin/template/changeTemplate',array('key'=>$k,'t'=>$t))}" class="btn btn-default" role="button">启用</a> 
+                           </if>                                
+                       </p>
+                     </div>
+                   </div>
+                 </div>
+		     </foreach>         
+            </div>
+        <!-- 模板列表 end-->
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </section>
+  <!-- /.content --> 
+</div>
+<!-- /.content-wrapper --> 
+</body>
+</html>

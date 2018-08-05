@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>账号绑定-{$tpshop_config['shop_info_store_title']}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+    <include file="user/header" />
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>绑定账号</span>
+			    </div>
+			    <div class="home-main">
+                    <include file="user/menu" />
+			    	<div class="ri-menu fr">
+			    		<div class="menumain">
+			    			<div class="goodpiece">
+								<h1>绑定账号</h1>
+								<!--<a href=""><span class="co_blue">帮助</span></a>-->
+							</div>
+				    		<div class="safe_list_set">
+				    			<volist name="lists" id="list">
+				    			<ul>
+				    				<li class="sx2"><span>{$list.name}</span></li>
+				    				<li class="sx1"><span><if condition="$list[is_bind] eq 0">还未绑定账号<else/>账号已绑定</if></span></li>
+				    				<li class="sx3"><if condition="$list[is_bind] eq 0">
+              						<a class="co_blue" href="{$list.bind_url}">绑定</a>
+              						<else/><a class="co_blue"  href="{$list.bind_remove}">解除绑定</a></if>   
+				    				</li>
+				    			</ul>
+				    			</volist>
+				    		</div>
+			    		</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+		<!--footer-e-->
+	</body>
+</html>

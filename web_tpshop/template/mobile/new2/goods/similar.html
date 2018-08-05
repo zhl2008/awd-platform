@@ -1,0 +1,62 @@
+<include file="public/header" title="看相似" body=""/>
+<include file="public/header_nav" title="看相似" href="javascript:history.back(-1)"/>
+<div style="padding-top: 0.5rem" >
+    <div class="content" >
+        <span class="shopimg fl">
+            <img src="{$now_good[goods_id]|goods_thum_images=100,100}" style="height: 2rem;width: 2rem;">
+        </span>
+        <span class="deletes fr" style="width: 13rem; font-size: 0.6rem" >
+            <p >{$now_good[goods_name]}</p>
+            <p style="color: #ff0000;padding-top:10px; ">￥{$now_good[shop_price]}</p>
+        </span>
+    </div>
+</div>
+    <div class="thirdlogin">
+        <h4>相似好货 为您推荐</h4>
+    </div>
+<div id="goods_list" class="addimgchan orimg">
+    <foreach name="goods_list" item="good">
+    <div class="orderlistshpop p">
+            <div class="maleri30">
+                <a href="{:U('Goods/goodsInfo',array('id'=>$good[goods_id]))}">
+                    <div class="sc_list se_sclist">
+                        <div class="shopimg fl">
+                            <img src="{$good[goods_id]|goods_thum_images=400,400}">
+                        </div>
+                        <div class="deleshow fr">
+                            <div class="deletes">
+                                <span class="similar-product-text fl">{$good[goods_name]}</span>
+                            </div>
+                            <div class="prices">
+                                <p class="sc_pri fl"><span>￥</span><span>{$good[shop_price]}</span></p>
+                            </div>
+                            <p class="weight"><span>{$good[comment_count]}</span><span>条评价</span></p>
+                        </div>
+                    </div>
+                </a>
+            </div>
+    </div>
+    </foreach>
+</div>
+<div class="mask-filter-div" style="display: none;"></div>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript" charset="utf-8">
+    page = 1;
+    function ajax_sourch_submit() {
+        ++page;
+        $.ajax({
+            type: 'GET',
+            url: '/index.php?m=Mobile&c=Goods&a=similar&is_ajax=1',
+            data:{id:'{$now_good[goods_id]}',p:page},
+            success:function(data){
+                if ($.trim(data) == ''){
+                    $('#getmore').hide();
+                }else{
+                    $('#goods_list').append(data);
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

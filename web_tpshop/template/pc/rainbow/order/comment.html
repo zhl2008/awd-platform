@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的评价-{$tpshop_config['shop_info_store_title']}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>我的评价</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+			    		<div class="menumain p">
+			    			<div class="goodpiece">
+								<h1>我的评价</h1>
+								<!--<a href=""><span class="co_blue">帮助</span></a>-->
+							</div>
+			    			<div class="orderbook-list">
+			    				<div class="time-sala p">
+									<ul>
+										<li class="<if condition="$Request.param.status neq '0' AND $Request.param.status neq '1'">red</if>">
+                                        <a href="{:U('/Home/Order/comment')}">全部</a>
+                                        </li>
+										<li class="<if condition="$Request.param.status eq '0'">red<else/>mal-l</if>">
+                                        <a href="{:U('/Home/Order/comment',array('status'=>0))}">待评论订单</a>
+                                        </li>
+										<li class="<if condition='$Request.param.status eq 1'>red<else/>mal-l</if>">
+                                            <a href="{:U('/Home/Order/comment',array('status'=>1))}">已评论</a>
+                                        </li>
+									</ul>
+								</div>
+
+								<div class="he"></div>
+                            <if condition="!empty($comment_list)">
+								<div class="orderbook-list">
+					    			<div class="book-tit">
+					    				<ul>
+					    					<li class="sx1">商品信息</li>
+					    					<li class="sx2">单价</li>
+					    					<li class="sx3">数量</li>
+					    					<li class="sx4">实付款</li>
+					    					<li class="sx5">状态</li>
+					    					<li class="sx6">操作</li>
+					    				</ul>
+					    			</div>
+					    		</div>
+								<div class="order-alone-li">
+									<volist name="comment_list" id="list">
+										<table width="100%" border="" cellspacing="" cellpadding="">
+											<tr class="time_or">
+												<td colspan="6">
+													<div class="fl_ttmm">
+														<span class="time-num">下单时间：<em class="num">{$list.add_time|date='Y-m-d H:i:s',###}</em></span>
+														<span class="time-num">订单编号：<em class="num">{$list.order_sn}</em></span>
+														<!--<span class="time-num">卖家：<a href=""><em class="num">正也手机专营店<i class="ear"></i></em></a></span>-->
+
+														<!--<div class="dele"></div>-->
+													</div>
+													<div class="fr_ttmm"></div>
+												</td>
+											</tr>
+											<tr class="conten_or">
+												<td class="sx1">
+													<div class="shop-if-dif">
+														<div class="shop-difimg">
+															<img src="{$list.goods_id|goods_thum_images=100,100}" width="100" height="100">
+														</div>
+														<div class="shop_name"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}">{$list.goods_name}</a></div>
+													</div>
+												</td>
+												<td class="sx2"><span>￥</span><span>{$list.member_goods_price}</span></td>
+												<td class="sx3">{$list.goods_num}</td>
+												<td class="sx4">
+													<div class="pric_rhz">
+														<p class="d_pri"><span>￥</span><span>
+                                                                {$list.member_goods_price * $list.goods_num}
+                                                        </span>
+                                                        </p>
+													</div>
+												</td>
+												<td class="sx5">
+                                                    <div class="detail_or">
+                                                        <p class="d_yzo"><if condition="$list['is_comment'] eq 1">已评价<else/>未评价</if></p>
+                                                    </div>
+												</td>
+												<td class="sx6">
+													<div class="rbac">
+														<if condition="$list['is_comment'] eq 1">
+															<p class="inspect"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}">查看</a></p>
+															<else/>
+															<p class="inspect"><a href="{:U('Home/Order/comment_list',array('order_id'=>$list['order_id'],'rec_id'=>$list['rec_id']))}">评价</a>
+														</if>
+
+													</div>
+												</td>
+											</tr>
+										</table>
+									</volist>
+								</div>
+                            <else/>
+                                <div class="car-none-pl">
+                                    <i class="account-acco1"></i>您还没有订单，<a href="/">快去逛逛吧~</a>
+                                </div>
+                            </if>
+				    		</div>
+			    		</div>
+						<div class="operating fixed" id="bottom">
+							<div class="fn_page clearfix">
+								{$page}
+							</div>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+    <div class="footer p">
+        <include file="public/footer" />
+    </div>
+		<!--footer-e-->
+		<script type="text/javascript">
+			$(function(){//退货记录和申请退货切换
+				$('.time-sala ul li').click(function(){
+					$(this).addClass('red').siblings().removeClass('red');
+				})
+			})
+		</script>
+	</body>
+</html>

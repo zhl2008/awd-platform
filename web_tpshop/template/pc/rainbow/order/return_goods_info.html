@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>进度跟踪</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/return.add.css" />
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>进度跟踪</span>
+			    </div>
+			    <div class="home-main">
+				<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+			    		<div class="menumain p">
+				    		<div class="menu-ri-t progse p">
+				    			<div class="goodpiece p">
+									<h1>售后服务详情</h1>
+									<div class="twibtn_r">
+										<tpshop sql="select * from `__PREFIX__article` where cat_id = 6  and is_open=1 limit 1" key="k2" item='v2'>
+			                                <a class="shhear" href="{:U('Home/Article/detail',array('article_id'=>13))}">售后政策</a>
+			                            </tpshop>
+										<a class="shhear" href="tencent://message/?uin={$store[store_qq]}&Site=TPshop商城&Menu=yes"><i class="earp"></i>联系卖家</a>
+									</div>
+								</div>
+								<div class="fu_serdetail ma-to-20">
+									<div class="serft_fl">
+										<span>本次售后服务由<a class="red">{$tpshop_config['shop_info_store_name']}</a>为您提供</span>
+									</div>
+									<div class="serft_fr">
+										<div class="shop-if-dif">
+			    							<div class="shop-difimg">
+												<a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}">
+			    									<img src="{$goods.goods_id|goods_thum_images=100,100}">
+												</a>
+			    							</div>
+			    							<div class="cebigeze">
+			    								<p class="may_zco"><span>订单编号：</span><span><a href="{:U('Home/Order/order_detail',array('id'=>$return_goods['order_id']))}">{$return_goods.order_sn}</a></span></p>
+			    								<p class="may_zco"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}">{$goods.goods_name}</a></p>
+			    							</div>
+			    						</div>
+									</div>
+								</div>
+				    		</div>
+			    		</div>
+			    		<div class="menumain p ma-to-20">
+			    			<div class="goodpiece">
+								<h1>售后信息</h1>
+								<!--<a href=""><span class="co_blue">成长值说明<em class="thoma">></em></span></a>-->
+							</div>
+							<div class="diffenprp">
+                                <!--服务进度-s-->
+								<div class="shencharsub p">
+									<ul>
+                                        <li class="conduct"><!--增加conduct，图标变成绿色，下同-->
+                                            <div class="sumapply">
+                                                <i class="tjsq"></i>
+                                                <p>提交申请</p>
+                                            </div>
+                                        </li>
+                                        <li class="guccent">
+                                            <div class="checkuoz">
+                                                <span class="shwa">待审核</span>
+                                                <div class="barchar"><i style="width:100%"></i></div>
+                                            </div>
+                                        </li>
+										<if condition="$return_goods[status] eq -2">  <!--服务单状态为已取消-->
+											<li class="littyua conduct">
+												<div class="thirdchackup">
+													<i class="tjsq"></i>
+													<p>服务单已取消</p>
+												</div>
+											</li>
+										<elseif condition="$return_goods[status] eq -1" /><!--服务单状态为审核失败-->
+											<li class="littyua">
+												<div class="thirdchackup">
+													<i class="tjsq"></i>
+													<p style="color:red;">审核未通过</p>
+												</div>
+											</li>
+										<else/> <!--服务单状态为审核成功-->
+                                            <if condition="$return_goods[status] eq -1">
+                                                <li class="littyua conduct">
+                                                    <div class="thirdchackup">
+                                                        <i class="tjsq"></i>
+                                                        <p>审核未通过</p>
+                                                    </div>
+                                                </li>
+                                            </if>
+											<if condition="$return_goods[status] egt 1">
+                                                <li class="littyua conduct">
+                                                    <div class="thirdchackup">
+                                                        <i class="tjsq"></i>
+                                                        <p>审核通过</p>
+                                                    </div>
+                                                </li>
+                                                <li class="guccent">
+                                                    <div class="checkuoz">
+                                                        <span class="shwa">
+                                                            <if condition="$return_goods[type] eq 1">
+                                                                待客服发货中
+                                                            <else/>
+                                                                待客服退款
+                                                            </if>
+                                                        </span>
+                                                        <div class="barchar"><i style="width:100%"></i></div>
+                                                    </div>
+                                                </li>
+											</if>
+                                            <if condition="($return_goods[status] egt 2) and ($return_goods.type eq 1)">
+                                                <li class="littyua conduct">
+                                                    <div class="thirdchackup">
+                                                        <i class="tjsq"></i>
+                                                        <p>卖家重新发货</p>
+                                                    </div>
+                                                </li>
+                                                <li class="guccent">
+                                                    <div class="checkuoz">
+                                                        <span class="shwa">已发货</span>
+                                                        <div class="barchar"><i style="width:100%"></i></div>
+                                                    </div>
+                                                </li>
+                                            </if>
+											<if condition="($return_goods[status] eq 3)">
+                                                <li class="littyua conduct">
+                                                    <div class="thirdchackup">
+                                                        <i class="tjsq"></i>
+                                                        <p>完成</p>
+                                                    </div>
+                                                </li>
+											</if>
+										</if>
+									</ul>
+								</div>
+                                <!--服务进度-s-->
+
+                                <!--进度说明-s-->
+								<div class="sheefshjk">
+									<div class="jindudoc">
+										<h2>进度说明：</h2>
+										<if condition="$return_goods[status] eq 0">
+										<p>亲爱的客户，您的服务单已经提交成功，请您耐心等待客服审核</p>
+										</if>
+										<if condition="$return_goods[status] eq 1">
+                                            <p>尊敬的客户，很抱歉出现这样的情况，如情况属实且非人为因素造成损坏，我们可以为您办理。请将商品全套及发票原件自行返回，
+                                            如属商品质量问题，运费会以余额方式返还到您的商城账户；如非质量问题（误购），运费将由您承担(拒收到付及邮政包裹），
+                                            寄回商品时请附上您的订单号及收货人姓名电话、发货单详情（运单号、快递公司、快递费用），以便我们在收到返回商品时及时为您处理，感谢您的支持，谢谢！
+                                            </p>
+										</if>
+										<if condition="$return_goods[status] eq -1">审核未通过，原因：{$return_goods.remark}</if>
+										<if condition="$return_goods[status] eq 2 and $return_goods.type eq 1">
+                                            尊敬的客户，您的换货快递已寄出。
+                                        </if>
+										<if condition="$return_goods[status] eq  3 ">
+                                            尊敬的客户，您的服务单已完成，感谢您对{$tpshop_config['shop_info_store_name']}的大力支持
+                                        </if>
+                                        <if condition="$return_goods[status] eq -2">
+                                            尊敬的客户，您的服务单已取消，感谢您对{$tpshop_config['shop_info_store_name']}的大力支持
+                                        </if>
+									</div>
+                                    <if condition="$return_goods[status] eq 2 and $return_goods.type eq 1">
+                                        <a class="cancellserv" href="{:U('Order/receiveConfirm',array('return_id'=>$return_goods[id]))}">确认收货</a>
+                                    </if>
+                                    <if condition="$return_goods[status] neq -2 and $return_goods[status] lt 1">
+                                        <a class="cancellserv returngoodscancel"  data-href="{:U('Order/return_goods_cancel',array('id'=>$return_goods[id]))}">取消服务单</a>
+                                    </if>
+								</div>
+                                <!--进度说明-e-->
+							</div>
+
+                            <!--处理环节-s-->
+							<div class="liaduebox">
+								<div class="sheefshjk firshe">
+									<span class="kediorse">处理环节</span>
+									<div class="jindudoc">
+										<h2>进度说明：</h2>
+										<p>您的服务单已申请成功，等待售后审核中</p>
+										<p class="caozpero"><span class="boldjh">操作人：</span><span>系统（{$return_goods.addtime|date='Y-m-d H:i:s',###}）</span></p>
+									</div>
+										<p class="cilckmor" id="cilckstart"><a href="javascript:void(0);" onclick="show_more();">查看更多</a></p>
+								</div>
+								<if condition="$return_goods.status gt 0">
+                                    <div class="sheefshjk">
+                                        <div class="jindudoc">
+                                            <h2>进度说明：</h2>
+                                            <p>亲爱的客户，您的服务单已通过审核</p>
+                                            <p class="caozpero"><span class="boldjh">操作人：</span><span>卖家</span></p>
+                                        </div>
+                                    </div>
+								</if>
+                                <if condition="$return_goods.status eq -1">
+                                    <div class="sheefshjk">
+                                        <div class="jindudoc">
+                                            <h2>进度说明：</h2>
+                                            <p>亲爱的客户，很抱歉！您的服务单未通过审核</p>
+                                            <p class="caozpero"><span class="boldjh">操作人：</span><span>卖家</span></p>
+                                        </div>
+                                    </div>
+                                </if>
+								<if condition="$return_goods.status gt 1 and $return_goods.type eq 1">
+                                    <div class="sheefshjk">
+                                        <div class="jindudoc">
+                                            <h2>进度说明：</h2>
+                                            <p>亲爱的客户，卖家已收到您寄回的物品</p>
+                                            <p class="caozpero"><span class="boldjh">操作人：</span><span>卖家</span></p>
+                                        </div>
+                                    </div>
+                                    <div class="sheefshjk">
+                                        <div class="jindudoc">
+                                            <h2>进度说明：</h2>
+                                            <p>亲爱的客户，卖家已重新发货,快递公司：{$return_goods[seller_delivery][express_name]},快递单号：{$return_goods[seller_delivery][express_sn]}</p>
+                                            <p class="caozpero"><span class="boldjh">操作人：</span><span>卖家（{$return_goods[seller_delivery][express_time]}）</span></p>
+                                        </div>
+                                    </div>
+								</if>
+                                <if condition="$return_goods.status eq 3">
+                                    <div class="sheefshjk">
+                                        <div class="jindudoc">
+                                            <h2>进度说明：</h2>
+                                            <p>亲爱的客户，您的服务单完成</p>
+                                        </div>
+                                    </div>
+                                </if>
+								<if condition="$return_goods.status eq -2">
+                                    <div class="sheefshjk">
+                                        <div class="jindudoc">
+                                            <h2>进度说明：</h2>
+                                            <p>亲爱的客户，您的服务单已经取消</p>
+                                        </div>
+                                    </div>
+								</if>
+								<div class="sheefshjk">
+									<div class="jindudoc">
+										<p class="cilckmor" id="cilckstop"><a href="javascript:void(0);" onclick="show_stop();">收起</a></p>
+									</div>
+								</div>
+							</div>
+                            <!--处理环节-e-->
+
+							<h2 class="Important-reminder"><em>重要提醒</em>：商城平台及销售不会以  <em>任何理由</em> ，要求您点击  <em>任何网址链接</em>  进行退款操作。</h2>
+			    		</div>
+			    		<div class="menumain p ma-to-20 serverschdule" style="">
+			    			<div class="goodpiece">
+								<h1>服务单信息</h1>
+							</div>
+							<div class="ma-to-20">								
+								<div class="duwentdis">
+									<div class="uploadpt">
+										<p class="imgmes">图片信息：</p>
+										<div class="rigdetaque">
+											<div class="saveimgbox">
+												<foreach name="return_goods[imgs]" item="v">
+												<a href="{$v}" target="_blank"><img src="{$v}" width="100" height="100"/></a>
+												</foreach>
+											</div>
+										</div>
+									</div>
+								</div>							
+							</div>
+							<div class="sheet manone">
+		    					 <table border="1" width="100%" cellspacing="" cellpadding="">
+		    					 	<if condition="($return_goods[status] eq 3) and ($return_goods[type] eq 0)">
+                                        <tr>
+                                            <td><span>退款方式</span></td>
+                                            <td class="lastd"><span>退回至用户余额()</span></td>
+                                        </tr>
+		    					 	</if>
+		    					 	<tr>
+		    					 		<td><span>商品返回方式</span></td>
+		    					 		<td class="lastd"><span>若客户已收货，则由客户自行寄回给卖家</span></td>
+		    					 	</tr>
+		    					 	<tr>
+		    					 		<td><span>商品处理方式</span></td>
+                                        <td class="lastd"><span>客户期望处理方式“<if condition="$return_goods[type] eq 0">退货<elseif condition="$return_goods[type] eq 1"/>换货<else/>维修</if>”</span></td>
+		    					 	</tr>
+		    					 	<tr>
+		    					 		<td><span>问题描述</span></td>
+		    					 		<td class="lastd"><span>{$return_goods['reason']}</span></td>
+		    					 	</tr>
+                                     <tr>
+                                         <td><span>服务备注</span></td>
+                                         <td class="lastd"><span>{$return_goods['remark']}</span></td>
+                                     </tr>
+		    					 	<tr>
+		    					 		<td><span>卖家收货信息</span></td>
+		    					 		<td class="lastd">
+		    					 		<strong>
+		    					 			收货地址：{$tpshop_config['shop_info_address']}<br>
+		    					 			收件人：{$tpshop_config['shop_info_store_name']}(收)<br>
+		    					 			电话：{$tpshop_config['shop_info_phone']}
+		    					 		</strong>
+		    					 		</td>
+		    					 	</tr>
+		    					</table>
+		    				</div>
+			    		</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+		<!--footer-e-->
+		<script type="text/javascript">
+			$('#express_time').layDate();
+			function show_more(){
+				$('.liaduebox').css('overflow','inherit').css('height','inherit');
+				$('#cilckstart').hide();
+			}
+			function show_stop(){
+				$('.liaduebox').css('overflow','hidden').css('height','160px');
+				$('#cilckstart').show();
+			}
+			
+			$(function(){
+				$('.clickonlid').click(function(){
+					$('.fileset').click();
+				})
+			})
+			$(function(){
+				$('.tuodate').click(function(){
+					$('.serverschdule').show();
+				})
+				$('.stjaoheqx a').click(function(){
+					$('.serverschdule').hide();
+				})
+			})
+			
+			function submit_form()
+		    {
+				var flag = true;
+		       	$('input[name*="delivery"]').each(function(i,o){
+		       		if($(o).val() == '' && flag){
+			            layer.alert('请输入完整的快递信息!', {icon: 2});
+			            flag = false;
+		       		}
+		       	})
+		       	if(flag){
+		       	 	$('#return_form').submit();
+		       	}else{
+		       		return false;
+		       	}
+		    }
+            $('document').on('click','.returngoodscancel',function(){
+                layer.confirm('确定取消订单?', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                        $.ajax({
+                            url:$(this).data('href'),
+                            method:'POST',
+                            dataType:'json',
+                            error: function () {
+                                layer.alert("服务器繁忙, 请联系管理员!");
+                            },
+                            success: function (data) {
+                                if (data.status === 1) {
+                                    layer.msg(data.msg, {icon: 1,time: 1000}, function() {
+                                        window.parent.location.href = data.url;
+                                    });
+                                } else {
+                                    layer.msg(data.msg, {icon: 2,time: 1000});
+                                }
+                            }
+                        });
+                }, function(index){
+                    layer.close(index);
+                });
+            })
+		</script>
+	</body>
+</html>

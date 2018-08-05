@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/global.js"></script>
+		<style type="text/css">
+			a{text-decoration: none;}
+			.yhqmaincoupan{width: 1224px;margin: 0 auto;background: #fff3e3;}
+			.yhqmaincoupan .maitos{width: 1224px;height: 286px;}
+			.maleri100{margin: 0 auto;margin: 0 100px;}
+			.buttomretuandclos{text-align: center;padding: 30px 0 33px 0;border-bottom: 1px solid #f0e2cf;}
+			.buttomretuandclos a{
+				display: inline-block;
+				width: 120px;
+				height: 44px;
+				line-height: 44px;
+				text-align: center;
+				color: white;
+				background: #ef465a;
+				border-radius: 10px;
+				text-decoration: none;
+				margin: 0 25px;
+				transition: all .2s ease-in 0s;
+				-webkit-transition: all .2s ease-in 0s;
+				-moz-transition: all .2s ease-in 0s;
+				-o-transition: all .2s ease-in 0s;
+			}
+			.buttomretuandclos a:hover{background: rgba(239,70,90,.8);}
+			.questionsany {padding: 40px 0;position: relative;}
+			.questionsany p{font-size: 12px;padding:6px 0px;}
+			.questionsany p a{color: #015ea8;}
+			.title-qsm{font-weight: 600;}
+			.rebyikoe{text-align: center;margin-top: -62px;}
+			.rebyikoe h1{color: #e7182e;font-size: 28px;}
+			.rebyikoe p{color: #906c38;font-size: 14px;}
+			.ma-to-50{margin-top: 50px;}
+		</style>
+	</head>
+	<body>
+		<include file="public/header" w="w1224"/>
+		<div class="yhqmaincoupan">
+			<img class="maitos" src="__STATIC__/images/getyhq_01.jpg"/>
+			<if condition="$res[status] eq 1">
+                <div class="rebyikoe">
+                    <h1>{$res.msg}</h1>
+                    <p>优惠劵将于3~5分钟后，发送到你的商城账户里。请注意查收哟~</p>
+                    <p class="ma-to-50"><em id="wait">5</em><a href="{$res.return_url}" id="href">秒后为您自动跳转...</a></p>
+                </div>
+			<else/>
+			<div class="rebyikoe" style="display: block;">
+				<img src="__STATIC__/images/redpack.png" style="display: inline-block;vertical-align: middle;"/>
+				<p style="display: inline-block;vertical-align: middle;font-size: 16px;color: #ef465a;"><if condition="$res['status'] eq 2">您已经参加过此活动，别太贪心哟，下次再来~<else/>{$res.msg}</if></p>
+				<p class="ma-to-50"><em id="wait">5</em><a href="{$res.return_url}" id="href">秒后为您自动跳转...</a></p>
+			</div>
+			</if>
+			<div class="maibos">
+				<div class="maleri100">
+					<div class="buttomretuandclos">
+						<a href="{$res.return_url}">返回活动页面</a>
+						<a href="javascript:CloseWebPage();">关闭页面</a>
+					</div>
+					<!--<div class="questionsany">-->
+						<!--<p class="title-qsm">说明：快抢优惠券有一定的随机比例，可能存在抢不到的情况。</p>-->
+						<!--<p class="title-qsm">常见问题</p>-->
+						<!--<p><a href="">1、优惠券有哪些类型？</a></p>-->
+						<!--<p><a href="">2、什么品类优惠券？</a></p>-->
+						<!--<p><a href="">3、如何查看优惠券？</a></p>-->
+						<!--<p><a href="">4、如何使用优惠券？</a></p>-->
+						<!--<p><a href="">5、优惠券的使用规则？</a></p>-->
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+        <!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+            <include file="public/sidebar_cart" />
+        </div>
+        <!--footer-e-->
+		<script type="text/javascript">
+		(function(){
+		var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+		var interval = setInterval(function(){
+			var time = --wait.innerHTML;
+			if(time <= 0) {
+				location.href = href;
+				clearInterval(interval);
+			};
+		}, 1000);
+		})();
+
+		</script>   
+	</body>
+</html>

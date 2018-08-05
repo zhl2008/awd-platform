@@ -1,0 +1,99 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1> {$plugin.name} <small></small> </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 后台首页</a></li>
+            <li><a href="#" class="active">{$plugin.name}配送区域配置</a></li>
+            <!--<li class="active">Data tables</li>-->
+        </ol>
+    </section>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> {$plugin.name}配送区域配置</h3>
+                </div>
+                <div class="panel-body">
+
+                    <!--表单数据-->
+                    <form method="post" id="addEditSpecForm" action="">
+                        <input type="hidden" name="id" value="{$setting.shipping_area_id}">
+                        <input type="hidden" name="default" value="1">
+
+                        <!--通用信息-->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_tongyong">
+
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>配送区域名称：</td>
+                                            <td>
+                                                <input readonly type="text" value="{$setting.shipping_area_name}" name="shipping_area_name"/>
+                                            </td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td>基本费用：</td>-->
+                                            <!--<td>-->
+                                                <!--<input type="text" value="{$setting.config.base_fee}" name="config[base_fee]"/>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        <tr>
+                                            <td>
+                                            首&nbsp;&nbsp;重
+                                            <select name="config[first_weight]">
+	                                            <for start="500" end="8000" step="500" name="v">
+                                            	 <option value="{$v}" <if condition="$setting[config][first_weight] eq $v">selected="selected"</if> >{$v}</option>
+                                                </for>
+                                            </select>
+                                            克以内费用：
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{$setting.config.money}" name="config[money]"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                            续重每
+                                            <select name="config[second_weight]">
+	                                            <for start="500" end="8000" step="500" name="v">
+                                            	 <option value="{$v}" <if condition="$setting[config][second_weight] eq $v">selected="selected"</if> >{$v}</option>
+                                                </for>
+                                            </select>                                            
+                                            克或其零数的费用：
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{$setting.config.add_money}" name="config[add_money]"/>
+                                            </td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td>免费额度：</td>-->
+                                            <!--<td>-->
+                                                <!--<input type="text" value="{$setting.config.free}" name="config[free]"/>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-primary" title="" data-toggle="tooltip" type="submit"  data-original-title="保存"><i class="fa fa-save"></i></button>
+                        </div>
+			        </form><!--表单数据-->
+
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+
+</body>
+</html>

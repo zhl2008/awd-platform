@@ -1,0 +1,83 @@
+<include file="public/header" title="我的优惠券" body="g4"/>
+<include file="public/header_nav" title="我的优惠券" href="javascript:history.back(-1)"/>
+<style>
+    .two-bothshop ul li {width: 33%;}
+</style>
+<div class="two-bothshop">
+    <div class="maleri30">
+        <ul>
+            <li  <if condition="$Request.param.type eq ''">class="red"</if>">
+                <a href="{:U('User/coupon')}"><span>未使用</span></a>
+            </li>
+            <li  <if condition='$Request.param.type eq 1'>class="red"</if>">
+                <a href="{:U('User/coupon',array('type'=>1))}"><span>已使用</span></a>
+            </li>
+            <li  <if condition='$Request.param.type eq 2'>class="red"</if>">
+                <a href="{:U('User/coupon',array('type'=>2))}"><span>已过期</span></a>
+            </li>
+        </ul>
+    </div>
+</div>
+<div class="coupon_csswri">
+    <div class="maleri30">
+        <ul id="user_goods_ka_1">
+            <volist name="coupon_list" id="coupon">
+                <li>
+                <div class="cp_alo">
+                    <div class="pon_top">
+                        <h1><em class="fosi">￥</em><em>{$coupon.money|intval}</em></h1>
+                        <p style="padding-bottom: 0.1rem">满 {$coupon.condition} 元使用</p>
+                        <p>{$coupon.name}</p>
+                    </div>
+                    <div class="pon_dow">
+                        <!--<p>{$tpshop_config['shop_info_store_name']}</p>-->
+                        <p>{$coupon.use_scope}</p>
+                        <if condition="$Request.param.type eq null">
+                                <if condition="$coupon.use_type eq 2">
+                                    <a class="usecoupon" href="{:U('Goods/goodsList',['id'=>$coupon.category_id])}">
+                                        <elseif condition="$coupon.use_type eq 1">
+                                            <a class="usecoupon" href="{:U('Goods/goodsInfo',['id'=>$coupon.goods_id])}">
+                                                <else/>
+                                                <a class="usecoupon" href="/">
+                                </if>
+                                立即使用</a>
+                        </if>
+                        <if condition="$Request.param.type eq 1">
+                            <a class="usecoupon" >已使用</a>
+                        </if>
+                        <if condition="$Request.param.type eq 2">
+                            <a class="usecoupon" >已过期</a>
+                        </if>
+                    </div>
+                    <p class="xd_time">限{$coupon.use_end_time|date='Y-m-d',###}前使用</p>
+                </div>
+            </li>
+            </volist>
+        </ul>
+    </div>
+</div>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script>
+    var  page = 1;
+    /*** ajax 提交表单 查询订单列表结果*/
+    function ajax_sourch_submit()
+    {
+        page += 1;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=Mobile&c=User&a=coupon&type={$Request.param.type}&is_ajax=1&p="+page,//+tab,
+//			url:"{:U('Mobile/User/coupon',array('type'=>$_GET['type']),'')}/is_ajax/1/p/"+page,//+tab,
+//			data : $('#filter_form').serialize(),// 你的formid 搜索表单 序列化提交
+            success: function(data)
+            {
+                if($.trim(data) == '')
+                    $('#getmore').hide();
+                else
+                    $("#user_goods_ka_1").append(data);
+            }
+        });
+    }
+</script>
+<script src="js/style.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

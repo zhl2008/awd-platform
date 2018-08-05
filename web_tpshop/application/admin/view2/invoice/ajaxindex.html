@@ -1,0 +1,106 @@
+<table>
+    <tbody>
+    <if condition="empty($list) eq true">
+        <tr data-id="0">
+            <td class="no-data" align="center" axis="col0" colspan="50">
+                <i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+            </td>
+        </tr>
+        <else/>
+        <volist name="$list" id="list">
+            <tr data-order-id="{$list.order_id}">
+                <td class="sign" axis="col0">
+                    <div style="width: 24px;"><i class="ico-check"></i></div>
+                </td>
+                <td align="left" abbr="order_sn" axis="col3" class="">
+                    <div style="text-align: left; width: 60px;" class="">{$list.invoice_id}</div>
+                </td>
+                <td align="left" abbr="consignee" axis="col4" class="">
+                    <div style="text-align: left; width: 150px;" class="">{$list.order_sn}</div>
+                </td>
+                <td align="center" abbr="article_show" axis="col5" class="">
+                    <div style="text-align: center; width: 150px;" class="">{$list.nickname}</div>
+                </td>
+                
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 60px;" class="">          
+                    <!--  0普通发票1电子发票2增值税发票-->
+                        <if condition="$list['invoice_type'] eq 1">
+                            电子发票
+                        <elseif condition ="$list['invoice_type'] eq 2"/>
+                            增值税发票
+                        <else />
+                            普通发票
+                        </if>
+                        
+                        </span></div>
+                </td>
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 60px;" class="">{$list.invoice_money}</div>
+                </td>
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 60px;" class="">{$list.invoice_title}</div>
+                </td>
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 60px;" class="">{$list.invoice_desc}</div>
+                </td>
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 60px;" class="">{$list.invoice_rate}</div>
+                </td>
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 120px;" class="">{$list.taxpayer}</div>
+                </td>
+                <td align="center" abbr="article_time" axis="col6" class="">
+                    <div style="text-align: center; width: 60px;" class="">
+                        <!--发票状态0待开1已开2作废-->
+                        <if condition="$list['status'] eq 1">
+                            已开
+                        <elseif condition ="$list['status'] eq 2"/>
+                            作废
+                        <else />
+                            待开
+                        </if>
+                    </div>
+                </td>
+                
+                 <td align="center" axis="col1">
+                    <div style="text-align: center; width: 150px;" class="">{$list['atime']|date='Y-m-d H:i',###}</div>
+                </td>
+                 <td align="center" abbr="article_time" axis="col6" class="">
+                     <div style="text-align: center; width: 150px;" class=""><if condition="$list['status'] eq 1"><notempty name="$list['ctime']">{$list['ctime']|date='Y-m-d H:i',###}</notempty></if>
+                        
+                    </div>
+                </td>
+
+               <!--       <td align="center" axis="col1" class="handle" >
+                    <div style="text-align: center; ">
+                  <a class="btn green" href="{:U('Admin/order/detail',array('order_id'=>$list['order_id']))}"><i class="fa fa-list-alt"></i>查看</a>
+                    </div>
+                </td>
+               -->
+                <td align="" class="" style="width: 100%;">
+                   <div style="text-align: center; width: 30px;">
+                    <if condition='$list[status] eq 1'>
+                      <span class="yes" onClick="changeTableVal('invoice','invoice_id','{$list.invoice_id}','status',this);changetime({$list[invoice_id]});" ><i class="fa fa-check-circle"></i>是</span>
+                      <else />
+                      <span class="no" onClick="changeTableVal('invoice','invoice_id','{$list.invoice_id}','status',this);changetime({$list[invoice_id]});" ><i class="fa fa-ban"></i>否</span>
+                    </if>
+                  </div>
+                </td>
+            </tr>
+        </volist>
+    </if>
+</tbody>
+</table>
+<div class="row">
+    <div class="col-sm-6 text-left"></div>
+    <div class="col-sm-6 text-right">{$page}</div>
+</div>
+<script>
+    $(".pagination  a").click(function() {
+        var page = $(this).data('p');
+        ajax_get_table('search-form2', page);
+    });
+
+    $('h5', '.ftitle').empty().html("(共{$pager->totalRows}条记录)");
+</script>

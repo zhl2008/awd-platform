@@ -1,0 +1,63 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-list"></i> 商品模型列表</h3>
+        </div>
+        <div class="panel-body">    
+		<div class="navbar navbar-default">
+            <div class="row navbar-form">
+            	<div class="col-xs-10"><span class="text-warning">商品模型是用来规定某一类商品共有规格和属性的集合，其中规格会影响商品价格，同一个商品不同的规格价格会不同，而属性仅仅是商品的属性特质展示</span></div>
+            	<div class="col-xs-2">
+                   <button type="submit" onclick="location.href='{:U('Admin/goods/addEditGoodsType')}'"  class="btn btn-primary pull-right"><i class="fa fa-plus"></i>新增商品模型</button>
+            	</div>
+            </div>
+          </div>
+                        
+          <div id="ajax_return"> 
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="sorting text-center">ID</th>                                
+                                <th class="sorting text-center">模型名称</th>
+                                <th class="sorting text-center">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="goodsTypeList" id="list">
+                                <tr>
+                                    <td class="text-center">{$list.id}</td>
+                                    <td class="text-center">{$list.name}</td>
+                                    <td class="text-center">
+										<a href="{:U('Admin/Goods/goodsAttributeList',array('type_id'=>$list['id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="属性列表">属性列表</a>                                    
+                                        <a href="{:U('Admin/Goods/specList',array('type_id'=>$list['id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="属性列表">规格列表</a>
+                                        <a href="{:U('Admin/goods/addEditGoodsType',array('id'=>$list['id']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                        <a href="javascript:del_fun('{:U('Goods/delGoodsType',array('id'=>$list['id']))}');" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div>
+                
+                <div class="row">
+                    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$show}</div>
+                </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </section>
+  <!-- /.content --> 
+</div>
+<!-- /.content-wrapper --> 
+</body>
+</html>

@@ -1,0 +1,134 @@
+<include file="public/header" title="手机号" body=""/>
+<include file="public/header_nav" title="手机号"  href="{:U('Mobile/User/userinfo')}"/>
+<style>
+   /* .fetchcode{
+        background-color: #ec5151;
+        border-radius: 0.128rem;
+        color: white;
+        padding: 0.55467rem 0.21333rem;
+        vertical-align: middle;
+        font-size: 0.59733rem;
+    }
+    #fetchcode{
+        background:#898995;
+        border-radius: 0.128rem;
+        color: white;
+        padding: 0.55467rem 0.21333rem;
+        vertical-align: middle;
+        font-size: 0.59733rem;
+    }*/
+</style>
+		<div class="loginsingup-input">
+            <form action="{:U('Mobile/User/userinfo')}" method="post" onsubmit="return submitverify(this)">
+                <div class="reset-pwd-title">修改绑定手机号码</div>
+				<div class="lsu">
+					<span class="ico ico-telephone"></span>
+					<input type="text" name="mobile" id="tel" value="{$user.mobile}" placeholder="请输入您的手机号" onBlur="checkMobilePhone(this.value);"/>
+				</div>
+                <div class="v-identity m-t-40">
+                    <span class="v-til">验证码 :</span>
+                    <div class="v-cont-wrap">
+                        <input type="text" name="mobile_code" id="mobile_code" value="" placeholder="请输入验证码">
+                        <a class="m_phone" href="javascript:void(0);" rel="mobile" id="fcode" onclick="sendcode(this)">获取验证码</a>
+                    </div>
+                </div>
+				<div class="lsu-submit">
+					<input type="submit" name="" id="" value="确认修改" />
+				</div>
+			</form>
+		</div>
+<script>
+    //手机验证
+    function checkMobilePhone(mobile){
+        if(mobile == ''){
+            showErrorMsg('请输入您的手机号');
+            return false;
+        }else  if(checkMobile(mobile)) {
+            $.ajax({
+                type: "GET",
+                url: "/index.php?m=Home&c=Api&a=issetMobile",//+tab,
+//			url:"{:U('Mobile/User/comment',array('status'=>$_GET['status']),'')}/is_ajax/1/p/"+page,//+tab,
+                data: {mobile: mobile},// 你的formid 搜索表单 序列化提交
+                success: function (data) {
+                    if (data == '0') {
+                        return true;
+                    } else {
+                        $('#fcode').attr('id','fetchcode');
+                        showErrorMsg('手机号已存在！');
+                        return false;
+                    }
+                }
+            });
+        }else{
+            showErrorMsg('手机号码格式不正确！');
+            return false;
+        }
+    }
+
+
+    //发送短信验证码
+    function sendcode(obj){
+        var tel = $.trim($('#tel').val());
+        var obj = $(obj);
+        if(tel == ''){
+            showErrorMsg('请输入您的号码！');
+            return false;
+        }
+        var s = {$tpshop_config['sms_sms_time_out']};
+        //改变按钮状态
+        obj.unbind('click');
+        //添加样式
+        obj.attr('id','fetchcode');
+        callback();
+        //循环定时器
+        var T = window.setInterval(callback,1000);
+        function callback()
+        {
+            if(s <= 0){
+                //移除定时器
+                window.clearInterval(T);
+                obj.bind('click',sendcode)
+                obj.removeAttr('id','fetchcode');
+                obj.text('获取验证码');
+            }else{
+                obj.text(--s + '秒后再获取');
+            }
+        }
+        $.ajax({
+//            url:'/index.php?m=Mobile&c=User&a=send_validate_code&t='+Math.random(), //原获取短信验证码方法
+            url : "/index.php?m=Home&c=Api&a=send_validate_code&scene=6&type=mobile&send="+tel,
+            type:'post',
+            dataType:'json',
+            data:{type:obj.attr('rel'),send:tel},
+            success:function(res){
+                if(res.status==1){
+                    //成功
+                    showErrorMsg(res.msg);
+                }else{
+                    //失败
+                    showErrorMsg(res.msg);
+                    //移除定时器
+                    window.clearInterval(T);
+                    obj.removeAttr('id','fetchcode');
+                    obj.text('获取验证码');
+                }
+            }
+        })
+    }
+
+    //提交前验证表单
+    function submitverify(obj){
+        var tel = $.trim($('#tel').val());
+        if(tel == ''){
+            showErrorMsg('请输入您的手机号！');
+            return false;
+        }
+        if($('#mobile_code').val() == ''){
+            showErrorMsg('验证码不能空！');
+            return false;
+        }
+        $(obj).onsubmit();
+    }
+</script>
+</body>
+</html>

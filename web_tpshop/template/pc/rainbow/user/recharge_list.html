@@ -1,0 +1,73 @@
+<include file="public/header" title="积分明细" body=""/>
+<include file="public/header_nav" title="积分明细"  href="{:U('User/account')}"/>
+<div class="allaccounted">
+    <div class="maleri30">
+        <div class="head_acc ma-to-20">
+            <ul>
+                <li <if condition="$type eq 'all'">class="red"</if>">
+                    <a href="{:U('User/points',array('type'=>'all'))}"  data-list="1">全部</a>
+                </li>
+                <li <if condition="$type eq 'recharge'">class="red"</if>>
+                    <a href="{:U('User/points',array('type'=>'recharge'))}"   data-list="2">赚取</a>
+                </li>
+                <li  <if condition="$type eq 'points'">class="red"</if>>
+                    <a href="{:U('User/points',array('type'=>'points'))}"  data-list="3">消费</a>
+                </li>
+                <input type="hidden" class="record" value="{$type}"/>
+            </ul>
+        </div>
+
+
+            <div class="allpion">
+                <foreach name="account_log" item="recharge">
+                    <div class="fll_acc">
+                        <ul>
+                            <li>{$recharge[pay_name]}</li>
+                            <li><span>充值金额: </span><span class="red">{$recharge[account]}</span></li>
+                            <li>
+                                <p><span>支付状态: </span>
+                                    <span class="red">
+                                        <if condition="$recharge[pay_status] eq 0">
+                                            待支付&nbsp;&nbsp;<a href="{:U('User/recharge',array('order_id'=>$recharge[order_id]))}" class="">详情</a>
+                                    <else/>
+                                            已支付
+                                        </if>
+                                    </span>
+                                </p>
+                                <p class="coligh"><span>{:date('Y-m-d H:i:s',$recharge[ctime])}</span></p>
+                            </li>
+                        </ul>
+                    </div>
+                </foreach>
+            </div>
+        <div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;display: none">
+            <a >已显示完所有记录</a>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript">
+//    var record=$('.record').val();   //获取记录类型
+    //加载更多记录
+    var page = 1;
+    function ajax_sourch_submit()
+    {
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=Mobile&c=User&a=recharge_list&is_ajax=1&type={$type}&p="+page,//+tab,
+            success: function(data)
+            {
+                if($.trim(data) == '') {
+                    $('#getmore').show();
+                    return false;
+                }else{
+                    $(".allpion").append(data);
+                    page ++;
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

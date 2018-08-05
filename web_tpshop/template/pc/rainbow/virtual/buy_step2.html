@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>订单支付-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}"/>
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+    <link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="__STATIC__/css/jh.css">
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <script src="__PUBLIC__/js/pc_common.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script><!-- 弹窗js 参考文档 http://layer.layui.com/-->
+</head>
+<body>
+<include file="public/sign-header"/>
+<div class="fn-cart-pay">
+    <!-- cart-title -->
+    <div class="wrapper1190">
+        <div class="order-header">
+            <div class="layout after">
+                <div class="fl">
+                    <div class="logo pa-to-36 wi345">
+                        <a href="/"><img src="__PUBLIC__/images/newLogo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="fr">
+                    <div class="pa-to-36 progress-area">
+                        <div class="progress-area-wd" style="display:none">我的购物车</div>
+                        <div class="progress-area-tx" style="display:none">填写核对订单信息</div>
+                        <div class="progress-area-cg">成功提交订单</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end cart-title -->
+
+        <div class="layout after-ta order-ha">
+            <div class="erhuh">
+                <i class="icon-succ"></i>
+
+                <h3>订单提交成功，请您尽快付款！</h3>
+
+                <p class="succ-p">
+                       	订单号：&nbsp;&nbsp;{$order['order_sn']}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                      	付款金额（元）：&nbsp;&nbsp;<b>{$order['order_amount']}</b>&nbsp;<b>元</b>
+                </p>
+                <div class="succ-tip">
+                   	 请您在&nbsp;&nbsp;<b>{$pay_date}</b>&nbsp;完成支付，否则订单将自动取消
+                </div>
+            </div>
+            <div class="ddxq-xiaq">
+                <if condition="$master_order_sn neq ''">
+                    <a href="{:U('Home/virtual/order_list')}">订单详情<i></i></a>
+                <else/>
+                    <a href="{:U('Home/virtual/virtual_order',array('order_id'=>$order['order_id']))}">订单详情<i></i></a>
+                </if>
+            </div>
+            <form action="{:U('Home/Payment/getCode')}" method="post" name="cart4_form" id="cart4_form">
+                <div class="orde-sjyy">
+                    <h3 class="titls">选择支付方式</h3>
+
+                    <div class="bsjy-g">
+                        <dl>
+                            <dd>
+                                <div class="order-payment-area">
+                                    <div class="dsfzfpte">
+                                        <b>选择支付方式</b>
+                                    </div>
+                                    <div class="po-re dsfzf-ee">
+                                        <ul>
+                                            <foreach name="paymentList" item="v" key="k">
+                                                <li>
+                                                    <div class="payment-area">
+                                                        <input type="radio" id="input-ALIPAY-1" value="pay_code={$v['code']}" class="radio vam" name="pay_radio">
+                                                        <label for="">
+                                                            <img src="/plugins/{$v['type']}/{$v['code']}/{$v['icon']}" width="120" height="40" onClick="change_pay(this);"/>
+                                                        </label>
+                                                    </div>
+                                                </li>
+                                            </foreach>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <!--第三方网银支付 start-->
+                                <foreach name="bankCodeList" item="v" key="k">
+                                    <div class="order-payment-area">
+                                        <div class="dsfzfpte">
+                                            <b>{$paymentList[$k]['name']}</b>
+                                            <em>网银支付</em>
+                                        </div>
+                                        <div class="po-re dsfzf-ee">
+                                            <ul>
+                                                <foreach name="v" item="v2" key="k2">
+                                                    <li>
+                                                        <div class="payment-area">
+                                                            <input type="radio" name="pay_radio" class="radio vam" value="pay_code={$k}&bank_code={$v2}" id="input-ALIPAY-1">
+                                                            <label for="">
+                                                                <img src="__STATIC__/images/images-out/{$bank_img[$k2]}" width="120" height="40" onClick="change_pay(this);"/>
+                                                            </label>
+                                                        </div>
+                                                    </li>
+                                                </foreach>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </foreach>
+                                <!--第三方网银支付 end -->
+
+                            </dd>
+                        </dl>
+                        <div class="order-payment-action-area">
+                            <a class="button-style-5 button-confirm-payment" href="javascript:void(0);" onClick="$('#cart4_form').submit();">确认支付方式</a>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="order_id" value="{$order['order_id']}"/>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<!--微信扫一扫支付对话框  -->
+<div id="wchatQrcodeDlg" class="g-cartpay-dlg" style="display: none;" data-show="">
+    <div class="g-cartpay-content">
+        <div class="g-h"><span class="u-close"></span></div>
+        <div class="g-c">
+            <div class="g-t"> 使用微信支付<span>￥<small class='wx_amount'>118</small></span></div>
+            <div class="g-qrcode"><img alt="使用微信支付" src="images/loading.gif"/></div>
+        </div>
+        <div class="g-f fixed"><i class="icon_scan"></i>
+
+            <div class="u-label">
+                <p>请使用微信扫一扫<br>
+                    扫描二维码完成支付</p>
+            </div>
+        </div>
+    </div>
+    <div class="u-mask"></div>
+</div>
+<!--微信扫一扫支付对话框 / -->
+<div id="addCardNewBind"></div>
+<!--footer-s-->
+<include file="public/footer" />
+<!--footer-e-->
+<script>
+    $(document).ready(function () {
+        $("input[name='pay_radio']").first().trigger('click');
+    });
+    // 切换支付方式
+    function change_pay(obj) {
+        $(obj).parent().siblings('input[name="pay_radio"]').trigger('click');
+    }
+</script>
+</body>
+</html>

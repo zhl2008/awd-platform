@@ -1,0 +1,68 @@
+<include file="public/min-header"/>
+
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">发放优惠券</h3>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post">
+                    <table class="table table-bordered">
+                    <tbody>
+
+                    <tr>
+                        <td>类型名称:</td>
+                        <td>
+                            <div class="input-prepend input-group">
+                                <input disabled type="text" value="{$coupon.name}" class="form-control active" id="name" name="name" style="width: 300px">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>优惠券金额:</td>
+                        <td>
+                            <div class="input-prepend input-group">
+                                <input disabled type="text" value="{$coupon.money}" class="form-control active" id="money" name="money" style="width: 300px">
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>发放数量:</td>
+                        <td>
+                            <div class="input-prepend input-group">
+                                <input type="text" value="0" class="form-control active" id="num" name="num" style="width: 300px">
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-info">
+                                <i class="ace-icon fa fa-check bigger-110"></i>
+                                	发放
+                            </button>
+                         <div class="pull-right">
+                    		<a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+                		</div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+            </div>
+        </div>
+
+
+    </div>    <!-- /.content -->
+  </section>
+</div>
+</body>
+</html>

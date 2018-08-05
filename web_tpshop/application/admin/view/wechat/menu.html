@@ -1,0 +1,269 @@
+<include file="public/min-header" />
+
+<style>
+	.form-group .control-label {
+		float: left;
+		width: 150px;
+		padding-top: 5px;
+		text-align: right;
+	}
+
+	.form-group .controls {
+		margin-left: 170px;
+	}
+
+	.form-group .controls .radio {
+		display: inline;
+		padding-left: 0px;
+		padding-right: 20px;
+		vertical-align: baseline;
+	}
+
+	.form-group .controls .large {
+		width: 60%;
+	}
+
+	.form-group .controls select {
+		width: 60%;
+	}
+
+	.form-group .controls .form-control {
+		display: inline;
+	}
+
+	.form-group .controls .help-inline {
+		padding-left: 10px;
+		color: #595959;
+	}
+
+	.form-actions {
+		margin-left: 170px;
+	}
+
+	.dropdown-checkboxes div {
+		padding: 1px;
+		padding-left: 10px;
+	}
+
+	.btn {
+		margin: 2px;
+	}
+
+	.pagination {
+		margin: 0px 0;
+	}
+
+</style>
+
+<div class="wrapper">
+	<div class="box">
+		<div class="box-header">
+			<h3 class="box-title"> &nbsp;</h3>
+			<include file="public/breadcrumb"/>	
+		</div>
+		<!-- /.box-header -->
+		<div class="box-body">
+			<div id="example2_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+				<div class="row">
+					<div class="col-sm-6"></div>
+					<div class="col-sm-6"></div>
+				</div>
+				<div class="row">
+					<div class="col-sm-12">
+						<form action="" method="post">
+							<table class="table table-bordered table-hover dataTable" id="example2" role="grid" aria-describedby="example2_info">
+								<thead>
+								<tr role="row">
+									<th style="width: 33%" class="sorting" tabindex="0" aria-controls="example2" aria-label="Rendering engine: activate to sort column ascending">菜单名称</th>
+									<th style="width: 33%" class="sorting_desc" tabindex="0" aria-controls="example2" aria-label="Browser: activate to sort column ascending" aria-sort="descending">类型</th>
+									<th style="width: 33%" class="sorting" tabindex="0" aria-controls="example2" aria-label="Platform(s): activate to sort column ascending">类型值</th>
+								</tr>
+								</thead>
+								<tbody id="tbody">
+									<volist name="p_lists" id="list">
+										<!--父级操作-->
+
+										<tr  role="row" class="odd  pmenu{$list.id} menu{$list.id}" >
+											<td>
+												<input type="text" name="menu[{$list.id}][name]" class="topmenu" value="{$list.name}" placeholder="菜单名称">
+												<a onclick="addcmenu({$list.id});" class="btn btn-primary"><i class="fa fa-plus"></i></a><a onclick="delmenu({$list.id});" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+											<td class="sorting_1">
+												<select name="menu[{$list.id}][type]" style="width: 50%">
+													<option <if condition="$list['type'] eq 'view'">selected</if> value="view">链接</option>
+													<option <if condition="$list['type'] eq 'click'">selected</if> value="click">触发关键字</option>
+													<option <if condition="$list['type'] eq 'scancode_push'">selected</if> value="scancode_push">扫码</option>
+													<option <if condition="$list['type'] eq 'scancode_waitmsg'">selected</if> value="scancode_waitmsg"> 扫码（等待信息）</option>
+													<option <if condition="$list['type'] eq 'pic_sysphoto'">selected</if> value="pic_sysphoto">系统拍照发图</option>
+													<option <if condition="$list['type'] eq 'pic_photo_or_album'">selected</if> value="pic_photo_or_album">拍照或者相册发图</option>
+													<option <if condition="$list['type'] eq 'pic_weixin'">selected</if> value="pic_weixin">微信相册发图</option>
+													<option <if condition="$list['type'] eq 'location_select'">selected</if> value="location_select">地理位置</option>
+												</select>
+											</td>
+											<td>
+												<input style="width: 100%" type="text" value="{$list.value}" name="menu[{$list.id}][value]" placeholder="菜单值">
+											</td>
+											<input style="width: 100%" name="menu[{$list.id}][pid]" type="hidden" value="0">
+										</tr>
+										<!--父级操作-->
+
+										<volist name="c_lists" id="clist">
+											<if condition="$clist['pid'] eq $list['id']">
+												<tr  role="row" class="odd  pmenu{$list.id} menu{$clist.id}" >
+													<td <if condition="$clist['pid'] gt 0">style="padding-left: 5em"</if>>
+													<input type="text" name="menu[{$clist.id}][name]" value="{$clist.name}" placeholder="菜单名称">
+													<a onclick="delmenu({$clist.id});" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+													<td class="sorting_1">
+														<select name="menu[{$clist.id}][type]" style="width: 50%">
+															<option <if condition="$clist['type'] eq 'view'">selected</if> value="view">链接</option>
+															<option <if condition="$clist['type'] eq 'click'">selected</if> value="click">触发关键字</option>
+															<option <if condition="$clist['type'] eq 'scancode_push'">selected</if> value="scancode_push">扫码</option>
+															<option <if condition="$clist['type'] eq 'scancode_waitmsg'">selected</if> value="scancode_waitmsg"> 扫码（等待信息）</option>
+															<option <if condition="$clist['type'] eq 'pic_sysphoto'">selected</if> value="pic_sysphoto">系统拍照发图</option>
+															<option <if condition="$clist['type'] eq 'pic_photo_or_album'">selected</if> value="pic_photo_or_album">拍照或者相册发图</option>
+															<option <if condition="$clist['type'] eq 'pic_weixin'">selected</if> value="pic_weixin">微信相册发图</option>
+															<option <if condition="$clist['type'] eq 'location_select'">selected</if> value="location_select">地理位置</option>
+														</select>
+													</td>
+													<td>
+														<input style="width: 100%" type="text" value="{$clist.value}" name="menu[{$clist.id}][value]" placeholder="菜单值">
+													</td>
+													<input style="width: 100%" name="menu[{$clist.id}][pid]" type="hidden" value="{$clist.pid}">
+												</tr>
+											</if>
+										</volist>
+
+									</volist>
+								</tbody>
+
+							</table>
+							<button class="btn btn-primary " type="button" onclick="addpmenu()">
+								添加一级菜单<i class="fa fa-plus"></i>
+							</button>
+
+							<button class="btn btn-info " type="submit">
+								保存
+							</button>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- /.box-body -->
+	</div>
+
+</div>
+<!--父类模板-->
+<table id="parent_tpl" style="display: none">
+	<!--
+	<tr  role="row" class="odd  pmenu__id__ menu__id__">
+  <td>
+    <input type="text" name="menu[__id__][name]" value="" placeholder="菜单名称">
+    <a onclick="addcmenu(__id__);" class="btn btn-primary"><i class="fa fa-plus"></i></a><a onclick="delmenu(__id__);" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+  <td class="sorting_1">
+    <select name="menu[__id__][type]" style="width: 50%">
+      	<option value="view">链接</option>
+		<option value="click">触发关键字</option>
+		<option value="scancode_push">扫码</option>
+		<option value="scancode_waitmsg"> 扫码（等待信息）</option>
+		<option value="pic_sysphoto">系统拍照发图</option>
+		<option value="pic_photo_or_album">拍照或者相册发图</option>
+		<option value="pic_weixin">微信相册发图</option>
+		<option value="location_select">地理位置</option>
+    </select>
+  </td>
+  <td>
+    <input style="width: 100%" type="text" value="" name="menu[__id__][value]" placeholder="菜单值">
+  </td>
+  <input style="width: 100%" name="menu[__id__][pid]" type="hidden" value="0">
+</tr>
+	-->
+</table>
+<!--父类模板-->
+
+<!--子类模板-->
+<div id="child_tpl">
+	<!--
+	<tr role="row" class="odd pmenu__pid__ menu__id__" >
+  <td class="" style="padding-left: 5em">
+    <input type="text" name="menu[__id__][name]" value="" placeholder="菜单名称">
+    <a onclick="delmenu(__id__);" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td>
+  <td class="sorting_1">
+    <select  name="menu[__id__][type]" style="width: 50%">
+      	<option value="view">链接</option>
+		<option value="click">触发关键字</option>
+		<option value="scancode_push">扫码</option>
+		<option value="scancode_waitmsg"> 扫码（等待信息）</option>
+		<option value="pic_sysphoto">系统拍照发图</option>
+		<option value="pic_photo_or_album">拍照或者相册发图</option>
+		<option value="pic_weixin">微信相册发图</option>
+		<option value="location_select">地理位置</option>
+    </select>
+  </td>
+  <td>
+    <input style="width: 100%" type="text" value="" name="menu[__id__][value]" placeholder="菜单值">
+  </td>
+  <input style="width: 100%" name="menu[__id__][pid]" type="hidden" value="__pid__">
+</tr>
+	-->
+</div>
+<!--子类模板-->
+
+<script>
+	var i  = {$max_id};
+	//添加菜单
+	function addpmenu(){
+		var pmenu = $('.topmenu');
+//		alert(pmenu.length);
+		if(pmenu.length >= 3){
+			layer.alert('最多三个一级菜单', {icon: 2});  //alert('最多三个一级菜单');
+			return;
+		}
+		i++;
+		var id = i;
+		var tpl = '<tr  role="row" class="odd  pmenu__id__ menu__id__"><td><input type="text" name="menu[__id__][name]" value="" placeholder="菜单名称"><a onclick="addcmenu(__id__);" class="btn btn-primary"><i class="fa fa-plus"></i></a><a onclick="delmenu(__id__);" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td><td class="sorting_1"><select name="menu[__id__][type]" style="width: 50%"><option value="view">链接</option><option value="click">触发关键字</option><option value="scancode_push">扫码</option><option value="scancode_waitmsg"> 扫码（等待信息）</option><option value="pic_sysphoto">系统拍照发图</option><option value="pic_photo_or_album">拍照或者相册发图</option><option value="pic_weixin">微信相册发图</option><option value="location_select">地理位置</option></select></td><td><input style="width: 100%" type="text" value="" name="menu[__id__][value]" placeholder="菜单值"></td><input style="width: 100%" name="menu[__id__][pid]" type="hidden" value="0"></tr>';
+		tpl = tpl.replace(/__id__/g,id);
+		$('#tbody').append(tpl);
+	}
+
+	function addcmenu(pid){
+		var cmenu = $('.pmenu'+pid);
+		if(cmenu.length >= 6){
+			layer.alert('一级菜单下最多5个二级菜单', {icon: 2});  //alert('一级菜单下最多5个二级菜单');
+			return;
+		}
+		i++;
+		var id = i;
+		var tpl = '<tr role="row" class="odd pmenu__pid__ menu__id__" ><td class="" style="padding-left: 5em"><input type="text" name="menu[__id__][name]" value="" placeholder="菜单名称"><a onclick="delmenu(__id__);" class="btn btn-danger"><i class="fa fa-trash-o"></i></a></td><td class="sorting_1"><select  name="menu[__id__][type]" style="width: 50%"><option value="view">链接</option><option value="click">触发关键字</option><option value="scancode_push">扫码</option><option value="scancode_waitmsg"> 扫码（等待信息）</option><option value="pic_sysphoto">系统拍照发图</option><option value="pic_photo_or_album">拍照或者相册发图</option><option value="pic_weixin">微信相册发图</option><option value="location_select">地理位置</option></select></td><td><input style="width: 100%" type="text" value="" name="menu[__id__][value]" placeholder="菜单值"></td><input style="width: 100%" name="menu[__id__][pid]" type="hidden" value="__pid__"></tr>';
+		tpl = tpl.replace(/__id__/g,id);
+		tpl = tpl.replace(/__pid__/g,pid);
+		$(cmenu.last()).after(tpl);
+	}
+
+	function delmenu(id){
+		if(!confirm("确定删除吗？")){
+			return;
+		}
+		$.ajax({
+			url:'/index.php?m=Admin&c=Wechat&a=del_menu&id='+id,
+			type:'get',
+			success:function(data){
+				if(data=='success'){
+					//删除子分类
+					$('.pmenu'+id).remove();
+					$('.menu'+id).remove();
+				}else{
+					layer.msg('删除失败',{icon:2});
+				}
+			}
+		});
+		/*
+		//删除子分类
+		$('.pmenu'+id).remove();
+		$('.menu'+id).remove();
+		*/
+	}
+
+</script>
+</body>
+</html>

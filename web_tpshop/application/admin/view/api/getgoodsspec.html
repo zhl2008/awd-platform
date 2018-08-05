@@ -1,0 +1,23 @@
+<foreach name="specList" item="vo" key="k" >
+    <tr class="spec_tr spec_radio">
+        <td  class="text-right col-sm-2">{$k}:</td>
+        <td class="text-left" colspan="3" id="ajax_spec_data">
+            <foreach name="vo" item="vo2" key="k2">
+                <input type="radio"  name="spec_id[{$vo2.spec_id}]" onclick="calcSpec(this)" value="{$vo2.id}"  class="btn">
+                {$vo2.item}
+                <img width="20" height="20" src="/public/images/image_icon.jpg" style="display:none;"/>
+                </input>&nbsp;&nbsp;&nbsp;
+
+            </foreach>
+        </td>
+    </tr>
+
+</foreach>
+<tr class="spec_tr">
+    <div class="row">
+        <td class="text-right col-sm-2"></td>
+        <td colspan="3">
+            <button class="btn btn-primary" id="submit" type="submit">保存</button>
+        </td>
+    </div>
+</tr>

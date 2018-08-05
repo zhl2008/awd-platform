@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的订单</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript" src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>我的订单</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+			    		<div class="menumain p">
+							<div id="navitems5" class="navitems2 p">
+								<ul>
+									<li>
+										<a href="{:U('Virtual/virtual_list',array('select_year'=>$_GET[select_year]))}" class="<if condition="$Request.param.type eq ''">selected</if>">全部订单</a>
+									</li>
+									<li>
+										<a href="{:U('Virtual/virtual_list',array('type'=>'WAITPAY','select_year'=>$_GET[select_year]))}" class="<if condition="$Request.param.type eq 'WAITPAY'">selected</if>">待付款</a>
+									</li>
+                                    <li>
+                                        <a href="{:U('Virtual/virtual_list',array('type'=>'PAYED','select_year'=>$_GET[select_year]))}" class="<if condition="$Request.param.type eq 'PAYED'">selected</if>">已付款</a>
+                                    </li>
+                                    <li>
+                                        <a href="{:U('Virtual/virtual_list',array('type'=>'FINISH','select_year'=>$_GET[select_year]))}" class="<if condition="$Request.param.type eq 'FINISH'">selected</if>">已完成</a>
+                                    </li>
+                                </ul>
+                                <div class="wrap-line" <if condition="$Request.param.type eq 'WAITPAY'">style="width: 130px; left: 140px;"<elseif condition="$Request.param.type eq 'PAYED'"/>style="width: 130px; left: 270px;"<elseif condition="$Request.param.type eq 'FINISH'"/>style="width: 130px; left: 400px;"<else/>style="width: 130px; left: 10px;"</if> >
+									<span style="left:15px;"></span>
+								</div>
+							</div>
+			    			<div class="menu_search p">
+			    				<form id="search_order" action="{:U('Virtual/virtual_list')}" method="get">
+			    					<input class="sea_ol" type="text" name="search_key" id="search_key" value="{$Request.param.search_key}"  placeholder="商品名称，订单编号" />
+			    					<input class="sea_et" type="submit" value="查询" style="cursor: pointer;"/>                                    
+			    				</form>
+			    			</div>
+			    			<div class="orderbook-list">
+				    			<div class="book-tit">
+				    				<ul>
+				    					<li class="sx1">商品信息</i></li>
+				    					<li class="sx2">单价</li>
+				    					<li class="sx3">数量</li>
+				    					<li class="sx4">支付总金额</li>
+				    					<li class="sx5 s5clic">订单状态<i class="jt-x"></i></li>
+				    					<li class="sx6">操作</li>
+				    				</ul>
+				    			</div>
+				    			<div class="hid-derei">
+				    				<ul>
+				    					<li><a href="{:U('Virtual/virtual_list')}">全部订单</a></li>
+				    					<li><a href="{:U('Virtual/virtual_list',array('type'=>'WAITPAY'))}">待付款</a></li>
+				    					<li><a href="{:U('Virtual/virtual_list',array('type'=>'WAITSEND'))}">待发货</a></li>
+				    					<li><a href="{:U('Virtual/virtual_list',array('type'=>'FINISH'))}">已完成</a></li>
+				    					<li><a href="{:U('Virtual/virtual_list',array('type'=>'CANCEL'))}">已取消</a></li>
+				    					<!--<li><a href="">预售订单</a></li>-->
+				    				</ul>
+				    			</div>
+				    		</div>
+							<div class="order-alone-li lastset_cm">
+                                <empty name="lists">
+                                    <div class="car-none-pl">
+                                        <i class="account-acco1"></i>您还没有订单，<a href="/">快去逛逛吧~</a>
+                                    </div>
+                                <else/>
+                                    <volist name="lists" id="list">
+                                    <table width="100%" border="" cellspacing="" cellpadding="" id="ordertable_{$list.order_id}">
+                                        <tr class="time_or">
+                                            <td colspan="6">
+                                                <div class="fl_ttmm">
+                                                    <span class="time-num">下单时间：<em class="num">{$list.add_time|date='Y-m-d H:i:s',###}</em></span>
+                                                    <span class="time-num">订单编号：<em class="num">{$list.order_sn}</em></span>
+                                                    <div class="paysoon">
+                                                        <if condition="$list.order_button[pay_btn] eq 1">
+                                                            <a class="ps_lj" href="{:U('Home/Cart/cart4',array('order_id'=>$list[order_id]))}"  target="_blank">立即支付</a>
+                                                        </if>
+                                                        <if condition="$list.order_button[cancel_info] eq 1">
+                                                         <a class="consoorder" href="{:U('Order/cancel_order_info',array('order_id'=>$list[order_id]))}">取消详情</a>
+                                                        </if>
+                                                        <if condition="$list.order_button[receive_btn] eq 1">
+                                                            <a class="ps_lj" href="javascript:;" onclick="order_confirm({$list.order_id});">收货确认</a></if>
+                                                        <!--<div class="dele"></div>-->
+                                                    </div>
+                                                </div>
+                                                <div class="fr_ttmm"></div>
+                                            </td>
+                                        </tr>
+                                        <volist name="list.order_goods" id="goods" key="k">
+                                                <tr class="conten_or">
+                                                    <td class="sx1">
+                                                        <div class="shop-if-dif">
+                                                            <div class="shop-difimg">
+                                                                <img src="{$goods.goods_id|goods_thum_images=60,60}" width="60" height="60" />
+                                                            </div>
+                                                            <div class="shop_name">
+                                                                <a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}">{$goods.goods_name}</a>
+                                                            </div>
+                                                            <div class="shop_name">
+                                                                <a >{$goods.spec_key_name}</a>
+                                                            </div>
+                                                        </div>
+                                                    </td>
+                                                    <td class="sx2"><span>￥</span><span>{$goods.member_goods_price}</span></td>
+                                                    <td class="sx3">
+                                                        <span>x{$goods.goods_num}</span>
+                                                    </td>
+                                                    <td class="sx4" rowspan="{$list.order_goods|count}">
+                                                        <div class="pric_rhz">
+                                                            <p class="d_pri"><span>￥</span><span>{$list.order_amount}</span></p>
+                                                            <p class="d_yzo">
+                                                                <spna>含运费：</spna>
+                                                                <span>{$list.shipping_price}</span></p>
+                                                            <p class="d_yzo"><a href="javascript:void(0);">{$list.pay_name}</a></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="sx5" rowspan="{$list.order_goods|count}">
+                                                        <div class="detail_or">
+                                                            <p class="d_yzo">{$list['order_status_detail']}</p>
+                                                            <p><a href="{:U('Virtual/virtual_order',array('order_id'=>$list['order_id']))}">查看详情</a></p>
+                                                        </div>
+                                                    </td>
+                                                    <td class="sx6" rowspan="{$list.order_goods|count}">
+                                                        <div class="rbac">
+                                                            <p class=""><a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}">再次购买</a></p>
+                                                            <if condition="($list.order_button[comment_btn] eq 1) and ($goods[is_comment] eq 0)">
+                                                                <p class="inspect"><a href="{:U('Order/comment_list',array('order_id'=>$list[order_id],'rec_id'=>$goods['rec_id']))}">评价</a></p>
+                                                            </if>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                        </volist>
+                                    </table>
+                                </volist>
+                                </empty>
+							</div>
+			    		</div>
+						<div class="operating fixed" id="bottom">
+							<div class="fn_page clearfix">
+								{$page}
+							</div>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+		<include file="user/footer" />
+		<!--footer-e-->
+		<script type="text/javascript">
+			$(function(){
+
+				$('img').one("error", function(e){
+					$(this).attr('src', 'http://www.tp-shop.cn/Template/pc/new/Static/images/logo.png');// '__STATIC__/images/icon_product_empty.png'
+				});
+
+
+				$('.coice').click(function(){
+					$('.time-qjc').toggle();
+				})
+		        //$('#start_time').layDate();
+		        //$('#end_time').layDate();
+			})
+			$(function(){
+				$('.s5clic').click(function(){
+					$('.hid-derei').slideToggle(400);
+					$(this).animate({opacity:"1"},200,function(){
+						$(this).toggleClass('sxbb')
+					})
+				})
+
+			})
+			$(function() {
+				var speed = 380;
+				$('#nav ul li').click(function() {
+					$(this).find('a').addClass('selected').parent().siblings().find('a').removeClass('selected')
+					var pl = $(this).position().left;
+					var liw = $(this).width();
+					$('.wrap-line').stop().animate({
+						left: pl,
+						width: liw
+					}, speed);
+				})
+			});
+
+			function jump()
+			{
+				var max_page = "{$page_array.total_page}";
+				var jump_page = $('#jump_page').val();
+				if(jump_page>0 && jump_page<=max_page){
+					location.href = "<?php echo urldecode(U('Home/Virtual/virtual_list',$get_no_p,''));?>"+"/p/"+$('#jump_page').val();
+				}else{
+					layer.alert('请输入正确的页数', {icon: 2});
+				}
+			}
+
+			/**订单查询时间 最近一个月，最近三个月，最近一年 s**/
+			var date = new Date();
+			var now_y = date.getFullYear();
+			var now_m = date.getMonth()+1;
+			function time_for_one_month() {
+				var month = now_m;
+				var year = now_y;
+				var next_month = parseInt(now_m) + 1;
+				if(next_month > 12){
+					year = year+1;
+					next_month = "0" + (next_month-12);
+				}
+				if (month < 10) {
+					month = "0" + month;
+				}
+				if (next_month < 10) {
+					next_month = "0" + next_month;
+				}
+				$('#start_time').val(now_y + "-" + month + "-" + "01");
+				$('#end_time').val(year + "-" + next_month + "-" + "01");
+                check_search_order()
+			}
+			
+			function time_for_three_month() {
+				var month = now_m;
+				var next_month = parseInt(now_m) + 3;
+				var year = now_y;
+				if(next_month > 12){
+					year = year+1;
+					next_month = "0" + (next_month-12);
+				}
+				if (month < 10) {
+					month = "0" + month;
+				}
+				if (next_month < 10) {
+					next_month = "0" + next_month;
+				}
+				$('#start_time').val(now_y + "-" + month + "-" + "01");
+				$('#end_time').val(year + "-" + next_month + "-" + "01");
+                check_search_order()
+			}
+			
+			function time_for_one_year() {
+				$('#start_time').val(now_y + "-01-01");
+				$('#end_time').val((parseInt(now_y)+1) + "-01-01");
+                check_search_order()
+			}
+			/**订单查询时间 最近一个月，最近三个月，最近一年 e**/
+			function check_search_order(){
+				var start = $('#start_time').val();
+				var end = $('#end_time').val();
+				if(start == ''){
+					layer.alert('请选择正确的时间', {icon: 2});
+					return false;
+				}
+				if(end == ''){
+					layer.alert('请选择正确的时间', {icon: 2});
+					return false;
+				}
+				$('#search_order').submit();
+			}
+
+            /**
+             * 取消订单
+             * */
+            function cancel_order(orderId){
+                layer.confirm('确定取消订单？', {
+                            btn: ['是','否']
+                        }, function(){
+                            $.ajax({
+                                url:"{:U('Order/cancel_order')}",
+                                type:'POST',
+                                dataType:'JSON',
+                                data:{id:orderId},
+                                success:function(data){
+                                    if(data.status == 1){
+                                        layer.alert(data.msg, {icon: 1});
+                                        location.href ='/index.php?m=home&c=Order&a=order_list&type={$Request.param.type}&p={$Request.param.p}';
+                                    }else{
+                                        layer.alert(data.msg, {icon: 2});
+                                    }
+                                },
+                                error : function() {
+                                    layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+                                }
+                            })
+                        }, function(tmp){
+                            layer.close(tmp);
+                        }
+                );
+            }
+            
+            /**
+             * 确认收货
+             * @param orderId
+             */
+			function order_confirm(orderId)
+			{
+				layer.confirm('你确定收到货了吗?', {
+							btn: ['是','否']
+						}, function(){
+                            $.ajax({
+                                url:"{:U('Virtual/virtual_confirm')}",
+                                type:'POST',
+                                dataType:'JSON',
+                                data:{order_id:orderId},
+                                success:function(data){
+                                    if(data.status == 1){
+                                        layer.alert(data.msg, {icon: 1});
+                                        location.href ='/index.php?m=home&c=Order&a=order_detail&id='+orderId;
+                                    }else{
+                                        layer.alert(data.msg, {icon: 2});
+                                        location.href ='/index.php?m=home&c=Order&a=order_list&type={$Request.param.type}&p={$Request.param.p}';
+                                    }
+                                },
+                                error : function() {
+                                    layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+                                }
+                            })
+						}, function(tmp){
+							layer.close(tmp);
+						}
+				);
+			}
+
+            /**
+             * 删除订单
+             * @param orderId
+             */
+            function order_deleted(orderId)
+            {
+                layer.confirm('删除后将无法找回此订单！', {
+                            btn: ['是','否']
+                        }, function(){
+                            $.ajax({
+                                url:"{:U('Order/del_order')}",
+                                type:'POST',
+                                dataType:'JSON',
+                                data:{order_id:orderId},
+                                success:function(data){
+                                    if(data.status == 1){
+                                        layer.msg(data.msg);
+                                        $('#ordertable_'+orderId).hide();
+                                    }else{
+                                        layer.alert(data.msg, {icon: 2});
+                                    }
+                                },
+                                error : function() {
+                                    layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+                                }
+                            })
+                        }, function(tmp){
+                            layer.close(tmp);
+                        }
+                );
+            }
+            
+			function refund_order(obj){
+				layer.open({
+					type: 2,
+					title: '<b>订单取消申请</b>',
+					skin: 'layui-layer-rim',
+					shadeClose: true,
+					shade: 0.5,
+					area: ['600px', '500px'],
+					content: $(obj).attr('data-url'),
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,82 @@
+<include file="public/header" title="邮箱" body=""/>
+<include file="public/header_nav" title="邮箱"  href="{:U('Mobile/User/userinfo')}"/>
+<style>
+    .fetchcode{
+        background-color: #ec5151;
+        border-radius: 0.128rem;
+        color: white;
+        padding: 0.55467rem 0.21333rem;
+        vertical-align: middle;
+        font-size: 0.59733rem;
+    }
+    #fetchcode{
+        background:#898995;
+        border-radius: 0.128rem;
+        color: white;
+        padding: 0.55467rem 0.21333rem;
+        vertical-align: middle;
+        font-size: 0.59733rem;
+    }
+</style>
+		<div class="loginsingup-input">
+			<form action="{:U('Mobile/User/userinfo')}" method="post" onsubmit="return submitverify(this)">
+				<div class="reset-pwd-title">绑定/修改邮箱</div>
+				<div class="lsu bk">
+					<span class="ico ico-email"></span>
+					<input type="text" name="email" id="email" value="{$user.ameil}" placeholder="请输入您的邮箱" onBlur="useremail(this.value);"/>
+				</div>
+                <!--<div class="lsu boo zc_se">-->
+                  <!--  <input type="text" id="email_code" name="email_code" value="" placeholder="邮箱验证码">
+                    <a href="javascript:void(0);" rel="email"  id="fcode" onclick="sendcode(this)">获取邮箱验证码</a>
+                </div>-->
+				<div class="lsu-submit">
+                    <input type="submit" name="" id="" value="确认修改" />
+				</div>
+			</form>
+		</div>
+<script type="text/javascript">
+    //验证邮箱
+    function useremail(email){
+        if(email == ''){
+            layer.open({content:'请输入您的邮箱！',time:3});
+            return false;
+        }else if(checkEmail(email)){
+            $.ajax({
+                type : "GET",
+                url:"/index.php?m=Home&c=Api&a=issetMobileOrEmail",//+tab,
+//			url:"{:U('Mobile/User/comment',array('status'=>$_GET['status']),'')}/is_ajax/1/p/"+page,//+tab,
+                data :{mobile:email},// 你的formid 搜索表单 序列化提交
+                success: function(data)
+                {
+                    if(data == '0')
+                    {
+                        return true;
+                    }else{
+                        layer.open({content:'邮箱已存在！',time:3});
+                        return false;
+                    }
+                }
+            });
+        }else{
+            layer.open({content:'邮箱地址不正确！',time:3});
+            return false;
+        }
+    }
+
+    //提交前验证表单
+    function submitverify(obj){
+        var newemail2 = $.trim($('#email').val());
+        if(newemail2 == ''){
+            layer.open({content:'请输入您的邮箱！',time:3});
+            return false;
+        }
+//                var emailcode = $('#mobile_code').val();
+//                if(emailcode == ''){
+//                    layer.open({content:'验证码不能空！',time:3});
+//                    return false;
+//                }
+        $(obj).onsubmit();
+    }
+</script>
+</body>
+</html>

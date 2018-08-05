@@ -1,0 +1,189 @@
+//$fla-spacing: 20px;//设置间距
+//$fla-sprite-dimensions: true;//自动计算宽高
+//$fla-layout: vertical;//vertical/horizontal/diagonal/smart        // 默认布局方式为vertical
+//@import "compass/utilities/sprites";    // 加载compass sprites模块
+//@import "fla/*.png";                    // 导入fla目录下所有png图片
+//@include all-fla-sprites;                // 输出所有的雪碧图css
+//@include transition-property(all);
+//@include transition-duration(0.5s);
+
+//sprite
+.icon-sprite, .icon-Commission, .icon-arrow_r, .icon-big_arrow_r, .icon-fire, .icon-leaf, .icon-setting, .icon-share {
+  background-image: url('../images/icon-s09a0426188.png');
+  background-repeat: no-repeat;
+  background-size: 44px/$ppr;
+}
+
+.icon-Commission {
+  background-position: 0 0;
+  height: 26px/$ppr;
+  width: 30px/$ppr;
+}
+
+.icon-arrow_r {
+  background-position: 0 -36px/$ppr;
+  height: 25px/$ppr;
+  width: 14px/$ppr;
+}
+
+.icon-big_arrow_r {
+  background-position: 0 -71px/$ppr;
+  height: 34px/$ppr;
+  width: 34px/$ppr;
+}
+
+.icon-fire {
+  background-position: 0 -115px/$ppr;
+  height: 28px/$ppr;
+  width: 23px/$ppr;
+}
+
+.icon-leaf {
+  background-position: 0 -153px/$ppr;
+  height: 29px/$ppr;
+  width: 27px/$ppr;
+}
+
+.icon-setting {
+  background-position: 0 -192px/$ppr;
+  height: 44px/$ppr;
+  width: 44px/$ppr;
+}
+
+.icon-share {
+  background-position: 0 -246px/$ppr;
+  height: 32px/$ppr;
+  width: 35px/$ppr;
+}
+
+.cloud-sprite, .cloud-1, .cloud-2, .cloud-3, .cloud-mo, .cloud-rm {
+  background-image: url('../images/cloud-sd714e2d10b.png');
+  background-repeat: no-repeat;
+  background-size: 150px/$ppr;
+}
+
+.cloud-1 {
+  background-position: 0 0;
+  height: 43px/$ppr;
+  width: 65px/$ppr;
+}
+
+.cloud-2 {
+  background-position: 0 -53px/$ppr;
+  height: 32px/$ppr;
+  width: 48px/$ppr;
+}
+
+.cloud-3 {
+  background-position: 0 -95px/$ppr;
+  height: 70px/$ppr;
+  width: 113px/$ppr;
+}
+
+.cloud-mo {
+  background-position: 0 -175px/$ppr;
+  height: 79px/$ppr;
+  width: 46px/$ppr;
+}
+
+.cloud-rm {
+  background-position: 0 -264px/$ppr;
+  height: 125px/$ppr;
+  width: 150px/$ppr;
+}
+
+.fx-sprite, .fx-f1, .fx-f2, .fx-f3, .fx-f4, .fx-f5, .fx-f6, .fx-f7, .fx-f8 {
+  background-image: url('../images/fx-s9575979fdc.png');
+  background-repeat: no-repeat;
+  background-size: 65px/$ppr;
+}
+
+.fx-f1 {
+  background-position: 0 0;
+  height: 52px/$ppr;
+  width: 51px/$ppr;
+}
+
+.fx-f2 {
+  background-position: 0 -62px/$ppr;
+  height: 52px/$ppr;
+  width: 65px/$ppr;
+}
+
+.fx-f3 {
+  background-position: 0 -124px/$ppr;
+  height: 51px/$ppr;
+  width: 52px/$ppr;
+}
+
+.fx-f4 {
+  background-position: 0 -185px/$ppr;
+  height: 42px/$ppr;
+  width: 46px/$ppr;
+}
+
+.fx-f5 {
+  background-position: 0 -237px/$ppr;
+  height: 52px/$ppr;
+  width: 52px/$ppr;
+}
+
+.fx-f6 {
+  background-position: 0 -299px/$ppr;
+  height: 52px/$ppr;
+  width: 52px/$ppr;
+}
+
+.fx-f7 {
+  background-position: 0 -361px/$ppr;
+  height: 52px/$ppr;
+  width: 46px/$ppr;
+}
+
+.fx-f8 {
+  background-position: 0 -423px/$ppr;
+  height: 46px/$ppr;
+  width: 50px/$ppr;
+}
+
+.fla-sprite, .fla-f1, .fla-f2, .fla-f3, .fla-top1, .fla-top2, .fla-top3 {
+  background-image: url('../images/fla-scda8d3742d.png');
+  background-repeat: no-repeat;
+  background-size: 41px/$ppr;
+}
+
+.fla-f1 {
+  background-position: 0 0;
+  height: 48px/$ppr;
+  width: 40px/$ppr;
+}
+
+.fla-f2 {
+  background-position: 0 -68px/$ppr;
+  height: 20px/$ppr;
+  width: 41px/$ppr;
+}
+
+.fla-f3 {
+  background-position: 0 -108px/$ppr;
+  height: 28px/$ppr;
+  width: 15px/$ppr;
+}
+
+.fla-top1 {
+  background-position: 0 -156px/$ppr;
+  height: 60px/$ppr;
+  width: 36px/$ppr;
+}
+
+.fla-top2 {
+  background-position: 0 -236px/$ppr;
+  height: 62px/$ppr;
+  width: 36px/$ppr;
+}
+
+.fla-top3 {
+  background-position: 0 -318px/$ppr;
+  height: 64px/$ppr;
+  width: 37px/$ppr;
+}

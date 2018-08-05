@@ -1,0 +1,136 @@
+<include file="public/min-header"/>
+
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <!--<div class="container-fluid">-->
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading row">
+                <div class="pull-right">
+                    <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">信息(单图文消息请前往图文消息设置)</h3>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post">
+                    <input type="hidden" id="img_id" name="img_id">
+                    <input type="hidden" value="{$keyword.id}" name="kid">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">关键词：</td>
+                                <td colspan="3">
+                                    <input type="text" name="keyword" value="{$keyword.keyword}">
+                                </td>
+                            </div>
+                        </tr>
+
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2">图文：</td>
+                                <td colspan="3">
+                                    <button class="btn btn-primary btn-sm" type="button" onclick="selectImg()">添加</button>
+                                </td>
+                            </div>
+                        </tr>
+
+
+                        <tr>
+                            <div class="row">
+                                <td class="text-right col-sm-2"></td>
+                                <td colspan="3">
+                                    <div class="form-group">
+                                        <button class="btn btn-default" type="submit" id="cancel">保存</button>
+                                    </div>
+                                </td>
+                            </div>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                </form>
+                <div class="col-lg-3">
+                    <!-- small box -->
+                    <div class="small-box bg-aqua" style="border: solid 1px saddlebrown;word-break: break-all">
+
+                        <div class="inner" style="text-align: center">
+                            <img src="/0.jpg" id="first-img" width="300" height="150" alt="">
+                        </div>
+                        <div class="icon">
+                            <i class="ion ion-bag"></i>
+                        </div>
+                        <a class="small-box-footer" id="first-text" href="#">这里是标题呢</a>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>    <!-- /.content -->
+        </section>
+</div>
+<script>
+
+    function selectImg(){
+        layer.open({
+            type: 2,
+            title: '添加图文',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['50%', '50%'],
+            content: '/index.php/Admin/Wechat/select', //iframe的url
+        });
+    }
+
+    function selected(img,title,id){
+        /*
+         <div class="inner" style="height: 70px;border:solid 1px saddlebrown">
+         <div class="pull-right">
+         <img src="/0.jpg" alt="" width="50" height="50">
+         </div>
+         <p >New Orders</p>
+         </div>
+        */
+        var selected = $('input[name="img_id"]').val();
+        var s = selected.split(',');
+        s.pop();
+        if($.inArray(id,s) != -1){
+            layer.alert('已经存在', {icon: 2});  //alert(alert("已经存在");
+            return;
+        }
+        //判断是否第一条
+        var img_id = $('input[name="img_id"]').val();
+        if(!img_id){
+            $('#first-img').attr('src',img);
+            $('#first-text').text(title);
+            $('input[name="img_id"]').val(id+',');
+        }else{
+            var tpl = '';
+            tpl = '<div class="inner" style="height: 70px;border:solid 1px saddlebrown">';
+            tpl +='<div class="pull-right">';
+            tpl = tpl + '<img src="'+img+'" alt="" width="50" height="50">';
+            tpl +='</div>';
+            tpl = tpl + '<p>'+title+'</p>';
+            tpl +='</div>';
+            $('.bg-aqua').append(tpl);
+            $('input[name="img_id"]').val(img_id+id+',');
+
+        }
+        layer.closeAll();
+    }
+</script>
+
+</body>
+</html>

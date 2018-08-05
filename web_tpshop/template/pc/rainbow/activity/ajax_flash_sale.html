@@ -1,0 +1,93 @@
+<div class="banner msbanpr">
+    <div class="grid_c1">
+        <img src="__STATIC__/images/582c0dcdN62e57ffc.jpg"/>
+    </div>
+</div>
+<div class="timecount">
+    <div class="grid_c1">
+        <div class="timecount_container">
+            <div class="timecount_container_skew">
+                <span id="J-seckilling" class="seckilling">抢购中</span>
+                <span id="J-timeContainer" class="time_container">
+                    <b id="J-text">先下单先得哦！</b>
+                    <b id="J-endDef">距结束</b>
+                    <b id="flash_sale_time"><i class='hour'>01</i>时 <i class='minutes'>23</i>分 <i class='seconds'>48</i>秒</b>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="spsk">
+    <div class="grid_c1">
+        <ul class="seckill_mod_goodslist clearfix">
+            <volist name="flash_sale_goods" id="vo">
+                <li class="seckill_mod_goods">
+                    <a  target="_blank" class="seckill_mod_goods_link" <if condition="$vo['percent'] lt 100">href="{:U('Home/Goods/goodsInfo',array('id'=>$vo['goods_id'],'item_id'=>$vo[spec_goods_price][item_id]))}"</if>>
+                        <img class="seckill_mod_goods_link_img" src="{$vo.goods_id|goods_thum_images=250,250}">
+                        <h4 class="seckill_mod_goods_title">{$vo['goods_name']}</h4>
+                        <!--<span class="seckill_mod_goods_tag">-->
+                        <!--<i class="seckill_mod_goods_tag_i" style="color: #e23435">推荐</i>-->
+                        <!--</span>-->
+                        <span class="seckill_mod_goods_info">
+                            <span class="seckill_mod_goods_info_txt">
+                                <span class="seckill_mod_goods_price">
+                                    <i class="seckill_mod_goods_price_now">
+                                        <em>¥</em>
+                                        {$vo['price']}
+                                        <i class="seckill_mod_goods_price_now_small"></i>
+                                    </i>
+                                    <span class="seckill_mod_goods_price_pre">¥<del><empty name="vo[spec_goods_price]">{$vo['goods']['shop_price']}<else/>{$vo['spec_goods_price']['price']}</empty></del></span>
+                                </span>
+                                <span class="seckill_mod_goods_progress">
+                                    <i class="seckill_mod_goods_progress_txt">已售{$vo['percent']>100 ? 100 : $vo['percent']}%</i>
+                                    <i class="seckill_mod_goods_progress_inner">
+                                        <b class="seckill_mod_goods_progress_completed" style="width:{$vo['percent']}%"></b>
+                                    </i>
+                                </span>
+                            </span>
+                            <span class="seckill_mod_goods_info_btn">
+                                <i></i>
+                            </span>
+
+                             <if condition="$vo['percent'] lt 100">
+                                 <i class="seckill_mod_goods_info_i"><if condition="($vo['end_time'] - time()) gt 7200">未开场<else />去秒杀</if></i>
+                            <else/>
+                                 <i class="seckill_mod_goods_info_i">已售馨</i>
+                            </if>
+                        </span>
+                    </a>
+                </li>
+            </volist>
+        </ul>
+    </div>
+</div>
+<script>
+    var now = "{$now}";
+    function GetRTime2(){
+        var start_time_judge = $('.timeline_list').find('.timeline_item_selected').attr('data-start-time');
+        if(start_time_judge > now){
+            $('#J-seckilling').text('即将开始');
+            $('#J-endDef').text('距开始');
+            var start_time = GetRTimeFlash($('.timeline_list').find('.timeline_item_selected').attr('start-data'));
+            $('#flash_sale_time').html(start_time);
+        }else{
+            $('#J-seckilling').text('抢购中');
+            $('#J-endDef').text('距结束');
+            var end_time = GetRTimeFlash($('.timeline_list').find('.timeline_item_selected').attr('end-data'));
+            $('#flash_sale_time').html(end_time);
+        }
+    }
+    setInterval(GetRTime2,1000);
+
+    function GetRTimeFlash(end_time){
+        var EndTime= new Date(end_time);
+        var NowTime = new Date();
+        var t =EndTime.getTime() - NowTime.getTime();
+        var d=Math.floor(t/1000/60/60/24);
+        var h=Math.floor(t/1000/60/60%24);
+        var m=Math.floor(t/1000/60%60);
+        var s=Math.floor(t/1000%60);
+        if(s >= 0)
+            return "<i class='hour'>"+h+"</i>时 <i class='minutes'>"+m+"</i>分 <i class='seconds'>"+s+"</i>秒";
+    }
+</script>

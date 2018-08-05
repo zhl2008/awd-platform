@@ -1,0 +1,72 @@
+<include file="public/header" title="账户明细" body=""/>
+<include file="public/header_nav" title="账户明细"  href="{:U('User/account_list')}"/>
+<div class="allaccounted">
+    <!--内容区域-s-->
+    <style>
+        .pay-detail-title{
+            height: 2.56rem;
+            line-height: 2.56rem;
+            border-bottom: 1px solid #ccc;
+            padding: 0 .512rem;
+        }
+        .pay-detail-title .left-des{
+            float: left;
+            font-size: .64rem;
+            color: #666;
+        }
+        .pay-detail-title .right-price{
+            float: right;
+            font-size: .85333rem;
+            color: #333;
+            font-weight: 700;
+        }
+        .pay-detail-list{
+            border-bottom: 1px solid #ccc;
+            padding:.512rem;
+        }
+        .pay-detail-item{
+            height: 1.024rem;
+            line-height: 1.024rem;
+            font-size: .59733rem;
+        }
+        .pay-detail-item .left-des{
+            float: left;
+            color: #666;
+        }
+        .pay-detail-item .right-cont{
+            float: right;
+            color: #333;
+        }
+    </style>
+    <div class="pay-detail-title">
+        <div class="left-des">出账金额</div>
+        <div class="right-price">{$detail['user_money']}</div>
+    </div>
+    <div class="pay-detail-list">
+        <div class="pay-detail-item">
+            <div class="left-des">类　　型</div>
+            <div class="right-cont">
+                <if condition="$detail['user_money'] lt 0">
+                    支出
+                <else/>
+                    收入
+                </if>
+            </div>
+        </div>
+        <div class="pay-detail-item">
+            <div class="left-des">时　　间</div>
+            <div class="right-cont">{:date('Y-m-d H:i:s',$detail['change_time'])}</div>
+        </div>
+        <div class="pay-detail-item">
+            <div class="left-des">交易单号</div>
+            <div class="right-cont">{$detail['order_sn']}</div>
+        </div>
+        <div class="pay-detail-item">
+            <div class="left-des">备　　注</div>
+            <div class="right-cont">{$detail['desc']}</div>
+        </div>
+    </div>
+    <!--内容区域-d-->
+</div>
+</body>
+</html>

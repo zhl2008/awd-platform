@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html id="ng-app">
+<head lang="zh">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+    <title>购物车-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__STATIC__/css/jh.css">
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <script src="__PUBLIC__/js/pc_common.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script>
+</head>
+<body class="ng-scope">
+<!-- 头部顶栏 start [[-->
+<include file="public/sign-header"/>
+<!-- 头部顶栏 end ]]-->
+<div class="fn-cart-clearing">
+    <div class="wrapper1190" my-cart="">
+        <!-- cart-title -->
+        <div class="order-header">
+            <div class="layout after">
+                <div class="fl">
+                    <div class="logo pa-to-36 wi345"> <a href="/"><img src="__PUBLIC__/images/newLogo.png" alt=""></a> </div>
+                </div>
+                <div class="fr">
+                    <div class="pa-to-36 progress-area">
+                        <div class="progress-area-wd" style="display:none"></div>
+                        <div class="progress-area-tx"></div>
+                        <div class="progress-area-cg" style="display:none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end cart-title -->
+        <div class="ui_tab">
+            <!-- ngIf: !status.overseasEmpty -->
+            <div class="ui_tab_content">
+                <div class="clearing-c cart-content">
+                    <div class="layout after-ta">
+                     <form name="cart_form" id="cart_form" method="post" action="{:U('Home/Virtual/buy_virtual')}">
+                       <div class="con-y-info ma-bo-35 con-h pa-to-36">
+                        <h3>购物信息<em>(请仔细填写手机号，以确保电子兑换码准确发到您的手机。)</em></h3>
+                        <div class="order-invoice-list">
+                            <ul>
+                                <li>
+                                    <div class="invoice-main fl"><label for="dw">手机号码:</label></div>
+                                    <div class="invoice-sub fl">
+                                        <label class="inv-label">
+                                            <input class="officdw" type="text" name="mobile" value="{$user.mobile}" placeholder="{$user.mobile}">
+                                        </label>
+                                    </div>
+                                </li>
+                                <li>
+                                    <div class="invoice-main fl"><label for="dw">买家留言:</label></div>
+                                    <div class="invoice-sub fl">
+                                        <label class="inv-label">
+                                            <input class="usernote" type="text" name="user_note" placeholder="选填：对本次交易的说明（建议填写已经和商家达成一致的说明）">
+                                        </label>
+                                    </div>
+		                      </li>
+                            </ul>
+                        </div>
+                        <p class="tips"><em>注意：</em>虚拟服务类商品订单凭借电子兑换码验证消费</p>
+                        <p class="tips"><em>说明：</em>您本次购买的商品不需要收货地址，请正确输入接收手机号码，确保及时获得“电子兑换码”。可使用您已经绑定的手机或重新输入其它手机号码。</p>
+                    	</div>
+                        <div class="sc-list">
+                                <div id="ajax_return"> 
+                                	<div class="sc-pro-list">
+									  <table width="100%" border="0" cellspacing="0" cellpadding="1">
+									      <tr class="ba-co-danhui">
+									        <th class="pa-le-9" align="center" valign="middle">&nbsp;&nbsp;</th>
+									        <th align="center" valign="middle" colspan="2">商品</th>
+									        <th align="center" valign="middle">市场价（元）</th>                        
+									        <th align="center" valign="middle">单价（元）</th>
+									        <th align="center" valign="middle">数量</th>
+									        <th align="center" valign="middle">小计（元）</th>
+									        <th align="center" valign="middle">操作</th>
+									      </tr>
+									      <tr>
+									        <td class="pa-le-9" style="border-right:0" align="center" valign="middle"></td>
+									        <td style="border-left:0px;;border-right:0px" class="pa-to-20 pa-bo-20 bo-ri-0" width="80px" align="center" valign="top" valign="middle">
+									            <a class="gwc-wp-list di-bl wi63 hi63" href="{:U('Goods/goodsInfo',array('id'=>$goods[goods_id]))}">
+									                <img class="wi63 hi63" src="{$goods.goods_id|goods_thum_images=78,78}">
+									            </a>
+									        </td>
+									        <td style="border-left:0px; border-right:0px"  class="pa-to-20 wi516"align="left"  valign="top" valign="middle">
+									            <p class="gwc-ys-pp">
+									            	<a href="{:U('Goods/goodsInfo',array('id'=>$goods[goods_id]))}" style="vertical-align:middle">{$goods.goods_name}</a>                
+									                <!--团购--><if condition="$goods[prom_type] eq 2"><img  width="80" height="60" src="/public/images/groupby2.jpg" style="vertical-align:middle"></if>
+									                <!--抢购--><if condition="$goods[prom_type] eq 1"><img  width="40" height="40" src="/public/images/qianggou2.jpg" style="vertical-align:middle"></if>                
+									            </p>
+									            <p class="ggwc-ys-hs">{$goods.spec_key_name}</p>
+									        </td>
+									        <td style="border-left:0px" align="center" valign="middle"><span>￥{$goods.market_price}</span></td>                        
+									        <td style="border-left:0px" align="center" valign="middle"><span id="shop_price" rel="{$goods.shop_price}">￥{$goods.shop_price}</span></td>
+									        <td align="center" valign="middle">
+									            <div class="sc-stock-area">
+									                <div class="stock-area">                            
+									                    <input class="wi43 fl" type="text" value="{$goods.goods_num}" name="goods_num" id="goods_num" readonly="readonly"/>
+									                    <input type="hidden" name="goods_id" value="{$goods.goods_id}">
+									                    <input type="hidden" name="goods_spec_key" value="{$goods.goods_spec_key}"> 
+									                    <input type="hidden" name="spec_key_name"  value="{$goods.spec_key_name}">               
+									                </div>
+									            </div>
+									        </td>
+									        <td align="center" valign="middle">￥{$goods.goods_fee}</td>
+									        <td align="center" valign="middle"><a href="javascript:void(0);" onclick="backspacing();">返回上一步</a></td>
+									      </tr>
+									    </table>
+									</div>
+                                </div>
+                            <div class="sc-acti-list ma-to-20 ma-bo-135">
+                            	<div class="virtual_order">订单总金额：<span style="margin-right:20px">
+                            		<b style="font-family: tahoma;color: #f22e00;font-weight: 700;">￥{$goods.goods_fee}元</b></span>
+                            	</div>
+                                <a class="gwc-qjs" href="javascript:void(0)" onclick="orderSubmit()">提交订单</a>
+                            </div>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearing-recommend wrapper1190">
+            <!-- 为您推荐 -->
+            <!-- ngIf: specialOfferTips -->
+            <div class="cr-block-01 cr-block-preferbuy ng-scope ng-isolate-scope" my-tab-view="" ng-if="specialOfferTips" data-tips="specialOfferTips" data-type="1" data-selected="&#39;specialOffer&#39;">
+                <div class="cr-title" data-ys="0">
+                    <ul class="fn-tab-nav fn-fl">
+                        <li class="ng-scope"><a class="ng-binding titleon">为您推荐</a></li>
+                    </ul>
+                </div>
+                <div class="cr-list-out ng-isolate-scope" data-is-show="true" data-type="1" data-index="tabData.listIndex" data-show-close-btn="false" data-extra-class="">
+                    <div class="cr-list fixed">
+                        <div class="slide-wrapper ng-scope" ng-switch-default="">
+                            <ul ng-repeat="list in itemList" ng-show="index == $index" class="ng-scope">
+                                <tpshop sql="select * from `__PREFIX__goods` where  is_recommend = 1 limit 10" item="v" key="k">
+                                    <li ng-repeat="item in list" class="ng-scope">
+                                        <a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img ng-src="{$v.goods_id|goods_thum_images=80,80}" alt="{$v[goods_name]}" src="{$v.goods_id|goods_thum_images=80,80}"></a>
+                                        <p><a class="ng-binding" href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">{$v[goods_name]}</a></p>
+                                        <div class="div-01">
+                                            <em>¥</em>
+                                            <span  class="ng-binding">{$v[shop_price]}</span>
+                                        </div>
+                                        <button class="btn add2cart" type="button" onclick="javascript:AjaxAddCart({$v.goods_id},1);">加入购物车</button>
+                                    </li>
+                                </tpshop>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--footer-s-->
+    <include file="public/footer" />
+    <!--footer-e-->
+    <script>
+        function orderSubmit(){
+        	var mobile = $('input[name="mobile"]').val();
+        	if(!checkMobile(mobile)){
+        		layer.msg('手机号码格式有误', {icon: 2,time: 2000});
+        		return false;
+        	}
+            $.ajax({
+                url:"{:U('Virtual/add_order')}",
+                type:'POST',
+                dataType:'JSON',
+                data:$('#cart_form').serialize(),
+                success:function(data){
+                    if(data.status == 1){
+                        location.href='/index.php?m=Home&c=Virtual&a=buy_step2&order_id='+data.result;
+                    }else{
+                        layer.msg(data.msg, {icon: 2,time: 2000});
+                    }
+                },
+                error : function() {
+                    layer.msg('网络失败，请刷新页面后重试', {icon: 2,time: 2000});
+                }
+            })
+        }
+        function backspacing(){
+            $('#cart_form').submit()
+        }
+    </script>
+</body>
+</html>

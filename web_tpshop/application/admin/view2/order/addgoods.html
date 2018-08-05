@@ -1,0 +1,305 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/> 
+    <section class="content">
+    <!-- Main content -->
+    <!--<div class="container-fluid">-->
+    <div class="row">
+
+        <!--新订单列表 商品信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">商品信息</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td class="text-center">商品</td>
+                        <td class="text-center">属性</td>
+                        <td class="text-center">数量</td>
+                        <td class="text-center">单品价格</td>
+                        <td class="text-center">会员折扣价</td>
+                        <td class="text-center">单品小计</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="orderGoods" id="good">
+                        <tr>
+                            <td class="text-center"><a href="good.php">{$good.goods_name}</a>
+                            </td>
+                            <td class="text-center">{$good.spec_key_name}</td>
+                            <td class="text-center">{$good.goods_num}</td>
+                            <td class="text-center">{$good.goods_price}</td>
+                            <td class="text-center">{$good.member_goods_price}</td>
+                            <td class="text-center">{$good.goods_total}</td>
+                        </tr>
+                    </volist>
+
+                    <tr>
+                        <td colspan="4" class="text-right">小计:</td>
+                        <td class="text-center">{$order.goods_price}</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+
+        <!--新订单列表 操作信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">操作信息</h3></div>
+            <div class="panel-body">
+                <form id="addgoods" method="post" action="" onsubmit="return checkSpec(this);">
+                    <input type="hidden" name="order_id" value="{$order.order_id}">
+                    <input type="hidden" name="goods_id" value="">
+                    <table class="table table-bordered">
+                    <tbody id="t_body">
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">输入商品：</td>
+                            <td colspan="3">
+                                    <input type="text" name="search_name" id="search_name" placeholder="请输入商品名称">
+                                    <button class="btn btn-primary " id="button-filter search-order" onclick="searchGoods('search_name')" type="button"><i class="fa fa-search"></i> 搜索</button>
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">选择商品：</td>
+                            <td colspan="3">
+                                <select onblur="addGoods(this)" id="goods" name="goods">
+                                    <option></option>
+                                </select>
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">商品名称：</td>
+                            <td class="text-left" colspan="3">
+                                <span id="goods_name"></span>
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">分类：</td>
+                            <td class="text-left" colspan="3">
+                                <span id="goods_cate"></span>
+                            </td>
+                        </div>
+                    </tr>
+                    <!--商品规格-->
+                    <!--商品规格-->
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">价格：</td>
+                            <td class="text-left" colspan="3">
+                                <span id="goods_price"></span>
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">数量：</td>
+                            <td class="text-left" colspan="3">
+                                <span id="goods_num"><input onblur="calcGoods()" name="goods_num" value=""></span>
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">商品总价：</td>
+                            <td class="text-left" colspan="3">
+                                <input type="hidden" name="total_price">
+                                <span id="total_price"></span>
+                            </td>
+                        </div>
+                    </tr>
+
+                    </tbody>
+                </table>
+                </form>
+
+            </div>
+        </div>
+    </div>    <!-- /.content -->
+        </section>
+</div>
+<script>
+    function searchGoods(id){
+
+        if(is_empty('#'+id)){
+             layer.alert('商品名称不能为空', {icon: 2});  // alert('商品名称不能为空');
+            return false;
+        }
+        var name = $('#'+id).val();
+        $.ajax({
+            type : "GET",
+            url  : '/index.php?m=admin&c=order&a=getgoods&name='+name,
+            error: function(request) {
+                 layer.alert('服务器繁忙, 请联系管理员!', {icon: 2});  //alert("服务器繁忙, 请联系管理员!");
+                return;
+            },
+            success: function(v) {
+                var obj = JSON.parse(v);
+                var tpl = '<option value="0">请选择商品</option>';
+                if(obj.length > 0){
+                   $(obj).each(function(){
+                       tpl += '<option data-obj=\''+JSON.stringify(this)+'\' value="'+this.goods_id+'">'+this.goods_name+'</option>';
+                   })
+                    $('#goods').empty().html(tpl);
+                }else{
+                    $('#goods').html('');
+                }
+            }
+        });
+    }
+    //  添加商品
+    function addGoods(obj){
+        var goods_id = parseInt($(obj).val());
+        if(goods_id > 0){
+            var goods_info_str = $(obj).find('option:selected').attr('data-obj');
+//            alert(goods_info_str);return;
+            var goods_info = JSON.parse(goods_info_str);
+
+            $('#goods_name').text(goods_info.goods_name);
+            var tpl =  '';
+            var check = '';
+            if(parseInt(goods_info.shop_price) > 0){
+                tpl = '<input  type="radio" name="price" value="1">市场价：'+goods_info.market_price+'<br>';
+                tpl += '<input type="radio" name="price" value="2">商城价：'+goods_info.shop_price+'<br>';
+                tpl += '<input type="radio" onblur="calcGoods()" name="price" value="3">自定义价格<input onblur="calcGoods()" name="goods_price"><br>';
+
+            }else{
+
+                tpl += '<input type="hidden"   name="price" value="3"><input onblur="calcGoods()" name="goods_price" placeholder="请先勾选商品规格" type="number"><br>';
+            }
+            $('input[name="goods_id"]').val(goods_id);
+            $('#goods_name').text(goods_info.goods_name);
+            $('#goods_cate').text(goods_info.name);
+            $('input[name="goods_num"]').val(1);
+            $('#goods_price').html(tpl);
+            getGoodsSpec(goods_info.goods_id); // 获取商品规格
+        }else{
+            $('input[name="goods_id"]').val(0);
+            
+			layer.alert('未选择商品', {icon: 2});//alert('未选择商品');
+        }
+
+    }
+
+    // 获取规格项
+    function getGoodsSpec(goods_id){
+        $('.spec_tr').remove();
+        $.ajax({
+            type : "GET",
+            url  : '/index.php?m=Admin&c=Api&a=getGoodsSpec&goods_id='+goods_id,
+            error: function(request) {
+               
+				layer.alert('服务器繁忙, 请联系管理员!', {icon: 2});// alert("服务器繁忙, 请联系管理员!");
+                return;
+            },
+            success: function(v) {
+                $('#t_body').append(v);
+            }
+        });
+    }
+
+    //提交检测
+    function checkSpec(t){
+        var r_obj = $('.spec_radio');
+        var num = r_obj.length;
+        var c_num = $('.spec_radio').find('input[type="radio"]:checked');
+        if(c_num.length != num){
+            
+			layer.alert('有规格项未填写!', {icon: 2});// alert('有规格项未填写');
+            return false;
+        }
+        var goods_num = parseInt($('input[name="goods_num"]').val());
+        if(!goods_num > 0){            
+			layer.alert('商品数量不能为0!', {icon: 2}); // alert('商品数量不能为0'); 
+            return false;
+        }
+        var goods_price = parseInt($('input[name="total_price"]').val());
+        if(!goods_price > 0){
+            layer.alert('商品总价不能低于0!', {icon: 2});  //  alert('商品总价不能低于0');
+            return false;
+        }
+        var price_type = $('#goods_price').find('input[type="radio"]:checked').val();
+        if(!price_type > 0){
+            layer.alert('请选择价格类型!', {icon: 2});  //alert('请选择价格类型');
+            return false;
+        }
+        return true;
+
+    }
+    //  获取规格项价钱
+    function calcSpec(){
+        var goods_id = parseInt($('select[name="goods"]').val());
+        var r_obj = $('.spec_radio');
+        var num = r_obj.length;
+        var c_num = $('.spec_radio').find('input[type="radio"]:checked');
+        var url ='/index.php?m=Admin&c=Api&a=getSpecPrice&goods_id='+goods_id;
+        if(parseInt(num) > 0 && c_num.length == num){
+
+            $.ajax({
+                type : "POST",
+                url  : url,
+                data  : c_num.serialize(),
+                /*
+                error: function(request) {
+                    alert("服务器繁忙, 请联系管理员!");
+                    return;
+                },*/
+                success: function(v) {
+                    var data = JSON.parse(v);
+                    if(data.status == 1){
+                        $('input[name="goods_price"]').val(data.data);
+                        calcGoods(); // 重新计算价格
+
+                    }else{
+                        layer.alert(data.msg, {icon: 2});  // alert(data.msg);
+                    }
+
+                }
+            });
+        }else{
+            calcGoods(); // 计算价格
+        }
+    }
+
+    //  选择价钱 (没有规格项的商品使用)
+    $('body').on('click' , 'input[name="price"]' , function() {
+        calcSpec();
+    })
+
+    function calcGoods(){
+        $.ajax({
+            type : "POST",
+            url  : '{:U("Admin/Api/calcGoods")}',
+            data  : $('#addgoods').serialize(),
+           /*
+            error: function(request) {
+                alert("服务器繁忙, 请联系管理员!");
+                return;
+            },*/
+            success: function(v) {
+                var data = JSON.parse(v);
+                if(data.status == 1){
+                    $('span[id="total_price"]').text(data.data);
+                    $('input[name="total_price"]').val(data.data);
+                }else{
+                }
+
+            }
+        });
+    }
+
+
+</script>
+
+</body>
+</html>

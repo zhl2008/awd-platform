@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>秒杀</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/flash_sale_list.css"/>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css"/>
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/global.js"></script>
+	</head>
+	<body>
+	<!--header-s-->
+	<include file="public/header" w='w1224'/>
+	<!--header-e-->
+		<div class="mod_container">
+			<div class="seckill_container_bg"></div>
+			<div class="skhd">         
+				<div class="skhd_wrap">             
+					<div class="grid_c1">                 
+						<h3 class="skhd_tit"></h3>              
+					</div>             
+				</div>     
+			</div>
+			<div class="timeline">
+				<div class="grid_c1">
+					<ul class="timeline_list">
+						<volist name="time_space" id="vo">
+						<li onclick="reload_flash_sale_list(this);" <if condition="(time() egt $vo['start_time']) AND (time() lt $vo['end_time'])">class="timeline_item timeline_item_selected"<else/> class="timeline_item "</if>start-data="{$vo['start_time']|date="Y/m/d H:i:s",###}" end-data="{$vo['end_time']|date="Y/m/d H:i:s",###}" data-start-time="{$vo['start_time']}" data-end-time="{$vo['end_time']}">
+							<a class="timeline_item_link" href="javascript:void(0)">                   
+								<div class="timeline_item_link_skew">
+									<i class="timeline_item_link_skew_time">{$vo['font']}</i>
+									<i class="timeline_item_link_skew_processtips">
+                                        <if condition="time() lt $vo['start_time']">即将开场
+                                            <elseif condition="(time() egt $vo['start_time']) AND (time() lt $vo['end_time'])"/>
+                                            秒杀中<else />已经结束
+                                        </if>
+                                    </i>
+								</div>                 
+							</a>               
+						</li>
+						</volist>
+					</ul>
+				</div>
+			</div>
+			<div class="xuenhei"></div>
+			<div id="flash_sale_list">
+			</div>
+			<script type="text/javascript">
+
+				$(function () {
+					getFlashSaleList();
+				});
+				var page = 1;//页数
+				var start_time = $('.timeline_list').find('.timeline_item_selected').attr('data-start-time');
+				var end_time = $('.timeline_list').find('.timeline_item_selected').attr('data-end-time');
+				function reload_flash_sale_list(obj)
+				{
+					page = 1;
+					$(obj).parent().children().removeClass('timeline_item_selected');
+					$(obj).addClass('timeline_item_selected');
+					start_time = $(obj).attr('data-start-time');
+					end_time = $(obj).attr('data-end-time');
+					setInterval(GetRTime2,1000);
+					$("#flash_sale_list").empty();
+					getFlashSaleList();
+				}
+
+				/**
+				 * 加载店铺
+				 */
+				function getFlashSaleList() {
+					$('.get_more').show();
+					$.ajax({
+						type: "get",
+						url: "/index.php?m=Home&c=Activity&a=ajax_flash_sale&p=" + page + "&start_time=" + start_time + "&end_time=" + end_time,
+						success: function (data) {
+							if (data) {
+								$("#flash_sale_list").append(data);
+								page++;
+							}
+						}
+					});
+				}
+			</script>
+		</div>
+	<div class="footer p">
+		<include file="public/footer" />
+		<include file="public/sidebar_cart" />
+	</div>
+		<script src="__STATIC__/js/lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				var h1 = $('.fn-cms-top').height() + $('.skhd').height();
+				var ss = $(document).scrollTop();//上一次滚轮的高度
+				$(window).scroll(function(){
+					var s = $(document).scrollTop();////本次滚轮的高度
+					if(s< h1){
+						$('.timeline').removeClass('yya');
+						$('.xuenhei').height('0');
+					}if(s > h1){
+						$('.timeline').addClass('yya');
+						$('.xuenhei').height('80px');
+					}
+				});
+			})
+		</script>
+	</body>
+</html>

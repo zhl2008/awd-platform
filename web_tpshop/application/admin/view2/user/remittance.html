@@ -1,0 +1,264 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>会员汇款记录</h3>
+                <h5>网站系统会员汇款索引与管理</h5>
+            </div>
+            <ul class="tab-base nc-row">
+            	<li><a <if condition="$status eq 1">class="current"</if> href="{:U('remittance',array('status'=>1))}"><span>待转账列表</span></a></li>
+            	<li><a <if condition="$status eq 2">class="current"</if> href="{:U('remittance',array('status'=>2))}"><span>已转账列表</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+			<li>支付宝，微信在线转账会接收到付款成功通知，自动完成转账，银行卡转账则需要手动确认完成</li>
+			<li>支付宝，微信支付接口支持在线向用户付款完成转账，银行卡提现请通过网银在线转账或者其他方式处理</li>
+			<li>手动完成转账是指通过银行打款或其他转款方式处理了该笔提现申请，手动这一步操作只是标示该申请提现流程已处理完</li>
+        </ul>
+    </div>
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>会员汇款转账列表</h3>
+                <h5>(共<span id="total"></span>条记录)</h5>
+            </div>
+            <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+            <form class="navbar-form form-inline" id="remittance-form" method="get" action="{:U('remittance')}" onsubmit="return check_form();">
+                <input type="hidden" name="create_time" id="create_time" value="{$create_time}">
+                <div class="sDiv">
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input type="text" size="30" id="start_time" value="{$start_time}" placeholder="起始时间" class="qsbox">
+                        <input type="button" class="btn" value="起始时间">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input type="text" size="30" id="end_time" value="{$end_time}" placeholder="截止时间" class="qsbox">
+                        <input type="button" class="btn" value="截止时间">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input size="30" id="user_id" placeholder="用户id" value="{$_GET[user_id]}" name="user_id" class="qsbox" type="text">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input size="30" placeholder="收款账户真实姓名" value="{$_GET[realname]}" name="realname" class="qsbox" type="text">
+                    </div>
+                    <div class="sDiv2">
+                        <input size="30" placeholder="收款账号" value="{$_GET[bank_card]}" name="bank_card" class="qsbox" type="text">
+                        <input type="hidden" name="export" id="export" value="0">
+                        <input type="hidden" name="status"  value="{$status}">
+                        <input class="btn" value="搜索" type="button" onclick="form_submit(0)">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="sign" axis="col0">
+                           <div style="text-align: center; width: 50px;" class="">
+                                <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);">
+                            </div>
+                        </th>
+                        <th align="center" axis="col3" class="">
+                            <div style="text-align: center; width: 50px;" class="">记录ID</div>
+                        </th>
+                        <th align="center"  axis="col5" class="">
+                            <div style="text-align: center; width: 100px;" class="">用户昵称</div>
+                        </th>
+                        <th align="center"  axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">银行机构名称</div>
+                        </th>
+                        <th align="center" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">账户号码</div>
+                        </th>
+                        <th align="center" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">账户开户名</div>
+                        </th>
+                        <th align="center" axis="col6" class="">
+                            <div style="text-align: center; width: 80px;" class="">申请金额</div>
+                        </th>
+                        <th align="center" axis="col6" class="">
+                            <div style="text-align: center; width: 50px;" class="">状态</div>
+                        </th>
+                        <th align="center" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">
+                            	<if condition="$status eq 1">审核时间<else/>转账时间</if>
+                            </div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 200px;" class="">备注</div>
+                        </th>
+                        <if condition="$status eq 1">
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">操作</div>
+                        </th>
+                        </if>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <form class="form-inline" id="transfer-form" method="get" action="{:U('transfer')}">
+        <div class="tDiv">
+            <div class="tDiv2">
+                <div class="fbutton"> <a href="javascript:;" onclick="form_submit(1)">
+                    <div class="add" title="导出excel">
+                        <span><i class="fa fa-plus"></i>导出excel</span>
+                    </div>
+                </a> </div>
+                <if condition="$status eq 1">
+                <div class="fbutton">
+                    <a onclick="act_submit('online')">
+                        <div class="add" title="在线转账">
+                            <span><i class="fa fa-hand-o-right"></i>在线完成转账</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="fbutton">
+                    <a onclick="act_submit('hand')">
+                        <div class="add" title="手动已转账">
+                            <span><i class="fa fa-hand-o-up"></i>手动完成转账</span>
+                        </div>
+                    </a>
+                </div>
+                </if>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <input type="hidden" name="atype" id="atype" value="hand">
+        <div class="bDiv" style="height: auto;">
+        	<div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+			    <table>
+			        <tbody>
+			        <volist name="list" id="v">
+			            <tr>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 50px;">
+                                    <if condition="$v['status'] eq 1"><input type="checkbox" name="selected[]" value="{$v['id']}"></if>
+                                </div>
+                            </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 50px;">
+			                        <a class="open" href="{:U('editWithdrawals',array('id'=>$v[id]))}">
+			                            {$v.id}<i class="fa fa-external-link " title="新窗口打开"></i>
+			                        </a>
+			                    </div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 100px;">
+			                        <a class="open" href="{:U('Admin/user/detail',array('id'=>$v[user_id]))}" target="blank">
+			                            {$v.nickname}<i class="fa fa-external-link " title="新窗口打开"></i>
+			                        </a>
+			                    </div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 150px;">{$v.bank_name}</div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 100px;">{$v.bank_card}</div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 100px;">{$v.realname}</div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 80px;">{$v.money}</div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 50px;"><if condition="$v[status] eq 1">待转账<else/>已转账</if></div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 150px;">{$v.create_time|date="Y-m-d H:i",###}</div>
+			                </td>
+			                <td align="center" class="">
+			                    <div style="text-align: center; width: 200px;">{$v.remark}</div>
+			                </td>
+			                <if condition="$status eq 1">
+			                	<td align="center" class="handle">
+			                	    <div style="text-align: center; width: 170px; max-width:250px;">
+                                    	<a href="{:U('transfer',array('selected'=>$v['id'],'atype'=>'online'))}" class="btn blue"><i class="fa fa-hand-o-right"></i>在线转账</a>
+                                		<a href="{:U('transfer',array('selected'=>$v['id'],'atype'=>'hand'))}" class="btn blue"><i class="fa fa-hand-o-up"></i>手动转账</a>
+                                	</div>
+			                	</td>
+			                </if>
+			                <td align="" class="" style="width: 100%;">
+			                    <div>&nbsp;</div>
+			                </td>
+			            </tr>
+			        </volist>
+			        </tbody>
+			    </table>
+			</div>
+        </div>
+        </form>
+        <!--分页位置-->
+        {$show} </div>
+</div>
+<script>
+    $(document).ready(function(){
+        // 点击刷新数据
+        $('.fa-refresh').click(function(){
+            location.href = location.href;
+        });
+
+        // 点击刷新数据
+        $('.fa-refresh').click(function(){
+            location.href = location.href;
+        });
+
+        $('#start_time').layDate();
+        $('#end_time').layDate();
+    });
+
+    function check_form(){
+        var start_time = $.trim($('#start_time').val());
+        var end_time =  $.trim($('#end_time').val());
+        if(start_time == '' ^ end_time == ''){
+            layer.alert('请选择完整的时间间隔', {icon: 2});
+            return false;
+        }
+        if(start_time !== '' && end_time !== ''){
+            $('#create_time').val(start_time+" - "+end_time);
+        }
+        if(start_time == '' && end_time == ''){
+            $('#create_time').val('');
+        }
+    }
+    
+    
+    //批量操作提交
+    function act_submit(atype) {
+        var a = [];
+        $('input[name*=selected]').each(function(i,o){
+            if($(o).is(':checked')){
+                a.push($(o).val());
+            }
+        })
+        if(a.length == 0){
+            layer.alert('少年，请至少选择一项', {icon: 2});return;
+        }
+        $('#atype').val(atype);
+        $('#transfer-form').submit();
+    }
+    
+    function form_submit(v){
+    	$('#export').val(v);
+    	$('#remittance-form').submit();
+    }
+</script>
+</body>
+</html>

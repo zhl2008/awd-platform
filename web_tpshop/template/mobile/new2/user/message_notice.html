@@ -1,0 +1,133 @@
+<include file="public/header" title="消息中心" body=""/>
+<div class="classreturn loginsignup">
+    <div class="content">
+        <div class="ds-in-bl return">
+            <a href="javascript:history.back(-1);"><img src="__STATIC__/images/return.png" alt="返回"></a>
+        </div>
+        <div class="ds-in-bl search center">
+            <span>消息中心</span>
+        </div>
+        <div class="ds-in-bl menu search">
+            <a href="javascript:;" id="del_all" onclick="del_all_message(this)" data-msg_type="0">清空</a>
+        </div>
+    </div>
+</div>
+<nav class="storenav grst p">
+    <ul>
+        <li class="red"  onclick="ajax_message_notice()">
+            <a href="javascript:">
+                <span >全部消息</span>
+            </a>
+        </li>
+        <li onclick="ajax_message_notice(0)">
+            <a href="javascript:">
+                <span >系统消息</span>
+            </a>
+        </li>
+        <li onclick="ajax_message_notice(1)">
+            <a href="javascript:" >
+                <span>活动通知</span>
+            </a>
+        </li>
+    </ul>
+</nav>
+<div class="news_center">
+    <!--<div class="news_list_fll">-->
+        <!--<div class="maleri30">-->
+            <!--<div class="fl news_c_img">-->
+                <!--<img src="__STATIC__/images/news1.png"/>-->
+                <!--&lt;!&ndash;<i class="tip_n">3</i>&ndash;&gt;-->
+            <!--</div>-->
+            <!--<div class="fl  news_c_tit">-->
+                <!--<p><span class="news_h fl">商城咚咚</span><span class="yestertime fr"></span></p>-->
+                <!--<p>点击查看你与客服的沟通记录</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="news_list_fll">-->
+        <!--<div class="maleri30">-->
+            <!--<div class="fl news_c_img">-->
+                <!--<img src="__STATIC__/images/news2.png"/>-->
+                <!--<i class="tip_n">3</i>-->
+            <!--</div>-->
+            <!--<div class="fl  news_c_tit">-->
+                <!--<p><span class="news_h fl">商城咚咚</span><span class="yestertime fr">昨天</span></p>-->
+                <!--<p>点击查看你与客服的沟通记录</p>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+</div>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    $(function(){
+        ajax_message_notice(0);
+        $('.storenav li').click(function () {
+            $(this).addClass('red').siblings('li').removeClass('red');
+        });
+    })
+    function ajax_message_notice(type){
+        $('#del_all').attr('data-msg_type',type)
+        $.ajax({
+            type:"POST",
+            url:"{:U('Mobile/User/ajax_message_notice')}",
+            data: {type: type},
+            success:function(data){
+                if($.trim(data)==''){
+                    $('.news_center').html('');
+                }else{
+                    $('.news_center').html(data);
+                }
+            }
+        })
+    }
+    /**
+     * 清除这类型下全部消息
+     * @param type
+     */
+    function del_all_message(obj) {
+        var msg_type = $(obj).data('msg_type');
+        $.ajax({
+            type: "POST",
+            url: "{:U('Mobile/User/set_message_notice')}",
+            data: {type: msg_type},
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 1) {
+                    layer.open({content:data.msg,time:2});
+                    location.reload();
+                } else {
+                    layer.open({content:data.msg,time:2});
+                }
+            },
+            error: function () {
+                layer.open({content:'网络错误，请稍后再试',time:2});
+            }
+        });
+    }
+
+    /**
+     * 清除单条消息
+     * @param type
+     */
+    function del_message(type,msg_id) {
+        $.ajax({
+            type: "POST",
+            url: "{:U('Mobile/User/set_message_notice')}",
+            data: {type: type,msg_id:msg_id},
+            dataType:'json',
+            success: function (data) {
+                if (data.status==1) {
+                    layer.open({content:data.msg,time:2});
+                    $('#del_'+msg_id).remove();
+                } else {
+                    layer.open({content:data.msg,time:2});
+                }
+            },
+            error:function(){
+                layer.open({content:'网络错误，请稍后再试',time:2});
+            }
+        });
+    }
+</script>
+</body>
+</html>

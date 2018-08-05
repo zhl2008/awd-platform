@@ -1,0 +1,49 @@
+<include file="public/min-header" />
+<table class="table table-bordered table-hover">
+    <thead>
+    <tr>
+
+        <td class="text-center">
+            标题
+        </td>
+        <td class="text-center">
+            描述
+        </td>
+        <td class="text-center">
+            封面图片
+        </td>
+        <td class="text-center">操作</td>
+    </tr>
+    </thead>
+    <tbody>
+
+    <volist name="lists" id="list">
+        <tr>
+            <td class="text-center">{$list.title}</td>
+            <td class="text-center">{$list.desc}</td>
+            <td class="text-center"><button class="btn btn-info btn-sm" type="button" onclick="preview('{$list.pic}')">预览</button></td>
+
+            <td class="text-center">
+                <a onclick="parent.selected('{$list.pic}','{$list.title}','{$list.pid}')" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="选择">选择</a>
+            </td>
+        </tr>
+    </volist>
+
+    </tbody>
+</table>
+
+<script>
+
+    function preview(url){
+        layer.open({
+            type: 1,
+            title: false,
+            closeBtn: false,
+            area: ['150px', '150px'],
+            skin: 'layui-layer-nobg', //没有背景色
+            shadeClose: true,
+            content: "<img width='150px' height='150px' src='"+url+"'>"
+        });
+    }
+</script>
+

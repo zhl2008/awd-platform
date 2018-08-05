@@ -1,0 +1,57 @@
+<include file="public/header" title="活动商品列表" body=""/>
+<include file="public/header_nav" title="活动商品列表"  href="javascript:history.back(-1)"/>
+    <!--商品详情s-->
+    <div id="goods_list">
+        <empty name="prom_list">
+            <p class="goods_title" id="goods_title" style="line-height: 100px;text-align: center;margin-top: 30px;">抱歉暂时没有相关结果！</p>
+        <else />
+            <foreach name="prom_list" item="good">
+            <div class="orderlistshpop p">
+                <div class="maleri30">
+                    <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$good[goods_id]))}" class="item">
+                        <div class="sc_list se_sclist">
+                            <div class="shopimg fl">
+                                <img src="{$good.goods_id|goods_thum_images=400,400}">
+                            </div>
+                            <div class="deleshow fr">
+                                <div class="deletes">
+                                    <span class="similar-product-text fl">{$good.goods_name|getSubstr=0,20}</span>
+                                </div>
+                                <div class="prices">
+                                    <p class="sc_pri fl"><span>￥</span><span>{$good[shop_price]}元</span></p>
+                                </div>
+                                <p class="weight"><span>{$good[comment_count]}</span><span>条评价</span></p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            </foreach>
+        </empty>
+    </div>
+    <!--商品详情e-->
+
+<script type="text/javascript">
+    /**
+     * ajax加载更多商品
+     */
+	 var  page = 1;
+    function ajax_sourch_submit()
+    {
+        ++page;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=Mobile&c=Activity&a=discount_list&is_ajax=1&id="+{:I('id')}+"&p="+page,
+            success: function(data){
+                 if ($.trim(data) == '') {
+                    $('#getmore').hide();
+					return false;
+                } else {
+                    $("#goods_list").append(data);
+                }
+            }
+        });
+    }
+</script>
+	</body>
+</html>

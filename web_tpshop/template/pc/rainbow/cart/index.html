@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html id="ng-app">
+<head lang="zh">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=8">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+    <title>购物车-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="__STATIC__/css/jh.css">
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <script src="__PUBLIC__/js/pc_common.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script>
+</head>
+<style>
+    a.disable {
+        cursor: default;
+        color: #e9e9e9;
+    }
+    th {
+        text-align: center;
+    }
+</style>
+<body class="ng-scope">
+<!-- 头部顶栏 start [[-->
+<include file="public/sign-header"/>
+<!-- 头部顶栏 end ]]-->
+<div class="fn-cart-clearing">
+    <div class="wrapper1190">
+        <!-- cart-title -->
+        <div class="order-header">
+            <div class="layout after">
+                <div class="fl">
+                    <div class="logo pa-to-36 wi345"> <a href="/"><img src="__PUBLIC__/images/newLogo.png" alt=""></a> </div>
+                </div>
+                <div class="fr">
+                    <div class="pa-to-36 progress-area">
+                        <div class="progress-area-wd"></div>
+                        <div class="progress-area-tx" style="display:none"></div>
+                        <div class="progress-area-cg" style="display:none"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end cart-title -->
+        <div class="ui_tab">
+            <!-- ngIf: !status.overseasEmpty -->
+            <div class="ui_tab_content">
+                <div class="clearing-c cart-content">
+                    <div class="layout after-ta">
+                        <div class="sc-list">
+                                <p class="shopcar_empty" <empty name="cartList">style="text-align:center"<else/>style="display: none"</empty> >
+                                    <a href="/"><img src="__STATIC__/images/null_cart2.jpg"/></a>
+                                </p>
+                        <notempty name="cartList">
+                            <div class="sc-pro-list" id="tpshop-cart">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="1">
+                                    <tr class="ba-co-danhui">
+                                        <th class="pa-le-9" align="center" valign="middle">&nbsp;&nbsp;</th>
+                                        <th align="center" valign="middle" colspan="2">商品</th>
+                                        <th align="center" valign="middle">市场价（元）</th>
+                                        <th align="center" valign="middle">单价（元）</th>
+                                        <th align="center" valign="middle">购买价</th>
+                                        <th align="center" valign="middle">数量</th>
+                                        <th align="center" valign="middle">小计（元）</th>
+                                        <th align="center" valign="middle">操作</th>
+                                    </tr>
+                                    <volist name="cartList" id="cart">
+                                        <tr class="item-single" id="edge_{$cart.id}">
+                                            <td class="pa-le-9" style="border-right:0" align="center" valign="middle">
+                                                <input class="check-box checkCart checkCartItem" name="checkItem" value="{$cart.id}" type="checkbox" <if condition='$cart[selected] eq 1'>checked="checked"</if>/>
+                                            </td>
+                                            <td style="border-left:0px;;border-right:0px" class="pa-to-20 pa-bo-20 bo-ri-0" width="80px" align="center" valign="top">
+                                                <a class="gwc-wp-list di-bl wi63 hi63" href="{:U('Home/Goods/goodsInfo',array('id'=>$cart[goods_id]))}">
+                                                    <img class="wi63 hi63" src="{$cart.goods_id|goods_thum_images=78,78}">
+                                                </a>
+                                            </td>
+                                            <td style="border-left:0px; border-right:0px"  class="pa-to-20 wi516" align="left">
+                                                <p class="gwc-ys-pp">
+                                                    <a href="{:U('Home/Goods/goodsInfo',array('id'=>$cart[goods_id]))}" style="vertical-align:middle">{$cart.goods_name}</a>
+                                                    <!--团购--><if condition="$cart[prom_type] eq 2"><img  width="80" height="60" src="/public/images/groupby2.jpg" style="vertical-align:middle"></if>
+                                                    <!--抢购--><if condition="$cart[prom_type] eq 1"><img  width="40" height="40" src="/public/images/qianggou2.jpg" style="vertical-align:middle"></if>
+                                                </p>
+                                                <p class="ggwc-ys-hs">{$cart.spec_key_name}</p>
+                                            </td>
+                                            <td style="border-left:0px" align="center" valign="middle"><span>￥{$cart.market_price}</span></td>
+                                            <td style="border-left:0px" align="center" valign="middle" id="cart_{$cart.id}_goods_price"><span>￥{$cart.goods_price}</span></td>
+                                            <td style="border-left:0px" align="center" valign="middle" id="cart_{$cart.id}_member_goods_price"><span>￥{$cart.member_goods_price}</span></td>
+                                            <td align="center" valign="middle" class="quantity-form">
+                                                <div class="sc-stock-area">
+                                                    <div class="stock-area">
+                                                        <a class="decrement" onClick="" title="减">-</a>
+                                                            <input class="wi43 fl" name="changeQuantity_{$cart['id']}" type="text" id="changeQuantity_{$cart['id']}" value="{$cart['goods_num']}">
+                                                        <a class="increment" onClick="" title="加">+</a>
+                                                    </div>
+                                                    <em class="red" style="display: none">库存不足</em>
+                                                </div>
+                                            </td>
+                                            <td align="center" valign="middle" id="cart_{$cart.id}_market_price">￥{$cart.goods_fee}</td>
+                                            <td align="center" valign="middle"><a class="gwc-gb deleteGoods" data-cart-id="{$cart['id']}" href="javascript:void(0);"></a></td>
+                                        </tr>
+                                    </volist>
+                                </table>
+                            </div>
+                            <div class="sc-total-list ma-to-20 sc-pro-list">
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                    <tr>
+                                        <td class="pa-le-28 gwx-xm-dwz">
+                                            <label >
+                                                <input type="checkbox" class="checkCart checkCartAll"/>&nbsp;&nbsp;&nbsp;&nbsp;全选
+                                            </label>
+                                            <a href="javascript:void(0);" id="removeGoods">删除选中商品</a>
+                                        </td>
+                                        <td width="190" align="right">已选择：</td>
+                                        <td width="69" align="right" id="goods_num">{$total_price.total_fee}件商品</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td width="190" align="right">共节省：</td>
+                                        <td width="69" align="right" id="goods_fee">￥{$total_price.cut_fee}</td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                    <tr>
+                                        <td>&nbsp;</td>
+                                        <td width="190" align="right">合计（不含运费）：</td>
+                                        <td width="69" align="right" id="total_fee"><em>￥{$total_price.total_fee }</em></td>
+                                        <td>&nbsp;</td>
+                                    </tr>
+                                </table>
+                            </div>
+                            <div class="sc-acti-list ma-to-20 "> <a class="gwc-jxgw" href="javascript:history.go(-1);">继续购物</a>
+                                <a class="gwc-qjs" href="javascript:void(0)" data-url="{:U('Home/Cart/cart2')}">去结算</a>
+                            </div>
+                        </notempty>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="clearing-recommend wrapper1190">
+            <div class="cr-block-01 cr-block-preferbuy ng-scope ng-isolate-scope">
+                <div class="cr-title" data-ys="0">
+                    <ul class="fn-tab-nav fn-fl">
+                        <li class="ng-scope"><a class="ng-binding titleon">为您推荐</a></li>
+                    </ul>
+                </div>
+                <div class="cr-list-out ng-isolate-scope" data-is-show="true" data-type="1" data-index="tabData.listIndex" data-show-close-btn="false" data-extra-class="">
+                    <div class="cr-list fixed">
+                        <div class="slide-wrapper ng-scope">
+                            <ul class="ng-scope">
+                                <tpshop sql="select * from `__PREFIX__goods` where  is_recommend = 1 AND is_virtual=0 limit 10" item="v" key="k">
+                                    <li class="ng-scope">
+                                        <a href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}"><img ng-src="{$v.goods_id|goods_thum_images=80,80}" alt="{$v[goods_name]}" src="{$v.goods_id|goods_thum_images=80,80}"></a>
+                                        <p><a class="ng-binding" href="{:U('/Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">{$v[goods_name]}</a></p>
+                                        <div class="div-01">
+                                            <em>¥</em>
+                                            <span  class="ng-binding">{$v[shop_price]}</span>
+                                        </div>
+                                        <!--<button class="btn add2cart" type="button" onclick="javascript:AjaxAddCart({$v.goods_id},1,0);">加入购物车</button>-->
+                                        <a class="btn add2cart" type="button" style="height: 24px;" onclick="javascript:AjaxAddCart({$v.goods_id},1);">加入购物车</a>
+                                    </li>
+                                </tpshop>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-s-->
+    <include file="public/footer" />
+    <!--footer-e-->
+    <script>
+        $(document).ready(function(){
+            initDecrement();
+            initCheckBox();
+            AsyncUpdateCart();
+        });
+        //购物车对象
+        function CartItem(id, goods_num,selected) {
+            this.id = id;
+            this.goods_num = goods_num;
+            this.selected = selected;
+        }
+        //初始化计算订单价格
+        function AsyncUpdateCart(){
+            var cart = new Array();
+            var inputCheckItem = $("input[name^='checkItem']");
+            inputCheckItem.each(function(i,o){
+                var id = $(this).attr("value");
+                var goods_num = $(this).parents('.item-single').find("input[id^='changeQuantity']").attr('value');
+                if ($(this).attr("checked") == 'checked') {
+                    var cartItemCheck = new CartItem(id,goods_num,1);
+                    cart.push(cartItemCheck);
+                }else{
+                    var cartItemNoCheck = new CartItem(id,goods_num,0);
+                    cart.push(cartItemNoCheck);
+                }
+            })
+            $.ajax({
+                type : "POST",
+                url:"{:U('Home/Cart/AsyncUpdateCart')}",//,
+                dataType:'json',
+                data: {cart: cart},
+                success: function(data){
+                    if(data.status == 1){
+                        $('#goods_num').empty().html(data.result.goods_num+"件商品");
+                        $('#total_fee').empty().html('￥'+data.result.total_fee);
+                        $('#goods_fee').empty().html('-￥'+data.result.goods_fee);
+                        var cartList =  data.result.cartList;
+                        if(cartList.length > 0){
+                            for(var i = 0; i < cartList.length; i++){
+                                $('#cart_'+cartList[i].id+'_goods_price').empty().html('￥'+cartList[i].goods_price);
+                                $('#cart_'+cartList[i].id+'_member_goods_price').empty().html('￥'+cartList[i].member_goods_price);
+                                $('#cart_'+cartList[i].id+'_total_price').empty().html('￥'+cartList[i].total_fee);
+                                $('#cart_'+cartList[i].id+'_market_price').empty().html('￥'+(cartList[i].member_goods_price*cartList[i].goods_num).toFixed(2)); //活动价格
+                            }
+                        }else{
+                            $('.total_price').empty();
+                            $('.cut_price').empty();
+                        }
+                    }
+                }
+            });
+        }
+        //减购买数量事件
+        $(function () {
+            $(document).on("click", '.decrement', function (e) {
+                var changeQuantityNum = $(this).parent().find('input').val();
+                if (changeQuantityNum > 1) {
+                    $(this).parent().find('input').attr('value', parseInt(changeQuantityNum) - 1).val(parseInt(changeQuantityNum) -1);
+                }
+                initDecrement();
+                changeNum(this);
+            })
+        })
+        //加购买数量事件
+        $(function () {
+            $(document).on("click", '.increment', function (e) {
+                var changeQuantityNum = $(this).parent().find('input').val();
+                if(changeQuantityNum > 199){
+                    changeQuantityNum = 199;
+                    layer.msg("购买商品数量不能大于200",{icon:2});
+                }
+                $(this).parent().find('input').attr('value', parseInt(changeQuantityNum) + 1).val(parseInt(changeQuantityNum) + 1);
+                initDecrement();
+                changeNum(this);
+            })
+        })
+        //手动输入购买数量
+        $(function () {
+            $(document).on("blur", '.quantity-form input', function (e) {
+                var changeQuantityNum = parseInt($(this).val());
+                if(changeQuantityNum <= 0){
+                    layer.alert('商品数量必须大于0', {icon:2});
+                    $(this).val($(this).attr('value'));
+                }else{
+                    $(this).attr('value', changeQuantityNum);
+                }
+                initDecrement();
+                changeNum(this);
+            })
+        })
+        //更改购买数量对减购买数量按钮的操作
+        function initDecrement(){
+            $("input[id^='changeQuantity']").each(function(i,o){
+                if($(o).val() == 1){
+                    $(o).parent().find('.decrement').addClass('disable');
+                }
+                if($(o).val() > 1){
+                    $(o).parent().find('.decrement').removeClass('disable');
+                }
+            })
+        }
+        //更改购物车请求事件
+        function changeNum(obj){
+            var input = $(obj).parents('.quantity-form').find('input');
+            var cart_id = input.attr('id').replace('changeQuantity_','');
+            var goods_num = input.attr('value');
+            var cart = new CartItem(cart_id, goods_num, 1);
+            $.ajax({
+                type: "POST",
+                url: "{:U('Home/Cart/changeNum')}",//+tab,
+                dataType: 'json',
+                data: {cart: cart},
+                success: function (data) {
+                    if(data.status == 1){
+                        AsyncUpdateCart();
+                    }else{
+                        input.val(data.result.limit_num);
+                        input.attr('value',data.result.limit_num);
+                        layer.alert(data.msg,{icon:2});
+                    }
+                }
+            });
+        }
+        //多选框点击事件
+        $(function () {
+            $(document).on("click", ".checkCart", function (e) {
+                //选中一个
+                if($(this).hasClass('checkCartItem')){
+                    if($(this).is(':checked')){
+                        $(this).prop('checked', 'checked').attr('checked', 'checked');
+                    }else{
+                        $(this).prop('checked', false).attr('checked', false);
+                    }
+                }
+                //选中全选多选框
+                if($(this).hasClass('checkCartAll')){
+                    if($(this).is(':checked')){
+                        $(".checkCart").each(function(i,o){
+                            $(this).prop('checked', 'checked').attr('checked', 'checked');
+                        })
+                    }else{
+                        $(".checkCart").each(function(i,o){
+                            $(this).prop('checked', false).attr('checked', false);
+                        })
+                    }
+                }
+                initCheckBox();
+                AsyncUpdateCart();
+            })
+        })
+        /**
+         * 检测选项框
+         */
+        function initCheckBox(){
+            var checkBoxsFlag = true;
+            $("input[name^='checkItem']").each(function(i,o){
+                if ($(this).attr("checked") != 'checked') {
+                    checkBoxsFlag = false;
+                }
+            })
+            if(checkBoxsFlag == false){
+                $('.checkCartAll').removeAttr('checked');
+            }else{
+                $('.checkCartAll').attr('checked', 'checked');
+            }
+        }
+
+        //删除购物车商品
+        $(function () {
+            //删除购物车商品事件
+            $(document).on("click", '.deleteGoods', function (e) {
+                var cart_ids = new Array();
+                cart_ids.push($(this).attr('data-cart-id'));
+                $.ajax({
+                    type : "POST",
+                    url:"{:U('Home/Cart/delete')}",
+                    dataType:'json',
+                    data: {cart_ids: cart_ids},
+                    success: function(data){
+                        if(data.status == 1){
+                            for (var i = 0; i < cart_ids.length; i++) {
+                                $('#edge_' + cart_ids[i]).remove();
+                            }
+                            var inputCheckItemAll = $("input[name^='checkItem']");
+                            if(inputCheckItemAll.length == 0){
+                                $('#tpshop-cart').remove();
+                                $('.shopcar_empty').show();
+                            }
+                        }else{
+                            layer.msg(data.msg,{icon:2});
+                        }
+                        AsyncUpdateCart();
+                    }
+                });
+            })
+        })
+        //删除购物车商品确定事件
+        $(function () {
+            $(document).on("click", '#removeGoods', function (e) {
+                var cart_ids = new Array();
+                //多个删除
+                $("input[name^='checkItem']").each(function(i,o){
+                    if($(this).is(':checked')){
+                        cart_ids.push($(this).val());
+                    }
+                })
+                $.ajax({
+                    type : "POST",
+                    url:"{:U('Home/Cart/delete')}",//,
+                    dataType:'json',
+                    data: {cart_ids: cart_ids},
+                    success: function(data){
+                        if(data.status == 1){
+                            for (var i = 0; i < cart_ids.length; i++) {
+                                $('#edge_' + cart_ids[i]).remove();
+                            }
+                            var inputCheckItemAll = $("input[name^='checkItem']");
+                            if(inputCheckItemAll.length == 0){
+                                $('#tpshop-cart').remove();
+                                $('.shopcar_empty').show();
+                            }
+                        }else{
+                            layer.msg(data.msg,{icon:2});
+                        }
+                        AsyncUpdateCart();
+                    }
+                });
+            })
+        })
+        $('.gwc-qjs').click(function(){
+            var user_id = '{$user_id}';
+            if(user_id == '0'){
+                layer.open({
+                    type: 2,
+                    title: '<b>登陆TPshop</b>',
+                    skin: 'layui-layer-rim',
+                    shadeClose: true,
+                    shade: 0.5,
+                    area: ['490px', '460px'],
+                    content: "{:U('Home/User/pop_login')}",
+                });
+            }else{
+                window.location.href = $(this).attr('data-url');
+            }
+        })
+    </script>
+</body>
+</html>

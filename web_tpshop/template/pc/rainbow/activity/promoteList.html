@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>促销活动商品列表</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/global.js"></script>
+	</head>
+	<body>
+		<style type="text/css">
+			.page .fr{float: none;position: relative;left: 50%;right: 50%;margin-left: -350px;}
+			.f-total{margin-top: 10px;}
+		</style>
+		<include file="public/header" w='w1224'/>
+		<div class="search-box p">
+			<div class="w1224">
+				<div class="search-path fl">
+					<a>全部结果</a>
+					<i class="litt-xyb"></i>
+					<span>促销</span>
+				</div>
+				<!--<div class="search-clear fr">
+					<span><a href="javascript:void(0)">清空筛选条件</a></span>
+				</div>-->
+			</div>
+		</div>
+		<script>
+			// 倒计时
+			function GetRTime2(){
+				//var text = GetRTime('2016/02/27 17:34:00');
+			<foreach name="goodsList" item="v" key="k" >
+				var text{$v[goods_id]} = GetRTime('{$v.end_time|date="Y/m/d H:i:s",###}');
+				$("#surplus_text{$v[goods_id]}").text(text{$v[goods_id]});
+			</foreach>
+			}
+			setInterval(GetRTime2,1000);
+		</script>
+		<div class="shop-list-tour ma-to-20 p">
+			<div class="w1224">
+				<div class="stsho pre-sts">
+					<div class="shop-list-splb pre-set-suma p">
+						<ul>
+							<volist name="goodsList" id="goods">
+								<li>
+									<div class="s_xsall">
+										<div class="xs_img">
+											<a href="{:U('Goods/goodsInfo',array('id'=>$goods[goods_id],'item_id'=>$goods[item_id]))}">
+												<img class="lazy-list" data-original="{$goods.goods_id|goods_thum_images=262,262}" />
+											</a>
+										</div>
+										<div class="shop_name2">
+											<a href="{:U('Goods/goodsInfo',array('id'=>$goods[goods_id],'item_id'=>$goods[item_id]))}">
+												{$goods[goods_name]}
+											</a>
+										</div>
+										<div class="price-tag">
+											<span class="now"><em class="li_xfo">￥</em><em>{$goods[shop_price]}</em></span>
+											<span class="pre-per"><em>{$goods[click_count]}</em>人已浏览</span>
+											<div class="sjs-olde p">
+												<p class="old ma0"><em>￥</em><em>{$goods[market_price]}</em></p>
+												<p class="djs-cctime" ><span id="surplus_text{$goods[goods_id]}"></span><br />(倒计时)</p>
+											</div>
+										</div>
+									</div>
+								</li>
+							</volist>
+						</ul>
+					</div>
+					<!-- page -->
+				</div>
+			</div>
+		</div>
+		<!--footer-s-->
+		<div class="footer p">
+			<include file="public/footer" />
+			<include file="public/sidebar_cart" />
+		</div>
+		<!--footer-e-->
+		<script src="__STATIC__/js/lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+	</body>
+</html>

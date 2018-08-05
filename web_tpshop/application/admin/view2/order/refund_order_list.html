@@ -1,0 +1,203 @@
+<include file="public/layout" />
+<script type="text/javascript" src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>已付款并取消单列表</h3>
+      </div>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+    <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+    </div>
+     <ul>
+      <li>未发货时用户操作取消的订单</li>
+      <li>已付款并取消订单列表</li>
+    </ul>
+  </div>
+  <div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>取消退款单列表</h3>
+        <h5>(共{$pager->totalRows}条记录)</h5>
+      </div>
+      <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+	  <form class="navbar-form form-inline"  method="post" action=""  name="search-form2" id="search-form2" onsubmit="return true;">  
+	  		<input type="hidden" name="order_by" value="order_id">
+            <input type="hidden" name="sort" value="desc">   
+      <div class="sDiv">
+        <div class="sDiv2">
+        	<input type="text" size="30" id="consignee"  name="consignee"  value="{$_POST['consignee']}" class="qsbox"  placeholder="收货人">
+        </div>
+        <div class="sDiv2">
+        	<input type="text" size="30" id="order_sn" name="order_sn" value="{$_POST['order_sn']}" class="qsbox"  placeholder="订单编号">
+        </div>
+        <div class="sDiv2">	 
+			<input type="text" size="30" id="order_sn" name="mobile" value="{$_POST['mobile']}" class="qsbox"  placeholder="联系电话">
+        </div>
+        <div class="sDiv2">	 
+          	<input type="submit" class="btn" value="搜索">
+        </div>
+      </div>
+     </form>
+    </div>
+    <div class="hDiv">
+      <div class="hDivBox" id="ajax_return">
+        <table cellspacing="0" cellpadding="0">
+          <thead>
+	        	<tr>
+	              <th class="sign" axis="col0">
+	                <div style="width: 24px;"><i class="ico-check"></i></div>
+	              </th>
+	              <th align="left" abbr="order_sn" axis="col3" class="">
+	                <div style="text-align: left; width: 140px;" class=""><a href="javascript:sort('order_sn');">订单编号</a></div>
+	              </th>
+	              <th align="left" abbr="add_time" axis="col4" class="">
+	                <div style="text-align: left; width: 120px;" class=""><a href="javascript:sort('add_time');">下单时间</a></div>
+	              </th>
+	              <th align="left" abbr="consignee" axis="col4" class="">
+	                <div style="text-align: left; width: 80px;" class="">收货人</div>
+	              </th>
+	              <th align="center" abbr="mobile" axis="col5" class="">
+	                <div style="text-align: center; width: 100px;" class=""><a href="javascript:sort('mobile');">联系电话</a></div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 60px;" class="">所选物流</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 60px;" class="">物流费用</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 120px;" class="">支付时间</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 60px;" class=""><a href="javascript:sort('total_amount');">订单总价</a></div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width:60px;" class="">处理状态</div>
+	              </th>
+	              <th align="center" axis="col1" class="handle">
+	                <div style="text-align: center; width: 150px;">操作</div>
+	              </th>
+	              <th style="width:100%" axis="col7">
+	                <div></div>
+	              </th>
+	            </tr>
+	          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+      <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+        <table>
+		 	<tbody>
+		 	<if condition="empty($orderList) eq true">
+		 		<tr data-id="0">
+			        <td class="no-data" align="center" axis="col0" colspan="50">
+			        	<i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+			        </td>
+			     </tr>
+			<else/>
+		 	<volist name="orderList" id="list">
+		  		<tr>
+		             <td class="sign" axis="col0">
+		               <div style="width: 24px;"><i class="ico-check"></i></div>
+		              
+		             </td>
+		             <td align="left" abbr="order_sn" axis="col3" class="">
+		               <div style="text-align: left; width: 140px;" class="">{$list.order_sn}</div>
+		             </td>
+		             <td align="left" abbr="add_time" axis="col4" class="">
+		               <div style="text-align: left; width: 120px;" class="">{$list.add_time|date='Y-m-d H:i',###}</div>
+		             </td>
+		             <td align="left" abbr="consignee" axis="col4" class="">
+		               <div style="text-align: left; width: 80px;" class="">{$list.consignee}</div>
+		             </td>
+		             <td align="center" abbr="mobile" axis="col5" class="">
+		               <div style="text-align: center; width: 100px;" class="">{$list.mobile}</div>
+		             </td>
+		             <td align="center" abbr="article_time" axis="col6" class="">
+		               <div style="text-align: center; width: 60px;" class="">{$list.shipping_name}</div>
+		             </td>
+		             <td align="center" abbr="article_time" axis="col6" class="">
+		               <div style="text-align: center; width: 60px;" class="">{$list.shipping_price}</div>
+		             </td>
+		             <td align="center" abbr="article_time" axis="col6" class="">
+		               <div style="text-align: center; width: 120px;" class="">
+						  	{$list.pay_time|date='Y-m-d H:i',###}
+		               </div>
+		             </td>
+		             <td align="center" abbr="article_time" axis="col6" class="">
+		               <div style="text-align: center; width: 60px;" class="">{$list.total_amount}</div>
+		             </td>
+		             <td align="center" abbr="article_time" axis="col6" class="">
+		               <div style="text-align: center; width: 60px;" class="">
+		               	<if condition="$list.pay_status eq 1">待处理</if>
+		               	<if condition="$list.pay_status eq 3">已退款</if>
+		               	<if condition="$list.pay_status eq 4">已拒绝</if>
+		               </div>
+		             </td>
+		             <td align="center" axis="col1" class="handle">
+		               <div style="text-align: center; width: 150px;">
+		                  <a class="btn green" href="{:U('Order/refund_order_info',array('order_id'=>$list['order_id']))}" data-toggle="tooltip" class="btn btn-default" title="查看订单"><i class="fa fa-list-alt"></i>查看</a>
+		               </div>
+		             </td>
+		             <td style="width:100%" axis="col7">
+		               <div></div>
+		             </td>
+		           </tr>
+		      </volist>
+		      </if>
+		    </tbody>
+		</table>
+		<div class="row">
+		    <div class="col-sm-6 text-left"></div>
+		    <div class="col-sm-6 text-right">{$page}</div>
+		</div>
+      </div>
+      <div class="iDiv" style="display: none;"></div>
+    </div>
+    <!--分页位置--> 
+   	</div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function(){	
+		// 点击刷新数据
+		$('.fa-refresh').click(function(){
+			location.href = location.href;
+		});
+		
+		$('.ico-check ' , '.hDivBox').click(function(){
+			$('tr' ,'.hDivBox').toggleClass('trSelected' , function(index,currentclass){
+	    		var hasClass = $(this).hasClass('trSelected');
+	    		$('tr' , '#flexigrid').each(function(){
+	    			if(hasClass){
+	    				$(this).addClass('trSelected');
+	    			}else{
+	    				$(this).removeClass('trSelected');
+	    			}
+	    		});  
+	    	});
+		});
+		 
+	});
+ // 点击排序
+    function sort(field)
+    {
+        $("input[name='order_by']").val(field);
+        var v = $("input[name='sort']").val() == 'desc' ? 'asc' : 'desc';
+        $("input[name='sort']").val(v);
+        ajax_get_table('search-form2',cur_page);
+    }
+	 
+</script>
+</body>
+</html>

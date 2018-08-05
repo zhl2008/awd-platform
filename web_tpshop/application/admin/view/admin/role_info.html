@@ -1,0 +1,104 @@
+<include file="public/min-header"/>
+<style>
+ul.group-list {
+    width: 96%;min-width: 1000px; margin: auto 5px;list-style: disc outside none;
+}
+ul.group-list li {
+    white-space: nowrap;float: left;
+    width: 150px; height: 25px;
+    padding: 3px 5px;list-style-type: none;
+    list-style-position: outside;border: 0px;margin: 0px;
+}
+th.title {
+    background: #F3F3F3;border-bottom: 1px solid #D7D7D7;font-weight: bold; white-space: nowrap;
+}
+</style>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+	<div class="container-fluid">
+	      <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回管理员列表"><i class="fa fa-reply"></i></a>
+            	<a href="javascript:;" class="btn btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/1002/developer/user.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>
+          </div>
+		  <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> 编辑角色</h3>
+            </div>
+            <div class="panel-body ">	        	
+			<form action="{:U('Admin/Admin/roleSave')}" id="roleform" method="post">
+			<input type="hidden" name="role_id" value="{$detail.role_id}" />
+			<table class="table table-bordered table-striped">
+				<tr>
+					<th>角色名称:</th>
+					<td><div class="col-xs-6"><input type="text" class="form-control" name="data[role_name]" id="role_name" value="{$detail.role_name}"></div></td>
+					<th >角色描述:</th>
+					<td><textarea rows="2" cols="50" name="data[role_desc]">{$detail.role_desc}</textarea></td>
+				</tr>
+			</table>
+	        <h4><b>权限分配：</b><input type="checkbox" onclick="choosebox(this)">全选</h4>
+			<table class="table table-bordered table-striped dataTable">
+				<tbody>
+				<foreach name="modules" item="menu" key="kk">			
+						<tr>
+							<td class="title left" style="padding-right:50px;">
+								<b>{$group[$kk]}：</b>
+								<label class="right"><input type="checkbox" value="1" cka="mod-{$kk}">全选</label>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<ul class="group-list">
+								<foreach name="menu" item="vv">
+									<li><label><input type="checkbox" name="right[]" value="{$vv.id}" <if condition="$vv.enable eq 1">checked</if> ck="mod-{$kk}">{$vv.name}</label></li>
+								</foreach>
+								<div class="clear-both"></div>
+								</ul>
+							</td>
+						</tr>
+				</foreach>
+				</tbody>
+				<tfoot>
+                  <tr align="center">
+                    <td><input class="btn btn-default" type="reset" value="重置">&nbsp;&nbsp;&nbsp;&nbsp;
+                       <input class="btn btn-info" type="button" onclick="roleSubmit()" value="提交">
+                    </td>
+                  </tr>
+               </tfoot>
+			</table>
+			</form>
+		   </div>
+		</div>
+	</div></section>
+</div>
+<script type="text/javascript">
+$(document).ready(function(){
+	$(":checkbox[cka]").click(function(){
+		var $cks = $(":checkbox[ck='"+$(this).attr("cka")+"']");
+		if($(this).is(':checked')){
+			$cks.each(function(){$(this).prop("checked",true);});
+		}else{
+			$cks.each(function(){$(this).removeAttr('checked');});
+		}
+	});
+});
+
+function choosebox(o){
+	var vt = $(o).is(':checked');
+	if(vt){
+		$('input[type=checkbox]').prop('checked',vt);
+	}else{
+		$('input[type=checkbox]').removeAttr('checked');
+	}
+}
+
+function roleSubmit(){
+	if($('#role_name').val() == '' ){
+		layer.alert('角色名称不能为空', {icon: 2});
+		return false;
+	}
+	$('#roleform').submit();
+}
+</script>
+</body>
+</html>

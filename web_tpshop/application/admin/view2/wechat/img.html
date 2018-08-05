@@ -1,0 +1,148 @@
+<include file="public/layout" />
+
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>图文回复</h3>
+        <h5>微信菜单-图文回复</h5>
+      </div>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+    <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+    </div>
+     <ul>
+      <li>在此添加图文内容, 用户发送关键词与之匹配时自动回复</li>
+    </ul>
+  </div>
+  <div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>图文回复列表</h3>
+        <h5></h5>
+      </div>
+      <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+	  <form class="navbar-form form-inline"  method="post" name="search-form2" id="search-form2">  
+      <div class="sDiv">
+      </div>
+     </form>
+    </div>
+    <div class="hDiv">
+      <div class="hDivBox">
+        <table cellspacing="0" cellpadding="0">
+          <thead>
+	        	<tr>
+	              <th class="sign" axis="col0">
+	                <div style="width: 24px;"><i class="ico-check"></i></div>
+	              </th>
+	              <th align="left" abbr="order_sn" axis="col3" class="">
+	                <div style="text-align: left; width: 160px;" class="">关键词</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: left; width: 120px;" class="">标题</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: left; width: 320px;" class="">描述</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: left; width: 190px;" class="">封面图片</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: left; width: 120px;" class="">操作</div>
+	              </th>
+	              <th style="width:100%" axis="col7">
+	                <div></div>
+	              </th>
+	            </tr> 
+	          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="tDiv">
+      <div class="tDiv2"> 
+        <div class="fbutton"><a href="{:U('Admin/Wechat/add_img')}">
+          <div class="add" title="添加关键词">
+            <span><i class="fa fa-plus"></i>添加图文</span>
+          </div>
+          </a> 
+          </div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+      <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+      <table>
+		 	<tbody id="tbody">
+				<volist name="lists" id="list">
+			  	<tr date-id="{$list.id}">
+			        <td class="sign" axis="col0">
+		                <div style="width: 24px;"><i class="ico-check"></i></div>
+		              </td>
+		              <td align="left" abbr="order_sn" axis="col3" class="">
+		                <div style="text-align: left; width: 160px;" class="">{$list.keyword}</div>
+		              </td>
+		              <td align="center" abbr="article_time" axis="col6" class="">
+		                <div style="text-align: left; width: 120px;" class="">{$list.title}</div>
+		              </td>
+		              <td align="center" abbr="article_time" axis="col6" class="">
+		                <div style="text-align: left; width: 320px;" class="">{$list.desc}</div>
+		              </td>
+		              <td align="center" abbr="article_time" axis="col6"  >
+		                	<div style="text-align: left; width: 190px;">
+								<a class="btn green" href="javascript:preview('{$list.pic}')"><i class="fa fa-youtube-play"></i>预览</a>
+			        		</div>
+		              </td>
+		              <td align="center" abbr="article_time" axis="col6" class="">
+		                <div style="text-align: left; width: 120px;" class="">
+                            <a class="btn green" href="{:U('Admin/Wechat/add_img',array('id'=>$list['id'],'edit'=>1))}"><i class="fa fa-pencil-square-o"></i>编辑</a>
+					        <a class="btn red" data-href="{:U('Admin/Wechat/del_img',array('id'=>$list['id']))}" onclick="del('{$list[id]}',this)"><i class="fa fa-trash-o"></i>删除</a>
+		                </div>
+		              </td>
+		              <td style="width:100%" axis="col7">
+		                <div></div>
+		              </td>
+			      </tr>
+			      </volist>
+		    </tbody>
+		</table>
+		<div class="row">
+            <div class="col-sm-6 text-left"></div>
+            <div class="col-sm-6 text-right">{$page}</div>
+        </div>
+      </div>
+      <div class="iDiv" style="display: none;"></div>
+    </div>
+    <!--分页位置--> 
+   	</div>
+</div>
+<script type="text/javascript">
+// 删除操作
+function del(id,t)
+{
+	layer.confirm('确定要删除吗?' , function(){
+    	location.href = $(t).data('href');	
+    });
+}
+ 
+function preview(url){
+    layer.open({
+        type: 1,
+        title: false,
+        closeBtn: false,
+        area: '300px 300px',
+        skin: 'layui-layer-nobg', //没有背景色
+        shadeClose: true,
+        content: "<img src='"+url+"'>"
+    });
+}
+ 
+</script>
+</body>
+</html>

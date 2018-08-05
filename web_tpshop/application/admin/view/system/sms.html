@@ -1,0 +1,133 @@
+<include file="public/min-header"/>
+
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content" style="padding:0px 15px;">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            	<a href="javascript:;" class="btn btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/1100/developer/user.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body ">
+                    <ul class="nav nav-tabs">
+                        <foreach name="group_list" item="vo" key="k">
+                            <li <if condition="$k eq 'sms'">class="active"</if>><a href="javascript:void(0)" data-url="{:U('System/index',array('inc_type'=>$k))}" data-toggle="tab" onclick="goset(this)">{$vo}</a></li>
+                        </foreach>
+                    </ul>
+                    <!--表单数据-->
+                    <form method="post" id="handlepost" action="{:U('System/handle')}">
+                        <!--通用信息-->
+                        <div class="tab-content" style="padding:20px 0px;">
+                            <div class="tab-pane active" id="tab_tongyong">
+                                <table class="table table-bordered">
+                                    <tbody>
+                                    <tr>
+                                        <td class="col-sm-2">短信平台[appkey]：</td>
+                                        <td class="col-sm-8">
+                                            <input type="text" class="form-control" msg = "短信平台[appkey]" name="sms_appkey" value="{$config.sms_appkey}" >
+                                            <span id="err_attr_name" style="color:#F00; display:none;"></span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>阿里大鱼[secretKey]：</td>
+                                        <td >
+                                            <input type="text" class="form-control" msg = "短信平台[secretKey]" name="sms_secretKey" value="{$config.sms_secretKey}" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>公司名/品牌名/产品名：</td>
+                                        <td >
+                                            <input type="text" class="form-control" msg = "公司名/品牌名/产品名" name="sms_product" value="{$config.sms_product}" >
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>用户注册时：</td>
+                                        <td >
+                                            <input type="radio" class="" name="regis_sms_enable" <if condition="$config['regis_sms_enable'] eq 1">checked</if> value="1" >是
+                                            <input type="radio" class="" name="regis_sms_enable" <if condition="$config['regis_sms_enable'] eq 0">checked</if> value="0" >否
+                                        </td>
+                                    </tr>                                    
+                                    <tr>
+                                        <td>用户找回密码时：</td>
+                                        <td>
+                                            <input type="radio" class="" name="forget_pwd_sms_enable" <if condition="$config['forget_pwd_sms_enable'] eq 1">checked</if> value="1" >是
+                                            <input type="radio" class="" name="forget_pwd_sms_enable" <if condition="$config['forget_pwd_sms_enable'] eq 0">checked</if> value="0" >否
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>绑定手机时：</td>
+                                        <td>
+                                            <input type="radio" class="" name="bind_mobile_sms_enable" <if condition="$config['bind_mobile_sms_enable'] eq 1">checked</if> value="1" >是
+                                            <input type="radio" class="" name="bind_mobile_sms_enable" <if condition="$config['bind_mobile_sms_enable'] eq 0">checked</if> value="0" >否
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>客户下单时是否发送短信给商家：</td>
+                                        <td>
+                                            <input type="radio" class="" name="order_add_sms_enable" <if condition="$config['order_add_sms_enable'] eq 1">checked</if> value="1" >是
+                                            <input type="radio" class="" name="order_add_sms_enable" <if condition="$config['order_add_sms_enable'] eq 0">checked</if> value="0" >否
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>客户支付时是否发送短信给商家：</td>
+                                        <td>
+                                            <input type="radio" class="" name="order_pay_sms_enable" <if condition="$config['order_pay_sms_enable'] eq 1">checked</if> value="1" >是
+                                            <input type="radio" class="" name="order_pay_sms_enable" <if condition="$config['order_pay_sms_enable'] eq 0">checked</if> value="0" >否
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>商家发货时是否给客户发短信：</td>
+                                        <td>
+                                            <input type="radio" class="" name="order_shipping_sms_enable" <if condition="$config['order_shipping_sms_enable'] eq 1">checked</if> value="1" >是
+                                            <input type="radio" class="" name="order_shipping_sms_enable" <if condition="$config['order_shipping_sms_enable'] eq 0">checked</if> value="0" >否
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>短信码超时时间：</td>
+                                        <td>
+                                            <select name="sms_time_out">
+                                                <option value="60" <if condition="$config['sms_time_out'] eq 60">selected="selected"</if>>1分钟</option>
+                                                <option value="120"<if condition="$config['sms_time_out'] eq 120">selected="selected"</if>>2分钟</option>
+                                                <option value="300"<if condition="$config['sms_time_out'] eq 300">selected="selected"</if>>5分钟</option>
+                                                <option value="600"<if condition="$config['sms_time_out'] eq 600">selected="selected"</if>>10分钟</option>
+                                                <option value="1200"<if condition="$config['sms_time_out'] eq 1200">selected="selected"</if>>20分钟</option>
+                                                <option value="1800"<if condition="$config['sms_time_out'] eq 1800">selected="selected"</if>>30分钟</option>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <tfoot>
+                                    <tr>
+                                        <td><input type="hidden" name="inc_type" value="{$inc_type}"></td>
+                                        <td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td></tr>
+                                    </tfoot>
+                                </table>
+                            </div>
+                        </div>
+                    </form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    function adsubmit(){
+        $('#handlepost').submit();
+    }
+
+    $(document).ready(function(){
+        get_province();
+    });
+
+    function goset(obj){
+        window.location.href = $(obj).attr('data-url');
+    }
+</script>
+</body>
+</html>

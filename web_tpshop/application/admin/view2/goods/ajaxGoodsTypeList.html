@@ -1,0 +1,61 @@
+<form method="post" enctype="multipart/form-data" target="_blank" id="form-goodsType">
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <td style="width: 1px;" class="text-center"><input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);"></td>
+                </td>
+                <td class="text-right">
+                    <a href="#">ID</a>
+                </td>
+                <td class="text-left">
+                    <a href="#">属性名称</a>
+                </td>
+                <td class="text-left">
+                    <a href="#">商品类型</a>
+                </td>
+                <td class="text-left">
+                    <a href="#">属性值的输入方式</a>
+                </td>
+                <td class="text-right">
+                    <a href="">可选值列表</a>
+                </td>
+                <td class="text-left">
+                    <a href="">排序</a>
+                </td>
+                <td class="text-right">操作</td>
+            </tr>
+            </thead>
+            <tbody>
+            <volist name="goodsTypeList" id="list">
+                <tr>
+                    <td class="text-center">
+                        <input type="checkbox" name="selected[]" value="6">
+                    </td>
+                    <td class="text-right">{$list.attr_id}</td>
+                    <td class="text-left">{$list.attr_name}</td>
+                    <td class="text-left">{$list.type_id}</td>
+                    <td class="text-left">{$list.attr_input_type}</td>
+                    <td class="text-right"> {$list.attr_values|mb_substr=0,30,'utf-8'}</td>
+                    <td class="text-right">{$list.order}</td>
+                    <td class="text-right">
+                        <a href="{:U('Admin/order/detail',array('id'=>$list['attr_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+                        <a href="{:U('Admin/goods/addEditGoods',array('id'=>$list['attr_id']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                        <a href="{:U('Admin/order/delete',array('id'=>$list['attr_id']))}" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a></td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+</form>
+<div class="row">
+    <div class="col-sm-6 text-left"></div>
+    <div class="col-sm-6 text-right">{$page}</div>
+</div>
+<script>
+    // 点击分页触发的事件
+    $(".pagination  a").click(function(){
+        cur_page = $(this).data('p');
+        ajax_get_table('search-form2',cur_page);
+    });
+</script>

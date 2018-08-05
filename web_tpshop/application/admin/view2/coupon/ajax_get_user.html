@@ -1,0 +1,62 @@
+<div class="bDiv" style="height: auto;">
+    <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+        <table>
+            <tbody>
+            <volist name="userList" id="list">
+                <tr>
+                    <td class="sign">
+                        <div style="width: 24px;"><input type="checkbox" name="user_id[]" value="{$list.user_id}"/></div>
+                    </td>
+                    <td class="" align="left">
+                        <div style="text-align: left; width: 80px;">{$list.user_id}</div>
+                    </td>
+                    <td class="" align="left">
+                        <div style="text-align: center; width: 80px;">{$user_level[$list[level]]}</div>
+                    </td>
+                    <td class="" align="left">
+                        <div style="text-align: center; width: 80px;">
+                            <if condition=" $list[nickname] eq null">
+                                <if condition=" $list[oauth] eq 'weixin'">微信用户</if>
+                                <if condition=" $list[oauth] eq 'weibo'">微博用户</if>
+                                <if condition=" $list[oauth] eq 'alipay'">支付宝用户</if>
+                                <if condition=" $list[oauth] eq 'qq'">QQ用户</if>
+                                <else />
+                                {$list.nickname}
+                            </if>
+                        </div>
+                    </td>
+                    <td class="" align="left">
+                        <div style="text-align: center; width: 80px;">{$list.mobile}</div>
+                    </td>
+                    <td class="" align="left">
+                        <div style="text-align: center; width: 120px;">{$list.email}</div>
+                    </td>
+                    <td class="" align="center">
+                        <div style="text-align: center; width: 80px; ">
+                            <a class="btn red" onclick="$(this).parent().parent().parent().remove();"><i class="fa fa-trash-o"></i>删除</a>
+                        </div>
+                    </td>
+                    <td class="" style="width: 100%;" align="">
+                        <div>&nbsp;</div>
+                    </td>
+                </tr>
+            </volist>
+            </tbody>
+        </table>
+    </div>
+    <div class="iDiv" style="display: none;"></div>
+</div>
+<!--分页位置-->
+<div class="te_le">
+    {$page}
+</div>
+<div class="bot"><a onclick="doconfirm('form-user');" class="ncap-btn-big ncap-btn-green">确认发送</a></div>
+<script>
+    $(document).ready(function(){
+        $('#count').empty().html('{$pager->totalRows}');
+    });
+    $(".pagination  a").click(function(){
+        var page = $(this).data('p');
+        ajax_get_table('search-form2',page);
+    });
+</script>

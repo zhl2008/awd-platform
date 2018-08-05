@@ -1,0 +1,31 @@
+.greenhand_question{
+    height: 110px/$ppr;
+    line-height: 110px/$ppr;
+    position: relative;
+    border-bottom: 1px solid #e2e3e8;
+    p{
+        font-family: "黑体";
+        @include fs(font-size,32);
+        width: 86%;
+        @include cutOut;
+        margin-left: 40px/$ppr;
+        color: #333333;
+    }
+}
+.icon-arrow_r{
+    display: inline-block;
+    vertical-align: middle;
+    position: absolute;
+    right: 40px/$ppr;
+    top: 50%;
+    margin-top: -(25px/2);
+}
+.greenhand_answer{
+    font-family: "黑体";
+    @include fs(font-size,28);
+    line-height: 28px/$ppr;
+    letter-spacing: 2px/$ppr;
+    line-height: 35px/$ppr;
+    padding: 40px/$ppr;
+    border-bottom: 1px solid #e2e3e8;
+}

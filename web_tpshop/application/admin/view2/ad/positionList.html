@@ -1,0 +1,164 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>广告位列表</h3>
+        <h5>广告位与管理</h5>
+      </div>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+    <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+    </div>
+    <ul>
+      <li>广告位置在前台模板标签里面调用.</li>
+      <li>当模板标签调用时程序会自动判断 pid 不存在则自动添加一个广告位</li>      
+    </ul>
+  </div>
+  <div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>广告位置列表</h3>
+        <h5>(共{$pager->totalRows}条记录)</h5>
+      </div>
+      <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>	   
+    </div>
+    <div class="hDiv">
+      <div class="hDivBox">
+        <table cellspacing="0" cellpadding="0">
+          <thead>
+            <tr>
+              <th class="sign" axis="col0">
+                <div style="width: 24px;"><i class="ico-check"></i></div>
+              </th>
+              <th align="left" abbr="article_title" axis="col3" class="">
+                <div style="text-align: left; width: 50px;" class="">广告id</div>
+              </th>
+              <th align="left" abbr="ac_id" axis="col4" class="">
+                <div style="text-align: left; width: 200px;" class="">广告位名称</div>
+              </th>
+              <th align="center" abbr="article_show" axis="col5" class="">
+                <div style="text-align: center; width: 60px;" class="">广告位宽度</div>
+              </th>
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 60px;" class="">广告位高度</div>
+              </th>     
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 100px;" class="">广告位描述</div>
+              </th>     
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 50px;" class="">状态</div>
+              </th>
+              <th align="center" abbr="article_time" axis="col6" class="">
+                <div style="text-align: center; width: 100px;" class="">操作</div>
+              </th>             
+              <th style="width:100%" axis="col7">
+                <div></div>
+              </th>
+            </tr>
+          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="tDiv">
+      <div class="tDiv2">
+        <div class="fbutton"><a href="{:U('Admin/Ad/position')}"><div class="add" title="新增广告位"><span><i class="fa fa-plus"></i>新增广告位</span></div></a></div>
+      </div>
+      <div style="clear:both"></div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+      <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+        <table>
+          <tbody>
+            <foreach name="list" item="vo" key="k" >
+              <tr>
+                <td class="sign">
+                  <div style="width: 24px;"><i class="ico-check"></i></div>
+                </td>
+                <td align="left" class="">
+                  <div style="text-align: left; width: 50px;">{$vo[position_id]}</div>
+                </td>
+                <td align="left" class="">
+                  <div style="text-align: left; width: 200px;">{$vo.position_name}</div>
+                </td>                
+                <td align="left" class="">
+                  <div style="text-align: left; width: 60px;">{$vo.ad_width}</div>
+                </td>
+                <td align="left" class="">
+                  <div style="text-align: left; width: 60px;">{$vo.ad_height}</div>
+                </td>            
+                <td align="left" class="">
+                  <div style="text-align: left; width: 100px;">{$vo.position_desc}</div>
+                </td>               
+                <td align="center" class="">
+                  <div style="text-align: center; width: 50px;">
+                    <if condition='$vo[is_open] eq 1'>
+                      <span class="yes" onClick="changeTableVal('ad_position','position_id','{$vo.position_id}','is_open',this)" ><i class="fa fa-check-circle"></i>是</span>
+                      <else />
+                      <span class="no" onClick="changeTableVal('ad_position','position_id','{$vo.position_id}','is_open',this)" ><i class="fa fa-ban"></i>否</span>
+                    </if>
+                  </div>
+                </td>             
+                <td align="center" class="handle">
+                  <div style="text-align: center; width: 150px;">                    
+                    <a class="btn blue" href="{:U('Admin/Ad/adList',array('pid'=>$vo['position_id']))}"><i class="fa fa-search"></i>查看广告</a>                                                            
+                    <a href="{:U('Admin/Ad/position',array('act'=>'edit','position_id'=>$vo['position_id']))}" class="btn blue"><i class="fa fa-pencil-square-o"></i>编辑</a>
+                    <a class="btn blue" href="javascript:;" onclick="copyToClipBoard({$vo['position_id']}, 1)">代码调用</a>
+                  </div>
+                </td>
+                <td align="" class="" style="width: 100%;">
+                  <div>&nbsp;</div>
+                </td>
+              </tr>
+            </foreach>
+          </tbody>
+        </table>
+	 <!--分页位置--> 
+    {$page} </div>        
+      </div>       
+    </div>    
+</div>
+<script>	
+    $(document).ready(function(){	
+	    // 表格行点击选中切换
+	    $('#flexigrid > table>tbody >tr').click(function(){
+		    $(this).toggleClass('trSelected');
+		});
+		
+		// 点击刷新数据
+		$('.fa-refresh').click(function(){
+			location.href = location.href;
+		});
+		
+	});
+
+    /**
+     * 代码调用js
+     * @param id  position_id
+     * @param limit 条数
+     */
+    function copyToClipBoard(id, limit) {
+      var advstr = "<adv pid='" + id + "' limit='" + limit + "' item='v'></adv";
+      var contentdiv = '<div class="dialog_content" style="margin: 0px; padding: 0px;"><dl style="padding:10px 30px;line-height:30px"><dd>JavaScript:</dd>'
+      contentdiv += '<dd><input type="text" style=" width:400px;" value="<script type=&quot;text/javascript&quot; src=&quot;http://' + '{$Think.server.http_host}' + '/index.php?m=Home&amp;c=Api&amp;a=ad_show&amp;pid=' + id + '&amp;limit='+limit+'&quot;><\/script>"></dd>'
+      contentdiv += '<dd>PHP:</dd>'
+      contentdiv += '<input type="text" style=" width:400px;" value="' + advstr + '>">'
+      contentdiv += '<dd style="border-top: dotted 1px #E7E7E7; color: #F60;">请将JavaScript或PHP代码复制并粘贴到对应模板文件中！</dd></dl></div>'
+      layer.open({
+        type: 1,
+        skin: 'layui-layer-demo',
+        area: ['480px', '220px'], //宽高
+        content: contentdiv
+      });
+    }
+
+</script>
+</body>
+</html>

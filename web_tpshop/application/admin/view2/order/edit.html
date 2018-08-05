@@ -1,0 +1,131 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 收货信息编辑</h3>
+                </div>
+                <div class="panel-body">
+
+                    <!--表单数据-->
+                    <form method="post" action="" id="order-edit">
+                        <div class="tab-pane" >
+                            <table class="table table-bordered">
+                                <tbody><tr>
+                                    <td>收货人:</td>
+                                    <td>
+                                        <input name="consignee" value="{$order.consignee}">
+                                        <span class="help-inline" style="color:#F00; display:none;" id="err_consignee"></span>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>联系方式:</td>
+                                    <td>
+                                        <input name="mobile" value="{$order.mobile}">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>地址:</td>
+                                    <td>
+                                        <select onblur="get_city(this,0)" id="province" name="province">
+                                            <option value="0">选择省份</option>
+                                            <volist name="province" id="vo">
+                                                <option value="{$vo.id}" >{$vo.name}</option>
+                                            </volist>
+                                        </select>
+                                        <select onblur="get_area(this)" id="city" name="city">
+                                            <option value="0">选择城市</option>
+                                            <volist name="city" id="vo">
+                                                <option value="{$vo.id}">{$vo.name}</option>
+                                            </volist>
+                                        </select>
+                                        <select id="district" name="district">
+                                            <option value="0">选择区域</option>
+                                            <volist name="area" id="vo">
+                                                <option value="{$vo.id}">{$vo.name}</option>
+                                            </volist>
+                                        </select>
+                                        <input name="address" value="{$order.address}">
+
+                                        <span class="help-inline" style="color:#F00; display:none;" id="err_address"></span>
+
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>配送物流</td>
+                                    <td>
+                                        <select id="shipping" name="shipping">
+                                            <option>选择配送方式</option>
+                                            <volist name="shipping_list" id="shipping">
+                                                <option <if condition="$order[shipping_code] eq $shipping[code]">selected</if> value="{$shipping.code}_{$shipping.name}" >{$shipping.name}</option>
+                                            </volist>
+                                        </select>
+                                    </td>
+
+                                </tr>
+
+                                <tr>
+                                    <td>邮编:</td>
+                                    <td>
+                                        <input name="zipcode" value="{$order.zipcode}">
+                                    </td>
+                                </tr>
+
+                                </tbody></table>
+                        </div>
+                        <input type="hidden" name="id" value="{$order.order_id}">
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            保存
+                        </button>
+                    </form>
+                    <!--表单数据-->
+
+
+                                <!--&nbsp; &nbsp; &nbsp;-->
+                                <!--<button type="reset" class="btn">-->
+                                <!--<i class="ace-icon fa fa-undo bigger-110"></i>-->
+                                <!--返回-->
+                                <!--</button>-->
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+<script>
+    $('#pay-type-edit').click(function(){
+        var url = $(this).data('url');
+        layer.open({
+            type: 2,
+            title: '支付方式编辑',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['60%', '75%'],
+            content: url, //iframe的url
+        });
+    })
+
+    /* 用户订单区域选择 */
+    $(document).ready(function(){
+        $('#province').val({$order.province});
+    $('#city').val({$order.city});
+    $('#district').val({$order.district});
+    $('#shipping_id').val({$order.shipping_id});
+    })
+
+
+
+</script>
+
+</body>
+</html>

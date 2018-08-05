@@ -1,0 +1,234 @@
+<include file="public/layout" />
+ 
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="微信公众号配置"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>微信公众号配置</h3>
+        <h5>配置微信公众号, token、Appid、AppSecret要与微信公众开放平台信息一致</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" method="post" id="handlepost" action="">    
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>URL(服务器地址)</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" style="background-color: #d2d6de" readonly placeholder="请先以下信息保存后显示" value="{$apiurl}" class="input-txt">
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>Token</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="w_token" id="w_token" value="{$wechat.w_token}" class="input-txt">
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>公众号名称</label>
+        </dt>
+        <dd class="opt">
+         <input type="text" name="wxname" value="{$wechat.wxname}" class="input-txt">
+          <span class="err"></span>
+        </dd>
+      </dl>    
+	  <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>公众号原始id</label> 
+        </dt>
+        <dd class="opt">
+          <input type="text" class="input-txt" name="wxid" value="{$wechat.wxid}" />
+        </dd>
+      </dl>        
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>微信号</label> 
+        </dt>
+        <dd class="opt">
+          <input type="text" name="weixin" value="{$wechat.weixin}" class="input-txt">
+          <span class="err"></span>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>头像地址</label>
+        </dt>
+        <dd class="opt">
+          <div class="input-file-show">
+              <span class="show">
+                  <a id="img_a" target="_blank" class="nyroModal" rel="gal" href="{$wechat.headerpic}">
+                    <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$wechat.headerpic}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                  </a>
+              </span>
+              <span class="type-file-box">
+                  <input type="text" id="headerpic" name="headerpic" value="{$wechat.headerpic}" class="type-file-text">
+                  <input type="button" value="选择上传..." class="type-file-button">
+                  <input class="type-file-file" onClick="GetUploadify(1,'','weixin','img_call_back')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+              </span>
+          </div>
+          <span class="err"></span>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>AppID</label> 
+        </dt>
+        <dd class="opt">
+          <input type="text" name="appid" size="30" value="{$wechat.appid}" class="input-txt">
+          <span class="err"></span>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>AppSecret</label> 
+        </dt>
+        <dd class="opt">
+          <input type="text" name="appsecret" value="{$wechat.appsecret}" class="input-txt">
+          <span class="err"></span>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>二维码</label>
+        </dt>
+        <dd class="opt">
+          <div class="input-file-show">
+              <span class="show">
+                  <a id="img_a2" target="_blank" class="nyroModal" rel="gal" href="{$wechat.qr}">
+                    <i id="img_i2" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$wechat.qr}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                  </a>
+              </span>
+              <span class="type-file-box">
+                  <input type="text" id="qr" name="qr" value="{$wechat.qr}" class="type-file-text">
+                  <input type="button" value="选择上传..." class="type-file-button">
+                  <input class="type-file-file" onClick="GetUploadify(1,'','weixin','img_call_back2')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+              </span>
+          </div>
+          <span class="err"></span>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>微信号类型</label> 
+        </dt>
+        <dd class="opt">
+        <div class="sDiv2">	 
+          <select name="type" class="small form-control">
+              <option <if condition="$wechat['type'] eq 1">selected</if> value="1">订阅号</option>
+              <option <if condition="$wechat['type'] eq 2">selected</if> value="2">认证订阅号</option>
+              <option <if condition="$wechat['type'] eq 3">selected</if> value="3">服务号</option>
+              <option <if condition="$wechat['type'] eq 4">selected</if> value="4">认证服务号</option>
+          </select>
+          </div>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>微信接入状态</label> 
+        </dt>
+        <dd class="opt">
+          <input type="radio" name="wait_access" value="0" <if condition="$wechat['wait_access'] eq 0">checked="checked"</if>/> 等待接入
+          <input type="radio" name="wait_access" value="1" <if condition="$wechat['wait_access'] eq 1">checked="checked"</if>/> 已接入
+        </dd>
+      </dl>
+      <input type="hidden" name="id" value="{$wechat.id}">
+      <div class="bot"><a href="JavaScript:void(0);" onClick="formSubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+  
+$(document).ready(function(){
+	
+	$("#handlepost").validate({
+		debug: false, //调试模式取消submit的默认提交功能   
+		focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+        onkeyup: false,   
+        submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+            form.submit();   //提交表单   
+        },  
+        ignore:":button",	//不验证的元素
+        rules:{
+        	w_token:{
+        		required:true
+        	},
+        	wxname:{
+        		required:true
+        	},
+        	appsecret:{
+        		required:true
+        	},
+        	wxid:{
+        		required:true
+        	},
+        	weixin:{
+        		required:true
+        	},
+        	appid:{
+        		required:true
+        	},
+        	appsecret:{
+        		required:true
+        	}
+        },
+        messages:{
+        	w_token:{
+        		required:"请填写token"
+        	},
+        	wxname:{
+        		required:"请填写公众号名称"
+        	},
+        	wxid:{
+        		required:"请填写公众号原始id"
+        	},
+        	weixin:{
+        		required:"请填写微信号"
+        	},
+        	appid:{
+        		required:"请填写appid"
+        	},
+        	appsecret:{
+        		required:"请填写AppSecret"
+        	}
+        }
+	});
+	
+	 
+});
+
+function formSubmit(){
+	$("#handlepost").submit();
+}
+
+function img_call_back(fileurl_tmp)
+{
+  $("#headerpic").val(fileurl_tmp);
+  $("#img_a").attr('href', fileurl_tmp);
+  $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+}
+function img_call_back2(fileurl_tmp)
+{
+  $("#qr").val(fileurl_tmp);
+  $("#img_a2").attr('href', fileurl_tmp);
+  $("#img_i2").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+}
+</script>
+</body>
+</html>

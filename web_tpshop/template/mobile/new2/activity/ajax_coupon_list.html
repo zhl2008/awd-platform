@@ -1,0 +1,21 @@
+<foreach name="coupon_list" item="vo">
+    <if condition="$vo[isget] neq 1">
+        <div class="maleri30">
+            <div class="alcowlone p">
+                <div class="goods-limit fl">
+                    <div class="goodsimgbo fl">
+                        <img src="__STATIC__/images/coupon.png"/>
+                    </div>
+                    <div class="goods-limit-fo fl">
+                        <p class="name">{$vo.name}</p>
+                        <p class="condition"><em>{$vo.money|intval}</em>满{$vo.condition|intval}元可用</p>
+                    </div>
+                </div>
+                <div class="get-limit fr">
+                    <canvas class="alreadyget" data-num='{$vo[send_num]/$vo[createnum]*100|ceil}'  width="100"  height="100"></canvas>
+                    <a class="clickgetcoupon" data-coupon-id="{$vo.id}" onclick="getCoupon(this)">点击领取</a>
+                </div>
+            </div>
+        </div>
+    </if>
+</foreach>

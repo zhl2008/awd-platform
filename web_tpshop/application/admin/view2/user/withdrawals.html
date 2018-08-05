@@ -1,0 +1,302 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>会员提现申请记录</h3>
+                <h5>网站系统会员提现申请记录索引与管理</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+        	<li>支付宝，微信在线转账需要申请相关支付接口以及设置管理员支付密码</li>
+        	<li>拒绝提现的申请记录才能删除</li>
+			<li>审核通过的提现申请会进入待付款列表</li>
+        </ul>
+    </div>
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>会员提现申请记录列表</h3>
+                <h5>(共{$pager->totalRows}条记录)</h5>
+            </div>
+            <div title="刷新数据" class="pReload"><a href=""><i class="fa fa-refresh"></i></a></div>
+            <form class="navbar-form form-inline" id="search-form" method="get" action="{:U('withdrawals')}" onsubmit="return check_form();">
+                <input type="hidden" name="create_time" id="create_time" value="{$create_time}">
+                <div class="sDiv">
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input type="text" size="30" id="start_time" value="{$start_time}" placeholder="起始时间" class="qsbox">
+                        <input type="button" class="btn" value="起始时间">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input type="text" size="30" id="end_time" value="{$end_time}" placeholder="截止时间" class="qsbox">
+                        <input type="button" class="btn" value="截止时间">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;border: none;">
+                        <select id="status" name="status" class="form-control">
+                            <option value="">状态</option>
+                            <option value="0" <if condition="$_REQUEST['status'] eq 0">selected</if>>待审核</option>
+                            <option value="1" <if condition="$_REQUEST['status'] eq 1">selected</if>>申请成功</option>
+                            <option value="2" <if condition="$_REQUEST['status'] eq 2">selected</if>>付款成功</option>
+                            <option value="3" <if condition="$_REQUEST['status'] eq 3">selected</if>>付款失败</option>
+                        </select>
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input size="30" id="user_id" name="user_id" value="{$_GET[user_id]}" placeholder="用户ID" class="qsbox" type="text">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input size="30" placeholder="收款账户真实姓名" value="{$_GET[realname]}" name="realname" class="qsbox" type="text">
+                    </div>
+                    <div class="sDiv2">
+                        <input size="30" value="{$_GET[bank_card]}" name="bank_card" placeholder="收款账号" class="qsbox" type="text">
+                        <input class="btn" value="搜索" type="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th align="center" abbr="article_title" axis="col3" class="">
+                            <div style="text-align: center; width: 50px;" class="">
+                                <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);">
+                            </div>
+                        </th>
+                        <th align="center" abbr="article_title" axis="col3" class="">
+                            <div style="text-align: center; width: 50px;" class="">申请ID</div>
+                        </th>
+                        <th align="center" abbr="ac_id" axis="col4" class="">
+                            <div style="text-align: center; width: 50px;" class="">用户id</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 100px;" class="">用户昵称</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 150px;" class="">申请时间</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">申请金额</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">银行机构名称</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">账户号码</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">账户开户名</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 100px;" class="">状态</div>
+                        </th>
+                        <th align="center" axis="col1" class="handle">
+                            <div style="text-align: center; width: 250px;">操作</div>
+                        </th>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="tDiv">
+            <div class="tDiv2">
+                <div class="fbutton">
+                    <a onclick="act_submit(1)">
+                        <div class="add" title="审核通过">
+                            <span><i class="fa fa-check"></i>审核通过</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="fbutton">
+                    <a onclick="act_submit(-1)">
+                        <div class="add" title="拒绝提现">
+                            <span><i class="fa fa-ban"></i>审核失败</span>
+                        </div>
+                    </a>
+                </div>
+                <div class="fbutton">
+                    <a onclick="act_submit(-2)">
+                        <div class="add" title="无效作废">
+                            <span><i class="fa fa-close"></i>无效作废</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="bDiv" style="height: auto;">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <if condition="empty($list) eq true">
+				 		<tr data-id="0">
+					        <td class="no-data" align="center" axis="col0" colspan="50">
+					        	<i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+					        </td>
+					     </tr>
+					<else/>
+                    <volist name="list" id="v">
+                        <tr>
+                            <td align="center" class="">
+                                <label>
+                                <div style="text-align: center; width: 50px;">
+                                    <if condition="$v['status'] eq 0"><input type="checkbox" name="selected[]" value="{$v['id']}"></if>
+                                </div></label>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 50px;">
+                                    {$v.id}
+                                </div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 50px;">{$v.user_id}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">
+                                    <a class="open" href="{:U('Admin/user/detail',array('id'=>$v[user_id]))}" target="blank">
+                                        {$v.nickname}<i class="fa fa-external-link " title="新窗口打开"></i>
+                                    </a>
+                                </div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 150px;">{$v.create_time|date="Y-m-d H:i:s",###}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">{$v.money}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">{$v.bank_name}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">{$v.bank_card}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">{$v.realname}</div>
+                            </td>
+                            <td align="center" class="">
+                                <div style="text-align: center; width: 100px;">
+                                    <if condition="$v[status] eq 0">待审核</if>
+                                    <if condition="$v[status] eq 1">审核通过</if>
+                                    <if condition="$v[status] eq -1">审核失败</if>
+                                    <if condition="$v[status] eq -2">无效作废</if>
+                                </div>
+                            </td>
+                            <td align="left" class="handle">
+                                <div style="text-align: center; width: 170px; max-width:250px;">
+                                    <a href="{:U('editWithdrawals',array('id'=>$v['id'],'p'=>$_GET[p]))}" class="btn blue"><i class="fa fa-pencil-square-o"></i>查看</a>
+                                    <if condition="$v[status] elt -1">
+                                        <a class="btn red"  href="javascript:void(0)" data-id="{$v[id]}" onclick="delfunc(this)" data-url="{:U('delWithdrawals')}"><i class="fa fa-trash-o"></i>删除</a>
+                                    </if>
+                                </div>
+                            </td>
+                            <td align="" class="" style="width: 100%;">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </if>
+                    </tbody>
+                </table>
+            </div>
+            <div class="iDiv" style="display: none;"></div>
+        </div>
+        <!--分页位置-->
+        {$show} </div>
+</div>
+<script>
+    $(document).ready(function(){
+        // 表格行点击选中切换
+        $('#flexigrid > table>tbody >tr').click(function(){
+            $(this).toggleClass('trSelected');
+        });
+        // 点击刷新数据
+        $('.fa-refresh').click(function(){
+            location.href = location.href;
+        });
+
+        $('#start_time').layDate();
+        $('#end_time').layDate();
+    });
+    
+    function check_form(){
+        var start_time = $.trim($('#start_time').val());
+        var end_time =  $.trim($('#end_time').val());
+        if(start_time == '' ^ end_time == ''){
+            layer.alert('请选择完整的时间间隔', {icon: 2});
+            return false;
+        }
+        if(start_time !== '' && end_time !== ''){
+            $('#create_time').val(start_time+" - "+end_time);
+        }
+        if(start_time == '' && end_time == ''){
+            $('#create_time').val('');
+        }
+
+        return true;
+    }
+
+    //批量操作提交
+    function act_submit(wst) {
+        var chks = [];
+    $('input[name*=selected]').each(function(i,o){
+        if($(o).is(':checked')){
+            chks.push($(o).val());
+        }
+    })
+    if(chks.length == 0){
+        layer.alert('少年，请至少选择一项', {icon: 2});return;
+    }
+    var can_post = false;
+    var remark = "审核通过";
+    if(wst != 1 ){
+        layer.prompt({title: '请填写备注', formType: 2}, function(text, index){
+            layer.close(index);
+            remark = text;
+            audit(chks , wst ,  remark);
+        });
+    }else{
+        audit(chks , wst ,  remark);
+    }
+    }
+        
+    function audit(chks , wst ,  remark){
+    	$.ajax({
+            type: "POST",
+            url: "/index.php?m=Admin&c=User&a=withdrawals_update",//+tab,
+            data: {id:chks,status:wst,remark:remark},
+            dataType: 'json',
+            success: function (data) {
+                if(data.status == 1){
+                    layer.alert(data.msg, {
+                        icon: 1,
+                        closeBtn: 0
+                    }, function(){
+                        window.location.reload();
+                    });
+                }else{
+                    layer.alert(data.msg, {icon: 2,time: 3000});
+                }
+            },
+            error:function(){
+                layer.alert('网络异常', {icon: 2,time: 3000});
+            }
+        });
+    }
+
+</script>
+</body>
+</html>

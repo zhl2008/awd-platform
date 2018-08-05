@@ -1,0 +1,730 @@
+/* ----------------Reset Css--------------------- */
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video, input  {
+    margin: 0;
+    padding: 0;
+    border: none;
+    outline: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+html, body, form, fieldset, p, div, h1, h2, h3, h4, h5, h6 {
+    -webkit-text-size-adjust: none;
+}
+
+article, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {
+    display: block;
+}
+
+body {
+    font-family: arial, sans-serif;
+}
+
+ol, ul, li {
+    list-style: none;
+}
+
+blockquote, q {
+    quotes: none;
+}
+
+blockquote:before, blockquote:after, q:before, q:after {
+    content: '';
+    content: none;
+}
+
+ins {
+    text-decoration: none;
+}
+
+del {
+    text-decoration: line-through;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+/* ------------ */
+.tabs{
+	overflow:hidden;
+	margin:5px;
+}
+.tabs li{
+	display:inline-block;
+	*display:inline;
+	*zoom:1;
+	margin-left:10px;
+    padding:0 18px;
+	height:40px;
+    line-height:40px;
+	cursor:pointer;
+    text-align:center;
+	background:#fff;
+    border:1px solid #CFCFCF;
+    border-radius:3px;
+    color:#565656;
+    font-size:14px;
+	transition:background .3s;
+	-moz-transition:background .3s;
+	-webkit-transition:background .3s;
+	-o-transition:background .3s;
+}
+.tabs li.checked,
+.tabs li:hover{
+	color:#fff;
+	background:#00B7EE;
+	border-color:transparent;
+}
+.container{
+	margin:5px;
+	border:3px dashed #E6E6E6;
+}
+.container .area{
+	position:relative;
+	margin:5px;
+	min-height:200px;
+	_height:200px;
+}
+.container .search-area,
+.container .manage-area{
+	display:none;
+}
+.container .search-area.loading,
+.container .manage-area.loading{
+	background:url(../images/loading.gif) no-repeat center center;
+}
+#uploader .queueList {
+    margin: 20px;
+}
+.element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px,1px,1px,1px);
+}
+
+#uploader .placeholder {
+    min-height: 200px;
+    padding-top: 100px;
+	padding-top: 148px\9;
+    *min-height: 218px;
+    *padding-top: 168px;
+    text-align: center;
+    background: url(../images/image.png) center 20px no-repeat;
+    color: #cccccc;
+    font-size: 18px;
+    position: relative;
+}
+
+#uploader .placeholder .webuploader-pick {
+    font-size: 18px;
+    background: #00b7ee;
+    border-radius: 3px;
+    line-height: 44px;
+    padding: 0 30px;
+    color: #fff;
+    display: inline-block;
+    margin: 20px auto;
+    cursor: pointer;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+#uploader .placeholder .webuploader-pick-hover {
+    background: #00a2d4;
+}
+
+#uploader .placeholder .flashTip {
+    color: #666666;
+    font-size: 12px;
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    bottom: 20px;
+}
+#uploader .placeholder .flashTip a {
+    color: #0785d1;
+    text-decoration: none;
+}
+#uploader .placeholder .flashTip a:hover {
+    text-decoration: underline;
+}
+
+#uploader .placeholder.webuploader-dnd-over {
+    border-color: #999999;
+}
+
+#uploader .placeholder.webuploader-dnd-over.webuploader-dnd-denied {
+    border-color: red;
+}
+
+#uploader .filelist {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+#uploader .filelist:after {
+    content: '';
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    clear: both;
+}
+
+#uploader .filelist li {
+    width: 110px;
+    height: 110px;
+    background: url(../images/bg.png) no-repeat;
+    text-align: center;
+    margin: 0 8px 20px 0;
+    position: relative;
+    display: inline;
+    float: left;
+    overflow: hidden;
+    font-size: 12px;
+}
+
+#uploader .filelist li p.log {
+    position: relative;
+    top: -45px;
+}
+
+#uploader .filelist li p.title {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow : ellipsis;
+    top: 5px;
+    text-indent: 5px;
+    text-align: left;
+}
+
+#uploader .filelist li p.progress {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    height: 8px;
+    overflow: hidden;
+    z-index: 50;
+}
+#uploader .filelist li p.progress span {
+    display: none;
+    overflow: hidden;
+    width: 0;
+    height: 100%;
+    background: #1483d8 url(../images/progress.png) repeat-x;
+
+    -webit-transition: width 200ms linear;
+    -moz-transition: width 200ms linear;
+    -o-transition: width 200ms linear;
+    -ms-transition: width 200ms linear;
+    transition: width 200ms linear;
+
+    -webkit-animation: progressmove 2s linear infinite;
+    -moz-animation: progressmove 2s linear infinite;
+    -o-animation: progressmove 2s linear infinite;
+    -ms-animation: progressmove 2s linear infinite;
+    animation: progressmove 2s linear infinite;
+
+    -webkit-transform: translateZ(0);
+}
+
+@-webkit-keyframes progressmove {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 17px 0;
+    }
+}
+@-moz-keyframes progressmove {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 17px 0;
+    }
+}
+@keyframes progressmove {
+    0% {
+       background-position: 0 0;
+    }
+    100% {
+       background-position: 17px 0;
+    }
+}
+
+#uploader .filelist li p.imgWrap {
+    position: relative;
+    z-index: 2;
+    line-height: 110px;
+    vertical-align: middle;
+    overflow: hidden;
+    width: 110px;
+    height: 110px;
+	color:#1094FA;
+	font-size:14px;
+    -webkit-transform-origin: 50% 50%;
+    -moz-transform-origin: 50% 50%;
+    -o-transform-origin: 50% 50%;
+    -ms-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+
+    -webit-transition: 200ms ease-out;
+    -moz-transition: 200ms ease-out;
+    -o-transition: 200ms ease-out;
+    -ms-transition: 200ms ease-out;
+    transition: 200ms ease-out;
+}
+
+#uploader .filelist li img {
+    width: 100%;
+}
+
+#uploader .filelist li p.error {
+    background: #f43838;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 28px;
+    line-height: 28px;
+    width: 100%;
+    z-index: 100;
+}
+
+#uploader .filelist li .success {
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 40px;
+    width: 100%;
+    z-index: 200;
+    background: url(../images/success.png) no-repeat right bottom;
+	_background: url(../images/success.gif) no-repeat right bottom;
+}
+
+#uploader .filelist div.file-panel {
+    position: absolute;
+    height: 0;
+    filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#80000000', endColorstr='#80000000')\0;
+    background: rgba( 0, 0, 0, 0.5 );
+    width: 100%;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 300;
+	transition:height .5s;
+	-moz-transition:height .5s;
+	-webkit-transition:height .5s;
+	-o-transition:height .5s;
+}
+
+#uploader .filelist div.file-panel span {
+    width: 24px;
+    height: 24px;
+    display: inline;
+    float: right;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url(../images/icons.png) no-repeat;
+	_background: url(../images/icons.gif) no-repeat;
+    margin: 5px 1px 1px;
+    cursor: pointer;
+}
+
+#uploader .filelist div.file-panel span.rotateLeft {
+    background-position: 0 -24px;
+}
+#uploader .filelist div.file-panel span.rotateLeft:hover {
+    background-position: 0 0;
+}
+
+#uploader .filelist div.file-panel span.rotateRight {
+    background-position: -24px -24px;
+}
+#uploader .filelist div.file-panel span.rotateRight:hover {
+    background-position: -24px 0;
+}
+
+#uploader .filelist div.file-panel span.cancel {
+    background-position: -48px -24px;
+}
+#uploader .filelist div.file-panel span.cancel:hover {
+    background-position: -48px 0;
+}
+
+#uploader .statusBar {
+    height: 63px;
+    border-bottom: 1px solid #dadada;
+    padding: 0 20px;
+    line-height: 63px;
+    vertical-align: middle;
+    position: relative;
+}
+
+#uploader .statusBar .progress {
+    border: 1px solid #1483d8;
+    width: 198px;
+    background: #fff;
+    height: 18px;
+    position: relative;
+    display: inline-block;
+    text-align: center;
+    line-height: 20px;
+    color: #6dbfff;
+    position: relative;
+    margin-right: 10px;
+}
+#uploader .statusBar .progress span.percentage {
+    width: 0;
+    height: 100%;
+    left: 0;
+    top: 0;
+    background: #1483d8;
+    position: absolute;
+}
+#uploader .statusBar .progress span.text {
+    position: relative;
+    z-index: 10;
+}
+
+#uploader .statusBar .info {
+    display: inline-block;
+    font-size: 14px;
+    color: #666666;
+}
+
+#uploader .statusBar .btns {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    line-height: 40px;
+}
+
+#filePicker{
+	*width:250px;
+}
+
+#filePicker2 {
+    display: inline-block;
+    float: left;
+}
+
+#uploader .statusBar .btns .webuploader-pick,
+#uploader .statusBar .btns .uploadBtn,
+#uploader .statusBar .btns .saveBtn,
+#uploader .statusBar .btns .uploadBtn.state-uploading,
+#uploader .statusBar .btns .uploadBtn.state-paused {
+    background: #ffffff;
+    border: 1px solid #cfcfcf;
+    color: #565656;
+    padding: 0 18px;
+    display: inline-block;
+    border-radius: 3px;
+    margin-left: 10px;
+    cursor: pointer;
+    font-size: 14px;
+    float: left;
+}
+#uploader .statusBar .btns .webuploader-pick-hover,
+#uploader .statusBar .btns .uploadBtn:hover,
+#uploader .statusBar .btns .uploadBtn.state-uploading:hover,
+#uploader .statusBar .btns .uploadBtn.state-paused:hover {
+    background: #f0f0f0;
+}
+
+#uploader .statusBar .btns .uploadBtn , #uploader .statusBar .btns .saveBtn {
+    background: #00b7ee;
+    color: #fff;
+    border-color: transparent;
+}
+#uploader .statusBar .btns .uploadBtn:hover {
+    background: #00a2d4;
+}
+
+#uploader .statusBar .btns .uploadBtn.disabled {
+    pointer-events: none;
+    opacity: 0.6;
+}
+.container .area .choose-btns{
+	position:relative;
+	padding:0 10px;
+    height:60px;
+    line-height:60px;
+    vertical-align:middle;
+	border-bottom:1px solid #DADADA;
+}
+.container .area .choose-btns .submit,
+.container .area .choose-btns .btn{
+	position:relative;
+	float:right;
+	margin:8px 0 0 15px;
+    width:110px;
+	height:40px;
+    line-height:40px;
+	cursor:pointer;
+    text-align:center;
+	background:#fff;
+    border:1px solid #CFCFCF;
+    border-radius:3px;
+    color:#565656;
+    font-size:14px;
+}
+.container .area .choose-btns .checked{
+	color:#fff;
+	background:#00B7EE;
+	border-color:transparent;
+}
+.container .area .choose-btns .search{
+	float:left;
+}
+.container .area .choose-btns .search .key{
+    float:left;
+    margin:8px 0 0 0;
+    padding:11px 5px;
+    width:300px;
+	font-size:14px;
+	color:#555;
+	border:1px solid #CFCFCF;
+	line-height:14px;
+	border-radius:3px;
+	background:#fff;
+}
+.container .area .choose-btns .search .key:focus{
+    border-color:#66AFE9;
+}
+.container .area .choose-btns .submit{
+	float:left;
+}
+.container .area .file-list .nofile{
+	text-align:center;
+	line-height:50px;
+	color:#00B7EE
+}
+.container .area .file-list .file{
+    overflow:hidden;
+    position:relative;
+	float:left;
+	margin:10px 10px 0 0;
+    height:120px;
+    width:120px;
+    font-size:12px;
+    text-align:center;
+	border:1px solid #ccc;
+}
+.container .area .file-list .file:hover,
+.container .area .file-list .file.checked{
+	border-color:#1094FA;
+}
+.container .area .file-list .file .file-panel {
+    left:0;
+    overflow:hidden;
+    position:absolute;
+    top:-30px;
+    height:30px;
+    width:100%;
+    z-index:5;
+	background:rgba(0, 0, 0, 0.5);
+	filter:progid:DXImageTransform.Microsoft.gradient(GradientType=0, startColorstr='#80000000', endColorstr='#80000000')\0;
+	transition:top .5s;
+	-moz-transition:top .5s;
+	-webkit-transition:top .5s;
+	-o-transition:top .5s;
+    -moz-user-select:none;
+	-webkit-user-select:none;
+	-ms-user-select:none;
+    user-select:none;
+}
+.container .area .file-list .file:hover .file-panel{
+	top:0;
+}
+.container .area .file-list .file .file-panel span {
+    width: 24px;
+    height: 24px;
+    display: inline;
+    float: right;
+    text-indent: -9999px;
+    overflow: hidden;
+    background: url(../images/icons.png) no-repeat;
+	_background: url(../images/icons.gif) no-repeat;
+    margin: 5px 1px 1px;
+    cursor: pointer;
+}
+.container .area .file-list .file .file-panel span.cancel {
+    background-position: -48px -24px;
+}
+.container .area .file-list .file .file-panel span.cancel:hover {
+    background-position: -48px 0;
+}
+.container .area .file-list .file .img{
+	position:relative;
+	display:table-cell;
+	height:100px;
+	width:120px;
+	vertical-align:middle;
+	text-align:center;
+	z-index:1;
+}
+.container .area .file-list .file .img img{
+	position:relative;
+	vertical-align:middle;
+	z-index:1;
+}
+.container .area .file-list .file .icon{
+    position:absolute;
+	left:0;
+    top:0;
+    height:99px;
+    width:100%;
+    border:0 none;
+    cursor:pointer;
+    z-index:2;
+	background:none;
+}
+.container .area .file-list .file.checked .icon{
+	border-bottom:1px solid #1094FA;
+	background:transparent url(../images/success.png) no-repeat right bottom;
+	_background:transparent url(../images/success.gif) no-repeat right bottom;
+}
+.container .area .file-list .file .desc{
+	overflow:hidden;
+	position:absolute;
+	left:0;
+	bottom:0;
+	padding:0 5px;
+	height:20px;
+	width:100%;
+	font-size:14px;
+	color:#666;
+	line-height:20px;
+	text-overflow:ellipsis;
+	z-index:2;
+	cursor:default;
+	background:#efefef;
+}
+.area li .file-global{
+	background:url(../images/url.png) no-repeat center center;
+}
+.area li .file-vsd{
+	background:url(../images/vsd.png) no-repeat center center;
+}
+.area li .file-wav{
+	background:url(../images/wav.png) no-repeat center center;
+}
+.area li .file-wma{
+	background:url(../images/wma.png) no-repeat center center;
+}
+.area li .file-wmv{
+	background:url(../images/wmv.png) no-repeat center center;
+}
+.area li .file-xlsx{
+	background:url(../images/xlsx.png) no-repeat center center;
+}
+.area li .file-zip{
+	background:url(../images/zip.png) no-repeat center center;
+}
+.area li .file-mov{
+	background:url(../images/mov.png) no-repeat center center;
+}
+.area li .file-mp3{
+	background:url(../images/mp3.png) no-repeat center center;
+}
+.area li .file-mpeg{
+	background:url(../images/mpeg.png) no-repeat center center;
+}
+.area li .file-pdf{
+	background:url(../images/pdf.png) no-repeat center center;
+}
+.area li .file-png{
+	background:url(../images/png.png) no-repeat center center;
+}
+.area li .file-pptx{
+	background:url(../images/pptx.png) no-repeat center center;
+}
+.area li .file-proj{
+	background:url(../images/proj.png) no-repeat center center;
+}
+.area li .file-psd{
+	background:url(../images/psd.png) no-repeat center center;
+}
+.area li .file-pst{
+	background:url(../images/pst.png) no-repeat center center;
+}
+.area li .file-pub{
+	background:url(../images/pub.png) no-repeat center center;
+}
+.area li .file-rar{
+	background:url(../images/rar.png) no-repeat center center;
+}
+.area li .file-readme{
+	background:url(../images/readme.png) no-repeat center center;
+}
+.area li .file-settings{
+	background:url(../images/settings.png) no-repeat center center;
+}
+.area li .file-text{
+	background:url(../images/text.png) no-repeat center center;
+}
+.area li .file-tiff{
+	background:url(../images/tiff.png) no-repeat center center;
+}
+.area li .file-eml{
+	background:url(../images/eml.png) no-repeat center center;
+}
+.area li .file-eps{
+	background:url(../images/eps.png) no-repeat center center;
+}
+.area li .file-fla{
+	background:url(../images/fla.png) no-repeat center center;
+}
+.area li .file-gif{
+	background:url(../images/gif.png) no-repeat center center;
+}
+.area li .file-html{
+	background:url(../images/html.png) no-repeat center center;
+}
+.area li .file-ind{
+	background:url(../images/ind.png) no-repeat center center;
+}
+.area li .file-ini{
+	background:url(../images/ini.png) no-repeat center center;
+}
+.area li .file-jpg,
+.area li .file-jpeg{
+	background:url(../images/jpeg.png) no-repeat center center;
+}
+.area li .file-jsf{
+	background:url(../images/jsf.png) no-repeat center center;
+}
+.area li .file-midi{
+	background:url(../images/midi.png) no-repeat center center;
+}
+.area li .file-css{
+	background:url(../images/css.png) no-repeat center center;
+}
+.area li .file-docx{
+	background:url(../images/docx.png) no-repeat center center;
+}
+.area li .file-bmp{
+	background:url(../images/bmp.png) no-repeat center center;
+}
+.area li .file-avi{
+	background:url(../images/avi.png) no-repeat center center;
+}
+.area li .file-accdb{
+	background:url(../images/accdb.png) no-repeat center center;
+}

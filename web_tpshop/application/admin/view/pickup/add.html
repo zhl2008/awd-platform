@@ -1,0 +1,131 @@
+<include file="public/min-header"/>
+<style type="text/css">
+	.wi80-BFB{width:80%}
+	.wi40-BFB{width:40%}
+	.seauii{ padding:7px 10px; margin-right:10px}
+	.he110{ height:110px}
+	.di-bl{ display:inherit}
+</style>
+<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/edit_address.css" type="text/css">
+<body>
+<include file="public/breadcrumb"/>
+<div class="adderss-add">
+	<div class="ner-reac ol_box_4" style="visibility: visible; position: fixed; z-index: 500; width: 100%; height:100%">
+		<section class="content">
+			<div class="container-fluid">
+				<div class="panel  panel-default">
+					<div class="panel-heading">
+								<h3 class="panel-title"><i class="fa fa-list"></i> 添加自提点</h3>
+					</div>
+					<div class="box-ct">
+						<form action="{:U('Admin/Pickup/add')}" method="post" onSubmit="return checkForm()">
+							<input name="pickup_id" type="hidden" value="{$pickup['pickup_id']}" />
+							<table width="90%" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td align="right"><span class="xh">*</span>自提点名称：&nbsp;</td>
+									<td><input class="wi80-BFB" name="pickup_name" type="text" value="{$pickup.pickup_name}" maxlength="12" /></td>
+								</tr>
+								<tr>
+									<td align="right"><span class="xh">*</span>自提点地址：&nbsp;</td>
+									<td>
+										<select class="di-bl fl seauii" name="province_id" id="province" onChange="get_city(this)">
+											<option value="0">请选择</option>
+											<volist name="province" id="p">
+												<option <if condition="$pickup['province_id'] eq $p['id']">selected</if>  value="{$p.id}">{$p.name}</option>
+											</volist>
+										</select>
+
+										<select class="di-bl fl seauii" name="city_id" id="city" onChange="get_area(this)">
+											<option  value="0">请选择</option>
+											<volist name="city" id="p">
+												<option <if condition="$pickup['city_id'] eq $p['id']">selected</if>  value="{$p.id}">{$p.name}</option>
+											</volist>
+										</select>
+
+										<select class="di-bl fl seauii" name="district_id" id="district">
+											<option  value="0">请选择</option>
+											<volist name="district" id="p">
+												<option <if condition="$pickup['district_id'] eq $p['id']">selected</if>  value="{$p.id}">{$p.name}</option>
+											</volist>
+										</select>
+										<br>
+									</td>
+								</tr>
+								<tr>
+									<td align="right"><span class="xh">*</span>供货商：&nbsp;</td>
+									<td>
+										<select class="di-bl fl seauii" name="suppliersid" id="suppliers_id">
+											<option  value="0">不选则无供货商{$pickup['suppliers_id']}</option>
+											<volist name="suppliers" id="s">
+												<option <if condition="$pickup['suppliersid'] eq $s['suppliers_id']">selected="selected"</if>  value="{$s.suppliers_id}">{$s.suppliers_name}</option>
+											</volist>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td align="right" valign="top"><span class="xh">*</span>详细地址：&nbsp;</td>
+									<td><textarea class="he110 wi80-BFB re-no" name="pickup_address" id="address" placeholder="详细地址" maxlength="100">{$pickup.pickup_address}</textarea></td>
+								</tr>
+								<tr>
+									<td align="right">自提点联系人：&nbsp;</td>
+									<td><input class="wi80-BFB" type="text" name="pickup_contact" placeholder="自提点联系人" value="{$pickup.pickup_contact}"  maxlength="10"/></td>
+								</tr>
+								<tr>
+									<td align="right">自提点电话：&nbsp;</td>
+									<td><input class="wi40-BFB" type="text" name="pickup_phone" value="{$pickup.pickup_phone}" onpaste="this.value=this.value.replace(/[^\d-]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d-]/g,'')" maxlength="15"/></td>
+								</tr>
+								<tr>
+									<td class="pa-50-0">&nbsp;</td>
+									<td align="right">
+										<button type="submit" class="box-ok ma-le--70"><span>保存自提点</span></button>
+									</td>
+								</tr>
+							</table>
+
+						</form>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+</div>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/pc_common.js"></script>
+
+<script>
+	function checkForm(){
+		var pickup_name = $('input[name="pickup_name"]').val();
+		var province_id = $('select[name="province_id"]').find('option:selected').val();
+		var city_id = $('select[name="city_id"]').find('option:selected').val();
+		var district_id = $('select[name="district_id"]').find('option:selected').val();
+		var pickup_address = $('textarea[name="pickup_address"]').val();
+		var pickup_phone = $('input[name="pickup_phone"]').val();
+		var error = '';
+		if(pickup_name == ''){
+			error += '自提点名称不能为空 <br/>';
+		}
+		if(province_id==0){
+			error += '请选择省份 <br/>';
+		}
+		if(city_id==0){
+			error += '请选择城市 <br/>';
+		}
+		if(district_id==0){
+			error += '请选择区域 <br/>';
+		}
+		if(pickup_address == ''){
+			error += '请填写地址 <br/>';
+		}
+		//if(!checkMobile(pickup_phone))
+			//error += '手机号码格式有误 <br/>';
+		if(error){
+			//alert(error);
+			layer.alert(error, {icon: 2});
+			//	layer.msg('只想弱弱提示');
+			return false;
+		}
+		return true;
+	}
+</script>
+</body>
+</html>

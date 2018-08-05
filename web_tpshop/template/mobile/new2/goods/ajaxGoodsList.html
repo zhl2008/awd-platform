@@ -1,0 +1,22 @@
+<foreach name="goods_list" item="vo" key="k">
+    <div class="orderlistshpop p">
+        <div class="maleri30">
+            <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$vo[goods_id]))}" class="item">
+                <div class="sc_list se_sclist">
+                    <div class="shopimg fl">
+                        <img src="{$vo.goods_id|goods_thum_images=400,400}">
+                    </div>
+                    <div class="deleshow fr">
+                        <div class="deletes">
+                            <span class="similar-product-text fl">{$vo.goods_name|getSubstr=0,20}</span>
+                        </div>
+                        <div class="prices">
+                            <p class="sc_pri fl"><span>￥</span><span>{$vo[shop_price]}元</span></p>
+                        </div>
+                        <p class="weight"><span>{$vo[comment_count]}</span><span>条评价</span></p>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</foreach>

@@ -1,0 +1,145 @@
+<include file="public/layout"/>
+<style>
+    .te_le .dataTables_paginate{float: left;}
+    .bot{float: right;padding: 15px 0}
+</style>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div class="page" style="padding: 0px 1% 0 1%;">
+    <!-- 操作说明 -->
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>商品列表</h3>
+                <h5>(共{$page->totalRows}条记录)</h5>
+            </div>
+            <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+            <form class="navbar-form form-inline" id="search-form2" action="{:U('Promotion/search_goods',array('tpl'=>'select_goods'))}" method="get">
+                <div class="sDiv">
+                    <div class="sDiv2" style="margin-right: 10px;border:none;">
+                        <select name="cat_id" id="cat_id">
+                            <option value="">所有分类</option>
+                            <foreach name="categoryList" item="v" key="k" >
+                                <option value="{$v['id']}" <if condition="$v[id] eq $Request.param.cat_id">selected</if>>{$v['name']}</option>
+                            </foreach>
+                        </select>
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;border:none;">
+                        <select name="brand_id" id="brand_id">
+                            <option value="">所有品牌</option>
+                            <foreach name="brandList" item="v" key="k" >
+                                <option value="{$v['id']}" <if condition="$v[id] eq $Request.param.brand_id">selected</if>>{$v['name']}</option>
+                            </foreach>
+                        </select>
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;border:none;">
+                        <select name="intro">
+                            <option value="0">全部</option>
+                            <option value="is_new">新品</option>
+                            <option value="is_recommend">推荐</option>
+                        </select>
+                    </div>
+                    <div class="sDiv2">
+                        <select name="status" class="select">
+                            <option value="">活动状态</option>
+                        </select>
+                        <input size="30" name="keywords" value="{$Request.param.keywords}" class="qsbox" placeholder="商品名称或者关键词" type="text">
+                        <input class="btn" value="搜索" type="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th abbr="article_title" axis="col3" class="" align="left">
+                            <div style="text-align: left; width: 50px;" class="">选择</div>
+                        </th>
+                        <th abbr="article_time" axis="col6" class="" align="left">
+                            <div style="text-align: left; width: 600px;" class="">商品名称</div>
+                        </th>
+                        <th abbr="ac_id" axis="col4" class="" align="left">
+                            <div style="text-align: center; width: 80px;" class="">价格</div>
+                        </th>
+                        <th abbr="article_show" axis="col5" class="" align="center">
+                            <div style="text-align: center; width: 80px;" class="">库存</div>
+                        </th>
+                        <th axis="col1" class=""  align="center">
+                            <div style="text-align: center; width: 80px;">操作</div>
+                        </th>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bDiv" style="height: auto;">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <volist name="goodsList" id="list">
+                        <tr>
+                            <td class="" align="left">
+                                <div style="text-align: left; width: 50px;">
+                                    <input type="radio" name="goods_id" data-img="{$list.goods_id|goods_thum_images=160,160}"
+                                           data-id="{$list.goods_id}" data-name="{$list.goods_name}" data-count="{$list.store_count}"
+                                           data-price="{$list.shop_price}" <if condition="$list['goods_id'] eq $Request.param.goods_id">checked='checked'</if>/>
+                                </div>
+                            </td>
+                            <td class="" align="left">
+                                <div style="text-align: left; width: 600px;">{$list.goods_name}</div>
+                            </td>
+                            <td class="" align="left">
+                                <div style="text-align: center; width: 80px;">{$list.shop_price}</div>
+                            </td>
+                            <td class="" align="left">
+                                <div style="text-align: center; width: 80px;">{$list.store_count}</div>
+                            </td>
+                            <td class="" align="center">
+                                <div style="text-align: center; width: 80px; ">
+                                    <a class="btn red" onclick="$(this).parent().parent().parent().remove();"><i class="fa fa-trash-o"></i>删除</a>
+                                </div>
+                            </td>
+                            <td class="" style="width: 100%;" align="">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+            <div class="iDiv" style="display: none;"></div>
+        </div>
+        <!--分页位置-->
+        <div class="te_le">
+            {$page->show()}
+        </div>
+        <div class="bot"><a onclick="select_goods();" class="ncap-btn-big ncap-btn-green">确认提交</a></div>
+    </div>
+</div>
+<script>
+    //商品对象
+    function GoodsItem(goods_id, goods_name, store_count, goods_price ,goods_image) {
+        this.goods_id = goods_id;
+        this.goods_name = goods_name;
+        this.store_count = store_count;
+        this.goods_price = goods_price;
+        this.goods_image = goods_image;
+    }
+
+    function select_goods()
+    {
+        var input = $("input[type='radio']:checked");
+        if (input.length == 0) {
+            layer.alert('请选择商品', {icon: 2}); //alert('请选择商品');
+            return false;
+        }
+        var goodsItem = new GoodsItem(input.data('id'), input.data('name'),input.data('count'), input.data('price'), input.data('img'));
+        window.parent.call_back(goodsItem);
+    }
+</script>
+</body>
+</html>

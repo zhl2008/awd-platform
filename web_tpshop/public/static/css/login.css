@@ -1,0 +1,118 @@
+@charset "utf-8";
+/* CSS Document */
+* { word-wrap: break-word; outline: none; }
+html,
+body { height: 100%; margin: 0; -webkit-text-size-adjust: none; }
+body { background: #555; font-family: "Microsoft YaHei"; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover; width: 100%; height: 100%; }
+h2,
+h5,
+h6 { margin: 0; }
+input { outline: none }
+ul,
+li { margin: 0; padding: 0; border: 0; list-style-image: none; list-style-type: none; }
+
+a { color: #31b4e1; text-decoration: none;}
+a:hover { color: #ec5051; text-decoration: none; }
+
+input[type='text'],input[type='password']{ 
+	font-size: 16px; 
+	font-family: "Microsoft YaHei";
+	height: 28px;
+	background: #fff; 
+	border:0;
+	border-radius:50px;
+	padding:6px 10px 6px 10px;
+	opacity:0.8;
+	filter:alpha(opacity=80);
+	border-bottom:1px solid #fff;
+	color:#666;
+}
+input:-moz-placeholder {
+	color: #ccc;
+}
+input:-ms-input-placeholder {
+	color: #ccc;
+}
+input::-webkit-input-placeholder {
+	color: #ccc;
+}
+input[type='text']:focus,input[type='password']:focus{
+	filter:progid:DXImageTransform.Microsoft.gradient(enabled='true', startColorstr='#3F000000', endColorstr='#3F000000'); 
+	background: fff; 
+	outline: none; 
+	border-color: rgba(255,255,255,0.5); 
+	opacity:1;
+	filter:alpha(opacity=100);
+}
+
+input[type='text']:focus::-webkit-input-placeholder{ color:#fff;}
+
+#bannerBox{ display: block;position: fixed;left: 0;top: 0;overflow: hidden;z-index: -999;height: 100%;width: 100%;}
+#bannerBox .slideBanner{ height: 100%;width: 100%;}
+#bannerBox .slideBanner li{ display: block;list-style: none;z-index: -30;position: fixed;overflow: hidden;top: 0;left: 0;width: 100%;height: 100%;background: #111;}
+
+.login-layout{ width:418px; position:absolute; z-index:3; top:50%; left:50%; margin:-300px auto auto -60px;}/*-209*/
+.login-layout .logo{ text-align:center;}
+.login-form{ position:relative; z-index:9; width:419px; height:423px; background:url(../images/login_formBg.png) no-repeat; margin-top:30px;}
+
+.formContent{ width:419px; height:389px;}
+.formContent .title{ color:#fff; font-size:24px; text-align:center; padding:25px 0; background:url(../images/xianbg.png) bottom no-repeat;}
+
+.formInfo{ width:225px; margin:10px auto;}
+.formText{ position:relative; z-index:2; margin-bottom:15px;}
+.formText:after,.formText:before{content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.formText .input-text{ width:100%;height: 36px;border-radius: inherit;border-radius: 5px}
+.icon{ background:url(../images/login_icon.png) no-repeat; position:absolute; top:14px; left:-42px; width:28px; height:28px; z-index:9;}
+.icon-user{ background-position:0 0;}
+.icon-pwd{ background-position:4px -37px;}
+.icon-chick{ background-position:4px -70px;}
+.chick_ue{width: 100px !important;}
+.chicuele{cursor: pointer; width: 100px; position: RELATIVE; left: 18px; top: 12px; height: 37px; }
+
+
+
+.checkbox,.cur{ background:url(../images/login_icon.png) no-repeat; float:left; cursor:pointer;}
+.checkbox{ width:32px; height:18px; background-position: -105px -50px; position:relative; margin:2px 0 0 15px;}
+.checkbox .cur{ width:18px; height:18px; transition:.4s; background-position:-153px -10px;}
+.checked{ background-position:-105px -10px;}
+.checked .cur{ -webkit-transform: translateX(85%);transform: translateX(85%);}
+
+.formText .span{ font-size:12px; line-height:20px; float:left; margin-left:7px; color:#fff;}
+.forget_pwd{ float:right; font-size:12px; color:#fff; display:block; margin:2px 25px 0 0;}
+
+.submitDiv{margin-left: -30px}
+.submitDiv .text_span{ width:115px; overflow:hidden; padding:10px 0 10px 10px; float:left; margin:-10px 0 -10px -10px;}
+.submitDiv .text_span input{ border-radius:50px 0 0 50px; padding-left:22px; width:100px; float:left;}
+
+.submitDiv .sub{ width:293px; height:55px; border:0; background:url(../images/subbag.png) no-repeat; color:#FFF; padding:0; font-size:18px; font-weight:bold; cursor:pointer;font-family: "Microsoft YaHei";}
+
+.code { background-color: #FFFFFF; width: 100px; height: 34px; border-radius: 4px; position: absolute; z-index: 9; top: -12px; left: 10px; display: none; box-shadow: 0 2px 2px 2px rgba(0,0,0,0.25); }
+.code .arrow { width: 0px;height: 0px;border: 7px solid transparent;border-top-color: #fff; position:absolute;bottom:-14px; left:18px;}
+.code img { width: 100px; height: 30px; position: absolute; z-index: 1; top: 4px;}
+
+
+
+.backPwd_layout{padding-bottom: 15px; width:327px; height:321px; background:#fff; border-radius:5px; margin:-160px auto auto -162px; position:absolute; z-index:3; top:50%; left:50%;}
+.backPwd_form{ width:226px; margin:0 auto;}
+.backPwd_form .title{ text-align:center; font-size:24px; margin:20px 0 20px;}
+.backPwd_form .error_msg{ color:#666;font-size: 12px;line-height: 12px;margin:5px 0;}
+.backPwd_form .formInfo{ width:226px;}
+.backPwd_form .btn_div{ padding-top:15px;}
+.btn_div .sub{ width:113px; height:41px; border:0; background:#ff7c3a; color:#fff; border-radius:50px 0 0 50px; padding:0; font-size:14px; font-weight:bold; cursor:pointer;font-family: "Microsoft YaHei"; float:left;}
+.btn_div .cancel{ width:113px; height:41px; border:0; background:#cecece; color:#fff; border-radius:0 50px 50px 0; padding:0; font-size:14px; font-weight:bold; cursor:pointer;font-family: "Microsoft YaHei"; float:left;}
+
+.btn_div .sub:hover,.btn_div .cancel:hover{box-shadow: 2px 3px 6px 0 rgba(0,0,0,0.3) inset;}
+
+.formText .return{ font-size:12px; color:#999; float:right; margin-right:10px;}
+.formText .return:hover{ color:#ec5151;}
+.backPwd_form .formText .input-text{ padding-left:20px; width:200px;}
+.error{font-size: 16px;color: #ea5813;width:395px;font-weight: bold;background: white;padding: 0 5px;border-radius: 4px}
+
+#notIe{ position:fixed;}
+#notIe .noContent{ width:316px; height:376px; background:url(../images/not_ie78.png) no-repeat;}
+#notIe .noContent .noText{ padding-top:190px; width:100%;}
+#notIe .noContent .noText p{ text-align:center; margin:0;}
+#notIe .noContent .noText p.p1{ font-size:16px; color:#0092ce; margin-bottom:6px;}
+#notIe .noContent .noText p.p2{ padding-top:10px;}
+#notIe .noContent .noText p.p2,#notIe .noContent .noText p.p3{ font-size:14px; color:#333333; margin-bottom:5px;}
+#notIe .pb-btn{ position:absolute; width:270px; height:60px; line-height:60px; font-size:18px; color:#fff; bottom:0; left:20px; text-align:center; cursor:pointer;}

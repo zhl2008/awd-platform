@@ -1,0 +1,116 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>会员管理 - 添加会员</h3>
+                <h5>网站系统添加会员</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" method="post" id="add_form">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="nickname"><em>*</em>会员昵称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="nickname" id="nickname" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="password"><em>*</em>登录密码</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="password" id="password" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">6-16位字母数字符号组合</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="mobile"><em>*</em>手机号码</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="mobile" id="mobile" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">前台登陆账号，手机邮箱任意一项都可以</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="email"><em>*</em>邮件地址</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="email" id="email" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">前台登陆账号，手机邮箱任意一项都可以</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="qq">QQ</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$navigation.url}" name="qq" id="qq" class="input-txt">
+                    <span class="err"></span>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sex">性别</label>
+                </dt>
+                <dd class="opt">
+                    <input id="sex" name="sex" type="radio" value="0" checked>保密  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="sex" type="radio" value="1">男  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input name="sex" type="radio" value="2">女
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="checkUserUpdate();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function checkUserUpdate(){
+        var email = $('input[name="email"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var password = $('input[name="password"]').val();
+        var nickname = $.trim($('input[name="nickname"]').val());
+        var error ='';
+        if(nickname == ''){
+            error += "昵称不能为空\n";
+        }
+        if(password == ''){
+            error += "密码不能为空\n";
+        }
+        if(password.length<6 || password.length>16){
+            error += "密码长度不正确\n";
+        }
+
+        if(!checkEmail(email) && email != ''){
+            error += "邮箱地址有误\n";
+        }
+        if(!checkMobile(mobile) && mobile != ''){
+            error += "手机号码填写有误\n";
+        }
+
+        if(email == '' && mobile ==''){
+            error += "手机和邮箱请至少填一项\n";
+        }
+
+        if(error){
+            layer.alert(error, {icon: 2});  //alert(error);
+            return false;
+        }
+        $('#add_form').submit();
+    }
+</script>
+</body>
+</html>

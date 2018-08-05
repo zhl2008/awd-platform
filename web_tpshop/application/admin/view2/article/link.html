@@ -1,0 +1,111 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>友情链接管理 - 编辑友情链接</h3>
+                <h5>网站系统友情链接管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="handleposition" action="{:U('Admin/Article/linkHandle')}" method="post">
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="link_id" value="{$info.link_id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="link_name"><em>*</em>链接名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="link_name" value="{$info.link_name}" id="link_name" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">请填写友情链接的名称</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="link_url"><em>*</em>链接地址</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="link_url" value="{$info.link_url}"id="link_url" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">友情链接跳转地址</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="orderby"><em>*</em>排序</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="orderby" value="{$info.orderby}" id="orderby" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">请填写自然数，友情链接会根据排序进行由小到大排列显示</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="link_logo">链接LOGO</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+                        <span class="show">
+                            <a id="img_a" class="nyroModal" rel="gal" href="{$info.link_logo}">
+                                <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$info.link_logo}>',this,{tips: [1, '#fff']})" onmouseout="layer.closeAll()"></i>
+                            </a>
+                        </span>
+           	            <span class="type-file-box">
+                            <input type="text" id="link_logo" name="link_logo" value="{$info.link_logo}" class="type-file-text">
+                            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','link','img_call_back')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">默认网站LOGO,通用头部显示，最佳显示尺寸为240*60像素</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>是否新窗口打开</label>
+                </dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="target1" class="cb-enable <if condition='$info[target] eq 1'>selected</if>">是</label>
+                        <label for="target0" class="cb-disable <if condition='$info[target] eq 0'>selected</if>">否</label>
+                        <input id="target1" name="target" value="1" type="radio" <if condition="$info[target] eq 1"> checked="checked"</if>>
+                        <input id="target0" name="target" value="0" type="radio" <if condition="$info[target] eq 0"> checked="checked"</if>>
+                    </div>
+                    <p class="notic">点击链接是否在新窗口打开</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>是否显示</label>
+                </dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="is_show1" class="cb-enable <if condition='$info[is_show] eq 1'>selected</if>">是</label>
+                        <label for="is_show0" class="cb-disable <if condition='$info[is_show] eq 0'>selected</if>">否</label>
+                        <input id="is_show1" name="is_show" value="1" type="radio" <if condition="$info[is_show] eq 1"> checked="checked"</if>>
+                        <input id="is_show0" name="is_show" value="0" type="radio" <if condition="$info[is_show] eq 0"> checked="checked"</if>>
+                    </div>
+                    <p class="notic">是否在前台显示</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="$('#handleposition').submit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function img_call_back(fileurl_tmp)
+    {
+        $("#link_logo").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+</script>
+</body>
+</html>

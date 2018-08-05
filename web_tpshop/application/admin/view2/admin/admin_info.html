@@ -1,0 +1,85 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>管理员 - 编辑管理员</h3>
+                <h5>网站系统管理员资料</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="adminHandle" action="{:U('Admin/adminHandle')}" method="post">
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="admin_id" value="{$info.admin_id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="user_name"><em>*</em>用户名</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="user_name" value="{$info.user_name}" id="user_name" class="input-txt">
+                    <p class="notic">用户名</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="email"><em>*</em>Email地址</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="email" value="{$info.email}" id="email" class="input-txt">
+                    <p class="notic">Email地址</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="password"><em>*</em>登陆密码</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="password" value="{$info.password}" id="password" class="input-txt">
+                    <p class="notic">登陆密码</p>
+                </dd>
+            </dl>
+            <if condition=" ($act eq 'add') OR ($info['admin_id'] gt 1)">
+                <dl class="row">
+                    <dt class="tit">
+                        <label><em>*</em>所属角色</label>
+                    </dt>
+                    <dd class="opt">
+                        <select name="role_id">
+                            <volist name="role" id="item">
+                                <option value="{$item.role_id}" <if condition="$item[role_id] eq $info[role_id]"> selected="selected"</if> >{$item.role_name}</option>
+                            </volist>
+                        </select>
+                        <span class="err"></span>
+                        <p class="notic">所属角色</p>
+                    </dd>
+                </dl>
+            </if>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    // 判断输入框是否为空
+    function adsubmit(){
+        if($('input[name=user_name]').val() == ''){
+            layer.msg('用户名不能为空！', {icon: 2,time: 1000});   //alert('少年，用户名不能为空！');
+            return false;
+        }
+        if($('input[name=email]').val() == ''){
+            layer.msg('邮箱不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+            return false;
+        }
+        if($('input[name=password]').val() == ''){
+            layer.msg('密码不能为空！', {icon: 2,time: 1000});//alert('少年，密码不能为空！');
+            return false;
+        }
+        $('#adminHandle').submit();
+    }
+</script>
+</body>
+</html>

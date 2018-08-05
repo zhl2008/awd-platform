@@ -1,0 +1,124 @@
+@import "normalize";
+@import "compass/css3";
+
+$ppr: 750px/16/1rem; // pixel per rem
+*{
+    margin: 0;
+    padding: 0;
+    @include box-sizing;
+    -webkit-text-size-adjust: none;
+    -webkit-tap-highlight-color:rgba(0,0,0,0);
+}
+input:-webkit-autofill{-webkit-box-shadow: 0 0 0px 1000px white inset;}
+body {
+  width: 750px/$ppr;
+  max-width: 750px/$ppr;
+  margin: 0 auto;
+  font-family: Helvetica,PingFangSC-Regular,"Droid Sans",Arial,sans-serif;
+  font-size: 16px/$ppr;
+  line-height: 1;
+  color: #232326;
+  overflow-x: hidden;
+}
+.p:before,.p:after{
+    content: "";
+    clear: both;
+    display: block;
+    font-size: 0;
+    height: 0;
+}
+ul,li{
+    list-style: none;
+}
+em{
+    font-style: normal;
+}
+a{
+    text-decoration: none;
+    color: #666666;
+}
+.fl{float: left;}
+.fr{float: right;}
+.co-red{color: #e63138;}
+.bag_gray{background: #e2e3e8;}
+.bag_gray2{background: #e8e8f0;}
+.bag_gray3{background: #f6f6f6;}
+.bag_white{background: white;}
+.bag_red{background: #de333b;}
+
+.pa-0-30{padding: 0 30px/$ppr;}
+.ma-le-6{margin-left: 6px/$ppr;}
+.ma-to-8{margin-top: 8px/$ppr;}
+.ma-to-50{margin-top: 50px/$ppr !important;}
+.ma-bo-50{margin-bottom: 50px/$ppr !important;}
+
+//按钮
+@mixin button($bag:#e63138,$color:white,$padding:8px/$ppr 16px/$ppr,$br:4px/$ppr){
+    background: $bag;
+    color: $color;
+    padding: $padding;
+    border-radius: $br;
+    cursor: pointer;
+}
+@mixin cutOut{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+@mixin fs($name,$px){
+    #{$name}: $px * 1px / $ppr;
+//  #{$name}: ($px / 2) * 1px;
+    [data-dpr="2"] & {
+        #{$name}: $px * 1px;
+    }
+    // for mx3
+    [data-dpr="2.5"] & {
+        #{$name}: ($px * 2.5 / 2) * 1px;
+    }
+    // for 小米note
+    [data-dpr="2.75"] & {
+        #{$name}: ($px * 2.75 / 2) * 1px;
+    }
+    [data-dpr="3"] & {
+        #{$name}: ($px / 2 * 3) * 1px
+    }
+    // for 三星note4
+    [data-dpr="4"] & {
+        #{$name}: $px * 2px;
+    }
+}
+@mixin keyframes($animationName,$time:18s,$speed:linear,$count:infinite,$return:alternate) {
+    animation:$animationName $time $speed $count $return;
+    @-webkit-keyframes #{$animationName} {
+        @content;
+    }
+    @-moz-keyframes #{$animationName} {
+        @content;
+    }
+    @-o-keyframes #{$animationName} {
+        @content;
+    }
+    @keyframes #{$animationName} {
+        @content;
+    }
+}
+
+@mixin li($number,$px){
+    float: left;
+    text-align: center;
+    width: 100/$number * 1%;
+    @include fs(font-size,$px);
+    &.current a,&:hover a{
+        color: #e63138;
+    }
+}
+
+@import "sprite";
+@import "myMiniShop";
+@import "noviceMustSee";
+@import "myTeam";
+@import "myBusinessCard";
+@import "shopSetting";
+@import "retailsCenter";
+@import "retailsOrder";
+@import "rankingList";

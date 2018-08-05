@@ -1,0 +1,99 @@
+<include file="public/header" title="充值" body="g4"/>
+<include file="public/header_nav" title="充值" href="javascript:history.back(-1)"/>
+<form method="post"  id="recharge_form" onsubmit="return recharge_submit()" action="{:U('Mobile/Payment/getPay')}">
+<div class="loginsingup-input mobil_topup">
+        <input type="hidden" name="order_id" value="{$order.order_id}">
+        <div class="lsu">
+            <span>您的当前余额：<span class="red">{$user.user_money}</span>元</span>
+            <!--<input type="text" name="account" id="add_money" value=""  placeholder="0.00">-->
+        </div>
+        <div class="lsu lsu-recharge">
+            <span>充值金额：</span>
+            <input type="text" name="account" id="add_money" value=""  placeholder="0.00">
+        </div>
+        <!--<div class="customer-messa">-->
+            <!--<div class="maleri30">-->
+                <!--<p>会员备注（50字）</p>-->
+                <!--<textarea class="tapassa" onkeyup="checkfilltextarea('.tapassa','50')" name="" rows="" cols="" placeholder="选填"></textarea>-->
+                <!--<span class="xianzd"><em id="zero">50</em>/50</span>-->
+            <!--</div>-->
+        <!--</div>-->
+        <a class="lsu usedeb" href="javascript:void(0);" style="display: block;">
+            <div class="order order-bordertop-none p">
+                <div class="fl">
+                    <span>充值方式：</span>
+                </div>
+                <span id="codename" style="font-size:0.5rem; color:#89898A;">请选择支付方式</span>
+                <div class="fr" >
+                    <i class="Mright"></i>
+                </div>
+            </div>
+        </a>
+        <div class="lsu-submit">
+            <input type="submit" onclick="recharge_submit()" value="提交申请">
+        </div>
+</div>
+<!--充值方式-s-->
+<div class="chooseebitcard" style="display: none;">
+    <div class="maleri30">
+        <div class="choose-titr">
+            <span>选择充值方式</span>
+            <i class="gb-close"></i>
+        </div>
+        <foreach name="paymentList" item="v"  key="k">
+        <div class="card">
+                <leable>
+                <div class="card-list">
+                    <input type="radio" style="display: none;" value="pay_code={$v['code']}" name="pay_radio" <if condition="$k eq 'alipayMobile'">checked</if> >
+                    <div class="radio fl">
+                        <span name="{$v[name]}"  class="che  <if condition="$k eq 'alipayMobile'">check_t</if>" >
+                            <i></i>
+                        </span>
+                    </div>
+                    <p class="fl">&nbsp;&nbsp;<span><img src="/plugins/{$v['type']}/{$v['code']}/{$v['icon']}" width="110" height="40" /></span></p>
+                </div>
+                </leable>
+            </div>
+        </foreach>
+        <p class="teuse"><span class="red"></span><span>确定</span></p>
+    </div>
+</div>
+</form>
+<!--充值方式-e-->
+<div class="mask-filter-div" style="display: none;"></div>
+
+<script type="text/javascript">
+    $(function(){
+        $('.usedeb').click(function(){
+            $('.chooseebitcard').show();
+            $('.submit').hide();
+        })
+        $('.gb-close').click(function(){
+            $('.chooseebitcard').hide();
+        })
+        $('.teuse').click(function(){
+            $('.chooseebitcard').hide();
+            $('.submit').show();
+            $('#codename').text($('.check_t').attr('name'));
+        })
+    })
+    $(function(){
+        $('.card-list').click(function(){
+            var _this = $(this);
+            _this.find('input').prop('checked',true).parents('.card').siblings().find('input').prop('checked',false);
+            _this.find('.che').toggleClass('check_t').parents('.card').siblings().find('.che').removeClass('check_t');
+        })
+    })
+
+    //提交表单
+    function recharge_submit(){
+        var account = $('#add_money').val();
+        if(isNaN(account) || parseInt(account)<=0 || account==''){
+            layer.open({content:'请输入正确的充值金额',time:2});
+            return false;
+        }
+        $('#recharge_form').submit();
+    }
+</script>
+</body>
+</html>

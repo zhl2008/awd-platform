@@ -1,0 +1,64 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>支付失败-{$tpshop_config['shop_info_store_title']}</title>
+<meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+<link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="__STATIC__/css/jh.css">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/pc_common.js"></script>
+</head>
+<body>
+<!--最顶部-->
+<include file="public/sign-header"/>
+
+ <!--------在线客服-------------->
+<include file="public/kefu" />
+ <!--------在线客服-------------->    
+    <div class="order-header">
+    	<div class="layout after">
+        	<div class="fl">
+            	<div class="logo pa-to-36 wi345">
+                	<a href="/"><img src="{$tpshop_config['shop_info_store_logo']}" alt=""></a>
+                </div>
+            </div>
+        	<div class="fr">
+            	<div class="pa-to-36 progress-area">
+                	<div class="progress-area-wd" style="display:none">我的购物车</div>
+                	<div class="progress-area-tx" style="display:none">填写核对订单信息</div>
+                	<div class="progress-area-cg">成功提交订单</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layout after-ta order-ha">
+    	<div class="erhuh">
+        	<i class="icon-sucsa"></i>
+            <h3 style="color:#e01d20">抱歉订单支付失败！</h3>
+            <if condition="$master_order_sn neq ''">
+	            <p class="succ-p">订单号：&nbsp;&nbsp;{$master_order_sn}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;付款金额（元）：&nbsp;&nbsp;<b>{$sum_order_amount}</b>&nbsp;<b>元</b></p>
+            <else />
+	            <p class="succ-p">订单号：&nbsp;&nbsp;{$order['order_sn']}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;付款金额（元）：&nbsp;&nbsp;<b>{$order['order_amount']}</b>&nbsp;<b>元</b></p>            
+            </if>            
+            <div class="succ-tip">
+            	你可以重新支付
+            </div>
+        </div>
+        <div class="ddxq-xiaq">
+            <if condition="$master_order_sn neq ''">
+                <a href="{:U('home/Order/order_list')}">订单详情<i></i></a>
+            <else/>
+                <a href="{:U('home/Order/order_detail',array('id'=>$order['order_id']))}">订单详情<i></i></a>
+            </if>
+        </div>
+
+    </div>
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->    
+</body>
+</html>

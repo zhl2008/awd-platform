@@ -1,0 +1,37 @@
+.icon_public,
+.btn_pay,
+.btn_recharge,
+.btn_rel,
+.btn_batch,
+.btn-01,
+.btn-01:hover,
+.btn-02,
+.btn-02:hover,
+.btn_to_pay,
+.btn_120,
+.fn-s1,
+.fn-s2,
+.btn_again,
+.c-btn-02 {margin: 0; font-style: normal; display: inline-block; *display: inline; vertical-align: middle; text-align: center; overflow: hidden; zoom: 1;}
+.btn_pay {width: 84px; height: 28px; line-height: 28px; background: -244px -90px;}
+.btn_pay:hover {text-decoration: none; background: -247px -125px;}
+.btn_recharge {width: 140px; height: 40px; line-height: 40px; background: 0 0;}
+.btn_recharge:hover {text-decoration: none; background: 0 -45px;}
+.btn_rel {width: 84px; height: 28px; line-height: 28px; background: -125px -160px;}
+.btn_rel:hover {text-decoration: none; background: -214px -160px;}
+.btn_batch {width: 81px; height: 28px; line-height: 28px; background: -86px -226px;}
+.btn_batch:hover {text-decoration: none; background: 0 -226px;}
+.btn-01 {width: 81px; height: 28px; line-height: 28px; background: -172px -193px;}
+.btn-01:hover {width: 81px; height: 28px; line-height: 28px; background: -86px -193px;}
+.btn-02 {width: 81px; height: 28px; line-height: 28px; background: -172px -226px;}
+.btn-02:hover {width: 81px; height: 28px; line-height: 28px; background: 0 -193px;}
+.btn_to_pay {width: 80px; height: 24px; line-height: 24px; background: -85px -259px;}
+.btn_to_pay:hover {text-decoration: none; background: 0 -259px;}
+.btn_120 {width: 120px; height: 28px; line-height: 28px; background: 0 -160px;}
+.btn_120:hover {text-decoration: none; background: -122px -125px;}
+.fn-s1 {width: 117px; height: 30px; line-height: 30px; background: 0 -125px;}
+.fn-s2 {width: 117px; height: 30px; line-height: 30px; background: -122px -90px;}
+.btn_again {width: 192px; height: 28px; line-height: 28px; background: -145px -33px;}
+.btn_again:hover {text-decoration: none; background: -145px 0;}
+.c-btn-02 {width: 117px; height: 30px; line-height: 30px; background: 0 -90px;}
+.btn_recharge,.btn_recharge:hover,.btn_again:hover,.btn_again,.c-btn-02,.fn-s2,.fn-s1,.btn_120:hover,.btn_120,.btn_pay,.btn_pay:hover,.btn_rel,.btn_rel:hover,.btn-02:hover,.btn-01:hover,.btn-01,.btn_batch:hover,.btn_batch,.btn-02,.btn_to_pay:hover,.btn_to_pay{background-image: url(../images/sprite_btn.png);}

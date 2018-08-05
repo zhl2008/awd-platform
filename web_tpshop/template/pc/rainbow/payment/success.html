@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>支付成功-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}"/>
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="__STATIC__/css/jh.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <script src="__PUBLIC__/js/pc_common.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script><!-- 弹窗js 参考文档 http://layer.layui.com/-->
+</head>
+<body>
+<include file="public/sign-header"/>
+<div class="fn-cart-pay">
+    <!-- cart-title -->
+    <div class="wrapper1190">
+        <div class="order-header">
+            <div class="layout after">
+                <div class="fl">
+                    <div class="logo pa-to-36 wi345">
+                        <a href="/"><img src="__PUBLIC__/images/newLogo.png" alt=""></a>
+                    </div>
+                </div>
+                <div class="fr">
+                    <div class="pa-to-36 progress-area">
+                        <div class="progress-area-wd" style="display:none">我的购物车</div>
+                        <div class="progress-area-tx" style="display:none">填写核对订单信息</div>
+                        <div class="progress-area-cg">成功提交订单</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- end cart-title -->
+
+        <div class="layout after-ta order-ha">
+            <div class="erhuh">
+                <i class="icon-succ"></i>
+                <h3> 订单提交成功，我们将在第一时间给你发货！</h3>
+                <p class="succ-p">
+                    <if condition="$master_order_sn neq ''">
+                        订单号：&nbsp;&nbsp;{$master_order_sn}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                        付款金额（元）：&nbsp;&nbsp;<b>{$sum_order_amount}</b>&nbsp;<b>元</b>
+                        <else/>
+                        订单号：&nbsp;&nbsp;{$order['order_sn']}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;
+                        付款金额（元）：&nbsp;&nbsp;<b>{$order['order_amount']}</b>&nbsp;<b>元</b>
+                    </if>
+                </p>
+                <div class="succ-tip">
+                    请你保持手机通畅,等待收货
+                </div>
+            </div>
+                <div class="ddxq-xiaq">
+                    <a href="{:U('/Home/Order/order_detail',array('id'=>$order['order_id']))}">订单详情<i></i></a>
+                </div>
+        </div>
+    </div>
+</div>
+<div id="addCardNewBind"></div>
+<!--footer-s-->
+<div class="footer p">
+    <!--<div class="mod_service_inner">-->
+        <!--<div class="w224">-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_duo">多</h5>-->
+                        <!--<p>品类齐全，轻松购物</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_kuai">快</h5>-->
+                        <!--<p>多仓直发，极速配送</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_hao">好</h5>-->
+                        <!--<p>正品行货，精致服务</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_sheng">省</h5>-->
+                        <!--<p>天天低价，畅选无忧</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="w1224">-->
+        <include file="public/footer" />
+    <!--</div>-->
+</div>
+<!--footer-e-->
+</body>
+</html>

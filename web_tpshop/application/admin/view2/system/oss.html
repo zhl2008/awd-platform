@@ -1,0 +1,54 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>对象存储设置</h3>
+                <h5>对象存储oss相关设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>推送服务相关设置, 请从阿里云注册账户, 并在其控制台获取相关信息。</li>
+        </ul>
+    </div>
+	<h5 style="font-size:25px">请联系TPshop官网客服购买高级版支持此功能(阿里云OSS存储)</h5>	
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+</body>
+<script type="text/javascript">
+    function check_form()
+    {
+        if(!$('#oss_key_id').val()){
+            layer.alert('AccessKeyId 非空！',{icon:2});
+            return false;
+        }
+        if(!$('#oss_key_secret').val()){
+            layer.alert('AccessKeySecret 非空！',{icon:2});
+            return false;
+        }
+        if(!$('#oss_endpoint').val()){
+            layer.alert('Endpoint 非空！',{icon:2});
+            return false;
+        }
+        if(!$('#oss_bucket').val()){
+            layer.alert('Bucket 非空！',{icon:2});
+            return false;
+        }
+        document.form1.submit()
+    }
+</script>
+</html>

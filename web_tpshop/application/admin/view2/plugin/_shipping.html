@@ -1,0 +1,83 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>物流管理 - 添加物流</h3>
+                <h5>网站系统物流索引和管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="addEditshipping" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{$shipping.id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="name"><em>*</em>物流编码</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$shipping.code}" id="code" name="code" class="input-txt">
+                    <span class="err" id="err_code" style="color:#F00; display:none;">物流编码不能为空!!</span>
+                    <p class="notic">一般为物流公司拼音组成,不得含有英文以外的字符。<a href="http://www.ickd.cn/api/list.html" target="_blank" class="ncap-btn"><i class="fa fa-truck"></i>
+                        参考查询编码</a></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="name"><em>*</em>物流公司名字</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$shipping.name}" id="name" name="name" class="input-txt">
+                    <span class="err" id="err_name" style="color:#F00; display:none;">名称不得为空</span>
+                    <p class="notic">物流公司名字</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="desc">简短描述</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$shipping.desc}" id="desc"  name="desc" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">简短描述</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>物流图片图标</label>
+                </dt>
+                <dd class="opt">
+                    <input type="file" class="input-button" value="上传图片" accept="image/*" name="shipping_img" style="display:inherit"/>
+                    <span class="err"></span>
+                    <p class="notic">默认物流图片图标，最佳显示尺寸为240*60像素</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="checkSubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    // 判断输入框是否为空
+    $("input[type='text']").focus(function(){
+        $('span[id^="err_"]').hide();
+    });
+
+    function checkSubmit(){
+
+        var code = $.trim($("#code").val());
+        var name = $.trim($("#name").val());
+
+        (code.length == 0) && $('#err_code').show();
+        (name.length == 0) && $('#err_name').show();
+
+        if($('span[id^="err_"]:visible').length > 0)
+            return false;
+        $('#addEditshipping').submit();
+    }
+</script>
+</body>
+</html>

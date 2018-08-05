@@ -1,0 +1,241 @@
+.mb20 {
+    margin-bottom: 20px;
+}
+.mb15 {
+    margin-bottom: 15px;
+}
+.mt20 {
+    margin-top: 20px;
+}
+.mr20 {
+    margin-right: 20px;
+}
+img {
+    vertical-align: top;
+}
+.u-txt{
+  font-family: "Microsoft YaHei";
+}
+.m-login {
+  width: 100%;
+  min-width: 1190px;
+  height: 476px;
+  margin-bottom: 30px;
+  font-family: "Microsoft YaHei";
+}
+.m-login .login-wrap {
+  width: 1190px;
+  padding: 40px 0px 0 0;
+  margin: 0 auto;
+}
+.m-login .banner {
+  float: left;
+  width: 660px;
+  height: 359px;
+}
+.m-login .login-form {
+  float: right;
+  width: 305px;
+  padding: 20px;
+  margin-right: 135px;
+  background-color: #fff;
+}
+.m-login .login-form .title {
+  height: 21px;
+}
+.m-login .login-form .title h1 {
+  font-size: 16px;
+  color: #666;
+}
+.m-login .login-form .title .regist-link a {
+  font-size: 14px;
+  color: #da3a4c;
+}
+.m-login .login-form .title .regist-link a:hover {
+  text-decoration: underline;
+}
+.m-login .login-form .u-msg-wrap {
+  height: 24px;
+  line-height: 24px;
+  padding: 16px 0 10px;
+  font-family: "Microsoft YaHei";
+}
+.m-login .login-form .u-msg-wrap .msg {
+  height: 24px;
+  line-height: 24px;
+  padding: 0 10px 0 30px;
+  position: relative;
+  color: #da3a4c;
+}
+.m-login .login-form .u-msg-wrap .msg.msg-warn {
+  border: 1px solid #ffe9b1;
+  background: #fff4d8;
+}
+.m-login .login-form .u-msg-wrap .msg.msg-warn i {
+  background: url(../images/fn-icon.png) no-repeat 0 0;
+}
+.m-login .login-form .u-msg-wrap .msg.msg-err {
+  border: 1px solid #ffbdbe;
+  background: #ffebeb;
+  display: none;
+}
+.m-login .login-form .u-msg-wrap .msg.msg-err i {
+  background: url(../images/dialog-login.png) no-repeat 0 -40px;
+}
+.m-login .login-form .u-msg-wrap .msg i {
+  display: block;
+  width: 15px;
+  height: 15px;
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  margin-top: -7px;
+}
+.m-login .login-form .u-input {
+  position: relative;
+}
+.m-login .login-form .u-input .u-txt {
+  width: 246px;
+  height: 18px;
+  border: 1px solid #ccc;
+  padding: 10px 10px 10px 47px;
+  font-size: 14px;
+}
+.m-login .login-form .u-input .u-txt.u-txt-err {
+  border-color: #da3a4c;
+}
+.m-login .login-form .u-input .u-txt.u-txt-focus {
+  border-color: #999;
+}
+.m-login .login-form .u-input .u-label {
+  width: 41px;
+  height: 38px;
+  border-right: 1px solid #eee;
+  position: absolute;
+  left: 1px;
+  top: 1px;
+  *left: 2px;
+  *top: 2px;
+}
+.m-login .login-form .u-input .u-name {
+  background: url(../images/dialog-login.png) no-repeat 0 0;
+}
+.m-login .login-form .u-input .u-pwd {
+  background: url(../images/dialog-login.png) no-repeat -39px 0;
+}
+.m-login .login-form .u-safe {
+  position: relative;
+}
+.m-login .login-form .u-safe .auto label {
+  color: #666;
+  cursor: pointer;
+}
+.m-login .login-form .u-safe .u-ckb {
+  margin-right: 10px;
+  vertical-align: middle;
+}
+.m-login .login-form .u-safe .forget {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.m-login .login-form .u-safe .forget a {
+  color: #666;
+}
+.m-login .login-form .u-safe .forget a:hover {
+  text-decoration: underline;
+}
+.m-login .login-form .u-btn a {
+  display: block;
+  width: 305px;
+  height: 40px;
+  line-height: 40px;
+  border: none;
+  color: #fff;
+  font-size: 18px;
+  text-align: center;
+  font-family: "Microsoft YaHei";
+  background-color: #da3a4c;
+  cursor: pointer;
+  text-decoration: none;
+}
+.m-login .login-form .u-btn a:hover {
+  background-color: #cf0c22;
+}
+.m-login .login-form .u-authcode {
+  position: relative;
+}
+.m-login .login-form .u-authcode .u-txt {
+  width: 88px;
+  padding: 10px 10px;
+  vertical-align: middle;
+  font-size: 14px;
+  text-align: center;
+}
+.m-login .login-form .u-authcode .u-txt.u-txt-err {
+  border-color: #da3a4c;
+}
+.m-login .login-form .u-authcode .u-txt.u-txt-focus {
+  border-color: #999;
+}
+.m-login .login-form .u-authcode .code-img {
+  width: 66px;
+  height: 40px;
+  vertical-align: middle;
+}
+.m-login .login-form .u-authcode a {
+  color: #2176dd;
+}
+.m-login .login-form .u-authcode a:hover {
+  text-decoration: underline;
+}
+.m-login .login-form .account {
+  height: 30px;
+  line-height: 30px;
+  color: #999;
+  word-spacing: -3px;
+}
+.m-login .login-form .account dt,
+.m-login .login-form .account dd {
+  display: inline-block;
+  *display: inline;
+  *zoom: 1;
+  vertical-align: top;
+}
+.m-login .login-form .account dd a {
+  display: block;
+  width: 30px;
+  height: 30px;
+}
+.m-login .login-form .account .qq {
+  background: url(../images/enterprise.png) no-repeat 0 0;
+}
+.m-login .login-form .account .pay {
+  background: url(../images/alipay.png) no-repeat 0 0;
+}
+.m-login .login-form .account .weixin {
+  background: url(../images/weixinl.png) no-repeat 0 0;
+}
+.m-login .login-form .account .qq:hover {
+  background-position: -30px 0;
+}
+
+/*头部logo start*/
+.header {
+  overflow: auto;
+  display: block;
+}
+.header .logo {
+  margin: 10px 0;
+  width: 300px;
+  height: 59px;
+  background: url(../images/feiniu-index-icon-01.png) no-repeat;
+  display: block;
+}
+.area {
+  width: 1060px;
+  margin: 0 auto;
+}
+#login-form .co_ye{color: #ea5e00; margin-left: 6px;vertical-align: middle;}
+
+/*头部logo end*/

@@ -1,0 +1,69 @@
+<include file="public/min-header" />
+<div class="wrapper">
+	<include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	             <div class="box-header">
+	               	<nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('Tools/regionHandle')}" method="post">
+				            <div class="form-group">
+				            	<label class="control-label" for="input-mobile">增加地区</label>
+				            	<div class="input-group">
+				            		<input type="hidden" name="level" value="{$parent.level}">
+				            		<input type="hidden" name="parent_id" value="{$parent.id}">
+				              		<input type="text" name="name" class="form-control" placeholder="请输入地区">
+				              	</div>
+				            </div>
+				            <button type="submit" class="btn btn-primary">确定</button>
+				            <if condition="$parent[level] gt 0">
+				            <div class="form-group pull-right">
+					            <a href="{:U('Tools/region',array('parent_id'=>$parent[parent_id]))}" class="btn btn-primary pull-right"><i class="fa fa-reply"></i> 返回上一级</a>
+				            </div>
+				            </if>		          
+				          </form>
+				      	</div>
+	    			</nav>
+	             </div>
+	             <div class="box-body">
+	           	 <div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable">
+						<tbody>
+						 <tr role="row" align="center">    
+                          <foreach name="region" item="vo" key="k" >
+                            <if condition="$k%3 eq 0">  
+      							</tr><tr>
+      						</if>
+      						<td>
+      							<label class="margin">{$vo.name}</label>
+      							<if condition="$vo[level] lt 4">
+      							<a href="{:U('Tools/region',array('parent_id'=>$vo[id]))}" class="btn btn-info" role="button">管理</a>
+      							&nbsp;&nbsp;
+      							</if>
+      							<a href="javascript:void(0);" data-url="{:U('Tools/regionHandle',array('id'=>$vo[id]))}" onclick="delRegion(this)" class="btn btn-default" role="button">删除</a>
+      						</td>
+		                  </foreach>
+		                  </tr>
+		                 </tbody>
+		               </table>
+	               </div>
+	          	</div>
+	          </div>
+	        </div>
+       	</div>
+       </div>
+   </section>
+</div>
+<script type="text/javascript">
+function delRegion(obj){
+	layer.confirm('确定删除此地区？', {icon: 3, title:'提示删除'}, function(index){
+	   layer.close(index);
+	   window.location.href = $(obj).attr('data-url');
+	});
+}
+</script>
+</body>
+</html>   

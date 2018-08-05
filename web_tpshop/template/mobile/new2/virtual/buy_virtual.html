@@ -1,0 +1,125 @@
+<include file="public/header" title="购物车" body=""/>
+<include file="public/header_nav" title="购物车" href="javascript:history.back(-1);"/>
+<!--购物车有商品-s-->
+<notempty name="goods">
+    <div class="orderlistshpop p">
+        <div class="maleri30">
+            <form name="cart_form" id="cart_form" action="{:U('Virtual/buy_step')}" method="post">
+                <!--商品列表-s-->
+                <div class="sc_list">
+                    <div class="shopimg fl">
+                        <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$goods[goods_id]))}">
+                            <!--商品图片-->
+                            <img src="{$goods.goods_id|goods_thum_images=200,200}">
+                        </a>
+                    </div>
+                    <div class="deleshow fr">
+                        <div class="deletes">
+                            <!--商品名-->
+                        <span class="similar-product-text fl">
+                            <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$goods[goods_id]))}">{$goods[goods_name]}</a>
+                        </span>
+                            <!--删除按钮-->
+                            <!--<a href="javascript:void(0);" onclick="del_cart_goods({$goods.id})" class="delescj"><img src="__STATIC__/images/dele.png"/></a>-->
+                        </div>
+                        <!--商品属性，规格-->
+                        <p class="weight">{$goods[spec_key_name]}</p>
+                        <div class="prices">
+                            <p class="sc_pri fl">
+                                <!--商品单价-->
+                                <span>￥</span>
+                                <span id="shop_price" rel="{$goods.shop_price}">{$goods.shop_price}</span>
+                            </p>
+                            <!--加减数量-->
+                            <div class="plus fr get_mp">
+                                <span class="mp_minous" onclick="switch_num(-1,{$goods.store_count})">-</span>
+                        <span class="mp_mp">
+                        <input id="goods_num" type="text" value="{$goods.goods_num}" name="goods_num" class="input-num"  onblur="switch_num(0,{$goods.store_count})"/>
+                        </span>
+                                <span class="mp_plus" onclick="switch_num(1, {$goods.store_count})">+</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="goods_id" value="{$goods.goods_id}">
+                <input type="hidden" id="virtual_limit" name="virtual_limit" value="{$goods.virtual_limit}">
+                <input type="hidden" name="goods_spec_key" value="{$goods.goods_spec_key}">
+            </form>
+        </div>
+    </div>
+    <!--提交栏-s-->
+    <div class="foohi foohiext">
+        <div class="payit ma-to-20 payallb">
+            <div class="fl alllef">
+                <div class="radio fl" >
+                </div>
+                <div class="youbia">
+                    <p><span class="pmo">订单总额：</span>
+                        <span>￥</span><span id="goodsfee"></span>元
+                    </p>
+                </div>
+            </div>
+            <div class="fr">
+                <a href="javascript:void(0);" onclick="$('#cart_form').submit()">确认订单</a>
+            </div>
+        </div>
+    </div>
+</notempty>
+<!--购物车有商品-e-->
+<div class="mask-filter-div" ></div>
+<script type="text/javascript">
+    $(function(){
+        switch_num(0,{$goods.store_count});
+    })
+    /**
+     * 购买商品数量加加减减
+     * 购买数量 , 库存数量
+     */
+    function switch_num(num,store_count)
+    {
+        var num2 = parseInt($("#goods_num").val());
+        var shop_price = parseInt($('#shop_price').attr('rel'));
+        var virtual_limit = parseInt($("#virtual_limit").val());
+        num2 += num;
+        if(num2 < 1) num2 = 1; // 保证购买数量不能少于 1
+        if(num2 > store_count)
+        {
+            layer.open({content:"库存只有 "+store_count+" 件, 你只能买 "+store_count+" 件", time: 2});
+            num2 = store_count; // 保证购买数量不能多余库存数量
+        }
+
+        if(num2 > virtual_limit)
+        {
+            layer.open({content:"此商品限制只能购买 "+virtual_limit+" 件, 你只能买 "+virtual_limit+" 件", time: 2});
+            num2 = virtual_limit; // 保证购买数量不能多余限制数量
+        }
+        $("#goods_num").val(num2);
+        $('#goodsfee').text(num2*shop_price);
+    }
+
+    function orderSubmit(){
+        var mobile = $('input[name="mobile"]').val();
+        if(!checkMobile(mobile)){
+            layer.open({content:'手机格式有误', time: 2});
+            return false;
+        }
+        $.ajax({
+            url:"{:U('Virtual/add_order')}",
+            type:'POST',
+            dataType:'JSON',
+            data:$('#cart_form').serialize(),
+            success:function(data){
+                if(data.status == 1){
+                    location.href='/index.php?m=Home&c=Virtual&a=buy_step2&order_id='+data.result;
+                }else{
+                    layer.open({content:data.msg, time: 2});
+                }
+            },
+            error : function() {
+                layer.open({content:'网络失败，请刷新页面后重试', time: 2});
+            }
+        })
+    }
+</script>
+</body>
+</html>

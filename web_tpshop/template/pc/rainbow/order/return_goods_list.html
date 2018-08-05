@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>退换货记录</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+	<div class="home-index-middle">
+		<div class="w1224">
+			<div class="g-crumbs">
+				<a href="{:U('Home/User/index')}">我的商城</a>
+				<i class="litt-xyb"></i>
+				<span>退换货记录</span>
+			</div>
+			<div class="home-main">
+				<include file="user/menu"/>
+				<div class="ri-menu fr">
+					<div class="menumain p">
+						<div class="goodpiece">
+							<h1>退换货记录</h1>
+							<!--<a href=""><span class="co_blue">帮助</span></a>-->
+						</div>
+						<div class="orderbook-list returnmagament">
+							<div class="time-sala timsearch p">
+								<ul>
+									<li class="red"><a href="javascript:void(0);">全部记录</a></li>
+									<!--<li class="mal-l"><a href="javascript:void(0);">申请退货</a></li>-->
+								</ul>
+                                <form action="" method="POST" id="searchfrom">
+                                    <div class="search-ss-lit" class="sea_ol">
+                                        <input type="text" value="" name="search_key" placeholder="订单编号">
+                                        <i class="litt-sexx" onclick=" $('#searchfrom').submit()"></i>
+                                    </div>
+                                </form>
+							</div>
+							<div class="he"></div>
+							<div class="returngoods">
+								<div class="book-tit">
+									<ul>
+										<li class="sx2">退换货单号</include></li>
+										<li class="sx3">订单号</li>
+										<li class="sx1">商品信息</li>
+										<li class="sx4 s5clic">申请时间<!--<i class="jt-x"></i>--></li>
+										<li class="sx5">原因</li>
+										<li class="sx6 s5clic">状态<!--<i class="jt-x"></i>--></li>
+										<li class="sx7">操作</li>
+									</ul>
+								</div>
+								<!--<div class="hid-derei sq_der">
+									<ul>
+										<li><a href="{:U('Home/User/return_goods_list',array_merge(I('get.'),array('start_time'=>date('Y-m-d',strtotime('-3 month')),'end_time'=>date('Y-m-d'))))}">最近三个月</a></li>
+										<li><a href="{:U('Home/User/return_goods_list',array_merge(I('get.'),array('end_time'=>date('Y-m-d',strtotime('-3 month')))))}">三个月前</a></li>
+									</ul>
+								</div>-->
+								<!--<div class="hid-derei">
+									<ul>
+										<li><a href="{:U('Home/User/return_goods_list',array('status'=>0))}">申请中</a></li>
+										<li><a href="{:U('Home/User/return_goods_list',array('status'=>1))}">处理中</a></li>
+										<li><a href="{:U('Home/User/return_goods_list',array('status'=>2))}">已完成</a></li>
+									</ul>
+								</div>-->
+                            <if condition="!empty($list)">
+								<div class="book-tit book_content p">
+									<volist name="list" id="v">
+                                        <ul>
+                                            <li class="sx2">{$v.id}</li>
+                                            <li class="sx3">{$v.order_sn}</li>
+                                            <li class="sx1">
+                                                <p class="shop_name"><a
+                                                        href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id]))}">{$goodsList[$v[goods_id]]|getSubstr=0,25}</a>
+                                                </p>
+                                            </li>
+                                            <li class="sx4">{$v.addtime|date="Y-m-d",###}</li>
+                                            <li class="sx5">{$v.reason|getSubstr=0,8}</li>
+                                            <li class="sx6">
+                                                {$state[$v[status]]}
+                                            </li>
+                                            <li class="sx7"><a class="co_blue" href="{:U('Home/Order/return_goods_info',array('id'=>$v[id]))}">查看</a></li>
+                                        </ul>
+									</volist>
+								</div>
+                            <else/>
+                                <div class="car-none-pl">
+                                    <i class="account-acco1"></i>您还没有要处理的订单，<a href="/">快去逛逛吧~</a>
+                                </div>
+                            </if>
+								<div class="operating fixed">
+									<div class="fn_page clearfix" style="margin-top:10px">
+										{$page}
+									</div>
+								</div>
+							</div>
+							<!--<div class="returngoods" style="display: none;">
+								<div class="book-tit">
+									<ul class="wipj">
+										<li>订单号</li>
+										<li>商品信息</li>
+										<li>操作</li>
+									</ul>
+								</div>
+								<div class="book-tit book_content p">
+									<volist name="list" id="v">
+										<ul class="wipj">
+											<li>{$v.order_sn}</li>
+											<li>
+												<p class="shop_name"><a href="">{$goodsList[$v[goods_id]]|getSubstr=0,25}</a></p>
+											</li>
+											<li>
+												<a class="co_blue" href="{:U('Home/User/return_goods_info',array('id'=>$v[id]))}">查看 </a>
+												&lt;!&ndash;<a class="co_blue" href="">取消</a>&ndash;&gt;
+											</li>
+										</ul>
+									</volist>
+								</div>
+								<div class="operating fixed">
+									<div class="fn_page clearfix" style="margin-top:10px">
+										{$page}
+									</div>
+								</div>
+							</div>-->
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--footer-s-->
+	<div class="footer p"><include file="public/footer" /> </div>
+	<!--footer-e-->
+	<script type="text/javascript">
+		$(function () {
+			//退货记录和申请退货切换
+			$('.time-sala ul li').click(function () {
+				var twi = $('.time-sala ul li').index(this);
+				$('.returngoods').eq(twi).show().siblings('.returngoods').hide();
+				$(this).addClass('red').siblings().removeClass('red');
+			})
+            //申请时间和状态切换
+//			$('.s5clic').click(function () {
+//				var ge = $('.s5clic').index(this);
+//				$('.hid-derei').eq(ge).slideToggle(400).siblings('.hid-derei').hide();
+//				$(this).animate({opacity: "1"}, 200, function () {
+//					$(this).toggleClass('sxbb').siblings('.s5clic').removeClass('sxbb');
+//				})
+//			})
+		})
+	</script>
+	</body>
+</html>

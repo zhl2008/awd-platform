@@ -1,0 +1,45 @@
+<include file="public/header" title="找回密码" body=""/>
+<include file="public/header_nav" title="找回密码" href="javascript:history.back(-1)"/>
+<div class="reset-pwd-steps">
+    <img src="__STATIC__/images/pic-reset-psw1.jpg" alt="" />
+</div>
+<div class="loginsingup-input">
+    <form action="{:U('User/forget_pwd')}" method="post" id="fpForm">
+        <div class="reset-pwd-title">账号验证</div>
+        <div class="lsu">
+            <span class="ico ico-username"></span>
+            <input type="text" name="username" id="username" value="" placeholder="请输入账号"/>
+        </div>
+        <div class="lsu">
+            <span class="ico ico-v-code"></span>
+            <input class="v-code-input" type="text" name="verify_code" id="verify_code" value="" placeholder="请输入验证码"/>
+            <img class="v-code-pic" src="/index.php?m=Mobile&c=User&a=verify&type=forget" id="verify_code_img" onclick="verify()">
+        </div>
+        <div class="lsu-submit">
+            <input type="button" id="btn_submit"  value="下一步" />
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    //加载验证码
+    function verify(){
+        $('#verify_code_img').attr('src','/index.php?m=Mobile&c=User&a=verify&type=forget&r='+Math.random());
+    }
+
+    $("#btn_submit").click(function(){
+        var username = $.trim($('#username').val());
+        var verify_code = $.trim($('#verify_code').val());
+        if(username == ' '){
+            showErrorMsg('账号不能为空');
+            return false;
+        }
+       if(verify_code == ''){
+           showErrorMsg('验证码不能为空');
+           return false;
+       }
+        $("#fpForm").submit();
+    });
+
+</script>
+</html>

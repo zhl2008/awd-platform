@@ -1,0 +1,140 @@
+<include file="public/min-header"/>
+<style>
+	.box1 {width:100px; float:left; display:inline;border:red 1px solid;}
+	.box2 {width:100px; float:left; display:inline;border:green 1px solid;}
+</style>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+                <a onclick="get_help(this)" data-url="http://www.tp-shop.cn/Doc/Indexbbc/article/id/1072/developer/user.html" class="btn btn-default" href="javascript:;"><i class="fa fa-question-circle"></i> 帮助</a>                
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 短信模板详情</h3>
+                </div>
+                <div class="panel-body">
+                    
+                    <!--表单数据-->
+                    <form method="post" id="addEditSmsTemplate" onsubmit="return checkForm();">             
+                        <!--通用信息-->
+                    <div class="tab-content">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">
+                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>短信签名:</td>
+                                    <td>
+                                        <div style="vertical-align:middle;display:inline">
+	                                        <input type="text" value="{$smsTpl.sms_sign}" name="sms_sign" class="form-control" style="width:200px;"/>
+	                                        	*</span>必须与短信平台短信签名一致                                        
+	                                        	<span id="err_sms_sign" style="color:#F00; display:none;">短信签名不能为空</span>
+	                                      </div>
+                                    </td>
+                                </tr>                                
+                                <tr>
+                                    <td>短信模板ID:</td>
+                                    <td>
+                                        <input type="text" value="{$smsTpl.sms_tpl_code}" name="sms_tpl_code" class="form-control" style="width:250px;"/>
+                                        <span >*必须与短信平台短信模板ID一致</span> 
+                                        <span id="err_sms_tpl_code" style="color:#F00; display:none;">短信模板ID不能为空</span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>短信内容:</td>
+                                    <td>
+										<textarea rows="4" cols="60" name="tpl_content" id="tpl_content">{$smsTpl.tpl_content}</textarea>
+                                        <span id="err_tpl_content" style="color:#F00; display:none;">短信内容不能为空</span>                                        
+                                    </td>
+                                </tr>                                                            
+                                <tr>
+                                    <td>发送场景:</td>
+                                    <td>
+                                     
+                                        <div class="col-sm-3">  
+                                           <if condition="$send_scene_id gt 0 ">
+                                           			{$send_name}
+                                           			<input type="hidden" value="{$send_scene_id}" name="send_scene" id="send_scene" class="form-control" style="width:250px;"/>
+                                           <else />
+                                           		<select name="send_scene" id="send_scene" class="form-control" style="width:250px;margin-left:-15px;" onchange="changeContent(this.value);">
+		                                            <option value="-1">请选择使用场景</option>
+		                                            <foreach name="send_scene" item="v" key="k">
+		                                            	<option value="{$k}" <if condition=" $k eq $smsTpl.send_scene ">selected="selected"</if>>{$v[0]}</option>
+			                                        </foreach>
+												</select>
+												<span id="err_send_scene" style="color:#F00; display:none;">请选择使用场景</span>
+                                           </if>
+	                                        
+	                                    </div>                                    
+                                    </td>
+                                </tr>                                
+                                </tbody>
+                                </table>
+                        </div>
+                    </div>
+                    <div class="pull-right">
+                        <input type="hidden" name="tpl_id" value="{$smsTpl.tpl_id}">
+                        <button class="btn btn-primary" data-toggle="tooltip" type="submit" data-original-title="保存">保存</button>
+                    </div>
+			    </form><!--表单数据-->
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+<script>
+
+function changeContent(scene){
+	if(scene == -1){
+		$("#addEditSmsTemplate").find("textarea[name='tpl_content']").val('');
+		return;
+	}
+	var scenes = <?php echo json_encode($send_scene); ?>;//{$send_scene} //""<php>echo json_encode($send_scene); </php>;
+	var txt = scenes[scene][1];
+	
+	$("#addEditSmsTemplate").find("textarea[name='tpl_content']").val(txt);
+}
+
+// 判断输入框是否为空
+function checkForm(){
+	
+	var smsSign = $("#addEditSmsTemplate").find("input[name='sms_sign']").val();					//短信签名
+	var smsTplCode = $("#addEditSmsTemplate").find("input[name='sms_tpl_code']").val();		//模板ID
+	var tplContent = $("#addEditSmsTemplate").find("textarea[name='tpl_content']").val();			//模板内容
+
+	var sendscene = $("#send_scene option:selected").val();
+    if($.trim(smsSign) == '')
+	{
+		$("#err_sms_sign").show();
+		return false;
+	}
+	
+    if($.trim(smsTplCode) == '')
+	{
+		$("#err_sms_tpl_code").show();
+		return false;
+	}
+    
+    if($.trim(tplContent) == '')
+	{
+		$("#err_tpl_content").show();
+		return false;
+	}
+    
+    if(sendscene == -1){
+    	$("#err_send_scene").show();
+    	return false;
+    }
+     
+	return true;
+}
+
+//{$send_scene[$list['send_scene']][0]}
+ 
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的账户-{$tpshop_config['shop_info_store_title']}</title>
+		<meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+		<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<link rel="shortcut  icon" type="image/x-icon" href="{$tpshop_config['shop_info_store_logo']}" media="screen"  />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/global.js"></script>
+		<script src="__PUBLIC__/js/pc_common.js"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>我的订单</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+						<div class="cancel-order-record" id="cancel-order-record" data-state="2">
+							<div class="title">
+								<div class="left-title">取消订单详情</div>
+								<a class="right-btn" href="tencent://message/?uin={$tpshop_config['shop_info_phone']|default='2812952605'}&Site=TPshop商城&Menu=yes"><i class="ico-contact-small"></i>联系卖家</a>
+							</div>
+							<div class="cont">
+								<ul class="mes">
+									<li>订单编号 : <span class="id-num">{$order.order_sn}</span></li>
+									<li>取消进度 : <span class="show-record">取消处理</span></li>
+									<li class="mes-item">支付总额 : <span class="pay-total">￥{$order.total_amount}</span></li>
+								</ul>
+								<p class="tip">亲爱的客户，我们正在为您处理中，请耐心等待。</p>
+							</div>
+							<div class="progress-bar"></div>
+							<script>
+								function setOrderRecord(){  //设置订单状态
+									var $_orderRecord=$('#cancel-order-record');
+									var orderState=parseInt($_orderRecord.attr('data-state'));
+									var data=[
+										{'state':1,'showRecord':'取消处理','progressBar':'__STATIC__/images/progress-bar-1.png'},
+										{'state':2,'showRecord':'退款处理','progressBar':'__STATIC__/images/progress-bar-2.png'},
+										{'state':3,'showRecord':'完成','progressBar':'__STATIC__/images/progress-bar-3.png'}
+									]
+									$_orderRecord.find('.show-record').text(data[orderState-1].showRecord);
+									$_orderRecord.find('.progress-bar').css('backgroundImage','url('+data[orderState-1].progressBar+')');
+								}
+								setOrderRecord();
+							</script>
+						</div>
+						<!--  
+						<div class="cancel-order-des">
+							<div class="title">
+								<div class="left-title">取消申请记录</div>
+								<a class="right-btn" href="javascript:;">收起</a>
+							</div>
+							<table class="cancel-order-detail">
+								<tr>
+									<th class="deal-time">处理时间</th>
+									<th class="deal-meg">处理信息</th>
+									<th class="operator">操作人</th>
+								</tr>
+								<tr>
+									<td class="time">2017-06-17 15:17:59</td>
+									<td class="text-left">您的取消申请已提交</td>
+									<td>客户</td>
+								</tr>
+								<tr>
+									<td class="time">2017-06-17 15:17:59</td>
+									<td class="text-left">您的订单正在生产，系统正在尝试拦截，请耐心等待。</td>
+									<td>商城物流</td>
+								</tr>
+								<tr>
+									<td class="time">2017-06-17 15:17:59</td>
+									<td class="text-left">您的订单拦截成功，财务正在进行退款审核，请耐心等待。</td>
+									<td>商城财务</td>
+								</tr>
+								<tr>
+									<td class="time">2017-06-17 15:17:59</td>
+									<td class="text-left">受理完成，到账周期<a href="javascript:;">（链接）</a>。</td>
+									<td>商城财务</td>
+								</tr>
+							</table>
+						</div>-->
+						<div class="cancel-order-des">
+							<div class="title">
+								<div class="left-title">申请单详细信息</div>
+								<a class="right-btn" href="javascript:;">收起</a>
+							</div>
+							<table class="cancel-order-detail">
+								<tr>
+									<th class="til">订单编号</th>
+									<td class="cont"><span>{$order.order_sn}</span></td>
+								</tr>
+								<tr>
+									<th class="til">支付明细</th>
+									<td class="cont">
+										<p class="cont-des">支付总金额 : <span class="td-red">￥{$order.total_amount}</span></p>
+										<p class="cont-des">余额支付 : <span class="td-red">￥{$order.user_money}</span></p>
+										<p class="cont-des">积分抵扣 : <span class="td-red">￥{$order.integral_money}</span></p>
+										<p class="cont-des">优惠 : <span>￥{$order.coupon_price}</span> 在线支付 : <span>￥{$order.total_amount}</span></p>
+									</td>
+								</tr>
+								<tr>
+									<th class="til">取消原因</th>
+									<td class="cont">{$order.user_note}</td>
+								</tr>
+								<tr>
+									<th class="til">联系方式</th>
+									<td class="cont">
+										<i class="td-m-r">联系人：{$order.consignee}</i>联系电话：{$order.mobile}
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="cancel-order-des">
+							<div class="title">
+								<div class="left-title">退款明细状态详解</div>
+							</div>
+							<p class="refund-detail">1、已退：商城已完成退款处理，实际退款时间以到账时间为准。</p>
+							<p class="refund-detail">2、待退：订单含有未退款项，待系统处理，请您耐心等待。</p>
+							<p class="refund-detail">3、未退：商城劵发生拆分是不予返还、商城劵、手机红包请您联系客服处理。</p>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<include file="user/footer" />
+		<script>
+			/*
+			* 打开收起
+			* */
+			$('.cancel-order-des').find('.right-btn').click(function () {
+				$(this).parents('.cancel-order-des').find('.cancel-order-detail').toggle();
+				if($(this).text()=='收起'){
+					$(this).text('打开');
+				}else{
+					$(this).text('收起');
+				}
+			});
+		</script>
+	</body>
+</html>

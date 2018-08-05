@@ -1,0 +1,52 @@
+<html>
+<head>
+<meta charset="utf-8">
+<title>支付成功-{$tpshop_config['shop_info_store_title']}</title>
+<meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+<link href="__STATIC__/css/common.min.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="__STATIC__/css/jh.css">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/pc_common.js"></script>
+</head>
+<body>
+<!--最顶部-->
+<include file="public/sign-header"/>
+    <div class="order-header">
+    	<div class="layout after">
+        	<div class="fl">
+            	<div class="logo pa-to-36 wi345">
+                	<a href="/"><img src="{$tpshop_config['shop_info_store_logo']}" alt=""></a>
+                </div>
+            </div>
+        	<div class="fr">
+            	<div class="pa-to-36 progress-area">
+                	<div class="progress-area-wd" style="display:none">我的充值</div>
+                	<div class="progress-area-tx" style="display:none">填写充值金额，选择支付</div>
+                	<div class="progress-area-cg">成功提交充值</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="layout after-ta order-ha">
+    	<div class="erhuh">
+        	<i class="icon-succa"></i>
+            <h3>恭喜您，充值成功！</h3>
+            <p class="succ-p">充值单号：&nbsp;&nbsp;{$order['order_sn']}&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;&nbsp;充值金额（元）：&nbsp;&nbsp;<b>{$order['account']}</b>&nbsp;<b>元</b></p>
+            <div class="succ-tip">
+            	请的充值金额已到账，您可以使用余额支付订单，祝您生活愉快！ 
+            </div>
+        </div>
+        <div class="ddxq-xiaq">
+            <a href="{:U('Home/User/recharge')}">充值中心<i></i></a>
+        </div>
+
+    </div>
+<!--------footer-开始-------------->
+<include file="public/footer" />
+<!--------footer-结束-------------->    
+</body>
+</html>

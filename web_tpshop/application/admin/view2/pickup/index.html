@@ -1,0 +1,151 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<div class="subject">
+				<h3>自提点管理</h3>
+				<h5>网站系统自提点索引与管理</h5>
+			</div>
+		</div>
+	</div>
+	<!-- 操作说明 -->
+	<div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+		<div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+			<h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+			<span title="收起提示" id="explanationZoom" style="display: block;"></span>
+		</div>
+		<ul>
+            <li>自提点操作, 在此管理.</li>
+        </ul>
+	</div>
+	<div class="flexigrid">
+		<div class="mDiv">
+			<div class="ftitle">
+				<h3>自提点列表</h3>
+				<h5>(共<span id="count"></span>条记录)</h5>
+			</div>
+			<div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+			<form class="navbar-form form-inline" id="search-form2" method="get" onsubmit="return false">
+				<div class="sDiv">
+					<div class="sDiv2" style="margin-right: 10px;border: none;">
+						<select name="province_id" id="province_id" onblur="get_city(this)">
+							<option value="">所有省</option>
+							<foreach name="province" item="v" key="k" >
+								<option value="{$v['id']}"> {$v['name']}</option>
+							</foreach>
+						</select>
+					</div>
+					<div class="sDiv2" style="margin-right: 10px;border: none;">
+						<select name="city_id" id="city" onblur="get_area(this)">
+							<option value="">所有市</option>
+							<foreach name="brandList" item="v" key="k" >
+								<option value="{$v['id']}">{$v['name']}</option>
+							</foreach>
+						</select>
+					</div>
+					<div class="sDiv2" style="margin-right: 10px;border: none;">
+						<select name="district_id" id="district">
+							<option value="">所有区/镇</option>
+							<foreach name="brandList" item="v" key="k" >
+								<option value="{$v['id']}">{$v['name']}</option>
+							</foreach>
+						</select>
+					</div>
+					<div class="sDiv2">
+						<input size="30" name="key_word" value="{$Request.param.key_word}" placeholder="自提点名称" class="qsbox" type="text">
+						<input class="btn" value="搜索" onclick="ajax_get_table('search-form2',1)" type="submit">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div class="hDiv">
+			<div class="hDivBox">
+				<table cellspacing="0" cellpadding="0">
+					<thead>
+					<tr>
+						<th class="sign" axis="col0">
+							<div style="width: 24px;"><i class="ico-check"></i></div>
+						</th>
+						<th align="center" abbr="article_title" axis="col3" class="">
+							<div style="text-align: center; width: 50px;" class="">ID</div>
+						</th>
+						<th align="center" abbr="ac_id" axis="col4" class="">
+							<div style="text-align: center; width: 100px;" class="">自提点名称</div>
+						</th>
+						<th align="center" abbr="article_show" axis="col5" class="">
+							<div style="text-align: center; width: 100px;" class="">自提点地址</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 100px;" class="">自提点电话</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 80px;" class="">自提点联系人</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 80px;" class="">省</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 80px;" class="">市</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 80px;" class="">区</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 80px;" class="">供应商</div>
+						</th>
+						<th align="center" axis="col1" class="handle">
+							<div style="text-align: center; width: 150px;">操作</div>
+						</th>
+						<th style="width:100%" axis="col7">
+							<div></div>
+						</th>
+					</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div class="tDiv">
+			<div class="tDiv2">
+				<div class="fbutton"> <a href="{:U('Admin/Pickup/add')}">
+					<div class="add" title="添加自提点">
+						<span><i class="fa fa-plus"></i>添加自提点</span>
+					</div>
+				</a> </div>
+			</div>
+			<div style="clear:both"></div>
+		</div>
+		<div class="bDiv" style="height: auto;" id="ajax_return">
+		</div>
+		<!--分页位置-->
+		{$show} </div>
+</div>
+<script>
+	$(document).ready(function(){
+		// 点击刷新数据
+		$('.fa-refresh').click(function(){
+			location.href = location.href;
+		});
+		ajax_get_table('search-form2',1);
+	});
+
+
+	// ajax 抓取页面 form 为表单id  page 为当前第几页
+	function ajax_get_table(form,page){
+		cur_page = page; //当前页面 保存为全局变量
+		$.ajax({
+			type : "POST",
+			url:"/index.php?m=Admin&c=Pickup&a=ajaxPickupList&p="+page,//+tab,
+			data : $('#'+form).serialize(),// 你的formid
+			success: function(data){
+				$("#ajax_return").html('');
+				$("#ajax_return").append(data);
+			}
+		});
+	}
+</script>
+</body>
+</html>

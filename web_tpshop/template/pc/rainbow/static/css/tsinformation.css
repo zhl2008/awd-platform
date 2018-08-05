@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+
+.box-ts{width:500px; padding:60px 0; background-color:rgba(105, 95, 95, 0.06); text-align:center; margin:0 auto; overflow:hidden; margin-top:100px; margin-bottom:100px; font-family:simsun,tahoma,arial,sans-serif; color:#555555}
+.box-ts i{ display:inline-block; vertical-align:middle;}
+.box-ts ul{display:inline-block; text-align:left; vertical-align:middle}
+.box-ts ul li{line-height:2.4}
+.box-ts ul li h3{font-size:18px; font-weight:bold}
+.box-ts:after{content:''; clear:both}
+a:link{ color: blue;}
+a:visited{ color: blue;}
+a:hover{ color: red;}
+a:active{ color: blue;}

@@ -1,0 +1,71 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>苹果App管理</h3>
+                <h5>苹果APP审核开关</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+            <li>IOS APP 相关配置。</li>
+        </ul>
+    </div>
+    <form method="post" id="handlepost" name="handlepost" method="post">
+        <input type="hidden" name="form_submit" value="ok" />
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">APP是否在审核</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="is_audit1" class="cb-enable <if condition='$config[is_audit] eq 1'>selected</if>">开启</label>
+                        <label for="is_audit0" class="cb-disable <if condition='$config[is_audit] eq 0'>selected</if>">关闭</label>
+                        <input id="is_audit1" name="is_audit" <if condition="$config['is_audit'] eq 1">checked="checked"</if> value="1" type="radio">
+                        <input id="is_audit0" name="is_audit" <if condition="$config['is_audit'] eq 0">checked="checked"</if> value="0" type="radio">
+                    </div>
+                    <p class="notic">用于IOS在审核期间隐藏一些功能以便顺利通关审核.</p>
+                </dd>
+            </dl> 
+            <div class="bot">
+                <input type="hidden" name="inc_type" value="ios">
+                <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.handlepost.submit()">确认提交</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+<script>
+     
+//    function img_call_back(fileurl_tmp)
+//    {
+//        $("#android_app_path").val(fileurl_tmp);
+//        $("#img_a").attr('href', fileurl_tmp);
+//        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+//    }
+//    
+//    function appUploadify(num,elementid,path,callback , module, cls, fun) {
+//        var upurl ='/index.php?m='+module+'&c='+cls+'&a='+fun+'&num='+num+'&input='+elementid+'&path='+path+'&func='+callback;
+//        var iframe_str='<iframe frameborder="0" ';
+//        iframe_str=iframe_str+'id=uploadify ';   		
+//        iframe_str=iframe_str+' src='+upurl;
+//        iframe_str=iframe_str+' allowtransparency="true" class="uploadframe" scrolling="no"> ';
+//        iframe_str=iframe_str+'</iframe>';    	    		
+//        $("body").append(iframe_str);	
+//        $("iframe.uploadframe").css("height",$(document).height()).css("width","100%").css("position","absolute").css("left","0px").css("top","0px").css("z-index","999999").show();
+//        $(window).resize(function(){
+//            $("iframe.uploadframe").css("height",$(document).height()).show();
+//        });
+//    }
+</script>
+</body>
+</html>

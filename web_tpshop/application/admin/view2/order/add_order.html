@@ -1,0 +1,287 @@
+<include file="public/layout" />
+  
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+
+a.btn {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #f5f5f5;
+    border-radius: 4px;
+    color: #999;
+    cursor: pointer !important;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    letter-spacing: normal;
+    line-height: 20px;
+    margin: 0 5px 0 0;
+    padding: 1px 6px;
+    vertical-align: top;
+}
+
+ a.red:hover {
+    background-color: #e84c3d;
+    border-color: #c1392b;
+    color: #fff;
+}
+
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>添加订单</h3>
+        <h5>管理员在后台添加一个新订单</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" action="{:U('Admin/Order/add_order')}" id="order-add" method="post">    
+    <div class="ncap-form-default">
+   	<dl class="row">
+       <dt class="tit">
+         <label><em></em>用户名</label>
+       </dt>
+       <dd class="opt">
+         <input type="text" name="user_name" id="user_name" class="input-txt" placeholder="手机或邮箱搜索" />
+         <select name="user_id" id="user_id" >
+             <option value="0">匿名用户</option>
+         </select>
+         <a href="javascript:void(0);" onclick="search_user();" class="ncap-btn ncap-btn-green" ><i class="fa fa-search"></i>搜索</a>
+       </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="consignee"><em>*</em>收货人</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="consignee" id="consignee" class="input-txt" placeholder="收货人名字" />
+        </dd>
+      </dl>  
+      <dl class="row">
+        <dt class="tit">
+          <label for="consignee"><em>*</em>手机</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="mobile" id="mobile" class="input-txt" placeholder="收货人联系电话" />
+        </dd>
+      </dl>      
+      <dl class="row">
+        <dt class="tit">
+          <label for="consignee"><em>*</em>地址</label>
+        </dt>
+        <dd class="opt">
+          <select onblur="get_city(this)" id="province" name="province"  title="请选择所在省份">
+               <option value="">选择省份</option>
+               <volist name="province" id="vo">
+                   <option value="{$vo.id}" >{$vo.name}</option>
+               </volist>
+           </select>
+           <select onblur="get_area(this)" id="city" name="city" title="请选择所在城市">
+                <option value="">选择城市</option>
+                <volist name="city" id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+            </select>
+            <select id="district" name="district" title="请选择所在区县">
+                <option value="">选择区域</option>
+                <volist name="area" id="vo">
+                    <option value="{$vo.id}">{$vo.name}</option>
+                </volist>
+            </select>
+            <input type="text" name="address" id="address" class="input-txt"   placeholder="详细地址"/>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="shipping"><em>*</em>配送物流</label>
+        </dt>
+        <dd class="opt">
+          <select id="shipping" name="shipping"  >
+             <volist name="shipping_list" id="shipping">
+                 <option <if condition="$order[shipping_code] eq $shipping[code]">selected</if> value="{$shipping.code}" >{$shipping.name}</option>
+             </volist>
+         </select>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="payment"><em>*</em>支付方式</label>
+        </dt>
+        <dd class="opt">
+          <select id="payment" name="payment"  >
+               <volist name="payment_list" id="payment">
+                   <option <if condition="$order[pay_code] eq $payment[code]">selected</if> value="{$payment.code}" >{$payment.name}</option>
+               </volist>
+           </select>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="invoice_title">发票抬头</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="invoice_title" value="{$order.invoice_title}" class="input-txt"  placeholder="发票抬头"/>
+        </dd>
+      </dl>
+     <dl class="row">
+        <dt class="tit">
+          <label for="invoice_title">添加商品</label>
+        </dt>
+        <dd class="opt">
+          <a href="javascript:void(0);" onclick="selectGoods()" class="ncap-btn ncap-btn-green" ><i class="fa fa-search"></i>添加商品</a>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="invoice_title"><em>*</em>商品列表</label>
+        </dt>
+        <dd class="opt">
+          	<div class="ncap-order-details" id="goods_list_div" style="display:none">
+		      <div class="hDivBox" id="ajax_return" >
+		        <div class="form-group">                                       
+                       <div class="col-xs-10" id="goods_td" >
+                           <table class="table table-bordered"></table>
+                       </div>
+               </div>  
+		      </div>
+		    </div>
+          	 
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">管理员备注</dt>
+        <dd class="opt">
+	      <textarea class="tarea" style="width:440px; height:150px;" name="admin_note" id="admin_note">管理员添加订单</textarea>
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <input type="hidden" name="order_id" value="{$order.order_id}">
+      <div class="bot"><a href="JavaScript:void(0);" onClick="checkSubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+        
+  </form>
+</div>
+<script type="text/javascript">
+
+	$(function () {
+		$("#order-add").validate({
+			debug: false, //调试模式取消submit的默认提交功能   
+			focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+		    onkeyup: false,   
+		    submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+		    	 if($("input[name^='goods_id']").length ==0){
+		    		   layer.alert('订单中至少要有一个商品', {icon: 2});  
+		    		   return ;
+		    	  }else{
+		    		  form.submit();   //提交表单	  
+		    	  }	       
+		    },  
+		    ignore:":button",	//不验证的元素
+		    rules:{
+		    	consignee:{
+		    		required:true
+		    	},
+		    	mobile:{
+		    		required:true
+		    	},
+		    	province:{
+		    		required:true
+		    	},
+		    	city:{
+		    		required:true
+		    	},
+		    	district:{
+		    		required:true
+		    	},
+		    	address:{
+		    		required:true
+		    	}
+		    },
+		    messages:{
+		    	consignee:{
+		    		required:"请填写收货人"
+		    	},
+		    	mobile:{
+		    		required:"收货人联系电话"
+		    	},
+		    	province:{
+		    		required:"请选择所在省份"
+		    	},
+		    	city:{
+		    		required:"请选择所在城市"
+		    	},
+		    	district:{
+		    		required:"请选择所在区县"
+		    	},
+		    	address:{
+		    		required:"请填写详细地址"
+		    	}
+		    }
+		});
+	});
+
+
+	//搜索用户 
+	function search_user(){
+		var user_name = $('#user_name').val();
+		if($.trim(user_name) == '')
+			return false;
+			$.ajax({
+	            type : "POST",
+	            url:"/index.php?m=Admin&c=User&a=search_user",//+tab,
+	            data :{search_key:$('#user_name').val()},// 你的formid
+	            success: function(data){
+					data = data + '<option value="0">匿名用户</option>';
+					$('#user_id').html(data);
+	            }
+	        });		
+	}
+
+//选择商品
+function selectGoods(){
+    var url = "{:U('Admin/Order/search_goods')}";
+    layer.open({
+        type: 2,
+        title: '选择商品',
+        shadeClose: true,
+        shade: 0.8,
+        area: ['60%', '60%'],
+        content: url, 
+    });
+}
+
+// 选择商品返回
+function call_back(table_html){
+	$('#goods_list_div').show();
+
+	$('#goods_td').find('.table-bordered').append(table_html);
+	//过滤选择重复商品
+	$('input[name*="spec"]').each(function(i,o){
+		if($(o).val()){
+			var name='goods_id['+$(o).attr('rel')+']['+$(o).val()+'][goods_num]';
+			$('input[name="'+name+'"]').parent().parent().parent().remove();
+		}
+	});
+	layer.closeAll('iframe');
+}
+  
+function checkSubmit(){			
+	
+	$('#order-add').submit();	
+ 
+}
+
+function delRow(obj){
+	$(obj).parent().parent().parent().remove();
+}
+</script>
+</body>
+</html>

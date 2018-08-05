@@ -1,0 +1,151 @@
+$ppr: 750px/16/1rem; // pixel per rem
+* {
+  margin: 0;
+  padding: 0;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  -webkit-text-size-adjust: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+input:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+body {
+  width: 16rem;
+  max-width: 16rem;
+  margin: 0 auto;
+  font-family: Helvetica,PingFangSC-Regular,"Droid Sans",Arial,sans-serif;
+  font-size: 0.34133rem;
+  line-height: 1;
+  color: #232326;
+  overflow-x: hidden;
+}
+
+.p:before, .p:after {
+  content: "";
+  clear: both;
+  display: block;
+  font-size: 0;
+  height: 0;
+}
+
+ul, li {
+  list-style: none;
+}
+
+em {
+  font-style: normal;
+}
+
+a {
+  text-decoration: none;
+  color: #666666;
+}
+
+.fl {
+  float: left;
+}
+
+.fr {
+  float: right;
+}
+
+.but_ad {
+  cursor: pointer;
+  display: block;
+  padding: 0.08533rem 1.06667rem;
+  line-height: 1.024rem;
+  background: #1B9AF7;
+  border-color: #1B9AF7;
+  color: white;
+  font-size: 0.64rem;
+  text-align: center;
+  border-radius: 0.08533rem;
+  -webkit-box-shadow: 0 0.14933rem 0 #0880d7, 0 0.17067rem 0.064rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0.14933rem 0 #0880d7, 0 0.17067rem 0.064rem rgba(0, 0, 0, 0.3);
+}
+
+.but_ad:active {
+  -webkit-box-shadow: 0 0.04267rem 0 #0662a6, 0 0.064rem 0.064rem rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0.04267rem 0 #0662a6, 0 0.064rem 0.064rem rgba(0, 0, 0, 0.2);
+  background-color: #2798eb;
+  border-color: #2798eb;
+  color: #0880d7;
+}
+
+.plus_minus {
+  padding: 100px 0.64rem;
+}
+
+.plus_minus input[type=text] {
+  width: 33.33333%;
+  float: left;
+  text-align: center;
+  vertical-align: middle;
+  height: 1.28rem;
+  border: 1px solid #dedede;
+  outline: none;
+}
+
+.plus_minus input[type=text]:focus {
+  border: 1px solid #1B9AF7;
+  box-shadow: 0 0 0.21333rem rgba(27, 154, 247, 0.3);
+}
+
+.plus_minus input[type=radio] {
+  outline: none;
+  vertical-align: middle;
+  width: 0.512rem;
+  height: 0.512rem;
+}
+
+.plus_minus label {
+  vertical-align: middle;
+  margin-right: 0.21333rem;
+}
+
+.plus_minus span {
+  float: left;
+  width: 33.33333%;
+  text-align: center;
+  font-size: 0.59733rem;
+  line-height: 1.28rem;
+}
+
+.equal {
+  width: 6.4rem;
+  margin: 0 auto;
+}
+.harflr{
+    text-align: center;
+    padding: 50px/$ppr 0;
+}
+.harflr img {
+  width: 150px/$ppr;
+  height: 212px/$ppr;
+  margin-left: -5px/$ppr;
+  &:first-child{
+      margin-left:0;
+  }
+}
+
+.header_aq .box_ad {
+  margin: 0.64rem;
+}
+
+.header_aq .fltz {
+  float: left;
+}
+
+.equal span {
+  font-size: 0.85333rem;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+  display: block;
+  margin-top: 1.06667rem;
+}
+

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的推广-{$tpshop_config['shop_info_store_title']}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>我的推广</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+			    		<div class="menumain p">
+			    			<div class="goodpiece">
+								<h1>我的下线(<b>{$count}</b>)</h1>
+								<!--<a href=""><span class="co_blue">帮助</span></a>-->
+							</div>
+			    			<div class="orderbook-list">
+			    				<div class="time-sala p">
+									<ul>
+										<li class="<if condition='$level eq 1'>red<else/>mal-l</if>">
+                                        	<a href="{:U('Home/Order/lower_list')}">一级下线</a>
+                                        </li>
+										<li class="<if condition='$level eq 2'>red<else/>mal-l</if>">
+                                            <a href="{:U('Home/Order/lower_list',array('level'=>2))}">二级下线</a>
+                                        </li>
+                                        <li class="<if condition='$level eq 3'>red<else/>mal-l</if>">
+                                            <a href="{:U('Home/Order/lower_list',array('level'=>3))}">三级下线</a>
+                                        </li>
+									</ul>
+								</div>
+
+							<div class="he"></div>
+                            <if condition="!empty($member)">
+								<div class="orderbook-list">
+					    			<div class="book-tit">
+					    				<ul>
+					    					<li class="sx2">会员ID</li>
+					    					<li class="sx2">手机</li>
+					    					<li class="sx2">昵称</li>
+					    					<li class="sx2">加入时间</li>
+					    					<li class="sx2">最后登陆</li>
+					    					<li class="sx6">返利订单</li>
+					    				</ul>
+					    			</div>
+					    		</div>
+								<div class="book-tit book_content p">
+									<volist name="member" id="vm">
+										<ul>									
+											<li class="sx6">{$vm.user_id}</li>
+											<li class="sx5">{$vm.mobile|default='--'}</li>
+											<li class="sx5">{$vm.nickname}</li>
+											<li class="sx5">{$vm.reg_time|date='Y-m-d H:s',###}</li>
+											<li class="sx5">{$vm.last_login|date='Y-m-d H:s',###}</li>
+											<li class="sx6">
+												<div class="rbac">
+													<p class="inspect"><a href="{:U('Order/income',array('user_id'=>$vm[user_id]))}">查看</a></p>														
+												</div>
+											</li>
+										</ul>
+									</volist>
+								</div>
+                            <else/>
+                                <div class="car-none-pl">
+                                    <i class="account-acco1"></i>您还没有改级下线，<a href="/">快去邀请好友吧~</a>
+                                </div>
+                            </if>
+				    		</div>
+			    		</div>
+						<div class="operating fixed" id="bottom">
+							<div class="fn_page clearfix">
+								{$page}
+							</div>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+	    <div class="footer p">
+	        <include file="public/footer" />
+	    </div>
+		<!--footer-e-->
+
+	</body>
+</html>

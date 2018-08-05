@@ -1,0 +1,2 @@
+\plugins\payment\alipay    为PC 端支付宝 demo
+\plugins\payment\alipay\app_notify 目录下的文件为 app 端发起支付 支付宝回调服务器接口的 目录 此app_notify目录跟PC 端 发起支付 回调的 无关

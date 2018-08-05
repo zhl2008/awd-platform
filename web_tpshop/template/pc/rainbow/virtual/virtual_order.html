@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>订单详情</title>
+  <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+  <link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+  <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<style>
+.wrap { background: url(__STATIC__/images/main_bg.png) repeat-y 0 0;width: 1000px;zoom: 1;}
+.main {background-color: #ffffff;padding: 15px;}
+.themes_title {border-bottom: 2px solid #eee;height: 20px;line-height: 20px;padding: 0 10px 7px 5px;margin-bottom: 20px;position: relative;margin-top: -3px;}
+.order_details .order_tip { position: relative;z-index: 2;border: 1px dashed #ffd9b3;background-color: #fffdee;}
+.order_details .order_tip_tit {padding: 10px 15px;border-bottom: 1px dashed #ffd9b3;height: 28px;line-height: 28px;}
+.order_details .order_tip_info {padding: 5px 30px;}
+.order_details .again {margin-top: 10px;border-top: 1px dashed #ddd;padding-top: 20px;}
+.order_details .info_box { position: relative; margin: 5px 0;}
+.order_details .info_L {color: #6c6c6c;vertical-align: top;display: inline-block;}
+.order_details .info_R {display: inline-block;*display: inline;zoom: 1;word-break: break-all;}
+.order_details .df {font-weight: bold;}
+.order_details .order_info {margin-top: 30px;}
+.order_details .ui_tab {position: relative;}
+.ui_tab_nav {height: 35px;margin-bottom: -2px;overflow: hidden;position: relative;z-index: 1;}
+.ui_tab_nav li {float: left;}
+.order_details .opeating {position: absolute;right: 0;top: 0;}
+.order_details .opeating .btn_pay {color: #fff;margin-right: 10px;border:0; }
+.order_details .ui_tab_content .ui_panel {padding: 15px 30px;border: 1px solid #eee;}
+.order_details .order_info h3 {font-weight: bold;margin: 20px 0 10px 20px;}
+.order_details .ui_tab_nav {margin-bottom: -2px;}
+.ui_tab_nav {height: 35px; margin-bottom: -2px;overflow: hidden;position: relative;z-index: 1;}
+.ui_tab_nav li {float: left;}
+.ui_tab_nav .active a {background: #fff;border-bottom: 0;padding-bottom: 7px;color: #f22e00;border-top: 2px solid #f22e00;border-right: 1px solid #eee;}
+.ui_tab_nav a {font-weight: bold;color: #6c6c6c;background: #fcfcfc;border: 1px solid #eee;border-right: 0;display: block;font-size: 14px;padding: 5px 51px 6px;}
+.order_details .opeating {position: absolute;right: 0;top: 0;}
+.order_details .ui_tab_content { border: 1px solid #eee;}
+.order_details .ui_tab_content .ui_panel {padding: 15px 30px;}
+.order_details .order_info h3 {font-weight: bold;margin: 20px 0 10px 20px;}
+.order_details .package_info { border: 1px solid #ddd;background-color: #f9f9f9;}
+.details_list {margin-top: 20px;text-align: center;}
+.details_list .details_list_tit {border: 1px solid #ddd;background-color: #eee;height: 38px;line-height: 38px;color: #6c6c6c;}
+.details_list li {display: inline-block;float: left;}
+.col_w40 {width: 40%;}
+.col_w15 {width: 15%;word-wrap: break-word;}
+.order_details .details_list_cont .item_container {text-align: left;}
+.order_details .details_list_cont .item_img {border: 1px solid #f1f1f1; height: 58px;line-height: 58px;margin-right: 6px; width: 58px;}
+.order_details .details_list_cont .item_img, .order_details .details_list_cont .item_meta {display: inline-block;float: left;}
+.order_details .details_list_cont .item_img img {width: 58px;height: 58px;}
+.order_details .details_list_cont .item_meta {width: 80%;height: 60px;line-height: 20px;overflow: hidden;}
+.order_details .details_list_cont .item_img, .order_details .details_list_cont .item_meta {display: inline-block;float: left;}
+.order_details .order_name, .order_details .premiums {position: relative;left: 0;top: -3px;}
+.order_details .package_info {border: 1px solid #ddd;background-color: #f9f9f9;overflow: hidden;}
+.order_details .info_box .num {color: #f22e00;display: inline-block;}
+.order_details .package_L {padding: 15px;width: 192px;}
+.order_details .package_L, .order_details .package_R { display: inline-block;*display: inline; zoom: 1;float: left;}
+.order_details .package_L{border-right: 1px solid #ddd;}
+.order_details .package_R { margin-left:-1px; border-left: 1px solid #ddd;padding: 10px 4px;width: 670px;min-height: 130px;background-color: #fff;}
+.clearfix::before, .clearfix::after {content: "\0020";display: block;height: 0;overflow: hidden;}
+.clearfix {zoom: 1;}
+.ui_step {padding: 0 70px;margin: 0 auto;font-size: 12px;list-style: none;position: relative;color: #b7b7b7;overflow: hidden;}
+.ui_step li {float: left;margin: 0;width: 50%;}
+.ui_step_4 li {width: 33.33333333%;}
+.ui_step .step_start, .ui_step .step_done {color: #56ae25;}
+.ui_step .ui_step_title {margin-bottom: 15px; width: 100px;text-align: center;margin-left: -30px;}
+.ui_step .ui_step_bg {height: 40px;}
+.ui_step .step_bg {height: 40px;width: 40px;line-height: 40px;background: url(__STATIC__/images/step.png) 0 -41px no-repeat;overflow: hidden;text-align: center;font-weight: bold;font-size: 24px;font-family: Arial;position: relative;}
+.ui_step .step_line {height: 8px;background: url(__STATIC__/images/step_line.png) 0 0 repeat-x;display: block;overflow: hidden;margin-left: 40px;position: relative;top: -25px;}
+.ui_step .ui_step_time {width: 100px; text-align: center;margin-left: -30px;margin-top: 10px; color: #9c9c9c;}
+.ui_step .step_end {width: 45px; position: absolute;right: 26px;z-index: 1;}
+.order_details .details_list_cont ol {padding: 0 20px;overflow: hidden;}
+.order_details .details_list_cont .item_details {border-bottom: 1px dashed #ddd; margin-bottom: 15px;padding-bottom: 15px;}
+.order_details .details_list_cont { padding: 15px 0;}
+.ui_step .step_end .step_line {display: none;}
+.ui_step .step_start .step_bg, .ui_step .step_done .step_bg {background-position: 0 0;}
+.ui_step .step_done .step_line { background-position: 0 -9px;}
+.btn_pay {width: 84px; height: 28px; line-height: 28px; background: -244px -90px;}
+.btn_pay:hover {text-decoration: none; background: -247px -125px;}
+.btn_pay,.btn_pay:hover,.btn_to_pay:hover,.btn_to_pay{background-image: url(__STATIC__/images/sprite_btn.png);}
+.infor_box {display:inline-block}
+.infor_box  .info_R{display:block;}
+</style>
+</head>
+<body class="bg-f5">
+<include file="user/header"/>
+<div class="home-index-middle">
+  <div class="w1224">
+    <div class="g-crumbs">
+      <a href="{:U('Home/User/index')}">我的商城</a>
+      <i class="litt-xyb"></i>
+      <span>订单详情</span>
+    </div>
+    <div class="home-main">
+      <include file="user/menu"/>
+      <div class="ri-menu fr">
+        <div class="wrap">
+          <!-- order details star -->
+          <div class="main order_details">
+            <div class="themes_title">
+              <h3>订单详情</h3>
+            </div>
+
+            <!-- order base info start -->
+            <div class="order_tip">
+              <div class="order_tip_tit clearfix">
+                <h3> 订单号：
+                  <span class="num">{$order_info.order_sn}</span>
+                </h3>
+              </div>
+              <div class="order_tip_info">
+                <div class="info_box">
+                  <div class="info_L"> 订单状态： </div>
+                  <div class="info_R">
+                    <span class="df">{$order_info.order_status_detail}</span>
+                  </div>
+                </div>
+                <div class="info_box">
+                  <div class="info_L"> 订单金额： </div>
+                  <div class="info_R">
+                    <span class="num">￥{$order_info.order_amount}</span>
+                    <span class="way_tips" style="display:inline-block;">{$order_info.pay_name}</span>
+                  </div>
+                </div>
+                  <if condition="!empty($vrorders)">
+                    <div class="info_box">
+                      <div class="info_L"> 电子兑换码： </div>
+                      <div class="infor_box">
+	                      <foreach name="vrorders" item="vrorder">
+	                      		<if condition='$vrorder[vr_state] eq 1'>
+	                              <div class="info_R inr"><strong>{$vrorder.vr_code}</strong> 已使用，使用时间{$vrorder.vr_usetime|date='Y-m-d H:i',###}</div>
+	                          </if>
+	                          <if condition='$vrorder[vr_state] eq 2'>
+	                              <div class="info_R inr">
+	                                  <span class="num"><strong>{$vrorder.vr_code}</strong>  已过期，有效期至{$vrorder.vr_indate|date='Y-m-d H:i',###}</span>
+	                              </div>
+	                          </if>
+	                          <if condition='$vrorder.vr_state eq 0 and $vrorder.refund_lock lt 1'>
+	                              <div class="info_R inr">
+	                                  <span class="num"><strong>{$vrorder.vr_code}</strong>  未使用，有效期至{$vrorder.vr_indate|date='Y-m-d H:i',###}</span>
+	                              </div>
+	                          </if>
+	                          <if condition='$vrorder.refund_lock gt 0'>
+	                              <div class="info_R inr">
+	                                  <span class="num"><strong>{$vrorder.vr_code}</strong>  已取消，有效期至{$vrorder.vr_indate|date='Y-m-d H:i',###}</span>
+	                              </div>
+	                          </if>
+	                      </foreach>
+                      </div>
+                    </div>
+                </if>
+              </div>
+            </div>
+
+            <br/>
+            <div class="order_info">
+              <div class="ui_tab">
+                <ul class="ui_tab_nav">
+                  <li class =" active">
+                    <a href="javascript:void(0);" class="detail_packNo">订单</a>
+                  </li>
+                  <li class="opeating" id="opeating_1" style="display:block;">
+                    <if condition="$order_info.virtual_order_button[cancel_btn] eq 1">
+                        <button class="btn_pay" onClick="cancel_order({$order_info.order_id})">取消订单</button>
+                    </if>
+                    <if condition="$order_info.virtual_order_button[cancel_btn] eq 2"><button class="btn_pay" onClick="refund_order({$order_info.order_id})">取消订单</button></if>
+                    <if condition="$order_info.virtual_order_button[pay_btn] eq 1">
+                        <button class="btn_pay"  onclick="location.href='{:U('/Home/Cart/cart4',array('order_id'=>$order_info[order_id]))}'">立即支付</button>
+                    </if>
+                    <if condition="$order_info.virtual_order_button[receive_btn] eq 1">
+                        <button class="btn_pay" onclick="order_confirm({$order_info['order_id']});">收货确认</button>
+                    </if>
+                  </li>
+                </ul>
+                <div class="ui_tab_content">
+                  <div class="ui_panel" id="ui_panel_1"
+                       style = "display: block;">
+                    <h3>虚拟订单信息
+                      <span class="package" id="package_bag_1"> </span>
+                    </h3>
+                    <div class="package_info clearfix J-tab">
+                      <div class="package_L">
+                        <div class="info_box">
+                          <div class="info_L"> 接收手机：</div>
+                          <div class="info_R">
+                            <span class="num">{$order_info.mobile}</span>
+                          </div>
+                        </div>
+                        <div class="info_box">
+                          <div class="info_L"> 虚拟单号：</div>
+                          <div class="info_R">
+                            <span class="over">{$order_info.order_sn}</span>
+                          </div>
+                        </div>
+                        <div class="info_box">
+                          <div class="delivery_time"></div>
+                        </div>
+                        <div class="info_box">
+                          <div class="info_L">买家留言： </div>
+                          <div class="info_R">
+               				<span class="over">{$order_info.user_note}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="package_R">
+                        <ul class="ui_step ui_step_4 clearfix">
+                          <li class="step_start">
+                            <div class="ui_step_title">下单</div>
+                            <div class="ui_step_bg <if condition="$order_info[pay_status] gt 0">step_done</if>">
+                              <div class="step_bg">1</div>
+                              <div class="step_line"></div>
+                            </div>
+                            <div class="ui_step_time">{$order_info.add_time|date='Y-m-d H:i:s',###}</div>
+                          </li>
+                          <li class="<if condition="$order_info[pay_status] gt 0">step_start</if>">
+                          <div class="ui_step_title">付款成功</div>
+                          <div class="ui_step_bg <if condition="$order_info[pay_time] gt 0">step_done</if>">
+                            <div class="step_bg">2</div>
+                            <div class="step_line"></div>
+                          </div>
+                          <div class="ui_step_time" ><if condition="$order_info[pay_time] gt 0">{$order_info.pay_time|date='Y-m-d H:i:s',###}</if></div>
+                          </li>
+                          <li class="<if condition="$order_info[pay_status] gt 0">step_start</if>">
+                          <div class="ui_step_title">发放兑换码 </div>
+                          <div class="ui_step_bg <if condition="$order_info[order_status] eq 4">step_done</if>">
+                            <div class="step_bg">3</div>
+                            <div class="step_line"></div>
+                          </div>
+                          <div class="ui_step_time" ><if condition="$order_info[shipping_time] gt 0">{$order_info.shipping_time|date='Y-m-d H:i:s',###}</if></div>
+                          </li>
+                          <li  class="step_end <if condition="$order_info[order_status] eq 4">step_start</if>">
+                          <div class="ui_step_title"> 完成 </div>
+                          <div class="ui_step_bg">
+                            <div class="step_bg">4</div>
+                            <div class="step_line"></div>
+                          </div>
+                          <div class="ui_step_time" ><if condition="$order_info[confirm_time] gt 0">{$order_info.confirm_time|date='Y-m-d H:i:s',###}</if></div>
+                          </li>
+                        </ul>
+                      </div>
+                    </div>
+                    <h3>商品信息</h3>
+                    <div class="details_list">
+                      <div class="details_list_tit clearfix">
+                        <ul>
+                          <li class="col_w40">商品名称</li>
+                          <li class="col_w15">规格</li>
+                          <li class="col_w15">价格 / 数量</li>
+                          <li class="col_w15">合计（元）</li>
+                          <li class="tit_05 col_w15">订单状态及操作</li>
+                        </ul>
+                      </div>
+                      <div class="details_list_cont">
+                          <div class="item_details">
+                              <foreach name="$order_info.order_goods" item="order_goods">
+                                <ol class="clearfix">
+                                  <li class="col_w40">
+                                    <div class="item_container clearfix">
+                                      <a href="{:U('Home/Goods/goodsInfo',array('id'=>$order_goods['goods_id']))}" class="item_img"><img src="{$order_goods.goods_id|goods_thum_images=78,78}"/></a>
+                                      <div class="item_meta">
+                                          <a href="{:U('Home/Goods/goodsInfo',array('id'=>$order_goods['goods_id']))}" class="order_name">{$order_goods.goods_name}</a>
+                                         <!-- <if condition="!empty($order_goods.virtual_indate)">
+                                              <p>使用时效：即日起 至{$order_goods.virtual_indate|date='Y-m-d',###}</p>
+                                          <else/>
+                                              <p>请尽快支付</p>
+                                          </if>-->
+                                      </div>
+                                    </div>
+                                  </li>
+                                  <li class="col_w15 num">{$order_goods.spec_key_name}&nbsp;&nbsp;</li>
+                                  <li class="col_w15 num">￥{$order_goods.member_goods_price}&nbsp;&nbsp;/&nbsp;&nbsp; {$order_goods.goods_num}</li>
+                                  <li class="col_w15 num">￥{$order_goods['member_goods_price']*$order_goods['goods_num']}</li>
+                                  <li class="cont_05 col_w15 num">
+                                    <p class="p-link"><p class="p-link"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$order_goods['goods_id']))}"><span>再次购买</span></a></p></p>
+                                      <!--<if condition="$vrorder['vr_state'] eq 0">
+                                          <p class="p-link">
+                                              <a style="color:#999;" href="{:U('Home/Order/return_goods',array('rec_id'=>$order_goods['rec_id']))}">申请退款</a>
+                                          </p>
+                                      </if>-->
+                                    <if condition="($order_info.comment_btn eq 1) and ($order_goods['is_comment'] eq 0)">
+                                      <p class="p-link"><a href="{:U('Home/Order/comment')}"><span>评价</span></a></p>
+                                    </if>
+                                  </li>
+                                </ol>
+                              </foreach>
+                          </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- ui tab end -->
+            </div>
+          </div>
+          <!-- order details end -->
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--footer-s-->
+<include file="user/footer" />
+<!--footer-e-->
+<script type="text/javascript">
+  $(function(){
+    $('.time-sala ul li').click(function(){
+      $(this).addClass('red').siblings().removeClass('red');
+    })
+    $('.searc_sx a').click(function(){
+      $(this).addClass('red').siblings('a').removeClass('red');
+    })
+  })
+  
+	//取消订单
+	function cancel_order(id){
+		layer.confirm('确定取消订单？', {
+			  btn: ['是','否']
+			}, function(){
+                $.ajax({
+                    url:"{:U('Home/Order/cancel_order')}",
+                    type:'POST',
+                    dataType:'JSON',
+                    data:{id:id},
+                    success:function(data){
+                        if(data.status == 1){
+                            layer.alert(data.msg, {icon: 1},function(){
+                                location.href ='/index.php?m=home&c=Virtual&a=virtual_order&order_id='+id;
+                            })
+                        }else{
+                            layer.alert(data.msg, {icon: 2});
+                        }
+                    },error : function() {
+                        layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+                    }
+                });
+			}, function(tmp){
+				layer.close(tmp);
+		 	}
+		);
+	}
+    function refund_order(order_id) {
+        layer.open({
+            type: 2,
+            title: '<b>订单取消申请</b>',
+            skin: 'layui-layer-rim',
+            shadeClose: true,
+            shade: 0.5,
+            area: ['600px', '500px'],
+            content: "{:U('Home/Order/refund_order')}?order_id=" + order_id,
+        });
+    }
+  function order_confirm(orderId)
+  {
+    layer.confirm('你确定收到货了吗?', {
+              btn: ['是','否']
+        }, function(){
+            $.ajax({
+                url:"{:U('Virtual/virtual_confirm')}",
+                type:'POST',
+                dataType:'JSON',
+                data:{order_id:orderId},
+                success:function(data){
+                    if(data.status == 1){
+                        layer.alert(data.msg, {icon: 1},function(){
+                            location.href ='/index.php?m=home&c=Virtual&a=virtual_order&order_id='+orderId;
+                        })
+                    }else{
+                        layer.alert(data.msg, {icon: 2});
+
+                    }
+                },
+                error : function() {
+                    layer.alert('网络失败，请刷新页面后重试', {icon: 2});
+                }
+                }, function(tmp){
+                  layer.close(tmp);
+                });
+        }, function(tmp){
+            layer.close(tmp);
+        });
+  }
+</script>
+</body>
+</html>

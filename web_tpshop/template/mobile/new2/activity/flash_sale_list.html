@@ -1,0 +1,111 @@
+<include file="public/header" title="秒杀"/>
+<include file="public/header_nav" title="秒杀" href="javascript:history.back(-1)" />
+    <!--顶部时间栏-s-->
+    <div class="floor killtime p">
+        <div class="content30">
+            <ul>
+                <foreach name="time_space" item="vo" key="k">
+                    <li onclick="reload_flash_sale_list(this);" start-data="{$vo['start_time']|date='Y/m/d H:i:s',###}" end-data="{$vo['end_time']|date='Y/m/d H:i:s',###}" data-start-time="{$vo['start_time']}" data-end-time="{$vo['end_time']}" <if condition="(time() egt $vo['start_time']) AND (time() lt $vo['end_time'])">class="red"</if> >
+                        <h3>{$vo['font']}</h3>
+                        <p>
+                            <if condition="time() lt $vo['start_time']">即将开场
+                                <elseif condition="(time() egt $vo['start_time']) AND (time() lt $vo['end_time'])"/>秒杀中
+                                <else />已经结束
+                            </if>
+                        </p>
+                    </li>
+                </foreach>
+            </ul>
+            <div class="nowkill">
+                <span class="fl">正在秒杀，先下单先得哦~</span>
+                <span class="fr" id="surplus"></span>
+                <!--秒杀-end-->
+            </div>
+        </div>
+    </div>
+    <!--顶部时间栏-es-->
+
+    <!--秒杀商品-s-->
+    <div class="floor shopkill">
+        <ul id="flash_sale_list">
+            <if condition="empty($time_space)">
+                <li style="text-align: center;">暂无抢购商品。。。。<li>
+            </if>
+        </ul>
+        <!--加载更多S-->
+            <div class="loadbefore">
+	            <img class="ajaxloading" src="__STATIC__/images/loading.gif" alt="loading...">
+	        </div>
+        <!--加载更多E-->
+    </div>
+    <!--秒杀商品-e-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script>
+    $(function(){
+        ajax_sourch_submit()
+    })
+    function GetRTime2(){
+        var start_time_data = $('.content30').find('.red').attr('data-start-time');
+        var timestamp   = Date.parse(new Date()).toString().substring(0,10);
+        if(start_time_data > timestamp){
+            var start_time = GetRTime($('.content30').find('.red').attr('start-data'));
+            var start_time_index =  start_time.indexOf("天");
+            $('.nowkill').find(".fl").text("秒杀活动即将开场~");
+            $('.nowkill').find(".fr").html('距离开始'+start_time.substr(start_time_index+1));
+        }else{
+            var end_time = GetRTime($('.content30').find('.red').attr('end-data'));
+            var end_time_index =  end_time.indexOf("天");
+            $('.nowkill').find(".fl").text("正在秒杀，先下单先得哦~");
+            $('.nowkill').find(".fr").html('距离结束'+end_time.substr(end_time_index+1));
+        }
+
+    }
+    setInterval(GetRTime2,1000);
+
+    var page = 0;//页数
+    var start_time = $('.content30').find('.red').attr('data-start-time');
+    var end_time = $('.content30').find('.red').attr('data-end-time');
+    function reload_flash_sale_list(obj)
+    {
+        page = 0;
+        $(obj).parent().children().removeClass('red');
+        $(obj).addClass('red');
+        start_time = $(obj).attr('data-start-time');
+        end_time = $(obj).attr('data-end-time');
+        setInterval(GetRTime2,1000);
+        $("#flash_sale_list").empty();
+        ajax_sourch_submit();
+    }
+
+    /**
+     * ajax加载更多商品
+     */
+    function ajax_sourch_submit()
+    {
+        ++page;
+        $.ajax({
+            type : "GET",
+            url: "/index.php?m=Mobile&c=Activity&a=ajax_flash_sale&p=" + page + "&start_time=" + start_time + "&end_time=" + end_time,
+            success: function(data){
+		        if ($.trim(data)) {
+                    $(".shopkill ul").append(data);
+		        } else {
+                    return false;
+		        }
+		    }
+    	});
+    }
+    //滚动加载更多
+    $(window).scroll(
+        function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
+            if (scrollTop + windowHeight == scrollHeight) {
+                ajax_sourch_submit();//调用加载更多
+            }
+        }
+    );
+</script>
+</body>
+</html>

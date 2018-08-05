@@ -1,0 +1,113 @@
+<include file="public/header" title="退换货" body="g4"/>
+<include file="public/header_nav" title="退换货" href="javascript:history.back(-1);"/>
+<!--进度查询-s-->
+    <div class="attention-shoppay" id="list" >
+        <if condition="empty($list)">
+            <!--没有进度-s-->
+            <div class="comment_con p">
+                <div class="none"><img src="__STATIC__/images/none.png"><br><br>亲，此处还没有进度哦~</div>
+            </div>
+            <!--没有进度-e-->
+        <else/>
+            <foreach name="list" item="item">
+                <div class="searchsh"></div>
+                <div class="severde tuharecha">
+                <div class="myorder p">
+                    <div class="content30">
+                        <div class="order">
+                            <div class="fl">
+                                <span>服务单号：<em>{$item[id]}</em></span>
+                            </div>
+                            <div class="fr">
+                                <span class="red">
+                                    {$state[$item[status]]}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="{:U('Mobile/Order/return_goods_info',array('id'=>$item[id]))}">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>
+                                        <if condition="$item[status] eq -2">您的服务单已经取消</if>
+                                        <if condition="$item[status] eq -1">很抱歉！您的服务单未通过审核</if>
+                                        <if condition="$item[status] eq 0">您的服务单已申请成功，待售后审核中 </if>
+                                        <if condition="$item[status] eq 1">您的服务单已通过审核</if>
+                                        <if condition="$item[status] eq 2 and $item[type] eq 1">卖家已收到您寄回的物品,卖家已重新发货</if>
+                                        <if condition="$item[status] eq 3">您的服务单完成</if>
+                                    </span>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                    <!--商品信息-s-->
+                        <div class="sc_list se_sclist paycloseto">
+                            <div class="maleri30">
+                                <div class="shopimg fl">
+                                    <img src="{$item.goods_id|goods_thum_images=100,100}">
+                                </div>
+                                <div class="deleshow fr">
+                                    <div class="deletes">
+                                        <a class="daaloe">{$goodsList[$item[goods_id]]}</a>
+                                    </div>
+                                    <div class="qxatten">
+                                        <p class="weight"><span>申请时间：</span><span>{:date('Y-m-d H:i:s',$item[addtime])}</span></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    <!--商品信息-e-->
+                <div class="xomjdche">
+                    <div class="maleri30">
+                        <a href="{:U('Mobile/Order/return_goods_info',array('id'=>$item[id]))}">进度查询</a>
+                    </div>
+                    <if condition="$item[status] eq 2 and $item.type eq 1">
+                        <div class="maleri30">
+                            <a href="{:U('Mobile/Order/receiveConfirm',array('id'=>$item[id]))}">确认收货</a>
+                        </div>
+                    </if>
+                    <if condition="$item[status] neq -2 and $item[status] lt 1">
+                        <div class="maleri30">
+                            <a href="{:U('Mobile/Order/return_goods_cancel',array('id'=>$item[id]))}">取消申请</a>
+                        </div>
+                    </if>
+                </div>
+            </div>
+            </foreach>
+        </if>
+    </div>
+<!--进度查询-e-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript">
+    /**
+     *加载更多
+     */
+    var  page = 1;
+    function ajax_sourch_submit()
+    {
+        ++page;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=Mobile&c=User&a=return_goods_list",
+            data:{is_ajax:1,p:page},
+            success: function(data)
+            {
+                if(data == '')
+                    $('#getmore').hide();
+                else
+                {
+                    $("#list").append(data);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

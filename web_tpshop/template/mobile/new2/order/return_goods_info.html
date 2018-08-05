@@ -1,0 +1,137 @@
+<include file="public/header" title="申请服务详情" body="g4"/>
+<include file="public/header_nav" title="申请服务详情" href="javascript:history.back(-1);"/>
+<!--进度查询-s-->
+<div class="attention-shoppay" id="returninfo" >
+    <if condition="empty($return_goods)">
+        <!--没有进度-s-->
+        <div class="comment_con p">
+            <div class="none"><img src="__STATIC__/images/none.png"><br><br>亲，此处还没有进度哦~</div>
+        </div>
+        <!--没有进度-e-->
+    <else/>
+        <div class="dindboxt p">
+            <div class="maleri30">
+                <div class="fl_addextra fl">
+                    <p><span class="gray">订单编号：</span><span>{$return_goods.order_sn}</span></p>
+                    <p><span class="gray">申请时间：</span><span>{:date('Y-m-d H:i:s',$return_goods.addtime)}</span></p>
+                </div>
+                <div class="fr_extra fr">
+                    <if condition="$return_goods[status] eq 2 and $return_goods.type eq 1">
+                        <a class="tuid sueye" href="{:U('User/receiveConfirm',array('return_id'=>$return_goods[id]))}">确认收货</a>
+                    </if>
+                    <if condition="$return_goods[status] neq -2 and $return_goods[status] lt 1">
+                        <a class="tuid sueye" href="{:U('User/return_goods_cancel',array('id'=>$return_goods[id]))}">取消服务</a>
+                    </if>
+                </div>
+            </div>
+        </div>
+        <div class="orderlistshpop mabo20 p">
+            <div class="maleri30">
+                <!--商品信息-s-->
+                <div class="sc_list se_sclist paycloseto">
+                    <div class="shopimg fl">
+                        <img src="{$goods.goods_id|goods_thum_images=100,100}">
+                    </div>
+                    <div class="deleshow fr">
+                        <div class="deletes">
+                            <span class="similar-product-text">{$goods[goods_name]}</span>
+                        </div>
+                        <div class="prices">
+                            <p class="sc_pri">最新价格：<span>￥</span><span>{$goods[shop_price]}</span></p>
+                        </div>
+                        <!--<div class="qxatten">
+                            <p class="weight"><span>数量</span>&nbsp;<span>x{$goods[goods_num]}</span></p>
+                        </div>-->
+                    </div>
+                </div>
+                <!--商品信息-e-->
+                <div class="thirsy">
+                    <div class="sww">
+                        <ul>
+                            <li class="sw_question">售后信息</li>
+                            <li class="sw_answer">
+                                {$state[$return_goods[status]]}
+                            </li>
+                        </ul>
+                        <ul>
+                            <li class="sw_question">处理方式</li>
+                            <li class="sw_answer">期望处理方式“<if condition="$return_goods[type] eq 1">换货<else/>退货</if>”</li>
+                        </ul>
+                        <ul>
+                            <li class="sw_question">问题描述</li>
+                            <li class="sw_answer">{$return_goods[reason]}</li>
+                        </ul>
+                        <ul>
+                            <li class="sw_question">服务备注</li>
+                            <li class="sw_answer">{$return_goods[remark]}</li>
+                        </ul>
+                    </div>
+                    <notempty name="return_goods[imgs]">
+                        <div class="thirdlogin badimg">
+                            <h4>问题图片</h4>
+                            <ul>
+                                <volist name="return_goods[imgs]" id="item">
+                                    <li><img src="{$item}"/></li>
+                                </volist>
+                            </ul>
+                        </div>
+                    </notempty>
+                </div>
+            </div>
+        </div>
+        <div class="listschdule ma-to-20">
+            <div class="tittimlord red-around">
+                <h2>您的服务单已申请成功，等待售后审核中</h2>
+                <p>{$return_goods.addtime|date='Y-m-d H:i:s',###}</p>
+                <p><span>操作人：</span><span class="store_dd">系统</span></p>
+            </div>
+            <if condition="$return_goods.status gt 0">
+                <div class="tittimlord red-around">
+                    <h2>亲爱的客户，您的服务单已通过审核</h2>
+                    <!--<p>2017-01-02&nbsp;&nbsp;11:12:29</p>-->
+                    <p><span>操作人：</span><span class="store_dd">卖家</span></p>
+                </div>
+            </if>
+            <if condition="$return_goods.status eq -1">
+                <div class="tittimlord red-around">
+                    <h2>亲爱的客户，很抱歉！您的服务单未通过审核</h2>
+                    <!--<p>2017-01-02&nbsp;&nbsp;11:12:29</p>-->
+                    <p><span>操作人：</span><span class="store_dd">卖家</span></p>
+                </div>
+            </if>
+            <if condition="$return_goods.status gt 1 and $return_goods.type eq 1">
+                <div class="tittimlord red-around">
+                    <h2>亲爱的客户，卖家已收到您寄回的物品</h2>
+                    <!--<p>2017-01-02&nbsp;&nbsp;11:12:29</p>-->
+                    <p><span>操作人：</span><span class="store_dd">卖家</span></p>
+                </div>
+                <div class="tittimlord red-around">
+                    <h2>亲爱的客户，卖家已重新发货,
+                        <p>快递公司：{$return_goods[seller_delivery][express_name]},</p>
+                        <p>快递单号：{$return_goods[seller_delivery][express_sn]}</p>
+                    </h2>
+                    <p>{$return_goods[seller_delivery][express_time]}</p>
+                    <p><span>操作人：</span><span class="store_dd">卖家</span></p>
+                </div>
+            </if>
+
+            <if condition="$return_goods.status eq 3">
+                <div class="tittimlord red-around">
+                    <h2>亲爱的客户，您的服务单完成</h2>
+                    <!--<p>2017-01-02&nbsp;&nbsp;11:12:29</p>-->
+                    <p><span>操作人：</span><span class="store_dd">卖家</span></p>
+                </div>
+            </if>
+            <if condition="$return_goods.status eq -2">
+                <div class="tittimlord red-around">
+                    <h2>亲爱的客户，您的服务单已经取消</h2>
+                    <!--<p>2017-01-02&nbsp;&nbsp;11:12:29</p>-->
+                    <p><span>操作人：</span><span class="store_dd">卖家</span></p>
+                </div>
+            </if>
+        </div>
+    </if>
+</div>
+<!--进度查询-e-->
+</body>
+</html>

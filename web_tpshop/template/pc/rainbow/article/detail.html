@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="content-language" content="zh-cn"/>
+    <meta name="renderer" content="webkit|ie-comp|ie-stand"/>
+    <meta http-equiv="Cache-control" content="public" max-age="no-cache"/>
+    <title>详情-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}"/>
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}"/>
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/help.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css"/>
+</head>
+<body>
+<!--header-s-->
+<include file="public/header" w="w1224"/>
+    <!--header-e-->
+<!--E头部-->
+<!-- <div style="clear: both; height:45px"></div> -->
+<div id="pageContent" class="pageContent p">
+    <div class="hc-warp" id="page">
+        <div class="hc-crumbs"><a class="p-fb" href="" target="_blank">帮助中心</a>&gt; <a>{$cat_name}</a></div>
+        <div class="hc-column">
+            <tpshop sql="select * from `__PREFIX__article_cat` where cat_type=1 order by sort_order" key="k" item='v'>
+                <div class="hc-column-box">
+                    <h2><a href="" target="_self">{$v[cat_name]}</a></h2>
+                    <ul>
+                        <tpshop sql="select * from `__PREFIX__article` where cat_id = $v[cat_id] and is_open = 1" key="k2" item='v2'>
+                            <li><a href="{:U('Home/Article/detail',array('article_id'=>$v2[article_id]))}">{$v2[title]}</a></li>
+                        </tpshop>
+                    </ul>
+                </div>
+            </tpshop>
+        </div>
+        <!--可编辑区域开始-->
+        <div id="content"> <!--可编辑区域开始-->
+            <div style="width: 1050px; overflow: hidden; font-family: Verdana,Helvetica; float: right;">
+                <div style="border: 1px solid rgb(233, 234, 236); margin-bottom: 25px;">
+                    <h2 style="height: 34px; line-height: 34px; border-bottom-color: rgb(233, 234, 236); border-bottom-width: 1px; border-bottom-style: solid;"><span
+                            style="color: rgb(60, 60, 60); padding-top: 4px; padding-bottom: 4px; padding-left: 10px; font-size: 14px; font-weight: bold; border-left-color: rgb(242, 46, 0); border-left-width: 3px; border-left-style: solid;">{$article.title}</span>
+                    </h2>
+                    <img src="{$article.thumb}"/>
+                    <div style="padding: 20px 30px 0px; color: rgb(60, 60, 60); font-size: 12px;">
+                        {$article.content|htmlspecialchars_decode}
+                    </div>
+                </div>
+            </div>
+            <!--可编辑区域结束-->
+        </div>
+        <!--可编辑区域结束-->
+    </div>
+</div>
+<include file="public/footer"/>
+<include file="public/sidebar_cart"/>
+<script src="__STATIC__/js/lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATIC__/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>申请提现</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<link rel="shortcut  icon" type="image/x-icon" href="{$tpshop_config['shop_info_store_logo']}" media="screen"  />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="/">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>账户余额</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+						<div class="menumain p">
+							<div class="goodpiece">
+								<h1>提现申请</h1>
+								<!--<a href=""><span class="co_blue">账户余额说明</span></a>-->
+								<input type="hidden" id="openid" value="{$user.openid}">
+							</div>
+							<div class="personerinfro tixbox">
+								<form action="" method="post" id="distribut_form">
+									<ul class="hend_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>提现金额：</a></li>
+										<li class="infor_img">
+											<div class="duleyuan">
+												<input type="text" name="money" id="money" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')"/>
+												<span>元</span>
+											</div>
+											<span class="keyj">(最低提现额度{$tpshop_config['basic_min']}，当前账户金额：<em>{$user.user_money}</em>元)</span>
+										</li>
+									</ul>
+								<!--	<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>提现账户类型：</a></li>
+										<li class="paydegs">
+											<span><i class="chek"></i><label>支付宝</label></span>
+											<span><i></i><label>微信</label></span>
+											<span><i></i><label>银行卡</label></span>
+										</li>
+									</ul>-->
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>收款银行：</a></li>
+										<li>
+											<a href="javascript:void(0);">
+											<input class="name_zjxs" type="text" name="bank_name" id="bank_name" value="{$user.bank_name}" placeholder="如:支付宝,农业银行,工商银行等..." /></a>
+											<p class="adviceql">建议填写4大银行（中国银行、中国建设银行、中国工商银行和中国农业银行）请填写详细的开户银行分行名称，虚拟账户如支付宝、微信填写”支付宝“、”微信“即可。</p>
+										</li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>收款账号：</a></li>
+										<li>
+											<a href="javascript:void(0);"><input class="name_zjxs" type="text" name="bank_card" id="bank_card" value="" /></a>
+											<p class="adviceql">银行账号或虚拟账号（支付宝、微信等账号），微信提现时需要绑定微信账号，收款账号为openid</p>
+										</li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>开户人姓名：</a></li>
+										<li>
+											<a href="javascript:void(0);"><input class="name_zjxs wisd" type="text" name="realname" id="realname" value="" /></a>
+											<p class="adviceql">收款账号的开户人姓名</p>
+										</li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>验证码：</a></li>
+										<li class="name_jz">
+											<a href="javascript:void(0);">
+                                                <input class="name_zjxs wisd" type="text" name="verify_code" id="verify_code" value="" placeholder="请输入验证码"/>
+                                            </a>
+										</li>
+                                        <li>
+                                            <a href="javascript:void(0);"><img src="{:U('User/verify',array('type'=>'withdrawals'))}" id="verify_code_img" width="120" heigth="38" onclick="verify(this)"/></a>
+                                        </li>
+									</ul>
+                                    <ul class="name_jz">
+                                        <li class="infor_wi_le"><a href="javascript:void(0);"><i class="star">*</i>支付密码：</a></li>
+                                        <li>
+                                            <a href="javascript:void(0);"><input class="name_zjxs wisd" type="password" name="paypwd" id="paypwd" value="" /></a>
+                                            <if condition="empty($user['paypwd'])">
+                                                <p class="haiew">还未设置支付密码</p>
+                                                <a class="ha-re" style="cursor:pointer" href="{:U('User/paypwd')}">马上设置</a>
+                                            </if>
+                                        </li>
+                                    </ul>
+									<ul class="hobby_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"></a></li>
+										<li class="infor_wi_ri">
+											<div class="save_s">
+												<input class="save" type="button" onclick="checkSubmit()" value="确认提现" />
+												<input class="save closoff" type="reset" onclick="location.href='{:U('User/recharge')}'" value="取消并返回" />
+											</div>
+										</li>
+									</ul>
+								</form>
+							</div>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+		<div class="footer p"><include file="public/footer" /> </div>
+		<!--footer-e-->
+		<script type="text/javascript">
+            function verify(){
+                $('#verify_code_img').attr('src','/index.php?m=Home&c=User&a=verify&type=withdrawals&r='+Math.random());
+            }
+			$(function(){
+				$('.paydegs span').click(function(){
+					if($(this).find('label').html()=='微信'){
+						if($('#openid').val() == ''){
+							layer.alert('请在用户中心账号绑定里先扫码绑定微信账号',{icon:2});
+							return false;
+						}else{
+							$('.paydegs span').find('i').removeClass('chek');
+							$('#bank_name').val($('#openid').val());
+							$(this).find('i').addClass('chek');
+						}
+					}else{
+						$('.paydegs span').find('i').removeClass('chek');
+						$('#bank_name').val($(this).find('label').html());
+						$(this).find('i').addClass('chek');
+					}
+				})
+			})
+			// 表单验证提交
+			function checkSubmit(){
+				var money = $.trim($('#money').val());
+				var bank_name = $.trim($('#bank_name').val());
+				var bank_card = $.trim($('#bank_card').val());
+				var realname = $.trim($('#realname').val());
+				var verify_code = $.trim($('#verify_code').val());
+				
+				if(money == '')
+				{
+					layer.alert('提现金额必填',{icon:2});
+					return false;
+				}
+				if(bank_name == '')
+				{
+					layer.alert('银行名称必填',{icon:2});
+					return false;
+				}
+				if(bank_card == '')
+				{
+					layer.alert('收款账号必填',{icon:2});
+					return false;
+				}
+				if(realname == '')
+				{
+					layer.alert('开户名必填',{icon:2});
+					return false;
+				}
+				if(verify_code == '')
+				{
+					layer.alert('验证码必填',{icon:2});
+					return false;
+				}
+                $.ajax({
+                    type: "post",
+                    url :"{:U('User/withdrawals')}",
+                    dataType:'json',
+                    data:$('#distribut_form').serialize(),
+                    success: function(data)
+                    {
+                        if(data.status == 1){
+                            layer.alert(data.msg,{icon:1});
+                            window.location.href=data.url;
+                        } else {
+                            layer.alert(data.msg,{icon:2});
+                            verify();
+                        }
+                    }
+                });
+			}
+		</script>
+	</body>
+</html>

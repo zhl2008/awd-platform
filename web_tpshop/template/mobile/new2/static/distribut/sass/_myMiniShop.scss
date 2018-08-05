@@ -1,0 +1,146 @@
+.banner{
+    position: relative;
+    height: 294px/$ppr;
+    .bagimg{
+        width: 100%;
+        height: 294px/$ppr;
+    }
+    .my_collect{
+        position: absolute;
+        right: 40px/$ppr;
+        bottom: 22px/$ppr;
+        line-height: 47px/$ppr;
+        @include fs(font-size,28);
+    }
+}
+.my_share{
+    cursor: pointer;
+    width: 56px/$ppr;
+    height: 56px/$ppr;
+    background: rgba(207,59,57,.7);
+    border-radius: 50%;
+    position: absolute;
+    top: 30px/$ppr;
+    right: 40px/$ppr;
+    text-align: center;
+    line-height: 76px/$ppr;
+    .icon-share{
+        display: inline-block;
+    }
+}
+.my_collect_button{
+    @include button;
+}
+.my_head{
+    position: absolute;
+    bottom: -123px / 2 /$ppr;
+    left: 40px/$ppr;
+    .head{
+        width: 123px/$ppr;
+        height: 123px/$ppr;
+        border-radius: 50%;
+        overflow: hidden;
+        float: left;
+        img{
+            width: 123px/$ppr;
+            height: 123px/$ppr;
+            border-radius: 50%;
+        }
+    }
+    .my_name{
+        width: 400px/$ppr;
+        float: left;
+        color: white;
+        margin-left: 20px/$ppr;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        @include fs(font-size,36);
+    }
+}
+.my_allshop{
+    padding: 37px/$ppr 0;
+    ul{
+        overflow: hidden;
+        margin-left: 180px/$ppr;
+        li{
+            float: left;
+            width: 150px/$ppr;
+            margin-left: 42px/$ppr;
+            text-align: center;
+            &:first-child{
+                margin-left: 0;
+            }
+            a{
+                @include fs(font-size,28);
+                span{
+                    display: block;
+                    @include cutOut;
+                }
+                .quantity{
+                    font-size: 34px/$ppr;
+                    margin-bottom: 18px/$ppr;
+                }
+            }
+        }
+    }
+}
+.tit_produce{
+    height: 106px/$ppr;
+    line-height: 106px/$ppr;
+    padding: 0 40px/$ppr;
+    i,span{
+        vertical-align: middle;
+    }
+    .icon-leaf{
+       display: inline-block; 
+    }
+    .tit_fon{
+        display: inline-block;
+        @include fs(font-size,32);
+        color: #333333;
+    }
+}
+.allgoods{
+    ul{
+        li{
+            float: left;
+            width: 370px/$ppr;
+            margin-bottom: 30px;
+            &:nth-child(n){
+                float: left;
+            }
+            &:nth-child(2n){
+                float: right;
+            }
+        }
+    }
+}
+.goods{
+    
+}
+.goods_Img{
+    width: 370px/$ppr;
+    height: 308px/$ppr;
+}
+.goods_name{
+    height: 72px/$ppr;
+    color: #333333;
+    line-height: 72px / 2 /$ppr;
+    margin-bottom: 24px/$ppr;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    word-break: break-word;
+    @include fs(font-size,30);
+}
+.ma-to-24{
+    margin-top: 24px/$ppr;
+}
+.goods_price{
+    color: #e63138;
+    @include fs(font-size,34);
+    @include cutOut;
+}

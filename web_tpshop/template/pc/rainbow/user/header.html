@@ -1,0 +1,130 @@
+<script src="__PUBLIC__/js/global.js" type="text/javascript"></script>
+<link rel="stylesheet" href="__STATIC__/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
+<script src="__PUBLIC__/static/js/layer/layer.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+<style>
+	.list1 li{float:left;}
+</style>
+<div class="tpshop-tm-hander home-index-top p">
+	<div class="top-hander clearfix">
+		<div class="w1224 pr clearfix">
+			<div class="fl">
+			    <if condition="strtolower(ACTION_NAME) neq 'goodsinfo' ">
+                      <link rel="stylesheet" href="__STATIC__/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
+                      <div class="sendaddress pr fl">
+                          <span>送货至：</span>
+                          <!-- <span>深圳<i class="share-a_a1"></i></span>-->
+                          <span>
+                              <ul class="list1">
+                                  <li class="summary-stock though-line">
+                                      <div class="dd" style="border-right:0px;width:200px;">
+                                          <div class="store-selector add_cj_p">
+                                              <div class="text"><div></div><b></b></div>
+                                              <div onclick="$(this).parent().removeClass('hover')" class="close"></div>
+                                          </div>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </span>
+                      </div>
+                      <script src="__STATIC__/js/location.js"></script>
+                </if>
+				<div class="fl nologin">
+					<a class="red" href="{:U('Home/user/login')}">登录</a>
+					<a href="{:U('Home/user/reg')}">注册</a>
+				</div>
+				<div class="fl islogin hide">
+					<a class="red userinfo" href="{:U('Home/user/index')}"></a>
+					<a  href="{:U('Home/user/logout')}"  title="退出" target="_self">安全退出</a>
+				</div>
+			</div>
+			<ul class="top-ri-header fr clearfix">
+				<li><a target="_blank" href="{:U('Home/Order/order_list')}">我的订单</a></li>
+				<li class="spacer"></li>
+				<li><a target="_blank" href="{:U('Home/User/visit_log')}">我的浏览</a></li>
+				<li class="spacer"></li>
+				<li><a target="_blank" href="{:U('Home/User/goods_collect')}">我的收藏</a></li>
+				<li class="spacer"></li>
+				<li>客户服务</li>
+				<li class="spacer"></li>
+				<li class="hover-ba-navdh">
+					<div class="nav-dh">
+						<span>网站导航</span>
+						<i class="share-a_a1"></i>
+					</div>
+					<ul class="conta-hv-nav clearfix">
+						<li>
+							<a href="#">优惠活动</a>
+						</li>
+						<li>
+							<a href="#">预售活动</a>
+						</li>
+						<li>
+							<a href="#">拍卖活动</a>
+						</li>
+						<li>
+							<a href="#">兑换中心</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="nav-middan-z p home-index-head">
+	<div class="header w1224">
+		<div class="ecsc-logo" >
+			<a href="/" class="logo">
+                <img src=" {$tpshop_config['shop_info_store_user_logo']|default='__STATIC__/images/logo2.png'}" style="width: 159px;height: 58px">
+            </a>
+		</div>
+		<div class="m-index">
+			<a href="{:U('Home/User/index')}" class="index">我的商城</a>
+			<a href="/" class="home">返回商城首页</a>
+		</div>
+		<div class="m-navitems">
+			<ul class="fixed p">
+				<li><a href="{:U('Home/Index/index')}">首页</a></li>
+				<li>
+					<div class="u-dl">
+						<div class="u-dt">
+							<span>账户设置</span>
+							<i></i>
+						</div>
+						<div class="u-dd">
+							<a href="{:U('Home/User/info')}">个人信息</a>
+							<!--<a href="{:U('Home/User/safety_settings')}">安全设置</a>-->
+							<a href="{:U('Home/User/address_list')}">收货地址</a>
+						</div>
+					</div>
+				</li>
+				<li class="u-msg"><a class="J-umsg" href="{:U('Home/User/message_notice')}">消息<span><if condition="$user_message_count gt 0">{$user_message_count}</if></span></a></li>
+				<li><a href="{:U('Home/Goods/integralMall')}">积分商城</a></li>
+				<li class="search_li">
+				   <form id="sourch_form" id="sourch_form" method="post" action="{:U('Home/Goods/search')}">
+		           	<input class="search_usercenter_text" name="q" id="q" type="text" value="{$Request.param.q}"/>
+		           	<a class="search_usercenter_btn" href="javascript:;" onclick="if($.trim($('#q').val()) != '') $('#sourch_form').submit();">搜索</a>
+		           </form>
+		        </li>
+			</ul>
+		</div>
+		<div class="u-g-cart fr" id="hd-my-cart">
+			<a href="{:U('Home/Cart/index')}">
+			<div class="c-n fl">
+				<i class="share-shopcar-index"></i>
+				<span>我的购物车</span>
+				<em class="shop-nums" id="cart_quantity"></em>
+			</div>
+			</a>
+			<div class="u-fn-cart" id="show_minicart">
+				<div class="minicartContent" id="minicart">
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="__STATIC__/js/common.js"></script>
+<if condition="strtolower(ACTION_NAME) eq 'goodsinfo' ">
+	<script src="__STATIC__/js/location.js"></script>
+</if>
+

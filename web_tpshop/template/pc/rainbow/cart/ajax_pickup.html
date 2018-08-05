@@ -1,0 +1,40 @@
+
+<if condition="count($address_list) gt 0"> <!--默认选中的地址-->
+     <div class="order-address-list ">
+            <table width="100%" cellspacing="0" cellpadding="0" border="1" class="address">
+                  <tbody>
+                      <tr>
+                        <td width="5%"  class="default"><i></i></td>
+                        <td width="5%"  class="co-red default">自提点</td>
+ 
+                        <td width="5%"  class="address_id"><input onclick="swidth_address(this)" type="radio" name="address_id" value="{$address_list['address_id']}"/></td>
+ 
+                        <td width="15%"  class="consignee"><b>收货人:{$address_list['consignee']}</b></td>
+                        <td width="40%"  class="address2"><span>地址:{$address_list['province_name']} {$address_list['city_name']} {$address_list['district_name']} {$address_list['address']}</span></td>
+                        <td width="20%"  class="mobile"><span>电话：{$address_list[mobile]}</span></td>
+                        <td width="15%"  class="wi100"><span><a onclick="replace_pickup({$address_list['province']},{$address_list['city']},{$address_list['district']});">更换自提点</a></span></td>
+                      </tr>
+                  </tbody>
+              </table>
+        </div>
+</if>
+<if condition="count($pickup_list) gt 0">
+       <div class="order-address-list">
+            <table width="100%" cellspacing="0" cellpadding="0" border="1" class="address">
+              <tbody>
+                  <tr>
+                        <td width="5%"  class="default"><i></i></td>
+                        <td width="10%"  class="address_id"><input style="cursor: pointer; background: WHITE; border: 1px solid #dedede; padding: 6px; color: #666;" type="button" data-province-id="{$pickup_list['province_id']}" onclick="replace_pickup({$pickup_list['province_id']},{$pickup_list['city_id']},{$pickup_list['district_id']});" value="匹配推荐点" data-city-id="{$pickup_list['city_id']}" data-district-id="{$pickup_list['district_id']}" /></td>
+                        <td width="15%" class="consignee"><b>{$pickup_list['pickup_name']}</b></td>
+                        <td width="60%"  class="address2"><span>地址:{$pickup_list['province_name']} {$pickup_list['city_name']} {$pickup_list['district_name']} {$pickup_list['pickup_address']}</span></td>
+                        <td width="5%"  class="wi100"><span><a onclick="replace_pickup({$pickup_list['province_id']},{$pickup_list['city_id']},{$pickup_list['district_id']});">更换自提点</a></span></td>
+                  </tr>
+               </tbody>
+             </table>
+       </div>
+</if>
+<if condition="$Request.param.show eq 1">
+<script>
+    $("#ajax_pickup").find("td input[type=radio]:first-child").trigger('click');
+</script>
+</if>

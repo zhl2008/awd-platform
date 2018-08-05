@@ -1,0 +1,177 @@
+<include file="public/layout"/>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span></div>
+        <ul>
+            <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" name="form1" action="{:U('System/handle')}">
+        <input type="hidden" name="inc_type" value="{$inc_type}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="reg_integral">会员注册赠送积分</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" id="reg_integral" name="reg_integral" value="{$config.reg_integral}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">会员注册赠送积分</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>邀请注册开关</label>
+                </dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="switch1" class="cb-enable  <if condition="$config['invite'] eq 1">selected</if>">开启</label>
+                        <label for="switch0" class="cb-disable <if condition="$config['invite'] eq 0">selected</if>">关闭</label>
+                        <input type="radio" onclick="$('#switch_on_off').show();"  id="switch1"  name="invite" value="1" <if condition="$config['invite'] eq 1">checked="checked"</if>>
+                        <input type="radio" onclick="$('#switch_on_off').hide();" id="switch0" name="invite" value="0" <if condition="$config['invite'] eq 0">checked="checked"</if> >
+                    </div>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="reg_integral">邀请人获得积分</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" id="invite_integral" name="invite_integral" value="{$config.invite_integral|default=0}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">会员注册赠送邀请人积分</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="file_size">附件上传大小</label>
+                </dt>
+                <dd class="opt">
+                    <select id="file_size" name="file_size">
+                        <option value="1" <if condition="$config[file_size] eq 1">selected="selected"</if>>1M</option>
+                        <option value="2" <if condition="$config[file_size] eq 2">selected="selected"</if>>2M</option>
+                        <option value="3" <if condition="$config[file_size] eq 3">selected="selected"</if>>3M</option>
+                        <option value="5" <if condition="$config[file_size] eq 4">selected="selected"</if>>5M</option>
+                        <option value="10" <if condition="$config[file_size] eq 10">selected="selected"</if>>10M</option>
+                        <option value="50" <if condition="$config[file_size] eq 50">selected="selected"</if>>50M</option>
+                        <option value="100" <if condition="$config[file_size] eq 100">selected="selected"</if>>100M</option>
+                    </select>
+
+                    <p class="notic">附件上传大小限制</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="default_storage">默认库存</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" id="default_storage" name="default_storage" value="{$config.default_storage}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">添加商品的默认库存</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="default_storage">库存预警数</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" name="warning_storage" value="{$config.warning_storage}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+                    <p class="notic">库存预警,当商品库存少于库存预警数，将在商品列表页库存显示红色</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="distribut_need">满多少才能提现</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" name="need" id="distribut_need" value="{$config.need}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">需超过多少才能提现金额</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="distribut_min">最少提现额度</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" name="min" id="distribut_min" value="{$config.min}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">最少提现多少，才能提现</p>
+                </dd>
+            </dl>
+            <!--
+            <dl class="row">
+                <dt class="tit">
+                    <label for="tax">发票税率</label>
+                </dt>
+                <dd class="opt">
+                    <input onkeyup="this.value=/^\d+\.?\d{0,2}$/.test(this.value) ? this.value : ''" pattern="^(?!0+(?:\.0+)?$)(?:[1-9]\d*|0)(?:\.\d{1,2})?$" name="tax" id="tax" value="{$config.tax}" class="input-txt" type="text">%
+                    <span class="err">只能输入数字和小数</span>
+                    <p class="notic">当买家需要发票的时候就要增加[商品金额]*[税率]的费用</p>
+                </dd>
+            </dl>
+            -->
+            <dl class="row">
+                <dt class="tit">
+                    <label for="hot_keywords">首页热门搜索词</label>
+                </dt>
+                <dd class="opt">
+                    <input id="hot_keywords" name="hot_keywords" value="{$config.hot_keywords}" class="input-txt" type="text">
+                    <span class="err">例如:衣|手机|内衣</span>
+                    <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询</p>
+                </dd>
+            </dl>
+			<dl class="row">
+                <dt class="tit">第三方登录是否必须绑定账号</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="is_bind_account1" class="cb-enable <if condition='$config[is_bind_account] eq 1'>selected</if>">是</label>
+                        <label for="is_bind_account0" class="cb-disable <if condition='$config[is_bind_account] eq 0'>selected</if>">否</label>
+                        <input id="is_bind_account1" name="is_bind_account" checked="checked" value="1" type="radio">
+                        <input id="is_bind_account0" name="is_bind_account" value="0" type="radio">
+                    </div>
+                    <p class="notic">否: 第三方账号首次登录时会自动创建账号, 不需要额外绑定账号<br/>是:(推荐)第三方账号首次登录时必须先绑定一个注册账号, 否则无法购买商品(优点:可以避免微商城, PC端产生多账户问题)</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.form1.submit()">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+<div id="goTop">
+    <a href="JavaScript:void(0);" id="btntop">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <a href="JavaScript:void(0);" id="btnbottom">
+        <i class="fa fa-angle-down"></i>
+    </a>
+</div>
+</body>
+</html>

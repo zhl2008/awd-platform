@@ -1,0 +1,165 @@
+.busniess_card_name{
+    padding: 47px/$ppr 40px/$ppr;
+    .team_name_time{
+        width: 535px/$ppr;
+        .t_n em{
+            color: #e63138;
+        }
+    }
+}
+.my_business_card{
+    background: url(../images/myc.jpg) no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: 987px/$ppr;
+    position: relative;
+    z-index: 1;
+    .cloud-1{
+        position: absolute;
+        top: 333px/$ppr;
+        @include keyframes(move-the-cloud,15s){
+            0%   {
+                left: 0%;
+                opacity: 1;
+            }
+            100%  {
+                left: 30%;
+                opacity: 0;
+            }
+        }
+    }
+    .cloud-2{
+        position: absolute;
+        top: 130px/$ppr;
+        @include keyframes(move-the-cloud2,8s){
+            0%   {
+                left: 10%;
+                opacity: 0.6;
+            }
+            100%  {
+                left: 20%;
+                opacity: 0.6;
+            }
+        }
+    }
+    .cloud-3{
+        position: absolute;
+        top: 136px/$ppr;
+        @include keyframes(move-the-cloud3,10s){
+            0%   {
+                right: 0%;
+                opacity: 0.6;
+            }
+            100%  {
+                right: 20%;
+                opacity: 0.6;
+            }
+        }
+    }
+    .cloud-mo{
+        position: absolute;
+        left: 145px/$ppr;
+        @include keyframes(move-the-cloudmo,2s,linear,infinite,normal){
+            0%   {
+                top: 10%;
+                opacity: 0.6;
+            }
+            90%  {
+                top: 90%;
+                opacity:1;
+            }
+            100%  {
+                top: 95%;
+                opacity:0;
+            }
+        }
+    }
+    .mo2{
+        position: absolute;
+        left: 398px/$ppr;
+        transform: scale(1.1);
+        @include keyframes(move-the-cloudmo2,1.6s,linear,infinite,normal){
+            0%   {
+                top: 52%;
+                opacity: 0.8;
+            }
+            90%  {
+                top: 85%;
+                opacity:1;
+            }
+            100%  {
+                top: 90%;
+                opacity:0;
+            }
+        }
+    }
+    .mo3{
+        position: absolute;
+        left: 174px/$ppr;
+        transform: scale(0.6);
+        @include keyframes(move-the-cloudmo3,3s,linear,infinite,normal){
+            0%   {
+                top: 10%;
+                opacity: 0;
+            }
+            90%  {
+                top: 85%;
+                opacity:1;
+            }
+            100%  {
+                top: 90%;
+                opacity:0;
+            }
+        }
+    }
+    .mo4{
+        position: absolute;
+        left: 426px/$ppr;
+        transform: scale(0.8);
+        @include keyframes(move-the-cloudmo4,2s,linear,infinite,normal){
+            0%   {
+                top: 52%;
+                opacity: 0;
+            }
+            90%  {
+                top: 90%;
+                opacity:1;
+            }
+            100%  {
+                top: 90%;
+                opacity:0;
+            }
+        }
+    }
+    .cloud-rm{
+        position: absolute;
+        top: 446px/$ppr;
+        left: 432px/$ppr;
+        @include keyframes(move-the-cloudrm,100ms,linear,infinite,normal){
+            0% {
+                transform: rotate(2deg);
+            }
+            
+            100% {
+                transform: rotate(-2deg);
+            }
+        }
+    }
+}
+.fx_qrcode{
+    position: absolute;
+    left: 50%;
+    margin-left: -(258px/2)/$ppr;
+    margin-top: 108px/$ppr;
+    width: 258px/$ppr;
+    text-align: center;
+    img{
+        width: 258px/$ppr;
+        height: 258px/$ppr;
+    }
+    p{
+        color: #999999;
+        @include fs(font-size,20);
+        margin-top: 8px/$ppr;
+    }
+}

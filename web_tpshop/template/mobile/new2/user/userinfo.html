@@ -1,0 +1,213 @@
+<include file="public/header" title="设置" body="g4"/>
+<include file="public/header_nav" title="设置" href="javascript:history.back(-1);"/>
+		<div class="floor my p setting">
+			<div class="content">
+				<div class="floor list7">
+					<div class="myorder he p">
+						<div class="content30">
+							<div class="order">
+								<div class="fl">
+									<span>头像</span>
+									<span class="bridh"></span>
+								</div>
+								<div class="fr">
+									<!--<a href="">-->
+										<div class="hendicon">
+											<span></span>
+											<form id="head_pic" method="post" enctype="multipart/form-data">
+											<label class="file" style="cursor:pointer;">
+											<div class="around" id="fileList">
+												<img src="{$user.head_pic|default='__STATIC__/images/user68.jpg'}"/>
+												<input  type="file" accept="image/*" name="head_pic"  onchange="handleFiles(this)" style="display:none">
+											</div></label>
+											</form>
+										</div>
+									<!--</a>-->
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="myorder p">
+						<div class="content30">
+							<a href="{:U('Mobile/User/userinfo',array('action'=>'nickname'))}">
+								<div class="order">
+									<div class="fl">
+										<span>用户名</span>
+									</div>
+									<div class="fr">
+                                        <span>{$user.nickname}</span>
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="myorder p">
+						<div class="content30">
+							<a href="{:U('Mobile/User/userinfo',array('action'=>'sex'))}">
+								<div class="order">
+									<div class="fl">
+										<span>性别</span>
+									</div>
+									<div class="fr">
+                                        <span>{$sex[$user.sex]}</span>
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="myorder p">
+						<div class="content30">
+							<a href="{:U('Mobile/User/setMobile')}">
+								<div class="order">
+									<div class="fl">
+										<span>手机</span>
+									</div>
+									<div class="fr">
+                                        <span>{$user.mobile}</span>
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="myorder p bo">
+						<div class="content30">
+							<a href="{:U('Mobile/User/userinfo',array('action'=>'email'))}">
+								<div class="order">
+									<div class="fl">
+										<span>邮箱</span>
+									</div>
+									<div class="fr">
+                                        <span>{$user.email}</span>
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<div class="myorder p ma-to-20">
+						<div class="content30">
+							<a href="{:U('Mobile/User/password')}">
+								<div class="order">
+									<div class="fl">
+										<span>修改密码</span>
+									</div>
+									<div class="fr">
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+                    <div class="myorder p">
+                        <div class="content30">
+                            <a href="{:U('Mobile/User/paypwd')}">
+                                <div class="order">
+                                    <div class="fl">
+                                        <span>支付密码</span>
+                                    </div>
+                                    <div class="fr">
+                                        <i class="Mright"></i>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+					<div class="myorder p">
+						<div class="content30">
+							<a href="{:U('Mobile/User/address_list')}">
+								<div class="order">
+									<div class="fl">
+										<span>收货地址</span>
+									</div>
+									<div class="fr">
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					</div>
+					<!--<div class="myorder p bo">
+						<div class="content30">
+							<a href="{:U('Mobile/User/authinfo')}">
+								<div class="order">
+									<div class="fl">
+										<span>实名认证</span>
+									</div>
+									<div class="fr">
+										<i class="Mright"></i>
+									</div>
+								</div>
+							</a>
+						</div>
+					&lt;!&ndash;</div>&ndash;&gt;
+				</div>-->
+			</div>
+			<div class="close">
+				<a href="{:U('User/logout')}" id="logout">安全退出</a>
+				<a id="asubmit" style="display:none;" href="javascript:;" onclick="javascript:$('#head_pic').submit();">保存头像</a>
+			</div>
+		</div>
+      </div>
+<script>
+//显示上传照片
+window.URL = window.URL || window.webkitURL;
+function handleFiles(obj) {
+    fileList = document.getElementById("fileList");
+    var files = obj.files;
+    img = new Image();
+    if(window.URL){
+        img.src = window.URL.createObjectURL(files[0]); //创建一个object URL，并不是你的本地路径
+        img.width = 60;
+        img.height = 60;
+        img.onload = function(e) {
+            window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
+        }
+        if(fileList.firstElementChild){
+            fileList.removeChild(fileList.firstElementChild);
+        }
+        $('#fileList').find('img').remove();
+        fileList.appendChild(img);
+    }else if(window.FileReader){
+        //opera不支持createObjectURL/revokeObjectURL方法。我们用FileReader对象来处理
+        var reader = new FileReader();
+        reader.readAsDataURL(files[0]);
+        reader.onload = function(e){
+            img.src = this.result;
+            img.width = 60;
+            img.height = 60;
+            $('#fileList').find('img').remove();
+            fileList.appendChild(img);
+        }
+    }else
+    {
+        //ie
+        obj.select();
+        obj.blur();
+        var nfile = document.selection.createRange().text;
+        document.selection.empty();
+        img.src = nfile;
+        img.width = 60;
+        img.height = 60;
+        img.onload=function(){
+
+        }
+        $('#fileList').find('img').remove();
+        fileList.appendChild(img);
+    }
+    $('#asubmit').show();
+    $('#logout').hide();
+    $('#head_pic').submit();
+}
+
+$(function(){
+    var ua = window.navigator.userAgent.toLowerCase();
+    if(ua.match(/MicroMessenger/i) == 'micromessenger'){
+    	$('#logout').hide();
+    }
+});
+</script>      
+	</body>
+</html>

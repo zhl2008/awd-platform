@@ -1,0 +1,132 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>选择商品</title>
+    <link href="__PUBLIC__/static/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/static/css/seller_center.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/static/font/css/font-awesome.min.css" rel="stylesheet" />
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="__PUBLIC__/static/font/css/font-awesome-ie7.min.css">
+    <![endif]-->
+    <script type="text/javascript" src="__PUBLIC__/static/js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/js/waypoints.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/js/jquery-ui/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/js/jquery.validation.min.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/js/layer/layer.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/global.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/js/myFormValidate.js"></script>
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+    <script src="__PUBLIC__/static/js/html5shiv.js"></script>
+    <script src="__PUBLIC__/static/js/respond.min.js"></script>
+    <![endif]-->
+    <style>
+        .search-form {
+            border-top: solid 1px #E6E6E6;
+            border-bottom-width: 1px;
+            border-bottom-style: solid;
+            border-bottom-color: rgb(230, 230, 230);
+        }
+    </style>
+</head>
+<body style="min-width:0px;">
+<div class="ncsc-layout wrapper" style="width: 1000px;margin: 0px;">
+    <div id="layoutRight" class="ncsc-layout-right">
+        <div class="main-content" id="mainContent">
+            <form id="search-form2" method="get" action="{:U('Ad/search_goods')}">
+                <input name="nospec" type="hidden" value="{$Request.param.nospec}">
+                <table class="search-form">
+                    <tr>
+                        <td><a onclick="select_goods();" title="确定发送优惠券" class="ncbtn ncbtn-aqua">确定添加商品</a></td>
+                        <td></td>
+                        <th class="w50">商品分类</th>
+                        <td class="w100">
+                            <select name="cat_id" id="cat_id">
+                            <option value="">所有分类</option>
+                            <foreach name="categoryList" item="v" key="k" >
+                                <option value="{$v['id']}" <if condition="$v[id] eq $Request.param.cat_id">selected</if>>{$v['name']}</option>
+                            </foreach>
+                        </select>
+                        </td>
+                        <th class="w30">品牌</th>
+                        <td class="w100">
+                            <select name="brand_id" id="brand_id" class="select">
+                                <option value="">所有品牌</option>
+                                <foreach name="brandList" item="v" key="k" >
+                                    <option value="{$v['id']}" <if condition="$v[id] eq $brand_id">selected</if>>{$v['name']}</option>
+                                </foreach>
+                            </select>
+                        </td>
+                        <th class="w70">新品/推荐</th>
+                        <td class="w50">
+                            <select name="intro" class="select">
+                                <option value="0">全部</option>
+                                <option value="is_new">新品</option>
+                                <option value="is_recommend">推荐</option>
+                            </select>
+                        </td>
+                        <th class="w40">关键词</th>
+                        <td class="w100">
+                            <input style="width: 90px;" class="text" type="text" name="keywords" value="{$keywords}" placeholder="搜索词"/>
+                            <input type="hidden" name="exvirtual" value="{$Request.param.exvirtual}"/>
+                        </td>
+                        <td class="w70 tc"><label class="submit-border"><input type="submit" class="submit" value="搜索" /></label></td>
+                    </tr>
+                </table>
+            </form>
+            <table class="ncsc-default-table">
+                <thead>
+                <tr>
+                    <th class="w50">选择</th>
+                    <th class="w200 tl">商品名称</th>
+                    <th class="w100">价格</th>
+                    <th class="w100">库存</th>
+                    <th class="w100">商品ID</th>
+                </tr>
+                </thead>
+                <tbody id="goos_table">
+                <volist name="goodsList" id="list">
+                    <tr class="bd-line">
+                        <td><input class="checkItem" type="radio" name="goods_id" value="{$list.goods_id}" data-img="{$list.goods_id|goods_thum_images=160,160}"
+                                   data-name="{$list.goods_name}" data-count="{$list.store_count}" data-price="{$list.shop_price}"/></td>
+                        <td class="tl">{$list.goods_name}</td>
+                        <td>{$list.shop_price}</td>
+                        <td>{$list.store_count}</td>
+                        <td class="nscs-table-handle">
+                            <span>
+                                <a class="btn-grapefruit"><i class="icon-trash"></i><p>{$list.goods_id}</p></a>
+                            </span>
+                        </td>
+                    </tr> 
+                </volist>
+                </tbody>
+                <tfoot>
+                <tr>
+                    <td colspan="20">
+                        {$page}
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+<script>
+ 
+    //确认按钮
+    function select_goods()
+    {
+    	var input = $("input[class='checkItem']:checked");
+        var goodsId = input.val();
+        var goodsName = input.attr('data-name');
+        if (goodsId == '') {
+            layer.alert('请选择商品', {icon: 2});  
+            return false;
+        } 
+        console.log(goodsId +" , "+goodsName);
+        window.parent.goods_call_back(goodsId,goodsName);
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>退换货</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/return.add.css" />
+    <style>
+        .col_main {width: 1000px; float: right; background: #fff;}
+		.item input{vertical-align: middle;}
+    </style>
+</head>
+<body class="bg-f5">
+<include file="user/header"/>
+<div class="home-index-middle">
+    <div class="w1224">
+        <div class="g-crumbs">
+            <a href="{:U('Home/User/index')}">我的商城</a>
+            <i class="litt-xyb"></i>
+            <span>售后服务</span>
+        </div>
+        <div class="home-main">
+            <include file="user/menu"/>
+            <div class="ri-menu fr">
+                <div class="col_main noHidden">
+                    <!--下面内内容自己添加 -->
+                    <div class="return_area">
+                        <div class="user-head clearfix">
+                            <h3>退换货申请</h3>
+                            <a class="" href="tencent://message/?uin={$store[store_qq]}&Site=TPshop商城&Menu=yes">联系卖家</a>
+                            <a class="" href="">售后政策</a>
+                        </div>
+                        <!-- tab -->
+                        <div class="ui_tab">
+                            <div class="ui_tab_content J_order_list">
+                                <!--退货记录-->
+                                <div class="wi940">
+                                    <form name="return_form" id="return_form" autocomplete="off" method="post">
+                                        <div class="mod-main mod-comm" id="air03">
+                                            <div class="mc">
+                                                <table class="tb-void mb10">
+                                                    <thead>
+                                                    <tr>
+                                                        <th>商品</th>
+                                                        <th>包装清单</th>
+                                                        <th>购买数量</th>
+                                                    </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <ul class="list-proinfo" id="removeTheSingleGife">
+                                                                <li class="fore1">
+                                                                    <a href="{:U('Home/Goods/goodsInfo',array('id'=>$goods['goods_id']))}" target="_blank">
+                                                                        <img height="50" width="50" title="{$goods['goods_name']}" src="{$goods[goods_id]|goods_thum_images=50,50}" data-img="1" alt="">
+                                                                        {$goods['goods_name']}
+                                                                    </a>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                        <td>-</td>
+                                                        <td id="buynum">{$goods['goods_num']}</td>
+                                                    </tr>
+                                                    </tbody>
+                                                </table>
+                                                <div name="productInfo_zp-info" style="display:none"></div>
+                                            </div>
+                                            <div class="form">
+                                                <div class="item kfarea" id="sellerPrompt">
+                                                    <div class="ml20"> <span><em>*</em><span style="color: red; "> 温馨提示：</span></span>
+                                                    	<label><span style="color: red; ">仅退款： </span>未收到货/未签收，或与卖家协商同意前提下</label>
+                                                    	<label><span style="color: red; ">退货退款： </span>已收到货，需要退换已收到的货物</label>
+                                                    </div>
+                                                    <div class="clr"></div>
+                                                </div>
+                                                <div class="repair-steps" id="repairSteps">
+                                                    <div class="repair-step repair-step-curr pt10 mb10" id="firstRepairStep">
+                                                        <!-- 服务类型 -->
+                                                        <div class="item"> <span class="label"> <em> * </em> 服务类型： </span>
+                                                            <div class="clr">
+                                                                <ul class="list-type list-type-new">
+                                                                    <li tvalue="0" class="selected">
+                                                                        <a href="javascript:void(0);">仅退款<b></b> </a>
+                                                                        <input type="radio" name="type" value="0" hidden/>
+                                                                    </li>
+                                                                    <li tvalue="1" class="">
+                                                                        <a href="javascript:void(0);">退货退款<b></b> </a>
+                                                                        <input type="radio" name="type" value="1" hidden/>
+                                                                    </li>
+
+                                                                    <li tvalue="2" class="">
+                                                                        <a href="javascript:void(0);">换货<b></b> </a>
+                                                                        <input type="radio" name="type" value="2" hidden/>
+                                                                    </li> 
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                        <div class="item"> <span class="label"> <em> * </em> 提交数量： </span>
+                                                            <div class="fl tjsl" style="margin-top:0px;">
+                     											<div class="jajt">
+																	<a class="pinu" href="javascript:void(0);">-</a>
+																	<input type="text" name="goods_num" id="goods_num" value="1" data-max="{$goods['goods_num']}">
+																	<a class="plup" href="javascript:void(0);">+</a>
+																</div>
+                                                            </div>
+                                                            <div class="clr">您最多可提交数量为{$goods['goods_num']}个</div>
+                                                        </div>
+                                                        
+                                                        <div class="item"> <span class="label"> <em> * </em> 货物状态： </span>
+                                                    		<div class="clr">
+                                                    			<label class="clr_unfinished"><input style="width:20px;" type="radio" name="is_receive" value="0">未收到货</label>
+                                                    			<label class="clr_achieve"><input style="width:20px;" type="radio" name="is_receive" value="1" checked>已收到货</label>
+                                                    		</div>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                        
+                                                        <div class="item"> <span class="label"> <em> * </em> 提交原因： </span>
+                                                            <div class="fl">
+                     											<select class="select" id="reason" name="reason" style="padding-right: 0px">
+                     											<option value="">请选择</option>
+                     											<option value="不想买了">不想买了</option>
+                     											<option value="快递物流一直未送到">快递物流一直未送到</option>
+                     											<option value="质量问题">质量问题</option>
+                     											<option value="商品与描述不符">商品与描述不符</option>
+                     											<option value="误购（不喜欢/大小不合适）">误购（不喜欢/大小不合适）</option>
+                     											<option value="卖家发错货">卖家发错货</option>
+                     											<option value="发票问题">发票问题</option>
+                     											<option value="其他">其他</option>
+                     											</select>
+                                                            </div>
+                                                            <div class="clr">请注意保持商品的完好，建议您先与卖家沟通</div>
+                                                        </div>
+                                                        <!-- 问题描述 外层div-->
+                                                        <div id="miaoShuDiv" style="">
+                                                            <!-- 问题描述 -->
+                                                            <div class="item"> <span class="label"> <em> * </em> 问题描述： </span>
+                                                                <div class="fl">
+                                                                    <textarea name="describe" id="describe" cols="" rows="" class="area"></textarea>
+                                                                    <div class="msg-text-01"> 请您如实填写申请原因及商品情况，字数在10-500字内。 </div>
+                                                                </div>
+                                                                <div class="clr"> </div>
+                                                            </div>
+
+                                                            <!-- 图片信息 -->
+                                                            <div class="item item01"> <span class="label">图片信息：</span>
+                                                                <div class="fl" >
+                                                                    <div class="i-btns" style="text-align: left;">
+                                                                        <input type="button" value="上传照片" onclick="GetUploadify2(5,'return_imgs','return_goods','return_imgs');">
+                                                                        <input type="hidden" name="imgs" id="return_img" value="" >
+                                                                        <div id="i-btns"></div>
+                                                                    </div>
+                                                                    <span id="uploadImgLoading" class="fl"></span> <span id="img_des" class="fl">为了帮助我们更好的解决问题，请您上传图片</span>
+                                                                    <div class="clr"></div>
+                                                                    <span class="msg-text">最多可上传5张图片，每张图片大小不超过5M，支持bmp,gif,jpg,png,jpeg格式文件</span>
+                                                                    <div class="clr"></div>
+                                                                    <div name="mscolluploadImg-info" style="display:none"></div>
+                                                                </div>
+                                                                <div class="clr">建议您描述问题并上传收到商品的图片</div>
+                                                            </div>
+                                                            <!-- 问题描述 外层div-->
+                                                        </div>
+                                                    </div>
+                                                    <div id="defaultQueRenDiv" style="" class="repair-step">
+                                                        <!-- 确认信息 -->
+                                                        <div class="mt-10"> <strong>确认信息</strong></div>
+                                                        <!-- 申请凭据 -->
+                                                        <div class="item" id="reserveDate_small_div_defaultShow" style="display: block;"> <span class="label"><em>*</em>申请凭据：</span>
+                                                            <div class="fl" id="reserveDate_small_div_defaultShow_fl"><input type="radio" name="evidence" value="1" checked>有发票&nbsp;&nbsp;<input type="radio" name="evidence" value="2">有质检报告</div>
+                                                            <div class="clr">可拍照上传凭据</div>
+                                                        </div>
+                                                        <!-- 取货地址 -->
+                                                        <!-- <div class="item" id="pickWareAddress_defaultShow" style="display: block;"> <span class="label"><em>*</em>返回方式：</span>
+                                                            <div class="fl">快递至第三方卖家</div>
+                                                            <div class="fr">商品返回地址将在服务单审核通过后以短信形式告知，或在“退换货记录”中查询。</div>
+                                                        </div>-->
+                                                        <!-- 客服电话 -->
+                                                        <div class="item" style="display: block;"> <span class="label"><em>*</em>客服电话：</span>
+                                                            <div class="fl">{$tpshop_config['shop_info_phone']}</div>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                        <div class="item" style="display: block;"> <span class="label"><em>*</em>收货地址：</span>
+                                                            <div class="fl">{$order.address}</div>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                        <div class="item" style="display: block;"> <span class="label"><em>*</em>顾客姓名：</span>
+                                                            <div class="fl"><input type="text" name="consignee" value="{$order.consignee}"></div>
+                                                            <div class="clr"></div>
+                                                        </div>
+                                                        <div class="item" style="display: block;"> <span class="label"><em>*</em>手机号码：</span>
+                                                            <div class="fl"><input type="text" name="mobile" maxlength="11" value="{$order.mobile}"></div>
+                                                            <div class="clr">提交服务单后，售后专员可能与您电话沟通，请保持手机畅通</div>
+                                                        </div>
+                                                        <!-- now -->
+                                                        <!-- 确认信息 外层div 结束 -->
+                                                    </div>
+
+                                                    <!-- 提交按钮 -->
+                                                    <div class="item" id="submitDiv" style=""><span class="label">&nbsp;</span>
+                                                        <div class="fl" name="divSubmit">
+                                                            <div name="submitTips" style="display:none"></div>
+                                                            <a href="javascript:void(0)" onclick="submit_form();" class="btn btn-7" name="btnSubmit"><s></s>确认提交</a> </div>
+                                                        <div class="clr"></div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <input type="hidden" name="order_id" value="{$order.order_id}" />
+                                        <input type="hidden" name="order_sn" value="{$order.order_sn}" />
+                                        <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
+                                        <input type="hidden" name="spec_key" value="{$goods.spec_key}" />
+                                        <input type="hidden" name="rec_id"   value="{$goods.rec_id}" />
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- tab end-->
+                    </div>
+                    <!-- 以上为中间内容区域 注释自己2删除-->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer-s-->
+<include file="user/footer" />
+<!--footer-e-->
+<script type="text/javascript">
+    $(function(){
+        $('.time-sala ul li').click(function(){
+            $(this).addClass('red').siblings().removeClass('red');
+        })
+        $('.searc_sx a').click(function(){
+            $(this).addClass('red').siblings('a').removeClass('red');
+        })
+        
+      	//初始化 - 仅退款
+    	$('.clr_unfinished').show();
+    	$('.clr_unfinished').children('input').prop('checked',true);
+        $('.clr_achieve').hide();
+    })
+    
+    function submit_form()
+    {
+        var imgs = $('.return_img');
+        var img_str = '';
+        for (var i = 0; i < imgs.length; i++) {
+            img_str += imgs.attr('data-img')+',';
+        }
+        $('#return_imgs').val(img_str.substring(0,img_str.length-1));
+        var describe = $.trim($('#describe').val());
+        var reason = $.trim($('#reason').val());
+        var mobile = $.trim($("input[name='mobile']").val());
+        if(reason == ''){
+            layer.alert('请选择原因!', {icon: 2});// alert('请输入退换货原因!');
+            return false;
+        }
+        if(describe == '')
+        {
+            layer.alert('请输入问题描述!', {icon: 2});// alert('请输入退换货原因!');
+            return false;
+        }
+        if(!checkMobile(mobile)){
+            layer.alert('请输入正确的手机号码!', {icon: 2});
+            return false;
+        }
+        $('#return_form').submit();
+    }
+
+    // 上传退货拍照图片
+    function return_imgs(img) {
+        $('#return_img').val();
+        $('#i-btns').find('span').each(function(i,o){
+            var imgurl = $(this).data('img');
+            delimg(imgurl,o)
+        })
+        $('#i-btns').html('');
+        var tpl_list = String(img).split(',');
+        for (var i = 0; i < tpl_list.length; i++) {
+                var tpl = '<span class="msg-text return_img" onclick="delimg(\'$IMG\',this)" data-img="$IMG">' +
+                        '<img src="$IMG" border="0" alt="" style="width: 100px;height: 100px;">' +
+                        '</span>';
+                var str_do = tpl.replace(/\$IMG/g, tpl_list[i]);
+                $('#i-btns').append(str_do);
+                $('#return_img').val(tpl_list);
+        }
+    }
+
+    function delimg(file,t){
+        $.get(
+            "/index.php?m=Home&c=Uploadify&a=delupload",{action:"del", filename:file},function(){}
+        );
+        $(t).remove();
+        var return_imgs = '';
+        $('.return_img').each(function (i,o) {
+            return_imgs += $(o).data('img')+',';
+        })
+        $('#return_img').val(return_imgs.substring(0,return_imgs.length-1));
+    }
+    
+    //服务类型切换
+    $(document).ready(function(){
+        $("ul.list-type-new li").click(function(){
+        	
+        	var  typeval= $(this).attr('tvalue');
+            if(typeval == 0){ 	
+            	//仅退款
+            	$('.clr_unfinished').show();
+            	$('.clr_unfinished').children('input').prop('checked',true); 
+                $('.clr_achieve').hide();
+            }else if(typeval == 2){
+            	//换货
+                $('.clr_unfinished').show();
+                $('.clr_achieve').show();
+                $('.clr_achieve').children('input').prop('checked',true);
+            }else{
+            	//退款退货
+                $('.clr_unfinished').hide();
+                $('.clr_achieve').show();
+                $('.clr_achieve').children('input').prop('checked',true);
+            }
+            
+            $(this).addClass('selected').siblings().removeClass('selected');
+            $(this).children('input').trigger('click');
+        });
+    });
+    
+	//退货数量+1
+	$('.pinu').click(function(){
+		var goods_num = parseInt($('#goods_num').val());
+		if(goods_num>1){
+			$('#goods_num').val(goods_num-1);
+		}
+		return false;
+	});
+	//退货数量-1
+	$('.plup').click(function(){
+		var goods_num = parseInt($('#goods_num').val());
+		var buynum = parseInt($('#buynum').html());
+		if(goods_num<buynum){
+			$('#goods_num').val(goods_num+1);
+		}
+		return false;
+	});
+    $(document).on('blur','#goods_num',function(){
+        var goods_num = parseInt($('#goods_num').val());
+        var buynum = parseInt($('#buynum').html());
+        if(goods_num>buynum){
+            $('#goods_num').val(buynum);
+        }
+    })
+</script>
+</body>
+</html>

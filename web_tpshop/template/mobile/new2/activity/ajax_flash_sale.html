@@ -1,0 +1,29 @@
+<foreach name="flash_sale_goods" item="vo" >
+    <li>
+        <div class="img czg"><img src="{$vo[goods_id]|goods_thum_images=400,400}" alt="" /></div>
+        <div class="fon">
+            <div class="similar-product-text">{$vo[goods_name]}</div>
+            <div class="ms p">
+                <div class="redmon">￥<span>{$vo[price]}</span></div>
+                <div class="qums">
+                    <if condition="$vo['percent'] lt 100">
+                        <a href="{:U('Goods/goodsInfo',array('id'=>$vo[goods_id],'item_id'=>$vo[spec_goods_price][item_id]))}" <if condition="($vo['end_time'] - time()) gt 7200">style="background-color: #666" </if>>
+                            <if condition="($vo['end_time'] - time()) gt 7200">未开场<else />去秒杀</if>
+                        </a>
+                    <else/>
+                        <a style="background-color: #aaa">已售馨</a>
+                    </if>
+                </div>
+            </div>
+            <div class="ce">
+                <div class="redmon">￥<empty name="vo[spec_goods_price]">{$vo['goods']['shop_price']}<else/>{$vo['spec_goods_price']['price']}</empty></div>
+                <div class="jd">
+                    <div class="ymper">已秒<span>{$vo['percent']>100 ? 100 : $vo['percent']}%</span></div>
+                    <div class="jdtred">
+                        <div class="percent" style="width: {$vo['percent']}%;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </li>
+</foreach>

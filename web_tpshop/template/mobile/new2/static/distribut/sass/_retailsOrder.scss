@@ -1,0 +1,162 @@
+.retails_li3{
+    background: white;
+    ul{
+        li{
+            @include li(3,28);
+            height: 80px/$ppr;
+            line-height: 80px/$ppr;
+        }
+    }
+}
+.main_order_list{
+    background: white;
+    .tit_produce{
+        padding-left: 0;
+        padding-right: 0;
+        .tit_fon{
+            width: 500px/$ppr;
+            @include cutOut;
+        }
+    }
+}
+.bo-bo-f5{
+    border-bottom: 1px solid #f5f5f5;
+}
+.bo-to-f5{
+    border-top: 1px solid #f5f5f5;
+}
+.not_complate{
+    @include fs(font-size,32);
+    float: right;
+    color: #e63138;
+}
+.order_alone_cont{
+    padding-top: 40px/$ppr;
+}
+.order_number{
+    p{
+        line-height: 1.2;
+        @include cutOut;
+    }
+    .on{
+        @include fs(font-size,30);
+        color: #7f7f7f;
+        em{
+            color: #4A4A4A;
+        }
+    }
+    .time{
+        @include fs(font-size,24);
+        color: #999999;
+    }
+}
+.order_shop_list{
+    position: relative;
+    overflow: hidden;
+    padding: 40px/$ppr 0;
+    ul.shop_num{
+        overflow: hidden;
+        float: left;
+        li{
+           float: left;
+           margin-left: 15px/$ppr;
+           width: 160px/$ppr;
+           height: 160px/$ppr;
+           a{
+               display: block;
+           }
+           img{
+               width: 160px/$ppr;
+               height: 160px/$ppr;
+           }
+           &:first-child{
+               margin-left: 0;
+           }
+        }
+        .ellipsis{
+            display: none;
+            @include fs(font-size,50);
+            float: left;
+            position: relative;
+            width: 45px/$ppr;
+            span{
+                position: absolute;
+                bottom: 0;
+                color: #7f7f7f;
+            }
+        }
+    }
+}
+.sum_number_arrow{
+    position: relative;
+    float: right;
+    margin-top: (81px - 27px / 2)/$ppr;
+    span{
+        @include fs(font-size,28);
+        color: #7f7f7f;
+        margin-right: 6px/$ppr;
+        display: block;
+        @include cutOut;
+        float: left;
+        max-width: 220px/$ppr;
+    }
+    i{
+        position: static;
+        margin-top: 0;
+        float: left;
+    }
+    span,i{
+        vertical-align: middle;
+    }
+}
+.get_commission{
+    @include fs(font-size,30);
+    float: right;
+    color: #7f7f7f;
+    em{
+        color: #e63138;
+    }
+}
+.detail_somestandard{
+    float: left;
+    margin-left: 30px/$ppr;
+    width: 480px/$ppr;
+    .goods_name{
+        position: relative;
+        margin-bottom: 0;
+        span{
+            display: block;
+            width: 440px/$ppr;
+        }
+        a{
+            color: #333333;
+            .icon-arrow_r{
+                right: 0;
+            }
+        }
+    }
+    .ret_price{
+        @include fs(font-size,28);
+        color: #e63138;
+        margin: 15px/$ppr 0;
+    }
+    .retails_percent{
+        overflow: hidden;
+        p{
+            @include fs(font-size,28);
+            width: 50%;
+            float: left;
+            color: #7f7f7f;
+            @include cutOut;
+            .red{
+                color: #e63138;
+            }
+        }
+    }
+    .stardard{
+        @include fs(font-size,28);
+        color: #7f7f7f;
+        margin-top: 15px/$ppr;
+        line-height: 1.2;
+    }
+}

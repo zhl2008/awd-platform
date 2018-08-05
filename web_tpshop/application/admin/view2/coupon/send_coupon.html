@@ -1,0 +1,125 @@
+<include file="public/layout"/>
+<style>
+    .te_le .dataTables_paginate{float: left;}
+    .bot{float: right;padding: 15px 0}
+</style>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div class="page" style="padding: 0px 1% 0 1%;">
+    <!-- 操作说明 -->
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>会员列表</h3>
+                <h5>(共<span id="count"></span>条记录)</h5>
+            </div>
+            <!--<div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>-->
+            <form class="navbar-form form-inline" id="search-form2" method="post" onsubmit="return false">
+                <input type="hidden" name="cid" value="{$cid}">
+                <input type="hidden" name="level_id" value="">
+                <div class="sDiv">
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input size="30" name="mobile" value="" placeholder="手机号码" class="qsbox" type="text">
+                    </div>
+                    <div class="sDiv2" style="margin-right: 10px;">
+                        <input size="30" name="email" value="" placeholder="email" class="qsbox" type="text">
+                    </div>
+                    <div class="sDiv2">
+                        <input size="30" name="nickname" value="{$nickname}" placeholder="搜索词" class="qsbox" type="text">
+                        <input class="btn" value="搜索" type="submit" onclick="ajax_get_table('search-form2',1)">
+                    </div>
+                </div>
+            </form>
+        </div>
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="sign" axis="col0">
+                            <div style="width: 24px;"><input type="checkbox" onclick="$('input[name*=\'user_id\']').prop('checked', this.checked);"></div>
+                        </th>
+                        <th abbr="article_time" axis="col6" class="" align="left">
+                            <div style="text-align: left; width: 80px;" class="">会员ID</div>
+                        </th>
+                        <th abbr="ac_id" axis="col4" class="" align="left">
+                            <div style="text-align: center; width: 80px;" class="">会员等级</div>
+                        </th>
+                        <th abbr="article_show" axis="col5" class="" align="center">
+                            <div style="text-align: center; width: 80px;" class="">会员昵称</div>
+                        </th>
+                        <th abbr="article_show" axis="col5" class="" align="center">
+                            <div style="text-align: center; width: 80px;" class="">手机</div>
+                        </th>
+                        <th abbr="article_show" axis="col5" class="" align="center">
+                            <div style="text-align: center; width: 120px;" class="">邮箱</div>
+                        </th>
+                        <th axis="col1" class=""  align="center">
+                            <div style="text-align: center; width: 80px;">操作</div>
+                        </th>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="tDiv">
+            <div class="tDiv2">
+                <select name="level_id" id="level_id">
+                    <option value="">请选择</option>
+                    <option value="0">所有会员</option>
+                    <foreach name="level" item="vo">
+                        <option value="{$vo['level_id']}">{$vo['level_name']}</option>
+                    </foreach>
+                </select>
+                <div class="fbutton">
+                    <div class="add" title="确定发送" onclick="doconfirm('form-user')">
+                        <span><i class="fa fa-send"></i>确定发送</span>
+                    </div>
+                </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <form method="post" action="" id="form-user">
+            <input type="hidden" name="cid" value="{$cid}">
+            <div id="ajax_return">
+
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        ajax_get_table('search-form2',1);
+
+    });
+    // ajax 抓取页面
+    function ajax_get_table(tab,page){
+        cur_page = page; //当前页面 保存为全局变量
+        $.ajax({
+            type : "POST",
+            url:"/index.php/Admin/Coupon/ajax_get_user/p/"+page,//+tab,
+            data : $('#'+tab).serialize(),// 你的formid
+            success: function(data){
+                $("#ajax_return").html('');
+                $("#ajax_return").append(data);
+            }
+        });
+    }
+    function doconfirm(from){
+        if($("input[type='checkbox']:checked").length == 0  && from == 'form-user')
+        {
+            layer.alert('请选择会员', {icon: 2}); //alert('请选择商品');
+            return false;
+        }
+            $('#'+from).submit();
+    }
+    $(document).on('change','#level_id',function(){
+        var level_id=$('#level_id').val();
+        $("input[name='level_id']").val(level_id);
+        ajax_get_table('search-form2',1);
+    })
+</script>
+</body>
+</html>

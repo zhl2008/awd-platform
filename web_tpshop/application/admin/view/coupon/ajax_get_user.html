@@ -1,0 +1,52 @@
+<div class="table-responsive">
+     <table class="table table-bordered table-hover">
+         <thead>
+             <td class="text-left"><input type="checkbox" onclick="$('input[name*=\'user_id\']').prop('checked', this.checked);">全选</td>
+             <td class="text-left">会员ID</td>            
+             <td class="text-left">会员等级</td>
+             <td class="text-left">会员昵称 </td>
+             <td class="text-left">手机</td>
+             <td class="text-left">邮箱</td>
+             <td class="text-left">操作</td>
+         </tr>
+         </thead>
+         <tbody id="goos_table">
+             <volist name="userList" id="list">
+                  <tr>
+                  	<td class="text-left">                
+                           <input type="checkbox" name="user_id[]" value="{$list.user_id}"/>
+                      </td>
+                      <td class="text-left">{$list.user_id}</td>
+                      <td class="text-left">{$user_level[$list[level]]}</td>
+                      <td class="text-left">
+                        <if condition=" $list[nickname] eq null">
+                            <if condition=" $list[oauth] eq 'weixin'">微信用户</if>
+                            <if condition=" $list[oauth] eq 'weibo'">微博用户</if>
+                            <if condition=" $list[oauth] eq 'alipay'">支付宝用户</if>
+                            <if condition=" $list[oauth] eq 'qq'">QQ用户</if>
+                           <else />
+                                {$list.nickname}
+                        </if>
+                      </td>
+                      <td class="text-left">{$list.mobile}</td>
+                      <td class="text-left">{$list.email}</td>
+                      <td><a href="javascript:void(0)" onclick="javascript:$(this).parent().parent().remove();">删除</a></td>
+                  </tr>                              
+         	</volist>   
+         </tbody>
+     </table>
+ </div>
+ <div class="row">
+    <div class="text-left col-sm-10">
+       {$page}
+    </div>
+   <div class="text-right col-sm-2">
+                          
+	</div>
+</div>			    
+<script>
+    $(".pagination  a").click(function(){
+        var page = $(this).data('p');
+        ajax_get_table('search-form2',page);
+    });
+</script>

@@ -1,0 +1,199 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商品分类 - 添加修改分类</h3>
+        <h5>添加或编辑商品分类</h5>
+      </div>
+    </div>
+  </div>
+  <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span>
+    </div>
+    <ul>
+      <li>商品分类最多分为三级</li>
+      <li>添加或者修改分类时, 应注意选择对应的上级</li>
+    </ul>
+  </div>
+  <form action="{:U('Goods/addEditCategory')}" method="post" class="form-horizontal" id="category_form">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>分类名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="名称" class="input-txt" name="name" value="{$goods_category_info.name}">
+          <span class="err" id="err_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>手机分类名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="手机分类名称" class="input-txt" name="mobile_name" value="{$goods_category_info.mobile_name}">
+          <span class="err" id="err_mobile_name" style="color:#F00; display:none;"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit" colspan="2">
+          <label class="" for="s_sort">上级分类</label>
+        </dt>
+        <dd class="opt">
+          <div id="gcategory">
+            <select name="parent_id_1" id="parent_id_1" onblur="get_category(this.value,'parent_id_2','0');" class="class-select valid">
+                <option value="0">顶级分类</option>
+                <foreach name="cat_list" item="v" >                                            
+                    <option value="{$v[id]}">{$v[name]}</option>
+                </foreach>                                            
+            </select>
+            <select name="parent_id_2" id="parent_id_2"  class="class-select valid">
+                <option value="0">请选择商品分类</option>
+            </select>                      
+          </div>
+          <p class="notic">最多成为第三级,如果设置为第二级, 只选择第一级即可</p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>导航显示</label>
+        </dt>
+        <dd class="opt">
+          <div class="onoff">
+            <label for="goods_category1" class="cb-enable <if condition="$goods_category_info[is_show] eq 1">selected</if>">是</label>
+            <label for="goods_category0" class="cb-disable <if condition="$goods_category_info[is_show] eq 0">selected</if>">否</label>
+            <input id="goods_category1" name="is_show" value="1" type="radio" <if condition="$goods_category_info[is_show] eq 1"> checked="checked"</if>>
+            <input id="goods_category0" name="is_show" value="0" type="radio" <if condition="$goods_category_info[is_show] eq 0"> checked="checked"</if>>
+          </div>
+          <p class="notic">是否在导航栏显示</p>
+        </dd>        
+      </dl>    
+      
+	   <dl class="row">
+        <dt class="tit" colspan="2">
+          <label class="" for="s_sort">分类分组</label>
+        </dt>
+        <dd class="opt">
+          <div>
+              <select name="cat_group" id="cat_group" class="form-control">
+                <option value="0">0</option>                                        
+                <option value='1' <if condition="$goods_category_info[cat_group] eq 1"> selected='selected'</if>>1</option>"
+                <option value='2' <if condition="$goods_category_info[cat_group] eq 2"> selected='selected'</if>>2</option>"
+                <option value='3' <if condition="$goods_category_info[cat_group] eq 3"> selected='selected'</if>>3</option>"
+                <option value='4' <if condition="$goods_category_info[cat_group] eq 4"> selected='selected'</if>>4</option>"
+                <option value='5' <if condition="$goods_category_info[cat_group] eq 5"> selected='selected'</if>>5</option>"
+                <option value='6' <if condition="$goods_category_info[cat_group] eq 6"> selected='selected'</if>>6</option>"
+                <option value='7' <if condition="$goods_category_info[cat_group] eq 7"> selected='selected'</if>>7</option>"
+                <option value='8' <if condition="$goods_category_info[cat_group] eq 8"> selected='selected'</if>>8</option>"
+                <option value='9' <if condition="$goods_category_info[cat_group] eq 9"> selected='selected'</if>>9</option>"
+                <option value='10' <if condition="$goods_category_info[cat_group] eq 10"> selected='selected'</if>>10</option>"
+                <option value='11' <if condition="$goods_category_info[cat_group] eq 11"> selected='selected'</if>>11</option>"
+                <option value='12' <if condition="$goods_category_info[cat_group] eq 12"> selected='selected'</if>>12</option>"
+                <option value='13' <if condition="$goods_category_info[cat_group] eq 13"> selected='selected'</if>>13</option>"
+                <option value='14' <if condition="$goods_category_info[cat_group] eq 14"> selected='selected'</if>>14</option>"
+                <option value='15' <if condition="$goods_category_info[cat_group] eq 15"> selected='selected'</if>>15</option>"
+                <option value='16' <if condition="$goods_category_info[cat_group] eq 16"> selected='selected'</if>>16</option>"
+                <option value='17' <if condition="$goods_category_info[cat_group] eq 17"> selected='selected'</if>>17</option>"
+                <option value='18' <if condition="$goods_category_info[cat_group] eq 18"> selected='selected'</if>>18</option>"
+                <option value='19' <if condition="$goods_category_info[cat_group] eq 19"> selected='selected'</if>>19</option>"
+                <option value='20' <if condition="$goods_category_info[cat_group] eq 20"> selected='selected'</if>>20</option>"
+              </select>                             
+          </div>
+          <p class="notic">有时候左侧菜单栏同一行显示多个分类, 所以给他们一个分组</p>
+        </dd>
+      </dl>
+
+      <dl class="row">
+        <dt class="tit">
+          <label>分类展示图片</label>
+        </dt>
+        <dd class="opt">
+          <div class="input-file-show">
+            <span class="show">
+                <a id="img_a" target="_blank" class="nyroModal" rel="gal" href="{$goods_category_info.image}">
+                  <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$goods_category_info.image}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                </a>
+            </span>
+            <span class="type-file-box">
+                <input type="text" id="image" name="image" value="{$goods_category_info.image}" class="type-file-text">
+                <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                <input class="type-file-file" onClick="GetUploadify(1,'','category','img_call_back')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+            </span>
+          </div>
+          <span class="err"></span>
+          <p class="notic">请上传图片格式文件</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_sort"><em>*</em>排序</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" class="t_mane" name="sort_order" id="t_sort" value="{$goods_category_info.sort_order}">
+          <span class="err" style="color:#F00; display:none;" id="err_sort_order"></span>
+          <p class="notic">根据排序进行由小到大排列显示。</p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="t_sort"><em>*</em>分佣比例</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" class="t_mane" name="commission_rate" value="{$goods_category_info.commission_rate}">%
+          <span class="err" style="color:#F00; display:none;" id="err_commission_rate"></span>
+          <p class="notic">用于商城分销,微信三级分销。</p>
+        </dd>
+      </dl>                         
+      <div class="bot"><a id="submitBtn" class="ncap-btn-big ncap-btn-green" href="JavaScript:void(0);" onClick="ajax_submit_form('category_form','{:U('Goods/addEditCategory?is_ajax=1')}');">确认提交</a></div>
+    </div>
+    <input type="hidden" name="id" value="{$goods_category_info.id}">
+  </form>
+</div>
+<script>  
+    
+/** 以下是编辑时默认选中某个商品分类*/
+$(document).ready(function(){
+	<if condition="$level_cat['2'] gt 0">	
+		 // 如果当前是二级分类就让一级父id默认选中
+		 $("#parent_id_1").val('{$level_cat[1]}'); 
+		 get_category('{$level_cat[1]}','parent_id_2','0');		 
+	</if>	 
+	<if condition="$level_cat['3'] gt 0">
+		 // 如果当前是三级分类就一级和二级父id默认 都选中
+		 $("#parent_id_1").val('{$level_cat[1]}');		 	
+		 get_category('{$level_cat[1]}','parent_id_2','{$level_cat[2]}');	
+	</if>	
+});
+ 
+// 将品牌滚动条里面的 对应分类移动到 最上面
+//javascript:document.getElementById('category_id_3').scrollIntoView();
+var typeScroll = 0;
+function spec_scroll(o){
+	var id = $(o).val();	
+	//if(!$('#type_id_'+id).is('dt')){
+		//return false;
+	//} 	 
+	$('#ajax_brandList').scrollTop(-typeScroll);
+	var sp_top = $('#type_id_'+id).offset().top; // 标题自身往上的 top
+	var div_top = $('#ajax_brandList').offset().top; // div 自身往上的top
+	$('#ajax_brandList').scrollTop(sp_top-div_top); // div 移动
+	typeScroll = sp_top-div_top;
+}
+
+function img_call_back(fileurl_tmp)
+{
+  $("#image").val(fileurl_tmp);
+  $("#img_a").attr('href', fileurl_tmp);
+  $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+}
+</script>
+</body>
+</html>

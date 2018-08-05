@@ -1,0 +1,17 @@
+<div class="mes-num-h">共<span class="c-orange consult_count">{$consultCount}</span>条</div>
+<foreach name="consultList" item="consult">
+    <div class="mes-lists-h">
+        <div class="mes-item1-h">
+            <div class="visitor-mes p">
+                <span class="visitor-name">{$consult.username}:</span>{$consult.content}<p class="send-time">{:date('Y-m-d H:i',$consult.add_time)}</p>
+            </div>
+            <foreach name="consult.replyList" item="reply">
+                <div class="store-reply p">
+                    <span class="visitor-name">商家<i class="reply-tips">回复</i>{$reply.username}:</span>{$reply.content}
+                    <p class="send-time">{:date('Y-m-d H:i',$reply.add_time)}</p>
+                </div>
+            </foreach>
+        </div>
+    </div>
+</foreach>
+{$page}

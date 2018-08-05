@@ -1,0 +1,91 @@
+<include file="public/header" title="所有分类"/>
+    <div class="classreturn">
+        <div class="content">
+            <div class="ds-in-bl return">
+                <a href="javascript:history.back(-1);"><img src="__STATIC__/images/return.png" alt="返回"></a>
+            </div>
+            <div class="ds-in-bl search">
+                <form action="" method="post">
+                    <div class="sear-input">
+                        <a href="{:U('Goods/ajaxSearch')}">
+                            <input type="text" value="" placeholder="请输入您所搜索的商品">
+                        </a>
+                    </div>
+                </form>
+            </div>
+            <div class="ds-in-bl menu">
+                <a href="javascript:void(0);"><img src="__STATIC__/images/class1.png" alt="菜单"></a>
+            </div>
+        </div>
+    </div>
+
+    <!--顶部隐藏菜单-s-->
+    <include file="public/top_nav"/>
+    <!--顶部隐藏菜单-e-->
+
+    <div class="flool classlist">
+        <div class="fl category1">
+            <ul>
+                <assign name="m" value="0"/>
+                <foreach name="goods_category_tree" item="vo" key="k">
+                    <if condition="$vo[level] eq 1">
+                        <li >
+                           <a href="javascript:void(0);" <if condition="$m eq 0"></if> data-id="{$m++}">{$vo['mobile_name']|getSubstr=0,12}</a>
+                        </li>
+                    </if>
+                </foreach>
+            </ul>
+        </div>
+        <div class="fr category2">
+            <assign name="j" value="0"/>
+            <foreach name="goods_category_tree" key="kk" item="vo">
+                <div class="branchList" >
+                    <!--广告图-s-->
+                    <div class="tp-bann"  data-id="{$j++}">
+                        <adv  limit="1" item="v" pid="400">
+                            <a href="{$v.ad_link}" <if condition="$v['target'] eq 1">target="_blank"</if> >
+                                <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}">
+                            </a>
+                        </adv>
+                    </div>
+                    <!--广告图-e-->
+                    <!--分类-s-->
+                    <div class="tp-class-list">
+                        <foreach name="vo.tmenu" item="v2" key="k2">
+                                <h4><a href="{:U('Mobile/Goods/goodsList',array('id'=>$v2[id]))}" >{$v2['name']}</a></h4>
+                                <ul class="tp-category">
+                                    <foreach name="v2.sub_menu" item="v3">
+                                            <li>
+                                                <a href="{:U('Mobile/Goods/goodsList',array('id'=>$v3[id]))}">
+                                                    <img src="{$v3['image']|default='__STATIC__/images/zy.png'}"/>
+                                                    <p>{$v3['name']}</p>
+                                                </a>
+                                            </li>
+                                    </foreach>
+                                </ul>
+                        </foreach>
+                    </div>
+                    <!--分类-e-->
+                </div>
+            </foreach>
+        </div>
+    </div>
+<script>
+    $(function () {
+        //点击切换2 3级分类
+        var array=new Array();
+        $('.category1 li').each(function(){
+            array.push($(this).position().top-0);
+        });
+        $('.branchList').eq(0).show().siblings().hide();
+        $('.category1 li').click(function() {
+            var index = $(this).index() ;
+            $('.category1').delay(200).animate({scrollTop:array[index]},300);
+            $(this).addClass('cur').siblings().removeClass();
+            $('.branchList').eq(index).show().siblings().hide();
+            $('.category2').scrollTop(0);
+        });
+    });
+</script>
+	</body>
+</html>

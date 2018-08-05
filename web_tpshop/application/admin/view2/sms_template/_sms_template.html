@@ -1,0 +1,118 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>短信配置模板 - 编辑模板</h3>
+                <h5>网站系统短信配置模板管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="addEditSmsTemplate" method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sms_sign"><em>*</em>短信签名</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$smsTpl.sms_sign}" name="sms_sign" id="sms_sign" class="input-txt">
+                    <span class="err" id="err_sms_sign" style="display:none;">短信签名不能为空 </span>
+                    <p class="notic">必须与短信平台短信签名一致</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sms_tpl_code"><em>*</em>短信模板ID</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$smsTpl.sms_tpl_code}" name="sms_tpl_code" id="sms_tpl_code" class="input-txt">
+                    <span id="err_sms_tpl_code" class="err" style="display:none;">短信模板ID不能为空</span>
+                    <p class="notic">必须与短信平台短信模板ID一致</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="send_scene"><em>*</em>发送场景</label>
+                </dt>
+                <dd class="opt">
+                    <if condition="$send_scene_id gt 0 ">
+                        {$send_name}
+                        <input type="hidden" value="{$send_scene_id}" name="send_scene" id="send_scene" class="form-control" style="width:250px;"/>
+                        <else />
+                        <select  class="small form-control" name="send_scene" id="send_scene" onblur="changeContent(this.value);">
+                            <option value="-1">请选择使用场景</option>
+                            <foreach name="send_scene" item="v" key="k">
+                                <option value="{$k}" <if condition=" $k eq $smsTpl.send_scene ">selected="selected"</if>>{$v[0]}</option>
+                            </foreach>
+                        </select>
+                        <span class="err" id="err_send_scene" style="display:none;">请选择使用场景</span>
+                    </if>
+                    <span class="err"></span>
+                    <p class="notic">使用场景</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="tpl_content"><em>*</em>短信内容</label>
+                </dt>
+                <dd class="opt">
+                    <textarea id="tpl_content" name="tpl_content" class="tarea" rows="6" readonly="readonly">{$smsTpl.tpl_content}</textarea>
+                    <span class="err" id="err_tpl_content" style="display:none;">短信内容不能为空</span>
+                    <p class="notic">为防止误操作, 该内容不可编辑, 大于后台配置短信模板时, 模板内容必须与该内容一致, 否则无法发送短信</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="checkForm();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+        <input type="hidden" name="tpl_id" value="{$smsTpl.tpl_id}"></label>
+    </form>
+</div>
+<script type="text/javascript">
+    function changeContent(scene){
+        if(scene == -1){
+            $("#addEditSmsTemplate").find("textarea[name='tpl_content']").val('');
+            return;
+        }
+        var scenes = <?php echo json_encode($send_scene); ?>;//{$send_scene} //""<php>echo json_encode($send_scene); </php>;
+        var txt = scenes[scene][1];
+
+        $("#addEditSmsTemplate").find("textarea[name='tpl_content']").val(txt);
+    }
+    // 判断输入框是否为空
+    function checkForm(){
+
+        var smsSign = $("#addEditSmsTemplate").find("input[name='sms_sign']").val();					//短信签名
+        var smsTplCode = $("#addEditSmsTemplate").find("input[name='sms_tpl_code']").val();		//模板ID
+        var tplContent = $("#addEditSmsTemplate").find("textarea[name='tpl_content']").val();			//模板内容
+
+        var sendscene = $("#send_scene option:selected").val();
+        if($.trim(smsSign) == '')
+        {
+            $("#err_sms_sign").show();
+            return false;
+        }
+
+        if($.trim(smsTplCode) == '')
+        {
+            $("#err_sms_tpl_code").show();
+            return false;
+        }
+
+        if($.trim(tplContent) == '')
+        {
+            $("#err_tpl_content").show();
+            return false;
+        }
+
+        if(sendscene == -1){
+            $("#err_send_scene").show();
+            return false;
+        }
+        $('#addEditSmsTemplate').submit();
+    }
+</script>
+</body>
+</html>

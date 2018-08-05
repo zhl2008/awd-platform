@@ -1,0 +1,249 @@
+<include file="public/header" title="新增收货地址" body="pore_add"/>
+<include file="public/header_nav" title="新增收货地址" href="javascript:history.back(-1)"/>
+<div class="floor my p edit">
+    <form action="{:U('Mobile/User/add_address')}" method="post" id="addressForm">
+        <div class="content">
+            <div class="floor list7">
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="javascript:void(0)">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>收货人:</span>
+                                </div>
+                                <div class="fl">
+                                    <input type="text" value="{$address.consignee}" name="consignee"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="javascript:void(0)">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>手机号码:</span>
+                                </div>
+                                <div class="fl">
+       <input type="tel" value="{$address.mobile}" name="mobile" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="javascript:void(0)" onclick="locationaddress(this);">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>所在地区: </span>
+                                </div>
+                                <div class="fl">
+                                    <input id="area" value=""  type="text">
+                                    <input type="hidden" value="{$address['province']}" name="province" class="hiddle_area"/>
+                                    <input type="hidden" value="{$address['city']}" name="city" class="hiddle_area"/>
+                                    <input type="hidden" value="{$address['district']}" name="district" class="hiddle_area"/>
+                                </div>
+                                <div class="fr">
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="javascript:void(0)">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>详细地址:</span>
+                                </div>
+                                <div class="fl">
+                                    <input type="text" value="{$address.address}" name="address"/>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="content30">
+                        <a href="javascript:void(0)">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>设为默认地址</span>
+                                </div>
+                                <div class="fr">
+                                    <i id='default_addr' class="Mright turnoff <if condition="$address.is_default == 1">turnup</if>"></i>
+                                </div>
+                            </div>
+                            <input type="hidden" name="is_default" value="{$address.is_default}"/>
+                    </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <input type="hidden" name="id" value="{$address.address_id}" />
+        <div class="edita">
+            <div class="content30">
+                <?php $source = I('source');?>
+                <notempty name="$source"> <!--如果是下订单时提交过了的页面-->
+                    <input type="button" value="保存并使用该地址" class="dotm_btn1 beett" onclick="checkForm()" />
+                    <input type="hidden" name="source" value="{$Request.param.source}" />
+                    <input type="hidden" name="order_id" value="{$Request.param.order_id}" />
+                    <input type="hidden" name="act_id" value="{$Request.param.act_id}" />
+                    <input type="hidden" name="goods_id" value="{$Request.param.goods_id}" />
+                    <input type="hidden" name="goods_num" value="{$Request.param.goods_num}" />
+                    <input type="hidden" name="item_id" value="{$Request.param.item_id}" />
+                    <else/>
+                    <input type="button" value="保存该地址" class="dotm_btn1 beett" onclick="checkForm()" />
+                </notempty>
+            </div>
+        </div>
+    </form>
+</div>
+<!--选择地区-s-->
+<div class="container" >
+    <div class="city">
+        <div class="screen_wi_loc">
+            <div class="classreturn loginsignup">
+                <div class="content">
+                    <div class="ds-in-bl return seac_retu">
+                        <a href="javascript:void(0);" onclick="closelocation();"><img src="__STATIC__/images/return.png" alt="返回"></a>
+                    </div>
+                    <div class="ds-in-bl search center">
+                        <span class="sx_jsxz">选择地区</span>
+                    </div>
+                    <div class="ds-in-bl suce_ok">
+                        <a href="javascript:void(0);">&nbsp;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="province-list"></div>
+        <div class="city-list" style="display:none"></div>
+        <div class="area-list" style="display:none"></div>
+    </div>
+</div>
+<!--选择地区-e-->
+<div class="ed_shdele">
+    <div class="sfk">是否删除该地址?</div>
+    <div class="lineq">
+        <span class="clos">取消</span>
+        <span class="sur">确定</span>
+    </div>
+</div>
+<div class="mask-filter-div" style="display: none;"></div>
+<script src="__STATIC__/js/mobile-location.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $('.turnoff').click(function(){
+            $(this).toggleClass('turnup');
+            $("input[name=is_default]").val(Number($(this).hasClass('turnup')));
+        });
+    })
+</script>
+<script type="text/javascript">
+    $(function(){
+        $('.menu').click(function(){
+            $('.ed_shdele').show();
+            $('.mask-filter-div').show();
+        })
+        $('.ed_shdele .clos').click(function(){
+            $('.ed_shdele').hide();
+            $('.mask-filter-div').hide();
+        })
+    });
+</script>
+<script type="text/javascript">
+    function checkForm(){
+        var consignee = $('input[name="consignee"]').val();
+        var address = $('input[name="address"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var area = $('#area').val();
+        var error = '';
+        if(consignee == ''){
+            error = '收货人不能为空 <br/>';
+        }
+        if(address == ''){
+            error = '请填写地址 <br/>';
+        }
+        if(!checkMobile(mobile)){
+            error = '手机号码格式有误 <br/>';
+        }
+        if(area == '') {
+            error = '所在地区不能为空 <br/>';
+        }
+        if(error){
+            layer.open({content:error,time:2});
+            return false;
+        }
+        $.ajax({
+            type : "POST",
+            url:"{:U('Mobile/User/add_address')}",//+tab,
+            dataType:'JSON',
+            data :$('#addressForm').serialize(),
+            success: function(data)
+            {
+                if(data.status == 1){
+                    layer.open({content:data.msg,time:2,end:function(){
+                        window.location.href=data.url;
+                    }});
+                }else{
+                    layer.open({content:data.msg,time:2});
+                }
+            },
+            error:function(){
+                layer.open({content:'请稍后再试',time:2});
+            }
+        });
+    }
+</script>
+<script type="text/javascript">
+    function locationaddress(e){
+        $('.container').animate({width: '14.4rem', opacity: 'show'}, 'normal',function(){
+            $('.container').show();
+        });
+        if(!$('.container').is(":hidden")){
+            $('body').css('overflow','hidden')
+            cover();
+            $('.mask-filter-div').css('z-index','9999');
+        }
+    }
+    function closelocation(){
+        var province_div = $('.province-list');
+        var city_div = $('.city-list');
+        var area_div = $('.area-list');
+        if(area_div.is(":hidden") == false){
+            area_div.hide();
+            city_div.show();
+            province_div.hide();
+            return;
+        }
+        if(city_div.is(":hidden") == false){
+            area_div.hide();
+            city_div.hide();
+            province_div.show();
+            return;
+        }
+        if(province_div.is(":hidden") == false){
+            area_div.hide();
+            city_div.hide();
+            $('.container').animate({width: '0', opacity: 'show'}, 'normal',function(){
+                $('.container').hide();
+            });
+            undercover();
+            $('.mask-filter-div').css('z-index','inherit');
+            return;
+        }
+    }
+    $('body').on('click', '.area-list p', function () {
+        var area = ' '+getCookie('province_name')+' '+getCookie('city_name')+' '+getCookie('district_name');
+        $("#area").val(area);
+        $("input[name=province]").val(getCookie('province_id'));
+        $("input[name=city]").val(getCookie('city_id'));
+        $("input[name=district]").val(getCookie('district_id'));
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,142 @@
+<include file="public/header" title="购物车" body=""/>
+<include file="public/header_nav" title="虚拟订单" href="javascript:history.back(-1);"/>
+<!--购物车有商品-s-->
+<style>
+    .officdw {
+        height: 1rem;
+        border: 0;
+        outline: none;
+        padding: 0 .21333rem;
+        width: 12rem;
+    }
+    .bk {
+        margin-top: 1.3rem;
+        margin-bottom: 0.8rem;
+    }
+    .lbk{
+        margin-bottom:0.2rem;
+    }
+    .bk p{
+        margin-bottom:0.2rem;
+        border: 2px solid #dedede;
+        overflow: hidden;
+        border-radius: .128rem;
+        overflow: hidden;
+    }
+    .bk span {
+        display: block;
+        float: left;
+        width: 2.47467rem;
+        border-right: 2px solid #dedede;
+        line-height: 1rem;
+        text-align: center;
+    }
+    .tips {
+        padding: 0.13rem ;
+        color: #f63;
+    }
+
+</style>
+<notempty name="goods">
+    <div class="orderlistshpop p">
+        <div class="maleri30">
+            <form name="cart_form" id="cart_form" action="{:U('Home/Virtual/buy_virtual')}" method="post">
+                <!--商品列表-s-->
+                <div class="sc_list">
+                    <div class="lsu bk">
+                        <div class="lbk">购物信息 <em >(请仔细填写手机号，以确保电子兑换码准确发到您的手机。)</em></div>
+                        <p>
+                            <span>手机号码</span>
+                            <input class="officdw" type="text" name="mobile" value="{$user.mobile}" placeholder="{$user.mobile}">
+                        </p>
+                        <p>
+                            <span>买家留言</span>
+                            <input class="officdw"  type="text" name="user_note" placeholder="选填：对本次交易的说明（建议填写已经和商家达成一致的说明）" maxlength="150">
+                        </p>
+                        <div class="tips">注意：虚拟服务类商品订单凭借电子兑换码验证消费</div>
+                        <div class="tips">说明：您本次购买的商品不需要收货地址，请正确输入接收手机号码，确保及时获得“电子兑换码”。可使用您已经绑定的手机或重新输入其它手机号码。</div>
+                    </div>
+                    <div class="shopimg fl">
+                        <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$goods[goods_id]))}">
+                            <!--商品图片-->
+                            <img src="{$goods.goods_id|goods_thum_images=200,200}">
+                        </a>
+                    </div>
+                    <div class="deleshow fr">
+                        <div class="deletes">
+                            <!--商品名-->
+                        <span class="similar-product-text fl">
+                            <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$goods[goods_id]))}">{$goods[goods_name]}</a>
+                        </span>
+                            <!--删除按钮-->
+                            <!--<a href="javascript:void(0);" onclick="del_cart_goods({$goods.id})" class="delescj"><img src="__STATIC__/images/dele.png"/></a>-->
+                        </div>
+                        <!--商品属性，规格-->
+                        <p class="weight">{$goods[spec_key_name]}</p>
+                        <div class="prices">
+                            <p class="sc_pri fl">
+                                <!--商品单价-->
+                                <span>￥</span>
+                                <span id="shop_price" rel="{$goods.shop_price}">{$goods.shop_price}</span>
+                            </p>
+                            <!--加减数量-->
+                            <div class="fr weight sc_pri">
+                                数量： x{$goods.goods_num}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" name="goods_id" value="{$goods.goods_id}">
+                <input type="hidden" id="virtual_limit" name="virtual_limit" value="{$goods.virtual_limit}">
+                <input type="hidden" name="goods_spec_key" value="{$goods.goods_spec_key}">
+                <input type="hidden" name="goods_num" value="{$goods.goods_num}">
+            </form>
+        </div>
+    </div>
+    <!--提交栏-s-->
+    <div class="foohi foohiext">
+        <div class="payit ma-to-20 payallb">
+            <div class="fl alllef">
+                <div class="radio fl" >
+                </div>
+                <div class="youbia">
+                    <p><span class="pmo">订单总额：</span>
+                        <span>￥</span><span id="goodsfee">{$goods.shop_price*$goods.goods_num}</span>元
+                    </p>
+                </div>
+            </div>
+            <div class="fr">
+                <a href="javascript:void(0);" onclick="orderSubmit()">提交订单</a>
+            </div>
+        </div>
+    </div>
+</notempty>
+<!--购物车有商品-e-->
+<div class="mask-filter-div" ></div>
+<script type="text/javascript">
+    function orderSubmit(){
+        var mobile = $('input[name="mobile"]').val();
+        if(!checkMobile(mobile)){
+            layer.open({content:'手机格式有误', time: 2});s
+            return false;
+        }
+        $.ajax({
+            url:"{:U('Virtual/add_order')}",
+            type:'POST',
+            dataType:'JSON',
+            data:$('#cart_form').serialize(),
+            success:function(data){
+                if(data.status == 1){
+                    location.href='/index.php?m=Mobile&c=Virtual&a=buy_step2&order_id='+data.result;
+                }else{
+                    layer.open({content:data.msg, time: 2});
+                }
+            },
+            error : function() {
+                layer.open({content:'网络失败，请刷新页面后重试', time: 2});
+            }
+        })
+    }
+</script>
+</body>
+</html>

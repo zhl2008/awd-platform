@@ -1,0 +1,75 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>规格管理 </h3>
+        <h5>编辑添加与管理</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="addEditSpecForm">                    
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>规格名称</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" value="{$spec.name}" name="name"   class="input-txt"/>
+          <span id="err_name" class="err" style="color:#F00; display:none;"></span>        
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id">所属商品模型：</label>
+        </dt>
+        <dd class="opt">                 
+            <select name="type_id" id="type_id" class="small form-control">
+                 <option value="">请选择</option>
+                <volist name="goodsTypeList" id="vo">
+                 <option value="{$vo[id]}" <if condition="$vo[id] eq $spec[type_id]">selected="selected"</if>>{$vo[name]}</option>
+                </volist>                                        
+            </select>
+            <span id="err_type_id" class="err" style="color:#F00; display:none;"></span>          
+        </dd>
+      </dl>	
+	   <dl class="row" style="display:none;">
+        <dt class="tit">
+          <label for="ac_sort">能否进行检索：</label>
+        </dt>
+        <dd class="opt">
+            <input type="radio" value="0" name="search_index" <if condition="$spec[search_index] eq 0">checked="checked"</if>  .>不需要检索
+            <input type="radio" value="1" name="search_index" <if condition="($spec[search_index] eq 1) or ($spec[search_index] eq NULL)">checked="checked"</if>  />关键字检索        
+        </dd>
+      </dl>     
+		<dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">规格项：</label>
+        </dt>
+        <dd class="opt">
+            <textarea rows="5" cols="30" name="items" class="input-txt" style=" height:100px;"/>{$spec.items}</textarea>
+            <p class="notic">一行为一个规格项，多个规格项用换行输入</p>
+            <span  class="err" id="err_items" style="color:#F00; display:none;"></span>
+        </dd>
+      </dl>       	 		       
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">排序</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$spec.order|default='50'}" name="order"  class="input-txt"/>
+            <span id="err_order" class="err" style="color:#F00; display:none;"></span>           
+          
+        </dd>
+      </dl>	                
+      <div class="bot"><a href="JavaScript:void(0);" onClick="ajax_submit_form('addEditSpecForm','{:U('Goods/addEditSpec?is_ajax=1')}');" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+		<input type="hidden" name="id" value="{$spec.id}">
+  </form>
+</div>
+ 
+</body>
+</html>

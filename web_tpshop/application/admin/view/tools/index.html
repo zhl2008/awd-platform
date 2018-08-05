@@ -1,0 +1,103 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       	  <div class="box">
+	           	<div class="box-header">
+	               <nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('/Admin/linkList')}" method="post">
+				          	<div class="input-group"><p>数据库中共有{$tableNum}张表，共计{$total}</p>
+				          	
+				          	</div>
+				            <div class="form-group pull-right">
+					            <a href="javascript:void(0)" onclick="gobackup(this)" class="btn btn-primary pull-right"><i class="fa fa-eject"></i>备份</a>
+				            </div>		          
+				          </form>		
+				      	</div>
+	    			</nav>               
+	            </div>	    
+	             <!-- /.box-header -->
+	             <div class="box-body">	             
+	           		<div class="row">
+	            	<div class="col-sm-12">
+	            	<form  method="post" action="">
+		              <table class="table table-bordered table-striped">
+		                 <thead>
+		                   <tr>
+		                       <th class="text-center" style="width: 2px;"><input type="checkbox" onclick="javascript:$('input[name*=backs]').prop('checked',this.checked);"></th>
+			                   <th class="sorting" tabindex="0">数据库表</th>
+			                   <th class="sorting" tabindex="0">记录条数</th>
+			                   <th class="sorting" tabindex="0">占用空间</th>
+			                   <th class="sorting" tabindex="0">编码</th>
+			                   <th class="sorting" tabindex="0">创建时间</th>
+			                   <th class="sorting" tabindex="0">说明</th>
+			                   <th class="sorting" tabindex="0">操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+						  <foreach name="list" item="vo" key="k" >
+						  	<tr>
+ 							 <td><input type="checkbox" name="backs[]" value="{$vo.Name}"></td>
+		                     <td>{$vo.Name}</td>
+		                     <td>{$vo.Rows}</td>
+		                     <td>{$vo.Data_length|format_bytes}</td>
+		                     <td>{$vo.Collation}</td>
+		                     <td>{$vo.Create_time}</td>
+		                     <td>{$vo.Comment}</td>
+		                     <td>
+		                      <a class="btn btn-success" href="{:U('Tools/optimize',array('tablename'=>$vo['Name']))}">优化</a>
+		                      <a class="btn btn-info" href="{:U('Tools/repair',array('tablename'=>$vo['Name']))}" data-url="">修复</a>
+							</td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>
+		                 </tfoot>
+		               </table>
+		           </form>
+	               </div>
+	           </div>
+	          </div>
+	        </div>
+       	</div>
+       </div>
+   </section>
+</div>
+<script type="text/javascript">
+function gobackup(obj){
+	var a = [];
+	$('input[name*=backs]').each(function(i,o){
+		if($(o).is(':checked')){
+			a.push($(o).val());
+		}
+	});
+	if(a.length==0){
+		layer.alert('请选择要备份的数据表', {icon: 2});  //alert('请选择要备份的数据表');
+		return;
+	}else{
+		$(obj).addClass('disabled');
+		$(obj).html('备份进行中...');
+		$.ajax({
+			type :'post',
+			url : "{:U('Admin/Tools/backup')}",
+			datatype : 'json',
+			data : {tables:a},
+			success : function(data){
+				data = eval('('+data+')');
+				if(data.status==1){
+					$(obj).removeClass('disabled');
+					$(obj).html('备份');
+					layer.alert(data.msg, {icon: 2});  //alert(data.msg);
+				}else{
+					layer.alert(data.msg, {icon: 2});  //alert(data.msg);
+				}
+			}
+		})
+	}
+}
+</script>
+</body>
+</html>

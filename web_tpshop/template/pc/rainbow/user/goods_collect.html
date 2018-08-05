@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的收藏</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/layer/layer-min.js"></script>
+		<script src="__PUBLIC__/js/pc_common.js"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>我的收藏</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+						<div class="menumain p">
+							<div class="goodpiece">
+								<h1>我的收藏</h1>
+								<!--<a href=""><span class="co_blue">账户余额说明</span></a>-->
+							</div>
+							<div class="time-sala ma-to-20">
+								<ul>
+									<li class="<if condition='$Thinl.get.type neq 2'>red<else/>mal-l</if>"><a href="{:U('Home/User/goods_collect')}">商品收藏</a></li>
+									<!--<li class="<if condition='$Thinl.get.type eq 2'>red<else/>mal-l</if>"><a href="{:U('Home/User/goods_collect',array('type'=>2))}">店铺收藏</a></li>-->
+								</ul>
+							</div>
+							<div class="he"></div>
+							<!--<div class="collec_list">-->
+								<!--<ul>-->
+									<!--<li class="bg-dar"><a href="javascript:void(0);">商品收藏</a></li>-->
+									<!--<li><a href="javascript:void(0);">全部（2）</a></li>-->
+									<!--<li><a href="javascript:void(0);">女装配饰（2）</a></li>-->
+								<!--</ul>-->
+								<!--<ul>-->
+									<!--<li class="bg-dar"><a href="javascript:void(0);">活动商品</a></li>-->
+									<!--<li><a href="javascript:void(0);">全部（2）</a></li>-->
+								<!--</ul>-->
+							<!--</div>-->
+							<div class="orderbook-list sc_collect">
+				    			<div class="book-tit">
+				    				<ul>
+				    					<li class="sx2">&nbsp;</li>
+				    					<li class="sx1">商品</li>
+				    					<li class="sx3">单价</li>
+				    					<li class="sx4">库存</li>
+				    					<li class="sx5">操作</li>
+				    				</ul>
+				    			</div>
+				    		</div>
+				    		<div class="sc_collect book-tit shop-listanadd">
+								<volist name="lists" id="list">
+									<ul>
+										<li class="sx2"><input class="checkall_annt" type="checkbox" name="selected[]"  value="{$list['collect_id']}"/>&nbsp;&nbsp;</li>
+										<li class="sx1">
+											<div class="shop-if-dif texle">
+												<div class="shop-difimg">
+													<img src="{$list['goods_id']|goods_thum_images=400,400}" width="100" height="100">
+												</div>
+												<div class="shop_name"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}">{$list.goods_name}</a></div>
+											</div>
+										</li>
+										<li class="sx3"><span><em>￥</em>{$list.shop_price}</span></li>
+										<li class="sx4">
+                                            <span>
+                                             <if condition="$list['is_on_sale'] eq 0">已下架
+                                             <elseif condition="$list['store_count'] eq 0">商品已售罄<else/>库存充足</if>
+                                            </span>
+                                        </li>
+										<li class="sx5">
+											<div class="adhscar">
+												<if condition="$list.is_virtual eq 1">
+													<a class="add_p_shop" href="{:U('Home/Goods/goodsInfo',array('id'=>$list['goods_id']))}">查看详情</a>
+													<else/>
+													<a class="add_p_shop" onclick="AjaxAddCart({$list[goods_id]},1);">加入购物车</a>
+												</if>
+												<a class="dele_g" onclick="del_all({$list[collect_id]})" href="javascript:">删除</a>
+											</div>
+										</li>
+									</ul>
+								</volist>
+								<empty name="lists">
+									<p class="ncyekjl">--暂无记录--</p>
+								</empty>
+				    		</div>
+							<notempty name="lists">
+							<div class="all_pluscar p">
+			    				<!--<div class="sx2"><input class="checkall_annt" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);" type="checkbox" id="all2" /><label for="all2">全选</label></div>-->
+			    				<!--<div class="addcar_plus">-->
+			    					<!--<a class="add_p_shop">加入购物车</a>-->
+			    					<!--<a class="dele_p_shop" onclick="del_all();">删除</a>-->
+			    				<!--</div>-->
+								<div class="operating fixed" id="bottom">
+									<div class="fn_page clearfix">
+										{$page}
+									</div>
+								</div>
+			    			</div>
+							</notempty>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+		<div class="footer p"><include file="public/footer" /> </div>
+		<!--footer-e-->
+		<script type="text/javascript">
+			$(function(){
+				$('.time-sala ul li').click(function(){
+					$(this).addClass('red').siblings().removeClass('red');
+				})
+			})
+			function del_all(del_ids)
+			{
+                //询问框
+                layer.confirm('您确定要取消收藏', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    window.location.href='/index.php?m=Home&c=User&a=del_goods_collect&id='+del_ids;
+                });
+
+			}
+		</script>
+	</body>
+</html>

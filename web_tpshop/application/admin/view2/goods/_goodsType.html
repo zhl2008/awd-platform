@@ -1,0 +1,62 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商品模型管理 - 添加修改模型</h3>
+        <h5>添加修改模型</h5>
+      </div>
+    </div>
+  </div>
+  <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span>
+    </div>
+    <ul>
+      <li>商品模型是对不同商品的分组</li>
+      <li>商品模型关联商品规格,商品属性</li>
+      <li>一个商品归属到这个商品模型就知道他有哪里规格属性</li>
+    </ul>
+  </div>
+	<form method="post" id="addEditGoodsTypeForm" onSubmit="return checkgoodsTypeName();">
+    <div class="ncap-form-default">
+<!--商品类型-->     
+      <dl class="row">
+        <dt class="tit">
+          <label for="t_mane"><em>*</em>模型名称:</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$goodsType.name}" name="name" class="input-txt" style="width:300px;"/>
+            <span class="err" id="err_name" style="color:#F00; display:none;">商品模型名称不能为空!!</span>         
+            <p class="notic"></p>
+        </dd>
+      </dl>      
+       
+<!--商品类型 end-->       
+        
+                   
+      <div class="bot"><a id="submitBtn" class="ncap-btn-big ncap-btn-green" href="JavaScript:void(0);" onClick="$('#addEditGoodsTypeForm').submit();">确认提交</a></div>
+    </div>
+	 <input type="hidden" name="id" value="{$goodsType.id}">
+  </form>
+  
+ 
+</div>
+<script>
+// 判断输入框是否为空
+function checkgoodsTypeName(){
+	var name = $("#addEditGoodsTypeForm").find("input[name='name']").val();
+    if($.trim(name) == '')
+	{
+		$("#err_name").show();
+		return false;
+	}
+	return true;
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<empty name="messages">
+    <p class="norecode" style="font-size: 16px;color: #999999;padding:100px;text-align: center;">抱歉，您暂时没有要处理的消息！</p>
+    <else/>
+    <foreach name="messages" item="v" key="k">
+        <div class="news_list_fll" id="del_{$v.message_id}">
+            <div class="maleri30">
+                <div class="fl news_c_img">
+                </div>
+                <div class="fl  news_c_tit">
+                    <p>
+                        <span class="news_h fl">系统消息</span>
+                        <span class="yestertime fr">{$v['send_time']|date='Y-m-d',###}</span>
+                    </p>
+                    <div class="news-des-wrap">
+                        <span class="left-news-des">{$v['message']}</span>
+                        <a class="delete-news-btn" href="javascript:;" onclick="del_message({$v.category},{$v.message_id})">删除</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </foreach>
+</empty>

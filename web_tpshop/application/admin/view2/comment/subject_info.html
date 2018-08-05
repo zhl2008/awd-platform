@@ -1,0 +1,86 @@
+<include file="public/layout" />
+<script type="text/javascript">
+    window.UEDITOR_Admin_URL = "__ROOT__/public/plugins/Ueditor/";
+    var URL_upload = "{$URL_upload}";
+    var URL_fileUp = "{$URL_fileUp}";
+    var URL_scrawlUp = "{$URL_scrawlUp}";
+    var URL_getRemoteImage = "{$URL_getRemoteImage}";
+    var URL_imageManager = "{$URL_imageManager}";
+    var URL_imageUp = "{$URL_imageUp}";
+    var URL_getMovie = "{$URL_getMovie}";
+    var URL_home = "{$URL_home}";    
+</script>
+
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.config.js"/>
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.all.js"/>
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>投诉管理 - 新增</h3>
+        <h5>商城对商品交易投诉管理及仲裁</h5>
+      </div>
+    </div>
+  </div>
+  <form action="" method="post" id="subject_form">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>投诉主题</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="subject_content" class="input-txt" value="{$info.subject_content}">
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>投诉主题描述</label>
+        </dt>
+        <dd class="opt">
+	      <textarea name="subject_desc" rows="6" class="tarea" id="subject_desc">{$info.description}</textarea>
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <div class="bot"><a href="JavaScript:void(0);" onClick="checkForm()" class="ncap-btn-big ncap-btn-green" id="submitBtn">保存</a></div>
+    </div>
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="article_id" value="{$info.article_id}"></label>    
+  </form>
+</div>
+<script type="text/javascript">
+	function checkForm(){
+	    var subject_content = $('input[name="subject_content"]').val();
+	    var subject_desc = $('#subject_desc').val();
+	    var error ='';
+	    if(subject_content == ''){
+	        error += "投诉主题不能为空\n";
+	    }
+	    
+	    if(subject_desc == ''){
+	    	 error += "投诉主题描述不能为空\n";
+	    }
+	    
+	    if(error){
+	        layer.alert(error, {icon: 2});  //alert(error);
+	        return ;
+	    }
+	    $("#subject_form").submit();
+	}
+    
+</script>
+</body>
+</html>

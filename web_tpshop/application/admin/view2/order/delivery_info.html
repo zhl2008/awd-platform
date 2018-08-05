@@ -1,0 +1,260 @@
+<include file="public/layout" />
+<style>
+.ncm-goods-gift {
+	text-align: left;
+}
+.ncm-goods-gift ul {
+    display: inline-block;
+    font-size: 0;
+    vertical-align: middle;
+}
+.ncm-goods-gift li {
+    display: inline-block;
+    letter-spacing: normal;
+    margin-right: 4px;
+    vertical-align: top;
+    word-spacing: normal;
+}
+.ncm-goods-gift li a {
+    background-color: #fff;
+    display: table-cell;
+    height: 30px;
+    line-height: 0;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    width: 30px;
+}
+.ncm-goods-gift li a img {
+    max-height: 30px;
+    max-width: 30px;
+}
+
+a.green{
+	
+	background: #fff none repeat scroll 0 0;
+    border: 1px solid #f5f5f5;
+    border-radius: 4px;
+    color: #999;
+    cursor: pointer !important;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    letter-spacing: normal;
+    line-height: 20px;
+    margin: 0 5px 0 0;
+    padding: 1px 6px;
+    vertical-align: top;
+}
+
+a.green:hover { color: #FFF; background-color: #1BBC9D; border-color: #16A086; }
+
+.ncap-order-style .ncap-order-details{
+	margin:20px auto;
+}
+.contact-info h3,.contact-info .form_class{
+  display: inline-block;
+  vertical-align: middle;
+}
+.form_class i.fa{
+  vertical-align: text-bottom;
+}
+</style>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.go(-1)" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>订单发货</h3>
+        <h5>订单发货编辑</h5>
+      </div>
+      <div class="subject" style="width:62%">
+      		<a href="{:U('Order/order_print',array('order_id'=>$order['order_id'],'template'=>'picking'))}" style="float:right;margin-right:10px" class="ncap-btn-big ncap-btn-green" ><i class="fa fa-print"></i>打印配货单</a>
+      	 </a>	
+      </div>
+    </div>
+      
+  </div>
+  <div class="ncap-order-style">
+    <div class="titile">
+      <h3></h3>
+    </div>
+ <form id="delivery-form" action="{:U('Admin/order/deliveryHandle')}" method="post">
+     <input type="hidden" name="shipping" value="{$order.shipping_status}">
+     <input type="hidden" id="shipping_name" name="shipping_name" value="{$order.shipping_name}">
+    <div class="ncap-order-details">
+      <div class="tabs-panels">
+        <div class="misc-info">
+           <h3>基本信息</h3>
+           		<dl>
+           			<dt>订单号：</dt>
+		            <dd>{$order.order_sn}</dd>
+		            <dt>下单时间：</dt>
+		            <dd>{$order.add_time|date='Y-m-d H:i',###}</dd>
+		            <dt>配送方式：</dt>
+		            <dd><select id="shipping_code" name="shipping_code" onchange="set_shipping_name()">
+		             	<volist name="shipping_list" id="shipping">
+		                 <option <if condition="$order[shipping_code] eq $shipping[code]">selected</if> value="{$shipping.code}" >{$shipping.name}</option>
+		             	</volist>
+		         		</select>
+         			</dd>
+		          </dl>
+	              <dl>
+	              	<dt>配送费用：</dt>
+		            <dd>{$order.shipping_price}</dd>
+		            <dt>配送单号：</dt>
+		            <dd><input class="input-txt" name="invoice_no" id="invoice_no" value="{$order.invoice_no}" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></dd>
+		            <dt></dt>
+		            <dd></dd>
+			       </dl>
+        	</div>
+        
+        <div class="addr-note">
+          <h4>收货信息</h4>
+          <dl>
+            <dt>收货人：</dt>
+            <dd>{$order.consignee}</dd>
+            <dt>电子邮件：</dt>
+            <dd>{$order.email}</dd>
+          </dl>
+          <dl>
+            <dt>收货地址：</dt>
+            <dd>{$order.address}</dd>
+          </dl>
+          <dl>
+            <dt>邮编：</dt>
+            	<dd><if condition="$order.zipcode neq ''"> {$order.zipcode}<else/>N</if></dd>
+          </dl>
+          <dl>
+           		<dt>电话：</dt>
+            	<dd>{$order.mobile}</dd>
+            	<dt>发票抬头：</dt>
+            	<dd>{$order.invoice_title}</dd>
+          	</dl>
+            <dl>
+           		<dt>用户备注：</dt>
+            	<dd>{$order.user_note}</dd>
+          	</dl>
+        </div>
+  
+         
+        <div class="goods-info">
+          <h4>商品信息</h4>
+          <table>
+            <thead>
+              <tr>
+                <th colspan="2">商品</th>
+                <th>规格属性</th>
+                <th>购买数量</th>
+                <th>商品单价</th>
+                <th>选择发货</th>
+              </tr>
+            </thead>
+            <tbody>
+            <volist name="orderGoods" id="good">
+           	<tr>
+                <td class="w30"><div class="goods-thumb"><a href="{:U('Goods/addEditGoods',array('id'=>$good[goods_id]))}" target="_blank"><img alt="" src="{$good['goods_id']|goods_thum_images=200,200}" /> </a></div></td>
+                <td style="text-align: left;"><a href="{:U('Goods/addEditGoods',array('id'=>$good[goods_id]))}" target="_blank">{$good.goods_name}</a><br/></td>
+                <td class="w80">{$good.spec_key_name}</td>
+                <td class="w60">{$good.goods_num}</td>
+                <td class="w100">{$good.goods_price}</td>
+                <td class="w60">
+                	<if condition="$good['is_send'] eq 1">
+                        	已发货
+                   <else />
+                        	<input type="checkbox" name="goods[]" value="{$good.rec_id}" checked="checked">
+                    </if>
+                </td>
+              </tr>
+              </volist>
+          </table>
+        </div>
+        <div class="contact-info"  style="margin-top:10px;">
+          <h3>发货单备注</h3>
+          <dl class="row">
+	        <dt class="tit">
+	          <label for="note">发货单备注</label>
+	        </dt>
+	        <dd class="opt" style="margin-left:10px">
+	        <input type="hidden" name="order_id" value="{$order.order_id}">
+	         <textarea id="note" name="note" style="width:600px" rows="6"  placeholder="请输入操作备注" class="tarea" id="note">{$keyword.text}</textarea>
+	        </dd>
+	      </dl> 
+	      <dl class="row">
+	        <dt class="tit">
+	          <label for="note">可执行操作</label>
+	        </dt>
+	        <dd class="opt" style="margin-left:10px">
+                <if condition="$order['shipping_status'] neq 1">
+               		<a class="ncap-btn-big ncap-btn-green"  onclick="dosubmit()">确认发货</a>
+                </if>
+                <if condition="$order['shipping_status'] eq 1">
+                    <a class="ncap-btn-big ncap-btn-green"  onclick="dosubmit()">修改</a>
+                </if>
+	        </dd>
+	      </dl> 
+        </div>
+        <div class="goods-info">
+          <h4>发货记录</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>操作者</th>
+                <th>发货时间</th>
+                <th>发货单号</th>
+                <th>收货人</th>
+                <th>快递公司</th>
+                <th>备注</th>
+                <th>查看</th>
+              </tr>
+            </thead>
+            <tbody>
+            <volist name="delivery_record" id="log">
+	           	<tr>
+	                 <td class="text-center">{$log.user_name}</td>
+	                 <td class="text-center">{$log.create_time|date='Y-m-d H:i:s',###}</td>
+	                 <td class="text-center">{$log.invoice_no}</td>
+	                 <td class="text-center">{$log.consignee}</td>
+	                 <td class="text-center">{$log.shipping_name}</td>
+	                 <td class="text-center">{$log.status_desc}</td>
+	                 <td class="text-center">{$log.note}</td>
+	             </tr>
+              </volist>
+          </table>
+        </div>
+      </div>
+  	</div>
+  	</form>
+  </div>
+  
+</div>
+<script type="text/javascript">
+function dosubmit(){
+    var shipping = $('input[name="shipping"]').val();
+    if ($('#invoice_no').val() == '') {
+        layer.alert('请输入配送单号', {icon: 2});  // alert('请输入配送单号');
+        return;
+    }
+    if(shipping != 1) {
+        var a = [];
+        $('input[name*=goods]').each(function (i, o) {
+            if ($(o).is(':checked')) {
+                a.push($(o).val());
+            }
+        });
+
+	if(a.length == 0){
+		layer.alert('请选择发货商品', {icon: 2});  //alert('请选择发货商品');
+		return;
+	}
+    }
+	$('#delivery-form').submit();
+}
+
+function set_shipping_name(){
+	var shipping_name = $("#shipping_code").find("option:selected").text();
+	$('#shipping_name').val(shipping_name);
+}
+</script>
+</body>
+</html>

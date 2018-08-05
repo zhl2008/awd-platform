@@ -1,0 +1,2 @@
+.ncs-default-banner { background: url(images/header.jpg) no-repeat 0 0; display: block; width: 1200px; height: 240px;}
+.ncs-nav li.active a span, #nav li.active a:hover span { background-color: #b22d00; text-shadow: 0 1px 1px rgba(0,0,0,.2)}

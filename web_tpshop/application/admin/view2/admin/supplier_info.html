@@ -1,0 +1,98 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>供应商管理 - 编辑供应商</h3>
+                <h5>网站系统供应商管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="suppliersHandle" action="{:U('Admin/supplierHandle')}" method="post">
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="suppliers_id" value="{$info.suppliers_id}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="suppliers_name"><em>*</em>供应商名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="suppliers_name" value="{$info.suppliers_name}" id="suppliers_name" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">供应商名称</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="suppliers_desc"><em>*</em>供应商描述</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="suppliers_desc" value="{$info.suppliers_desc}" id="suppliers_desc" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">供应商描述</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="suppliers_contacts"><em>*</em>供应商联系人</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="suppliers_contacts" value="{$info.suppliers_contacts}" id="suppliers_contacts" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">供应商联系人</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="suppliers_phone"><em>*</em>供应商电话</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="suppliers_phone" value="{$info.suppliers_phone}" id="suppliers_phone" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">供应商电话</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="admin_id"><em>*</em>所属管理员</label>
+                </dt>
+                <dd class="opt">
+                    <select name="admin_id" id="admin_id">
+                        <volist name="admin" id="item">
+                            <option value="{$item.admin_id}" <if condition="$item[admin_id] eq $info[admin_id]"> selected="selected"</if> >{$item.user_name}</option>
+                        </volist>
+                    </select>
+                    <span class="err"></span>
+                    <p class="notic">所属管理员</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    function adsubmit(){
+        if($('input[name=suppliers_name]').val() == ''){
+            layer.msg('供应商名称不能为空！', {icon: 2,time: 1000});   //alert('少年，用户名不能为空！');
+            return false;
+        }
+        if($('input[name=suppliers_desc]').val() == ''){
+            layer.msg('供应商描述不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+            return false;
+        }
+        if($('input[name=suppliers_contacts]').val() == ''){
+            layer.msg('供应商联系人不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+            return false;
+        }
+        if($('input[name=suppliers_phone]').val() == ''){
+            layer.msg('供应商电话不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+            return false;
+        }
+        $('#suppliersHandle').submit();
+    }
+</script>
+</body>

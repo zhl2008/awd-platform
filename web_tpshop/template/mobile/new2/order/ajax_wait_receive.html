@@ -1,0 +1,87 @@
+<foreach name="order_list" item="order">
+    <div class="quedbox">
+        <div class="shpmi p">
+            <div class="maleri30">
+                <div class="dinaot">
+                    <i class="yg"></i>
+                    <span class="naem">店铺</span>
+                    <i class="Mright"></i>
+                    <span class="red">{$order[order_status_desc]}</span>
+                </div>
+                <!--物流信息-s-->
+                <div class="wuliumess">
+                    <script>
+                        queryExpress();
+                        function queryExpress()
+                        {
+                            var shipping_code = "{$order.shipping_code}";
+                            var invoice_no = "{$order.invoice_no}";
+                            $.ajax({
+                                type : "GET",
+                                dataType: "json",
+                                url:"/index.php?m=Home&c=Api&a=queryExpress&shipping_code="+shipping_code+"&invoice_no="+invoice_no,//+tab,
+                                success: function(data){
+                                    var html = '';
+                                    if(data.status == 200){
+                                        html +="<i class='yg'></i><p class='naem'>"+ data.data[0].context +"</p><p class='time'><span>"+ data.data[0].time +"</span></p>";
+                                    }else{
+                                        html +="<i class='yg'></i><p class='naem'>"+ data.message+"</p>";
+                                    }
+                                    $('.wuliumess').html(html);
+                                }
+                            });
+                        }
+                    </script>
+                </div>
+                <!--物流信息-e-->
+
+            </div>
+        </div>
+        <foreach name="order.goods_list" item="good">
+            <div class="fukcuid">
+                <div class="maleri30">
+                    <div class="shopprice">
+                        <div class="img_or fl"><img src="{$good[original_img]}"></div>
+                        <div class="fon_or fl">
+                            <h2 class="similar-product-text"><a href="{:U('Goods/goodsInfo',array('id'=>$good[goods_id]))}">{$good[goods_name]}</a></h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </foreach>
+        <div class="shijefu">
+            <div class="maleri30">
+                <p>
+                    <span class="fs24">共<em>{$order.count_goods_num}</em>件</span>
+                    <span>实付款￥<em>{$order.order_amount}</em></span>
+                </p>
+                <p class="butna">
+                    <!--<a href="">再次购买</a>-->
+                    <a href="{:U('Mobile/Order/order_detail',array('id'=>$order.order_id,'waitreceive'=>1))}">查看详情</a>
+                    <a class="tuid" href="javascript:void(0);" onclick="expedite('{$order.order_id}')">我要催单</a>
+                    <!--<a href="{:U('Mobile/User/express',array('order_id'=>$order.order_id))}">查看物流</a>-->
+                    <a class="red receipt" href="javascript:void(0);" onclick="confirmReceive('{$order.order_id}')">确认收货</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!--我要催单弹窗-s-->
+    <div class="cuidd" id="cuidd{$order.order_id}" >
+        <p>您的订单已经交由<span class="red">{$order.shipping_name}</span>进行配送，运单号为<span class="red">{$order.delivery[invoice_no]}</span></p>
+        <div class="weiyi p">
+            <a href="javascript:void(0);">取消</a>
+            <a class="eno" href="{:U('Mobile/User/express',array('order_id'=>$order.order_id))}">查看物流</a>
+        </div>
+    </div>
+    <!--我要催单弹窗-e-->
+
+    <!--确认收货弹窗-s-->
+    <div class="surshko" id="surshko{$order.order_id}">
+        <p>是否收到该订单商品？</p>
+        <div class="weiyi p">
+            <a href="javascript:void(0);">未收货</a>
+            <a class="eno" href="{:U('Mobile/Order/order_confirm',array('id'=>$order.order_id))}">已收货</a>
+        </div>
+    </div>
+</foreach>

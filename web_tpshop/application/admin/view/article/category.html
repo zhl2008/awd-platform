@@ -1,0 +1,90 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="box">
+                        <div class="box-header">
+                            <h3 class="box-title">增加分类</h3>
+                        </div>
+                        <!-- /.box-header -->
+                        <form action="{:U('Article/categoryHandle')}" method="post" class="form-horizontal">
+                        <div class="box-body">                         
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">分类名称</label>
+                                    <div class="col-sm-4">
+                                        <input type="text" placeholder="名称" class="form-control" style="width:200px" name="cat_name" value="{$cat_info.cat_name}">
+                                    </div>
+                                    <div class="col-sm-4"><span class="help-inline text-warning">这将是该分类在站点上显示的名字。</span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">上级分类</label>
+
+                                    <div class="col-sm-8">
+                                        <select class="small form-control"  style="width:200px" <in name="cat_info.cat_id" value="$article_system_id">disabled="disabled"</in>  tabindex="1" name="parent_id" id="parent_id">
+                                            <option value="0">顶级分类</option>
+                                            {$cat_select}                                 
+										</select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">导航显示</label>
+									
+                                    <div class="col-sm-8">
+                              			<label> <input type="radio" name="show_in_nav" <if condition="$cat_info[show_in_nav] eq 1">checked</if> value="1"> 是</label>
+                              			<label> <input type="radio" name="show_in_nav" <if condition="$cat_info[show_in_nav] eq 0">checked</if> value="0"> 否</label>
+                                    </div>
+                                </div>
+                               <div class="form-group">
+                                    <label class="control-label col-sm-2">显示排序</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="50" class="form-control"  style="width:200px"  name="sort_order" value="{$cat_info.sort_order}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                               <div class="form-group">
+                                    <label class="control-label col-sm-2">搜索关键字</label>
+
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="关键字" class="form-control" style="width:400px"  name="keywords" value="{$cat_info.keywords}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label col-sm-2">搜索描述</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" placeholder="描述" class="form-control" style="width:400px"  name="cat_desc" value="{$cat_info.cat_desc}">
+                                        <span class="help-inline"></span>
+                                    </div>
+                                </div>
+                        </div>
+                        <div class="box-footer">
+                        	<input type="hidden" name="act" value="{$act}">
+                        	<input type="hidden" name="cat_id" value="{$cat_info.cat_id}">
+                        	<button type="reset" class="btn btn-primary"><i class="icon-ok"></i>重填  </button>                       	                 
+                            <button type="submit" class="btn btn-primary pull-right"><i class="icon-ok"></i>提交  </button>
+                        </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+</div>
+<script>
+
+    <!-- 系统保留分类 start-->
+    var article_top_system_id = <?php echo json_encode($article_top_system_id); ?>;
+    $("#parent_id").change(function(){
+        var v = parseInt($(this).val());
+        if(jQuery.inArray(v, article_top_system_id) != -1){
+            alert("系统保留分类，不允许在该分类添加新分类");
+            $(this).val(0);
+        }
+
+    });
+    <!-- 系统保留分类 end -->
+</script>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<include file="public/header" title="登录"  body=""/>
+<include file="public/header_nav" title="登录"  href="javascript:history.back(-1);"/>
+<div class="logo-wrap-bg">
+    <a class="login-logo-wrap" href="#">
+        <img src="__STATIC__/images/logo-login.png" alt="LOGO"/>
+    </a>
+</div>
+
+<div class="loginsingup-input">
+    <!--登录表单-s-->
+    <form  id="loginform" method="post"  >
+        <input type="hidden" name="referurl" id="referurl" value="{$referurl}">
+        <div class="lsu">
+            <span class="ico ico-username"></span>
+            <input type="text" name="username" id="username" value=""  placeholder="请输入用户名"/>
+        </div>
+        <div class="lsu">
+            <span class="ico ico-password"></span>
+            <input type="password" name="password" id="password" value="" placeholder="请输入密码"/>
+        </div>
+        <notempty name="first_login">
+        <div class="lsu">
+            <span class="ico ico-v-code"></span>
+            <input class="v-code-input" type="text" name="verify_code" id="verify_code" value="" placeholder="请输入验证码"/>
+            <img class="v-code-pic"  id="verify_code_img" src="{:U('Mobile/User/verify')}" onClick="verify()"/>
+        </div>
+        </notempty>
+        <div class="lsu-submit">
+            <input type="button"  value="登 录"  onclick="submitverify()" class="btn_big1"  />
+        </div>
+    </form>
+    <div class="signup-find p">
+        <a class="note fl" href="{:U('User/reg')}">快速注册</a>
+        <a class="note fr" href="{:U('User/forget_pwd')}">忘记密码？</a>
+    </div>
+<!--登录表单-e-->
+    <!--第三方登陆-s-->
+    <div class="thirdlogin">
+        <h4>第三方登陆</h4>
+        <div class="third-login-list">
+        <tpshop sql="select * from __PREFIX__plugin where type='login' AND status = 1" item="v" key="k">
+            <!--<if condition="$v['code'] eq 'weixin' AND is_weixin() neq 1">
+                <a class="item-ico ico-wechat-login" href="{:U('LoginApi/login',array('oauth'=>'weixin'))}" target="_blank" title="weixin"></a>
+       </if>-->
+            <if condition="$v['code'] eq 'qq' AND is_qq() neq 1">
+                <a class="item-ico ico-qq-login" href="{:U('LoginApi/login',array('oauth'=>'qq'))}" target="_blank" title="QQ"></a>
+            </if>
+            <if condition="$v['code'] eq 'alipay' AND is_alipay() neq 1">
+            <a class="item-ico ico-alipay-login" href="{:U('LoginApi/login',array('oauth'=>'alipay'))}"></a>
+            </if>
+        </tpshop>
+        </div>
+    </div>
+     <!--第三方登陆-e-->
+</div>
+
+
+<script type="text/javascript">
+    function verify(){
+        $('#verify_code_img').attr('src','/index.php?m=Mobile&c=User&a=verify&r='+Math.random());
+    }
+
+    //复选框状态
+    function remember(obj){
+         var che= $(obj).attr("class");
+        if(che == 'che check_t'){
+            $("#autologin").prop('checked',false);
+        }else{
+            $("#autologin").prop('checked',true);
+        }
+    }
+    function submitverify()
+    {
+        var username = $.trim($('#username').val());
+        var password = $.trim($('#password').val());
+        var remember = $('#remember').val();
+        var referurl = $('#referurl').val();
+        var verify_code = $.trim($('#verify_code').val());
+        if(username == ''){
+            showErrorMsg('用户名不能为空!');
+            return false;
+        }
+        if(!checkMobile(username) && !checkEmail(username)){
+            showErrorMsg('账号格式不匹配!');
+            return false;
+        }
+        if(password == ''){
+            showErrorMsg('密码不能为空!');
+            return false;
+        }
+        var codeExist = $('#verify_code').length;
+        if (codeExist && verify_code == ''){
+            showErrorMsg('验证码不能为空!');
+            return false;
+        }
+
+        var data = {username:username,password:password,referurl:referurl};
+        if (codeExist) {
+            data.verify_code = verify_code;
+        }
+        $.ajax({
+            type : 'post',
+            url : '/index.php?m=Mobile&c=User&a=do_login&t='+Math.random(),
+            data : data,
+            dataType : 'json',
+            success : function(data){
+                if(data.status == 1){
+                    var url = data.url.toLowerCase();
+                    if (url.indexOf('user') !=  false && url.indexOf('login') != false || url == '') {
+                        window.location.href = '/index.php/mobile';
+                    }else{
+                        window.location.href = data.url;
+                    }
+                }else{
+                    showErrorMsg(data.msg);
+                    if (codeExist) {
+                        verify();
+                    } else {
+                        location.reload();
+                    }
+                }
+            },
+            error : function(XMLHttpRequest, textStatus, errorThrown) {
+                showErrorMsg('网络异常，请稍后重试');
+            }
+        })
+    }
+    </script>
+</body>
+</html>

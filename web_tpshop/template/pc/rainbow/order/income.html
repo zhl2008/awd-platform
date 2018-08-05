@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>推广收益订单</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+	<div class="home-index-middle">
+		<div class="w1224">
+			<div class="g-crumbs">
+				<a href="{:U('Home/User/index')}">我的商城</a>
+				<i class="litt-xyb"></i>
+				<span>推广收益订单</span>
+			</div>
+			<div class="home-main">
+				<include file="user/menu"/>
+				<div class="ri-menu fr">
+					<div class="menumain p">
+						<div class="goodpiece">
+							<h1>订单列表</h1>
+							<!--<a href=""><span class="co_blue">帮助</span></a>-->
+							<div class="fr ddd-h2">
+				                <h3>
+									<span>推广收益订单</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 14px;">订单总金额：{$result.goods_price}元</span>
+									&nbsp;&nbsp;&nbsp;&nbsp;<span style="font-size: 14px;">收益总金额：{$result.money}元</span>
+								</h3>
+				             </div>
+						</div>
+						<div class="orderbook-list returnmagament">
+							<div class="time-sala timsearch p">
+								<ul>
+									<li <if condition="$status eq -2">class="red"<else/>class="mal-l"</if>><a href="{:U('Order/income')}">全部</a></li>
+									<li <if condition="$status eq 0">class="red"<else/>class="mal-l"</if>><a href="{:U('Order/income',array('status'=>0))}">待付款</a></li>
+									<li <if condition="$status eq 1">class="red"<else/>class="mal-l"</if>><a href="{:U('Order/income',array('status'=>1))}">已付款</a></li>
+									<li <if condition="$status eq 2">class="red"<else/>class="mal-l"</if>><a href="{:U('Order/income',array('status'=>2))}">已收货</a></li>
+									<li <if condition="$status eq 3">class="red"<else/>class="mal-l"</if>><a href="{:U('Order/income',array('status'=>3))}">已分成</a></li>
+									<li <if condition="$status eq 4">class="red"<else/>class="mal-l"</if>><a href="{:U('Order/income',array('status'=>4))}">已取消</a></li>
+								</ul>
+                                <form action="" method="POST" id="searchfrom">
+                                    <div class="search-ss-lit" class="sea_ol">
+                                        <input type="text" value="" name="search_key" placeholder="订单编号">
+                                        <i class="litt-sexx" onclick=" $('#searchfrom').submit()"></i>
+                                    </div>
+                                </form>
+							</div>
+							<div class="he"></div>
+							<div class="returngoods">
+								<div class="book-tit">
+									<ul>
+										<li class="sx3">订单号</li>
+										<li class="sx1">订单金额</li>
+										<li class="sx4 s5clic">下单时间<!--<i class="jt-x"></i>--></li>
+										<li class="sx5">购买会员</li>
+										<li class="sx6 s5clic">收益金额<!--<i class="jt-x"></i>--></li>
+										<li class="sx6">收益时间</li>
+									</ul>
+								</div>
+                            <if condition="!empty($rebate_log)">
+								<div class="book-tit book_content p">
+									<volist name="rebate_log" id="list">
+                                        <ul>
+                                            <li class="sx3">{$list.order_sn}</li>
+                                            <li class="sx1">{$list.goods_price}</li>
+                                            <li class="sx4">{$list.create_time|date='Y-m-d H:i:s',###}</li>
+                                            <li class="sx5">{$list.nickname}</li>
+                                            <li class="sx6">{$list.money}</li>
+                                            <li class="sx6"><if condition="$list.confirm_time gt 0">{$list.confirm_time|date='Y-m-d H:i:s',###}<else/>---</if></li>
+                                        </ul>
+									</volist>
+								</div>
+                            <else/>
+                                <div class="car-none-pl">
+                                    <i class="account-acco1"></i>您还没有分销订单，<a href="/">快去逛逛吧~</a>
+                                </div>
+                            </if>
+								<div class="operating fixed">
+									<div class="fn_page clearfix" style="margin-top:10px">
+										{$page}
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--footer-s-->
+	<div class="footer p"><include file="public/footer" /> </div>
+	<!--footer-e-->
+	<script type="text/javascript">
+		$(function () {
+			//退货记录和申请退货切换
+			$('.time-sala ul li').click(function () {
+				var twi = $('.time-sala ul li').index(this);
+				$('.returngoods').eq(twi).show().siblings('.returngoods').hide();
+				$(this).addClass('red').siblings().removeClass('red');
+			})
+		})
+	</script>
+	</body>
+</html>

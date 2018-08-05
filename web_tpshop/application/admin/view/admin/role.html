@@ -1,0 +1,81 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">
+                    	<i class="fa fa-list"></i>&nbsp;角色管理
+                    </h3>
+                </div>
+                <div class="panel-body">
+                <nav class="navbar navbar-default">	     
+			        <div class="collapse navbar-collapse">
+			          <form class="navbar-form form-inline" role="search">
+			            <div class="form-group pull-right">
+				            <a href="{:U('Admin/role_info')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>添加角色</a>
+			            </div>		          
+			          </form>		
+			      	</div>
+    			</nav>
+	            <div class="table-responsive">
+		             <table  class="table table-bordered table-striped">
+		                <thead>
+		                   <tr>
+			                   <th>ID</th>
+			                   <th>角色名称</th>
+			                   <th>描述</th>
+			                   <th>操作</th>
+		                   </tr>
+		                </thead>
+						<tbody>
+						  <foreach name="list" item="vo" key="k" >
+						  	<if condition="$vo['role_id'] gt 1">
+							  	<tr role="row" align="center">
+				                     <td>{$vo.role_id}</td>
+				                     <td>{$vo.role_name}</td>
+				                     <td>{$vo.role_desc}</td>
+				                     <td>
+				                      <a class="btn btn-primary" href="{:U('Admin/role_info',array('role_id'=>$vo['role_id']))}"><i class="fa fa-pencil"></i></a>
+				                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Admin/roleDel')}" data-id="{$vo.role_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
+									 </td>
+			                    </tr>
+		                   </if>
+		                  </foreach>
+		                   </tbody>
+		               </table>
+		            </div>	 
+	              	<div class="row">
+	              	    <div class="col-sm-6 text-left"></div>
+	                    <div class="col-sm-6 text-right">{$page}</div>		
+	              	</div>
+	          </div>
+	        </div>
+       	</div>
+      </div>
+   </section>
+</div>
+<script>
+function delfun(obj){
+	if(confirm('确认删除')){		
+		$.ajax({
+			type : 'post',
+			url : $(obj).attr('data-url'),
+			data : {act:'del',role_id:$(obj).attr('data-id')},
+			dataType : 'json',
+			success : function(data){
+				if(data==1){
+					$(obj).parent().parent().remove();
+				}else{
+					layer.alert(data, {icon: 2});   //alert('用户名或密码不能为空');// alert(data);
+				}
+			}
+		})
+	}
+	return false;
+}
+</script>  
+</body>
+</html>

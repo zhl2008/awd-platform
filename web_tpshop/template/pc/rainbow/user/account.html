@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>我的积分-{$tpshop_config['shop_info_store_title']}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+		<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+		<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>我的积分</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+						<div class="menumain p">
+							<div class="goodpiece">
+								<h1>我的积分</h1>
+								<!--<a href=""><span class="co_blue">积分规则</span></a>-->
+							</div>
+							<div class="shopcard myjfhg ma-to-20 p">
+								<div class="cuschan">
+									<span class="kycha"><i class="kyjf"></i>目前可用积分：</span>
+									<span class="co">{$user.pay_points}</span>
+									<a class="jfhg" href="{:U('Home/Goods/integralMall')}">积分换购</a>
+								</div>
+								<div class="cuschan">
+									<span class="kycha"><i class="dsxjf"></i>目前可用余额：</span>
+									<span class="co">{$user.user_money}</span>
+								</div>
+						<!--		<div class="cuschan">
+									<span class="kycha"><i class="gqjf"></i>即将过期积分：</span>
+									<span class="co">0</span>
+								</div>-->
+							</div>
+							<div class="time-sala timsearch">
+								<ul>
+									<li class="<if condition='$Request.param.type eq null OR $Request.param.type eq 0'>red<else/>mal-l</if>"><a href="{:U('Home/User/account')}">积分明细</a></li>
+									<!--<li class="<if condition='$Request.param.type eq 1'>red<else/>mal-l</if>"><a href="{:U('Home/User/account',array('type'=>1))}">积分累计</a></li>-->
+                                    <!--<li class="<if condition='$Request.param.type eq 2'>red<else/>mal-l</if>"><a href="{:U('Home/User/account',array('type'=>2))}">积分消费</a></li>-->
+								</ul>
+
+								<div class="time-qjc" style="display: block;">
+									  <!--下单时间：<input type="text" id="order_start" name="order_start" value="{$Request.param.order_start}">-->
+									  <!--<span>至</span>-->
+									  <!--<input type="text" id="order_end" name="order_end" value="{$Request.param.order_end}">-->
+									  <!--<input class="cx_subb" type="submit" onclick="time_search();"  value="查询" />-->
+								</div>
+								<!--<div class="search-ss-lit">-->
+									<!--<input type="text" id="order_sn" value="{$Request.param.order_sn}" placeholder="输入订单号查询">-->
+									<!--<i class="litt-sexx" onclick="order_search();"></i>-->
+								<!--</div>-->
+							</div>
+							<div class="he"></div>
+
+							<!--<div class="searc_sx">
+								<span>快捷筛选：</span>
+								<a class="red" href="javascript:void(0);">全部</a>
+								<a href="{:U('Home/User/account',array_merge(array('type'=>I('type',0)),array('desc'=>'下单赠送积分')))}">下单赠送积分</a>
+								<a href="{:U('Home/User/account',array_merge(array('type'=>I('type',0)),array('desc'=>'下单消费')))}">下单消费</a>
+								<a href="{:U('Home/User/account',array_merge(array('type'=>I('type',0)),array('desc'=>'订单退货')))}">订单退货</a>
+								<a href="{:U('Home/User/account',array_merge(array('type'=>I('type',0)),array('desc'=>'退款到用户余额')))}">退款到用户余额</a>
+							</div>-->
+							<div class="card-list accbala bor-acc">
+								<ul>
+									<li><a href="javascript:void(0);">积分</a></li>
+									<li><a href="javascript:void(0);">订单编号</a></li>
+									<li><a href="javascript:void(0);">详情</a></li>
+									<li><a href="javascript:void(0);">时间</a></li>
+								</ul>
+							</div>
+							<empty name="account_log">
+								<p class="ncyekjl">--暂无记录--</p>
+							</empty>
+
+							<volist name="account_log" id="log">
+								<if condition="$log.pay_points neq 0">
+									<div class="card-list c_contan accbala-list">
+										<ul>
+											<li class="<if condition='$log[pay_points] gt 0'>green_car<else/>red_car</if>">
+												<a href="javascript:void(0);">
+													<if condition="$log[pay_points] gt 0">+</if>
+													{$log.pay_points}
+												</a>
+											</li>
+											<li><a href="javascript:void(0);">{$log.order_sn|default='无'}</a></li>
+											<li><a href="javascript:void(0);">{$log.desc}</a></li>
+											<li><a href="javascript:void(0);">{$log.change_time|date='Y-m-d H:i',###}</a></li>
+										</ul>
+									</div>
+								</if>
+							</volist>
+							<div class="operating fixed" id="bottom">
+								<div class="fn_page clearfix">
+									{$page}
+								</div>
+							</div>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+        <!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+        <!--footer-e-->
+		<script type="text/javascript">
+//			$(function(){
+//				$('.time-sala ul li').click(function(){
+//					$(this).addClass('red').siblings().removeClass('red');
+//				})
+//				$('.searc_sx a').click(function(){
+//					$(this).addClass('red').siblings('a').removeClass('red');
+//				})
+//				$('#order_start').daterangepicker({
+//					format:"YYYY-MM-DD",
+//					singleDatePicker: true,
+//					showDropdowns: true,
+//					minDate:'2016-01-01',
+//					maxDate:'2030-01-01',
+//					startDate:"{$now|date='Y-m-d,###'}",
+//					locale : {
+//						applyLabel : '确定',
+//						cancelLabel : '取消',
+//						fromLabel : '起始时间',
+//						toLabel : '结束时间',
+//						customRangeLabel : '自定义',
+//						daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+//						monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+//						firstDay : 1
+//					}
+//				});
+//				$('#order_end').daterangepicker({
+//					format:"YYYY-MM-DD",
+//					singleDatePicker: true,
+//					showDropdowns: true,
+//					minDate:'2016-01-01',
+//					maxDate:'2030-01-01',
+//					startDate:"{$now|date='Y-m-d,###'}",
+//					locale : {
+//						applyLabel : '确定',
+//						cancelLabel : '取消',
+//						fromLabel : '起始时间',
+//						toLabel : '结束时间',
+//						customRangeLabel : '自定义',
+//						daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+//						monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+//						firstDay : 1
+//					}
+//				});
+//				$('.daterangepicker').hide();
+//			})
+//            //搜索订单号
+//			function order_search()
+//			{
+//				var order_sn = $('#order_sn').val();
+//				if(order_sn == ''){
+//					layer.msg('请输入订单号', {icon: 2});
+//				}
+//				window.location.href="{:U('Home/User/account',array('type'=>I('type',0)),'')}"+"/order_sn/"+order_sn;
+//			}
+//			function time_search()
+//			{
+//				var order_start = $('#order_start').val();
+//				var order_end = $('#order_end').val();
+//				if(order_start == '' || order_end == ''){
+//					layer.msg('请输入完整的时间间隔', {icon: 2});
+//				}
+//				window.location.href="{:U('Home/User/account',array('type'=>I('type',0)),'')}"+"/order_start/"+order_start+"/order_end/"+order_end;
+//			}
+		</script>
+	</body>
+</html>

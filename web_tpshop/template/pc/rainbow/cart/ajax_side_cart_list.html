@@ -1,0 +1,51 @@
+<empty name="cartList">
+    <!--购物车为空-s-->
+    <div class="noneshopcar">
+        <img src="__STATIC__/images/noneshopcar.png"/><br />
+        <span>购物车还什么都没有哦~</span>
+    </div>
+    <!--购物车为空-e-->
+<else />
+    <!--购物车有商品-s-->
+    <div class="hasshopcar u-fn-cart u-mn-cart">
+        <volist name="cartList" id="cart">
+            <div class="mn-c-box J-sdb-cb js_cart_top">
+                <dl class="c-store mb15">
+                    <dt class="c-store-tt fixed"><a href="#" class="n fl">{$cart.add_time|date="Y-m-d H:i:s",###}</a></dt><!--商城自营-->
+                    <dd class="c-list">
+                        <div class="c-prod">
+                            <!--<div class="c-sale-tip">-->
+                                <!--<div class="c-sale-b"><span class="i">[满减]</span><span class="c">满299元减50元</span></div>-->
+                            <!--</div>-->
+                            <div class="c-item fixed  js_cart_pro_list">
+                                <a href="javascript:void(0);" class="del js_delete" onclick="header_cart_del({$cart.id});">×</a>
+
+                                <p class="i fl mr5">
+                                    <a href="{:U('Home/Goods/goodsInfo',array('id'=>$cart[goods_id]))}"> <img src="{$cart.goods_id|goods_thum_images=50,50}" height="50" width="50" alt="" title=""></a>
+                                </p>
+
+                                <p class="n fl">
+                                    <a href="{:U('Home/Goods/goodsInfo',array('id'=>$cart[goods_id]))}">{$cart[goods_name]}</a>
+                                </p>
+
+                                <!--数额加减-->
+                                <!--<p class="num fl js_mini_num">-->
+                                    <!--<a href="javascript:void(0);" class="reduce reduce_gray fl"></a>-->
+                                    <!--<input type="text" autocomplete="off" value="1">-->
+                                    <!--<a href="javascript:void(0);" class="add  fr"></a>-->
+                                <!--</p>-->
+                                <p class="  fl js_mini_num"> * {$cart[goods_num]} 件 </p>
+                                <p class="p fr mt5"><em>￥</em><span>{$cart[member_goods_price]}</span></p>
+                            </div>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+        </volist>
+        <div class="buyall-price">
+            <p>已选<span>{$cartPriceInfo[goods_num]}</span>件，共计：￥<span>{$cartPriceInfo[total_fee]}</span></p>
+            <a href="{:U('Home/Cart/index')}">去购物车</a>
+        </div>
+    </div>
+<!--购物车有商品-e-->
+</empty>

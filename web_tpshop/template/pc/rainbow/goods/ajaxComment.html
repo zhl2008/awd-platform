@@ -1,0 +1,220 @@
+<script src="__PUBLIC__/js/viewer/viewer.min.js"></script>
+<link rel="stylesheet" href="__PUBLIC__/css/viewer.min.css">
+<volist name="commentlist" id="v">
+<div class="people-comment">
+    <div class="deta-descri p">
+        <div class="person-ph-name">
+            <div class="per-img-n p">
+                <if condition="$v[is_anonymous] eq 1">
+                    <div class="img-aroun"><img src="__STATIC__/images/headPic.jpg"/></div>
+                    <div class="menb-name"> 匿名用户</div>
+                <else/>
+                    <div class="img-aroun"><img src="{$v['head_pic']|default='__STATIC__/images/headPic.jpg'}"/></div>
+                    <div class="menb-name">{$v['username']|getsubstr=0,6}</div>
+                </if>
+            </div>
+            <!--<p class="member">金牌会员</p>-->
+        </div>
+        <!--评论-s-->
+        <div class="person-com">
+            <!--服务评星-s-->
+            <div class="lifr4 p">
+                <div class="dstar start5">
+                   <i class="start start1" style="width:<?php echo ($v['goods_rank'] / 5 * 100); ?>%"></i>
+                </div>
+            </div>
+
+            <!--评论内容-->
+            <div class="lifr4 comfis p">
+                <span class="faisf">{$v['content']|htmlspecialchars_decode}</span>
+            </div>
+            <!--晒单图-->
+            <div class="lifr4 requiimg p">
+                <ul class="comment_images" id="comment_images_{$v[comment_id]}">
+                    <foreach name="v['img']" item="v2" >
+                        <a><li><img data-original="{$v2}" src="{$v2}"/></li></a>
+                    </foreach>
+                </ul>
+                <script>
+                    var viewer = new Viewer(document.getElementById('comment_images_{$v[comment_id]}'), {
+                        url: 'data-original',
+                        show: function() {
+                            $('.soubao-sidebar').hide();
+                        },
+                        hide: function() {
+                            $('.soubao-sidebar').show();
+                        }
+                    });
+                </script>
+            </div>
+            <!--评论时间-->
+            <div class="lifr4 bolist p">
+                <span>{$v['add_time']|date="Y-m-d H:i:s",###}</span>
+            <!--购买商品规格-->
+                <!--<span>{$v['spec_key_name']|htmlspecialchars_decode}</span>-->
+            <!--评论者评论时间与购买时间差-->
+                <!--<span>购买<php>echo round(($v['add_time']-$v['pay_time'])/3600/24);</php>天后评价</span>-->
+                <!--<span>来自Android客户端</span>-->
+            </div>
+        </div>
+        <!--评论-e-->
+
+    <!--点赞，回复-->
+        <div class="g_come">
+            <a href="javascript:void(0);"><i class="detai-ico c-cen"></i>{:count($replyList[$v['comment_id']])}</a>
+            <a  onclick="zan(this);"  data-comment-id="{$v['comment_id']}"><i class="detai-ico z-ten"></i><span id="span_zan_{$v['comment_id']}" data-io="{$v['zan_num']}">{$v['zan_num']}</span></a>
+        </div>
+    </div>
+    <!--回复框-->
+    <!--<div class="reply-textarea">-->
+        <!--<div class="reply-arrow"><b class="layer1"></b><b class="layer2"></b></div>-->
+        <!--<div class="inner">-->
+            <!--<textarea class="reply-input J-reply-input" data-id="replytext_{$v['comment_id']}" placeholder="回复 {$v['nick_name']}：" maxlength="120"></textarea>-->
+            <!--<div class="operate-box">-->
+                <!--<span class="txt-countdown">还可以输入<em>120</em>字</span>-->
+                <!--<a class="reply-submit J-submit-reply J-submit-reply-lz" href="javascript:void(0);" target="_self">提交</a>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+<!--商家回复-s-->
+    <div class="comment-replylist">
+        <foreach name="replyList[$v['comment_id']]" item="v3" key="k">
+            <div class="comment-reply-item hide" data-vender="0" data-name="{$reply_list['user_name']}" data-uid="" style="display: block;">
+                <div class="reply-infor clearfix">
+                    <div class="main">
+                        <span class="user-name">商家回复：</span>
+                        <span class="words">{$v3['content']}</span>
+                    </div>
+                    <div class="side">
+                        <span class="date">{$v3['add_time']|date='Y-m-d H:i:s',###}</span>
+                    </div>
+                </div>
+                <!--回复商家内容-s-->
+                <!--<div class="comment-operate">-->
+                    <!--<a class="reply J-reply-trigger" href="#none" target="_self">回复</a>-->
+                    <!--<div class="reply-textarea">-->
+                        <!--<div class="reply-arrow"><b class="layer1"></b><b class="layer2"></b></div>-->
+                        <!--<div class="inner">-->
+                            <!--<textarea class="reply-input J-reply-input" data-id="replytext_{$v['comment_id']}" placeholder="回复{$reply_list['user_name']}：" maxlength="120"></textarea>-->
+                            <!--<div class="operate-box">-->
+                                <!--<span class="txt-countdown">还可以输入<em>120</em>字</span>-->
+                                <!--<a class="reply-submit J-submit-reply J-submit-reply-lz" href="javascript:void(0);" data-id="{$reply_list.reply_id}" onclick="" target="_self">提交</a>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--回复商家内容-e-->
+            </div>
+        </foreach>
+        <!--<if condition="$v['reply_num'] gt 5">-->
+            <!--<div class="view-all-reply show">-->
+                <!--<a href="{:U('Home/Goods/reply',array('comment_id'=>$v['comment_id']))}" class="view-link reply">查看全部回复</a>-->
+            <!--</div>-->
+        <!--</if>-->
+    </div>
+<!--商家回复-e-->
+</div>
+</volist>
+<div class="operating fixed" id="bottom">
+    <div class="fn_page clearfix">
+        {$page}
+    </div>
+</div>
+<script>
+    // 点击分页触发的事件
+    $("#ajax_comment_return .pagination  a").click(function(){
+        ajaxComment(commentType,$(this).data('p'));
+    });
+    /**
+     * 点赞ajax
+     * dyr
+     * @param obj
+     */
+    function zan(obj) {
+        var comment_id = $(obj).attr('data-comment-id');
+        var zan_num = parseInt($("#span_zan_" + comment_id).text());
+        $.ajax({
+            type: "POST",
+            data: {comment_id: comment_id},
+            dataType: 'json',
+            url: "/index.php?m=Home&c=user&a=ajaxZan",//
+            success: function (res) {
+                if (res.success) {
+                    $("#span_zan_" + comment_id).text(zan_num + 1);
+                } else {
+                    layer.msg('只能点赞一次哟~', {icon: 2});
+                }
+            },
+            error : function(res) {
+                console.log(res);
+                if( res.status == "200"){ // 兼容调试时301/302重定向导致触发error的问题
+                    layer.msg("请先登录!", {icon: 2});
+                    return;
+                }
+                layer.msg("请求失败!", {icon: 2});
+                return;
+            }
+        });
+    }
+    //字数限制
+    $(function() {
+        $('.c-cen').click(function() {
+            $(this).parents('.deta-descri').siblings('.reply-textarea').toggle();
+        })
+        $('.J-reply-trigger').click(function(){
+            $(this).siblings('.reply-textarea').toggle();
+        })
+        $('.reply-input').keyup(function() {
+            var nums = 120;
+            var len = $(this).val().length;
+            if(len > nums) {
+                $(this).val($(this).val().substring(0, nums));
+                layer.msg("超过字数限制！" , {icon: 2});
+            }
+            var num = nums - len;
+            var su = $(this).siblings().find('.txt-countdown em');
+            su.text(num);
+        })
+
+        $(document).on('click','.operate-box .reply-submit',function() {
+            var content = $(this).parents('.inner').find('.reply-input').val();
+            var comment_id = $(this).parents('.inner').find('.reply-input').attr('data-id').substr(10);
+            var comment_name = $(this).parents('.comment-operate').siblings('.reply-infor').find('.main .user-name').text();
+            var reply_id = $(this).attr('data-id');
+            submit_reply(comment_id,content,comment_name,reply_id);
+            $(this).parents('.reply-textarea').hide();
+        });
+    })
+
+    /**
+     * 回复
+     * @param comment_id
+     * @param content
+     * @param to_name
+     * @param reply_id
+     */
+//    function submit_reply(comment_id,content,to_name,reply_id)
+//    {
+//        $.ajax({
+//            type: 'post',
+//            dataType: 'json',
+//            data: {comment_id: comment_id,content:content,to_name:to_name,reply_id:reply_id,goods_id:'{$goods_id}'},
+//            url: "{:U('Home/User/reply_add')}",
+//            success: function (res) {
+//                if (res.success) {
+//                    layer.msg('回复已提交', {icon: 1});
+//                } else {
+//                    layer.msg(res.msg, {icon: 2});
+//                }
+//            },
+//            error : function(res) {
+//                if( res.status == "200"){ // 兼容调试时301/302重定向导致触发error的问题
+//                    layer.msg("请先登录!",{icon: 2});
+//                    return;
+//                }
+//                layer.msg("请求失败!",{icon: 2});
+//            }
+//        });
+//    }
+
+</script>

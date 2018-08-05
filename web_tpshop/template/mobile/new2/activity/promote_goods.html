@@ -1,0 +1,55 @@
+<include file="public/header" title="优惠活动" />
+<include file="public/header_nav" title="优惠活动"  href="javascript:history.back(-1)"/>
+    <!--促销列表-s-->
+        <div id="goods_list">
+            <foreach name="promote" item="list">
+                <a href="{:U('Activity/discount_list',array('id'=>$list[id]))}">
+                <div class="banner">
+                    <img src="{$list[prom_img]}"/>
+                </div>
+                <div class="cbaudience">
+                    <div class="maleri30">
+                        <p>{$list[name]}</p>
+                        <p>{:date('Y.m.d',$list[start_time])}——{:date('Y.m.d',$list[end_time])}</p>
+                    </div>
+                </div>
+                </a>
+            </foreach>
+        </div>
+    <!--促销列表-e-->
+</body>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script>
+    /**
+     * 加载更多商品
+     **/
+    var  page = 1;
+    function ajax_sourch_submit()
+    {
+        ++page;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=Mobile&c=Activity&a=promote_goods&is_ajax=1&p="+page,
+//			data : $('#filter_form').serialize(),// 你的formid 搜索表单 序列化提交
+            success: function(data) {
+                if ($.trim(data) == '') {
+                    $('#getmore').hide();
+                } else {
+                    $("#goods_list").append(data);
+                }
+            }
+        });
+    }
+    //滚动加载更多
+    $(window).scroll(
+        function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
+            if (scrollTop + windowHeight == scrollHeight) {
+                ajax_sourch_submit();//调用加载更多
+            }
+        }
+    );
+</script>
+</html>

@@ -1,0 +1,257 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>专题列表-{$tpshop_config['shop_info_store_title']}</title>
+<meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" href="__STATIC__/css/promoteList.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/pc_common.js"></script>
+</head>
+<body>
+<!--------头部开始-------------->
+<include file="public/header" w='w1224'/>
+<!--------头部结束-------------->
+<style type="text/css">
+*{
+	margin:0;
+	padding:0;
+}
+.eg-container .eg-missM {
+    margin-top: 10px;
+}
+.eg-missM .missM-wrap {
+    width: 1200px;
+    margin: 0 auto;
+}
+.eg-missM .m-list .Miss-list {
+    width: 1220px;
+    font-size: 0;
+    padding-top: 20px;
+    margin-left: -10px;
+    overflow: hidden;
+}
+.eg-missM .m-list .Miss-m {
+    margin-right: 10px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    width: 590px;
+    height: 380px;
+    float: left;
+    display: inline-block;
+    transition: all 200ms ease-in-out;
+}
+.Miss-m a {
+    cursor: pointer;
+}
+.eg-missM .Miss-m .Miss-pic {
+    position: relative;
+}
+.eg-missM .Miss-m .Miss-pic b {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    font-size: 0;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    filter: alpha(opacity=0);
+    transition: all 200ms ease-in-out;
+}
+.Miss-m .Miss-inf {
+    width: 590px;
+    height: 75px;
+    font-size: 12px;
+    color: #fff;
+    overflow: hidden;
+}
+.Miss-m .Miss_6 .Miss-friend {
+    background-color: #c29685;
+}
+.Miss-m .Miss-inf .Miss-friend {
+	background-image:url(images/hot_01.png);
+}
+.Miss-inf .Miss-friend {
+    width: 425px;
+    height: 75px;
+    position: relative;
+    float: left;
+}
+.Miss-friend .f-main {
+    position: absolute;
+    width: 300px;
+    height: 48px;
+    top: 21px;
+    left: 106px;
+    overflow: hidden;
+}
+.Miss-friend ul {
+    width: 300px;
+    height: 48px;
+}
+.Miss-friend li {
+    width: 300px;
+    height: 48px;
+    line-height: 16px;
+    text-align: left;
+}
+.Miss-m .Miss_6 .Miss-int {
+    background-color: #916e61;
+}
+.Miss-inf .Miss-int {
+    width: 165px;
+    height: 75px;
+    float: left;
+}
+.Miss-int .sales {
+    font-size: 18px;
+    line-height: 49px;
+}
+.Miss-int p {
+    text-align: left;
+    padding-left: 24px;
+    height: 37px;
+}
+.Miss-int .sales strong {
+    font-size: 24px;
+}
+.eg-missM .m-list .Miss-m:hover {
+    z-index: 10;
+    box-shadow: 0 10px 17px rgba(110,110,110,.7);
+	-moz-box-shadow: 0 10px 17px rgba(110,110,110,.7);
+	-webkit-box-shadow: 0 10px 17px rgba(110,110,110,.7);
+}
+.Miss-int .comment {
+    font-size: 14px;
+    vertical-align: top;
+    position: relative;
+}
+.Miss-int .circle {
+    position: absolute;
+    top: 4px;
+    left: 108px;
+    display: block;
+    background: #fff;
+    height: 16px;
+    width: 16px;
+    -moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    border-radius: 8px;
+}
+.Miss-m .Miss_6 .circle i {
+    border: 6px solid #916e61;
+    border-color: transparent transparent transparent #916e61;
+}
+.Miss-int .circle i {
+    display: block;
+    margin-top: 2px;
+    margin-left: 6px;
+    font-size: 0;
+    height: 0;
+    width: 0;
+    border: 6px solid #fff;
+    border-color: transparent transparent transparent #fff;
+}
+.eg-missM .m-more {
+    display: none;
+    width: 100%;
+    height: 52px;
+    font-family: 微软雅黑;
+    color: rgb(136, 136, 136);
+    background-color: rgb(240, 240, 240);
+    cursor: pointer;
+    transition: 1s;
+	text-align:center;
+}
+.eg-missM .m-more p {
+    padding-top: 8px;
+    line-height: 18px;
+    font-size: 16px;
+    color: #666;
+    font-weight: bolder;
+}
+.m-more span {
+    position: relative;
+    display: block;
+    margin: 0 auto;
+    margin-top: 6px;
+    font-size: 0;
+    height: 0;
+    width: 0;
+    border: 12px solid #828282;
+    border-color: #828282 transparent transparent;
+}
+.m-more span i {
+    position: absolute;
+    top: -12px;
+    left: -10px;
+    display: block;
+    margin: 0 auto;
+    font-size: 0;
+    height: 0;
+    width: 0;
+    border: 10px solid #f0f0f0;
+    border-color: #f0f0f0 transparent transparent;
+    transition: 1s;
+}
+</style>
+<!--------专题列表------------->
+<body>
+<div class="eg-missM">
+    <div class="missM-wrap">
+       <!--全部爆款 显示第一页-->
+       <div class="m-list" data-type="Miss_1">
+          <ul class="Miss-list">
+          	<foreach name="topicList" item="v" key="k" >
+              <li class="Miss-m">
+	               <a href="{:U('/Home/Topic/detail',array('topic_id'=>$v[topic_id]))}" title="{$v.topic_title}" target="_blank">
+	                 <div class="Miss-pic"><img src="{$v.topic_image}" width="590" height="305" alt="[DUDU]西耶那系列单肩斜挎包 黑色"><b></b></div>
+	                 <div class="Miss-inf Miss_6">
+	                     <div class="Miss-friend">
+	                       <div class="f-main">
+	                         <ul class="f-say " style="margin-top: 0px;">
+	                           <li>{$v.topic_title}</li>
+	                         </ul>
+	                       </div>
+	                     </div>
+	                     <div class="Miss-int">
+	                         <p class="sales">热销<strong>95</strong>件</p>
+	                         <p class="comment" data-iid="16100043">好评率100%<span class="circle"><i>GO</i></span></p>
+	                     </div>
+	                  </div>
+	                </a>
+             	</li>
+             </foreach>     
+           </ul>
+        </div>
+      	 <!--全部爆款 所有-->
+	     <div class="m-more" style="display: block;">
+	         <p>点击查看更多活动推荐</p>
+	         <span>倒三角形<i></i></span>
+	     </div>
+    </div>           
+</div>
+<!--------专题列表 end------------->
+
+<!--------底部banner-开始-------------->
+	<div class="layout layer">
+    	<div class="cen-banne" style="text-align: center;">
+             <adv pid = "4" limit="1" item="v">            
+    	        <a href="{$v['ad_link']}"<if condition="$v['target'] eq 1">target="_blank"</if>>
+        	        <img src="{$v['ad_code']}" width="1200" height="160"  title="{$v[title]}" style="{$v[style]}"/>
+	            </a>    
+             </adv>            
+        </div>
+    </div>
+<!--------底部banner-结束-------------->
+<!--------footer-开始-------------->
+<div class="footer p">
+    <include file="public/footer" />
+    <include file="public/sidebar_cart" />
+</div>
+<!--------footer-结束-------------->
+</body>
+</html>

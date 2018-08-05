@@ -1,0 +1,208 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+   <include file="public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <!--<div class="container-fluid">-->
+    <div class="container-fluid">
+        <form id="delivery-form" action="{:U('Admin/order/deliveryHandle')}" method="post">
+        <!--新订单列表 基本信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">基本信息</h3>
+            </div>
+            <div class="panel-body">
+               <nav class="navbar navbar-default">	     
+				<div class="collapse navbar-collapse">
+	                <div class="navbar-form pull-right margin">
+	                    <a href="{:U('Order/order_print',array('order_id'=>$order['order_id'],'template'=>'picking'))}" target="_blank" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="打印订单">
+	                        <i class="fa fa-print"></i>打印配货单
+	                    </a>
+	                    <a href="{:U('Admin/Order/delivery_list')}" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+	               </div>
+	            </div>
+	           </nav>
+                <table class="table table-bordered">
+                    <tbody>
+
+                    <tr>
+                        <td class="text-right">订单号:</td>
+                        <td class="text-center">{$order.order_sn}</td>
+                        <td class="text-right">下单时间:</td>
+                        <td class="text-center">{$order.add_time|date='Y-m-d H:i',###}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">配送方式:</td>
+                        <td class="text-center">{$order.shipping_name}
+                        </td>
+                        <td class="text-right">配送费用:</td>
+                        <td class="text-center">{$order.shipping_price}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">配送单号:</td>
+                        <td class="text-center">
+                            <input class="input-sm" name="invoice_no" id="invoice_no" value="{$order.invoice_no}">
+                        </td>
+                    </tr>
+                    </tbody></table>
+
+            </div>
+        </div>
+        <!--新订单列表 收货人信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">收货信息</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td class="text-right">收货人:</td>
+                        <td class="text-center">{$order.consignee}</td>
+                        <td class="text-right">电子邮件:</td>
+                        <td class="text-center">{$order.email}</td>
+                    </tr>
+                    <tr>
+                        <td class="text-right">地址:</td>
+                        <td class="text-center">{$order.address}</td>
+                        <td class="text-right">邮编:</td>
+                        <td class="text-center">{$order.zipcode}</td>
+                    </tr>
+                    <tr>
+                       <td class="text-right">电话:</td>
+                       <td class="text-center">{$order.mobile}</td>
+                       <td class="text-right">发票抬头</td>
+                       <td class="text-center">{$order.invoice_title}</td>
+                    </tr>
+                    </tbody></table>
+
+            </div>
+        </div>
+        <!--新订单列表 商品信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">商品信息</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td class="text-left">商品</td>
+                        <td class="text-left">属性</td>
+                        <td class="text-left">购买数量</td>
+                        <td class="text-left">商品单价</td>
+						<td class="text-left">选择发货</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="orderGoods" id="good">
+                        <tr> 
+                            <td class="text-left"><a href="{:U('Goods/addEditGoods',array('id'=>$good[goods_id]))}">{$good.goods_name}</a>
+                            </td>
+                            <td class="text-left">{$good.spec_key_name}</td>
+                            <td class="text-left">{$good.goods_num}</td>
+                            <td class="text-right">{$good.goods_price}</td>
+                            <td class="text-right">
+                            	<if condition="$good['is_send'] eq 1">
+                            		已发货
+                            	<else />
+                            		<input type="checkbox" name="goods[]" value="{$good.rec_id}" checked="checked">
+                            	</if>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+
+            </div>
+        </div>
+        <!--发货状态下课修改订单号-->
+        <if condition="$order['shipping_status'] neq 1">
+            <!--新订单列表 操作信息-->
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title text-center">发货信息</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td class="text-right col-sm-2 margin">发货单备注：</td>
+                            <td colspan="3">
+                            	<input type="hidden" name="order_id" value="{$order.order_id}">
+                               <textarea name="note" placeholder="请输入操作备注" rows="3" class="form-control"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                             <td colspan="4">
+                                 <div class="form-group text-center">
+                                        <button onclick="dosubmit()"  class="btn btn-primary" type="button">确认发货</button>
+                                        <button onclick="history.go(-1)"  class="btn btn-primary" type="button">返回</button>
+                                 </div>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </if>
+        
+                <!--新订单列表 操作记录信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title text-center">发货记录</h3>
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <td class="text-center">操作者</td>
+                        <td class="text-center">发货时间</td>
+                        <td class="text-center">发货单号</td>
+                        <td class="text-center">收货人</td>
+                        <td class="text-center">快递公司</td>
+                        <td class="text-center">备注</td>
+                        <td class="text-center">查看</td>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <volist name="delivery_record" id="log">
+                        <tr>
+                            <td class="text-center">{$log.user_name}</td>
+                            <td class="text-center">{$log.create_time|date='Y-m-d H:i:s',###}</td>
+                            <td class="text-center">{$log.invoice_no}</td>
+                            <td class="text-center">{$log.consignee}</td>
+                            <td class="text-center">{$log.shipping_name}</td>
+                            <td class="text-center">{$log.note}</td>
+                            <td class="text-center"><a href="http://www.kuaidi100.com/" target="_blank">查看物流</a></td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+          </div>
+	</form>
+   </div>
+ </section>
+</div>
+<script>
+function dosubmit(){
+	if($('#invoice_no').val() ==''){
+		 layer.alert('请输入配送单号', {icon: 2});  // alert('请输入配送单号');
+		return;
+	}
+	var a = [];
+	$('input[name*=goods]').each(function(i,o){
+		if($(o).is(':checked')){
+			a.push($(o).val());
+		}
+	});
+	if(a.length == 0){
+		layer.alert('请选择发货商品', {icon: 2});  //alert('请选择发货商品');
+		return;
+	}
+	$('#delivery-form').submit();
+}
+</script>
+</body>
+</html>

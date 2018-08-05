@@ -1,0 +1,91 @@
+body { background: url(images/body_bg.jpg) repeat;}
+a { color: #660000; }
+a:hover { color: #CC3366; text-decoration: none;}
+
+
+/* (nc-s-c-s) full name -> Store Container Style */
+.ncs-sidebar-container {}
+.ncs-sidebar-container .title { height: 36px; border: solid 1px; border-color: #FFF #FFF #E2DED0 #FFF; border-radius: 5px 5px 0 0;filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F3F0', endColorstr='#FFFFFF'); background-image: -webkit-gradient( linear, left top, left bottom, from(#F7F3F0), to(#FFFFFF)) ; background-image: -moz-linear-gradient(top, #F7F3F0, #FFFFFF);}
+.ncs-sidebar-container .title h4 { color:#333; line-height: 24px; margin: 4px 0 4px 16px; text-shadow: 0 1px 1px rgba(0,0,0,.2); }
+.ncs-sidebar-container .title span {}
+.ncs-sidebar-container .content { background: #FBF9F8; padding-bottom: 15px; border-radius: 0 0 5px 5px; box-shadow: 1px 1px 0 #FFF inset;}
+
+
+.ncs-main-container { box-shadow:0 -2px 2px rgba(0,0,0,0.1); border-radius:5px;}
+.ncs-main-container .title { height: 36px;  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#78685F', endColorstr='#5B4940'); background-image: -webkit-gradient( linear, left top, left bottom, from(#78685F), to(#5B4940)) ; background-image: -moz-linear-gradient(top, #78685F, #5B4940); border: solid 1px; border-color: #8F7B72 #8F7B72 #5B4940 #8F7B72; border-radius: 5px 5px 0 0; }
+.ncs-main-container .title h4 { color:#ECE5DC; line-height: 24px; margin: 4px 0 4px 16px; display: inline-block; text-shadow: 0 1px 1px rgba(0,0,0,3); }
+.nc-s-c-s2 .title h4 { *display: inline;}
+.ncs-main-container .title span { display: inline-block; font-size: 12px; float:right; margin-right: 16px; line-height: 32px;}
+.ncs-main-container .title span a { color: #FFF;}
+.ncs-main-container .content { background: #FEFDFC; border-radius: 0 0 5px 5px; box-shadow: 1px 1px 0 #FFF inset;}
+
+
+
+/* =====================
+ * 独立类样式
+ * ===================== */
+ 
+/* 列表翻页 */
+.pagination{ padding: 2px; margin-right: 16px;}
+.pagination ul li span{ line-height: 20px; color: #EEDCC6; padding: 1px 8px; margin: 0px 2px; border: 1px solid #F3E6D7; border-radius: 4px;}
+.pagination ul li a span , .pagination li a:visited span{ color: #CCA881; text-decoration: none; border-color: #F3E6D7;}
+.pagination ul li a:hover span, .pagination li a:active span{ color: #876136; background-color: #FFF; border-color: #F3E6D7;}
+.pagination ul li span.currentpage{ color:#876136; background-color: #FAF2DF; border-color: #E6D3BE; box-shadow: 0 1px 1px rgba(0,0,0,0.1)}
+
+
+
+/* 导航区域布局控制 */
+.ncsl-nav { width: 1200px; margin: 0 auto;}
+/* 导航上部图片控制 */
+.ncs-default-banner { background: url(images/header.jpg) no-repeat 0 0; width: 1000px; height: 240px; display: block;}
+.background { background-image: url(images/layout_bg.gif); background-repeat: repeat-x; background-position: center 240px;}
+
+/* 店铺导航 */
+#nav { background: url(images/nav_bg.png) no-repeat center top; width: 1200px; height: 89px; border: none 0; overflow: hidden;}
+#nav ul { white-space: nowrap; display: block; width: 1182px; height: 49px; margin: 17px auto 24px auto; overflow: hidden;}
+#nav li { float: left; }
+#nav li.normal a, #nav li.normal a span, #nav li.active a, #nav li.active a span { background: url(images/nav.gif) no-repeat;}
+#nav li a { height: 49px; float: left;}
+#nav li.normal a { background-position: 0% 0%;}
+#nav li.active a, #nav li.active a:hover { background-position: 0% -200px;}
+#nav li a span { font-family:"microsoft yahei"; font-size: 16px; font-weight: 600; line-height: 20px; text-overflow: ellipsis; white-space: nowrap; max-width:160px; height: 20px; float: left; padding: 14px 25px 15px 15px; margin-left: 10px; overflow:hidden;}
+#nav li.normal a span { color: #ECE5DC; background-position: 100% -50px; text-shadow: 0 1px 1px #5C4A41; }
+#nav li.normal a:hover { background-position: 0% -100px;}
+#nav li.normal a:hover span { background-position: 100% -150px;}
+#nav li.active a span, #nav li.active a:hover span { color: #FFF; background-position: 100% -250px; text-shadow: 0 1px 1px #9D0743;}
+
+
+/* ====================== */
+/* 店铺简介边栏 -> info.php */
+/* ====================== */
+
+.ncs-submenu { width:170px; margin: 5px 13px 5px 15px; _margin: 5px 6px 5px 8px; _display: inline-block; _float:left;}
+.ncs-submenu li { line-height: 20px; font-weight: 600; text-align:left; margin: 6px 0; }
+.ncs-submenu li a { color: #333; }
+.ncs-submenu li ul { width: 150 ; margin: 5px 0px 5px 20px; }
+.ncs-submenu li ul li { line-height: 20px; font-weight: normal; text-align:left; margin: 4px 0; }
+
+.ico-none, .ico-block, .ico-sub { color:#FFF; background-color: #FFD379; display:inline-block; float:left; border: solid 1px #FFB417; box-shadow: 1px 1px 1px 0 rgba(0,0,0,.1); cursor: default;}
+.ico-none, .ico-block { font-size: 12px; line-height:10px; width: 10px; height:10px; text-align:center; text-shadow: 1px 1px 0 rgba(255,110,0,.25); margin: 5px 10px 5px 0; border-radius: 2px; }
+.ico-sub  { font-size: 0px;  line-height:2px; text-align:center; width: 2px; height:2px; margin: 8px 6px 8px 0; border-radius: 4px;}
+
+.nc-detail { background-color:#FFF; margin:15px 0; border-radius:5px; box-shadow:0 -2px 2px rgba(0,0,0,0.2);}
+.nc-gallery { width:312px; float:left; margin-left:10px; _margin-left:5px/*IE6*/;}
+.nc-wrap { width:450px; float:left; margin-left:10px; _margin-left:5px/*IE6*/;}
+.ncg-info { float:right; margin-right:10px;}
+
+
+/* ========================================= */
+/* 商品列表类页面 -> index.php, goods_list.php */
+/* ========================================= */
+
+/* 列表排序 */
+.ncs-goodslist-bar { background: #FFF; border-style: solid; border-color: #ECE5DB; border-width: 0 1px 1px; padding:6px 0;}
+/* 商品列表 */
+.ncg-list .content { clear:both; padding-top:10px;}
+
+
+
+
+
+

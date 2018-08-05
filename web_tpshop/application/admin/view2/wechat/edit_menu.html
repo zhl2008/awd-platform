@@ -1,0 +1,237 @@
+<include file="public/min-header"/>
+
+<style>
+    .form-group .control-label {
+        float: left;
+        width: 150px;
+        padding-top: 5px;
+        text-align: right;
+    }
+
+    .form-group .controls {
+        margin-left: 170px;
+    }
+
+    .form-group .controls .radio {
+        display: inline;
+        padding-left: 0px;
+        padding-right: 20px;
+        vertical-align: baseline;
+    }
+
+    .form-group .controls .large {
+        width: 60%;
+    }
+
+    .form-group .controls select {
+        width: 60%;
+    }
+
+    .form-group .controls .form-control {
+        display: inline;
+    }
+
+    .form-group .controls .help-inline {
+        padding-left: 10px;
+        color: #595959;
+    }
+
+    .form-actions {
+        margin-left: 170px;
+    }
+
+    .dropdown-checkboxes div {
+        padding: 1px;
+        padding-left: 10px;
+    }
+
+    .btn {
+        margin: 2px;
+    }
+
+    .pagination {
+        margin: 0px 0;
+    }
+
+</style>
+
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+    <section class="content">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    菜单设计器 <span class="text-muted">（不填写请留空，则不会生效）</span>
+                </div>
+                <div class="table-responsive panel-body">
+                    <form action="" method="post">
+                        <table class="table table-hover">
+                            <tbody class="designer ui-sortable">
+                            <!-- ngRepeat: menu in menus -->
+                            <volist name="menus" id="list">
+                                <!--第一个菜单-->
+                                <tr ng-repeat="menu in menus" class="hover ng-scope" id="menu_0_tr">
+                                    <td style="border-top:none;" id="menu_0_td">
+                                        <div class="parentmenu" id="menu_0">
+                                            <input type="hidden" name="menu[0][type]" value="{$list.type}">
+                                            <input type="hidden" name="menu[0][value]" value="{$list.value}">
+                                            <input type="text" name="menu[0][name]" value="{$list.name}" style="display:inline-block;width:300px;" class="form-control ng-pristine ng-valid ng-touched">
+                                            <a title="设置此菜单动作" onclick="setAction(this);" href="javascript:;"><i class="fa fa-pencil"></i> 设置此菜单动作</a>
+                                        </div>
+                                        <div class="designer sonmenu ui-sortable" id="menu_0_sub">
+                                            <volist name="list.sub" id="sub">
+                                                <!-- ngRepeat: sub in menu.subMenus -->
+                                                <div id="menu_0_sub_div" style="margin-top:20px;padding-left:80px;background:url('/public/images/bg_repno.gif') no-repeat -245px -545px;" ng-repeat="sub in menu.subMenus" class="ng-scope">
+                                                    <input type="hidden" name="menu[0][sub][0][type]" value="{$sub.type}">
+                                                    <input type="hidden" name="menu[0][sub][0][value]" value="{$sub.value}">
+                                                    <input type="text" name="menu[0][sub][0][name]"  value="{$sub.name}" style="display:inline-block;width:220px;" class="form-control ng-valid ng-dirty ng-valid-parse ng-touched">
+                                                    <a title="设置此菜单动作" onclick="setAction(this);" href="javascript:;" style=""><i class="fa fa-pencil"></i> 设置此菜单动作</a>
+                                                </div>
+                                                <!-- end ngRepeat: sub in menu.subMenus -->
+                                            </volist>
+
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                <!--第一个菜单-->
+                            </volist>
+
+                            <tr>
+                                <td>
+                                    <div class="form-group">
+                                        <div class="col-xs-12 col-sm-9 col-md-10 col-lg-10">
+                                            <input type="submit" class="btn btn-primary" value="保存菜单结构">
+                                            <span class="help-block">菜单设计完成将在所有支持的公众号上生效. 成功保存当前菜单结构至公众平台后, 由于缓存可能需要在24小时内生效</span>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <!-- end ngRepeat: menu in menus -->
+                            </tbody>
+                        </table>
+
+                    </form>
+                </div>
+
+            </div>        </div>
+    </section>
+</div>
+<div class="modal-content">
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h3 class="ng-binding">选择菜单 【拼团】 要执行的操作</h3>
+    </div>
+    <div class="modal-body">
+        <label class="radio-inline">
+            <input type="radio" value="url" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 链接
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="click" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 触发关键字
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="scancode_push" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 扫码
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="scancode_waitmsg" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 扫码（等待信息）
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="pic_sysphoto" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-valid ng-touched"> 系统拍照发图
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="pic_photo_or_album" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 拍照或者相册发图
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="pic_weixin" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 微信相册发图
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="location_select" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 地理位置
+        </label>
+        <div ng-show="activeMenu.type == 'url';" class="">
+            <hr>
+            <div class="input-group">
+                <input type="text" ng-model="activeMenu.url" id="ipt-url" class="form-control ng-pristine ng-untouched ng-valid">
+                <div class="input-group-btn">
+                    <button ng-click="select_link()" id="search" class="btn btn-primary"><i class="fa fa-external-link"></i> 系统链接</button>
+                </div>
+            </div>
+            <span class="help-block">指定点击此菜单时要跳转的链接（注：链接需加http://）</span>
+            <span class="help-block"><strong>注意: 由于接口限制. 如果你没有网页oAuth接口权限, 这里输入链接直接进入微站个人中心时将会有缺陷(有可能获得不到当前访问用户的身份信息. 如果没有oAuth接口权限, 建议你使用图文回复的形式来访问个人中心)</strong></span>
+        </div>
+        <div style="position:relative" ng-show="activeMenu.type != 'url';" class="ng-hide">
+            <hr>
+            <div class="input-group">
+                <input type="text" ng-model="activeMenu.forward" id="ipt-forward" class="form-control ng-pristine ng-untouched ng-valid">
+                <div class="input-group-btn">
+                    <button ng-click="search()" id="search" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                </div>
+            </div>
+            <div style="width:100%;position:absolute;top:55px;left:0px;display:none;z-index:10000" id="key-result">
+                <ul style="display:block;width:88%;" class="dropdown-menu"></ul>
+            </div>
+            <span class="help-block">指定点击此菜单时要执行的操作, 你可以在这里输入关键字, 那么点击这个菜单时就就相当于发送这个内容至微擎系统</span>
+            <span class="help-block"><strong>这个过程是程序模拟的, 比如这里添加关键字: 优惠券, 那么点击这个菜单是, 微擎系统相当于接受了粉丝用户的消息, 内容为"优惠券"</strong></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="pull-right btn btn-primary span2" ng-click="saveMenuAction();" href="javascript:;">保存</a>
+    </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var type = $('select[name="type"]').val();
+        if(type == 1){
+            $('#keyword').show();
+            $('#keyword_input').attr('name','keyword');
+        }
+        if(type == 2){
+            $('#url').show();
+            $('#url_input').attr('name','url');
+
+        }
+        if(type == 3){
+            $('#wxsys').show();
+            $('#wxsys_input').attr('name','wxsys');
+        }
+
+    })
+    function changeType(t){
+        var v = $(t).val();
+        if(v == 1){
+            $('#keyword').show();
+            $('#keyword_input').attr('name','keyword');
+
+            $('#url,#wxsys').hide();
+            $('#url,#wxsys').attr('name','');
+
+        }
+        if(v == 2){
+            $('#url').show();
+            $('#url_input').attr('name','url');
+            $('#keyword,#wxsys').hide();
+            $('#keyword,#wxsys').attr('name','');
+
+        }
+        if(v == 3){
+            $('#wxsys').show();
+            $('#wxsys_input').attr('name','wxsys');
+
+            $('#url,#keyword').hide();
+            $('#url,#keyword').attr('name','');
+
+        }
+    }
+
+    function setAction(){
+        //页面层
+        layer.open({
+            type: 1,
+            skin: 'layui-layer-rim', //加上边框
+            area: ['420px', '240px'], //宽高
+            content: 'html内容'
+        });
+    }
+
+</script>
+</body>
+</html>

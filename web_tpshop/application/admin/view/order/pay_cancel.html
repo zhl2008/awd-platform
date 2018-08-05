@@ -1,0 +1,52 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-body">
+             <form action="{:U('Admin/order/pay_cancel')}" id="search-form2" class="form-inline" method="post">
+             <table class="table table-bordered table-striped">
+             	<tbody>
+				<tr>
+					<td>退款方式:</td>
+					<td align="left">
+						<label><input type="radio" name="refundType" value="0" checked="checked" />退款到用户余额</label>
+						<label><input type="radio" name="refundType" value="1" />已通过其他方式退款</label>
+						<label><input type="radio" name="refundType" value="2" />不处理，误操作时选择此项</label>
+					</td>
+				</tr>
+				<tr>
+					<td>退款金额:</td>
+					<td align="left"><input type="text" class="input-sm" name="amount" id="amount" value="{$order.order_amount}" /></td>
+				</tr>
+				<tr>
+					<td>退款说明:</td>
+					<td align="left">
+						<input type="text" name="remark" class="form-control">
+						<input type="hidden" name="order_id" value="{$order.order_id}">
+						<input type="hidden" name="user_id" value="{$order.user_id}">
+					</td>
+				</tr>
+				<tr>
+				<td><a href="javascript:void(0)" onclick="javascript:window.parent.layer.closeAll('iframe');" class="btn btn-default">取消</a></td>
+				<td><input type="button" class="btn btn-primary" value="确定" onclick="dosubmit()"></td>
+				</tr>
+			</tbody>
+            </table>	
+           </form>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+</body>
+<script>
+function dosubmit(){
+	if($('input[name=remark]').val()== ''){
+		 layer.alert('请填写退款简要说明', {icon: 2});  //alert('请填写退款简要说明');
+		return;
+	}
+	$('#search-form2').submit();
+}
+</script>
+</html>

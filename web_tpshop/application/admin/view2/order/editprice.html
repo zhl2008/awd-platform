@@ -1,0 +1,127 @@
+<include file="public/layout" />
+ 
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="订单价格修改"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>订单价格修改</h3>
+        <h5>调整订单价格或运费</h5>
+      </div>
+    </div>
+  </div>
+  <form action="{:U('Admin/Order/editprice',array('order_id'=>$order['order_id']))}" method="post"  name="priceForm">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label>商品总价</label>
+        </dt>
+        <dd class="opt">
+          {$order.goods_price}
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="shipping_price">物流运费</label>
+        </dt>
+        <dd class="opt">
+         <input name="shipping_price" id="shipping_price"  placeholder="请填写运费价格" type="text" value="{$order.shipping_price}" class="input-txt" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')">
+         <p class="notic">物流运费</p>
+        </dd>
+      </dl> 
+      <dl class="row">
+        <dt class="tit">
+          <label for="discount">订单价格微调</label>
+        </dt>
+        <dd class="opt">
+         <input name="discount" id="discount"  placeholder="请填差价" type="text" class="input-txt" value="{$order.discount}"  onkeyup="this.value=this.value.replace(/[^-?\d.]/g,'')" onpaste="this.value=this.value.replace(/[^-?\d.]/g,'')">
+         <p class="notic">请直接输入要调整的金额, 如果是正数价格下调, 负数价格上调</p>
+        </dd>
+      </dl>   
+      <dl class="row">
+        <dt class="tit">
+          <label>订单总金额</label>
+        </dt>
+        <dd class="opt">
+          {$order.total_amount}
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>使用余额</label>
+        </dt>
+        <dd class="opt">
+          {$order.user_money}
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>使用积分</label>
+        </dt>
+        <dd class="opt">
+          {$order.integral}
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label>应付金额</label>
+        </dt>
+        <dd class="opt">
+          {$order.order_amount}
+        </dd>
+      </dl>
+      <div class="bot">
+      		<a href="JavaScript:void(0);" onclick="document.priceForm.submit()" class="ncap-btn-big ncap-btn-green" >保存</a>
+      		<a href="JavaScript:void(0);" onClick="javascript:history.go(-1)" class="ncap-btn-big ncap-btn-mini">取消</a>
+      	</div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+  
+$(document).ready(function(){
+	
+	$("#handlepost").validate({
+		debug: true, //调试模式取消submit的默认提交功能   
+		focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+        onkeyup: false,   
+        submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+            form.submit();   //提交表单   
+        },  
+        ignore:":button",	//不验证的元素
+        rules:{
+        	keyword:{
+        		required:true
+        	},
+        	text:{
+        		required:true
+        	}
+        },
+        messages:{
+        	keyword:{
+        		required:"请输入关键词"
+        	},
+        	text:{
+        		required:"请填写回复内容"
+        	} 
+        }
+	});
+	
+	 
+});
+
+function formSubmit(){
+	$("#handlepost").submit();
+}
+    
+</script>
+</body>
+</html>

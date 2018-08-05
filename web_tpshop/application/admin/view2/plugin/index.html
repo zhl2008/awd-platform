@@ -1,0 +1,317 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>插件管理</h3>
+                <h5>网站系统插件索引与管理</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <li><a data-href="#tab_pay" class="<if condition="$type eq 'payment' or $type eq ''">current</if> tab" data-id=""><span>支付插件</span></a></li>
+                <li><a data-href="#tab_login" class="<if condition="$type eq 'login'">current</if> tab"><span>登录插件</span></a></li>
+                <li><a data-href="#tab_shipping" class="<if condition="$type eq 'shipping'">current</if> tab"><span>物流插件</span></a></li>
+                <!--li><a data-href="#tab_function" class="<if condition="$type eq 'function'">current</if>tab"><span>功能插件</span></a></li -->
+                <!-- li><a href="http://www.tp-shop.cn/articleList_cat_id_30.html" target="_blank"><span>云插件</span></a></li -->
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+            <li>插件内部包括: 支付插件、登录插件、物流插件、</li>
+        </ul>
+    </div>
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>插件列表</h3>
+                <!--<h5>(共{$pager->totalRows}条记录)</h5>-->
+            </div>
+            <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+        </div>
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="sign" axis="col0">
+                            <div style="width: 24px;"><i class="ico-check"></i></div>
+                        </th>
+                        <th align="left" abbr="article_title" axis="col3" class="">
+                            <div style="text-align: left; width: 120px;" class="">插件名称</div>
+                        </th>
+                        <th align="left" abbr="ac_id" axis="col4" class="">
+                            <div style="text-align: left; width: 120px;" class="">插件描述</div>
+                        </th>
+                        <th align="left" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 120px;" class="">插件图片</div>
+                        </th>
+                        <th align="center" axis="col1" class="handle">
+                            <div style="text-align: center; width: 1250px;">操作</div>
+                        </th>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="tDiv" style="display: none">
+            <div class="tDiv2">
+                <div class="fbutton"> <a href="/index.php/Admin/Plugin/add_shipping">
+                    <div class="add" title="新增物流">
+                        <span><i class="fa fa-plus"></i>新增物流</span>
+                    </div>
+                </a> </div>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <!--支付插件-->
+        <div class="bDiv" id="tab_pay" style="height: auto;<if condition="$type neq 'payment' AND $type neq ''">display: none;</if>">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <volist name="payment" id="p">
+                        <tr>
+                            <td class="sign">
+                                <div style="width: 24px;"><i class="ico-check"></i></div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$p.name}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$p.desc}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 120px;">
+                                    <a href="/plugins/payment/{$p.code}/{$p.icon}" class="pic-thumb-tip" onMouseOver="layer.tips('<img src=/plugins/payment/{$p.code}/{$p.icon}>',this,{tips: [1, '#fff']});" onMouseOut="layer.closeAll();"><i class="fa fa-picture-o"></i></a>
+                                </div>
+                            </td>
+                            <td align="center" class="handle">
+                                <div style="text-align: center; width: 250px; max-width:250px;">
+                                    <if condition="$p.status eq 0">
+                                        <a onClick="installPlugin('{$p.type}','{$p.code}',1)" class="btn blue"><i class="fa fa-check"></i>一键安装</a>
+                                        <else />
+                                        <a href="{:U('Admin/Plugin/setting',array('type'=>$p['type'],'code'=>$p['code']))}" class="btn blue"><i class="fa fa-pencil-square-o"></i>配置</a>
+                                        <a class="btn red" onClick="installPlugin('{$p.type}','{$p.code}',0)"><i class="fa fa-trash-o"></i>卸载</a>
+                                    </if>
+                                </div>
+                            </td>
+                            <td align="" class="" style="width: 100%;">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--支付插件-->
+        <!--登录插件-->
+        <div class="bDiv" id="tab_login" style="height: auto;<if condition="$type neq 'login'">display: none;</if>">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <volist name="login" id="l">
+                        <tr>
+                            <td class="sign">
+                                <div style="width: 24px;"><i class="ico-check"></i></div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$l.name}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$l.desc}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 120px;">
+                                    <a href="/plugins/login/{$l.code}/{$l.icon}" class="pic-thumb-tip" onMouseOver="layer.tips('<img src=/plugins/login/{$l.code}/{$l.icon}>',this,{tips: [1, '#fff']});" onMouseOut="layer.closeAll();"><i class="fa fa-picture-o"></i></a>
+                                </div>
+                            </td>
+                            <td align="center" class="handle">
+                                <div style="text-align: center; width: 170px; max-width:170px;">
+                                    <if condition="$l.status eq 0">
+                                        <a onClick="installPlugin('{$l.type}','{$l.code}',1)" class="btn blue"><i class="fa fa-check"></i>一键安装</a>
+                                        <else />
+                                        <a class="btn red" onClick="installPlugin('{$l.type}','{$l.code}',0)"><i class="fa fa-trash-o"></i>卸载</a>
+                                        <a class="btn blue" href="{:U('Admin/Plugin/setting',array('type'=>$l['type'],'code'=>$l['code']))}"><i class="fa fa-pencil-square-o"></i>配置</a>
+                                    </if>
+                                </div>
+                            </td>
+                            <td align="" class="" style="width: 100%;">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--登录插件-->
+        <!--物流插件-->
+        <div class="bDiv" id="tab_shipping" style="height: auto;<if condition="$type neq 'shipping'">display: none;</if>">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <volist name="shipping" id="l">
+                        <tr id="{$l[code]}">
+                            <td class="sign">
+                                <div style="width: 24px;"><i class="ico-check"></i></div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$l.name}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$l.desc}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 120px;">
+                                    <a href="/plugins/shipping/{$l.code}/{$l.icon}" class="pic-thumb-tip" onMouseOver="layer.tips('<img src=/plugins/shipping/{$l.code}/{$l.icon}>',this,{tips: [1, '#fff']});" onMouseOut="layer.closeAll();"><i class="fa fa-picture-o"></i></a>
+                                </div>
+                            </td>
+                            <td align="center" class="handle">
+                                <div style="text-align: center; width: inherit !important; max-width: inherit !important;">
+                                    <if condition="$l.status eq 0">
+                                        <a onClick="installPlugin('{$l.type}','{$l.code}',1)" class="btn blue"><i class="fa fa-check"></i>一键安装</a>
+                                        <a onClick="if(confirm('确定要删除吗?')) del_shipping('{$l[code]}');" class="btn red"><i class="fa fa-trash-o"></i>删除</a>
+                                        <else />
+                                        <a class="btn blue" href="{:U('Admin/Plugin/shipping_print',array('type'=>'shipping','code'=>$l['code']))}"><i class="fa fa-pencil-square-o"></i>模板编辑</a>
+                                        <a class="btn blue" href="{:U('Admin/Plugin/shipping_list',array('type'=>'shipping','code'=>$l['code']))}"><i class="fa fa-pencil-square-o"></i>配置</a>
+                                        <a class="btn red" onClick="installPlugin('{$l.type}','{$l.code}',0)"><i class="fa fa-ban"></i>卸载</a>
+                                    </if>
+                                </div>
+                            </td>
+                            <td align="" class="" style="width: 100%;">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--物流插件-->
+        <!--功能插件-->
+        <div class="bDiv" id="tab_function" style="height: auto;<if condition="$type neq 'function'">display: none;</if>">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <volist name="function" id="l">
+                        <tr>
+                            <td class="sign">
+                                <div style="width: 24px;"><i class="ico-check"></i></div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$l.name}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 120px;">{$l.desc}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 120px;">
+                                    <a href="/plugins/function/{$l.code}/{$l.icon}" class="pic-thumb-tip" onMouseOver="layer.tips('<img src=/plugins/function/{$l.code}/{$l.icon}>',this,{tips: [1, '#fff']});" onMouseOut="layer.closeAll();"><i class="fa fa-picture-o"></i></a>
+                                </div>
+                            </td>
+                            <td align="center" class="handle">
+                                <div style="text-align: center; width: 170px; max-width:170px;">
+                                    <if condition="$l.status eq 0">
+                                        <a onClick="installPlugin('{$l.type}','{$l.code}',1)" class="btn blue"><i class="fa fa-check"></i>一键安装</a>
+                                        <else />
+                                        <a class="btn red" onClick="installPlugin('{$l.type}','{$l.code}',0)"><i class="fa fa-trash-o"></i>卸载</a>
+                                    </if>
+                                </div>
+                            </td>
+                            <td align="" class="" style="width: 100%;">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--功能插件-->
+     </div>
+</div>
+<script>
+    $(document).ready(function(){
+        var type = "{$type}";
+        if(type !== ''){
+            $('#tab_plugin_'+type).trigger('click');
+        }
+    });
+    $(document).ready(function(){
+        // 表格行点击选中切换
+        $('#flexigrid > table>tbody >tr').click(function(){
+            $(this).toggleClass('trSelected');
+        });
+        //插件切换列表
+        $('.tab-base').find('.tab').click(function(){
+            $('.tab-base').find('.tab').each(function(){
+                $(this).removeClass('current');
+            });
+            $(this).addClass('current');
+            $('.bDiv').hide();
+            var id = $(this).attr('data-href');
+            $(id).show();
+            if(id=='#tab_shipping'){
+                $('.tDiv').show();
+            }else{
+                $('.tDiv').hide();
+            }
+        });
+
+
+        // 点击刷新数据
+        $('.fa-refresh').click(function(){
+            location.href = location.href;
+        });
+
+    });
+
+    // 删除物流
+    function del_shipping(code)
+    {
+        $.ajax({
+            type : "POST",
+            url:"{:U('Admin/Plugin/del_shipping')}",//+tab,
+            dataType: "json",
+            data : {code:code},
+            success: function(data){
+                if (data.status == 1){
+                    layer.msg(data.msg, {icon: 1});
+                    $('#'+code).html('');
+                }else{
+                    layer.msg(data.msg, {icon: 2});
+                }
+            }
+        });
+    }
+
+
+
+    //插件安装(卸载)
+    function installPlugin(type,code,type2){
+        var url = '/index.php?m=Admin&c=Plugin&a=install&type='+type+'&code='+code+'&install='+type2;
+        $.get(url,function(data){
+            var obj = JSON.parse(data);
+            if(obj.status == 1){
+                layer.alert(obj.msg, {icon: 1});
+//                window.location.reload();
+                window.location.href='/index.php?m=Admin&c=Plugin&a=index&type='+type;
+            }else{
+                layer.alert(obj.msg, {icon: 2});
+            }
+        });
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,122 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="navbar navbar-default">
+              <form action="{:U('Admin/Order/search_goods')}" id="search-form2" class="navbar-form form-inline" method="post">
+                <div class="form-group">
+                  <select name="cat_id" id="cat_id" class="form-control">
+                    <option value="">所有分类</option>
+                        <foreach name="categoryList" item="v" key="k" >
+                           <option value="{$v['id']}" <if condition="$v[id] eq $cat_id">selected</if> ><?php echo  str_pad('',($v[level] * 5),'-',STR_PAD_LEFT);  ?> {$v['name']}</option>
+			 			</foreach>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select name="brand_id" id="brand_id" class="form-control">
+                    <option value="">所有品牌</option>
+                        <foreach name="brandList" item="v" key="k" >
+                           <option value="{$v['id']}" <if condition="$v[id] eq $brand_id">selected</if> >{$v['name']}</option>
+						</foreach>
+                  </select>
+                </div>                         
+                <div class="form-group">
+                    <select name="intro" class="form-control">
+                        <option value="0">全部</option>
+                        <option value="is_new">新品</option>
+                        <option value="is_recommend">推荐</option>
+                    </select>                
+                </div>                  
+
+                <div class="form-group">
+                  <label class="control-label" for="input-order-id">关键词</label>
+                  <div class="input-group">
+                    <input type="text" name="keywords" value="{$keywords}" placeholder="搜索词" id="input-order-id" class="form-control">
+                  </div>
+                </div>
+                <button type="submit" id="button-filter search-order" class="btn btn-primary"><i class="fa fa-search"></i>查找</button>
+              </form>
+          </div>
+          <div id="ajax_return"> 
+			    <div class="table-responsive">
+			        <table class="table table-bordered table-hover" id="goos_table">
+			            <thead>
+			            <tr>
+			                <td class="text-left">商品名称</td>            
+			                <td class="text-left">价格</td>
+			                <td class="text-left">库存</td>
+			                <td class="text-left">选择</td>
+			                <td class="text-left">操作</td>
+			            </tr>
+			            </thead>
+			            <tbody>
+			            <volist name="goodsList" id="list">
+                        
+                            <!--如果有商品规格-->
+                            <if condition="$list['spec_goods'] neq null">
+                                 <volist name="list['spec_goods']" id="spec_goods">
+                                    <tr>
+                                        <td class="text-left">{$list.goods_name|getSubstr=0,33}&nbsp;&nbsp;&nbsp;(&nbsp;{$spec_goods[key_name]}&nbsp;)</td>
+                                        <td class="text-left">{$spec_goods[price]}</td>
+                                        <td class="text-left">{$spec_goods[store_count]}</td>             
+                                        <td class="text-left">
+                                            <input type="text" name="goods_id[{$list.goods_id}][{$spec_goods[key]}][goods_num]"  value="1" class="input-sm" style="display:none;" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')"/>
+                                            <input type="checkbox"/>
+                                        </td>
+                                        <td><a href="javascript:void(0)" onclick="javascript:$(this).parent().parent().remove();">删除</a></td>
+                                    </tr>
+                                   </volist>  
+                             <else/>
+                                <tr>
+                                    <td class="text-left">{$list.goods_name|getSubstr=0,33}</td>
+                                    <td class="text-left">{$list.shop_price}</td>
+                                    <td class="text-left">{$list.store_count}</td>             
+                                    <td class="text-left">          
+                                         <input type="text" name="goods_id[{$list.goods_id}][key][goods_num]" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" value="1" class="input-sm" style="display:none;" />                                        
+                                         <input type="checkbox"/>
+                                    </td>
+                                    <td><a href="javascript:void(0)" onclick="javascript:$(this).parent().parent().remove();">删除</a></td>
+                                </tr>                                
+                             </if>   
+			            </volist>
+	                        <tr>
+			                    <td class="text-right" colspan="5">
+			                        <a href="javascript:void(0)" onclick="select_goods();" class="btn btn-info">确定</a>			                       
+								</td>
+                           </tr>     
+			            </tbody>
+			        </table>
+			    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+  function select_goods()
+  {	  
+  
+
+	   if($("input[type='checkbox']:checked").length == 0)
+	   {
+		   layer.alert('请选择商品', {icon: 2}); //alert('请选择商品');
+		   return false;
+	   }
+	  // 将没选中的复选框所在的  tr  remove  然后删除复选框
+	    $("input[type='checkbox']").each(function(){
+		   if($(this).is(':checked') == false)
+		   {
+			    $(this).parent().parent().remove();
+		   }
+		   $(this).siblings().show();
+		   $(this).remove();
+	    });
+		$(".btn-info").remove();
+        javascript:window.parent.call_back($('#goos_table').html().replace(/选择/,'购买数量'));
+  }    
+  </script>
+</div>
+</body>
+</html>

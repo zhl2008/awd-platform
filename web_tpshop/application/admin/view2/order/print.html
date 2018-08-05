@@ -1,0 +1,152 @@
+<include file="public/layout" />
+<style>
+.ncap-order-style .ncap-order-details{
+	margin:20px auto;
+	border:1px solid #e6e6e6;
+
+}
+
+.ncap-order-details table thead th{
+	background-color:#FFFFFF
+}
+
+
+dd:before{
+	margin-left:3px;
+	content:' '
+}
+
+</style>
+<div class="page">
+  <div class="fixed-bar no-print">
+    <div class="item-title"><a class="back" href="javascript:history.back(-1)" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>打印订单</h3>
+        <h5>商城实物商品交易订单查询及管理</h5>
+      </div>
+    </div>
+  </div>
+  <div class="ncap-order-style">
+    <div class="titile">
+      <h3></h3>
+    </div>
+
+    <div class="ncap-order-details">
+      
+      <div class="tabs-panels" id="printDiv">
+      	 <div class="goods-info">
+          <h4>商品信息</h4>
+          <table>
+            <thead>
+              <tr>
+                <th>商品名称</th>
+                <th>状态</th>
+                <th>商品货号</th>
+                <th>规格属性</th>
+                <th>数量</th>
+                <th>单价</th>
+                <th>单品小计</th>
+              </tr>
+            </thead>
+            <tbody>
+            <volist name="orderGoods" id="good">
+           	<tr>
+                <td style="text-align: left;">{$good.goods_name}</td>
+                <td class="w80">
+                    <if condition="$good.is_send eq 0">未发货</if>
+                    <if condition="$good.is_send eq 1">已发货</if>
+                    <if condition="$good.is_send eq 2">已退货</if>
+                    <if condition="$good.is_send eq 3">已换货</if>
+                </td>
+                <td class="w80">{$good.goods_sn}</td>
+                <td class="w60">{$good.spec_key_name}</td>
+                <td class="w100">{$good.goods_num}</td>
+                <td class="w60">{$good.goods_price}</td>
+                <td class="w80">{$good.goods_total}</td>
+              </tr>
+              </volist>
+          </table>
+        </div>
+        <div class="total-amount contact-info">
+          订单总额：￥{$order.goods_price} 
+        </div>
+        
+        <div class="misc-info">
+           <h3>收货人信息</h3>
+           		<dl>
+		            <dt>收件人：</dt>
+		            <dd>{$order.consignee}</dd>
+		            <dt>联系电话：</dt>
+		            <dd>{$order.mobile}</dd>
+		            <dt>邮编：</dt>
+		            <dd>{$order.zipcode}</dd>
+		          </dl>
+		          <dl>
+	              	<dt>邮箱：</dt>
+		            <dd>{$order.email}</dd>
+		           </dl>
+	              <dl>
+	              	<dt>收货地址：</dt>
+		            <dd>{$order.full_address}</dd>
+			       </dl>
+        	</div>
+        
+        <div class="contact-info">
+          <h3>订单详情</h3>
+          <dl>
+            <dt>下单日期：</dt>
+            <dd>{$order.add_time|date='Y-m-d H:i:s',###}</dd>
+            <dt>订单号：</dt>
+            <dd>{$order.order_sn}</dd>
+            <dt>支付方式：</dt>
+            <dd>{$order.pay_name|default='其他支付'}</dd>
+          </dl>
+          <dl>
+            <dt>配送方式：</dt>
+            <dd>{$order.shipping_name}</dd>
+            <dt>订单总价：</dt>
+            <dd>{$order.total_amount}</dd>
+            <dt>商品价格：</dt>
+            <dd>{$order.goods_price}</dd>
+          </dl>
+          <dl>
+            <dt>配送费用：</dt>
+            <dd>{$order.shipping_price}</dd>
+            <dt>订单优惠：</dt>
+            <dd>{$order.coupon_price}</dd>
+            <dt>使用积分：</dt>
+            <dd>{$order.integral}</dd>
+          </dl>
+          <dl>
+            <dt>使用余额：</dt>
+            <dd>{$order.user_money}</dd>
+            <dt>应付金额：</dt>
+            <dd><strong style="color:#777">{$order.order_amount}</strong></dd>
+            <dt>发票抬头：</dt>
+            <dd>{$order.invoice_title}</dd>
+          </dl>
+            <dl>
+                <dt>用户留言：</dt>
+                <dd>{$order.user_note}</dd>
+            </dl>
+        </div>
+		 
+      </div>
+  	</div>
+
+	<div style="width:1000px" class="no-print">
+      		<a href="javascript:printDiv();" style="float:center" class="ncap-btn-big ncap-btn-green" ><i class="fa fa-print"></i>打印订单</a>
+      </div>
+  </div>
+</div>
+<script type="text/javascript">
+    function printDiv()
+    {
+        var oldStr = document.body.innerHTML;
+        $('.no-print').hide();
+        window.print();
+        document.body.innerHTML = oldStr;
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,228 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>
+        </ul>
+    </div>
+    <form method="post" id="handlepost" action="{:U('System/handle')}" enctype="multipart/form-data" name="form1">
+        <input type="hidden" name="form_submit" value="ok" />
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="record_no">网站备案号</label>
+                </dt>
+                <dd class="opt">
+                    <input id="record_no" name="record_no" value="{$config.record_no}" class="input-txt" type="text" />
+                    <p class="notic">网站备案号，将显示在前台底部欢迎信息等位置</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_name">网站名称</label>
+                </dt>
+                <dd class="opt">
+                    <input id="store_name" name="store_name" value="{$config.store_name}" class="input-txt" type="text" />
+                    <p class="notic">网站名称，将显示在前台顶部欢迎信息等位置</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_logo">网站首页Logo</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+                        <span class="show">
+                            <a id="img_a" class="nyroModal" rel="gal" href="{$config.store_logo}">
+                                <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$config.store_logo}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                            </a>
+                        </span>
+           	            <span class="type-file-box">
+                            <input type="text" id="store_logo" name="store_logo" value="{$config.store_logo}" class="type-file-text">
+                            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','logo','img_call_back')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">默认网站首页LOGO,通用头部显示，最佳显示尺寸为240*60像素</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_logo">网站用户中心Logo</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+                        <span class="show">
+                            <a id="userimg_a" class="nyroModal" rel="gal" href="{$config.store_user_logo}">
+                                <i id="userimg_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$config.store_user_logo}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                            </a>
+                        </span>
+           	            <span class="type-file-box">
+                            <input type="text" id="store_user_logo" name="store_user_logo" value="{$config.store_user_logo}" class="type-file-text">
+                            <input type="button" name="button" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','logo','user_img_call_back')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">默认用户中心网站LOGO,用户中心通用头部显示，最佳显示尺寸为240*60像素</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_title">网站标题</label>
+                </dt>
+                <dd class="opt">
+                    <input id="store_title" name="store_title" value="{$config.store_title}" class="input-txt" type="text" />
+                    <p class="notic">网站标题，将显示在前台顶部欢迎信息等位置</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_desc">网站描述</label>
+                </dt>
+                <dd class="opt">
+                    <input id="store_desc" name="store_desc" value="{$config.store_desc}" class="input-txt" type="text" />
+                    <p class="notic">网站描述，将显示在前台顶部欢迎信息等位置</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="store_keyword">网站关键字</label>
+                </dt>
+                <dd class="opt">
+                    <input id="store_keyword" name="store_keyword" value="{$config.store_keyword}" class="input-txt" type="text" />
+                    <p class="notic">网站关键字，便于SEO</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="contact">联系人</label>
+                </dt>
+                <dd class="opt">
+                    <input id="contact" name="contact" value="{$config.contact}" class="input-txt" type="text" />
+                    <p class="notic">联系人</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="phone">联系电话</label>
+                </dt>
+                <dd class="opt">
+                    <input id="phone" name="phone" value="{$config.phone}" class="input-txt" type="text" />
+                    <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="phone">联系手机</label>
+                </dt>
+                <dd class="opt">
+                    <input name="mobile" value="{$config.mobile}" class="input-txt" type="text" />
+                    <p class="notic">1.商家中心右下侧显示，方便商家遇到问题时咨询</p>
+                    <p class="notic">2.客服电话, 当用户下单时接收下单提示短信</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="address">具体地址</label>
+                </dt>
+                <dd class="opt">
+                    <select onblur="get_city(this)" id="province" name="province">
+                        <option  value="0">选择省份</option>
+                        <volist name="province" id="vo">
+                            <option value="{$vo.id}" <if condition="$config[province] eq $vo[id]">selected</if>>{$vo.name}</option>
+                        </volist>
+                    </select>
+                    <select onblur="get_area2(this);" id="city" name="city">
+                        <option value="0">选择城市</option>
+                        <volist name="city" id="vo">
+                            <option value="{$vo.id}" <if condition="$config[city] eq $vo[id]">selected</if>>{$vo.name}</option>
+                        </volist>
+                    </select>
+                    <select id="district" name="district">
+                        <option value="0">选择区域</option>
+                        <volist name="area" id="vo">
+                            <option value="{$vo.id}" <if condition="$config[district] eq $vo[id]">selected</if>>{$vo.name}</option>
+                        </volist>
+                    </select>
+                    <input id="address" name="address" value="{$config.address}" class="input-txt" type="text" />
+                    <p class="notic">具体地址</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="qq">平台客服QQ1</label>
+                </dt>
+                <dd class="opt">
+                    <input id="qq" name="qq" value="{$config.qq}" class="input-txt" type="text">
+                    <span class="err"></span>
+                    <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="qq2">平台客服QQ2</label>
+                </dt>
+                <dd class="opt">
+                    <input id="qq2" name="qq2" value="{$config.qq2}" class="input-txt" type="text">
+                    <span class="err"></span>
+                    <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="qq3">平台客服QQ3</label>
+                </dt>
+                <dd class="opt">
+                    <input id="qq3"  name="qq3" value="{$config.qq3}" class="input-txt" type="text">
+                    <span class="err"></span>
+                    <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询</p>
+                </dd>
+            </dl>
+            <div class="bot">
+                <input type="hidden" name="inc_type" value="{$inc_type}">
+                <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.form1.submit()">确认提交</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+</body>
+<script type="text/javascript">
+    //网站首页logo
+    function img_call_back(fileurl_tmp)
+    {
+        $("#store_logo").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+    //网站用户中心logo
+    function user_img_call_back(fileurl_tmp)
+    {
+        $("#store_user_logo").val(fileurl_tmp);
+        $("#userimg_a").attr('href', fileurl_tmp);
+        $("#userimg_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+</script>
+</html>

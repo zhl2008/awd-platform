@@ -1,0 +1,127 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>
+        </ul>
+    </div>
+    <form method="post" enctype="multipart/form-data" name="form1" action="{:U('System/handle')}">
+        <input type="hidden" name="form_submit" value="ok" />
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label>全场满多少免运费</label>
+                </dt>
+                <dd class="opt">
+                    <input pattern="^\d{1,}$" name="freight_free" value="{$config.freight_free|default='0'}" class="input-txt" type="text">
+                    <p class="notic">(0表示不免运费)</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="point_rate">积分换算比例</label>
+                </dt>
+                <dd class="opt">
+                    <input type="radio" id="point_rate" name="point_rate" value="1"  <if condition="$config[point_rate] eq 1"> checked </if> >1元 = 1积分  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="point_rate" value="10" <if condition="$config[point_rate] eq 10"> checked </if> >1元 = 10积分  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="point_rate" value="100"<if condition="$config[point_rate] eq 100"> checked </if> >1元 = 100积分
+                    <p class="notic">积分换算比例</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>最低使用限制</label>
+                </dt>
+                <dd class="opt">
+                    <input name="point_min_limit" value="{$config.point_min_limit|default='0'}" onpaste="this.value=this.value.replace(/[^\d]/g,'')" onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" type="text">
+                    <p class="notic">0表示不限制, 大于0时, 用户积分小于该值将不能使用积分</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>使用比例</label>
+                </dt>
+                <dd class="opt">
+                    <input name="point_use_percent" value="{$config.point_use_percent|default='0'}" onpaste="this.value=this.value.replace(/[^\-?\d.]/g,'')" onKeyUp="this.value=this.value.replace(/[^\-?\d.]/g,'')"  onblur="checkInputNum(this.name,0,100);"  class="input-txt" type="text">
+                    <p class="notic">100时不限制, 为0时不能使用积分, 50时积分抵扣金额不能超过该笔订单应付金额的50%</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="distribut_date">发货后多少天自动收货</label>
+                </dt>
+                <dd class="opt">
+                    <select name="auto_confirm_date" id="distribut_date">
+                        <for start="1" end="31" name="i" >
+                            <option value="{$i}" <if condition="$config[auto_confirm_date] eq $i">selected="selected"</if>>{$i}天</option>
+                        </for>
+                    </select>
+                    <p class="notic">发货后多少天自动收货</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="distribut_date">多少天内可申请售后</label>
+                </dt>
+                <dd class="opt">
+                    <select name="auto_service_date" id="auto_service_date">
+                        <for start="1" end="31" name="i" >
+                            <option value="{$i}" <if condition="$config[auto_service_date] eq $i">selected="selected"</if>>{$i}天</option>
+                        </for>
+                    </select>
+                    <p class="notic">多少天内可申请售后</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="point_rate">减库存的时机</label>
+                </dt>
+                <dd class="opt">
+                    <input type="radio" name="reduce" value="1" <if condition="$config[reduce] eq 1"> checked </if>>下单成功时  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <input type="radio" name="reduce" value="2" <if condition="$config[reduce] eq 2"> checked </if>>支付成功时  &nbsp;&nbsp;&nbsp;&nbsp;
+                    <p class="notic">减库存的时机</p>
+                </dd>
+            </dl>
+
+            <dl class="row">
+                <dt class="tit">购买积分商品,是否必须使用积分</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="integral_use_enable1" class="cb-enable <if condition='$config[integral_use_enable] eq 1'>selected</if>">是</label>
+                        <label for="integral_use_enable0" class="cb-disable <if condition='$config[integral_use_enable] eq 0'>selected</if>">否</label>
+                        <input id="integral_use_enable1" name="integral_use_enable" checked="checked" value="1" type="radio">
+                        <input id="integral_use_enable0" name="integral_use_enable" value="0" type="radio">
+                    </div>
+                    <p class="notic">用户购买积分商品,结算方式是否必须使用积分,是为必须按照商品规定的积分兑换支付积分，否为可以不适用积分而使用金额购买商品</p>
+                </dd>
+            </dl>
+            <div class="bot">
+                <input type="hidden" name="inc_type" value="{$inc_type}">
+                <a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.form1.submit()">确认提交</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+</body>
+</html>

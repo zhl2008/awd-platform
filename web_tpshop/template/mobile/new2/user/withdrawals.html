@@ -1,0 +1,130 @@
+<include file="public/header" title="申请提现" body=""/>
+<include file="public/header_nav" title="申请提现" href="javascript:history.back(-1)"/>
+<input type="hidden" id="openid" value="{$user.openid}">
+		<div class="loginsingup-input ma-to-20">
+			<form method="post" id="returnform">
+				<div class="content30">
+					<!--<div class="lsu" style="height:1.83467rem"><span>账号类型：</span>-->
+                          <!--<input type="radio" name="atype" style="width:.8rem;height:1rem;" checked value="支付宝">支付宝-->
+                          <!--<input type="radio" name="atype" style="width:.8rem;height:1rem;" value="微信">微信-->
+                          <!--<input type="radio" name="atype" style="width:.8rem;height:1rem;" value="银行卡">银行卡-->
+					<!--</div>-->
+                    <div class="lsu lsu-recharge">
+                        <span>提现金额：</span>
+                        <input type="text" name="money" id="money" value="" usermoney="{$user.user_money}" placeholder="可提金额：{$user.user_money}元" onKeyUp="this.value=this.value.replace(/[^\d.]/g,'')">
+                    </div>
+                    <div class="lsu lsu-recharge">
+                        <span>银行名称：</span>
+                        <input type="text" name="bank_name" id="bank_name" value="" placeholder="如：工商银行/支付宝/微信">
+                    </div>
+					<div class="lsu lsu-recharge">
+						<span>收款账号：</span>
+						<input type="text" name="bank_card" id="bank_card" maxlength="18" placeholder="收款账号" onKeyUp="this.value=this.value.replace(/[^\d]/g,'')">
+					</div>
+					<div class="lsu lsu-recharge">
+						<span>开 户 名：</span>
+						<input type="text" name="realname" id="realname" value=""  placeholder="持卡人姓名">
+					</div>
+                    <div class="lsu lsu-recharge">
+                        <span>支付密码：</span>
+                        <input type="password" name="paypwd" id="paypwd" placeholder="支付密码">
+                    </div>
+                    <div class="lsu lsu-v-code">
+                        <span>验 证 码：</span>
+                        <input type="text" name="verify_code" id="verify_code" value="" placeholder="请输入验证码">
+                        <img  id="verify_code_img" src="{:U('User/verify',array('type'=>'withdrawals'))}" onClick="verify()" style=""/>
+                    </div>
+					<div class="lsu-submit">
+                        <input type="hidden" name="__token__" value="{$Request.token}" />
+						<input type="button" onclick="checkSubmit()" value="提交申请">
+					</div>
+				</div>
+			</form>
+		</div>
+<script type="text/javascript" charset="utf-8">
+    // 验证码切换
+    function verify(){
+        $('#verify_code_img').attr('src','/index.php?m=Mobile&c=User&a=verify&type=withdrawals&r='+Math.random());
+    }
+
+    /**
+     * 提交表单
+     * */
+    function checkSubmit(){
+        var bank_name = $.trim($('#bank_name').val());
+        var bank_card = $.trim($('#bank_card').val());
+        var realname = $.trim($('#realname').val());
+        var money = parseFloat($.trim($('#money').val()));
+        var usermoney = parseFloat({$user_money});  //用户余额
+        var verify_code = $.trim($('#verify_code').val());
+        var paypwd= $.trim($('#paypwd').val());
+        //验证码
+        if(verify_code == '' ){
+            showErrorMsg('验证码不能空')
+            return false;
+        }
+        if(bank_name == '' || bank_card == '' || realname=='' || money === ''){
+            showErrorMsg("所有信息为必填")
+            return false;
+        }
+        if(money > usermoney){
+            showErrorMsg("提现金额大于您的账户余额")
+            return false;
+        }
+        if(paypwd == ''){
+            showErrorMsg("请输入支付密码")
+            return false;
+        }
+        $.ajax({
+            type: "post",
+            url :"{:U('Mobile/User/withdrawals')}",
+            dataType:'json',
+            data:$('#returnform').serialize(),
+            success: function(data)
+            {
+                showErrorMsg(data.msg);
+                if(data.status == 1){
+                    window.location.href=data.url;
+                } else {
+//                    window.location.reload();
+                    verify();
+                }
+            }
+        });
+    }
+
+    $(function(){
+    	$('input[name="atype"]').click(function(){
+    		var bankstr = $(this).val();
+    		if(bankstr =='微信'){
+    			if($('#openid').val() == ''){
+    				alert('请在用户中心账号绑定里先扫码绑定微信账号');
+    				return false;
+    			}
+    		}
+    		if(bankstr != '银行卡'){
+    			$('#bank_name').val(bankstr);
+    			$('#bank_name').attr('readonly','readonly');
+    			if(bankstr == '微信'){
+    				$('#bank_card').val($('#openid').val());
+    				$('#bank_card').attr('readonly','readonly');
+    			}else{
+    				$('#bank_card').val('');
+    				$('#bank_card').removeAttr('readonly');
+    			}
+    		}else{
+    			$('#bank_name').val('');
+    			$('#bank_name').removeAttr('readonly');
+    		}
+    	})
+    });
+    /**
+     * 提示弹窗
+     * @param msg
+     */
+    function showErrorMsg(msg){
+        layer.open({content:msg,time:3});
+    }
+</script>
+	</body>
+</html>

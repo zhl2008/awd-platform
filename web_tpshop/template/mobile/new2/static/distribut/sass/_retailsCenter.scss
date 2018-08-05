@@ -1,0 +1,134 @@
+.retails_head{
+    position: relative;
+    background-color: #f94f50;
+    background: url(../images/fbag.png) 8px/$ppr 0 #f94f50 no-repeat;
+    width: 100%;
+    height: 293px/$ppr;
+    .my_name_in{
+        padding: 30px/$ppr 0;
+    }
+    .my_head{
+        top: 50%;
+        bottom: 0;
+        margin-top: -(123px/2)/$ppr;
+        .my_name{
+            float: none;
+        }
+        .my_in{
+            width: 400px/$ppr;
+            @include fs(font-size,28);
+            color: white;
+            margin-left: 20px/$ppr;
+            @include cutOut;
+        }
+    }
+    .my_share{
+        line-height: 90px/$ppr;
+    }
+    .icon-setting{
+        display: inline-block;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -21.4px/$ppr;
+        margin-left: -22px/$ppr;
+    }
+}
+.open_time{
+    position: absolute;
+    bottom: 28px/$ppr;
+    right: 40px/$ppr;
+    @include fs(font-size,24);
+    color: rgba(255,255,255,.5);
+}
+.mynav_link_list{
+    background: white;
+    padding: 24px/$ppr 0;
+    ul{
+        li{
+            a{
+                cursor: pointer;
+                display: block;
+            }
+            width: 25%;
+            float: left;
+            padding: 30px/$ppr 0;
+            text-align: center;
+            border-left: 1px solid #f5f5f5;
+            border-bottom: 1px solid #f5f5f5;
+            &:nth-child(4n+1){
+                border-left: 0;
+            }
+            &:nth-last-child(-n+4){
+                border-bottom: 0;
+            }
+            @include box-sizing(border-box);
+            i{
+                display: inline-block;
+                height: 52px/$ppr;
+            }
+            span{
+                @include fs(font-size,26);
+                color: #515151;
+                display: block;
+                margin-top: 20px/$ppr;
+            }
+        }
+    }
+}
+.choose_retails_shop{
+    background: white;
+    padding:40px/$ppr 40px/$ppr 50px/$ppr 40px/$ppr;
+}
+.tit_withdrawals{
+    position: relative;
+    i,span{
+        vertical-align: middle;
+        display: inline-block;
+    }
+    .mi_cutout{
+        @include fs(font-size,26);
+        margin-left: 5px/$ppr;
+        color: #7f7f7f;
+    }
+    .icon-arrow_r{
+        position: static;
+        margin-top:inherit;
+        margin-left: 10px/$ppr;
+    }
+}
+.content_cash{
+    .all_comm{
+        margin-top: 50px/$ppr;
+        @include cutOut;
+    }
+    .tit{
+        @include fs(font-size,26);
+        color: #7f7f7f;
+    }
+    .cont{
+        @include fs(font-size,28);
+        color: #333333;
+        margin-left: 10px/$ppr;
+    }
+}
+.cashleri{
+    line-height: 1.4;
+    position: relative;
+    .sum_money_le{
+        width: 50%;
+        float: left;
+        @include fs(font-size,34);
+        color: #e63138;
+        position: absolute;
+        bottom: 0;
+        @include cutOut;
+    }
+    .detail_money_ri{
+        width: 50%;
+        float: right;
+        p{
+            @include cutOut;
+        }
+    }
+}

@@ -1,0 +1,124 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	           	<div class="box-header">
+	                <nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('Admin/Article/articleList')}" method="post">
+				            <div class="form-group">
+				              	<input type="text" name="keywords" class="form-control" placeholder="搜索">
+				            </div>
+				           	<div class="form-group">
+				              	<select name="cat_id" class="form-control" style="width:200px;">
+				              		<option value="">选择文章类别</option>
+				              		<foreach name="cats" item="vo">
+				              		<option value="{$vo.cat_id}" <if condition="$vo[cat_id] eq $cat_id">selected</if>>{$vo.cat_name}</option>
+				              		</foreach>
+				              	</select>
+				            </div>
+				            <button type="submit" class="btn btn-default">提交</button>
+				            <div class="form-group pull-right">
+					            <a href="{:U('Admin/Article/article')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>添加文章</a>
+				            </div>		          
+				          </form>		
+				      	</div>
+	    			</nav>               
+	             </div>	    
+	             <!-- /.box-header -->
+	             <div class="box-body">	             
+	           		<div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+		                 <thead>
+		                   <tr role="row">
+			                   <th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 294px;">文章标题</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1"  aria-label="Browser: activate to sort column ascending">文章类别</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1"  aria-label="Platform(s): activate to sort column ascending">描述</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1"  aria-label="Platform(s): activate to sort column ascending">显示</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1"  aria-label="Engine version: activate to sort column ascending">发布时间</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1"  aria-label="CSS grade: activate to sort column ascending">操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+						  <foreach name="list" item="vo" key="k" >
+						  	<tr role="row" align="center">
+		                     <td>{$vo.title|getSubstr=0,33}</td>
+		                     <td>{$vo.category}</td>
+		                     <td>{$vo.kewords}</td>
+		                     <td>
+                                 <img width="20" height="20" src="__PUBLIC__/images/<if condition='$vo[is_open] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('Article','article_id','{$vo.article_id}','is_open',this)"/>                                        
+                            </td>
+		                     <td>{$vo.add_time}</td>
+		                     <td>
+		                      <a target="_blank" href="{:U('Home/Article/detail',array('article_id'=>$vo['article_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+		                      <a class="btn btn-primary" href="{:U('Article/article',array('act'=>'edit','article_id'=>$vo['article_id']))}"><i class="fa fa-pencil"></i></a>
+								 <notin name="vo.article_id" value="$article_able_id">
+								 	<a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Article/aticleHandle')}" data-id="{$vo.article_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
+								 </notin>
+								 <in name="vo.article_id" value="$article_able_id">
+									 <a class="btn btn-default disabled" href="javascript:void(0)"><i class="fa fa-trash-o"></i></a>
+								 </in>
+                              <!--<a href="javascript:void(0);" onclick="ClearAritcleHtml('{$vo[article_id]}')" class="btn btn-default" title="清除静态缓存页面"><i class="fa fa-fw fa-refresh"></i></a>-->
+				     		</td>
+		                    </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>
+		                 
+		                 </tfoot>
+		               </table>
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	          </div><!-- /.box-body -->
+	        </div><!-- /.box -->
+       	</div>
+       </div>
+   </section>
+</div>
+<script>
+function delfun(obj){
+	if(confirm('确认删除')){		
+		$.ajax({
+			type : 'post',
+			url : $(obj).attr('data-url'),
+			data : {act:'del',article_id:$(obj).attr('data-id')},
+			dataType : 'json',
+			success : function(data){
+				if(data){
+					$(obj).parent().parent().remove();
+				}else{
+					layer.alert('删除失败', {icon: 2});  //alert('删除失败');
+				}
+			}
+		})
+	}
+	return false;
+}
+ 
+    /*
+     * 清除文章静态页面缓存
+     */
+    function ClearAritcleHtml(article_id)
+    {
+    	$.ajax({
+                    type:'GET',
+                    url:"{:U('Admin/System/ClearAritcleHtml')}",
+                    data:{article_id:article_id},
+                    dataType:'json',
+                    success:function(data){
+                            layer.alert(data.msg, {icon: 2});								 
+                    }
+		});
+    }
+    
+</script>
+</body>
+</html>

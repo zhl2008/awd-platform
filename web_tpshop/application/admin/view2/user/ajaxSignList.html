@@ -1,0 +1,63 @@
+<table>
+    <tbody>
+    <empty name="list">
+        <tr>
+            <td class="no-data" align="center" axis="col0" colspan="50">
+                <i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+            </td>
+        </tr>
+        <else/>
+        <volist name="list" id="list">
+            <tr>
+                <td align="center" axis="col0">
+                    <div style="width: 50px;">                  
+                        {$list.id}
+                    </div>
+                </td>                
+                <td align="center" axis="col0">
+                    <div style="text-align: left; width: 150px;">{$list.nickname}</div>
+                </td>
+                <td align="center" axis="col0">
+                    <div style="text-align: left; width: 150px;">{$list.mobile}</div>
+                </td>
+                <td align="center" axis="col0">
+                    <div style="text-align: center; width: 100px;">{$list.signtotal}</div>
+                </td>
+                <td align="center" axis="col0">
+                    <div style="text-align: center; width: 100px;">{$list.signcount}</div>
+                </td>
+                <td align="center" axis="col0">
+                    <div style="text-align: center; width: 100px;">{$list.lastsign}</div>
+                </td>
+                <td align="center" axis="col0">
+                    <div style="text-align: center; width: 500px;">{$list.signtime}</div>
+                </td>
+
+                <td align="center" axis="col0">
+                    <div style="text-align: center; width: 100px;">{$list.thismonth}</div>
+                </td>
+                </a>
+                <td align="center" axis="col0">
+                    <div style="text-align: center; width: 100px;">{$list.cumtrapz}</div>
+                </td>
+
+                <td align="" class="" style="width: 100%;">
+                              <div>&nbsp;</div>
+<!--                    <div style="text-align: center; width: 100px;">
+                        <a class="btn blue" href=javascript:void(0);" onclick="takeoff(this)"><i class="fa fa-search"></i>查看</a>
+                    </div>-->
+                </td>
+            </tr>
+        </volist>          
+
+    </empty>
+</tbody>
+</table>
+<!--分页位置--> {$page}
+<script>
+    // 点击分页触发的事件
+    $(".pagination  a").click(function() {
+        cur_page = $(this).data('p');
+        ajax_get_table('search-form2', cur_page);
+    });
+</script>        

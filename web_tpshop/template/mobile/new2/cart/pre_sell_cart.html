@@ -1,0 +1,239 @@
+<include file="public/header" title="填写订单" body="g4"/>
+<include file="public/header_nav" title="填写订单" href="javascript:history.back(-1);"/>
+<form name="cart2_form" id="cart2_form" method="post">
+    <input type="hidden" value="{$pre_sell_price['goods_num']}" name="goods_num">
+    <input type="hidden" value="{$pre_sell_info['act_id']}" name="act_id">
+    <div class="edit_gtfix">
+        <a href="{:U('Mobile/User/address_list',array('source'=>'pre_sell_cart','act_id'=>$pre_sell_info['act_id'],'goods_num'=>$pre_sell_price['goods_num']))}">
+            <div class="namephone fl">
+                <div class="top">
+                    <div class="le fl">{$address.consignee}</div>
+                    <div class="lr fl">{$address.mobile}</div>
+                </div>
+                <div class="bot">
+                    <i class="dwgp"></i>
+                    <span>{$address.address}</span>
+                </div>
+                <input type="hidden" value="{$address.address_id}" name="address_id" /> <!--收货地址id-->
+            </div>
+            <div class="fr youjter">
+                <i class="Mright"></i>
+            </div>
+            <div class="ttrebu">
+                <img src="__STATIC__/images/tt.png"/>
+            </div>
+        </a>
+    </div>
+
+    <!--商品信息-s-->
+        <div class="ord_list fill-orderlist p">
+            <div class="maleri30">
+                    <div class="shopprice">
+                        <div class="img_or fl"><img src="{$good[goods_id]|goods_thum_images=100,100}"/></div>
+                        <div class="fon_or fl">
+                            <h2 class="similar-product-text">{$pre_sell_info['act_name']}</h2>
+                            <div>{$good[spec_key_name]}</div>
+                        </div>
+                        <div class="price_or fr">
+                            <p class="red"><if condition="$pre_sell_price['deposit_price'] gt 0">订金（元）<else/>单价（元）</if><span>￥</span>
+                            <span><if condition="$pre_sell_price['deposit_price'] gt 0">{$pre_sell_price['deposit_price']*$pre_sell_price['goods_num']}<else/>{$pre_sell_price['cut_price']*$pre_sell_price['goods_num']}</if></span></p>
+                            <p class="ligfill">x{$pre_sell_price.goods_num}</p>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    <!--商品信息-e-->
+
+    <!--支持配送,发票信息-s-->
+    <div class="information_dr">
+        <div class="maleri30">
+            <div class="invoice list7">
+                <div class="myorder p">
+                    <div class="content30">
+                        <a class="takeoutps" href="javascript:void(0)">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>支持配送</span>
+                                </div>
+                                <div class="fr">
+                                    <span id="postname" style="line-height: 1.2rem;">不选择，则按默认配送方式</span>
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="invoice list7">
+                <div class="myorder p">
+                    <div class="content30">
+                        <a class="invoiceclickin" href="javascript:void(0)">
+                            <div class="order">
+                                <div class="fl">
+                                    <span>发票信息</span>
+                                </div>
+                                <div class="fr">
+                                    <span>纸质发票-个人<br>非图书商品-不开发票</span>
+                                    <input class="txt1" style='display:none;' type="text" name="invoice_title" />
+                                    <i class="Mright"></i>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div id="invoice" class="invoice list7" style="display: none;">
+                <div class="myorder p">
+                    <div class="content30">
+                        <div class="incorise">
+                            <span>发票抬头：</span>
+                            <input type="text" name="" id="" value="" placeholder="xx单位或xx个人" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<!--支持配送,发票信息-s-->
+
+<!--卖家留言-s-->
+    <!--
+    <div class="customer-messa">
+        <div class="maleri30">
+            <p>用户备注（50字）</p>
+            <textarea class="tapassa" onkeyup="checkfilltextarea('.tapassa','50')" name="user_note" rows="" cols="" placeholder="选填"></textarea>
+            <span class="xianzd"><em id="zero">50</em>/50</span>
+        </div>
+    </div>
+    -->
+<!--卖家留言-e-->
+
+<!--订单金额-s-->
+    <div class="information_dr ma-to-20">
+        <div class="maleri30">
+            <div class="xx-list">
+                <p class="p">
+                    <span class="fl">商品金额：</span>
+                    <span class="fr red"><span>￥</span><span><if condition="$pre_sell_price['deposit_price'] gt 0">{$pre_sell_price['deposit_price']*$pre_sell_price['goods_num']}<else/>{$pre_sell_price['cut_price']*$pre_sell_price['goods_num']}</if></span>元</span>
+                </p>
+            </div>
+        </div>
+    </div>
+<!--订单金额-e-->
+
+<!--提交订单-s-->
+    <div class="mask-filter-div" style="display: none;"></div>
+    <div class="payit fillpay ma-to-200">
+        <div class="fr">
+            <a href="javascript:void(0)" onclick="submit_order()">提交订单</a>
+        </div>
+        <div class="fl">
+            <p><span class="pmo">应付金额：</span>￥<span id="payables"><if condition="$pre_sell_price['deposit_price'] gt 0">{$pre_sell_price['deposit_price']*$pre_sell_price['goods_num']}<else/>{$pre_sell_price['cut_price']*$pre_sell_price['goods_num']}</if></span><span></span></p>
+        </div>
+    </div>
+<!--提交订单-e-->
+
+<!--配送弹窗-s-->
+    <div class="losepay closeorder" style="display: ;">
+        <div class="maleri30">
+            <div class="l_top">
+                <span>配送方式</span>
+                <em class="turenoff"></em>
+            </div>
+            <div class="resonco">
+                <foreach name="shippingList" item="v"  key="k">
+                    <label >
+                        <div class="radio">
+                            <span class='che <if condition="$k eq 0">check_t</if>' postname='{$v.name}'>
+                                <i></i>
+                                <input type="radio" id="{$v.code}" name="shipping_code" value="{$v.code}" style="display: none;" <if condition="$k eq 0"> checked="checked" </if> class="c_checkbox_t" />
+                                <span>{$v.name}</span>
+                            </span>
+                        </div>
+                    </label>
+                </foreach>
+            </div>
+        </div>
+        <div class="submits_de bagrr" >确认</div>
+    </div>
+<!--配送弹窗-e-->
+</form>
+<script type="text/javascript">
+    $(document).ready(function(){
+        showPostName();
+        $('.radio .che').bind('click',function(){
+            //选择配送方式
+            $(this).addClass('check_t')
+                    .parent().parent().siblings('label').find('.che').removeClass('check_t');
+            //选择配送方式显示到支持配送栏
+            showPostName()
+        });
+    });
+
+    //显示选择的物流公司
+    function showPostName(){
+        $('#postname').text($('.radio .check_t').attr('postname'));
+    }
+
+    // 提交订单
+    ajax_return_status = 1; // 标识ajax 请求是否已经回来 可以进行下一次请求
+    function submit_order() {
+        if (ajax_return_status == 0)
+            return false;
+        ajax_return_status = 0;
+    	$.ajax({
+    		type : "POST",
+    		url:"{:U('Cart/pre_sell_cart')}",//+tab,
+    		data : $('#cart2_form').serialize()+"&act=submit_order",// 你的formid
+            dataType: "json",
+    		success: function(data){
+    										
+    			if(data.status != '1')
+    			{
+    				// 登录超时
+    				if(data.status == -100) {
+                        layer.open({
+                            content: data.msg, time: 2, end: function () {
+                                location.href ="{:U('Home/User/login')}";
+                            }
+                        });
+                    }
+                    showErrorMsg(data.msg);
+    				return false;
+    			}
+                layer.open({
+                    content: '订单提交成功，跳转支付页面!', time: 2, end: function () {
+                        location.href = "/index.php?m=Mobile&c=Cart&a=cart4&order_id=" + data.result;
+                    }
+                });
+    		}
+    	});
+    }
+
+    $(function(){
+        //显示配送弹窗
+        $('.takeoutps').click(function(){
+            cover()
+            $('.mask-filter-div').show();
+            $('.losepay').show();
+        })
+        //关闭选择物流
+        $('.turenoff').click(function(){
+            undercover()
+            $('.mask-filter-div').hide();
+            $('.losepay').hide();
+        })
+
+        $('.submits_de').click(function(){
+            $('.mask-filter-div').hide();
+            $('.losepay').hide();
+        })
+
+        //显示隐藏使用发票信息
+        $('.invoiceclickin').click(function(){
+            $('#invoice').toggle(300);
+        })
+    })
+</script>
+</body>
+</html>

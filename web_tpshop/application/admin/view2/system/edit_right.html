@@ -1,0 +1,137 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+			<div class="subject">
+				<h3>权限资源管理 - 编辑权限</h3>
+				<h5>网站系统权限资源管理</h5>
+			</div>
+		</div>
+	</div>
+	<form class="form-horizontal" id="adminHandle" method="post">
+		<input type="hidden" name="type" value="{$_GET[type]}">
+		<input type="hidden" name="id" value="{$info.id}">
+		<div class="ncap-form-default">
+			<dl class="row">
+				<dt class="tit">
+					<label for="name"><em>*</em>权限资源名称</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" value="{$info.name}" name="name" id="name" class="input-txt">
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="group"><em>*</em>所属分组</label>
+				</dt>
+				<dd class="opt">
+					<select class="small form-control" id="group" name="group">
+						<foreach name="group" item="vo" key="key">
+							<option value="{$key}" <if condition="$info[group] eq $key">selected</if>>{$vo}</option>
+						</foreach>
+					</select>
+					<span class="err"></span>
+					<p class="notic">所属分组</p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="group"><em>*</em>添加权限码</label>
+				</dt>
+				<dd class="opt">
+					<select class="small form-control" id="controller" onblur="get_act_list(this)">
+						<option value="">选择控制器</option>
+						<foreach name="planList" item="vo">
+							<option value="{$vo}">{$vo}</option>
+						</foreach>
+					</select>
+					<span class="err">@</span>
+					<select id="act_list">
+						<option value="">选择控制器</option>
+						<foreach name="planList" item="vo">
+							<option value="{$vo}">{$vo}</option>
+						</foreach>
+					</select>
+					<a class="ncap-btn" onclick="add_right()">添加</a>
+					<p class="notic">
+					</p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="name"><em>*</em>权限码</label>
+				</dt>
+				<dd class="opt">
+					<table>
+						<tr><th style="width:80%">权限码</th><th style="width: 50px;text-align: center;" >操作</th></tr>
+						<tbody id="rightList">
+						<foreach name="info[right]" item="vo">
+							<tr><td><input name="right[]" type="text" value="{$vo}" class="form-control" style="width:300px;"></td>
+								<td style="text-align: center;"><a class="ncap-btn" href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td></tr>
+						</foreach>
+						</tbody>
+					</table>
+				</dd>
+			</dl>
+
+			<div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript">
+	function add_right(){
+		var a = [];
+		$('#rightList .form-control').each(function(i,o){
+			if($(o).val() != ''){
+				a.push($(o).val());
+			}
+		})
+		var ncode = $('#controller').val();
+		if(ncode !== ''){
+			var temp = ncode+'@'+ $('#act_list').val();
+			if($.inArray(temp,a) != -1){
+				layer.msg('此权限码已经添加！', {icon: 2,time: 1000});
+				return false;
+			}
+		}
+		var strtr = '<tr>';
+		if(ncode!= ''){
+			strtr += '<td><input type="text" name="right[]" value="'+ncode+'@'+ $('#act_list').val()+'" class="form-control" style="width:300px;"></td>';
+		}else{
+			strtr += '<td><input type="text" name="right[]" value="" class="form-control" style="width:300px;"></td>';
+		}
+		strtr += '<td style="text-align: center;"><a href="javascript:;" class="ncap-btn" onclick="$(this).parent().parent().remove();">删除</a></td>';
+		$('#rightList').append(strtr);
+	}
+	function get_act_list(obj){
+		$.ajax({
+			url: "{:U('System/ajax_get_action',array('type'=>$_GET[type]))}",
+			type:'get',
+			data: {'controller':$(obj).val()},
+			dataType:'html',
+			success:function(res){
+				$('#act_list').empty().append(res);
+			}
+		});
+	}
+	function adsubmit(){
+		if($('input[name=name]').val() == ''){
+			layer.msg('权限名称不能为空！', {icon: 2,time: 1000});
+			return false;
+		}
+
+		if($('input[name="right\[\]"]').length == 0){
+			layer.msg('权限码不能为空！', {icon: 2,time: 1000});
+			return false;
+		}
+
+		$('#adminHandle').submit();
+	}
+</script>
+</body>
+</html>

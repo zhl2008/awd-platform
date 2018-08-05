@@ -1,0 +1,159 @@
+<include file="public/layout" />
+
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>投诉管理</h3>
+        <h5>商城对商品交易投诉管理及仲裁</h5>
+      </div>
+      <ul class="tab-base nc-row">   
+      		<li><a href="{:U('Comment/complain_list' , array(complain_state=>0))}"><span>新投诉</span></a></li>
+      		<li><a href="{:U('Comment/complain_list' , array(complain_state=>1))}"><span>待申诉</span></a></li>
+      		<li><a href="{:U('Comment/complain_list' , array(complain_state=>2))}"><span>对话中</span></a></li>
+      		<li><a href="{:U('Comment/complain_list' , array(complain_state=>3))}"><span>待仲裁</span></a></li>
+      		<li><a href="{:U('Comment/complain_list' , array(complain_state=>4))}"><span>已关闭</span></a></li>
+      		<li><a href="{:U('Comment/subject_list')}" class="current"><span>投诉主题</span></a></li>
+      		<li><a href="{:U('Comment/subject_info')}" ><span>添加主题</span></a></li>
+      	</ul>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div class="flexigrid">
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>投诉主题列表</h3>
+        <h5>(共{$pager->totalRows}条记录)</h5>
+      </div>
+      <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+    </div>
+    <div class="hDiv">
+      <div class="hDivBox">
+        <table cellspacing="0" cellpadding="0">
+          <thead>
+	        	<tr>
+	              <th class="sign" axis="col0">
+	                <div style="width: 24px;"><i class="ico-check"></i></div>
+	              </th>
+	              <th align="left" abbr="order_sn" axis="col3" class="">
+	                <div style="text-align: left; width: 200px;" class="">投诉主题</div>
+	              </th>
+	              <th align="left" abbr="consignee" axis="col4" class="">
+	                <div style="text-align: left; width: 600px;" class="">投诉主题描述</div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 90px;" class=""> 操作</div>
+	              </th>
+	              <th style="width:100%" axis="col7">
+	                <div></div>
+	              </th>
+	            </tr>
+	          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+      <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+      		<table>
+      			<tbody>
+      			<if condition="empty($list) eq true">
+      			<tr data-id="0">
+			        <td class="no-data" align="center" axis="col0" colspan="50">
+			        	<i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+			        </td>
+			     </tr>
+      			<else/>
+      			<foreach name="list" item="vo" key="k">
+			  	<tr data-id="{$vo.comment_id}">
+			        <td class="sign" axis="col0">
+			          <div style="width: 24px;"><i class="ico-check" ></i></div>
+			        </td>
+			        <td align="left" abbr="subject_content" axis="col3" class="">
+			          <div style="text-align: left; width: 200px;" class="">{$vo.subject_content}</div>
+			        </td>
+			        <td align="left" abbr=subject_desc axis="col4" class="">
+			          	<div style="text-align: left; width: 600px;" class="">{$vo.subject_desc}</div>
+			        </td>
+			        
+			        <td align="center" abbr="article_time" axis="col6" class="">
+			               <div style="text-align: center; width: 120px;" class="">
+			       			<a class="btn red"  onclick="delSubject(this)" href="javascript:;" data-url="{:U('Comment/subject_del')}" data-id="{$vo['subject_id']}"><i class="fa fa-trash-o"></i>删除</a> 
+			       		</div>
+			           </td>
+			         <td align="" class="" style="width: 100%;">
+			            <div>&nbsp;</div>
+			          </td>
+			      </tr>
+			      </foreach>
+			      </if>
+			    </tbody>
+      		</table>
+	        <div class="row">
+			    <div class="col-sm-6 text-left"></div>
+			    <div class="col-sm-6 text-right">{$page}</div>
+			</div>
+	 </div>
+      </div>
+      <div class="iDiv" style="display: none;"></div>
+    </div>
+    <!--分页位置--> 
+   	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+	 	//点击刷新数据
+		$('.fa-refresh').click(function(){
+			location.href = location.href;
+		});
+	 
+		$('.ico-check ' , '.hDivBox').click(function(){
+			$('tr' ,'.hDivBox').toggleClass('trSelected' , function(index,currentclass){
+	    		var hasClass = $(this).hasClass('trSelected');
+	    		$('tr' , '#flexigrid').each(function(){
+	    			if(hasClass){
+	    				$(this).addClass('trSelected');
+	    			}else{
+	    				$(this).removeClass('trSelected');
+	    			}
+	    		});  
+	    	});
+		});
+		
+		// 表格行点击选中切换
+	    $('#flexigrid > table>tbody >tr').click(function(){
+		    $(this).toggleClass('trSelected');
+		});
+		
+	});
+	 
+	function delSubject(obj){
+		layer.confirm('确定删除该主题？', {
+					btn: ['确定','取消'] //按钮
+				}, function(){
+					// 确定
+					$.ajax({
+						type : 'post',
+						url : $(obj).attr('data-url'),
+						data : {act:'del',del_id:$(obj).attr('data-id')},
+						dataType : 'json',
+						success : function(data){
+							layer.closeAll();
+							if(data==1){
+								layer.msg('操作成功', {icon: 1});
+								window.location.href = "{:U('Comment/subject_list')}";
+							}else{
+								layer.msg(data, {icon: 2,time: 2000});
+							}
+						}
+					});
+				}, function(index){
+					layer.close(index);
+				}
+		);
+	}
+</script>
+</body>
+</html>

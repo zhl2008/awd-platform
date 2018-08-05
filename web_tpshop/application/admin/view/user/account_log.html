@@ -1,0 +1,79 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="navbar navbar-default">
+                <div class="row navbar-form">
+                    <div class="pull-right">
+                        <a data-original-title="资金调节" class="btn btn-primary" title="" data-toggle="tooltip" href="{:U('Admin/User/account_edit',array('id'=>$user_id))}"><i class="fa fa-pencil"></i></a>
+                        <a data-original-title="返回" class="btn btn-default" title="" data-toggle="tooltip" href="javascript:history.go(-1)"><i class="fa fa-reply"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 账户资金记录列表</h3>
+                </div>
+
+
+                <div class="panel-body">
+
+
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <td class="text-left">
+                                    变动时间
+                                </td>
+                                <td class="text-left">
+                                    描述
+                                </td>
+                                <td class="text-left">
+                                    用户资金
+                                </td>
+                                <td class="text-left">
+                                冻结资金
+                                 </td>
+                                <td class="text-left">
+                                    用户积分
+                                </td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="lists" id="list">
+                                <tr>
+                                    <td class="text-left">{$list.change_time|date="Y-m-d H:i",###}</td>
+
+                                    <td class="text-left">{$list.desc}</td>
+                                    <td class="text-left">
+                                        <if condition="$list[user_money] gt 0">+</if>
+                                        {$list.user_money}
+                                    </td>
+                                    <td class="text-left">
+                                        <if condition="$list[frozen_money] gt 0">+</if>
+                                        {$list.frozen_money}
+                                    </td>
+                                    <td class="text-left">
+                                        <if condition="$list[pay_points] gt 0">+</if>
+                                        {$list.pay_points}
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="pull-right">
+                            {$page}
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>        <!-- /.row -->
+    </section>
+    <!-- /.content -->
+</div>
+<!-- /.content-wrapper -->

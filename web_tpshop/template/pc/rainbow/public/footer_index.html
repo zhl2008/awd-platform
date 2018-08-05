@@ -1,0 +1,77 @@
+<div class="mod_service_inner">
+        <div class="w1224">
+            <ul>
+                <li>
+                    <div class="mod_service_unit">
+                        <h5 class="mod_service_duo">多</h5>
+                        <p>品类齐全，轻松购物</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="mod_service_unit">
+                        <h5 class="mod_service_kuai">快</h5>
+                        <p>多仓直发，极速配送</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="mod_service_unit">
+                        <h5 class="mod_service_hao">好</h5>
+                        <p>正品行货，精致服务</p>
+                    </div>
+                </li>
+                <li>
+                    <div class="mod_service_unit">
+                        <h5 class="mod_service_sheng">省</h5>
+                        <p>天天低价，畅选无忧</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+<div class="w1224">
+    <div class="footer-ewmcode">
+        <div class="foot-list-fl">
+            <tpshop sql="select * from `__PREFIX__article_cat` where parent_id = 2" key="k" item='v'>
+                <ul>
+                    <li class="foot-th">
+                        {$v[cat_name]}
+                    </li>
+                    <tpshop sql="select * from `__PREFIX__article` where cat_id = $v[cat_id]  and is_open=1" key="k2" item='v2'>
+                        <li>
+                            <a href="{:U('Home/Article/detail',array('article_id'=>$v2[article_id]))}">{$v2[title]}</a>
+                        </li>
+                    </tpshop>
+                </ul>
+            </tpshop>
+        </div>
+        <div class="QRcode-fr">
+            <ul>
+                <li class="foot-th">客户端</li>
+                <li><img src="__STATIC__/images/qrcode.png"/></li>
+            </ul>
+            <ul>
+                <li class="foot-th">微信</li>
+                <li><img src="__STATIC__/images/qrcode.png"/></li>
+            </ul>
+        </div>
+    </div>
+    <div class="mod_copyright p">
+        <div class="grid-top">
+            <tpshop sql="select * from `__PREFIX__article` where cat_id = 5 and is_open=1" key="k" item='v'>
+                <a href="{:U('Home/Article/detail',array('article_id'=>$v[article_id]))}">{$v[title]}</a>
+                <span>|</span>
+            </tpshop>
+            <a href="javascript:void (0);">客服热线:{$tpshop_config['shop_info_phone']}</a>
+        </div>
+        <p>Copyright © 2016-2025 {$tpshop_config['shop_info_store_name']|default='TPshop商城'} 版权所有 保留一切权利 备案号:{$tpshop_config['shop_info_record_no']}</p>
+
+        <p class="mod_copyright_auth">
+            <a class="mod_copyright_auth_ico mod_copyright_auth_ico_1" href="" target="_blank">经营性网站备案中心</a>
+            <a class="mod_copyright_auth_ico mod_copyright_auth_ico_2" href="" target="_blank">可信网站信用评估</a>
+            <a class="mod_copyright_auth_ico mod_copyright_auth_ico_3" href="" target="_blank">网络警察提醒你</a>
+            <a class="mod_copyright_auth_ico mod_copyright_auth_ico_4" href="" target="_blank">诚信网站</a>
+            <a class="mod_copyright_auth_ico mod_copyright_auth_ico_5" href="" target="_blank">中国互联网举报中心</a>
+            <a class="mod_copyright_auth_ico mod_copyright_auth_ico_6" href="" target="_blank">网络举报APP下载</a>
+        </p>
+    </div>
+</div>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>物流打印</title>
+</head>
+<body style="background: none;margin:0;font: 12px/18px Tahoma,Helvetica,"\5b8b\4f53",san-serif;">
+<style media="print" type="text/css">
+.bar{display:none}
+.content {
+	margin: 0px;
+	border: none;
+	margin-left: 0px;
+	margin-top: 0px;
+	background: none;
+}
+</style>
+<style type="text/css">
+div pre{
+    display: block;
+	margin: 0;
+    padding: 0;
+}
+.bar {
+	height: 40px;
+	padding-left: 60px;
+	line-height: 40px;
+	border-bottom: 1px solid #d2d2d2;
+	margin-bottom: 6px;
+	margin-top:0;
+	background-color: #f1f1f1;
+}
+
+.content {
+	margin: 4px;
+	position: relative;
+	overflow: hidden;
+	box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+	-moz-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+	-webkit-box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.1);
+	border: 1px solid #d2d2d2;
+	width: {$config.width}px;
+	height: {$config.height}px;
+	background: url({$config.background}) 0px 0px no-repeat;
+}
+
+.content .item {
+	line-height: 20px;
+	float: left;
+	position: absolute;
+	overflow: hidden;
+	word-wrap: break-word;
+	color: #000000;
+	font-size: 12pt;
+}
+
+.container pre {
+	float: left;
+}
+
+.content .item .resize {
+	display: none;
+}
+.focus_button {
+    border-radius: 2px;
+	background: #8594A4;
+    color: #FFF;
+    border: 1px solid #658293;
+    font-size: 12px;
+    height: 29px;
+    line-height: 27px;
+    padding: 0 8px;
+    text-align: center;
+    cursor: pointer;
+    display: inline-block;
+}
+</style>
+<div class="bar form2">
+		<input class="focus_button noprint" type="submit" onclick="window.print();" value=" 打 印 " />
+</div>
+<div class="content">
+	{$shipping.config_value|htmlspecialchars_decode}           
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

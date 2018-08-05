@@ -1,0 +1,431 @@
+<include file="public/min-header" />
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+		<section class="content">
+		  <div class="row">
+		  	<div class="col-md-12">
+		  		<div class="box box-info">
+		  			<div class="box-header with-border">
+		  				<div class="row">
+		  					<div class="col-md-10">
+		  						<form action="" method="post">
+				  					<div class="col-xs-5">         
+					                    <div class="input-group margin">
+					                      <div class="input-group-addon">
+					                       		选择时间  <i class="fa fa-calendar"></i>
+					                      </div>
+					                      <input type="text" class="form-control pull-right" name="timegap" value="{$timegap}" id="start_time">
+					                    </div>
+				  					</div>		  					
+		                   		 	<div class="col-xs-1"><input class="btn btn-block btn-info margin" type="submit" value="确定"></div>
+	                   		 	</form>
+                   		 	</div>
+		  				</div>
+		  			</div>
+		  			<div class="box-body">
+		  				<div class="row">
+				  			<div class="col-sm-3 col-xs-6">
+				  				今日销售总额：￥<empty name="today.today_amount">0<else/>{$today.today_amount}</empty>
+				  			</div>
+				  				<div class="col-sm-3 col-xs-6">
+				  				人均客单价：￥{$today.sign}
+				  			</div>
+				  				<div class="col-sm-3 col-xs-6">
+				  				今日订单数：{$today.today_order}
+				  			</div>
+				  				<div class="col-sm-3 col-xs-6">
+				  				今日取消订单：{$today.cancel_order}
+				  			</div>
+			  			</div>
+		  			</div>
+		  		</div>
+		  	</div>
+		  </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="box box-primary">
+                <div class="box-header with-border">
+                  <h3 class="box-title">销售额走势</h3>
+                  <div class="box-tools"></div>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    	<div id="statistics" style="height: 400px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-12">
+            <div class="panel panel-default">
+            	<div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 销售表格概览</h3>
+                </div>
+                <div class="panel-body">
+	            	<table id="list-table" class="table table-bordered table-striped">
+			               <thead>
+			                   <tr>
+			                   	   <th>时间</th>
+				                   <th>订单数</th>
+				                   <th>销售总额</th>			                   
+				                   <th>客单价</th>
+			                  	   <th>查看</th>
+			                   </tr>
+			                </thead>
+							<tbody>
+	                         <foreach name="list" item="vo" key="k" >
+	                          <tr role="row" align="center">
+	                          	 <td>{$vo.day}</td>
+	                          	 <td>{$vo.order_num}</td>
+	                             <td>{$vo.sign}</td>
+			                     <td>{$vo.amount}</td>
+			                     <td><a href="{:U('Report/saleList',array('begin'=>$vo['day'],'end'=>$vo['end']))}">订单列表</a></td>
+			                   </tr>
+			                  </foreach>
+			                </tbody>
+			        </table>
+		        </div>
+		      </div>
+            </div>
+            <!--  
+            <div class="col-md-6">        
+              <div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">地区数据</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart"> 
+                  	<div id="area" style="height:400px;"></div>  
+                  </div>
+                </div>
+              </div>
+             </div>
+             <div class="col-md-6">
+              <div class="box box-success">
+                <div class="box-header with-border">
+                  <h3 class="box-title">用户访问终端</h3>
+                  <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                    <button class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i></button>
+                  </div>
+                </div>
+                <div class="box-body">
+                  <div class="chart">
+                    <div id="pie" style="height:400px;"></div>  
+                  </div>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </section>
+</div>
+<script src="__PUBLIC__/js/echart/echarts.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/echart/macarons.js"></script>
+<script src="__PUBLIC__/js/echart/china.js"></script>
+<script src="__PUBLIC__/dist/js/app.js" type="text/javascript"></script>
+<script type="text/javascript">
+var res = {$result};
+var myChart = echarts.init(document.getElementById('statistics'),'macarons');
+option = {
+	    tooltip : {
+	        trigger: 'axis'
+	    },
+	    toolbox: {
+	        show : true,
+	        feature : {
+	            mark : {show: true},
+	            dataView : {show: true, readOnly: false},
+	            magicType: {show: true, type: ['line', 'bar']},
+	            restore : {show: true},
+	            saveAsImage : {show: true}
+	        }
+	    },
+	    calculable : true,
+	    legend: {
+	        data:['交易金额','订单数','客单价']
+	    },
+	    xAxis : [
+	        {
+	            type : 'category',
+	            data : res.time
+	        }
+	    ],
+	    yAxis : [
+	        {
+	            type : 'value',
+	            name : '金额',
+	            axisLabel : {
+	                formatter: '{value} ￥'
+	            }
+	        },
+	        {
+	            type : 'value',
+	            name : '客单价',
+	            axisLabel : {
+	                formatter: '{value} ￥'
+	            }
+	        }
+	    ],
+	    series : [
+	        {
+	            name:'交易金额',
+	            type:'bar',
+	            data:res.amount
+	        },
+	        {
+	            name:'订单数',
+	            type:'bar',
+	            data:res.order
+	        },
+	        {
+	            name:'客单价',
+	            type:'line',
+	            yAxisIndex: 1,
+	            data:res.sign
+	        }
+	    ]
+	};
+	myChart.setOption(option);
+	/*
+	var areachart = echarts.init(document.getElementById('area'),'macarons');
+	areachart.setOption({
+			    title : {
+			        text: '订单分布',
+			        subtext: '纯属虚构',
+			        left: 'center'
+			    },
+			    tooltip : {
+			        trigger: 'item'
+			    },
+			    legend: {
+			        orient: 'vertical',
+			        left: 'left',
+			        data:['订单数','消费金额','访问人数']
+			    },
+			    visualMap: {
+			        min: 0,
+			        max: 2500,
+			        left: 'left',
+			        top: 'bottom',
+			        text:['高','低'],           // 文本，默认为数值文本
+			        calculable : true
+			    },
+			    toolbox: {
+			        show: true,
+			        orient : 'vertical',
+			        left: 'right',
+			        top: 'center',
+			        feature : {
+			            mark : {show: true},
+			            dataView : {show: true, readOnly: false},
+			            restore : {show: true},
+			            saveAsImage : {show: true}
+			        }
+			    },
+			    series : [
+			        {
+			            name: '订单数',
+			            type: 'map',
+			            mapType: 'china',
+			            roam: false,
+			            itemStyle:{
+			                normal:{label:{show:true}},
+			                emphasis:{label:{show:true}}
+			            },
+			            data:[
+			                {name: '北京',value: Math.round(Math.random()*1000)},
+			                {name: '天津',value: Math.round(Math.random()*1000)},
+			                {name: '上海',value: Math.round(Math.random()*1000)},
+			                {name: '重庆',value: Math.round(Math.random()*1000)},
+			                {name: '河北',value: Math.round(Math.random()*1000)},
+			                {name: '河南',value: Math.round(Math.random()*1000)},
+			                {name: '云南',value: Math.round(Math.random()*1000)},
+			                {name: '辽宁',value: Math.round(Math.random()*1000)},
+			                {name: '黑龙江',value: Math.round(Math.random()*1000)},
+			                {name: '湖南',value: Math.round(Math.random()*1000)},
+			                {name: '安徽',value: Math.round(Math.random()*1000)},
+			                {name: '山东',value: Math.round(Math.random()*1000)},
+			                {name: '新疆',value: Math.round(Math.random()*1000)},
+			                {name: '江苏',value: Math.round(Math.random()*1000)},
+			                {name: '浙江',value: Math.round(Math.random()*1000)},
+			                {name: '江西',value: Math.round(Math.random()*1000)},
+			                {name: '湖北',value: Math.round(Math.random()*1000)},
+			                {name: '广西',value: Math.round(Math.random()*1000)},
+			                {name: '甘肃',value: Math.round(Math.random()*1000)},
+			                {name: '山西',value: Math.round(Math.random()*1000)},
+			                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+			                {name: '陕西',value: Math.round(Math.random()*1000)},
+			                {name: '吉林',value: Math.round(Math.random()*1000)},
+			                {name: '福建',value: Math.round(Math.random()*1000)},
+			                {name: '贵州',value: Math.round(Math.random()*1000)},
+			                {name: '广东',value: Math.round(Math.random()*1000)},
+			                {name: '青海',value: Math.round(Math.random()*1000)},
+			                {name: '西藏',value: Math.round(Math.random()*1000)},
+			                {name: '四川',value: Math.round(Math.random()*1000)},
+			                {name: '宁夏',value: Math.round(Math.random()*1000)},
+			                {name: '海南',value: Math.round(Math.random()*1000)},
+			                {name: '台湾',value: Math.round(Math.random()*1000)},
+			                {name: '香港',value: Math.round(Math.random()*1000)},
+			                {name: '澳门',value: Math.round(Math.random()*1000)}
+			            ]
+			        },
+			        {
+			            name: '消费金额',
+			            type: 'map',
+			            mapType: 'china',
+			            itemStyle:{
+			                normal:{label:{show:true}},
+			                emphasis:{label:{show:true}}
+			            },
+			            data:[
+			                {name: '北京',value: Math.round(Math.random()*1000)},
+			                {name: '天津',value: Math.round(Math.random()*1000)},
+			                {name: '上海',value: Math.round(Math.random()*1000)},
+			                {name: '重庆',value: Math.round(Math.random()*1000)},
+			                {name: '河北',value: Math.round(Math.random()*1000)},
+			                {name: '安徽',value: Math.round(Math.random()*1000)},
+			                {name: '新疆',value: Math.round(Math.random()*1000)},
+			                {name: '浙江',value: Math.round(Math.random()*1000)},
+			                {name: '江西',value: Math.round(Math.random()*1000)},
+			                {name: '山西',value: Math.round(Math.random()*1000)},
+			                {name: '内蒙古',value: Math.round(Math.random()*1000)},
+			                {name: '吉林',value: Math.round(Math.random()*1000)},
+			                {name: '福建',value: Math.round(Math.random()*1000)},
+			                {name: '广东',value: Math.round(Math.random()*1000)},
+			                {name: '西藏',value: Math.round(Math.random()*1000)},
+			                {name: '四川',value: Math.round(Math.random()*1000)},
+			                {name: '宁夏',value: Math.round(Math.random()*1000)},
+			                {name: '香港',value: Math.round(Math.random()*1000)},
+			                {name: '澳门',value: Math.round(Math.random()*1000)}
+			            ]
+			        },
+			        {
+			            name: '访问人数',
+			            type: 'map',
+			            mapType: 'china',
+			            itemStyle:{
+			                normal:{label:{show:true}},
+			                emphasis:{label:{show:true}}
+			            },
+			            data:[
+			                {name: '北京',value: Math.round(Math.random()*1000)},
+			                {name: '天津',value: Math.round(Math.random()*1000)},
+			                {name: '上海',value: Math.round(Math.random()*1000)},
+			                {name: '广东',value: Math.round(Math.random()*1000)},
+			                {name: '台湾',value: Math.round(Math.random()*1000)},
+			                {name: '香港',value: Math.round(Math.random()*1000)},
+			                {name: '澳门',value: Math.round(Math.random()*1000)}
+			            ]
+			        }
+			    ]
+			});
+	var piechart = echarts.init(document.getElementById('pie'),'macarons');
+	
+	piechart.setOption({
+		    title : {
+		        text: '网站用户访问来源',
+		        subtext: '纯属虚构',
+		        x:'center'
+		    },
+		    tooltip : {
+		        trigger: 'item',
+		        formatter: "{a} <br/>{b} : {c} ({d}%)"
+		    },
+		    legend: {
+		        orient: 'vertical',
+		        left: 'left',
+		        data: ['PC','APP','WAP','微信','其他']
+		    },
+		    series : [
+		        {
+		            name: '访问来源',
+		            type: 'pie',
+		            radius : '55%',
+		            center: ['50%', '60%'],
+		            data:[
+		                {value:335, name:'PC'},
+		                {value:310, name:'APP'},
+		                {value:234, name:'WAP'},
+		                {value:135, name:'微信'},
+		                {value:1548, name:'其他'}
+		            ],
+		            itemStyle: {
+		                emphasis: {
+		                    shadowBlur: 10,
+		                    shadowOffsetX: 0,
+		                    shadowColor: 'rgba(0, 0, 0, 0.5)'
+		                }
+		            }
+		        }
+		    ]
+		});
+	*/
+	$(document).ready(function() {
+		$('#start_time').daterangepicker({
+			format:"YYYY-MM-DD",
+			singleDatePicker: false,
+			showDropdowns: true,
+			minDate:'2016-01-01',
+			maxDate:'2030-01-01',
+			startDate:'2016-01-01',
+	        showWeekNumbers: true,
+	        timePicker: false,
+	        timePickerIncrement: 1,
+	        timePicker12Hour: true,
+	        ranges: {
+	           '今天': [moment(), moment()],
+	           '昨天': [moment().subtract('days', 1), moment().subtract('days', 1)],
+	           '最近7天': [moment().subtract('days', 6), moment()],
+	           '最近30天': [moment().subtract('days', 29), moment()],
+	           '上一个月': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+	        },
+	        opens: 'right',
+	        buttonClasses: ['btn btn-default'],
+	        applyClass: 'btn-small btn-primary',
+	        cancelClass: 'btn-small',
+		    locale : {
+	            applyLabel : '确定',
+	            cancelLabel : '取消',
+	            fromLabel : '起始时间',
+	            toLabel : '结束时间',
+	            customRangeLabel : '自定义',
+	            daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+	            monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+	            firstDay : 1
+	        }
+		});
+		
+		/*
+		$('#end_time').daterangepicker({
+			format:"YYYY-MM-DD",
+			singleDatePicker: true,
+			showDropdowns: true,
+			minDate:'2016-01-01',
+			maxDate:'2030-01-01',
+			startDate:'2016-01-01',
+		    locale : {
+	            applyLabel : '确定',
+	            cancelLabel : '取消',
+	            fromLabel : '起始时间',
+	            toLabel : '结束时间',
+	            customRangeLabel : '自定义',
+	            daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+	            monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+	            firstDay : 1
+	        }
+		});
+		*/
+	});
+</script>
+</body>
+</html>

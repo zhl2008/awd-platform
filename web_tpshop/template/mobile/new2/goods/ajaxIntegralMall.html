@@ -1,0 +1,23 @@
+<foreach name="goods_list" item="good">
+    <div class="sc_list se_sclist paycloseto">
+        <div class="maleri30">
+            <div class="shopimg fl">
+                <img src="{$good[original_img]}">
+            </div>
+            <div class="deleshow fr">
+                <a href="{:U('Mobile/Goods/goodsInfo', array('id'=>$good[goods_id]))}">
+                    <div class="deletes">
+                        <span class="similar-product-text">{$good[goods_name]}</span>
+                    </div>
+                    <div class="prices">
+                        <p class="sc_pri"><span>{:round($good[shop_price]-$good[exchange_integral]/$point_rate,2)}</span><span class="cobl">+{$good[exchange_integral]}积分</span></p>
+                    </div>
+                </a>
+                <div class="qxatten">
+                    <p class="weight"><span>市场价</span>&nbsp;<span>￥{$good[market_price]}</span></p>
+                    <a class="closeannten" href="{:U('Mobile/Goods/goodsInfo',array('id'=>$good['goods_id']))}" >立即兑换</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</foreach>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>安全设置</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header" />
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>安全设置</span>
+			    </div>
+			    <div class="home-main">
+                    <include file="user/menu" />
+			    	<div class="ri-menu fr">
+			    		<div class="menumain">
+			    			<div class="goodpiece">
+								<h1>安全设置</h1>
+								<!--<a href=""><span class="co_blue">帮助</span></a>-->
+							</div>
+				    		<div class="menu-ri-t setsafe p">
+				    			<div class="mu-head fl">
+				    				<img src="__STATIC__/images/pers.png"/>
+				    			</div>
+				    			<div class="mu-midd fl">
+				    				<a class="mu-m-phone" href="">{$user['nickname']}</a>
+	<a class="dmht <if condition="($user['mobile_validated'] eq 0) or ($user['email_validated'] eq 0)">dark</if>" >低</a>
+	<a class="dmht <if condition="($user['mobile_validated'] eq 1) and ($user['email_validated'] eq 1) and ($user[paypwd] eq null)">dark</if>" >中</a>
+   <a class="dmht <if condition="($user['mobile_validated'] eq 1) and ($user['email_validated'] eq 1) and ($user[paypwd] neq null)">dark</if>" >高</a>
+				    				<p class="advice">建议你启动全部安全设置，以保障账户及资金安全</p>
+				    			</div>
+				    		</div>
+				    		<div class="safe_list_set">
+				    			<ul>
+				    				<li class="sx2"><span>登录密码</span></li>
+				    				<li class="sx1"><span>互联网账号存在被盗风险，建议您定期更改密码以及保护账户安全。</span></li>
+				    				<li class="sx3"><a class="co_blue" href="{:U('Home/User/password')}">修改</a></li>
+				    			</ul>
+				    			<ul>
+				    				<li class="sx2"><span>支付密码</span></li>
+				    				<li class="sx1"><span>申请提现或余额支付时，均须支付密码进行身份验证。</span></li>
+				    				<li class="sx3"><a class="co_blue" href="{:U('Home/User/paypwd')}"><empty name="user[paypwd]">设置<else/>修改</empty></a></li>
+				    			</ul>
+				    			<ul>
+				    				<li class="sx2"><span>手机验证</span></li>
+				    				<li class="sx1"><span><if condition="$user['mobile_validated'] eq 0">您没有绑定手机。互联网账号存在被盗风险，建议您立即绑定一保护账户安全。<else/>您验证的手机：<em>{$user['mobile']}</em>若已丢失或停用，请立即更换，避免账户被盗。</if></span></li>
+				    				<li class="sx3"><a class="co_blue <if condition='$user[email_validated] eq 1'>lock</if>" href="{:U('Home/User/mobile_validate',array('type'=>'mobile','step'=>1))}"><if condition="$user['mobile_validated'] eq 0">未验证(点击验证)<else/>已验证(点击修改)</if></a></li>
+				    			</ul>
+				    			<ul>
+				    				<li class="sx2"><span>邮箱验证</span></li>
+				    				<li class="sx1"><span><if condition="$user['email_validated'] eq 0">您没有绑定邮箱。互联网账号存在被盗风险，建议您立即绑定一保护账户安全。<else/>您验证的邮箱：<em>{$user['email']}</em>若已丢失或停用，请立即更换，避免账户被盗。</if></span><br /></li>
+				    				<li class="sx3"><a class="co_blue <if condition='$user[mobile_validated] eq 1'>lock</if>" href="{:U('Home/User/email_validate',array('type'=>'email','step'=>1))}"><if condition="$user['email_validated'] eq 0">未验证(点击验证)<else/>已验证(点击修改)</if></a></li>
+				    			</ul>
+				    		</div>
+			    		</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+		<!--footer-e-->
+	</body>
+</html>

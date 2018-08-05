@@ -1,0 +1,1023 @@
+/*用户中心入口*/
+/*------------------------------图标go-----------------------------------*/
+/*主图标 参数@a:宽 @b:高度 @c:背景图位移*/
+.icon-logo {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 295px;
+  height: 58px;
+  background: url(../images/feiniu-index-icon.png) no-repeat 0 0;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+  width: 326px;
+  height: 60px;
+}
+.icon-logo-2 {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 143px;
+  height: 56px;
+  background: url('../images/feiniu-index-icon.png') no-repeat 0 -59px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-tel {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 32px;
+  height: 32px;
+  background: url('../images/feiniu-index-icon.png') no-repeat -180px -195px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-warn {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: url('../images/feiniu-index-icon.png') no-repeat -35px -117px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-win {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: url('../images/feiniu-index-icon.png') no-repeat -35px -134px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-loss {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 17px;
+  height: 17px;
+  background: url('../images/feiniu-index-icon.png') no-repeat -35px -151px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-x {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 13px;
+  height: 13px;
+  background: url('../images/feiniu-index-icon.png') no-repeat -52px -117px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-g {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 13px;
+  height: 13px;
+  background: url('../images/feiniu-index-icon.png') no-repeat -52px -130px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-big-success {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 48px;
+  height: 39px;
+  background: url('../images/feiniu-draw-icon.png') no-repeat 0 0;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+  margin-right: -7px;
+}
+.icon-big-error {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 34px;
+  height: 34px;
+  background: url('../images/feiniu-draw-icon.png') no-repeat 0 -45px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+  margin-right: -7px;
+}
+.icon-big-warn {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 39px;
+  height: 39px;
+  background: url('../images/feiniu-draw-icon.png') no-repeat 0 -85px;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+  margin-right: -7px;
+}
+.icon-draw-success {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 48px;
+  height: 39px;
+  background: url('../images/feiniu-draw-icon.png') no-repeat 0 0;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-draw-alert {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 49px;
+  height: 42px;
+  background: url('../images/feiniu-draw-icon.png') no-repeat -51px 0;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+.icon-draw-correct {
+  margin: -3px 5px 0;
+  *margin-top: 0;
+  font-style: normal;
+  content: "";
+  width: 49px;
+  height: 42px;
+  background: url('../images/feiniu-draw-icon.png') no-repeat -101px 0;
+  display: inline-block;
+  *display: inline;
+  vertical-align: middle;
+  overflow: hidden;
+  position: relative;
+  zoom: 1;
+}
+/*------------------------------图标end-------------------------------*/
+.off {
+    display: none;
+}
+.a2176dd a {
+  color: #2176dd;
+}
+.a2176dd a:hover {
+  color: #f22e00;
+  cursor: pointer;
+  text-decoration: none;
+}
+.a0043d9 a {
+  color: #0043d9;
+}
+.a0043d9 a:hover {
+  color: #f22e00;
+  cursor: pointer;
+  text-decoration: none;
+}
+.a0066cc a {
+  color: #0066cc;
+}
+.a0066cc a:hover {
+  color: #f22e00;
+  cursor: pointer;
+  text-decoration: none;
+}
+.a0042db a {
+  color: #0042db;
+}
+.a0042db a:hover {
+  color: #f22e00;
+  cursor: pointer;
+  text-decoration: none;
+}
+.v-tips,
+.v-tips-1,
+.v-tips-2,
+.v-tips-3,
+.v-tips-4,
+.v-tips-5 {
+  display: none;
+  position: absolute;
+  width: 500px;
+  left: 100%;
+  top: 0;
+}
+.left {
+    float: left;
+}
+.block-01 {
+  padding: 25px 16px;
+  background: #fffef2;
+  border: 1px dashed #ddd;
+}
+.block-01 b {
+  font-size: 14px;
+  color: #3c3c3c;
+}
+.block-01 .s-01,
+.block-01 .s-02,
+.block-01 .s-03 {
+  background: #ddd;
+  padding: 0 22px 1px;
+  margin-right: 1px;
+  color: #fff;
+}
+.block-01 .s-01 {
+  margin-left: 40px;
+}
+.block-01 .on {
+  background: #ff9b01;
+}
+.block-01 .s-04 {
+  margin-left: 44px;
+  color: #4d8b10;
+}
+.block-02 .adc {
+  position: relative;
+  width: 872px;
+  padding: 15px 32px;
+  margin: 40px auto 0;
+  border-bottom: 1px dashed #ddd;
+}
+.block-02 .adc i[class*=icon] {
+  margin-right: 8px;
+}
+.block-02 .adc i[class*=icon]:before {
+  margin-top: -9px;
+}
+.block-02 .adc .s-01 {
+  display: inline-block;
+  padding-right: 24px;
+  font: bold 20px/40px "microsoft yahei";
+  border-right: 1px solid #ddd;
+}
+.block-02 .adc .s-02 {
+  margin-left: 30px;
+  color: #6c6c6c;
+}
+.block-02 .adc .d-01,
+.block-02 .adc .d-02 {
+  position: absolute;
+  right: 0;
+  top: 25px;
+  width: 160px;
+  text-align: center;
+}
+.block-02 .adc .d-01 a,
+.block-02 .adc .d-02 a {
+  margin-right: 10px;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+.block-02 .adc .d-02 a {
+  padding: 4px 9px 3px 10px;
+  margin-right: 10px;
+  color: #000;
+  font-size: 14px;
+  font-weight: bold;
+  background: #fff3ca;
+  border: 1px solid #df9c4c;
+  border-radius: 2px;
+}
+.block-02 .adc .d-02 a:hover {
+  background: #ffe5ad;
+  color: #000;
+}
+
+/* 邮箱验证 */
+.pub-step {
+  width: 100%;
+  margin: 0 auto 45px;
+  /*    /.steps-con     */
+}
+.pub-step .steps-nav {
+  margin-left: 8px;
+  margin-bottom: 8px;
+  height: 33px;
+}
+.pub-step .steps-nav > p {
+  position: relative;
+  float: left;
+  width: 319.66666667px;
+  height: 33px;
+  line-height: 33px;
+  margin-right: 8px;
+  margin-left: -8px;
+  text-indent: 9px;
+  color: #6c6c6c;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background: #eee;
+}
+.pub-step .steps-nav > p i {
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  right: -17px;
+  width: 27px;
+  height: 33px;
+  background: url('../images/pw-step.png') no-repeat;
+}
+.pub-step .steps-nav > p.go {
+  color: #ff8401;
+  background: #fff4d8;
+}
+.pub-step .steps-nav > p.go i {
+  background-position: 0 -33px;
+}
+.pub-step .steps-nav.w4 p {
+  width: 227px;
+}
+.pub-step .steps-nav.w4 .step-nav-1 {
+  z-index: 1000;
+}
+.pub-step .steps-nav.w4 .step-nav-2 {
+  z-index: 100;
+}
+.pub-step .steps-nav.w4 .step-nav-3 {
+  z-index: 10;
+  text-indent: 11px;
+}
+.pub-step .steps-nav.w4 .step-nav-4 {
+  z-index: 1;
+  padding-right: 8px;
+  margin-right: 0;
+  text-indent: 14px;
+}
+.pub-step .steps-nav .step-nav-1 {
+  z-index: 1000;
+}
+.pub-step .steps-nav .step-nav-2 {
+  z-index: 100;
+}
+.pub-step .steps-nav .step-nav-3 {
+  z-index: 10;
+  padding-right: 10px;
+  margin-right: 0;
+}
+.pub-step .steps-nav .step-nav-4 {
+  z-index: 1;
+}
+.pub-step .steps-con {
+  border: 1px solid #ddd;
+  height: 274px ;
+  position: relative;
+  /*  /.step-col   */
+}
+.pub-step .block-01 {
+  background: #fff;
+  padding: 0;
+}
+.pub-step .steps-con .step-col {
+  color: #6c6c6c;
+  margin: 43px 0 0 111px;
+}
+.pub-step .steps-con .step-col ul {
+  float: left;
+}
+.pub-step .steps-con .step-col ul li {
+  position: relative;
+  padding-left: 94px;
+  height: 32px;
+  margin-bottom: 16px;
+  line-height: 32px;
+  display: table;
+}
+.pub-step .steps-con .step-col .title {
+  position: absolute;
+  left: 0;
+  text-align: right;
+  width: 88px;
+}
+.pub-step .steps-con .step-col .con .c-01 {
+  color: #3c3c3c;
+}
+.pub-step .steps-con .step-col .con .get-msg-code {
+  height: 26px;
+  width: 115px;
+  border: 1px solid #ddd;
+  line-height: 23px;
+  margin: 0 3px 0 13px;
+  border-radius: 1px;
+  background: none repeat scroll 0 0 #eee;
+  color: #000;
+}
+.pub-step .steps-con .step-col .con .get-msg-code:hover {
+  cursor: pointer;
+  background: #fff4d8;
+}
+.pub-step .steps-con .step-col .con .get-msg-code[disabled]:hover {
+  cursor: default;
+  background: #eee;
+}
+.pub-step .steps-con .step-col .con .it-01 {
+  width: 233px;
+}
+.pub-step .steps-con .step-col .con .msg-code {
+  width: 74px;
+  height: 14px;
+  /*margin: -4px 0 0 1px;*/
+  background: transparent;
+}
+.pub-step .steps-con .step-col .con img {
+  margin-left: 6px;
+  height: 32px;
+}
+.pub-step .steps-con .step-col .con i:before {
+  margin: -3px -1px 0 0px;
+}
+.btn_120 {
+  color: #fff;
+}
+.pub-step .steps-con .step-col .btn {
+  width: 100px;
+  padding: 5px 12px;
+  margin-top: 17px;
+  border-radius: 0px;
+}
+.step-col .btn:hover {
+  color: #fff;
+}
+.pub-step .steps-con .set-hint {
+  padding: 67px 0 0 3px;
+}
+.pub-step .steps-con .set-hint p {
+  margin-left: 61px;
+}
+.pub-step .steps-con .set-hint .check-email {
+  color: #3c3c3c;
+  font: 100 14px/14px "microsoft yahei";
+  margin-bottom: 25px;
+}
+.pub-step .steps-con .set-success {
+  margin: 0 0 0 325px;
+  position: relative;
+}
+.pub-step .steps-con .set-success i {
+  position: absolute;
+  left: -24px;
+  top: -18px;
+}
+.pub-step .steps-con .set-success .p-c1 {
+  color: #3c3c3c;
+  font: normal 18px/18px "microsoft yahei";
+  margin-bottom: 12px;
+}
+.pub-step .steps-con .set-success p {
+  margin: 8px 0 0 41px;
+  font-size: 12px;
+  text-align: left;
+}
+.pub-step .block-02 .step-col ul li {
+  margin-bottom: 32px;
+}
+.pub-step .block-02 .step-col ul li.li-02 {
+  margin-bottom: 16px;
+}
+.pub-step .block-02 .step-col ul li.li-02 span.a0066cc {
+  width: 48px;
+  margin-left: 6px;
+  line-height: 17px;
+}
+.pub-step .block-02 .step-col ul li .con .msg-code {
+  height: 18px;
+}
+.pub-step .block-03 .step-col {
+  margin: 123px 0 0 290px;
+}
+.pub-step .block-03 .set-success {
+  margin: 126px 0 0 48px;
+}
+
+/*----------------------------表单go----------------------------------*/
+.fn-form input[type="text"],
+.fn-form input[type="password"] {
+  line-height: 18px;
+  height: 18px;
+  width: 176px;
+  padding: 6px 12px 6px 12px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  background-image: none;
+  vertical-align: middle;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
+  -webkit-transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+  transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;
+}
+.fn-form input[type="text"]:focus,
+.fn-form input[type="password"]:focus {
+  border-color: #6c6c6c;
+  outline: 0;
+}
+.fn-form input[type="text"]:placeholder,
+.fn-form input[type="password"]:placeholder {
+  color: #ccc;
+}
+.fn-form input[type="text"]:-ms-input-placeholder,
+.fn-form input[type="password"]:-ms-input-placeholder {
+  color: #ccc;
+}
+.fn-form .error input[type="text"],
+.fn-form .error input[type="password"] {
+  border-color: #f22e00;
+}
+.fn-form .error input[type="text"]:focus,
+.fn-form .error input[type="password"]:focus {
+  border-color: #f22e00;
+}
+.fn-form input[type="checkbox"] {
+  float: left;
+  width: 14px;
+  height: 14px;
+  margin: 2px 3px 0 0px;
+  margin-top: 1px \9;
+  line-height: normal;
+  background-image: none;
+  background: transparent;
+  border: 1px solid #ccc;
+}
+.fn-form .form-control {
+  float: left;
+  display: block;
+  width: 100%;
+  /*margin: 7px 0;*/
+  font-size: 14px;
+  line-height: 1.428571429;
+  color: #555;
+}
+.fn-form .input-group {
+  position: relative;
+  display: table;
+  margin: 0 0 22px 0;
+}
+.fn-form .input-group .input-group-addon {
+  border-right: 1px solid #eeeeee;
+}
+.fn-form .input-group .input-group-addon i {
+  margin: 0;
+}
+.fn-form .form-group {
+  position: relative;
+  display: table;
+  margin: 0 0 22px 0;
+}
+.not-f input {
+  background-color: transparent;
+  background-image: none;
+  border-radius: 0px;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  -webkit-transition: none;
+  transition: none;
+}
+.not-f input:focus {
+  outline: 0;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+/*按钮*/
+.btn {
+  display: inline-block;
+  padding: 6px 12px;
+  margin-bottom: 9px;
+  font-size: 14px;
+  font-weight: normal;
+  font-family: "Microsoft YaHei";
+  line-height: 1.428571429;
+  text-align: center;
+  white-space: nowrap;
+  vertical-align: middle;
+  cursor: pointer;
+  background: #fbfbfb;
+  background-image: none;
+  border: 1px solid #ddd;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+.btn:hover {
+  background: #f0f0f0;
+}
+.btn-danger {
+  color: #fff;
+  background-color: #f22e00;
+  border: 0;
+}
+.btn-danger:hover {
+  background: #e61c37;
+}
+
+/* 找回密码*/
+.security_passwd .pub-step {
+  width: 970px;
+  margin: 0 auto 40px;
+  padding: 0;
+}
+.security_passwd .block-01, .security_payment_code .block-01{
+  background: none;
+  border: 0;
+  padding: 0;
+}
+.security_passwd .block-01 .s-01 {
+  margin-left: 0;
+  background: #fff;
+  color: #6c6c6c;
+  display: inline-block;
+  *display: inline;
+  zoom: 1;
+}
+.security_passwd .pub-step .steps-nav {
+  margin-left: 8px;
+  margin-bottom: 8px;
+}
+.security_passwd .pub-step .steps-nav > p {
+  position: relative;
+  float: left;
+  width: 320px;
+  height: 33px;
+  line-height: 33px;
+  margin-right: 8px;
+  margin-left: -8px;
+  text-indent: 9px;
+  color: #6c6c6c;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  background: #eee;
+}
+.security_passwd .pub-step .steps-nav > p i {
+  position: absolute;
+  z-index: 20;
+  top: 0;
+  right: -17px;
+  width: 27px;
+  height: 33px;
+  background: url('../images/pw-step.png') no-repeat;
+}
+.security_passwd .pub-step .steps-nav > p.go {
+  color: #ff8401;
+  background: #fff4d8;
+}
+.security_passwd .pub-step .steps-nav > p.go i {
+  background-position: 0 -33px;
+}
+.security_passwd .pub-step .steps-nav.w4 p {
+  width: 240px;
+}
+.security_passwd .pub-step .steps-nav.w4 .step-nav-3 {
+  z-index: 2;
+  text-indent: 11px;
+}
+.security_passwd .pub-step .steps-nav.w4 .step-nav-4 {
+  z-index: 1;
+  padding-right: 8px;
+  margin-right: 0;
+  text-indent: 14px;
+}
+.security_passwd .pub-step .steps-nav .step-nav-1 {
+  z-index: 4;
+}
+.security_passwd .pub-step .steps-nav .step-nav-2 {
+  z-index: 3;
+}
+.security_passwd .pub-step .steps-nav .step-nav-3 {
+  z-index: 2;
+  padding-right: 10px;
+  margin-right: 0;
+}
+.security_passwd .pub-step .steps-nav .step-nav-4 {
+  z-index: 1;
+}
+.security_passwd .steps-con {
+  /*.step-col 的宽度*/
+  border: 1px solid #ddd;
+  height: 337px;
+  position: relative;
+  /*step-col*/
+  /*step-col*/
+  /*.pub-ul*/
+  /*.pub-ul*/
+}
+.security_passwd .steps-con .step-col {
+  vertical-align: middle;
+  /*height: @s-h;
+      width: @s-w;*/
+  color: #6c6c6c;
+}
+.security_passwd .steps-con .step-col .set-success {
+  position: relative;
+}
+.security_passwd .steps-con .step-col .set-success i {
+  position: absolute;
+  left: -24px;
+  top: -18px;
+}
+.security_passwd .steps-con .step-col .set-success .p-c1 {
+  color: #3c3c3c;
+  font: normal 18px/18px "microsoft yahei";
+  margin-bottom: 12px;
+}
+.security_passwd .steps-con .step-col .set-success p {
+  margin: 8px 0 0 41px;
+  font-size: 12px;
+  text-align: left;
+}
+.security_passwd .steps-con .pub-ul {
+  display: inline-block;
+  *float: left;
+}
+.security_passwd .steps-con .pub-ul li {
+  position: relative;
+  padding-left: 95px;
+  height: 32px;
+  margin-bottom: 16px;
+  line-height: 32px;
+  display: table;
+}
+.security_passwd .steps-con .pub-ul li .title {
+  position: absolute;
+  left: 0;
+  text-align: right;
+  width: 88px;
+}
+.security_passwd .steps-con .pub-ul li .con .c-01 {
+  color: #3c3c3c;
+}
+.security_passwd .steps-con .pub-ul li .con .get-msg-code {
+  height: 26px;
+  width: 115px;
+  border: 1px solid #ddd;
+  line-height: 23px;
+  margin: 0 3px 0 13px;
+  border-radius: 1px;
+  background: none repeat scroll 0 0 #eee;
+  color: #000;
+}
+.security_passwd .steps-con .pub-ul li .con .get-msg-code:hover {
+  cursor: pointer;
+  background: #fff4d8;
+}
+.security_passwd .steps-con .pub-ul li .con .get-msg-code[disabled]:hover {
+  cursor: default;
+  background: #eee;
+}
+.security_passwd .steps-con .pub-ul li .con .it-01 {
+  width: 233px;
+}
+.security_passwd .steps-con .pub-ul li .con .msg-code {
+  width: 74px;
+  height: 14px;
+  /*margin: -4px 0 0 1px;*/
+  background: transparent;
+}
+.security_passwd .steps-con .pub-ul li .con img {
+  margin-left: 6px;
+  height: 32px;
+}
+.security_passwd .steps-con .pub-ul li .con i:before {
+  margin: -3px -1px 0 0px;
+}
+.security_passwd .steps-con .pub-ul li .btn {
+  width: 100px;
+  padding: 5px 12px;
+  margin-top: 17px;
+  border-radius: 0px;
+}
+.security_passwd .block-00 .step-col {
+  display: block;
+  margin: 42px 0 0 213px;
+}
+.security_passwd .block-00 .pub-ul {
+  display: inline-block;
+}
+.security_passwd .block-00 .pub-ul li {
+  margin-bottom: 32px;
+}
+.security_passwd .block-00 .pub-ul li.li-02 {
+  margin-bottom: 53px;
+}
+.security_passwd .block-00 .pub-ul li.li-02 span.a0066cc {
+  width: 48px;
+  margin-left: 6px;
+  line-height: 17px;
+}
+/*.security_passwd .block-00 .pub-ul li.li-02 span[class*=v-tips] {*/
+  /*top: 35px;*/
+  /*left: 88px;*/
+/*}*/
+.security_passwd .block-00 .pub-ul li .con .msg-code {
+  height: 18px;
+  padding: 6px 12px 6px 12px;
+}
+.security_passwd .block-00 .pub-ul li .con img {
+  margin-left: 6px;
+  height: 32px;
+}
+.security_passwd .block-00 .pub-ul li .btn {
+  margin: 0;
+}
+.security_passwd .block-01 .step-col {
+  display: block;
+  margin: 44px 0 0 201px;
+}
+.security_passwd .block-01 .get-msg-code {
+  height: 28px;
+  width: 113px;
+  border: 1px solid #ddd;
+  padding: 0 0 2px 0;
+  margin: 0 3px 0 0px;
+  background: none repeat scroll 0 0 #eee;
+  color: #000;
+}
+.security_passwd .block-01 .get-msg-code:hover {
+  cursor: pointer;
+  background: #fff4d8;
+}
+.security_passwd .block-01 .get-msg-code[disabled]:hover {
+  cursor: default;
+  background: #eee;
+}
+.security_passwd .block-01 .way-ul-1 {
+  float: left;
+}
+.security_passwd .block-01 .way-ul-1 .way-u-1 {
+  display: block;
+}
+.security_passwd .block-01 .way-ul-1 .pub-ul .btn-danger {
+  width: 136px;
+  height: 30px;
+}
+.security_passwd .block-01 .way-ul-2 {
+  float: left;
+}
+.security_passwd .block-01 .way-ul-2 .way-u-2 {
+  display: block;
+}
+.security_passwd .block-01 .way-ul-2 .li-02 {
+  margin-bottom: 17px;
+}
+.security_passwd .block-01 .way-ul-2 .li-03 {
+  margin-bottom: 18px;
+}
+.security_passwd .block-01 .way-ul-2 .pub-ul .btn-danger {
+  width: 100px;
+  height: 30px;
+  margin-bottom: 0px;
+}
+.security_passwd .block-01 .way-ul-2 span[class*=v-tips] {
+  left: 207px;
+}
+.security_passwd .block-01 .off {
+  display: none;
+}
+.security_passwd .block-01 .title {
+  position: absolute;
+  text-align: right;
+  left: 0;
+  width: 100px;
+}
+.security_passwd .block-01 .pub-ul {
+  display: none;
+}
+.security_passwd .block-01 .pub-ul li {
+  padding-left: 107px;
+  margin-bottom: 13px;
+}
+.security_passwd .block-01 .pub-ul li .title {
+  width: 100px;
+}
+.security_passwd .block-01 #way-se {
+  position: relative;
+  line-height: 30px;
+  padding-left: 107px;
+  margin-bottom: 15px;
+}
+.security_passwd .block-01 #way-se select {
+  width: 260px;
+  height: 32px;
+  padding: 5px 5px 5px 10px;
+  border: 1px solid #ddd;
+}
+.security_passwd .block-01 .step-col .set-success {
+  margin: 159px 0 0 68px;
+}
+.security_passwd .block-01 .step-col .set-success i {
+  left: -18px;
+  top: -10px;
+}
+.security_passwd .block-02 {
+  /*  /.pub-ul   */
+}
+.security_passwd .block-02 .step-col {
+  display: block;
+  margin: 44px 0 0 213px;
+}
+.security_passwd .block-02 .pub-ul li {
+  position: relative;
+  height: 32px;
+  line-height: 32px;
+  padding-left: 95px;
+  margin-bottom: 29px;
+}
+.security_passwd .block-02 .pub-ul li.li-02 {
+  margin-bottom: 24px;
+}
+.security_passwd .block-02 .pub-ul li .con input {
+  width: 218px;
+  padding: 6px 12px;
+  margin-top: -3px;
+  border-radius: 0px;
+}
+.security_passwd .block-02 .pub-ul li .btn-danger {
+  width: 160px;
+  height: 34px;
+}
+.security_passwd .block-03 .step-col {
+  margin: 135px 0 0 30px;
+}
+.security_passwd .block-03 .set-success {
+  margin: 0 0 0 325px;
+}
+/* 修改密码 */
+.security_passwd .block-01 .pub-ul li .title {
+    width: 100px;
+}
+.security_passwd .steps-con .step-col .title {
+    left: 0;
+    position: absolute;
+    text-align: right;
+    width: 100px;
+}
+.security_passwd .pub-step .steps-con .step-col li {
+  padding-left: 107px;
+}
+.security_passwd .steps-con .step-col li .s-01 {
+  padding: 0;
+}

@@ -1,0 +1,80 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <!-- Content Header (Page header) -->
+  <include file="public/breadcrumb"/>
+  
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-list"></i> 公众号列表
+              <a href="{:U('Admin/Wechat/add')}">
+              <button type="button" class="btn btn-info">
+                  <i class="ace-icon fa fa-plus bigger-110"></i>
+              </button>
+              </a>
+              <a href="javascript:;" class="btn pull-right btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/178/developer/phper.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>              
+              <a href="javascript:;" class="btn pull-right btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/283/developer/phper.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i>三级分销</a>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div id="ajax_return">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                          <td style="width: 1px;" class="text-center">
+                              <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);">
+                          </td>
+                          <td class="text-center">
+                              公众号
+                          </td>
+                          <td class="text-center">
+                              创建时间
+                          </td>
+
+                          <td class="text-center">操作</td>
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                      <volist name="lists" id="list">
+                          <tr>
+                              <td class="text-center">
+                                  <input type="checkbox" name="selected[]" value="{$list.id}">
+                              </td>
+                              <td class="text-center">{$list.wxname}</td>
+                              <td class="text-center">{$list.create_time|date='Y-m-d H:i:s',###}</td>
+                              <td class="text-center">
+                                  <a href="{:U('Admin/Wechat/setting',array('id'=>$list['id']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                  <a href="javascript:void(0);" data-href="{:U('Admin/Wechat/del',array('id'=>$list['id']))}" onclick="del('{$list[id]}',this)" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
+                              </td>
+                          </tr>
+                      </volist>
+
+                      </tbody>
+                  </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </section>
+  <!-- /.content --> 
+</div>
+<!-- /.content-wrapper --> 
+<script>
+        // 删除操作
+        function del(id,t)
+        {
+            if(!confirm('确定要删除吗?'))
+                return false;
+
+            location.href = $(t).data('href');
+        }
+</script> 
+</body>
+</html>

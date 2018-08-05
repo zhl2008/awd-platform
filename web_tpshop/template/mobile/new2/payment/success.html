@@ -1,0 +1,17 @@
+<include file="public/header" title="支付成功"/>
+<div class="completionpay">
+    <div class="maleri30">
+        <div class="llog"><img src="{$tpshop_config['shop_info_store_logo']}"/></div>
+        <div class="heses">
+            <div class="zbzim"><img src="__STATIC__/images/sbzf.png"/></div>
+            <p class="success"><span>订单支付成功，我们将在第一时间给你发货！</span></p>
+            <p class="ddnum"><span>订单号：</span><span>{$order['order_sn']}</span></p>
+            <p class="ddnum"><span>付款金额：</span><span class="red">{$order['order_amount']}</span><span>元</span></p>
+            <p class="ddnum"><span>请你保持手机畅通，等待收货。</span></p>
+            <div class="ddxq-succ"><a href="{:U('/Mobile/Order/order_detail',array('id'=>$order['order_id']))}">订单详情</a></div>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+

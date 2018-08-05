@@ -1,0 +1,522 @@
+
+<include file="public/layout" />
+<style>
+    * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .panel-title {
+        margin-top: 0;
+        margin-bottom: 0;
+        font-size: 16px;
+        color: inherit;
+        font-weight: 100;
+        font-size: 14px;
+    }
+    .direct-chat-msg:before, .direct-chat-msg:after {
+        content: " ";
+        display: table;
+    }
+    .fa {
+        display: inline-block;
+        font: normal normal normal 14px/1 FontAwesome;
+        font-size: inherit;
+        text-rendering: auto;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transform: translate(0, 0);
+    }
+    :after, :before {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+    }
+    .fa-list:before {
+        content: "\f03a";
+    }
+    .btn {
+        display: inline-block;
+        padding: 6px 12px;
+        margin-bottom: 0;
+        font-size: 14px;
+        font-weight: 400;
+        line-height: 1.42857143;
+        text-align: center;
+        white-space: nowrap;
+        vertical-align: middle;
+        -ms-touch-action: manipulation;
+        touch-action: manipulation;
+        cursor: pointer;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+        background-image: none;
+        border: 1px solid transparent;
+        border-radius: 4px;
+    }
+    .pull-right {
+        float: right!important;
+    }
+    .btn {
+        border-radius: 3px;
+        -webkit-box-shadow: none;
+        box-shadow: none;
+        border: 1px solid transparent;
+    }
+    .btn-default {
+        background-color: #f4f4f4;
+        color: #444;
+        border-color: #ddd;
+    }
+    .panel-title>a{
+        color: inherit;
+    }
+    .fa-mail-reply:before, .fa-reply:before {
+        content: "\f112";
+    }
+    .panel-body {
+        padding: 15px;
+        overflow: hidden;
+    }
+    .btn-group-vertical>.btn-group:after, .btn-group-vertical>.btn-group:before, .btn-toolbar:after, .btn-toolbar:before, .clearfix:after, .clearfix:before, .container-fluid:after, .container-fluid:before, .container:after, .container:before, .dl-horizontal dd:after, .dl-horizontal dd:before, .form-horizontal .form-group:after, .form-horizontal .form-group:before, .modal-footer:after, .modal-footer:before, .nav:after, .nav:before, .navbar-collapse:after, .navbar-collapse:before, .navbar-header:after, .navbar-header:before, .navbar:after, .navbar:before, .pager:after, .pager:before, .panel-body:after, .panel-body:before, .row:after, .row:before {
+        display: table;
+        content: " ";
+    }
+    .box-header:before, .box-body:before, .box-footer:before, .box-header:after, .box-body:after, .box-footer:after {
+        content: " ";
+        display: table;
+    }
+    .row {
+        margin-right: -15px;
+        margin-left: -15px;
+    }
+    @media (min-width: 992px)
+        .col-md-2 {
+            width: 16.66666667%;
+        }
+        @media (min-width: 992px)
+            .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+                float: left;
+            }
+            .col-lg-1, .col-lg-10, .col-lg-11, .col-lg-12, .col-lg-2, .col-lg-3, .col-lg-4, .col-lg-5, .col-lg-6, .col-lg-7, .col-lg-8, .col-lg-9, .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9, .col-sm-1, .col-sm-10, .col-sm-11, .col-sm-12, .col-sm-2, .col-sm-3, .col-sm-4, .col-sm-5, .col-sm-6, .col-sm-7, .col-sm-8, .col-sm-9, .col-xs-1, .col-xs-10, .col-xs-11, .col-xs-12, .col-xs-2, .col-xs-3, .col-xs-4, .col-xs-5, .col-xs-6, .col-xs-7, .col-xs-8, .col-xs-9 {
+                position: relative;
+                min-height: 1px;
+                padding-right: 15px;
+                padding-left: 15px;
+            }
+            @media (min-width: 992px)
+                .col-md-8 {
+                    width: 66.66666667%;
+                }
+                @media (min-width: 992px)
+                    .col-md-1, .col-md-10, .col-md-11, .col-md-12, .col-md-2, .col-md-3, .col-md-4, .col-md-5, .col-md-6, .col-md-7, .col-md-8, .col-md-9 {
+                        float: left;
+                    }
+                    .box {
+                        position: relative;
+                        border-radius: 3px;
+                        background: #ffffff;
+                        border-top: 3px solid #d2d6de;
+                        margin-bottom: 20px;
+                        width: 100%;
+                        box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+                    }
+                    .box-header {
+                        color: #444;
+                        display: block;
+                        padding: 10px;
+                        position: relative;
+                    }
+                    .box-header.with-border {
+                        border-bottom: 1px solid #f4f4f4;
+                    }
+                    .box-header .box-title {
+                        display: inline-block;
+                        font-size: 18px;
+                        margin: 0;
+                        line-height: 1;
+                        font-weight: 100;
+                        font-size: 14px;
+                    }
+                    .box-body {
+                        border-top-left-radius: 0;
+                        border-top-right-radius: 0;
+                        border-bottom-right-radius: 3px;
+                        border-bottom-left-radius: 3px;
+                        padding: 10px;
+                    }
+                    .direct-chat .box-body {
+                        border-bottom-right-radius: 0;
+                        border-bottom-left-radius: 0;
+                        position: relative;
+                        overflow-x: hidden;
+                    }
+                    .direct-chat-msg, .direct-chat-text {
+                        display: block;
+                    }
+                    .direct-chat-msg {
+                        margin-bottom: 10px;
+                    }
+                    .direct-chat-info {
+                        display: block;
+                        margin-bottom: 2px;
+                        font-size: 12px;
+                        overflow: hidden;
+                    }
+                    .direct-chat-name {
+                        font-weight: 600;
+                    }
+                    .pull-left {
+                        float: left;
+                    }
+                    .direct-chat-timestamp {
+                        color: #999;
+                    }
+                    .direct-chat-img {
+                        border-radius: 50%;
+                        float: left;
+                        width: 40px;
+                        height: 40px;
+                    }
+                    .direct-chat-text {
+                        border-radius: 5px;
+                        position: relative;
+                        padding: 5px 10px;
+                        background: #d2d6de;
+                        border: 1px solid #d2d6de;
+                        margin: 5px 0 0 50px;
+                        color: #444;
+                    }
+                    .container-fluid > .panel {
+                        margin-bottom: 20px;
+                        background-color: #fff;
+                        border: 1px solid transparent;
+                        border-radius: 4px;
+                        -webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+                        box-shadow: 0 1px 1px rgba(0,0,0,.05);
+                        border-color: #ddd;
+                    }
+
+                    .content {
+                        min-height: 250px;
+                        margin-right: auto;
+                        margin-left: auto;
+                        overflow: hidden;
+                        padding: 15px 0;
+                    }
+                    .container-fluid {
+                        margin-right: auto;
+                        margin-left: auto;
+                    }
+
+                    .panel-heading {
+                        padding: 10px 15px;
+                        border-bottom: 1px solid transparent;
+                        border-top-left-radius: 3px;
+                        border-top-right-radius: 3px;
+                    }
+                    .panel-default>.panel-heading {
+                        color: #333;
+                        background-color: #f5f5f5;
+                        border-color: #ddd;
+                    }
+                    .form-control {
+                        /* display: block; */
+                        width: 100%;
+                        padding: 6px 12px;
+                        font-size: 14px;
+                        line-height: 1.42857143;
+                        color: #555;
+                        background-color: #fff;
+                        background-image: none;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                        box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+                        -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+                        -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                        transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+                    }
+                    .direct-right .direct-chat-img {
+                        float: right;
+                    }
+                    textarea.form-control {
+                        height: auto;
+                    }
+                    .form-group {
+                        margin-bottom: 15px;
+                    }
+                    .margin {
+                        margin: 10px;
+                    }
+                    .btn-primary {
+                        background-color: #3c8dbc;
+                        border-color: #367fa9;
+                        color: white;
+                    }
+                    .direct-chat-msg:before, .direct-chat-msg:after {
+                        content: " ";
+                        display: table;
+                    }
+
+
+                    .direct-chat-img {
+                        border-radius: 50%;
+                        float: left;
+                        width: 40px;
+                        height: 40px;
+                    }
+
+                    .editable-tarea, .editable-tarea2, textarea {
+                        line-height: 18px;
+                        display: inline-block;
+                        height: 36px;
+                        cursor: text;
+                        overflow: auto;
+                    }
+
+                    .form-control {
+                        box-sizing: border-box;
+                        width: 100%;
+                        padding: 6px 12px;
+                        height: 74px;
+                        font-size: 14px;
+                        line-height: 1.42857143;
+                        color: #555;
+                        background-color: #fff;
+                        background-image: none;
+                        border: 1px solid #ccc;
+                        border-radius: 4px;
+                        -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+                        -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+                        -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+                        transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+                    }
+                    .btn {
+                        display: inline-block;
+                        padding: 6px 12px;
+                        margin-bottom: 0;
+                        font-size: 14px;
+                        font-weight: 400;
+                        line-height: 1.42857143;
+                        text-align: center;
+                        white-space: nowrap;
+                        vertical-align: middle;
+                        -ms-touch-action: manipulation;
+                        touch-action: manipulation;
+                        cursor: pointer;
+                        -webkit-user-select: none;
+                        -moz-user-select: none;
+                        -ms-user-select: none;
+                        user-select: none;
+                        background-image: none;
+                        border: 1px solid transparent;
+                        border-radius: 4px;
+                    }
+                    .btn {
+                        border-radius: 3px;
+                        -webkit-box-shadow: none;
+                        box-shadow: none;
+                        border: 1px solid transparent;
+                    }
+                    .right .direct-chat-img {
+                        float: right;
+                    }
+
+                    .direct-chat-primary .right > .direct-chat-text {
+                        background: #36BC9B;
+                        border-color: #36BC9B;
+                        color: #fff;
+                    }
+
+                    .right .direct-chat-text {
+                        margin-right: 50px;
+                        margin-left: 0;
+                    }
+
+                    .direct-chat-text:after, .direct-chat-text:before {
+                        position: absolute;
+                        right: 100%;
+                        top: 15px;
+                        border: solid transparent;
+                        border-right-color: #d2d6de;
+                        content: ' ';
+                        height: 0;
+                        width: 0;
+                        pointer-events: none;
+                    }
+
+                    .direct-chat-text:before {
+                        border-width: 6px;
+                        margin-top: -6px;
+                    }
+
+                    .right .direct-chat-text:after, .right .direct-chat-text:before {
+                        right: auto;
+                        left: 100%;
+                        border-right-color: transparent;
+                        border-left-color: #d2d6de;
+                    }
+
+                    .direct-chat-primary .right > .direct-chat-text:after, .direct-chat-primary .right > .direct-chat-text:before {
+                        border-left-color: #36BC9B;
+                    }
+                    .direct-chat-msg.right{
+                        clear: both;
+                    }
+                    .direct-chat-info .pull-left {
+                        margin-right: 20px;
+                    }
+</style>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+          <div class="subject">
+            <h3>评价管理</h3>
+            <h5>商品交易评价管理</h5>
+          </div>
+        </div>
+    </div>
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+          <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+          <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+          <li>用户可以在商品详情页下方咨询商品,信息将显示在对应的商品页面</li>
+        </ul>
+    </div>
+    <div class="wrapper">
+        <!-- Main content -->
+        <section class="content">
+            <div class="container-fluid">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">
+                            <i class="fa fa-list"></i> 咨询回复
+                            <a data-original-title="返回" class="btn btn-default pull-right" style="margin-top:-8px;" title="" data-toggle="tooltip" href="javascript:history.go(-1)"><i class="fa fa-reply"></i></a>
+                        </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                        <div class="col-md-2"></div>
+                            <div class="col-md-8">
+                                <!-- DIRECT CHAT PRIMARY -->
+                                <div class="box direct-chat direct-chat-primary">
+                                    <div class="box-header with-border">
+                                        <h3 class="box-title">用户咨询</h3>
+                                        <!-- 
+                                        <div class="box-tools pull-right">
+                                            <span class="badge bg-light-blue" title="3 New Messages" data-toggle="tooltip">3</span>
+                                            <button data-widget="collapse" class="btn btn-box-tool"><i class="fa fa-minus"></i></button>
+                                            <button data-widget="chat-pane-toggle" title="" data-toggle="tooltip" class="btn btn-box-tool" data-original-title="Contacts"><i class="fa fa-comments"></i></button>
+                                            <button data-widget="remove" class="btn btn-box-tool"><i class="fa fa-times"></i></button>
+                                        </div>
+                                         -->
+                                    </div><!-- /.box-header -->
+                                    <div class="box-body">
+                                        <!-- Conversations are loaded here -->
+                                        <div class="" id="replycontent">
+                                            <!-- Message. Default to the left -->
+                                            <div class="direct-chat-msg">
+                                                <div class="direct-chat-info clearfix">
+                                                    <span class="direct-chat-name pull-left">{$comment.username}</span>
+                                                    <span class="direct-chat-timestamp pull-right">{$comment.add_time|date="Y-m-d H:i",###}</span>
+                                                </div><!-- /.direct-chat-info -->
+                                                <img src="__PUBLIC__/static/images/user1-128x128.jpg" class="direct-chat-img"><!-- /.direct-chat-img -->
+                                                <div class="direct-chat-text">{$comment.content}</div><!-- /.direct-chat-text -->
+                                            </div><!-- /.direct-chat-msg -->
+
+                                            <foreach name="reply" item="v" >
+                                                <div class="direct-chat-msg right">
+                                                    <div class="direct-chat-info clearfix direct-right">
+                                                        <span class="direct-chat-name pull-right">管理员</span>
+                                                        <span class="direct-chat-timestamp pull-left">{$v.add_time|date="Y-m-d H:i",###}</span>
+                                                    </div><!-- /.direct-chat-info -->
+                                                    <img alt="管理员" src="__PUBLIC__/static/images/seller/default_user_portrait.gif" class="direct-chat-img"><!-- /.direct-chat-img -->
+                                                    <div class="direct-chat-text" >{$v.content}</div>
+                                                </div>
+                                            </foreach>
+                                        </div>
+                                        <!-- /.direct-chat-pane -->
+                                    </div><!-- /.box-body -->
+                                    <!-- /.box-footer-->
+                                </div><!--/.direct-chat -->
+                            </div>       
+                            <div class="col-md-2"></div>
+                         <div class="panel panel-default">
+                                <div class="panel-body">
+                                    <div class="row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                    <form method="post" id="control">
+                                        <input type="hidden" name="id" value="{$id}"/>
+                                        <textarea class="form-control" rows="3" placeholder="请输入回复内容" name="content" id="content"></textarea>
+                                        <div class="form-group">
+                                            <input type="button" class="btn btn-primary pull-right margin" onclick="replyContent()" value="回复">
+                                        </div>
+                                    </form>
+                                    </div>
+                                    <div class="col-md-2"></div>   
+                                                                                                 
+                                    </div>
+                              </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </section>
+        <!-- /.content -->
+    </div>
+</div>
+<!-- /.content-wrapper -->
+<script>
+    // 删除操作
+    function del(id,t)
+    {
+        layer.confirm('确认删除？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    // 确定
+                    location.href = $(t).data('href');
+                }, function(index){
+                    layer.close(index);
+                }
+        );
+    }
+
+    function replyContent(){
+        var content =$('#content').val();
+        if(content.length <=0){
+            layer.msg('请输入回复内容', {icon: 2, time: 2000});
+            return false;
+        }
+        $.ajax({
+            url:"{:U('Comment/consult_info')}",
+            data:$('#control').serialize(),
+            type:'post',
+            dataType:'json',
+            success:function(data){
+                if(data.status==1){
+                    var content = ' <div class="direct-chat-msg right"><div class="direct-chat-info clearfix direct-right">' +
+                            '<span class="direct-chat-name pull-right">管理员</span>' +
+                            '<span class="direct-chat-timestamp pull-left">'+data.resault.add_time+'</span></div>' +
+                            '<img alt="管理员" src="__PUBLIC__/static/images/seller/default_user_portrait.gif" class="direct-chat-img">' +
+                            '<div class="direct-chat-text" >'+data.resault.content+'</div></div>';
+                    $('#replycontent').append(content);
+                    $('#content').val('');
+                }else{
+                    layer.msg(data.msg, {icon: 2, time: 2000});
+                }
+            }
+        })
+    }
+</script>
+</body>
+</html>

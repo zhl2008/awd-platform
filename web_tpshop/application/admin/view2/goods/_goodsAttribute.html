@@ -1,0 +1,77 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>商品属性</h3>
+        <h5>商品属性添加与管理</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="addEditGoodsAttributeForm">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>属性名称：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" value="{$goodsAttribute.attr_name}" name="attr_name"  class="input-txt" />
+            <span class="err" id="err_attr_name" style="color:#F00; display:none;"></span>                                  
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="parent_id"><em>*</em>所属商品模型：</label>
+        </dt>
+        <dd class="opt">
+           
+            <select name="type_id" id="type_id" class="small form-control">
+                 <option value="">请选择</option>
+                <volist name="goodsTypeList" id="vo">
+                 <option value="{$vo[id]}" <if condition="$vo[id] eq $goodsAttribute[type_id]">selected="selected"</if>>{$vo[name]}</option>
+                </volist>                                        
+            </select>
+            <span  class="err" id="err_type_id" style="color:#F00; display:none;"></span>      
+
+        </dd>
+      </dl>      
+		<dl class="row">
+        <dt class="tit">
+          <label>能否进行检索:</label>
+        </dt>
+        <dd class="opt">                    
+                <input type="radio" value="0" name="attr_index" <if condition="($goodsAttribute[attr_index] eq 0)  or ($goodsAttribute[attr_index] eq NULL)">checked="checked"</if>  .>不需要检索
+                <input type="radio" value="1" name="attr_index" <if condition="$goodsAttribute[attr_index] eq 1">checked="checked"</if>  />关键字检索          
+          <p class="notic"></p>
+        </dd>
+      </dl>		       
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">该属性值的录入方式：</label>
+        </dt>
+        <dd class="opt">
+            <input type="radio" value="0" name="attr_input_type" <if condition="($goodsAttribute[attr_input_type] eq 0) or ($goodsAttribute[attr_input_type] eq NULL)">checked="checked"</if> />手工录入
+            <input type="radio" value="1" name="attr_input_type" <if condition="$goodsAttribute[attr_input_type] eq 1">checked="checked"</if>  />从下面的列表中选择（一行代表一个可选值）
+            <input type="radio" value="2" name="attr_input_type" <if condition="$goodsAttribute[attr_input_type] eq 2">checked="checked"</if>  />多行文本框           
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">可选值列表：</label>
+        </dt>
+        <dd class="opt">
+            <textarea rows="10" cols="30" name="attr_values" class="input-txt" style="height:100px;">{$goodsAttribute.attr_values}</textarea>
+            <span id="err_attr_values" class="err" style="color:#F00; display:none;"></span>                  
+            <p class="notic">录入方式为手工或者多行文本时，此输入框不需填写。</p>
+        </dd>
+      </dl>	                 
+      <div class="bot"><a href="JavaScript:void(0);" onclick="ajax_submit_form('addEditGoodsAttributeForm','{:U('Goods/addEditGoodsAttribute?is_ajax=1')}');"  class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+	   <input type="hidden" name="attr_id" value="{$goodsAttribute.attr_id}">
+  </form>
+</div>
+ 
+</body>
+</html>

@@ -1,0 +1,44 @@
+<include file="public/header" title="性别" body=""/>
+<include file="public/header_nav" title="性别"  href="{:U('Mobile/User/userinfo')}"/>
+		<div class="loginsingup-input">
+            <form action="{:U('Mobile/User/userinfo')}" method="post">
+				<div class="content30">
+					<div class="bandg">
+						<ul>
+							<li>
+								<i class="boy"></i>
+							</li>
+							<li>
+								<i class="girl"></i>
+							</li>
+                            <input type="hidden" name="sex" id="sex" value="{$user[sex]}" />
+						</ul>
+					</div>
+					<div class="lsu submit">
+						<input type="submit" id="" value="确认" />
+					</div>
+				</div>
+			</form>
+		</div>
+<script type="text/javascript">
+    var num = $('#sex').val();
+    if(num == '1'){
+        $('.bandg ul li .boy').addClass('boy_click');
+    }
+    if(num == '2' ){
+        $('.bandg ul li .girl').addClass('girl_click');
+    }
+    //切换
+    $(function(){
+        $('.bandg ul li .boy').click(function(){
+            $(this).addClass('boy_click').parent().siblings().find('.girl').removeClass('girl_click');
+            $(this).parent('li').nextAll(':hidden').val(1)
+        })
+        $('.bandg ul li .girl').click(function(){
+            $(this).addClass('girl_click').parent().siblings().find('.boy').removeClass('boy_click');
+            $(this).parent('li').nextAll(':hidden').val(2)
+        })
+    })
+</script>
+</body>
+</html>

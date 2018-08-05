@@ -1,0 +1,27 @@
+<foreach name="list" item="v" key="k" >
+<li>
+    <!--<a href="javascript:void(0);">-->
+    <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$v[goods_id],'item_id'=>$v[item_id]))}">
+        <div class="similer-product">
+            <div class="zjj close">
+                <img src="{$v.goods_id|goods_thum_images=200,200}">
+                <div class="sale onsale">
+                    <p>{$v[rebate]}折</p>
+                </div>
+            </div>
+            <span class="similar-product-text">{$v[goods_name]}</span>
+            <span class="cy"><i>200</i>人参与</span>
+            <span class="similar-product-price">
+                ¥
+                <span class="big-price">{$v[price]}元</span>
+                <!--未打折价格<span class="small-price"  style="display:;">￥{$v[goods_price]}元</span> -->
+                <span class="fr sg_g_time last_g_time" id="jstimerBox{$v[goods_id]}"></span>
+            </span>
+        </div>
+    </a>
+</li>
+<script>
+    Tday['{$v[goods_id]}'] = new Date('{$v.end_time|date="Y/m/d H:i:s",###}');
+    window.setInterval(function() {clock11('{$v[goods_id]}');}, 1000);
+</script>
+</foreach>

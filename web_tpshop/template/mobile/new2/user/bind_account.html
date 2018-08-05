@@ -1,0 +1,53 @@
+<include file="public/header" title="绑定账号" body=""/>
+<div class="classreturn loginsignup">
+    <div class="content">
+        <div class="ds-in-bl return">
+            <a href="javascript:history.back(-1);"><img src="__STATIC__/images/return.png" alt="返回"></a>
+        </div>
+        <div class="ds-in-bl search center">
+            <span>绑定新账号</span>
+        </div>
+        <!--<div class="ds-in-bl menu">
+            <a href="javascript:void(0);"><img src="__STATIC__/images/class1.png" alt="菜单"></a>
+        </div>-->
+    </div>
+</div>
+<div class="loginsingup-input ma-to-20">
+    <form action="" method="post" onsubmit="return submitverify(this)">
+        <div class="lsu">
+            <span class="ico ico-telephone"></span>
+            <input type="text" name="mobile" id="mobile" value=""  placeholder="请输入手机号码">
+        </div>
+        <div class="lsu">
+            <span class="ico ico-password"></span>
+            <input type="password" name="password" id="password" value=""  placeholder="请输入密码(确认密码)">
+        </div>
+
+        <div class="lsu-submit">
+            <input type="submit" name="" id="sub" value="确认">
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    //验证表单
+    function submitverify(obj){
+        var mobile = $.trim($('#mobile').val());
+        var password = $.trim($('#password').val());
+        if(mobile ==''){
+            layer.open({content:'手机号码不能为空',time:3});
+            return false;
+        }
+        if(password ==''){
+            layer.open({content:'密码不能为空',time:3});
+            return false;
+        }
+        if(password.length < 6 || password.length < 6){
+            layer.open({content:'密码长度不能少于6位',time:3});
+            return false;
+        }
+        $(obj).onsubmit();
+    }
+</script>
+</body>
+</html>

@@ -1,0 +1,137 @@
+<include file="public/header" title="验证账户"body="g4"/>
+<include file="public/header_nav" title="验证账户" href="javascript:history.back(-1)"/>
+<style>
+    /*#fetchcode{
+        background:#898995;
+        border-radius: 0.128rem;
+        color: white;
+        padding: 0.55467rem 0.21333rem;
+        vertical-align: middle;
+        font-size: 0.59733rem;
+    }*/
+</style>
+<div class="reset-pwd-steps">
+    <img src="__STATIC__/images/pic-reset-psw2.jpg" alt="" />
+</div>
+<div class="loginsingup-input singupphone">
+    <form action="" method="post">
+        <if condition="strstr($user['username'],'@')">
+        <!--邮箱-->
+            <div class="reset-pwd-title" id="validate_type_email" value="email" val="{$user.email}">邮箱验证</div>
+            <div class="reset-pwd-cont">点击发送<span class="co-red">验证码</span>到您的邮箱</div>
+            <div class="v-contact reset-pwd-email">{$user.email}</div>
+            <div class="v-identity">
+                <span class="v-til">验证码 :</span>
+                <div class="v-cont-wrap">
+                    <input type="text" id="email_code" name="email_code" class="hq_phone" value=""  placeholder="请输入验证码"/>
+                    <a id="zemail" type="email"  class="m_phone" onclick="sendcode(this)">获取验证码</a>
+                </div>
+            </div>
+        <else/>
+        <!--手机-->
+            <div class="reset-pwd-title" id="validate_type_mobile" value="mobile" val="{$user.mobile}">手机验证</div>
+            <div class="reset-pwd-cont">点击发送<span class="co-red">获取验证码</span>到您的手机</div>
+            <div class="v-contact reset-pwd-tel">{$user.mobile}</div>   
+            <div class="v-identity">
+                <span class="v-til">验证码 :</span>
+                <div class="v-cont-wrap">
+                    <input type="text" id="mobile_code" name="mobile_code" value="" class="hq_phone" placeholder="请输入验证码"/>
+                    <a id="zphone" type="mobile" class="m_phone" onclick="sendcode(this)">获取验证码</a>
+                </div>
+            </div>
+        </if>
+        <div class="lsu-submit">
+            <input type="button" name="button" id="btn_submit" class="btn_big1" value="下一步" />
+        </div>
+    </form>
+</div>
+</body>
+<script>
+    // 手机号打码
+    var __telNum__=$('.reset-pwd-tel').text();
+     $('.reset-pwd-tel').text(__telNum__.replace(/^(\d{3})\d{4}(\d{4})$/,"$1****$2"));
+    //获取验证码
+    function sendcode(o){
+        var type = $(o).attr('type');
+        var send = $("#validate_type_"+type).attr("val");
+        $.ajax({
+            url:'/index.php?m=Home&c=Api&a=send_validate_code&t='+Math.random(),
+            type:'post',
+            dataType:'json',
+            data:{type:type,send:send,scene:2},
+            success:function(res){
+                if(res.status==1){
+                    countdown(o);
+                    showErrorMsg(res.msg);
+                }else{
+                    showErrorMsg(res.msg);
+                }
+            }
+        })
+    }
+
+    //倒计时
+    function countdown(obj){
+        var obj = $(obj);
+        var s = {$tpshop_config['sms_sms_time_out']};
+        //添加样式
+        obj.attr('id','fetchcode');
+        //改变按钮状态
+        obj.unbind("click");
+        callback();
+        //循环定时器
+        var T = window.setInterval(callback,1000);
+        function callback()
+        {
+            if(s <= 1){
+                //移除定时器
+                window.clearInterval(T);
+                obj.text('获取验证码');
+                obj.bind("click", countdown)
+                $(obj).removeAttr('id','fetchcode');
+            }else{
+                if(s<=10){
+                    obj.text( '0'+ --s + '秒后再获取');
+                }else{
+                    obj.text( --s + '秒后再获取');
+                }
+            }
+        }
+    }
+
+    //提交
+    $("#btn_submit").click(function(){
+        var type = $(".m_phone").attr('type');
+        var send = $("#validate_type_"+type).attr("val");
+        if(type == 'mobile'){
+            if($("#mobile_code").val().length == 0){
+                $("#mobile_code").focus();
+                showErrorMsg("验证码不能为空！");
+                return false;
+            }
+            tpcode = $("#mobile_code").val();
+        }else if(type == 'email'){
+            if($("#email_code").val().length == 0){
+                $("#email_code").focus();
+                showErrorMsg("验证码不能为空！");
+                return false;
+            }
+            tpcode = $("#email_code").val();
+        }
+        $.ajax({
+            url:'/index.php?m=Home&c=Api&a=check_validate_code&t='+Math.random(),
+            type:'post',
+            dataType:'json',
+			data:{code:tpcode,send:send,type:type,scene:2},
+            success:function(res){
+                if(res.status==1){
+                    window.location.href = '/index.php?m=Mobile&c=User&a=set_pwd';
+                }else{
+                    showErrorMsg(res.msg);
+                }
+            }
+        })
+    });
+
+</script>
+</html>

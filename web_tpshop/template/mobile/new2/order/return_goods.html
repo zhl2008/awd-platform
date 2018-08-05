@@ -1,0 +1,325 @@
+<include file="public/header" title="申请售后" body="f3"/>
+<include file="public/header_nav" title="申请售后" href="javascript:history.back(-1)"/>
+<form name="return_form" id="return_form" autocomplete="off" method="post" enctype="multipart/form-data" >
+    <div class="div1">
+        <div class="attention-shoppay applyafter">
+            <div class="orderlistshpop tuharecha mabo20 p">
+                <div class="maleri30">
+                    <div class="sc_list se_sclist paycloseto">
+                        <div class="shopimg fl">
+                            <img title="{$goods.goods_name}" src="{$goods.goods_id|goods_thum_images=100,100}">
+                        </div>
+                        <div class="deleshow fr">
+                            <div class="deletes">
+                                <a class="daaloe">{$goods.goods_name}</a>
+                            </div>
+                            <div class="qxatten">
+                                <div class="weight">
+                                    <p><span>价格：</span><span><em>￥</em>{$goods.member_goods_price}</span></p>
+                                    <p><span>数量：</span><span>x{$goods.goods_num}</span></p>
+                                    <!--<a class="closeannten" href="javascript:void(0)">联系卖家</a>-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+		<div class="seravetype">
+			<div class="maleri30">
+				<p>服务类型</p>
+				<div class="fuwxbo">
+					<a href="javascript:void(0);" class="<if condition='$return_goods[type] eq 0'>red</if>" onclick="$('#rtype').val(0)">仅退款</a>
+					<a href="javascript:void(0);" class="<if condition='$return_goods[type] eq 1'>red</if>" onclick="$('#rtype').val(1)">退货退款</a>
+					<a href="javascript:void(0);" class="<if condition='$return_goods[type] eq 2'>red</if>" onclick="$('#rtype').val(2)">换货</a>
+					<input type="hidden" name="type" value="{$return_goods[type]|default=1}" id="rtype">
+					<input type="hidden" value="{$goods.goods_num}" id="buynum">
+				</div>
+			</div>
+		</div>
+		<div class="seravetype ma-to-20">
+			<div class="maleri30">
+				<p>申请数量</p>
+				<div class="plus">
+					<span class="mp_minous">-</span>
+					<span class="mp_mp"><input type="tel" name="goods_num" id="goods_num" value="{$goods.goods_num}"></span>
+					<span class="mp_plus">+</span>
+				</div>
+			</div>
+		</div>
+        <div class="seravetype ma-to-20 account">
+            <div class="maleri30">
+                <p>提交原因 <span class="ifhaeu" id="account">注意保持商品的完好，建议您先与卖家沟通</span></p>
+            </div>
+        </div>
+		<div class="seravetype ma-to-20">
+			<div class="maleri30">
+				<p>货物状态</p>
+				<div class="inspectrepot p">
+					<div class="radio">
+						<span class="che <if condition='$return_goods[is_receive] eq 0'>check_t</if>" data-rel="0">
+							<i></i>
+							<span>未收到货</span>
+						</span>
+					</div>
+					<div class="radio">
+						<span class="che <if condition='$return_goods[is_receive] eq 1'>check_t</if>" data-rel="1">
+							<i></i>
+							<span>已收到货</span>
+						</span>
+					</div>
+					<input type="hidden" name="is_receive" id="is_receive" <if condition='$return_goods[is_receive] eq 0'>value="0"<else/>value="1"</if>>
+				</div>
+			</div>
+		</div>
+		<div class="customer-messa apply-afterserve ma-to-20">
+			<div class="maleri30">
+				<p>问题描述</p>
+				<textarea class="tapassa" onkeyup="checkfilltextarea('.tapassa','500')" name="describe" id="describe" rows="" cols="" placeholder="请你在此描述详细问题">{$return_goods.describe}</textarea>
+				<span class="xianzd"><em id="zero">500</em>/500</span>
+			</div>
+		</div>
+        <div class="seravetype ma-to-20">
+            <div class="maleri30">
+                <p>上传照片</p>
+                <ul id="imglen">
+                    <label>
+                        <li >
+                            <div class="shcph" id="fileList0">
+                                <img src="__STATIC__/images/camera.png">
+                            </div>
+                            <input  type="file" accept="image/*" name="return_imgs[]"  onchange="handleFiles(this,0)" style="display:none">
+                        </li>
+                    </label>
+                    <label>
+                        <li class="file">
+                            <div class="shcph" id="fileList1">
+                                <img src="__STATIC__/images/camera.png">
+                            </div>
+                            <input  type="file" accept="image/*" name="return_imgs[]"  onchange="handleFiles(this,1)" style="display:none">
+                        </li>
+                    </label>
+                    <label>
+                        <li class="file">
+                            <div class="shcph" id="fileList2">
+                                <img src="__STATIC__/images/camera.png">
+                            </div>
+                            <input  type="file" accept="image/*" name="return_imgs[]"  onchange="handleFiles(this,2)" style="display:none">
+                        </li>
+                    </label>
+                    <label>
+                        <li class="file">
+                            <div class="shcph" id="fileList3">
+                                <img src="__STATIC__/images/camera.png">
+                            </div>
+                            <input  type="file" accept="image/*" name="return_imgs[]"  onchange="handleFiles(this,3)" style="display:none">
+                        </li>
+                    </label>
+                    <label>
+                        <li class="file">
+                            <div class="shcph" id="fileList4">
+                                <img src="__STATIC__/images/camera.png">
+                            </div>
+                            <input  type="file" accept="image/*" name="return_imgs[]"  onchange="handleFiles(this,4)" style="display:none">
+                        </li>
+                    </label>
+                </ul>
+                </ul>
+                <p class="ifhaeu">为帮助我们更好的解决问题，请上传照片。最多5张，每张不超过5M，支持JPG、BMP、PNG</p>
+            </div>
+        </div>
+    </div>
+<!--寄回地址s-->
+    <div class="terurnmobil ma-to-20" >
+        <div class="zblikbo p">
+            <div class="qhsxix">
+                <div class="myorder p">
+                    <div class="order">
+                        <div class="fl">
+                            <span>寄回地址：</span>
+                        </div>
+                        <div class="fl">
+                            <p class="addretu">{$tpshop_config['shop_info_address']} </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="order">
+                        <div class="fl">
+                            <span>上班时间：</span>
+                        </div>
+                        <div class="fl">
+                            <p class="addretu">（周一至周五）08:00-19:00</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="myorder p">
+                    <div class="order">
+                        <div class="fl">
+                            <span>客服电话：</span>
+                        </div>
+                        <div class="fl">
+                            <p class="addretu">{$tpshop_config['shop_info_phone']}</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="sunhj">
+            <a href="javascript:void(0)" onClick="submit_form();" name="btnSubmit"><s></s>提交</a>
+        </div>
+    </div>
+<!--寄回地址-e-->
+    <input type="hidden" name="order_id" value="{$order.order_id}" />
+    <input type="hidden" name="order_sn" value="{$order.order_sn}" />
+    <input type="hidden" name="goods_id" value="{$goods.goods_id}" />
+    <input type="hidden" name="spec_key" value="{$goods.spec_key}" />
+    <input type="hidden" name="consignee" value="{$order.consignee}"/>
+    <input type="hidden" name="mobile" value="{$order.mobile}" />
+    <input type="hidden" name="rec_id" value="{$goods.rec_id}" />
+    <input type="hidden" name="reason" value="" />
+</form>
+<!--提交原因-s-->
+<div class="losepay closeorder" style="display: ;">
+    <div class="maleri30">
+        <div class="l_top">
+            <span>提交原因</span>
+            <em class="turenoff" onclick="turenoff()"></em>
+        </div>
+        <div class="resonco">
+            <div class="radio"><span class="che" data-val="订单不能按预计时间送达"><i></i><span>订单不能按预计时间送达</span></span></div>
+            <div class="radio"><span class="che" data-val="操作有误（商品、地址等选错）"><i></i><span>操作有误（商品、地址等选错）</span></span></div>
+            <div class="radio"><span class="che" data-val="重复下单/误下单"><i></i><span>重复下单/误下单</span></span></div>
+            <div class="radio"><span class="che" data-val="其他渠道价格更低"><i></i><span>其他渠道价格更低</span></span></div>
+            <div class="radio"><span class="che" data-val="该商品降价了"><i></i><span>该商品降价了</span></span></div>
+            <div class="radio"><span class="che" data-val="不想买了"><i></i><span>不想买了</span></span></div>
+        </div>
+    </div>
+</div>
+<div class="mask-filter-div" style="display: none;"></div>
+<!--提交原因-e-->
+<script type="text/javascript">
+	$(function(){
+		$('.fuwxbo a').click(function(){
+			$(this).toggleClass('red').siblings().removeClass('red');
+		})
+		
+		$('.inspectrepot .radio span').click(function(){
+			$('.che').removeClass('check_t');
+			$(this).addClass('check_t');
+			$('#is_receive').val($(this).data('rel'));
+        })
+
+        $('.resonco span').click(function(){
+            $('.resonco').find('.radio').find('.che').removeClass('check_t');
+            $(this).addClass('check_t');
+            //写入值
+            var val = $(this).data('val');
+            $('#account').text(val);
+            $("input[name='reason']").val(val);
+            //隐藏弹窗
+            turenoff()
+        })
+        $(document).on('click','.account',function(){
+            $('.mask-filter-div').show();
+            $('.closeorder').show()
+        })
+	})
+
+    function turenoff(){
+        $('.mask-filter-div').hide();
+        $('.losepay').hide();
+    }
+    //提交
+    function submit_form()
+    {
+        var describe = $.trim($('#describe').val());
+        var return_imgs= $.trim($('#return_imgs').val());
+        var reason= $.trim($("input[name='reason']").val());
+        if(reason == '')
+        {
+            layer.open({content:'请选择原因',time:2});
+            return false;
+        }
+        if(describe == '')
+        {
+            layer.open({content:'请输入问题描述',time:2});
+            return false;
+        }
+
+        var ff = document.getElementsByName("return_imgs[]");
+        if(ff[0].value.length  == 0)
+        {
+            if(!confirm('确定不传照片吗?'))
+            {
+                return false;
+            }
+        }
+        $('#return_form').submit();
+    }
+
+    //上传照片
+    window.URL = window.URL || window.webkitURL;
+    function handleFiles(obj,id) {
+        fileList = document.getElementById("fileList"+id);
+        var files = obj.files;
+        img = new Image();
+        if(window.URL){
+
+            img.src = window.URL.createObjectURL(files[0]); //创建一个object URL，并不是你的本地路径
+            img.width = 60;
+            img.height = 60;
+            img.onload = function(e) {
+                window.URL.revokeObjectURL(this.src); //图片加载后，释放object URL
+            }
+            if(fileList.firstElementChild){
+                fileList.removeChild(fileList.firstElementChild);
+            }
+            fileList.appendChild(img);
+        }else if(window.FileReader){
+            //opera不支持createObjectURL/revokeObjectURL方法。我们用FileReader对象来处理
+            var reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function(e){
+                img.src = this.result;
+                img.width = 60;
+                img.height = 60;
+                fileList.appendChild(img);
+            }
+        }else
+        {
+            //ie
+            obj.select();
+            obj.blur();
+            var nfile = document.selection.createRange().text;
+            document.selection.empty();
+            img.src = nfile;
+            img.width = 60;
+            img.height = 60;
+            img.onload=function(){
+
+            }
+            fileList.appendChild(img);
+        }
+    }
+    
+	//退货数量-1
+	$('.mp_minous').click(function(){
+		var goods_num = parseInt($('#goods_num').val());
+		if(goods_num>1){
+			$('#goods_num').val(goods_num-1);
+		}
+		return false;
+	});
+	//退货数量+1
+	$('.mp_plus').click(function(){
+		var goods_num = parseInt($('#goods_num').val());
+		var buynum = parseInt($('#buynum').val());
+		if(goods_num<buynum){
+			$('#goods_num').val(goods_num+1);
+		}
+		return false;
+	});
+</script>
+</body>
+</html>

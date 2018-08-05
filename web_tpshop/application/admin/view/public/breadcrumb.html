@@ -1,0 +1,11 @@
+<div class="breadcrumbs" id="breadcrumbs">
+	<ol class="breadcrumb">
+	<foreach name="navigate_admin" key="k" item="v">
+	    <if condition="$k eq '后台首页'">  
+	        <li><a href="{$v}"><i class="fa fa-home"></i>&nbsp;&nbsp;{$k}</a></li>
+	    <else/>    
+	        <li><a href="{$v}">{$k}</a></li>
+	    </if>                  
+	</foreach>          
+	</ol>
+</div>

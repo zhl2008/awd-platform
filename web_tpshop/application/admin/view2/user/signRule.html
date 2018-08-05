@@ -1,0 +1,104 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>签到管理</h3>
+        <h5>会员签到及管理设置</h5>
+      </div>
+      <ul class="tab-base nc-row">
+      <li><a  href="{:U('user/signList')}" data-state="" ><span>签到列表</span></a></li>
+      <li><a href="{:U('user/signRule')}" data-state="0" class="current" ><span>签到规则</span></a></li>
+      
+      </ul>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+    <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+    </div>
+    <ul>
+        <li>签到列表：签到人员记录，签到记录最多保持一个月</li>
+        <li>签到规则：可设置功能开启关闭，签到积分和连续签到额外奖励</li>
+    </ul>
+  </div>
+    <form method="post" enctype="multipart/form-data" name="form1" action="{:U('User/signRule')}">
+        <input type="hidden" name="inc_type" value="sign">
+        <div class="ncap-form-default">
+            
+            <dl class="row">
+                <dt class="tit">
+                    <label>签到送积分开关</label>
+                </dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="switch1" class="cb-enable  <if condition="$config['sign_on_off'] eq 1">selected</if>">开启</label>
+                        <label for="switch0" class="cb-disable <if condition="$config['sign_on_off'] eq 0">selected</if>">关闭</label>
+                        <input type="radio" onclick="$('#switch_on_off').show();"  id="switch1"  name="sign_on_off" value="1" <if condition="$config['sign_on_off'] eq 1">checked="checked"</if>>
+                        <input type="radio" onclick="$('#switch_on_off').hide();" id="switch0" name="sign_on_off" value="0" <if condition="$config['sign_on_off'] eq 0">checked="checked"</if> >
+                    </div>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sign_integral">签到送积分</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" id="reg_integral" name="sign_integral" value="{$config.sign_integral}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">会员每次签到赠送的积分</p>
+                </dd>
+            </dl>
+            
+          
+
+            
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sign_signcount">连续签到（天）</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" id="sign_signcount" name="sign_signcount" value="{$config.sign_signcount|default=0}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">会员连续签到可作为额外积分奖励</p>
+                </dd>
+            </dl>
+            
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sign_award">连续签到积分奖励</label>
+                </dt>
+                <dd class="opt">
+                    <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" id="sign_award" name="sign_award" value="{$config.sign_award|default=0}" class="input-txt" type="text">
+                    <span class="err">只能输入整数</span>
+
+                    <p class="notic">会员连续签到积分奖励，满足连续签将按此积分设置每天增加此积分，直到断签为止</p>
+                </dd>
+            </dl>
+            
+         
+
+            <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="document.form1.submit()">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+<div id="goTop">
+    <a href="JavaScript:void(0);" id="btntop">
+        <i class="fa fa-angle-up"></i>
+    </a>
+    <a href="JavaScript:void(0);" id="btnbottom">
+        <i class="fa fa-angle-down"></i>
+    </a>
+</div>
+</body>
+</html>

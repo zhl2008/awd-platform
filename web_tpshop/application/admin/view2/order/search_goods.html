@@ -1,0 +1,219 @@
+<include file="public/layout" />
+<script type="text/javascript" src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page" style="padding:10px">
+  <div class="flexigrid" >
+    <div class="mDiv">
+      <div class="ftitle">
+        <h3>商品列表</h3>
+        <h5>(共{$totalSize}条记录)</h5>
+      </div>
+      <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+	  <form class="navbar-form form-inline"  method="post" action="{:U('Admin/Order/search_goods')}"  name="search-form2" id="search-form2">  
+      <div class="sDiv">
+        <div class="sDiv2">	 
+        	<select name="cat_id" id="cat_id" class="select">
+                 <option value="">所有分类</option>
+                 <foreach name="categoryList" item="v" key="k" >
+					<option value="{$v['id']}" <if condition="$v[id] eq $cat_id">selected</if> ><?php echo  str_pad('',($v[level] * 5),'-',STR_PAD_LEFT);  ?> {$v['name']}</option>
+				</foreach>
+             </select>
+        </div>
+        <div class="sDiv2">	   
+            <select name="brand_id" id="brand_id" class="select">
+                <option value="">所有品牌</option>
+                    <foreach name="brandList" item="v" key="k" >
+                       <option value="{$v['id']}" <if condition="$v[id] eq $brand_id">selected</if> >{$v['name']}</option>
+					</foreach>
+             </select>
+         </div>
+         <div class="sDiv2">	 
+             <select name="intro" class="select">
+                        <option value="0">全部</option>
+                        <option value="is_new">新品</option>
+                        <option value="is_recommend">推荐</option>
+                    </select>
+          </div>
+         <div class="sDiv2" style="border:0px">	 
+          <input type="text" name="keywords" value="{$keywords}" placeholder="搜索词" id="input-order-id" class="input-txt">
+        </div>
+        <div class="sDiv2" style="border:0px">	 
+          <input type="submit" class="btn" value="搜索">
+        </div>
+      </div>
+     </form>
+    </div>
+    <div class="hDiv">
+      <div class="hDivBox" id="ajax_return">
+        <table cellspacing="0" cellpadding="0" id="table_head">
+          <thead>
+	        	<tr>
+	              <th class="sign" axis="col0">
+	                <div style="width: 24px;">
+                        <!--<i class="ico-check"></i>-->
+                    </div>
+	              </th>
+	              <th align="left" abbr="order_sn" axis="col3" class="">
+	                <div style="text-align: left; width: 560px;" class="">商品名称</div>
+	              </th>
+	              <th align="left" abbr="consignee" axis="col4" class="">
+	                <div style="text-align: left; width: 120px;" class="">价格</div>
+	              </th>
+	              <th align="center" abbr="article_show" axis="col5" class="">
+	                <div style="text-align: center; width: 80px;" class="">库存</div>
+	              </th>
+	              <th align="center" abbr="article_show" axis="col5" class="" style="display:none;">
+	                <div style="text-align: center; width: 80px;" class="">购买数量
+	                <input type="checkbox" checked="checked" style="display:none;" /></div>
+	              </th>
+	              <th align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 80px;" class="">操作</div>
+	              </th>
+	              <th style="width:100%" axis="col7">
+	                <div></div>
+	              </th>
+	            </tr>
+	          </thead>
+        </table>
+      </div>
+    </div>
+    <div class="bDiv" style="height: auto;">
+      <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+      <table cellspacing="0" cellpadding="0" id="goos_table">
+         <tbody>
+      	<volist name="goodsList" id="list">
+      	<!--如果有商品规格-->
+        <if condition="$list['spec_goods'] neq null">
+			<volist name="list['spec_goods']" id="spec_goods">
+			<tr date-id="{$list.goods_id}">
+	              <td class="sign" axis="col0">
+	                <div style="width: 24px;"><i class="ico-check"></i></div>
+	              </td>
+	              <td align="left" abbr="order_sn" axis="col3" class="">
+	                <div style="text-align: left; width: 560px;" class="">{$list.goods_name|getSubstr=0,33}&nbsp;&nbsp;&nbsp;(&nbsp;{$spec_goods[key_name]}&nbsp;)</div>
+	              </td>
+	              <td align="left" abbr="consignee" axis="col4" class="">
+	                <div style="text-align: left; width: 120px;" class="">{$spec_goods[price]}</div>
+	              </td>
+	              <td align="center" abbr="article_show" axis="col5" class="">
+	                <div style="text-align: center; width: 80px;" class="">{$spec_goods[store_count]}</div>
+	              </td>
+	              <td align="center" abbr="article_show" axis="col5" class="" style="display:none;">
+	                <div style="text-align: center; width: 120px;" class="">
+	                	<input type="text" name="goods_id[{$list.goods_id}][{$spec_goods[key]}][goods_num]"  value="1" class="input-txt" style="width:60px !important;text-align:center" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" style="display:none;" />
+	                	<input type="checkbox" style="display:none;" />
+	                </div>
+	              </td>
+	              <td align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 80px;" class="">
+	                	<a class="btn red" href="javascript:void(0);" onclick="delRow(this)"><i class="fa fa-trash-o"></i>删除</a>
+	                </div>
+	              </td>
+	              <td style="width:100%" axis="col7">
+	                <div></div>
+	              </td>
+	          	</tr>
+			</volist>
+        <else/>
+        		<tr date-id="{$list.goods_id}">
+	              <td class="sign" axis="col0">
+	                <div style="width: 24px;"><i class="ico-check"></i></div>
+	              </td>
+	              <td align="left" abbr="order_sn" axis="col3" class="">
+	                <div style="text-align: left; width: 560px;" class="">{$list.goods_name|getSubstr=0,33}</div>
+	              </td>
+	              <td align="left" abbr="consignee" axis="col4" class="">
+	                <div style="text-align: left; width: 120px;" class="">{$list.shop_price}</div>
+	              </td>
+	              <td align="center" abbr="article_show" axis="col5" class="">
+	                <div style="text-align: center; width: 80px;" class="">
+	                	{$list.store_count}
+	                </div>
+	              </td>
+	              <td align="center" abbr="article_show" axis="col5" class="" style="display:none;" >
+	                <div style="text-align: center; width: 120px;" class=""   >
+	                	<input type="text" name="goods_id[{$list.goods_id}][key][goods_num]" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" class="input-txt" style="width:60px !important;text-align:center" onpaste="this.value=this.value.replace(/[^\d.]/g,'')" value="1" class="input-sm"  style="display:none;" />
+	                	<input type="checkbox" style="display:none;" />
+	                </div>
+	              </td>
+	              <td align="center" abbr="article_time" axis="col6" class="">
+	                <div style="text-align: center; width: 80px;" class="">
+	                	<a class="btn red" href="javascript:void(0);" onclick="javascript:$(this).parent().parent().parent().remove();"><i class="fa fa-trash-o"></i>删除</a>
+	                </div>
+	              </td>
+	              <td style="width:100%" axis="col7">
+	                <div></div>
+	              </td>
+	          	</tr>
+        </if>
+	    </volist>
+	    </tbody>
+	    </table>
+	    <div class="sDiv" style="float:left;margin-top:10px">
+        <div class="sDiv2" style="border:0px">
+			    <input type="button" onclick="select_goods()"  class="btn" value="确定">
+        </div>
+ </div>
+ 
+      </div>
+      <div class="iDiv" style="display: none;"></div>
+    </div>
+    <!--分页位置-->
+      {$page}
+   	</div>
+</div>
+<script type="text/javascript">
+
+$(document).ready(function(){	
+	
+	$('#flexigrid > table>tbody >tr').click(function(){
+	    $(this).toggleClass('trSelected');
+	    
+	    var checked = $(this).hasClass('trSelected');	
+		 $(this).find('input[type="checkbox"]').attr('checked',checked); 
+ 
+	});
+	
+	$('.ico-check ' , '.hDivBox').click(function(){
+		$('tr' ,'.hDivBox').toggleClass('trSelected' , function(index,currentclass){
+    		var hasClass = $(this).hasClass('trSelected');
+    		$('tr' , '#flexigrid').each(function(){
+    			if(hasClass){
+    				$(this).addClass('trSelected');
+    			}else{
+    				$(this).removeClass('trSelected');
+    			}
+    		});  
+    	});
+	});
+});
+ 
+	
+function select_goods()
+{	  
+ 
+	   if($("input[type='checkbox']:checked").length == 0)
+	   {
+		   layer.alert('请选择商品', {icon: 2}); //alert('请选择商品');
+		   return false;
+	   }
+	  // 将没选中的复选框所在的  tr  remove  然后删除复选框
+	    $("input[type='checkbox']").each(function(){
+		   if($(this).is(':checked') == false)
+		   {
+			    $(this).parent().parent().parent().remove();
+		   }
+		   $(this).parent().parent().show();
+		   $(this).siblings().show();
+		   $(this).remove();
+	    });
+		$(".btn-info").remove();
+		var tabHtml = $('#table_head').append($('#goos_table')).html();
+      javascript:window.parent.call_back(tabHtml.replace(/选择/,'购买数量'));
+}    
+</script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>自定义导航 - 编辑导航</h3>
+                <h5>网站系统自定义导航与管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="addEditNavForm" method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label for="system_nav"><em>*</em>系统内容</label>
+                </dt>
+                <dd class="opt">
+                    <select class="small form-control" id="system_nav" name="system_nav">
+                        <option value="">自定义导航</option>
+                        <foreach name="system_nav"  key='k' item="v" >
+                            <option value="{$k}"<if condition="$k eq $navigation[url]"> selected </if> >{$v}</option>
+                        </foreach>
+                    </select>
+                    <span class="err"></span>
+                    <p class="notic">自定义导航</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="name"><em>*</em>导航名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$navigation.name}" name="name" id="name" class="input-txt">
+                    <span class="err" id="name_err" style="display: none">导航名称不能为空!!</span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="url"><em>*</em>链接</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$navigation.url}" name="url" id="url" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="sort"><em>*</em>排序</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$navigation.sort}" name="sort" id="sort" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="checkForm();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+        <input type="hidden" name="id" value="{$navigation.id}">
+    </form>
+</div>
+<script type="text/javascript">
+    // 判断输入框是否为空
+    function checkForm(){
+        var name = $("#addEditNavForm").find("input[name='name']").val();
+        if($.trim(name) == '')
+        {
+            $("#name_err").show();
+            return false;
+        }
+        $('#addEditNavForm').submit();
+    }
+    // 更改系统内容
+    $("#system_nav").change(function(){
+        var text = $(this).find("option:selected").text();
+        text = text.replace(/-/ig,"");
+        var val  = $(this).find("option:selected").val();
+        $("input[name='name']").val(text);
+        $("input[name='url']").val(val);
+    });
+</script>
+</body>
+</html>

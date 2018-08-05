@@ -1,0 +1,141 @@
+@charset "utf-8";
+a,address,b,big,blockquote,body,center,cite,code,dd,del,div,dl,dt,em,fieldset,font,form,h1,h2,h3,h4,h5,h6,html,i,iframe,img,ins,label,legend,li,ol,p,pre,small,span,strong,u,ul,var {
+ margin: 0;
+ padding: 0
+}
+article,aside,details,figcaption,figure,footer,header,hgroup,main,nav,section,summary {
+ display: block
+}
+hr{
+ -moz-box-sizing: content-box;
+ box-sizing: content-box;
+ height: 0
+}
+button,html input[type=button],input[type=submit] {
+ -webkit-apperance: button;
+ cursor: pointer
+}
+button[disabled],html input[disabled] {
+ cursor: default
+}
+ol,ul {
+ list-style: none
+}
+img {
+ border: 0;
+ vertical-align: middle
+}
+em,i,u {
+ font-style: normal
+}
+.fl {
+ float: left
+}
+.fr {
+ float: right
+}
+.hide {
+ display: none
+}
+.clearfix:after {
+ content: ".";
+ display: block;
+ height: 0;
+ clear: both;
+ visibility: hidden
+}
+.clearfix{
+ *zoom: 1
+}
+body {
+ font: 12px/150% tahoma,arial,Microsoft YaHei,Hiragino Sans GB,"\u5b8b\u4f53",sans-serif;
+ -webkit-font-smoothing: antialiased;color: #666;background: #fff
+}
+a {
+ color: #666;
+ text-decoration: none
+}
+a:hover {
+ color: #C81623
+}
+table{
+ border-collapse: collapse;
+}
+.btn-11:link{
+ color: #323333;text-decoration: none;
+}
+.btn-11{
+ background-color: #F7F7F7;
+ background-image: -moz-linear-gradient(top,#F7F7F7,#F3F2F2);
+ background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#F7F7F7),color-stop(1,#F3F2F2));
+ filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7', endColorstr='#F3F2F2', GradientType='0');
+ -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#F7F7F7', endColorstr='#F3F2F2');
+ background-image: linear-gradient(to bottom,#F7F7F7 0,#F3F2F2 100%);
+ border-radius: 2px;
+ display: inline-block;
+ height: 18px;
+ line-height: 18px;
+ border: 1px solid #ddd;
+ padding: 2px 14px 3px;
+ color: #323333
+}
+.ftx-01, .ftx01{
+ color: #e4393c;
+}
+div.cancle-box{
+ margin: 10px;line-height: 20px;
+}
+.paydetail-box .pdetail{
+ display: block;
+}
+div.paydetail-box{
+ width: 585px;margin: 20px auto;
+}
+.tb-void{
+ line-height: 18px;text-align: center;border: 1px solid #f2f2f2;border-top: 0;color: #333;width: 100%;
+}
+div.paydetail-box .tb-void{
+ margin: 10px 0;overflow: visible;
+}
+div.paydetail-box .tb-void table{
+ width: 100%;
+}
+.tb-void td{
+ border: 1px solid #f2f2f2;padding: 10px 5px;
+}
+div.paydetail-box .tb-void td{
+ border: none;text-align: left;line-height: 22px;border-top: 1px solid #ddd;
+}
+div.paydetail-box .pdetail dd.fore1{
+ width: 60px;margin: 0 0 0 20px;
+}
+div.paydetail-box .pdetail dd{
+ float: left;
+}
+div.paydetail-box .tb-void .return-msg{
+ width: 260px;
+}
+div.paydetail-box .item{
+ margin: 0 0 10px;
+}
+div.cancle-box .item{
+ padding: 0 0 0 32px;position: relative;line-height: 20px;z-index: 2;
+}
+div.cancle-box .item .label{
+ line-height: 30px;width: 70px;padding: 0;
+}
+div.cancle-box .item .gray{
+ color: #999;
+}
+div.cancle-box .item .text1{
+ width: 70px;
+}
+div.cancle-box .item .text{
+ border: 1px solid #ccc;line-height: 18px;
+}
+div.cancle-box .op-btns{
+ text-align: center;margin: 30px 0 0
+}
+div.cancle-box .op-btns .btn{
+ margin: 0 10px 0 0;
+}

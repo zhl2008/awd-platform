@@ -1,0 +1,168 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+        <h1> {$plugin.name} <small></small> </h1>
+        <ol class="breadcrumb">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 后台首页</a></li>
+            <li><a href="#" class="active">{$plugin.name}配送区域配置</a></li>
+            <!--<li class="active">Data tables</li>-->
+        </ol>
+    </section>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> {$plugin.name}配送区域配置</h3>
+                </div>
+                <div class="panel-body">
+
+                    <!--表单数据-->
+                    <form method="post" id="addEditSpecForm" action="">
+                        <input type="hidden" name="id" value="{$setting.shipping_area_id}">
+                        <!--通用信息-->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="tab_tongyong">
+
+                                <table class="table table-bordered">
+                                    <tbody>
+                                        <tr>
+                                            <td>配送区域名称：</td>
+                                            <td>
+                                                <input type="text" value="{$setting.shipping_area_name}" name="shipping_area_name"/>
+                                            </td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td>基本费用：</td>-->
+                                            <!--<td>-->
+                                                <!--<input type="text" value="{$setting.config.base_fee}" name="config[base_fee]"/>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        <tr>
+                                            <td>首&nbsp;&nbsp;重
+                                            <select name="config[first_weight]">
+	                                            <for start="500" end="8000" step="500" name="v">
+                                            	 <option value="{$v}" <if condition="$setting[config][first_weight] eq $v">selected="selected"</if> >{$v}</option>
+                                                </for>
+                                            </select>
+                                            克以内费用：
+                                            </td>
+                                            <td>
+                                                <input type="text" value="{$setting.config.money}" name="config[money]"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>续重每
+                                            <select name="config[second_weight]">
+	                                            <for start="500" end="8000" step="500" name="v">
+                                            	 <option value="{$v}" <if condition="$setting[config][second_weight] eq $v">selected="selected"</if> >{$v}</option>
+                                                </for>
+                                            </select>                                            
+                                            克或其零数的费用：</td>
+                                            <td>
+                                                <input type="text" value="{$setting.config.add_money}" name="config[add_money]"/>
+                                            </td>
+                                        </tr>
+                                        <!--<tr>-->
+                                            <!--<td>免费额度：</td>-->
+                                            <!--<td>-->
+                                                <!--<input type="text" value="{$setting.config.free}" name="config[free]"/>-->
+                                            <!--</td>-->
+                                        <!--</tr>-->
+                                        <tr>
+                                            <td>配送区域：</td>
+                                            <td id="area_list">
+                                                <volist name="select_area" id="area">
+                                                    <input class="area_list" type="checkbox" checked name="area_list[]" value="{$area.region_id}">{$area.name}
+                                                </volist>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="pull-right">
+                            <button class="btn btn-primary" title="" data-toggle="tooltip" type="submit"  data-original-title="保存"><i class="fa fa-save"></i></button>
+                        </div>
+			        </form><!--表单数据-->
+                    <table class="table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td style="width: 150px">配送区域名称：</td>
+                            <td>
+                                <select name="province" id="province" size="10"  onChange="get_city(this)">
+                                    <option value="0">请选择省份</option>
+                                    <volist name="province" id = "p">
+                                        <option value="{$p.id}">{$p.name}</option>
+                                    </volist>
+                                </select>
+                                <select name="city" id="city" size="10"  onChange="get_area(this)">
+                                    <option value="0">请选择城市</option>
+                                </select>
+                                <select name="district" id="district" size="10">
+                                    <option value="0">请选择</option>
+                                </select>
+                                <button onclick="addArea()" class="btn btn-info" type="button">
+                                    <i class="ace-icon fa fa-plus bigger-110"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+<script>
+ 
+    //  添加配送区域
+    function addArea(){
+        //        
+        var province = $("#province").val(); // 省份
+        var city = $("#city").val();        // 城市
+        var district = $("#district").val(); // 县镇
+        var text = '';  // 中文文本
+        var tpl = ''; // 输入框 html
+        var is_set = 0; // 是否已经设置了
+       
+       // 设置 县镇
+        if(district > 0){
+            text = $("#district").find('option:selected').text();
+            tpl = '<input class="area_list" type="checkbox" checked name="area_list[]" value="'+district+'">'+text;
+            is_set = district; // 街道设置了不再设置市
+        }
+        // 如果县镇没设置 就获取城市
+        if(is_set == 0 && city > 0){
+            text = $("#city").find('option:selected').text();
+            tpl = '<input class="area_list" type="checkbox" checked name="area_list[]" value="'+city+'">'+text;
+            is_set = city;  // 市区设置了不再设省份
+
+        }
+        // 如果城市没设置  就获取省份
+        if(is_set == 0 && province > 0){
+            text = $("#province").find('option:selected').text();
+            tpl = '<input class="area_list" type="checkbox" checked name="area_list[]" value="'+province+'">'+text;
+            is_set = province;
+
+        }
+
+        var obj = $("input[class='area_list']"); // 已经设置好的复选框拿出来
+        var exist = 0;  // 表示下拉框选择的 是否已经存在于复选框中
+        $(obj).each(function(){
+            if($(this).val() == is_set){  //当前下拉框的如果已经存在于 复选框 中
+                layer.alert('已经存在该区域', {icon: 2});  // alert("已经存在该区域");
+                exist = 1; // 标识已经存在
+            }
+        })
+        if(!exist)
+            $('#area_list').append(tpl); // 不存在就追加进 去 
+    }
+</script>
+</body>
+</html>

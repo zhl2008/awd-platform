@@ -1,0 +1,318 @@
+@charset "utf-8";
+/* CSS Document */
+
+#air03 {
+    overflow: hidden;
+}
+.mod-comm {
+    padding: 10px 20px 20px;
+}
+.mod-main {
+    padding: 10px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+.mod-comm .mt {
+    padding: 10px 0;
+}
+.mod-main .mt {
+    display: inline-block;
+    display: block;
+    padding: 10px;
+}
+.mod-comm .mt h3 {
+    font-size: 12px;
+    color: #666;
+    font-family: '\5b8b\4f53';
+    line-height: 18px;
+}
+.mod-main .mt h3 {
+    float: left;
+    font-family: 'Microsoft YaHei';
+    font-size: 16px;
+    color: #333;
+    line-height: 20px;
+}
+.mod-main .mt:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.mod-comm .mc {
+    line-height: 20px;
+}
+.mod-main .mc {
+    overflow: visible;
+}
+.tb-void {
+    line-height: 18px;
+    text-align: center;
+    border: 1px solid #f2f2f2;
+    border-top: 0;
+    color: #333;
+    width: 100%;
+}
+.mb10 {
+    margin-bottom: 10px;
+}
+
+.tb-void th {
+    background: #f5f5f5;
+    height: 32px;
+    line-height: 32px;
+    padding: 0 5px;
+    text-align: center;
+    font-weight: 400;
+}
+
+.tb-void td {
+    border: 1px solid #f2f2f2;
+    padding: 10px 5px;
+}
+
+.list-proinfo {
+    text-align: left;
+    padding-left: 18px;
+    padding-right: 18px;
+}
+
+.list-proinfo .fore1 {
+    overflow: hidden;
+}
+.list-proinfo li {
+    margin-bottom: 15px;
+}
+.tb-void a {
+    color: #005ea7;
+}
+li.fore1 img {
+    vertical-align: middle;
+}
+form .item {
+    display: inline-block;
+    display: block;
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+.ml20 {
+    margin-left: 20px;
+}
+.form em {
+    color: #e4393c;
+    vertical-align: middle;
+}
+em, i {
+    font-style: normal;
+}
+.form label {
+    float: none;
+}
+.form .item:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+.repair-steps {
+    padding: 5px 10px;
+}
+
+.repair-steps .repair-step {
+    padding: 20px 20px 0;
+    margin: -5px -11px -10px;
+	border:1px solid #e6e6e6;
+}
+
+#air03 .label {
+    width: 122px;
+    vertical-align: middle;
+}
+.form .item span.label {
+    float: left;
+    height: 18px;
+    line-height: 18px;
+    padding: 6px 0;
+    width: 100px;
+    text-align: right;
+}
+#air03 .fl {
+    width: 360px;
+}
+.fl {
+    float: left;
+}
+.list-cred li, .list-qjtype li, .list-type li {
+    float: left;
+    margin-right: 14px;
+    _dipaly: inline;
+}
+.list-type-new li {
+    position: relative;
+    _width: 82px;
+    _oveflow: visible;
+    white-space: nowrap;
+}
+
+.list-type-new li.selected a {
+    border: 2px solid #e4393c;
+    padding: 5px 27px;
+}
+.list-type-new li a {
+    display: block;
+    border: 1px solid #ebebeb;
+    text-align: center;
+    height: 18px;
+    line-height: 18px;
+    padding: 6px 28px;
+}
+
+.list-prou .selected b, .list-prou01 .selected b, .list-type-new .selected b {
+    background: url(../images/newicon20130617.png) -202px -224px;
+    bottom: 0;
+    height: 12px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    width: 12px;
+}
+.form .item {
+    display: inline-block;
+    display: block;
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+#air03 .area {
+    float: none;
+    width: 450px;
+    height: 90px;
+    resize: none;
+}
+.form .area, .form .itxt, .form .sele, .form .selt {
+    line-height: 18px;
+    border: 1px solid #ccc;
+    padding: 5px;
+    float: none;
+}
+
+.ar {
+    text-align: right;
+}
+.ftx-03, .ftx03 {
+    color: #999;
+}
+.form .item:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+#air03 .msg-text-01 {
+    color: #999;
+}
+#air03 .msg-error-01, #air03 .msg-text-01 {
+    clear: both;
+}
+.msg-error, .msg-error-01, .msg-text-01 {
+    float: left;
+    margin-left: 5px;
+}
+.btn-7:link{
+    color: #323333;
+    text-decoration: none;
+}
+
+.btn-7{
+	background-color: #f5fbef;
+    background-image: -moz-linear-gradient(top,#f5fbef,#eaf6e2);
+    background-image: -webkit-gradient(linear,left top,left bottom,color-stop(0,#f5fbef),color-stop(1,#eaf6e2));
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5fbef', endColorstr='#eaf6e2', GradientType='0');
+    -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f5fbef', endColorstr='#eaf6e2');
+    background-image: linear-gradient(to bottom,#f5fbef 0,#eaf6e2 100%);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    display: inline-block;
+	margin-right:12px;
+    height: 24px;
+    line-height: 24px;
+    border: 1px solid #bfd6af;
+    padding: 3px 3px;
+    color: #323333;
+}
+
+.search_thing input:focus {
+  border: none!important;
+}
+.return_area {
+  background-color: #fff;
+  padding: 11px 14px 8px 14px;
+  color: #6c6c6c;
+  font-size: 12px;
+  font-family: "宋体";
+  position: relative;
+}
+.return_area .fn_page {
+  margin-top: 0;
+}
+.return_area a {
+  color: #6c6c6c;
+}
+.return_area a:hover {
+  text-decoration: none;
+}
+.return_area .user-head {
+  border-bottom: 2px solid #ddd;
+  height: 28px;
+  margin: 0px 0 20px;
+}
+.return_area .ui_tab_content{
+  border-top: none;
+}
+.return_area .user-head h3 {
+  float: left;
+  font-size: 14px;
+  font-weight: bold;
+}
+.return_area .user-head a {
+  float: right;
+  color: #0066cc;
+  line-height: 30px;
+  padding-right: 5px;
+}
+.return_area .user-head a:hover {
+  text-decoration: underline;
+}
+.return_area .ui_tab .ui_tab_nav .search_area {
+  float: right;
+  width: 200px;
+  margin-top: 2px;
+}
+.return_area .ui_tab .ui_tab_nav .search_area .search_thing {
+  border: solid 1px #ddd;
+  padding-left: 5px;
+}
+.return_area .ui_tab .ui_tab_nav .search_area .search_thing a {
+  height: 16px;
+  padding: 4px;
+  width: 16px;
+  float: right;
+  background-color: #fff;
+  border: none;
+  border-left: solid 1px #ddd;
+}
+.return_area .ui_tab .ui_tab_nav .search_area .search_thing i {
+  background-image: url("../images/return.png"); background-position: -153px -84px;
+  _background-image: url("../images/return_ie.png"); _background-position: -137px -84px;
+  height: 16px;
+  width: 16px;
+  display: block;
+}
+.return_area .ui_tab .ui_tab_nav .search_area .search_thing input {
+  width: 100px;
+  border: none;
+  float: left;
+}

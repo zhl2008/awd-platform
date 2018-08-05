@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的账户-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/security_set.css"/>
+    <style>
+        .col_main {width: 1000px;float: right;}
+        .main { background-color: #ffffff;padding: 15px;}
+        .themes_title { border-bottom: 2px solid #eee;height: 20px;line-height: 20px;padding: 0 10px 7px 5px; margin-bottom: 20px;position: relative;margin-top: -3px;}
+        .themes_title h3 {color: #6c6c6c;font-size: 14px;font-weight: bold;float:left;}
+        .themes_title h2{float:right;font-weight:700;}
+        .themes_title h2 a{color:#f22e00;}
+        .themes_title h2:after{content:""; clear:both;}
+        .themes_title .blue {position: absolute;right: 10px; bottom: 6px;}
+        .btn_pay {width: 84px; height: 28px; line-height: 28px; background: -244px -90px;}
+        .btn_pay:hover {text-decoration: none; background: -247px -125px;}
+        .btn_pay,.btn_pay:hover,.btn_to_pay:hover,.btn_to_pay{background-image: url(__STATIC__/images/sprite_btn.png);}
+    </style>
+</head>
+<body class="bg-f5">
+<include file="user/header"/>
+<div class="home-index-middle">
+    <div class="w1224">
+        <div class="g-crumbs">
+            <a href="{:U('Home/User/index')}">我的商城</a>
+        </div>
+        <div class="home-main">
+            <include file="user/menu"/>
+            <div class="col_main">
+                <div class="main security_passwd">
+                    <div class="themes_title">
+                        <h3>安全设置</h3>
+                    </div>
+                    <section class="security_passwd">
+                        <div class="wrapper-3">
+                            <div id="step" class="pub-step">
+                               <!-- <div class="steps-nav fixed ">
+                                    <p class="step-nav step-nav-1 go">1.原手机<i></i></p>
+                                    <p class="step-nav step-nav-2 go">2.新手机<i></i></p>
+                                    <p class="step-nav step-nav-3 go">3.完成</p>
+                                </div>-->
+                                <form action="" method="post" onSubmit="return check_form();">
+                                    <div id="stepBlock2" class="steps-con block-02">
+                                        <div class="step-col fn-form captcha_row" data-fn-verify="">
+                                            <ul style="display: block;" class="pub-ul verify-captcha-sms">
+                                                <notempty name="user_info.mobile">
+                                                    <li> <span class="title">原手机：</span>
+                                                        <div class="con verify-group">
+                                                            <input type="text" class="it-01 verify-ctrl my_chkpwd" value="{$user_info['mobile']}" id="old_mobile" name="old_mobile" readonly="readonly" style="cursor: not-allowed;color:#999" />
+                    <span style="display: block" class="v-tips verify-tips" id="span_tips">
+                    	<i class="icon" id="showForPwdtip"></i>
+                        <span class="txt" id="showForPwd"></span>
+                    </span>
+                                                        </div>
+                                                    </li>
+                                                </notempty>
+                                                <li> <span class="title">新手机：</span>
+                                                    <div class="con verify-group">
+                                                        <input type="text" class="it-01 verify-ctrl my_chkpwd" value="" id="new_mobile" name="mobile" onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" />
+                                                        <span style="display: block;" class="v-tips verify-tips"> <i class="icon" id="rightTip"></i> <span id="errorEmail" class="txt"></span> </span> </div>
+                                                </li>
+                                                <li> <span class="title">验证码：</span>
+                                                    <div class="con verify-group">
+                                                        <input type="text" class="msg-code ie-01 verify-ctrl left" name="code" id="new_code">&nbsp;&nbsp;
+                                                        <input type="button" intervaltime="{$time}" value="获取验证码 " id="btnemailAuthCode2" onClick="sendCode(this,'new_mobile')" style="width:120px;"  />
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <button class="btn_pay verify-ctrl" type="submit"> 下一步 </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<include file="user/footer" />
+<script>
+
+    // 表单提交验证
+    function check_form()
+    {
+        var old_mobile = $('#old_mobile').val();
+        var new_mobile = $('#new_mobile').val();
+        //原邮箱不为空的情况下 验证格式
+        if(old_mobile != '' && typeof(old_mobile) != 'undefined'){
+            if(!checkMobile(old_mobile)){
+                layer.alert('原手机格式错误', {icon: 2});// alert('原手机格式错误');
+                return false;
+            }
+        }
+        if(!checkMobile(new_mobile)){
+            layer.alert('新手机格式错误', {icon: 2});//alert('新手机格式错误');
+            return false;
+        }
+
+        if($.trim($('#new_code').val()) == '')
+        {
+            layer.alert('验证码不能为空', {icon: 2});//alert('验证码不能为空');
+            return false;
+        }
+        return true;
+    }
+
+    function sendCode(obj,input_id){
+        var id = $(obj).attr('id');
+        var input = $('#'+input_id).val();
+        var old_mobile = $('#old_mobile').val();
+        //原邮箱不为空的情况下 验证格式
+        if(old_mobile != '' && typeof(old_mobile) != 'undefined'){
+            if(!checkMobile(old_mobile)){
+                layer.alert('原手机格式错误', {icon: 2});//alert('原手机格式错误');
+                return false;
+            }
+        }
+        if(!checkMobile(input)){
+            layer.alert('手机号码格式错误', {icon: 2});//alert('手机号码格式错误');
+            return false;
+        }
+
+        var url = "/index.php?m=Home&c=Api&a=send_validate_code&scene=6&type=mobile&send="+input;
+        //发送验证码
+        $.ajax({
+            type : "GET",
+            url  : url,
+            dataType : 'json',
+            error: function(request) {
+                layer.alert('服务器繁忙, 请联系管理员!', {icon: 2});//alert("服务器繁忙, 请联系管理员!");
+                return;
+            },
+            success: function(res) {
+                if(res.status == 1){
+                    layer.alert(res.msg,{icon: 1});
+                    jsInnerTimeout(id);
+                }else{
+                    layer.alert(res.msg,{icon: 2});//alert('发送失败');
+                }
+            }
+        });
+    }
+
+    //倒计时函数
+    function jsInnerTimeout(id)
+    {
+        var codeObj=$("#"+id);
+        var intAs= parseInt(codeObj.attr("IntervalTime"));
+
+        intAs--;
+        codeObj.attr("disabled","disabled");
+        if(intAs<=-1)
+        {
+            codeObj.removeAttr("disabled");
+            codeObj.attr("IntervalTime",{$time});
+            codeObj.val("获取验证码");
+            return true;
+        }
+
+        codeObj.val(intAs+'s后再次获取');
+        codeObj.attr("IntervalTime",intAs);
+
+        setTimeout("jsInnerTimeout('"+id+"')",1000);
+    };
+
+    $("#btnemailAuthCode2").removeAttr("disabled");
+</script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+body { background: #F7F7F7 url(images/body_bg.png) scroll repeat-y 50% 0;}
+a { color: #333; }
+a:hover { text-decoration: none; color: #0085CF;}
+
+/* (nc-s-c-s) full name -> Store Container Style */
+.ncs-sidebar-container {}
+.ncs-sidebar-container .title { background-color: transparent; height: 30px; padding: 0; border: none 0; border-bottom: solid 1px #E7E7E7; }
+.ncs-sidebar-container .title h4 { font-family: "microsoft yahei"; font-size: 14px; color:#000; line-height: 14px; margin: 4px 0 12px 0; display: inline-block;  border-left: solid 3px #CCC; padding-left: 7px;}
+.ncs-sidebar-container .title h4 {*display: inline;}
+.ncs-sidebar-container .title span { }
+.ncs-sidebar-container .content { background:#FFF; border: none 0; border-bottom: solid #CCC 1px;  *padding-bottom:10px;}
+
+
+
+.ncs-main-container {}
+.ncs-main-container .title { background-color: transparent; height: 30px; border: none 0; border-bottom: solid 1px #E7E7E7;}
+.ncs-main-container .title h4 { font-family: "microsoft yahei"; font-size: 14px; color:#000; line-height: 14px; margin: 4px 0 12px 0; display: inline-block;  border-left: solid 3px #C00; padding-left: 7px;}
+.ncs-main-container .title h4 { *display: inline;}
+.ncs-main-container .title span { float:right; margin: 4px 12px 0 0; line-height: 24px;}
+.ncs-main-container .title span {  font-size: 12px; display: inline-block; float:right; line-height: 16px; color: #777;}
+.ncs-main-container .title span { *display: inline;}
+.ncs-main-container .content { background: #FFF; border: none 0; border-bottom: solid #CCC 1px;}
+
+
+
+
+
+/* =====================
+ * 独立类样式
+ * ===================== */
+/* 列表翻页 */
+.pagination{ padding: 2px; margin-right: 16px;}
+.pagination ul li span{ line-height: 20px; color: #999; list-style-type: none; padding: 0px 5px; margin: 0px 2px; border: 1px solid #CCC;}
+.pagination ul li a span , .pagination li a:visited span{ color: #6C92AD; text-decoration: none; border-color: #AEB9B9;}
+.pagination ul li a:hover span, .pagination li a:active span{ color: #DB7C1E; background-color: #FFEFCE; border-color: #DB7C1E;}
+.pagination ul li span.currentpage{ color:#FFF; font-weight: bold;  background-color: #FEA900; border-color: #F57202;}
+
+
+/* ============================== */
+/* 头部店铺介绍与搜索 -> header.php */
+/* ============================== */
+/* 导航区域布局控制 */
+.ncsl-nav { width: 1200px; margin: 0 auto; } 
+/* 导航上部图片控制 */
+.ncsl-nav .banner a.img { width: 1200px; }
+.ncs-default-banner { background: url(images/header.jpg) no-repeat 0 0; display: block; width: 1200px; height: 325px;}
+/* 店铺导航 */
+#nav { background-color: transparent; width: 100%; height: 58px; border-top: solid 1px #FFF; border-bottom: solid 1px #CCC; border-left: 0; border-right: 0;}
+#nav ul { white-space: nowrap; display: block; width: 100%; height: 24px; padding: 14px 0 20px; margin-left: -1px; }
+#nav li { font-family: "microsoft yahei"; font-size: 16px; float: left;}
+#nav li a { background-color: #E7E7E7; height: 24px; float: left;}
+#nav li a span { line-height: 24px; color: #555; background-color: #FFF; white-space: nowrap; text-overflow : ellipsis; max-width:160px; height: 24px; float:left; padding: 0px 20px 0px 19px; margin-left: 1px; position: relative; z-index: auto;}
+#nav li.normal a:hover span { color: #333;}
+#nav li.active a span, #nav li.active a:hover span { font-weight: 600;  color: #000; }
+#nav li a span i { position: absolute; z-index: 1; left: 50%; bottom: -10px; margin-left: -5px; font-size: 0px; line-height: 0; width: 0px; height: 0px; border: 5px solid; border-color: transparent transparent #333 transparent; display: none;}
+#nav li.normal a:hover span i { border-color: transparent transparent #ccc transparent; display: block;}
+#nav li.active a span i { display: block;}
+
+
+.ncs-submenu { width:170px; margin: 5px 13px 5px 15px; _margin: 5px 6px 5px 8px; _display: inline-block; _float:left;}
+.ncs-submenu li { line-height: 20px; font-weight: 600; text-align:left; margin: 6px 0; }
+.ncs-submenu li a { color: #333; }
+.ncs-submenu li ul { width: 150 ; margin: 5px 0px 5px 20px; }
+.ncs-submenu li ul li { line-height: 20px; font-weight: normal; text-align:left; margin: 4px 0; }
+
+/* ========================================= */
+/* 商品列表类页面 -> index.php, goods_list.php */
+/* ========================================= */
+
+/* 列表排序 */
+.ncs-goodslist-bar { background: #FFF; border-right: solid 1px #FFF;  border-left: solide 1px #FFF; padding:6px 0;}
+/* 商品列表 */
+.ncg-list .content { width: 790px; overflow:hidden;  padding-top:20px; clear:both; padding-bottom:10px;}
+.ncg-list .content ul { width: 792px; overflow:hidden; margin-left:-2px; margin-top: -21px; }
+.ncg-list .content ul li { display: inline-block; width: 197px; height: 290px; border-top: solid 1px #EFEFEF; border-left: solid 1px #EFEFEF; float: left; margin: 0;}
+.ncg-list .content ul li dl { width: 180px; margin: 0px auto; padding-top: 180px; position: relative; display: block; line-height: 16px;text-align: center;}
+.ncg-list .content ul li dd.ncg-pic { background:#FFF; width: 160px; height: 160px; margin: 0; position: absolute; top: 0px; left: 0px; border:none;}
+.ncg-list .content ul li dd.ncg-pic .thumb { width: 160px; height: 160px;}
+.ncg-list .content ul li dt { height: 32px; width: 170px; overflow:hidden; margin: 8px 0;}
+.ncg-list .content ul li dd { margin: 4px 0; top: 0px; left: 0px;}
+.ncg-list .content .pagination { margin-top: 40px;}
+
+/* 侧边栏店铺分类控制标签 */
+.ico-none, .ico-block, .ico-sub { color:#CCC; background-color: #FFF; display: inline-block; float:left; cursor: default;}
+.ico-none, .ico-block { font-family: Arial; font-size: 12px; line-height: 10px; text-align: center; width: 10px; height:10px; margin: 5px 10px 5px 0; border: solid 1px #CCC;}
+.ico-sub { background-color: #CCC; font-size: 0px; line-height:2px; text-align:center; width: 3px; height:3px; margin: 10px 6px 0 0; border-radius: 0px;}
+.ico-none em {}
+.ico-block em {}
+
+
+
+
+
+

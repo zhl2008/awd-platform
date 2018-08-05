@@ -1,0 +1,247 @@
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+<div class="tpshop-tm-hander">
+	<div class="top-hander clearfix">
+		<div class="[w] pr clearfix">
+			<div class="fl">
+			    <if condition="strtolower(ACTION_NAME) neq 'goodsinfo' ">
+                      <link rel="stylesheet" href="__STATIC__/css/location.css" type="text/css"><!-- 收货地址，物流运费 -->
+                      <div class="sendaddress pr fl">
+                          <span>送货至：</span>
+                          <!-- <span>深圳<i class="share-a_a1"></i></span>-->
+                          <span>
+                              <ul class="list1">
+                                  <li class="summary-stock though-line">
+                                      <div class="dd" style="border-right:0px;width:200px;">
+                                          <div class="store-selector add_cj_p">
+                                              <div class="text"><div></div><b></b></div>
+                                              <div onclick="$(this).parent().removeClass('hover')" class="close"></div>
+                                          </div>
+                                      </div>
+                                  </li>
+                              </ul>
+                          </span>
+                      </div>
+                      <script src="__STATIC__/js/location.js"></script>
+                </if>
+				<div class="fl nologin">
+					<a class="red" href="{:U('Home/user/login')}">登录</a>
+					<a href="{:U('Home/user/reg')}">注册</a>
+				</div>
+				<div class="fl islogin hide">
+					<a class="red userinfo" href="{:U('Home/user/index')}"></a>
+					<a  href="{:U('Home/user/logout')}"  title="退出" target="_self">安全退出</a>
+				</div>
+			</div>
+			<ul class="top-ri-header fr clearfix">
+				<li><a target="_blank" href="{:U('Home/Order/order_list')}">我的订单</a></li>
+				<li class="spacer"></li>
+				<li><a target="_blank" href="{:U('Home/User/visit_log')}">我的浏览</a></li>
+				<li class="spacer"></li>
+				<li><a target="_blank" href="{:U('Home/User/goods_collect')}">我的收藏</a></li>
+				<li class="spacer"></li>
+				<li>客户服务</li>
+				<li class="spacer"></li>
+				<li class="hover-ba-navdh">
+					<div class="nav-dh">
+						<span>网站导航</span>
+						<i class="share-a_a1"></i>
+					</div>
+					<ul class="conta-hv-nav clearfix">
+						<li>
+							<a href="#">优惠活动</a>
+						</li>
+						<li>
+							<a href="#">预售活动</a>
+						</li>
+						<li>
+							<a href="#">拍卖活动</a>
+						</li>
+						<li>
+							<a href="#">兑换中心</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<div class="nav-middan-z [w] clearfix">
+		<a class="ecsc-logo" href="#">
+            <img src="{$tpshop_config['shop_info_store_logo']}" style="width: 159px;height: 58px;">
+        </a>
+		<div class="ecsc-search">
+			<form id="searchForm" name="" method="get" action="{:U('Home/Goods/search')}" class="ecsc-search-form">
+				<input autocomplete="off" name="q" id="q" type="text" value="{$Request.param.q}" class="ecsc-search-input" placeholder="请输入搜索关键字...">
+				<button type="submit" class="ecsc-search-button">搜索</button>
+    			<div class="candidate p">
+                    <ul id="search_list"></ul>
+                </div>
+                <script type="text/javascript">
+                    ;(function($){
+                        $.fn.extend({
+                            donetyping: function(callback,timeout){
+                                timeout = timeout || 1e3;
+                                var timeoutReference,
+                                        doneTyping = function(el){
+                                            if (!timeoutReference) return;
+                                            timeoutReference = null;
+                                            callback.call(el);
+                                        };
+                                return this.each(function(i,el){
+                                    var $el = $(el);
+                                    $el.is(':input') && $el.on('keyup keypress',function(e){
+                                        if (e.type=='keyup' && e.keyCode!=8) return;
+                                        if (timeoutReference) clearTimeout(timeoutReference);
+                                        timeoutReference = setTimeout(function(){
+                                            doneTyping(el);
+                                        }, timeout);
+                                    }).on('blur',function(){
+                                        doneTyping(el);
+                                    });
+                                });
+                            }
+                        });
+                    })(jQuery);
+
+                    $('.ecsc-search-input').donetyping(function(){
+                        search_key();
+                    },500).focus(function(){
+                        var search_key = $.trim($('#q').val());
+                        if(search_key != ''){
+                            $('.candidate').show();
+                        }
+                    });
+                    $('.candidate').mouseleave(function(){
+                        $(this).hide();
+                    });
+
+                    function searchWord(words){
+                        $('#q').val(words);
+                        $('#searchForm').submit();
+                    }
+                    function search_key(){
+                        var search_key = $.trim($('#q').val());
+                        if(search_key != ''){
+                            $.ajax({
+                                type:'post',
+                                dataType:'json',
+                                data: {key: search_key},
+                                url:"{:U('Home/Api/searchKey')}",
+                                success:function(data){
+                                    if(data.status == 1){
+                                        var html = '';
+                                        $.each(data.result, function (n, value) {
+                                            html += '<li onclick="searchWord(\''+value.keywords+'\');"><div class="search-item">'+value.keywords+'</div><div class="search-count">约'+value.goods_num+'个商品</div></li>';
+                                        });
+                                        html += '<li class="close"><div class="search-count">关闭</div></li>';
+                                        $('#search_list').empty().append(html);
+                                        $('.candidate').show();
+                                    }else{
+                                        $('#search_list').empty();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                </script>
+			</form>
+			<div class="keyword clearfix">
+				<foreach name="tpshop_config.hot_keywords" item="wd" key="k">
+				<a class="key-item" href="{:U('Home/Goods/search',array('q'=>$wd))}" target="_blank">{$wd}</a>
+				</foreach>
+			</div>
+		</div>
+		<div class="u-g-cart fr" id="hd-my-cart">
+			<a href="{:U('Home/Cart/index')}">
+			<div class="c-n fl">
+				<i class="share-shopcar-index"></i>
+				<span>我的购物车</span>
+				<em class="shop-nums" id="cart_quantity"></em>
+			</div>
+			</a>
+			<div class="u-fn-cart" id="show_minicart">
+				<div class="minicartContent" id="minicart">
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="nav [w] clearfix">
+		<div class="categorys home_categorys">
+			<div class="dt">
+				<a href="" target="_blank"><i class="share-a_a2"></i>全部商品分类</a>
+			</div>
+			<!--全部商品分类-s-->
+			<div class="dd">
+				<div class="cata-nav" id="cata-nav">
+				<volist name="goods_category_tree" id="v" key="kr">
+					<div class="item">
+						<if condition="$v[level] eq 1">
+						<div class="item-left">
+							<h3 class="cata-nav-name">
+								<div class="cata-nav-wrap">
+									<i class="ico ico-nav-{$kr-1}"></i>
+									<a href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}" title="{$v[name]}">{$v[mobile_name]}</a>
+								</div>
+								<!--<a href="" >手机店</a>-->
+							</h3>
+						</div>
+						</if>
+						<div class="cata-nav-layer">
+							<div class="cata-nav-left">
+								<div class="cata-layer-title">
+									<foreach name="v.hot_cate" item="hc">
+									<a class="layer-title-item" href="">{$hc.name}<i class="ico ico-arrow-right">></i></a>
+									</foreach>
+								</div>
+								<div class="subitems">
+									<foreach name="v['tmenu']" key="k2" item='v2'>
+									<if condition="$v2[parent_id] eq $v['id']">
+										<dl class="clearfix">
+											<dt><a href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}" target="_blank">{$v2[name]}</a></dt>
+											<dd class="clearfix">
+												<foreach name="v2['sub_menu']" key="k3" item='v3'>
+													<if condition="$v3[parent_id] eq $v2['id']">
+													<a href="{:U('Home/Goods/goodsList',array('id'=>$v3[id]))}" target="_blank">{$v3[name]}</a>
+													</if>
+												</foreach>
+											</dd>
+										</dl>
+									</if>
+									</foreach>
+								</div>
+							</div>
+							<div class="advertisement_down">
+								<adv pid="10+$kr" item="v3" limit="5">
+								<a href="{$v3[ad_link]}" <if condition="$v3['target'] eq 1">target="_blank"</if>>
+									<img class="w-100" src="{$v3[ad_code]}" title="{$v3[title]}"/>
+								</a>
+								</adv>
+							</div>
+							<adv item="az" pid="51" limit="1">
+							<a href="{$az[ad_link]}" class="cata-nav-rigth" <if condition="$az['target'] eq 1">target="_blank"</if>>
+								<img class="w-100" src="{$az[ad_code]}" title="{$az[title]}" />
+							</a>
+							</adv>
+						</div>
+					</div>
+					</volist>					
+				</div>
+				<script>
+					$('#cata-nav').find('.item').hover(function () {
+						$(this).addClass('nav-active').siblings().removeClass('nav-active');
+					},function () {
+						$(this).removeClass('nav-active');
+					})
+				</script>
+			</div>
+			<!--全部商品分类-e-->
+		</div>
+		<ul class="navitems clearfix" id="navitems">
+			<li <if condition=" CONTROLLER_NAME eq 'Index' ">class="selected"</if>><a href="{:U('Index/index')}">首页</a></li>
+			<tpshop sql="SELECT * FROM `__PREFIX__navigation` where is_show = 1 ORDER BY `sort` DESC" key="k" item='v'>
+			<li <?php if($_SERVER['REQUEST_URI']==str_replace('&amp;','&',$v[url])){ echo "class='selected'";}?>>
+       			<a href="{$v[url]}" <if condition="$v[is_new] eq 1">target="_blank" </if> >{$v[name]}</a>
+       		</li>
+			</tpshop>
+		</ul>
+	</div>
+</div>

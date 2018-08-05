@@ -1,0 +1,58 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+	<include file="public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> {$plugin.name}配置</h3>
+                </div>
+                <div class="panel-body">
+
+                    <!--表单数据-->
+                    <form method="post" id="addEditSpecForm" action="">
+                        <!--通用信息-->
+                    <div class="tab-content">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">
+                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <volist name="plugin.config" id="config">
+                                    <tr>
+                                        <td class="col-sm-2">{$config.label}：</td>
+                                        <td>
+                                            <if condition="$config['type'] eq 'select'">
+                                                <select name="config[{$config['name']}]">
+                                                    <volist name="config.option" id="option" key="o">
+                                                        <option <if condition="$config_value[$config['name']] eq $o">selected</if>  value="{$o}">{$option}</option>
+                                                    </volist>
+                                                </select>
+                                            <elseif condition="$config['type'] eq 'textarea'"/>
+                                                <textarea rows="6" cols="90" name="config[{$config['name']}]">{$config_value[$config['name']]}</textarea>
+                                            <else />
+                                                <input type="{$config['type']}" value="{$config_value[$config['name']]}" name="config[{$config['name']}]"/>
+                                            </if>
+                                        </td>
+                                    </tr>
+                                </volist>
+                                </tbody>                                
+                                </table>
+                        </div>                           
+                    </div>              
+                    <div class="">
+                        <input type="hidden" name="id" value="{$spec.id}">
+                        <button class="btn btn-primary" title="" data-toggle="tooltip" type="submit"  data-original-title="保存"><i class="fa fa-save"></i></button>
+                    </div>
+			    </form><!--表单数据-->
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+</body>
+</html>

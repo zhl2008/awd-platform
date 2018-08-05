@@ -1,0 +1,113 @@
+<include file="public/min-header"/>
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <!-- Main content -->
+    <section class="content">
+        <div class="container-fluid">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 会员充值记录</h3>
+                </div>
+                <div class="panel-body">
+                <div class="navbar navbar-default">
+                            <form action="" id="search-form2" class="navbar-form form-inline" method="post">
+                                <div class="form-group">
+                                    <label class="control-label" for="input-mobile">会员昵称</label>
+                                    <div class="input-group">
+                                        <input type="text" name="nickname" value="" placeholder="模糊查询" id="input-mobile" class="form-control">
+                                        <!--<span class="input-group-addon" id="basic-addon2"><i class="fa fa-search"></i></span>-->
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                    			<div class="input-group margin">
+						            <div class="input-group-addon">
+						               	选择时间  <i class="fa fa-calendar"></i>
+						            </div>
+					               <input type="text" class="form-control pull-right" name="timegap" value="{$timegap}" id="start_time">
+					            </div>
+                                </div>
+                                 <div class="form-group">
+                                    <input type="hidden" name="order_by" value="user_id">
+                                	<input type="hidden" name="sort" value="desc">
+                                	<button type="submit" id="button-filter search-order" class="btn btn-primary pull-right"><i class="fa fa-search"></i> 筛选</button>
+                                 </div>                               
+								 <a href="{:U('User/index')}" class="btn btn-info pull-right">会员列表</a>
+                            </form>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <td class="text-left">会员ID</td>
+                                <td class="text-left">会员昵称</td>
+                                <td class="text-left">充值单号</td>
+                                <td class="text-left">充值资金</td>
+                                <td class="text-left">提交时间</td>
+                                <td class="text-left">支付方式</td>
+                                <td class="text-left">支付状态</td>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="lists" id="list">
+                                <tr>
+                                	<td class="text-left">{$list.user_id}</td>
+                                    <td class="text-left">{$list.nickname}</td>
+                                    <td class="text-left">{$list.order_sn}</td>
+                                    <td class="text-left">{$list.account}</td>
+                                    <td class="text-left">{$list.ctime|date="Y-m-d H:i",###}</td>
+                                    <td class="text-left">{$list.pay_name}</td>
+                                    <td class="text-left"><if condition="$list[pay_status] eq 0">待支付<else/>已支付</if></td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                        <div class="pull-right">
+                            {$page}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+$(document).ready(function() {
+	$('#start_time').daterangepicker({
+		format:"YYYY-MM-DD",
+		singleDatePicker: false,
+		showDropdowns: true,
+		minDate:'2016-01-01',
+		maxDate:'2030-01-01',
+		startDate:'2016-01-01',
+        showWeekNumbers: true,
+        timePicker: false,
+        timePickerIncrement: 1,
+        timePicker12Hour: true,
+        ranges: {
+           '今天': [moment(), moment()],
+           '昨天': [moment().subtract('days', 1), moment().subtract('days', 1)],
+           '最近7天': [moment().subtract('days', 6), moment()],
+           '最近30天': [moment().subtract('days', 29), moment()],
+           '上一个月': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+        },
+        opens: 'right',
+        buttonClasses: ['btn btn-default'],
+        applyClass: 'btn-small btn-primary',
+        cancelClass: 'btn-small',
+	    locale : {
+            applyLabel : '确定',
+            cancelLabel : '取消',
+            fromLabel : '起始时间',
+            toLabel : '结束时间',
+            customRangeLabel : '自定义',
+            daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+            monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+            firstDay : 1
+        }
+	});
+});
+</script>

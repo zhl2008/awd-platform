@@ -1,0 +1,114 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <!-- Content Header (Page header) -->
+   <include file="public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <!--<div class="container-fluid">-->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> 添加会员</h3>
+            </div>
+            <div class="panel-body">
+                <form action="" method="post" onsubmit="return checkUserUpdate(this);">
+                    <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td class="col-sm-2">会员昵称:</td>
+                        <td ><input type="text" class="form-control" name="nickname" value=""></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>登陆密码:</td>
+                        <td><input type="password" class="form-control" name="password"></td>
+                        <td>6-16位字母数字符号组合</td>
+                    </tr>
+                    <tr>
+                        <td>邮件地址:</td>
+                        <td><input type="text" class="form-control" name="email" value=""></td>
+                        <td>前台登陆账号，手机邮箱任意一项都可以</td>
+                    </tr>
+
+                    <tr>
+                        <td>性别:</td>
+                        <td id="order-status">
+                            <input name="sex" type="radio" value="0" <if condition="$user['sex'] eq 0">checked</if> >保密
+                            <input name="sex" type="radio" value="1" <if condition="$user['sex'] eq 1">checked</if> >男
+                            <input name="sex" type="radio" value="2" <if condition="$user['sex'] eq 2">checked</if> >女
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>QQ:</td>
+                        <td>
+                            <input class="form-control" type="text" name="qq">
+                        </td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>手机:</td>
+                        <td>
+                            <input type="text" class="form-control" name="mobile">
+                        </td>
+                        <td>前台登陆账号，手机邮箱任意一项都可以</td>
+                    </tr>
+          
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button type="submit" class="btn btn-info">
+                                <i class="ace-icon fa fa-check bigger-110"></i> 保存
+                            </button>
+                            <input type="reset" class="btn btn-default pull-right" value="重置">
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                </form>
+
+            </div>
+        </div>
+ 	  </div> 
+    </div>    <!-- /.content -->
+   </section>
+</div>
+<script>
+    function checkUserUpdate(){
+        var email = $('input[name="email"]').val();
+        var mobile = $('input[name="mobile"]').val();
+        var password = $('input[name="password"]').val();
+        var error ='';
+        if(password == ''){
+            error += "密码不能为空\n";
+        }
+		if(password.length<6 || password.length>16){
+			error += "密码长度不正确\n";
+		}
+		
+        if(!checkEmail(email) && email != ''){
+            error += "邮箱地址有误\n";
+        }
+        if(!checkMobile(mobile) && mobile != ''){
+            error += "手机号码填写有误\n";
+        }
+        
+        if(email == '' && mobile ==''){
+        	 error += "手机和邮箱请至少填一项\n";
+        }
+        
+        if(error){
+            layer.alert(error, {icon: 2});  //alert(error);
+            return false;
+        }
+        return true;
+
+    }
+</script>
+
+</body>
+</html>

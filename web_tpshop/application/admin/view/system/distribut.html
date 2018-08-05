@@ -1,0 +1,171 @@
+<include file="public/min-header"/>
+
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+                <a href="javascript:;" class="btn btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/1021/developer/user.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>
+            </div>
+            <div class="panel panel-default">           
+                <div class="panel-body ">   
+                   	<ul class="nav nav-tabs">
+                        <foreach name="group_list" item="vo" key="k">
+                     		<li <if condition="$k eq 'distribut'">class="active"</if>><a href="javascript:void(0)" data-url="{:U('System/index',array('inc_type'=>$k))}" data-toggle="tab" onclick="goset(this)">{$vo}</a></li>
+                     	</foreach>                        
+                    </ul>
+                    <!--表单数据-->
+                    <form method="post" id="handlepost" action="{:U('System/handle')}">                    
+                        <!--通用信息-->
+                    <div class="tab-content" style="padding:20px 0px;">                 	  
+                        <div class="tab-pane active" id="tab_smtp">                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="col-sm-2">分销开关：</td>
+                                    <td class="col-sm-6">
+                         				开:<input type="radio"  name="switch" value="1" <if condition="$config['switch'] eq 1">checked="checked"</if> />
+                         				关:<input type="radio"  name="switch" value="0" <if condition="$config['switch'] eq 0">checked="checked"</if> />   
+                                    </td>
+                                    <td class="col-sm-7"></td>                                    
+                                </tr>  
+                                <tr>
+                                    <td class="col-sm-2">成为分销商条件：</td>
+                                    <td class="col-sm-6">
+                         		<input type="radio"  name="condition" value="0" <if condition="$config[condition] eq 0">checked="checked"</if> />
+                                        直接成为分销商:
+                                            &nbsp;&nbsp;&nbsp;<input type="radio"  name="condition" value="1" <if condition="$config[condition] eq 1">checked="checked"</if> />   
+                                        成功购买商品后成为分销商:
+                                    </td>
+                                    <td class="col-sm-7"></td>                                    
+                                </tr>
+                                <tr>
+                                    <td class="col-sm-2">分销名称：</td>
+                                    <td class="col-sm-6">
+                         				<input type="text" class="form-control" name="name" value="{$config.name}" />
+                                    </td>
+                                    <td class="col-sm-7"></td>                                    
+                                </tr>
+                                <tr>
+                                    <td>分销模式：</td>
+                                    <td >
+                                        <select class="form-control" name="pattern" id="distribut_pattern">
+	                                       <option value="0" <if condition="$config['pattern'] eq 0">selected="selected"</if>>按商品设置的分成金额</option>
+	                                       <option value="1" <if condition="$config['pattern'] eq 1">selected="selected"</if>>按订单设置的分成比例</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr id="distribut_order_rate" <if condition="$config['pattern'] eq 0">style="display:none"</if>>
+                                    <td class="col-sm-2">订单默认分成比例：</td>
+                                    <td class="col-sm-3">
+                         				<input type="text" class="form-control" name="order_rate" value="{$config.order_rate}" onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"/>                                        
+                                    </td>
+                                    <td class="col-sm-7">% 订单的百分之多少拿出来分成</td>
+                                </tr>                                
+                                <tr>
+                                    <td>一级分销商名称：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="first_name" value="{$config.first_name}" >
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>一级分销商比例：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="first_rate" id="distribut_first_rate" value="{$config.first_rate}"onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" >
+                                    </td>
+                                    <td class="col-sm-7">%</td>                              
+                                </tr>                                  
+                            	<tr>
+                                    <td>二级分销商名称：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="second_name" value="{$config.second_name}" >
+                                    </td>
+                                </tr>   
+                                <tr>
+                                    <td>二级分销商比例：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="second_rate" id="distribut_second_rate" value="{$config.second_rate}"onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" >
+                                    </td>
+                                    <td class="col-sm-7">%</td>                                    
+                                </tr>                                   
+                            	<tr>
+                                    <td>三级分销商名称：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="third_name" value="{$config.third_name}" >
+                                    </td>
+                                </tr> 
+                            	<tr>
+                                    <td>三级分销商比例：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="third_rate" id="distribut_third_rate" value="{$config.third_rate}"onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" >
+                                    </td>
+                                    <td class="col-sm-7">%</td>                                    
+                                </tr>
+                            	<tr>
+                                    <td>分成时间：</td>
+                                    <td >
+                                        <select class="form-control" name="date" id="distribut_date">
+                                                <for start="1" end="31" name="i" >          
+                                                    <option value="{$i}" <if condition="$config[date] eq $i">selected="selected"</if>>{$i}天</option>
+                                                </for>
+                                        </select>
+                                    </td>
+                                    <td class="col-sm-7">订单收货确认后多少天可以分成</td>                                    
+                                </tr>    
+                                </tbody>
+                                <tfoot>
+                                	<tr>
+                                	<td><input type="hidden" name="inc_type" value="{$inc_type}"></td>
+                                	<td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td></tr>
+                                </tfoot>                               
+                                </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+
+$('#distribut_pattern').change(function(){
+	 if($(this).val() == 1)
+	    $('#distribut_order_rate').show();
+	 else	
+	    $('#distribut_order_rate').hide();	 
+});
+
+function adsubmit(){
+	var distribut_first_rate  = $.trim($('#distribut_first_rate').val());
+	var distribut_second_rate = $.trim($('#distribut_second_rate').val());
+	var distribut_third_rate  = $.trim($('#distribut_third_rate').val());		
+	
+	var rate = parseInt(distribut_first_rate) + parseInt(distribut_second_rate) + parseInt(distribut_third_rate);
+	if(rate > 100)
+	{
+		layer.msg('三个分销商比例总和不得超过100%', {icon: 2,time: 2000});//alert('少年，邮箱不能为空！');		
+		// alert('三个分销商比例总和不得超过100%');
+		return false;
+	}
+	
+	$('#handlepost').submit();
+}
+
+$(document).ready(function(){
+	get_province();
+});
+
+function goset(obj){
+	window.location.href = $(obj).attr('data-url');
+}
+</script>
+</body>
+</html>

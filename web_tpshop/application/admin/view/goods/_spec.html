@@ -1,0 +1,85 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            	<a href="javascript:;" class="btn btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/1008/developer/user.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 商品规格</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_tongyong" data-toggle="tab">商品规格</a></li>
+                    </ul>
+                    <!--表单数据-->
+                    <form method="post" id="addEditSpecForm">                    
+                        <!--通用信息-->
+                    <div class="tab-content">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">
+                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>规格名称：</td>
+                                    <td>
+                                        <input type="text" value="{$spec.name}" name="name"/>
+                                        <span id="err_name" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>所属商品类型：</td>
+                                    <td>
+                                        <select name="type_id" id="type_id">
+                                             <option value="">请选择</option>
+                                            <volist name="goodsTypeList" id="vo">
+                                             <option value="{$vo[id]}" <if condition="$vo[id] eq $spec[type_id]">selected="selected"</if>>{$vo[name]}</option>
+                                            </volist>                                        
+                                        </select>
+                                        <span id="err_type_id" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                </tr>  
+                                
+                                <tr style="display:none;">
+                                    <td>能否进行检索：</td>
+                                    <td>
+                                        <input type="radio" value="0" name="search_index" <if condition="$spec[search_index] eq 0">checked="checked"</if>  .>不需要检索
+                                        <input type="radio" value="1" name="search_index" <if condition="($spec[search_index] eq 1) or ($spec[search_index] eq NULL)">checked="checked"</if>  />关键字检索
+                                        <!--<input type="radio" value="2" name="search_index" <if condition="$spec[search_index] eq 2">checked="checked"</if>  />范围检索-->
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>规格项：</td> 
+                                    <td>
+                                    <textarea rows="5" cols="30" name="items">{$spec.items}</textarea>
+									一行为一个规格项
+                                    <span id="err_items" style="color:#F00; display:none;"></span>
+                                    </td>
+                                </tr>       
+                                <tr>
+                                    <td>排序：</td>
+                                    <td>
+                                        <input type="text" value="{$spec.order|default='50'}" name="order"/>
+                                        <span id="err_order" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                </tr>                                                           
+                                </tbody>                                
+                                </table>
+                        </div>                           
+                    </div>              
+                    <div class="pull-right">
+                        <input type="hidden" name="id" value="{$spec.id}">
+                        <button class="btn btn-primary" title="" data-toggle="tooltip" type="button" onclick="ajax_submit_form('addEditSpecForm','{:U('Goods/addEditSpec?is_ajax=1')}');" data-original-title="保存"><i class="fa fa-save"></i></button>
+                    </div>
+			    </form><!--表单数据-->
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+</body>
+</html>

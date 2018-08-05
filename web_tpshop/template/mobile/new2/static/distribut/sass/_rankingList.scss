@@ -1,0 +1,247 @@
+.ranking_tit{
+    text-align: center;
+    position: relative;
+    .ran1{
+        width: 650px/$ppr;
+        height: 331px/$ppr;
+    }
+    .ran2{
+        width: 425px/$ppr;
+        height: 194px/$ppr;
+        margin-top: -37px/$ppr;
+    }
+    i{
+        position: absolute;
+    }
+    .fla-f1{
+        top: 35px/$ppr;
+        @include keyframes(ranking1,8s,linear,infinite,normal){
+            0%   {
+                left: 0%;
+                opacity: 1;
+                transform:rotate(0deg);
+            }
+            50%  {
+                left: 8%;
+                opacity: 0;
+                transform:rotate(180deg);
+            }
+            100%  {
+                left: 0%;
+                opacity: 1;
+                transform:rotate(360deg);
+            }
+        }
+    }
+    .fla-f2{
+        top: 80px/$ppr;
+        @include keyframes(ranking2,6s){
+            0%   {
+                right: 0%;
+                opacity: 1;
+                transform:rotate(0deg);
+            }
+            100%  {
+                right: 8%;
+                opacity: 0;
+                transform:rotate(360deg);
+            }
+        }
+    }
+    .fla-f3{
+        top: 434px/$ppr;
+        @include keyframes(ranking3,5s,linear,infinite,normal){
+            0%   {
+                right: 15%;
+                opacity: 1;
+                transform:rotate(0deg);
+            }
+            50%  {
+                right: 20%;
+                opacity: 0;
+                transform:rotate(180deg);
+            }
+            100%  {
+                right: 15%;
+                opacity: 1;
+                transform:rotate(360deg);
+            }
+        }
+    }
+    .flab{
+        background: url(../images/flab.png) no-repeat;
+        width: 682px/$ppr;
+        height: 247px/$ppr;
+        background-size: cover;
+        left: 48px/$ppr;
+        top: 130px/$ppr;
+        @include keyframes(ranking4,5s,linear,infinite,normal){
+            0%   {
+                left: 40px/$ppr;
+                opacity: 1;
+                transform:rotate(0deg);
+            }
+            50%  {
+                left: 56px/$ppr;
+                opacity: 1;
+                transform:rotate(10deg);
+            }
+            100%  {
+                left: 40px/$ppr;
+                opacity: 1;
+                transform:rotate(0deg);
+            }
+        }
+    }
+}
+.ranking_main{
+    position: relative;
+    margin-top: -32px/$ppr;
+    .form_list{
+        padding: 0 30px/$ppr;
+        position:relative; 
+        &:before{
+            content: "";
+            background: url(../images/cup.png) no-repeat;
+            width: 108px/$ppr;
+            height: 153px/$ppr;
+            background-size: cover;
+            position: absolute;
+            right: 35px/$ppr;
+            top: -105px/$ppr;
+        }
+    }
+    .fla-f1{
+        position: absolute;
+        top: 526px/$ppr;
+        @include keyframes(ranking5,5s,linear,infinite,normal){
+            0%   {
+                left: 0%;
+                opacity: 1;
+                transform:rotate(0deg);
+            }
+            50%  {
+                left: 3%;
+                opacity: 0.1;
+                transform:rotate(180deg);
+            }
+            100%  {
+                left: 0%;
+                opacity: 1;
+                transform:rotate(360deg);
+            }
+        }
+    }
+}
+.list2_rank{
+    text-align: center;
+    a{
+        display: inline-block;
+        width: 138px/$ppr;
+        height: 48px/$ppr;
+        text-align: center;
+        line-height: 48px/$ppr;
+        color: white;
+        border-radius: 10px/$ppr;
+        background: #ce520a;
+        cursor: pointer;
+        margin: 0 15px/$ppr;
+        font-size:30px/$ppr;
+        &.current{
+            background: #f45801;
+        }
+    }
+}
+.board_yellow_dark{
+    background: #ce4703;
+    width: 100%;
+    padding: 10px/$ppr;
+    border-radius: 8px;
+    .board_yellow_light{
+        background: #fb9b08;
+        padding: 16px/$ppr;
+        border-radius: 8px;
+        .board_green{
+            background: #66b48c;
+            padding: 23px/$ppr;
+            border-radius: 8px;
+        }
+    }
+}
+.rank_alone{
+    position: relative;
+    background: #fff9df;
+    padding: 14px/$ppr 0;
+    margin-bottom: 8px/$ppr;
+    border-radius: 8px/$ppr;
+    &:last-child{
+        margin-bottom: 50px/$ppr;
+    }
+    .flo{
+        float: left;
+        i{
+            display: inline-block;
+            vertical-align: middle;
+        }
+    }
+    .my_team_alon{
+        padding: 0;
+        border-bottom: none;
+        background: inherit;
+        .team_name_time{
+            width: 320px/$ppr;
+            padding: 28px/$ppr 0;
+            .t_n{
+                @include fs(font-size,28);
+            }
+            .t_t{
+                @include fs(font-size,26);
+                em{
+                    color: #e63138;
+                }
+            }
+        }
+    }
+}
+$sum_rank:592px/$ppr;
+$sum_data_rank1:76px/$ppr;
+$sum_data_rank2:455px/$ppr;
+$sum_data_rank3:$sum_rank - $sum_data_rank1 - $sum_data_rank2;
+
+.rank_data1{
+    width: $sum_data_rank1;
+    padding: 27.5px/$ppr 0;
+    text-align: center;
+    position: relative;
+    span{
+        color: #da8c14;
+        @include fs(font-size,30);
+        line-height: 60px/$ppr;
+    }
+}
+.rank_data2{
+    width: $sum_data_rank2;
+}
+.rank_data3{
+    width: $sum_data_rank3;
+    padding: 40.5px/$ppr 0;
+    text-align: center;
+}
+.ranking_foot{
+    position: relative;
+    .big_pocket{
+        float: left;
+        margin-top: -76px/$ppr;
+    }
+    .litt_mony{
+        float: right;
+        margin-top: -26px/$ppr;
+    }
+}
+.nextpage{
+    @include fs(font-size,28);
+    color: white;
+    text-align: center;
+    cursor: pointer;
+    padding: 30px/$ppr 0 10px/$ppr 0;
+}

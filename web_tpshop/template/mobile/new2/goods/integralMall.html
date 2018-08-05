@@ -1,0 +1,102 @@
+<include file="public/header" title="积分商城" body=""/>
+<include file="public/header_nav" title="积分商城"  href="javascript:history.back(-1)" />
+    <nav class="storenav grst p">
+        <ul>
+            <li <if condition="$Request.param.rank eq ''">class="red"</if>>
+               <a href="{:U('Mobile/Goods/integralMall')}"><span>默认 </span></a>
+            </li>
+            <li <if condition="$Request.param.rank eq 'num'">class="red"</if>>
+                <a href="{:U('Mobile/Goods/integralMall',array('rank'=>'num'))}"><span>兑换量</span></a>
+                <i></i>
+            </li>
+            <li <if condition="$Request.param.rank eq 'integral'">class="red"</if>>
+                <a href="{:U('Mobile/Goods/integralMall',array('rank'=>'integral'))}"><span>积分值</span></a>
+                <i></i>
+            </li>
+        </ul>
+    </nav>
+    <!--换购商品列表-s-->
+    <div id="goods_list">
+        <foreach name="goods_list" item="good">
+            <div class="sc_list se_sclist paycloseto">
+                <div class="maleri30">
+                    <div class="shopimg fl">
+                        <img src="{$good.goods_id|goods_thum_images=400,400}">
+                    </div>
+                    <div class="deleshow fr">
+                        <a href="{:U('Mobile/Goods/goodsInfo', array('id'=>$good[goods_id]))}">
+                            <div class="deletes">
+                                <span class="similar-product-text">{$good[goods_name]}</span>
+                            </div>
+                            <div class="prices">
+                                <p class="sc_pri">
+                                    <span>{:round($good[shop_price]-$good[exchange_integral]/$point_rate,2)}</span>
+                                    <span class="cobl">+{$good[exchange_integral]}积分</span></p>
+                            </div>
+                        </a>
+                        <div class="qxatten">
+                            <p class="weight"><span>市场价</span>&nbsp;<span>￥{$good[market_price]}</span></p>
+                            <a class="closeannten" href="{:U('Mobile/Goods/goodsInfo',array('id'=>$good['goods_id']))}" >立即兑换</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </foreach>
+    </div>
+    <!--换购商品列表-e-->
+    <!--加载更多S-->
+    <notempty name="goods_list">
+        <div class="loadbefore">
+            <img class="ajaxloading" src="__STATIC__/images/loading.gif" alt="loading...">
+        </div>
+    </notempty>
+    <!--加载更多E-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript">
+    //切换排序
+    $(function(){
+        $('.storenav ul li span').click(function(){
+            $(this).parent().addClass('red').siblings('li').removeClass('red')
+            //$(this).siblings().toggleClass('traat');
+        });
+
+//        ajax_sourch_submit();
+    });
+
+    //加载更多
+    var page = 1;
+    function ajax_sourch_submit(){
+        ++page;
+        <if condition='$Request.param.rank'>
+            var url = '/index.php/Mobile/Goods/integralMall/p/' + page +'rank/'+ '{$Request.param.rank}';
+        <else/>
+            var url = '/index.php/Mobile/Goods/integralMall/p/' + page;
+        </if>
+
+        $.ajax({
+            type: 'GET',
+            url: url,
+            success: function (data) {
+                if (data == '') {
+                    $('#getmore').hide();
+                    $('.loadbefore').hide();
+                } else {
+                    $('#goods_list').append(data);
+                }
+            }
+        })
+    }
+    //滚动加载更多
+    $(window).scroll(
+        function() {
+            var scrollTop = $(this).scrollTop();
+            var scrollHeight = $(document).height();
+            var windowHeight = $(this).height();
+            if (scrollTop + windowHeight == scrollHeight) {
+                ajax_sourch_submit();//调用加载更多
+            }
+        }
+    );
+</script>
+</body>
+</html>

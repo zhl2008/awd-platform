@@ -1,0 +1,36 @@
+<foreach name="visit_list" item="list" key='curdate'>
+    <div class="daterecord">
+        <div class="maleri30">
+            {$curdate}
+        </div>
+    </div>
+    <foreach name='list' item="goods">
+    <div class="orderlistshpop dejsshort p">
+        <div class="maleri30">
+            <div class="sc_list se_sclist">
+                <div class="radio fl">
+                    <span class="che " data-id="{$goods.visit_id}">
+                        <i></i>
+                    </span>
+                </div>
+                <div class="shopimg fl">
+                    <a href="{:U('Goods/goodsInfo',['id'=>$goods.goods_id])}">
+                        <img src="{$goods.goods_id|goods_thum_images=200,200}">
+                    </a>
+                </div>
+                <div class="deleshow fr">
+                    <div class="deletes p">
+                        <a href="{:U('Goods/goodsInfo',['id'=>$goods.goods_id])}">
+                            <span class="similar-product-text fl">{$goods.goods_name}</span>
+                        </a>
+                    </div>
+                    <div class="prices lookalike">
+                        <p class="sc_pri fl"><span>￥</span><span>{$goods.shop_price}</span></p>
+                        <a href="{:U('Goods/goodsList',['id'=>$goods.cat_id3])}">看相似</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </foreach>
+</foreach>

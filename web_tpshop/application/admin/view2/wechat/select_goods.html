@@ -1,0 +1,64 @@
+<include file="public/min-header" />
+<style>
+    td{width:50px;}
+</style>
+<body>
+<div class="wrapper">
+    <section class="content">
+        <div class="row">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 商品列表</h3>
+                </div>
+                <div class="panel-body">
+
+                    <div id="ajax_return">
+                        <div class="table-responsive">
+                            <table class="table table-bordered table-hover">
+                                <thead>
+                                <tr>
+
+                                    <td class="text-left">
+                                       ID
+                                    </td>
+                                    <td class="text-left">
+                                       商品名称
+                                    </td>
+                                    <td class="text-left">
+                                        价格
+                                    </td>
+
+                                    <td class="text-right">操作</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <volist name="lists" id="good">
+                                    <tr>
+                                        <td class="text-left"><img src="{$good.original_img}" alt="" width="60" height="60"></td>
+                                        <td class="text-left">{$good.goods_name}</td>
+                                        <td class="text-left">{$good.shop_price}</td>
+                                        <td class="text-right">
+                                            <a data-original-title="查看详情" class="btn btn-info" title="" data-toggle="tooltip" onclick="parent.selected('{$good.original_img}','{$good.goods_url}')">选择</a>
+                                        </td>
+                                    </tr>
+
+                                </volist>
+
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6 text-left"></div>
+                            <div class="col-sm-6 text-right">
+                               {$page}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+</body>
+</html>

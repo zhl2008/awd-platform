@@ -1,0 +1,88 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/> 
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 退货操作</h3>
+                </div>
+                <div class="panel-body">
+
+                    <!--表单数据-->
+                    <form method="post" action="" id="order-edit">
+                        <div class="tab-pane" >
+                            <table class="table table-bordered">
+                                <tbody><tr>
+                                    <td>操作备注:</td>
+                                    <td>
+                                        <textarea name="action_note" cols="30" ></textarea>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>退款方式:</td>
+                                    <td>
+
+                                        <label class="radio-inline"><input name="refund" value="1" type="radio"> 退回用户余额</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <label  class="radio-inline"><input name="refund" value="2"  type="radio"> 生成退款申请</label>
+                                        &nbsp;&nbsp;&nbsp;
+                                        <label  class="radio-inline"><input name="refund" value="3"  type="radio">  不处理，误操作时选择此项</label>
+
+                                    </td>
+                                </tr>
+
+                                </tbody></table>
+                        </div>
+                        <!--<input type="hidden" name="id" value="{$order.order_id}">-->
+                        <button class="btn btn-info" type="submit">
+                            <i class="ace-icon fa fa-check bigger-110"></i>
+                            保存
+                        </button>
+                    </form>
+                    <!--表单数据-->
+
+
+                                <!--&nbsp; &nbsp; &nbsp;-->
+                                <!--<button type="reset" class="btn">-->
+                                <!--<i class="ace-icon fa fa-undo bigger-110"></i>-->
+                                <!--返回-->
+                                <!--</button>-->
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div>
+<script>
+    $('#pay-type-edit').click(function(){
+        var url = $(this).data('url');
+        layer.open({
+            type: 2,
+            title: '支付方式编辑',
+            shadeClose: true,
+            shade: 0.8,
+            area: ['60%', '75%'],
+            content: url, //iframe的url
+        });
+    })
+
+    /* 用户订单区域选择 */
+    $(document).ready(function(){
+        $('#province').val({$order.province});
+    $('#city').val({$order.city});
+    $('#district').val({$order.district});
+    $('#shipping_id').val({$order.shipping_id});
+    })
+
+
+
+</script>
+
+</body>
+</html>

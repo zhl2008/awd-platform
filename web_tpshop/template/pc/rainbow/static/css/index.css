@@ -1,0 +1,464 @@
+﻿/*楼层*/
+.floor-nav{
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    margin-left:-674px;
+    z-index: 7;
+    background: #fff;
+    border:1px solid #ddd;
+    display: none;
+}
+.floor-nav>li{
+    width: 30px;
+    height: 30px;
+    padding:5px;
+    line-height: 15px;
+    font-size: 12px;
+    color: #999;
+    text-align: center;
+    overflow: hidden;
+    cursor: pointer;
+}
+.floor-nav>li+li{
+    border-top: 1px solid #ddd;
+}
+.floor-nav>li:hover{
+    background: #aaa;
+    color: #fff;
+}
+.floor-nav .floor-nav-ac{
+    background: #aaa;
+    color: #fff;
+}
+.floor-nav>li>span{
+    display: block;
+    height: 15px;
+    overflow: hidden;
+}
+
+
+
+/*右侧边栏*/
+.slidebar-right{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 7;
+    background: #fff;
+    border:1px solid #ddd;
+}
+.slidebar-item{
+    position: relative;
+    display: block;
+    width: 40px;
+    height: 40px;
+    border-bottom: 1px solid #ddd;
+    background-image: url("../images/ico-tphsop-index.png");
+    background-repeat: no-repeat;
+}
+.ico-slidebar4{
+    border-bottom: none;
+    height: 0;
+    overflow: hidden;
+}
+.ico-slidebar1{
+    background-position: -235px 0;
+}
+.ico-slidebar2{
+    background-position: -275px 0;
+}
+.ico-slidebar3{
+    background-position: -235px -40px;
+}
+.ico-slidebar4{
+    background-position: -275px -40px;
+}
+.sbar-hover-txt{
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 30px;
+    height: 30px;
+    padding: 5px;
+    font-size: 12px;
+    color: #fff;
+    line-height: 15px;
+    background-color: #aaa;
+    text-align: center;
+}
+.slidebar-item:hover .sbar-hover-txt{
+    display: block;
+}
+.sbar-hover-pic{
+    position: absolute;
+    /*left: -117px;*/
+    left: 61px;
+    top: -41px;
+    padding: 10px;
+    width: 80px;
+    background: #fff;
+    border: 1px solid #ddd;
+    opacity: 0;
+}
+.slidebar-item:hover .sbar-hover-pic{
+    left:-117px;
+    opacity:1;
+    -ms-transition: all .5s ease;
+    -moz-transition: all .5s ease;
+    -o-transition: all .5s ease;
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease;
+}
+.sbar-hover-pic:before{
+    content: '';
+    position: absolute;
+    left: 101px;
+    top: 48px;
+    border-top: 12px solid transparent;
+    border-bottom: 12px solid transparent;
+    border-left: 14px solid #ddd;
+}
+.sbar-hover-pic:after{
+    content: '';
+    position: absolute;
+    left: 100px;
+    top: 49px;
+    border-top: 11px solid transparent;
+    border-bottom: 11px solid transparent;
+    border-left: 13px solid #fff;
+}
+.ico-slidebar3 .sbar-hover-pic{
+    top: -82px;
+}
+.ico-slidebar3 .sbar-hover-pic:before{
+    top: 89px;
+}
+.ico-slidebar3 .sbar-hover-pic:after{
+    top: 90px;
+}
+
+
+
+.qrcode-wrap{
+    width: 80px;
+    height: 80px;
+    overflow: hidden;
+    cursor: pointer;
+}
+.qrcode-des{
+    line-height: 21px;
+    height: 63px;
+    overflow: hidden;
+    font-size: 12px;
+    color: #333;
+    text-align: center;
+}
+
+/*轮播图*/
+.carousel{
+    position: relative;
+    height: 450px;
+    width: 100%;
+    overflow: hidden;
+}
+.carousel-inner{
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 450px;
+    width: 100%;
+}
+.carousel-inner>.item{
+    float: left;
+    position: relative;
+    height: 450px;
+    width: 100%;
+}
+.carousel-inner .item-pic{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: -402px;
+    width: 814px;
+    height: 450px;
+    overflow: hidden;
+}
+.pagination{
+    position: absolute;
+    bottom: 20px;
+    left: 0;
+    z-index:6;
+    width: 100%;
+    text-align: center;
+}
+.pagination-item{
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 2px;
+    border: 1px solid #fff;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.pagination-item:hover{
+    background-color: #fff;
+}
+.pagination-item.active{
+    background-color: #fff;
+}
+.carousel-control{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -40px;
+    width: 40px;
+    height: 80px;
+    color: #fff;
+    background-color:#000;
+    background-image:url("../images/ico-arrow-banner.png");
+    background-repeat: no-repeat;
+    opacity: .2;
+}
+.carousel-control.left-btn{
+    background-position: -2px 0;
+    margin-left: -380px;
+}
+.carousel-control.right-btn{
+    background-position: -42px 0;
+    margin-left:347px;
+}
+.carousel .carousel-control:hover{
+    opacity:.6;
+}
+.banner-right-box{
+    position: absolute;
+    top: 0;
+    left: 50%;
+    margin-left: 412px;
+    width: 200px;
+    height: 440px;
+    padding-top: 10px;
+}
+.banner-right-item{
+    display: block;
+    width: 200px;
+    height: 210px;
+    margin-bottom:10px;
+    opacity: 0.7;
+}
+.banner-right-item:hover{
+    opacity: 1;
+}
+
+
+/*广告图*/
+.adv3 {
+    padding-top: 20px;
+    height: 180px;
+    overflow: hidden;
+    background: url("../images/bg-brand.jpg") no-repeat 0 20px;
+}
+.adv3 .recommend-brand{
+    float: left;
+    width: 400px;
+    height: 168px;
+    margin-left: 6px;
+    margin-top: 6px;
+    overflow: hidden;
+    background-color: #f5f5f5;
+}
+.adver_line{
+    display: block;
+    width: 1224px;
+    height: 120px;
+    margin: 20px auto 0;
+    overflow: hidden;
+}
+/*楼层*/
+.floor-top{
+    height: 35px;
+    padding-top: 40px;
+}
+.floor-title{
+    float: left;
+    width: 240px;
+    height: 35px;
+    font-weight: 500;
+    font-size: 20px;
+    color: #333;
+}
+.floor-nav-list{
+    float: left;
+    width: 720px;
+    height: 35px;
+    margin-left: 4px;
+    overflow: hidden;
+}
+.floor-nav-item{
+    float: left;
+    height: 35px;
+    padding:0 10px;
+    font-size: 14px;
+    color: #666;
+}
+.floor-nav-item:hover{
+    color: #e23435;
+}
+.nav-more-btn{
+    float: right;
+    font-size: 14px;
+    color: #666;
+}
+.nav-more-btn>i{
+    font-family: consolas;
+    margin: 0 10px;
+    font-size: 20px;
+}
+.nav-more-btn:hover{
+    color:#e23435;
+}
+.floor-main{
+    height: 538px;
+}
+.floor-brand{
+    float: left;
+    width: 240px;
+    min-height:1px;
+}
+.floor-brand .brand-big{
+    display: block;
+    width: 240px;
+    height: 385px;
+    overflow: hidden;
+    margin-bottom: 13px;
+}
+.floor-brand .brand-samll{
+    display: block;
+    width: 240px;
+    height: 140px;
+    overflow: hidden;
+}
+.floor-goods-list{
+    float: left;
+    width: 744px;
+    height: 538px;
+    margin-left: 13px;
+    overflow: hidden;
+    background-color: #fff;
+    border-left: 1px solid #eee;
+}
+.floor-goods-item{
+    float: left;
+    width: 167px;
+    padding: 0 40px;
+    height: 268px;
+    border-bottom: 1px solid #eee;
+    border-right: 1px solid #eee;
+    overflow: hidden;
+    text-align: center;
+}
+.floor-goods-item:hover{
+    /*background-color: #f5f5f5;*/
+}
+.floor-goods-item .googs-title{
+    font-size: 16px;
+    width: 167px;
+    height: 24px;
+    line-height: 24px;
+    padding-top: 24px;
+    color: #333;
+}
+.floor-goods-item .googs-price{
+    font-size:14px;
+    width: 167px;
+    height: 48px;
+    line-height: 48px;
+    color: #f71b1c;
+}
+.floor-goods-item .goods-pic{
+    width: 167px;
+    height: 167px;
+    margin:auto;
+    overflow: hidden;
+}
+.floor-recommend{
+    float: left;
+    width: 226px;
+    height: 538px;
+    background-color: #fff;
+}
+.floor-recommend-title{
+    height: 52px;
+    padding-left: 15px;
+    line-height: 52px;
+    font-size: 16px;
+    color: #333;
+    border-bottom: 1px solid #eee;
+}
+.floor-recommend-wrap{
+    position: relative;
+    height: 432px;
+    overflow: hidden;
+}
+.floor-recommend-list{
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+.floor-recommend-item{
+    display: block;
+    width: 195px;
+    height: 67px;
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+}
+.floor-recommend-item:hover{
+    background-color: #f5f5f5;
+}
+.floor-recommend-pic{
+    float: left;
+    width: 67px;
+    height: 67px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+.floor-recommend-cont{
+    float: left;
+    width: 118px;
+}
+.recommend-goods-name{
+    width: 118px;
+    height: 14px;
+    font-size: 14px;
+    line-height: 1;
+    margin-bottom: 7px;
+    color: #333;
+}
+.recommend-goods-des{
+    height: 22px;
+    line-height: 22px;
+    font-size: 12px;
+    color: #999;
+}
+.recommend-goods-price{
+    color: #f50c0c;
+}
+.recommend-more-btn{
+    display: block;
+    height: 53px;
+    line-height: 53px;
+    text-align: right;
+    font-size: 12px;
+    color: #999;
+}
+.recommend-more-btn>i{
+    font-family: consolas;
+    margin: 0 10px;
+    font-size: 16px;
+}
+.recommend-more-btn:hover{
+    color:#e23435;
+}
+

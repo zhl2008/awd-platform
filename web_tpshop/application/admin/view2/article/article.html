@@ -1,0 +1,200 @@
+<include file="public/layout" />
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.config.js"/>
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.all.min.js"/>
+<script type="text/javascript" charset="utf-8" src="__ROOT__/public/plugins/Ueditor/lang/zh-cn/zh-cn.js"></script>
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<style type="text/css">
+html, body {overflow: visible;}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>文章管理 - 新增文章</h3>
+        <h5>网站系统文章索引与管理</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" action="{:U('Article/aticleHandle')}" id="add_post" method="post">    
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>标题</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" value="{$info.title}" name="title" class="input-txt">
+          <span class="err" id="err_title"></span>
+          <p class="notic"></p>
+        </dd>
+        
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="cat_id"><em>*</em>所属分类</label>
+        </dt>
+        <dd class="opt">
+        <select class="small form-control" name="cat_id" id="cat_id">
+            <option value="0">选择分类</option>
+            {$cat_select} 
+        </select>        
+          <span class="err" id="err_cat_id"></span>
+          <p class="notic">当选择发布"商城公告"时，还需要设置下面的"出现位置"项</p>
+        </dd>
+      </dl>    
+	  <dl class="row">
+        <dt class="tit">
+          <label for="articleForm">seo关键字</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="keywords"  value="{$info.keywords}" class="input-txt">
+          <span class="err"></span>
+          <p class="notic">用于seo 搜索引擎友好</p>
+        </dd>
+      </dl>        
+      <dl class="row">
+        <dt class="tit">
+          <label for="articleForm">链接</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="link"  value="{$info.link}" class="input-txt">
+          <span class="err"></span>
+          <p class="notic">当填写"链接"后点击文章标题将直接跳转至链接地址，不显示文章内容。链接格式请以http://开头</p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="articleForm">发布时间</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" class="input-txt" id="publish_time" name="publish_time"  value="{$info.publish_time|date="Y-m-d",###}">        
+            <span class="add-on input-group-addon">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            </span> 
+          <span class="err"></span>
+        </dd>
+      </dl>       
+      <dl class="row">
+        <dt class="tit">
+          <label>显示</label>
+        </dt>
+        <dd class="opt">
+          <div class="onoff">
+            <label for="article_show1" class="cb-enable <if condition="$info[is_open] eq 1">selected</if>">是</label>
+            <label for="article_show0" class="cb-disable <if condition="$info[is_open] eq 0">selected</if>">否</label>
+            <input id="article_show1" name="is_open" value="1" type="radio" <if condition="$info[is_open] eq 1"> checked="checked"</if>>
+            <input id="article_show0" name="is_open" value="0" type="radio" <if condition="$info[is_open] eq 0"> checked="checked"</if>>
+          </div>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">网页描述</dt>
+        <dd class="opt">
+	      <textarea class="input-txt" id="post_description" name="description" title="">{$info.description}</textarea>
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>文章内容</label>
+        </dt>
+        <dd class="opt">          
+            <textarea class="span12 ckeditor" id="post_content" name="content" title="">
+                {$info.content}
+            </textarea>          
+            <span class="err"  id="err_content"></span>
+            <p class="notic"></p>
+        </dd>
+      </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>图片上传</label>
+            </dt>
+            <dd class="opt">
+                <div class="input-file-show">
+                        <span class="show">
+                            <a id="img_a" target="_blank" class="nyroModal" rel="gal" href="{$info.thumb}">
+                                <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$info.thumb}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                            </a>
+                        </span>
+           	            <span class="type-file-box">
+                            <input type="text" id="thumb" name="thumb" value="{$info.thumb}" class="type-file-text">
+                            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','article','img_call_back')" size="30" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                </div>
+                <span class="err"></span>
+                <p class="notic">请上传图片格式文件</p>
+            </dd>
+        </dl>
+      <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="article_id" value="{$info.article_id}">
+  </form>
+</div>
+<script type="text/javascript">
+   
+    $(function () {
+        $('#publish_time').layDate(); 
+    });
+    
+    var url="{:url('Ueditor/index',array('savePath'=>'article'))}";
+    var ue = UE.getEditor('post_content',{
+        serverUrl :url,
+        zIndex: 999,
+        initialFrameWidth: "80%", //初化宽度
+        initialFrameHeight: 300, //初化高度            
+        focus: false, //初始化时，是否让编辑器获得焦点true或false
+        maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign',//允许的最大字符数 'fullscreen',
+        pasteplain:false, //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
+        autoHeightEnabled: true
+    });
+
+    $(document).on("click", '#submitBtn', function () {
+        verifyForm();
+    });
+    function verifyForm(){
+        $('span.err').hide();
+        $.ajax({
+            type: "POST",
+            url: "{:U('Article/aticleHandle')}",
+            data: $('#add_post').serialize(),
+            dataType: "json",
+            error: function () {
+                layer.alert("服务器繁忙, 请联系管理员!");
+            },
+            success: function (data) {
+                if (data.status === 1) {
+                    layer.msg(data.msg, {icon: 1,time: 1000}, function() {
+                        location.href = "{:U('Admin/Article/articleList')}";
+                    });
+                } else if(data.status === 0) {
+                    layer.msg(data.msg, {icon: 2,time: 1000});
+                    $.each(data.result, function(index, item) {
+                        $('#err_' + index).text(item).show();
+                    });
+                } else {
+                    layer.msg(data.msg, {icon: 2,time: 1000});
+                }
+            }
+        });
+    }
+
+
+    function img_call_back(fileurl_tmp)
+    {
+        $("#thumb").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+    
+</script>
+</body>
+</html>

@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>地址管理-{$tpshop_config['shop_info_store_title']}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/layer/layer.js"></script>
+	</head>
+	<body class="bg-f5">
+	<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('Home/User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>地址管理</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+						<div class="menumain p">
+							<div class="goodpiece">
+								<h1>地址管理</h1>
+								<a onclick="address_edit()" href="javascript:;"><span class="co_blue">增加新地址</span></a>
+							</div>
+							<!--
+							<div class="personerinfro adress_manage">
+								<form action="" method="post">
+									<ul>
+										<li class="infor_wi_le"><a  onclick="address_edit()"><h4>增加新地址：</h4></a></li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><em>*</em><a href="javascript:void(0);">收货人：</a></li>
+										<li><a href="javascript:void(0);"><input class="name_zjxs" type="text" name="" id="" value="" placeholder="收货人" /></a></li>
+									</ul>
+									<ul class="birth_jz">
+										<li class="infor_wi_le"><em>*</em><a href="javascript:void(0);">所在地区：</a></li>
+										<li>
+											<a href="javascript:void(0);">
+												<select name="">
+													<option value="">请选择</option>
+												</select>
+												<span>&nbsp;&nbsp;</span>
+												<select name="">
+													<option value="">请选择</option>
+												</select>
+												<span>&nbsp;&nbsp;</span>
+												<select name="">
+													<option value="">请选择</option>
+												</select>
+												<span>&nbsp;&nbsp;</span>
+											</a>
+										</li>
+									</ul>
+									<ul class="name_jz wibc">
+										<li class="infor_wi_le"><em>*</em><a href="javascript:void(0);">详细地址：</a></li>
+										<li><a href="javascript:void(0);"><input class="name_zjxs" type="text" name="" id="" value="" placeholder="详细地址" /></a></li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><em>*</em><a href="javascript:void(0);">手机号码：</a></li>
+										<li><a href="javascript:void(0);"><input class="name_zjxs" type="text" name="" id="" value="" placeholder="手机号码" /></a></li>
+										<li><a href="javascript:void(0);">&nbsp;&nbsp;&nbsp;&nbsp;或&nbsp;&nbsp;&nbsp;&nbsp;固定电话：</a></li>
+										<li><a href="javascript:void(0);"><input class="name_zjxs zjxs_change" type="text" name="" id="" value="" placeholder="区号" /></a></li>
+										<li><a href="javascript:void(0);"><input class="name_zjxs zjxs_pl_change" type="text" name="" id="" value="" placeholder="固定电话" /></a></li>
+									</ul>
+									<ul class="sex_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"></a></li>
+										<li>
+											<a href="javascript:void(0);">
+												<input type="checkbox" name="sex" id="set_add" value=""><label for="set_add">设置为默认收货地址</label>
+											</a>
+										</li>
+									</ul>
+									<ul class="sex_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);"></a></li>
+										<li>
+											<div class="save_s">
+												<input class="save" type="submit" id="" name="" value="保存">
+											</div>
+										</li>
+									</ul>
+								</form>
+							</div>
+							-->
+							<div class="grou_num_list address_list_jl ma-to-20">
+								<ul class="grou_tite">
+									<li class="sx2"><span>收货人</span></li>
+									<li class="sx1"><span>收货地址</span></li>
+									<li class="sx3"><span>联系电话</span></li>
+									<li class="sx5"><span>操作</span></li>
+								</ul>
+								<volist name="lists" id="list">
+									<ul class="add_conta">
+										<li class="sx2">
+                                            <span>{$list.consignee}</span>
+                                        </li>
+										<li class="sx1"><span>{$region_list[$list['province']]}</span><span>{$region_list[$list['city']]}</span><span>{$region_list[$list['district']]}</span><span>{$region_list[$list['twon']]}{$list.address}</span></li>
+										<li class="sx3"><span>{$list.mobile}</span></li>
+										<li class="sx5">
+										    <if condition="$list['is_default'] neq 1">
+                                                <span><a href="{:U('Home/User/set_default',array('id'=>$list['address_id']))}" >设为默认</a></span>
+                                            <else/>
+                                                <span style="font-size:14px;background:#ffaa45;padding:2px;font-weight:400;"><a>默认地址</a></span>
+                                            </if>
+										<a href="javascript:address_edit({$list['address_id']})" class="co_blue">修改</a>&nbsp;&nbsp;&nbsp;&nbsp;
+										<a href="{:U('Home/User/del_address',array('id'=>$list['address_id']))}" class="co_blue">删除</a></li>
+									</ul>
+								</volist>
+							</div>
+							<p class="gp_num2">已保存<em class="red">{$lists|count}</em>条地址，还可以保存<em class="red"><php>echo 20-count($lists);</php></em>条地址</php>
+						</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+		<!--footer-e-->
+		<script type="text/javascript">
+			$(function(){
+				$('.choice_hobby').click(function(){
+					$(this).toggleClass('red');
+				})
+			})
+
+			/**
+			 * 新增修改收货地址
+			 * id 为零 则为新增, 否则是修改
+			 *  使用 公共的 layer 弹窗插件  参考官方手册 http://layer.layui.com/
+			 */
+			function address_edit(id)
+			{
+				if(id > 0)
+					var url = "/index.php?m=Home&c=User&a=edit_address&scene=1&call_back=call_back_fun&id="+id; // 修改地址  '/index.php/Home/User/add_address/scene/1/call_back/call_back_fun/id/id' //iframe的url /index.php/Home/User/add_address
+				else
+					var url = "/index.php?m=Home&c=User&a=add_address&scene=1&call_back=call_back_fun";	// 新增地址
+				layer.open({
+					type: 2,
+					title: '添加收货地址',
+					shadeClose: true,
+					shade: 0.8,
+					area: ['880px', '580px'],
+					content: url,
+				});
+			}
+			// 添加修改收货地址回调函数
+			function call_back_fun(v){
+				layer.closeAll(); // 关闭窗口
+				location.href = location.href;
+			}
+			
+		</script>
+	</body>
+</html>

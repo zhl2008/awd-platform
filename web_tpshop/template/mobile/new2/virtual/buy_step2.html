@@ -1,0 +1,130 @@
+<include file="public/header" title="支付,提交订单" body=""/>
+<include file="public/header_nav" title="支付,提交订单" href="javascript:history.back(-1)"/>
+<form action="{:U('Mobile/Payment/getCode')}" method="post" name="cart4_form" id="cart4_form">
+    <div class="ddmoney">
+        <div class="maleri30">
+            <span class="fl">订单号</span>
+            <span class="fr">{$order.order_sn}</span>
+        </div>
+    </div>
+    <div class="ddmoney">
+        <div class="maleri30">
+            <span class="fl">订单金额</span>
+            <span class="fr">￥{$order.order_amount}元</span>
+        </div>
+    </div>
+    <!--其他支付方式-s-->
+    <div class="paylist">
+        <div class="myorder debit otherpay p">
+            <div class="content30">
+                <a href="javascript:void(0);">
+                    <div class="order">
+                        <div class="fl">
+                            <span>支付方式</span>
+                        </div>
+                        <div class="fr">
+                            <!--<i class="Mright xjt"></i>-->
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div class="pay-list-4 p">
+        <div class="maleri30">
+            <ul>
+                <foreach name="paymentList" key="k" item="v">
+                    <li  onClick="changepay(this);">
+                        <lable>
+                            <div class="radio fl">
+							<span class="che {$k}">
+								<i>
+                                    <input type="radio"   value="pay_code={$v['code']}" class="c_checkbox_t" name="pay_radio" style="display:none;"/>
+                                </i>
+							</span>
+                            </div>
+                            <div class="pay-list-img fl">
+                                <img src="/plugins/{$v['type']}/{$v['code']}/{$v['icon']}"/>
+                            </div>
+                            <div class="pay-list-font fl">
+                                {$v[name]}
+                            </div>
+                        </lable>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!--其他支付方式-s-->
+
+    <div class="paiton">
+        <div class="maleri30">
+            <input type="hidden" name="master_order_sn" value="{$order.order_sn}" />
+            <input type="hidden" name="order_id" value="{$order.order_id}" />
+            <a class="soon" href="javascript:void(0);" onClick="pay()"><span>立即支付</span></a>
+        </div>
+    </div>
+
+    <div class="mask-filter-div" style="display: none;"></div>
+</form>
+<script type="text/javascript">
+    $(function(){
+        //默认选中第一个
+        $('.pay-list-4 div ul li:first').find('.che').addClass('check_t')
+                .end().find(':radio').attr('checked',true);
+    })
+    //切换支付方式
+    function changepay(obj){
+        $(obj).find('.che').addClass('check_t').parents('li').siblings('li').find('.che').removeClass('check_t');
+        //改变中状态
+        if($(obj).find('.che').hasClass('check_t')){
+            //选中
+            $(obj).find(':radio').attr('checked',true);
+            $(obj).siblings('li').find(':radio').removeAttr('checked');
+        }else{
+            //取消选中
+            $(obj).find(':radio').removeAttr('checked');
+        }
+
+    }
+
+    function pay(){
+        $('#cart4_form').submit();
+        return;
+        //微信JS支付
+    }
+
+    $(function(){
+        //使用银行卡
+        $('.usedeb').click(function(){
+            cover();
+            $('.chooseebitcard').show();
+        })
+        $('.gb-close').click(function(){
+            undercover();
+            $('.chooseebitcard').hide();
+        })
+
+        //选择银行卡
+        $('.card').click(function(){
+            $(this).find('.che').toggleClass('check_t').parents('.card').siblings().find('.che').removeClass('check_t');
+        })
+
+
+        //支付失败弹窗
+        $('.lossbq').click(function(){
+            cover();
+            $('.losepay').show();
+        })
+        $('.qx-rebd .ax').click(function(){
+            undercover();
+            $('.losepay').hide();
+        })
+        $('.are').click(function(){
+            $('.losepay').hide();
+            $('.chooseebitcard').show();
+        })
+    })
+</script>
+</body>
+</html>

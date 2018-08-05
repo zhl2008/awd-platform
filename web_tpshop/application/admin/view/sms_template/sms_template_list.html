@@ -1,0 +1,92 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-list"></i> 短信平台短信配置模板</h3>
+        </div>
+        <div class="panel-body">    
+		<div class="navbar navbar-default">                    
+               	<div class="form-group">     
+	                <button type="button" class="btn btn-primary pull-right"  onclick="location.href='{:U('Admin/SmsTemplate/addEditSmsTemplate')}'">
+	                 	<i class="fa fa-plus"></i> 添加模板
+	                </button>    
+               </div>                     
+          </div>
+                        
+          <div id="ajax_return"> 
+                 
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="sorting text-left">ID</th>
+                                <th class="sorting text-left">应用场景</th>
+                                <th class="sorting text-left">短信签名</th>
+                                <th class="sorting text-left">短信模板</th>
+                                <th class="sorting text-left">发送短信的内容</th>
+                                <th class="sorting text-left">修改时间</th>
+                                <th class="sorting text-left">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="smsTplList" id="list">
+                                <tr>
+                                    <td class="text-right">{$list.tpl_id}</td>
+                                    <td class="text-left"> {$send_scene[$list['send_scene']][0]}</td>
+                                    <td class="text-left">{$list.sms_sign}</td>
+                                    <td class="text-left">{$list.sms_tpl_code}</td>
+                                    <td class="text-left">{$list.tpl_content}</td>
+                                    <td class="text-left">{$list.add_time|date='Y-m-d H:i:s',###}</td>
+                                    <td class="text-left">
+                                        <a href="{:U('Admin/SmsTemplate/addEditSmsTemplate', array('tpl_id' => $list['tpl_id']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                        <a href="javascript:void(0);" onclick="del('{$list[tpl_id]}')" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div>
+           </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </section>
+  <!-- /.content --> 
+</div>
+<!-- /.content-wrapper --> 
+ <script>
+ // 删除操作
+function del(id)
+{
+	 
+	//询问框
+	layer.confirm('确定要删除吗？', {
+	 	 btn: ['确定','取消'] //按钮
+	}, function(){
+		$.ajax({										  
+			url:"/index.php?m=Admin&c=SmsTemplate&a=delTemplate&id="+id,
+			success: function(v){
+                layer.closeAll();
+				var v =  eval('('+v+')');                                 
+                if(v.hasOwnProperty('status') && (v.status == 1)){
+                	 location.href='{:U('Admin/smsTemplate/index')}';
+                }else{                                
+					layer.msg(v.msg, {icon: 2,time: 1000}); //alert(v.msg);
+                }       
+			}
+		}); 
+	}, function(){
+	  
+	});
+	 
+}
+ 
+ 
+
+ </script>
+</body>
+</html>

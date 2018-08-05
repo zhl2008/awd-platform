@@ -1,0 +1,405 @@
+@charset "utf-8";
+/* CSS Document */
+*{
+	margin:0;
+	padding:0;
+}
+body, button, input, select, textarea {
+    font: 12px/150% microsoft yahei;
+    color: #666666;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+	text-decoration:none;
+}
+.margin-w1210 {
+    width: 1210px !important;
+    margin: 0px auto;
+}
+.flow {
+    width: 964px;
+    position: relative;
+    margin: 0px auto;
+    overflow: hidden;
+}
+.flow .cate_attr {
+    border: 1px solid #eee;
+    font-size: 12px;
+    padding: 20px;
+    margin: 10px auto;
+    background: #fff;
+    overflow: hidden;
+}
+.flow .cate_attr .nav-tag .filter-label-ab {
+    width: 50px;
+    height: 25px;
+    line-height: 25px;
+    float: left;
+    font-size: 14px;
+    font-weight: 400;
+    margin-left: 20px;
+}
+.flow .cate_attr .nav-tag .cate_attr_con {
+    float: left;
+    /*width: 1065px;*/
+	font-size: 12px;
+}
+.flow .cate_attr .nav-tag a {
+    display: inline-block;
+    color: #666;
+    font-size: 12px;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 5px;
+    margin-left: 9px;
+    cursor: pointer;
+}
+.flow .cate_attr .nav-tag .selected span {
+    color: #ffffff;
+    background: #E31939;
+}
+.flow .cate_attr .nav-tag span {
+    padding: 3px 5px;
+}
+.flow .cate_attr .nav-tag a {
+    display: inline-block;
+    color: #666;
+    font-size: 12px;
+    width: 70px;
+    height: 25px;
+    line-height: 25px;
+    margin-bottom: 5px;
+    margin-left: 9px;
+    cursor: pointer;
+	text-decoration: none;
+}
+.flow .cate_attr .nav-tag .cate_attr_con .district-tab {
+    width: 780px;
+    float: left;
+}
+.flow .cate_attr .nav-tag .cate_attr_con .filter-all-ab {
+    width: 70px;
+    float: left;
+}
+.clearfix:after {
+    content: ".";
+    display: block;
+    height: 0;
+    clear: both;
+    visibility: hidden;
+}
+/*.flow-wrap {*/
+    /*width: 1210px;*/
+/*}*/
+.flow-wrap .flow-item {
+    float: left;
+    width: 964px;
+    height: 185px;
+    position: relative;
+    right: 0;
+    top: 0;
+    z-index: 1;
+    overflow: hidden;
+    background-color: #fff;
+    white-space: normal;
+    margin-bottom: 20px;
+    border: 1px #eee solid;
+}
+.flow-wrap .flow-item a.flow-datu {
+    width: 150px;
+    height: 150px;
+    border: 1px #eee solid;
+    margin: 15px 0 0 15px;
+}
+.flow-wrap .flow-item a {
+    color: #666;
+    display: block;
+    float: left;
+}
+.flow-wrap .flow-item a.flow-datu img {
+    margin: auto;
+}
+.flow-wrap .flow-item img {
+    display: block;
+}
+
+.flow-wrap .flow-item .flow-content {
+    width: 160px;
+    float: left;
+    margin-left: 35px;
+    margin-top: 15px;
+}
+
+.flow-wrap .flow-item .flow-title {
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+
+.flow-wrap .flow-item .flow-title a {
+    display: block;
+}
+
+.flow-wrap .flow-item .flow-title a span {
+    margin-right: 15px;
+    color: #E31939;
+    font-weight: bold;
+}
+.flow-wrap .flow-item .flow-title a span, .flow-title a img {
+    display: block;
+    float: left;
+}
+
+.flow-wrap .flow-item .flow-title span.guanzhu {
+    background: #E31939;
+    padding: 2px 10px;
+    color: #ffffff;
+    border-radius: 3px;
+    font-size: 12px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.flow-wrap .flow-item .flow-logo {
+    margin-bottom: 5px;
+}
+
+.flow-wrap .flow-item a {
+    color: #666;
+    display: block;
+    float: left;
+}
+
+.flow-wrap .flow-item .flow-desc {
+    fonts-size: 12px;
+    height: 20px;
+    line-height: 20px;
+    overflow: hidden;
+    color: #606060;
+    margin-bottom: 5px;
+}
+
+.flow-wrap .flow-item .flow-desc span, .flow-wrap .flow-item .flow-desc a {
+    float: left;
+    margin-right: 5px;
+    display: block;
+}
+.flow-wrap .flow-item .flow-desc a {
+    color: #606060;
+    height: 20px;
+    line-height: 20px;
+	text-decoration: none;
+}
+
+.flow-wrap .flow-item .flow-desc a.flow-qq {
+    height: 20px;
+    width: 25px;
+    overflow: hidden;
+}
+
+.flow-wrap .flow-item .flow-desc a.flow-qq img {
+    vertical-align: middle;
+}
+.flow-wrap .flow-item .flow-desc a strong {
+    color: #E31939;
+}
+.flow-wrap .flow-item .flow-desc a strong {
+    margin: 0px 3px;
+}
+.flow-wrap .flow-item .flow-score {
+    float: left;
+    width: 100px;
+    margin-top: 45px;
+    margin-left: 15px;
+}
+.flow-wrap .flow-item .flow-score h3 {
+    font-size: 14px;
+    height: 30px;
+    line-height: 30px;
+    font-weight: bold;
+}
+
+.flow-wrap .flow-item .flow-score p {
+    height: 26px;
+    line-height: 26px;
+}
+
+.flow-wrap .flow-item .flow-score p span {
+    color: #E43C3F;
+}
+
+.flow-wrap .flow-item .flow-main {
+    float: right;
+    position: relative;
+    z-index: 2;
+    width: 410px;
+    height: 150px;
+    margin-top: 10px;
+}
+.picMarquee-left {
+    overflow: hidden;
+    position: relative;
+}
+.picMarquee-left .bda {
+    padding: 0px 10px;
+    height: 165px;
+}
+.picMarquee-left .bda .picListta {
+    width: 408px;
+    height: 160px;
+    overflow: hidden;
+    position: relative;
+    z-index: 1;
+}
+.picMarquee-left .bda .picListta ul {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+}
+ul, ol {
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+}
+.picMarquee-left .bda ul li {
+    width: 115px;
+    height: 160px;
+    margin: 15px 8px 0px 9px;
+    float: left;
+    display: block;
+    overflow: hidden;
+    text-align: center;
+}
+.picMarquee-left .bda ul li a.img {
+    position: relative;
+}
+.picMarquee-left .bda ul li a {
+    width: 110px;
+    display: inline-block;
+}
+
+.picMarquee-left .bda ul li a img {
+    width: 110px;
+    height: 110px;
+    border: 1px #eee solid;
+}
+.flow-wrap .flow-item img {
+    display: block;
+}
+
+.picMarquee-left .bda ul li a span {
+    position: absolute;
+    top: 91px;
+    right: -1px;
+    background: #000000;
+    filter: alpha(opacity=60);
+    -moz-opacity: 0.6;
+    -khtml-opacity: 0.6;
+    opacity: 0.6;
+    color: #ffffff;
+    height: 20px;
+    line-height: 20px;
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+}
+.picMarquee-left .bda ul li a.name {
+    height: 30px;
+    line-height: 30px;
+    overflow: hidden;
+}
+.picMarquee-left .bda ul li a {
+    width: 110px;
+    display: inline-block;
+}
+a {
+    text-decoration: none;
+    color: #666666;
+    outline: medium none;
+    text-decoration: none;
+}
+.picMarquee-left .bda ul li a:hover {
+    color: #E31939;
+}
+.mui-page {
+    padding: 1em 0;
+    overflow: hidden;
+    clear: both;
+}
+.mui-page-wrap {
+    color: #999;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: \5B8B\4F53, Helvetica, sans-serif;
+    float: right;
+}
+.mui-page-wrap b {
+    font-weight: 100;
+    float: left;
+}
+.mui-page-wrap a, .mui-page-prev, .mui-page-next, .mui-page-cur {
+    background-color: #fff;
+    border: 1px solid #E5E5E5;
+    border-left: 0;
+}
+.mui-page-prev, .mui-page-next, .mui-page-wrap a, .mui-page-cur, .mui-page-skip {
+    height: 30px;
+    width: auto;
+    line-height: 30px;
+    padding: 0 14px;
+}
+.mui-page-wrap a {
+    color: #E31939;
+    cursor: pointer;
+    float: left;
+    text-decoration: none;
+}
+.mui-page-skip {
+    padding: 0 1em;
+    _padding-top: 10px;
+}
+.mui-page-skipTo {
+    width: 32px;
+    height: 28px;
+    margin: 0px 2px 0;
+    line-height: 28px;
+    font-size: 14px;
+    color: #999;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #E5E5E5;
+}
+.mui-btn-s {
+    padding: 0 10px;
+    display: inline-block;
+    height: 20px;
+    background: #E31939;
+    color: #fff;
+    font-size: 12px;
+    border: 0 none;
+    border-left: 1px solid #950b00;
+    border-right: 1px solid #950b00;
+    cursor: pointer;
+    outline: none;
+    overflow: visible;
+    -moz-border-radius: 2px;
+    -khtml-border-radius: 2px;
+    -webkit-border-radius: 2px;
+    border-radius: 2px;
+    text-decoration: none;
+}
+button.mui-btn-s-primary,button.mui-btn-s {
+    height: 30px;
+    background: #E31939;
+    bordeR: none;
+    color: #fff;
+}
+.mui-btn-s-primary, .mui-btn-s {
+    height: 20px;
+    line-height: 20px;
+    font-size: 12px;
+    font-weight: normal;
+}

@@ -1,0 +1,129 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-list"></i> 品牌列表</h3>
+        </div>
+        <div class="panel-body">    
+		<div class="navbar navbar-default">                    
+                <form id="search-form2" class="navbar-form form-inline"  method="post" action="{:U('/Admin/Goods/brandList')}">
+                <div class="form-group">
+                  <label for="input-order-id" class="control-label">名称:</label>
+                  <div class="input-group">
+                    <input type="text" class="form-control" id="input-order-id" placeholder="搜索词" value="{$Request.param.keyword}" name="keyword">
+                  </div>
+                </div>
+                <div class="form-group">    
+                    <button class="btn btn-primary" id="button-filter search-order" type="submit"><i class="fa fa-search"></i> 筛选</button>    
+                </div>                
+                <button type="button" class="btn btn-primary pull-right"  onclick="location.href='{:U('Admin/Goods/addEditBrand')}'">
+                 <i class="fa fa-plus"></i> 添加品牌
+                </button>                
+                </form>    
+          </div>
+                        
+          <div id="ajax_return"> 
+                 
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hover">
+                            <thead>
+                            <tr>
+                                <th class="sorting text-left">ID</th>
+                                <th class="sorting text-left">品牌名称</th>
+                                <th class="sorting text-left">Logo</th>
+                                <th class="sorting text-left">品牌分类</th>
+                                <th valign="middle">是否推荐</th>
+                                <th class="sorting text-left">排序</th>
+                                <th class="sorting text-left">操作</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <volist name="brandList" id="list">
+                                <tr>
+                                    <td class="text-right">{$list.id}</td>
+                                    <td class="text-left">{$list.name}</td>
+                                    <td class="text-left">
+                                        <a href="{$list.logo}" target="_blank"><img onmouseover="$(this).attr('width','80').attr('height','45');" onmouseout="$(this).attr('width','40').attr('height','30');" width="40" height="30" src="{$list.logo}"/></a>                                    
+                                    </td>
+                                    <td class="text-left">{$cat_list[$list[parent_cat_id]]} {$cat_list[$list[cat_id]]}</td>                                   
+                                    <td>
+                                         <img width="20" height="20" src="__PUBLIC__/images/<if condition='$list[is_hot] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('brand','id','{$list.id}','is_hot',this)"/>			                             
+			            </td>
+                                    <td class="text-left">                                         
+                                        <input type="text" onchange="updateSort('brand','id','{$list.id}','sort',this)" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')"  size="4"   value="{$list.sort}" class="input-sm" />
+                                    </td>
+                                    <td class="text-left">
+                                        <a href="{:U('Admin/goods/addEditBrand',array('id'=>$list['id'],'p'=>$Request.param.p))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+                                        <a href="javascript:void(0);" onclick="del('{$list[id]}')" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
+                                    </td>
+                                </tr>
+                            </volist>
+                            </tbody>
+                        </table>
+                    </div>
+                
+                <div class="row">
+                    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$show}</div>
+                </div>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </section>
+  <!-- /.content --> 
+</div>
+<!-- /.content-wrapper --> 
+ <script>
+ // 删除操作
+function del(id)
+{
+	if(!confirm('确定要删除吗?'))
+		return false;		
+		$.ajax({
+			url:"/index.php?m=Admin&c=goods&a=delBrand&id="+id,
+			success: function(v){	
+                            var v =  eval('('+v+')');                                 
+                            if(v.hasOwnProperty('status') && (v.status == 1))
+                               location.href='{:U('Admin/goods/brandList')}';
+                            else                                
+								layer.msg(v.msg, {icon: 2,time: 1000}); //alert(v.msg);
+			}
+		}); 
+	 return false;
+}
+ 
+
+//修改指定表的指定字段值
+function changeBrandField(field,id,obj)
+{
+ 
+     var isshow = $(obj).data('isshow');
+     if(isshow == 1)
+     {
+         $(obj).data('isshow','0');    
+         var value = 0;
+         $(obj).attr('src','__PUBLIC__/images/cancel.png');
+         
+     }else{
+         $(obj).data('isshow','1');
+         var value = 1;
+         $(obj).attr('src','__PUBLIC__/images/yes.png');
+     }    
+     
+     $.ajax({
+             url:'/index.php?m=Admin&c=goods&a=changeBrandField&field='+field+'&id='+id+'&value='+value,			
+             success: function(data){					                                                                      
+                     //  
+             }
+     });		
+     
+}
+ </script>
+</body>
+</html>

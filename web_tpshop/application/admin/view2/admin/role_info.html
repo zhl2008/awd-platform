@@ -1,0 +1,102 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+			<div class="subject">
+				<h3>管理员 - 编辑角色</h3>
+				<h5>网站系统角色管理</h5>
+			</div>
+		</div>
+	</div>
+	<form class="form-horizontal" action="{:U('Admin/Admin/roleSave')}" id="roleform" method="post">
+		<div class="ncap-form-default">
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_name"><em>*</em>角色名称</label>
+				</dt>
+				<dd class="opt">
+					<input type="text" name="data[role_name]" id="role_name" value="{$detail.role_name}" class="input-txt">
+					<span class="err" id="name_err" style="display: none">导航名称不能为空!!</span>
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="role_desc"><em>*</em>角色描述</label>
+				</dt>
+				<dd class="opt">
+					<textarea id="role_desc" name="data[role_desc]" class="tarea" rows="6">{$detail.role_desc}</textarea>
+					<span class="err" id="err_tpl_content" style="display:none;">短信内容不能为空</span>
+					<p class="notic"></p>
+				</dd>
+			</dl>
+			<dl class="row">
+				<dt class="tit">
+					<label for="cls_full">权限分配</label>
+				</dt>
+				<dd style="margin-left:200px;">
+					<div class="ncap-account-container" style="border-top:none;">
+						<h4>
+							<input id="cls_full" onclick="choosebox(this)" type="checkbox">
+							<label>全选</label>
+						</h4>
+					</div>
+					<foreach name="modules" item="menu" key="kk">
+						<div class="ncap-account-container" style="border-top:none;">
+							<h4>
+								<label>{$group[$kk]}</label>
+								<input value="1" cka="mod-{$kk}" type="checkbox">
+								<label>全部</label>
+							</h4>
+							<ul class="ncap-account-container-list">
+								<foreach name="menu" item="vv">
+									<li>
+										<label><input class="checkbox" name="right[]" value="{$vv.id}" <if condition="$vv.enable eq 1">checked</if> ck="mod-{$kk}" type="checkbox">{$vv.name}</label>
+									</li>
+								</foreach>
+							</ul>
+						</div>
+					</foreach>
+				</dd>
+			</dl>
+
+			<div class="bot"><a href="JavaScript:void(0);" onclick="roleSubmit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+		</div>
+		<input type="hidden" name="role_id" value="{$detail.role_id}">
+	</form>
+</div>
+<script type="text/javascript">
+	$(document).ready(function(){
+		$(":checkbox[cka]").click(function(){
+			var $cks = $(":checkbox[ck='"+$(this).attr("cka")+"']");
+			if($(this).is(':checked')){
+				$cks.each(function(){$(this).prop("checked",true);});
+			}else{
+				$cks.each(function(){$(this).removeAttr('checked');});
+			}
+		});
+	});
+
+	function choosebox(o){
+		var vt = $(o).is(':checked');
+		if(vt){
+			$('input[type=checkbox]').prop('checked',vt);
+		}else{
+			$('input[type=checkbox]').removeAttr('checked');
+		}
+	}
+
+	function roleSubmit(){
+		if($('#role_name').val() == '' ){
+			layer.alert('角色名称不能为空', {icon: 2});
+			return false;
+		}
+		$('#roleform').submit();
+	}
+</script>
+</body>
+</html>

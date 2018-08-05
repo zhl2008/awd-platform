@@ -1,0 +1,48 @@
+<include file="public/header" title="充值记录" body=""/>
+<include file="public/header_nav" title="充值记录" href="javascript:history.back(-1)"/>
+<div class="application-record">
+    <div class="maleri30">
+        <ul class="re_tit">
+            <li class="li3"><span>支付方式</span></li>
+            <li class="li2"><span>日期</span></li>
+            <li class="li1"><span>金额</span></li>
+            <li class="li4"><span>状态</span></li>
+        </ul>
+        <foreach name="lists" item="v">
+            <ul>
+                <li class="li3"><span>{$v[pay_name]}</span></li>
+                <li class="li2"><span>{:date('Y-m-d', $v[ctime])}</span></li>
+                <li class="li1"><span>{$v[account]}</span></li>
+                <li class="li4"><span class="red">
+                    <if condition="$v[pay_status] eq 0">待支付</if>
+                    <if condition="$v[pay_status] eq 1">已支付</if>
+                    <if condition="$v[pay_status] eq 2">支付失败</if>
+                </span></li>
+            </ul>
+        </foreach>
+    </div>
+    <div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;display: none">
+        <a >已显示完所有记录</a>
+    </div>
+    <script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+</div>
+<script>
+    var page = 1;
+    function ajax_sourch_submit(){
+        page++;
+        $.ajax({
+            type:'GET',
+            url:'/index.php/Mobile/User/recharge_list/is_ajax/1/p/'+page,
+            success:function(data){
+                if($.trim(data)==''){
+                    $('#getmore').show();
+                    return false;
+                }else{
+                    $('.maleri30').append(data);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

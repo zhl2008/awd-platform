@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>安全设置</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>忘记密码</span>
+			    </div>
+			    <div class="home-main forgetpaw">
+		    		<div class="menumain">
+		    			<div class="goodpiece">
+							<h1>安全设置</h1>
+							<!--<a href=""><span class="co_blue">帮助</span></a>-->
+						</div>
+			    		<div class="accouun"></div>
+			    		<div class="thirset ma-to-20">
+			    			<div class="wshef">1.填写用户名<i class="spassw"></i></div>
+			    			<div class="wshef">1.验证身份<i class="spassw"></i></div>
+			    			<div class="wshef yellc">2.设置新密码<i class="spassw"></i></div>
+			    			<div class="wshef">3.完成</div>
+			    		</div>
+			    		<div class="personerinfro verifyi-next">
+			    			<form action="" method="post" id="pwdform">
+			    				<ul class="name_jz">
+									<li class="infor_wi_le"><a>设置新密码：</a></li>
+									<li class="teaeu">
+										<a>
+											<input class="name_zjxs" type="password" name="password" id="new_password"  placeholder="6-16位字母、数字或符号组合" onkeyup="securityLevel(this.value)">
+											<i class="qrzf" style="display: none"></i>
+										</a>
+										<a class="safebil">
+											<span>安全程度：</span>
+											<span class="lowzg red">低</span>
+											<span class="lowzg ">中</span>
+											<span class="lowzg">高</span>
+										</a>
+									</li>
+								</ul>
+								<ul class="name_jz">
+									<li class="infor_wi_le"><a>确认密码：</a></li>
+									<li class="teaeu">
+										<a>
+											<input class="name_zjxs" type="password" name="password2" id="confirm_password" value="" placeholder="6-16位字母、数字或符号组合">
+											<i class="qrzf" style="display: none"></i>
+										</a>
+									</li>
+								</ul>
+								<ul class="hobby_jz">
+									<li class="infor_wi_le"></li>
+									<div class="save_s">
+										<input class="save" type="button" onclick="checkSubmit()" value="下一步">
+									</div>
+								</ul>
+			    			</form>
+			    			<!--<p class="las-nex ma-to-20">1.支付密码是购物卡或账户余额的支付凭证，建议不要与其他网站密码相同</p>
+			    			<p class="las-nex">2.定期修改支付密码能让账户资金更安全。</p>-->
+			    		</div>
+		    		</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+		<!--footer-e-->
+	</body>
+	<script type="text/javascript">
+        //显示密码安全等级
+        function securityLevel(sValue) {
+            var modes = 0;
+            //正则表达式验证符合要求的
+            if (sValue.length < 6 ) return modes;
+            if (/\d/.test(sValue)) modes++; //数字
+            if (/[a-z]/.test(sValue)) modes++; //小写
+            if (/[A-Z]/.test(sValue)) modes++; //大写
+            if (/\W/.test(sValue)) modes++; //特殊字符
+            $('.lowzg').eq(modes-1).addClass('red').siblings('.lowzg').removeClass('red');
+        };
+	function checkSubmit(){
+		var new_password = $('#new_password').val();
+		var confirm_password = $('#confirm_password').val();
+		if(new_password == ''){
+			layer.alert('新密码不能为空', {icon: 2});
+			return false;
+		}
+		if(new_password.length<6 || new_password.length>18){
+			layer.alert('密码长度不符合规范', {icon: 2});
+			return false;
+		}
+		if(new_password != confirm_password){
+			layer.alert('两次密码不一致', {icon: 2});
+			return false;
+		}
+		$('#pwdform').submit();
+	}
+	</script>
+</html>

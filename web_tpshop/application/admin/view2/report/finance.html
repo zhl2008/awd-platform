@@ -1,0 +1,244 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+	<div class="fixed-bar">
+		<div class="item-title">
+			<div class="subject">
+				<h3>统计报表 - 财务概况</h3>
+				<h5>网站系统财务概况</h5>
+			</div>
+		</div>
+	</div>
+	<!-- 操作说明 -->
+	<div class="explanation">
+		<div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+			<h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+			<span title="收起提示" id="explanationZoom" style="display: block;"></span>
+		</div>
+		<ul>
+			<li>分析商城成本,利润走势.</li>
+			<li>统计分析每天订单商品总额,订单物流费用.</li>
+		</ul>
+	</div>
+	<div class="flexigrid">
+		<div class="mDiv">
+			<div class="ftitle">
+				<h3>成本利润走势</h3>
+			</div>
+			<div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+			<form class="navbar-form form-inline" id="search-form" method="get" action="{:U('Report/finance')}" onSubmit="return check_form();">
+				<div class="sDiv">
+					<div class="sDiv2" style="margin-right: 10px;">
+						<input type="text" size="30" name="start_time" id="start_time" value="{$start_time}" placeholder="起始时间" class="qsbox">
+						<input type="button" class="btn" value="起始时间">
+					</div>
+					<div class="sDiv2" style="margin-right: 10px;">
+						<input type="text" size="30" name="end_time" id="end_time" value="{$end_time}" placeholder="截止时间" class="qsbox">
+						<input type="button" class="btn" value="截止时间">
+					</div>
+					<div class="sDiv2">
+						<input class="btn" value="搜索" type="submit">
+					</div>
+				</div>
+			</form>
+		</div>
+		<div id="statistics" style="height: 400px;"></div>
+		<div class="hDiv">
+			<div class="hDivBox">
+				<table cellspacing="0" cellpadding="0">
+					<thead>
+					<tr>
+						<th class="sign" axis="col0">
+							<div style="width: 24px;"><i class="ico-check"></i></div>
+						</th>
+						<th align="center" abbr="article_title" axis="col3" class="">
+							<div style="text-align: center; width: 120px;" class="">时间</div>
+						</th>
+						<th align="center" abbr="ac_id" axis="col4" class="">
+							<div style="text-align: center; width: 100px;" class="">订单商品总额</div>
+						</th>
+						<th align="center" abbr="article_show" axis="col5" class="">
+							<div style="text-align: center; width: 100px;" class="">订单优惠总额</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 100px;" class="">成本总额</div>
+						</th>
+						<th align="center" abbr="article_time" axis="col6" class="">
+							<div style="text-align: center; width: 100px;" class="">物流总额</div>
+						</th>
+						<th align="center" axis="col1" class="handle">
+							<div style="text-align: center; width: 150px;">操作</div>
+						</th>
+						<th style="width:100%" axis="col7">
+							<div></div>
+						</th>
+					</tr>
+					</thead>
+				</table>
+			</div>
+		</div>
+		<div class="bDiv" style="height: auto;">
+			<div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+				<table>
+					<tbody>
+					<foreach name="list" item="vo" key="k" >
+						<tr>
+							<td class="sign">
+								<div style="width: 24px;"><i class="ico-check"></i></div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 120px;">{$vo.day}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 100px;">{$vo.goods_amount}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 100px;">{$vo.coupon_amount}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 100px;">{$vo.cost_amount}</div>
+							</td>
+							<td align="center" class="">
+								<div style="text-align: center; width: 100px;">{$vo.shipping_amount}</div>
+							</td>
+							<td align="center" class="handle">
+								<div style="text-align: center; width: 170px; max-width:170px;">
+									<a href="{:U('Report/financeDetail',array('start_time'=>$vo['day'],'end_time'=>$vo['end']))}" class="btn blue"><i class="fa fa-search"></i>查看详细列表</a>
+								</div>
+							</td>
+							<td align="" class="" style="width: 100%;">
+								<div>&nbsp;</div>
+							</td>
+						</tr>
+					</foreach>
+					</tbody>
+				</table>
+			</div>
+			<div class="iDiv" style="display: none;"></div>
+		</div>
+	</div>
+</div>
+<script src="__PUBLIC__/js/echart/echarts.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/js/echart/macarons.js"></script>
+<script src="__PUBLIC__/js/echart/china.js"></script>
+<script src="__PUBLIC__/dist/js/app.js" type="text/javascript"></script>
+<script type="text/javascript">
+	var res = {$result};
+	var myChart = echarts.init(document.getElementById('statistics'),'macarons');
+	option = {
+		tooltip : {
+			trigger: 'axis'
+		},
+		toolbox: {
+			show : true,
+			feature : {
+				mark : {show: true},
+				dataView : {show: true, readOnly: false},
+				magicType: {show: true, type: ['line', 'bar']},
+				restore : {show: true},
+				saveAsImage : {show: true}
+			}
+		},
+		calculable : true,
+		legend: {
+			data:['商品总额','优惠金额','商品成本','物流费用']
+		},
+		xAxis : [
+			{
+				type : 'category',
+				data : res.time
+			}
+		],
+		yAxis : [
+			{
+				type : 'value',
+				name : '商品总额',
+				axisLabel : {
+					formatter: '{value} ￥'
+				}
+			},
+			{
+				type : 'value',
+				name : '商品成本',
+				axisLabel : {
+					formatter: '{value} ￥'
+				}
+			}
+		],
+		series : [
+			{
+				name:'商品总额',
+				type:'bar',
+				data:res.goods_arr
+			},
+			{
+				name:'优惠金额',
+				type:'bar',
+				data:res.coupon_arr
+			},
+			{
+				name:'商品成本',
+				type:'bar',
+				data:res.cost_arr
+			},
+			{
+				name:'物流费用',
+				type:'line',
+				yAxisIndex: 1,
+				data:res.shipping_arr
+			}
+		]
+	};
+
+	myChart.setOption(option);
+	$(document).ready(function(){
+		// 表格行点击选中切换
+		$('#flexigrid > table>tbody >tr').click(function(){
+			$(this).toggleClass('trSelected');
+		});
+
+		// 点击刷新数据
+		$('.fa-refresh').click(function(){
+			location.href = location.href;
+		});
+
+             // 起始位置日历控件
+               laydate.skin('molv');//选择肤色
+               laydate({
+                 elem: '#start_time',
+                 format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+                 festival: true, //显示节日
+                 istime: false,
+                 choose: function(datas){ //选择日期完毕的回调
+                        compare_time($('#start_time').val(),$('#end_time').val());
+                 }
+               });
+
+                // 结束位置日历控件
+               laydate({
+                 elem: '#end_time',
+                 format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+                 festival: true, //显示节日
+                 istime: false,
+                 choose: function(datas){ //选择日期完毕的回调
+                          compare_time($('#start_time').val(),$('#end_time').val());
+                 }
+               });	
+ 
+	});
+
+	function check_form(){
+		var start_time = $.trim($('#start_time').val());
+		var end_time =  $.trim($('#end_time').val());
+		if(start_time == '' ^ end_time == ''){
+			layer.alert('请选择完整的时间间隔', {icon: 2});
+			return false;
+		}		 
+		return true;
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,95 @@
+<include file="public/min-header" />
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content ">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回管理员列表"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 添加管理员</h3>
+                </div>
+                <div class="panel-body ">   
+                    <!--表单数据-->
+                    <form method="post" id="suppliersHandle" action="{:U('Admin/supplierHandle')}">
+                        <!--通用信息-->
+                    <div class="tab-content col-md-10">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="col-sm-2">供应商名称：</td>
+                                    <td class="col-sm-8">
+                                        <input type="text" class="form-control" name="suppliers_name" value="{$info.suppliers_name}" >
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>供应商描述：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="suppliers_desc" value="{$info.suppliers_desc}" >
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>供应商联系人：</td>
+                                    <td>
+                               			<input type="text" class="form-control" name="suppliers_contacts" value="{$info.suppliers_contacts}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>供应商电话：</td>
+                                    <td>
+                                        <input type="telephone" class="form-control" name="suppliers_phone" value="{$info.suppliers_phone}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>所属管理员：</td>
+                                    <td>
+                             			<select name="admin_id">
+	                               			<volist name="admin" id="item">
+	                         					<option value="{$item.admin_id}" <if condition="$item[admin_id] eq $info[admin_id]"> selected="selected"</if> >{$item.user_name}</option>
+	                         				</volist>                  
+                         				</select>
+                                    </td>
+                                </tr>
+                                </tbody> 
+                                <tfoot>
+                                	<tr>
+                                	<td><input type="hidden" name="act" value="{$act}">
+                                		<input type="hidden" name="suppliers_id" value="{$info.suppliers_id}">
+                                	</td>
+                                	<td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td></tr>
+                                </tfoot>                               
+                                </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function adsubmit(){
+	if($('input[name=suppliers_name]').val() == ''){
+		layer.msg('供应商名称不能为空！', {icon: 2,time: 1000});   //alert('少年，用户名不能为空！');
+		return false;
+	}
+	if($('input[name=suppliers_desc]').val() == ''){
+		layer.msg('供应商描述不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+		return false;
+	}
+    if($('input[name=suppliers_contacts]').val() == ''){
+        layer.msg('供应商联系人不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+        return false;
+    }
+    if($('input[name=suppliers_phone]').val() == ''){
+        layer.msg('供应商电话不能为空！', {icon: 2,time: 1000});//alert('少年，邮箱不能为空！');
+        return false;
+    }
+	$('#suppliersHandle').submit();
+}
+</script>
+</body>
+</html>

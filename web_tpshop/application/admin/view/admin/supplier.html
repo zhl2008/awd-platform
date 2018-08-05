@@ -1,0 +1,89 @@
+<include file="public/min-header" />
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	             <div class="box-header">
+	               	<nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('Admin/index')}" method="post">
+				            <div class="form-group pull-right">
+					            <a href="{:U('Admin/supplier_info')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>添加供应商</a>
+				            </div>		          
+				          </form>		
+				      	</div>
+	    			</nav>  
+	             </div>	             
+	             <div class="box-body">	               
+	           		<div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable">
+		                 <thead>
+		                   <tr role="row">
+			                   <th>ID</th>
+			                   <th>供应商名称</th>
+			                   <th>供应商描述</th>
+			                   <th>供应商联系人</th>
+			                   <th>供应商电话</th>
+							   <th>所属管理员</th>
+							   <th>状态</th>
+			                   <th>操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+						  <foreach name="list" item="vo" key="k" >
+						  	<tr role="row" align="center">
+		                     	<td>{$vo.suppliers_id}</td>
+		                     	<td>{$vo.suppliers_name}</td>
+		                     	<td>{$vo.suppliers_desc}</td>
+		                     	<td>{$vo.suppliers_contacts}</td>
+							 	<td>{$vo.suppliers_phone}</td>
+								<td>{$vo.user_name}</td>
+								<td><img width="20" height="20" src="__PUBLIC__/images/<if condition='$vo[is_check] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('suppliers','suppliers_id','{$vo.suppliers_id}','is_check',this)"/></td>
+		                     <td>
+		                      <a class="btn btn-primary" href="{:U('Admin/supplier_info',array('suppliers_id'=>$vo['suppliers_id']))}"><i class="fa fa-pencil"></i></a>
+		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Admin/supplierHandle')}" data-id="{$vo.suppliers_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
+							</td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>		                 
+		                 </tfoot>
+		               </table>	 
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	         </div>
+	        </div>
+       	</div>
+       </div>
+   </section>
+</div>
+<script>
+function delfun(obj){
+	if(confirm('确认删除')){		
+		$.ajax({
+			type : 'post',
+			url : $(obj).attr('data-url'),
+			data : {act:'del',suppliers_id:$(obj).attr('data-id')},
+			dataType : 'json',
+			success : function(data){
+				if(data.code==1){
+					$(obj).parent().parent().remove();
+				}else{
+					layer.alert(data.msg, {icon: 2});   //alert('用户名或密码不能为空');// alert(data);
+					layer.closeAll();
+				}
+			}
+		})
+	}
+	return false;
+}
+</script> 
+</body>
+</html>

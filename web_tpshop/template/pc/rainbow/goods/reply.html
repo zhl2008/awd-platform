@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>商品评价</title>
+    <link type="text/css" rel="stylesheet" href="__STATIC__/css/comment-detail.css" />
+    <link rel="stylesheet" href="__STATIC__/css/detail.css">
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <script src="__PUBLIC__/js/pc_common.js"></script>
+    <script src="__PUBLIC__/js/layer/layer.js"></script>
+</head>
+<body class="root61" >
+<!--header-s-->
+<include file="public/header" w='w1224'/>
+    <!--header-e-->
+<div class="w">
+    <div class="breadcrumb"> <a href="">首页</a> &gt;<a href=""> 电脑办公 </a>&gt;<a href=""> 办公物品 </a> </div>
+</div>
+<div class="w">
+    <div class="right">
+        <div id="comment-detail" class="m m1">
+            <div class="mt">
+                <h2 class="fl">评价详情</h2>
+                <div class="partake-new"> </div>
+            </div>
+            <div id="comments-list" class="mc">
+                <div class="fn-comment-list">
+                    <div class="fn-mc-bk">
+                        <div class="bk-img">
+                            <div class="avatar_bg"><img src="/Template/pc/soubao/Static/images/defaultface_user_small.png" alt=""></div>
+                            <h3>匿名用户 </h3>
+                        </div>
+                        <div class="bk-r">
+                            <div class="ui_poptip_arrow poptip_left"><em></em> <span></span> </div>
+                            <div class="bk-title fix">
+                                <div class="fn-comment-star" data-star="5">
+                                    <php>
+                                        for($i = 0;$i < $comment_info['goods_rank'];$i++){
+                                        echo "<i class='star-01'></i>";
+                                        }
+                                        for($j = 0;$j < (5-$comment_info['goods_rank']);$j++){
+                                        echo "<i class='star-02'></i>";
+                                        }
+                                    </php>
+                                </div>
+                                <span class="bk-title-time">{$comment_info['add_time']|date="Y-m-d H:i:s",###}</span> </div>
+                            <div class="bk-mc">
+                                <dl class="bk-mc-up">
+                                    <dd>规　　格：</dd>
+                                    <dt class="fix">{$order_goods_info['spec_key_name']}</dt>
+                                    <dd>体　　会：</dd>
+                                    <dt class="fix">{$comment_info['content']}</dt>
+                                    <dd>印　　像：</dd>
+                                    <dt class="fix">
+                                        <php>$impression_arr= explode(',',$comment_info['impression']);
+                                            if(empty($comment_info['impression'])){
+                                            echo "<span>服务好</span><span>物美价廉</span>";
+                                            }
+                                            foreach($impression_arr as $key)
+                                            {
+                                            echo "<span>".$key."</span>";
+                                            }
+                                        </php>
+                                    </dt>
+                                    <dd>购买日期：</dd>
+                                    <dt class="fix">{$order_info['add_time']|date="Y-m-d H:i:s",###}</dt>
+                                    <dt class="fix"> <br>
+                                        <!--晒单-->
+                                        <foreach name="comment_info['img']" item="v2" >
+                                            <a href="{$v2}" target="_blank"><img alt="" src="{$v2}" width="80" height="80" /></a>&nbsp;&nbsp;
+                                        </foreach>
+                                        &nbsp;&nbsp; </dt>
+                                </dl>
+                                <div class="fn-comment-ignite">
+                                    <a href="javascript:void(0)" onclick="zan(this);" data-comment-id="{$comment_info['comment_id']}">
+                                        <i class="ignite"></i>赞(<span id="span_zan_{$comment_info['comment_id']}" data-io="0">{$comment_info['zan_num']}</span>）
+                                    </a>
+                                    <a class="fn-answer"><i class="ignite_noimg"></i>回复（<span>{$reply_count}</span>）</a>
+                                </div>
+                            </div>
+                            <div class="reply-textarea J-reply-con hide">
+                                <div class="reply-arrow"><b class="layer1"></b><b class="layer2"></b></div>
+                                <div class="inner">
+                                    <textarea class="reply-input J-reply-input" data-id="replytext_{$comment_info['comment_id']}" placeholder="回复 J***3：" maxlength="120"></textarea>
+                                    <div class="operate-box"> <span class="txt-countdown">还可以输入<em>120</em>字</span> <a class="reply-submit J-submit-reply J-submit-reply-lz" href="#none" target="_self">提交</a> </div>
+                                </div>
+                            </div>
+                            <div class="comment-replylist">
+                                <volist name="reply_list" id="reply">
+                                <div class="comment-reply-item hide" data-vender="0" data-name="中国管理" data-uid="" style="display: block;">
+                                    <div class="reply-infor clearfix">
+                                        <div class="main">
+                                            <span class="user-name">{$reply['user_name']}
+                                            <if condition="strtoupper($reply['to_name']) neq ''"><font style="color: #1a2226">回复</font>
+                                                {$reply['to_name']}</if>
+                                            </span>:
+                                            <span class="words">{$reply['content']}</span>
+                                        </div>
+                                        <div class="side"> <span class="date">{$reply['reply_time']|date='Y-m-d H:i:s',###}</span> </div>
+                                    </div>
+                                    <div class="comment-operate"> <a class="reply J-reply-trigger" href="#none" target="_self">回复</a>
+                                        <div class="reply-textarea J-reply-con hide" style="display: none;">
+                                            <div class="reply-arrow"><b class="layer1"></b><b class="layer2"></b></div>
+                                            <div class="inner">
+                                                <textarea class="reply-input J-reply-input" data-id="replytext_{$comment_info['comment_id']}" placeholder="回复中国管理：" maxlength="120"></textarea>
+                                                <div class="operate-box"> <span class="txt-countdown">还可以输入<em>120</em>字</span> <a class="reply-submit J-submit-reply" data-id="{$reply.reply_id}" href="#none" target="_self">提交</a> </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                </volist>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="clearfix m">
+                    <div class="pagin fr">
+                        <if condition="$page_current neq 1">
+                            <a class="next" target="_self" href="{:U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$page_current-1))}">上一页<b></b></a>
+                        </if>
+                        <php>
+                            if($page_sum>1){
+                                for($i=1;$i<=$page_sum;$i++){
+                                    if($page_current==$i){
+                                        echo "<a class='current'target='_self' href='".U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$i))."'>".$i."</a>";
+                                    }else{
+                                        echo "<a target='_self' href='".U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$i))."'>".$i."</a>";
+                                    }
+                                }
+                            }
+                        </php>
+                            <if condition="$page_current lt $page_sum">
+                            <a class="next" target="_self" href="{:U('Home/Goods/reply',array('comment_id'=>$comment_info['comment_id'],'page'=>$page_current+1))}">下一页<b></b></a>
+                            </if>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="relate-r"></div>
+        <!--  -->
+        <div class="club-detail-seo-parent">
+            <!--  -->
+            <!-- no club-detail-seo seo links -->
+            <!--  -->
+        </div>
+        <div class="clearfix m"></div>
+    </div>
+    <div class="left">
+        <!--pinfo start-->
+        <div class="m m2" id="product-info">
+            <div class="mt">
+                <h2>商品信息</h2>
+            </div>
+            <div class="mc">
+                <ul>
+                    <li class="p-img ac"><a href=""
+                                            target="_blank"> <img alt="" src="images/578c4019n8410ca3d.jpg" /> </a></li>
+                    <li class="p-name">商品名称：
+                        <a href="{:U('Goods/goodsInfo',array('id'=>$goods_info['goods_id']))}" target="_blank">{$goods_info['goods_name']}</a></li>
+                    <li class="p-price">
+                        <div class="dt">价&nbsp;&nbsp;&nbsp;&nbsp;格：</div>
+                        <strong class="c-J_3243686">￥{$goods_info['shop_price']}</strong></li>
+                    <li class="p-grade">
+                        <div class="dt">商品评分：</div>
+                        <div class="fl dd">
+                            <php>
+                                for($i = 0;$i < ceil($goods_rank);$i++){
+                                echo "<i class='star-01'></i>";
+                                }
+                                for($j = 0;$j < (5-ceil($goods_rank));$j++){
+                                echo "<i class='star-02'></i>";
+                                }
+                            </php>
+                            (<span id="product_star_score">{$goods_rank}</span>分)</div>
+                    </li>
+                    <li class="p-count">
+                        <div class="dt"> 评&nbsp;&nbsp;价&nbsp;&nbsp;数： </div>
+                        <div id="p-num-comment" class="dd">{$goods_info['comment_count']}条</div>
+                    </li>
+                    <li class="hide"><a href="" target="_blank">商品咨询</a></li>
+                    <li class="p-btn" style="width: 138px;height: 40px;"><a class="btn-append" onclick="javascript:AjaxAddCart({$goods_info.goods_id},1);" href="javascript:;">添加到购物车</a> </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="clr"></div>
+</div>
+<!-- end 提示配送商品 -->
+<!--footer-s-->
+<div class="footer p">
+    <!--<div class="mod_service_inner">-->
+        <!--<div class="w1224">-->
+            <!--<ul>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_duo">多</h5>-->
+                        <!--<p>品类齐全，轻松购物</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_kuai">快</h5>-->
+                        <!--<p>多仓直发，极速配送</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_hao">好</h5>-->
+                        <!--<p>正品行货，精致服务</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+                <!--<li>-->
+                    <!--<div class="mod_service_unit">-->
+                        <!--<h5 class="mod_service_sheng">省</h5>-->
+                        <!--<p>天天低价，畅选无忧</p>-->
+                    <!--</div>-->
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<div class="w1224">-->
+        <include file="public/footer" />
+    <!--</div>-->
+    <include file="public/sidebar_cart" />
+</div>
+<!--footer-e-->
+<script src="__STATIC__/js/lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__STATIC__/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+<script>
+    //回复
+    $(document).ready(function() {
+        $('.fn-comment-ignite .fn-answer').click(function() {
+            $(this).parents('.bk-mc').siblings('.reply-textarea').toggleClass('hide');
+        });
+        $(document).on('click','.comment-operate .reply', function() {
+            $(this).siblings('.reply-textarea').toggle();
+        });
+        $(document).on('click','.operate-box .reply-submit',function() {
+            var content = $(this).parents('.inner').find('.reply-input').val();
+            var comment_id = $(this).parents('.inner').find('.reply-input').attr('data-id').substr(10);
+            var comment_name = $(this).parents('.comment-operate').siblings('.reply-infor').find('.main .user-name').text();
+            var reply_id = $(this).attr('data-id');
+            submit_reply(comment_id,content,comment_name,reply_id);
+//            $(this).parents('.comment-replylist').append('<div class="comment-reply-item hide" data-vender="0" data-name="中国管理" data-uid="" style="display: block;"> <div class="reply-infor clearfix"> <div class="main"> <span class="user-name">中国管理</span> ：<span class="words"> 此处添加内容 </span> </div> <div class="side"> <span class="date">2016.08.08</span> </div> </div> <div class="comment-operate"> <a class="reply J-reply-trigger" href="#none" target="_self">回复</a> <div class="reply-textarea J-reply-con hide"> <div class="reply-arrow"><b class="layer1"></b><b class="layer2"></b></div> <div class="inner"> <textarea class="reply-input J-reply-input" placeholder="回复中国管理：" maxlength="120"></textarea> <div class="operate-box"> <span class="txt-countdown">还可以输入<em>120</em>字</span> <a class="reply-submit J-submit-reply" href="#none" target="_self">提交</a> </div> </div> </div> </div> </div>')
+            $(this).parents('.reply-textarea').toggleClass('hide');
+        });
+    });
+    //字数限制
+    $(document).on('keyup', '.reply-input', function() {
+        var curLength=$(this).val().length;
+        if(curLength>120) {
+            var num=$(this).val().substr(0,120);
+            $(this).val(num);
+            layer.alert("超过字数限制！",{icon:2});
+        } else {
+            $(this).siblings('.operate-box').find('.txt-countdown em').text(120-$(this).val().length);
+        }
+    });
+
+    /**
+     * 点赞ajax
+     * dyr
+     * @param obj
+     */
+    function zan(obj) {
+        var comment_id = $(obj).attr('data-comment-id');
+        var zan_num = parseInt($("#span_zan_" + comment_id).text());
+        $.ajax({
+            type: "POST",
+            data: {comment_id: comment_id},
+            dataType: 'json',
+            url: "/index.php?m=Home&c=user&a=ajaxZan",//
+            success: function (res) {
+                if (res.success) {
+                    $("#span_zan_" + comment_id).text(zan_num + 1);
+                } else {
+                    layer.alert('只能点赞一次哟~',{icon:2});
+                }
+            },
+            error : function(res) {
+                if( res.status == "200"){ // 兼容调试时301/302重定向导致触发error的问题
+                    layer.alert("请先登录!",{icon:2});
+                    return;
+                }
+                layer.alert("请求失败!",{icon:2});
+            }
+        });
+    }
+
+    function submit_reply(comment_id,content,to_name,reply_id)
+    {
+        $.ajax({
+            type: 'post',
+            dataType: 'json',
+            data: {comment_id: comment_id,content:content,to_name:to_name,reply_id:reply_id,goods_id:'{$goods_info.goods_id}'},
+            url: "{:U('Home/User/reply_add')}",
+            success: function (res) {
+                if (res.success) {
+                    layer.alert('回复已提交',{icon:1});
+                } else {
+                    layer.alert(res.msg,{icon:2});
+                }
+            },
+            error : function(res) {
+                if( res.status == "200"){ // 兼容调试时301/302重定向导致触发error的问题
+                    layer.alert("请先登录!",{icon:2});
+                    return;
+                }
+                layer.alert("请求失败!",{icon:2});
+            }
+        });
+    }
+</script>
+</body>
+</html>

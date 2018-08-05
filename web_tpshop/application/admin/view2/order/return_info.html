@@ -1,0 +1,315 @@
+<include file="public/layout" />
+ 
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="{:U('/Admin/Order/return_list')}" title="微信公众号配置"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>退换货详情</h3>
+        <h5>用户提交退换货详情</h5>
+      </div>
+    </div>
+  </div>
+<if condition="$return_goods['status'] eq 0">
+    <form class="form-horizontal" method="post" id="return_form"  name="return_form" action="{:U('Admin/Order/return_info')}">
+            <div class="ncap-form-default">
+                <dl class="row">
+                    <dt class="tit">
+                        <label>订单编号</label>
+                    </dt>
+                    <dd class="opt">
+                        <a href="{:U('Admin/order/detail',array('order_id'=>$return_goods['order_id']))}">{$return_goods.order_sn}</a>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label for="cate_id">用户</label>
+                    </dt>
+                    <dd class="opt">
+                        {$user.nickname}
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label>申请日期</label>
+                    </dt>
+                    <dd class="opt">
+                        {$return_goods.addtime|date="Y-m-d H:i",###}
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label >商品名称</label>
+                    </dt>
+                    <dd class="opt">
+                        <a href="{:U('Home/Goods/goodsInfo',array('id'=>$return_goods[goods_id]))}" target="_blank">{$goods[goods_name]}</a>
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label>服务类型</label>
+                    </dt>
+                    <dd class="opt">
+                    	<if condition="$return_goods['type'] eq 0"> 仅退款</if>
+                    	<if condition="$return_goods['type'] eq 1"> 退货退款</if>
+                    	<if condition="$return_goods['type'] eq 0"> 换货</if>
+                    </dd>
+                </dl>
+                <if condition="$return_goods['type'] lt 2">
+                <dl class="row">
+                    <dt class="tit">
+                        <label>退款详情</label>
+                    </dt>
+                    <dd class="opt">
+                    	<if condition="$return_goods['refund_money'] gt 0"> <label>需退还金额 ：<input type="text" name="refund_money" value="{$return_goods['refund_money']}"></label></if>
+                    	<if condition="$return_goods['refund_deposit'] gt 1"> <label>需退还余额 ：<input type="text" name="refund_deposit" value="{$return_goods['refund_deposit']}"></label></if>
+                    	<if condition="$return_goods['refund_integral'] gt 2"> <label>需退还积分：<input type="text" name="refund_integral" value="{$return_goods['refund_integral']}"></label></if>
+                    </dd>
+                </dl>
+                </if>
+                <dl class="row">
+                    <dt class="tit">
+                        <label>退货原因</label>
+                    </dt>
+                    <dd class="opt">
+                     {$return_goods['reason']}
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label>退货描述</label>
+                    </dt>
+                    <dd class="opt">
+                     {$return_goods['describe']}
+                    </dd>
+                </dl>
+                <dl class="row">
+                    <dt class="tit">
+                        <label>用户上传照片</label>
+                    </dt>
+                    <dd class="opt">
+                        <volist name="return_goods[imgs]" id="item">
+                            <a target="_blank" href="{$item}"><img src="{$item}" width="85" height="85" /></a>&nbsp;&nbsp;&nbsp;
+                        </volist>
+                    </dd>
+                </dl>
+                <if condition="$return_goods['is_receive'] eq 1 and $return_goods['status'] eq 1">
+                    <dl class="row">
+                        <dt class="tit">
+                            <label>换货物流信息</label>
+                        </dt>
+                        <dd class="opt">
+                           	 快递公司：<input type="text" name="seller_delivery[express_name]">
+                           	 快递单号：<input type="text" name="seller_delivery[express_sn]">
+                        </dd>
+                    </dl>
+                </if>
+                <if condition="$return_goods['status'] eq 0">
+                <dl class="row">
+                    <dt class="tit">
+                        <label>审核意见</label>
+                    </dt>
+                    <dd class="opt">
+                        <label><input type="radio" name="status" checked value="1">审核通过</label>
+                        <label><input type="radio" name="status" value="-1">拒绝通过</label>
+                    </dd>
+                </dl>
+                </if>
+                <dl class="row">
+                    <dt class="tit">
+                        <label>处理备注</label>
+                    </dt>
+                    <dd class="opt">
+                        <textarea name="remark" id="remark" style="width:300px; height:120px;"  placeholder="退货描述" class="tarea" id="subject_desc">{$return_goods['remark']}</textarea>
+                    </dd>
+                </dl>
+                <input type="hidden" name="id" value="{$id}">
+                <div class="bot"><a href="JavaScript:;" onClick="document.return_form.submit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+            </div>
+        </form>
+<else/>
+    <div class="ncap-form-default">
+        <dl class="row">
+            <dt class="tit">
+                <label>订单编号</label>
+            </dt>
+            <dd class="opt">
+                <a href="{:U('Admin/order/detail',array('order_id'=>$return_goods['order_id']))}">{$return_goods.order_sn}</a>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label for="cate_id">用户</label>
+            </dt>
+            <dd class="opt">
+                {$user.nickname}
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>申请日期</label>
+            </dt>
+            <dd class="opt">
+                {$return_goods.addtime|date="Y-m-d H:i",###}
+            </dd>
+        </dl>
+        <if condition="$return_goods['type'] lt 2">
+         <dl class="row">
+             <dt class="tit">
+                 <label>退款详情</label>
+             </dt>
+             <dd class="opt">
+                 <form method="post" id='return_money' action="{:U('Order/refund_balance')}">
+                    <input type="hidden" name="rec_id" value="{$return_goods[rec_id]}"/>
+                    <if condition="$return_goods['refund_money'] gt 0">
+                        <label>需退还金额 ：<input type="text" name="refund_money" value="{$return_goods['refund_money']}"></label>
+                    </if>
+                    <if condition="$return_goods['refund_deposit'] gt 0">
+                        <label>需退还余额 ：<input type="text" name="refund_deposit" value="{$return_goods['refund_deposit']}"></label>
+                    </if>
+                    <if condition="$return_goods['refund_integral'] gt 0">
+                        <label>需退还积分：<input type="text" name="refund_integral" value="{$return_goods['refund_integral']}"></label>
+                    </if>
+                 </form>
+             </dd>
+         </dl>
+         </if>
+        <dl class="row">
+            <dt class="tit">
+                <label >商品名称</label>
+            </dt>
+            <dd class="opt">
+                <a href="{:U('Home/Goods/goodsInfo',array('id'=>$return_goods[goods_id]))}" target="_blank">{$goods[goods_name]}</a>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>处理方式</label>
+            </dt>
+            <dd class="opt">
+                <if condition="$return_goods['type'] lt 2 and $return_goods['status'] eq 1">
+                    <a class="ncap-btn ncap-btn-green"  href="{:U('Admin/Order/refund_back',array('id'=>$return_goods[id]))}">支付原路退回</a>
+                    <a class="ncap-btn ncap-btn-green return_money" data-href="{:U('Admin/Order/refund_balance')}">退款到用户余额</a>
+                </if>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>售后申请原因</label>
+            </dt>
+            <dd class="opt">
+               {$return_goods['reason']}
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>售后申请描述</label>
+            </dt>
+            <dd class="opt">
+             {$return_goods['describe']}
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>用户上传照片</label>
+            </dt>
+            <dd class="opt">
+                <volist name="return_goods[imgs]" id="item">
+                    <a target="_blank" href="{$item}"><img src="{$item}" width="85" height="85" /></a>&nbsp;&nbsp;&nbsp;
+                </volist>
+            </dd>
+        </dl>
+        <dl class="row">
+            <dt class="tit">
+                <label>状态</label>
+            </dt>
+            <dd class="opt">
+                <if condition="$return_goods[status] eq -2">已取消</if>
+                <if condition="$return_goods[status] eq -1">审核未通过</if>
+                <if condition="$return_goods[status] eq 1">审核通过</if>
+                <if condition="$return_goods[status] eq 2">已发货</if>
+                <if condition="$return_goods[status] eq 3">已完成</if>
+            </dd>
+        </dl>
+        <if condition="$return_goods[type] eq 1 and $return_goods[status] gt 1">
+            <dl class="row">
+                <dt class="tit">
+                    <label>换货物流信息</label>
+                </dt>
+                <dd class="opt">
+                   <p>快递公司：{$return_goods[seller_delivery][express_name]}</p>
+                    <p>快递单号：{$return_goods[seller_delivery][express_sn]}</p>
+                    <p>发货时间：{$return_goods[seller_delivery][express_time]}</p>
+                </dd>
+            </dl>
+        </if>
+        <dl class="row">
+            <dt class="tit">
+                <label>处理备注</label>
+            </dt>
+            <dd class="opt">
+               {$return_goods['remark']}
+            </dd>
+        </dl>
+        <if condition="$return_goods['type'] eq 2 and $return_goods[status] eq 1">
+            <form class="form-horizontal" method="post"  name="return_form" action="{:U('Admin/Order/return_info')}">
+                <dl class="row">
+                    <dt class="tit">
+                        <label>换货物流信息</label>
+                    </dt>
+                    <dd class="opt">
+                        <p>快递公司：<input type="text" id="express_name" name="seller_delivery[express_name]"></p>
+                        <p>快递单号：<input type="text" id="express_sn" name="seller_delivery[express_sn]" onkeyup="this.value=this.value.replace(/[^\d]/g,'')"></p>
+                    </dd>
+                </dl>
+                <input type="hidden" name="id" value="{$id}">
+                <input type="hidden" name="status" value="3">
+                <div class="bot"><a href="JavaScript:;" onClick="returnform()" class="ncap-btn-big ncap-btn-green" >确认提交</a></div>
+            </form>
+            <script>
+                function returnform(){
+                   var express_name = $.trim($('#express_name').val());
+                   var express_sn = $.trim($('#express_sn').val());
+                    if(express_name == '' || express_sn == '' ){
+                        layer.msg('请填写物流信息',{icon:3});
+                        return false;
+                    }
+                    document.return_form.submit();
+                }
+            </script>
+        </if>
+    </div>
+</if>
+</div>
+<script>
+   $(document).on('click','.return_money',function(){
+        $.ajax({
+            type : "POST",
+            url: $(this).data('href'),
+            data:$('#return_money').serialize(),
+            dataType:'json',
+            async:false,
+            success: function(data){
+                if(data.status ==1){
+                    layer.alert(data.msg, {icon: 1});
+                    window.location.href=data.url;
+                }else{
+                    layer.alert(data.msg, {icon: 2});
+                }
+            },
+            error:function(){
+                layer.alert('网络异常，请稍后重试',{icon: 2});
+            }
+        });
+    })
+</script>
+</body>
+</html>

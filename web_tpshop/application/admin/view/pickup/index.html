@@ -1,0 +1,94 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+	<include file="public/breadcrumb"/>
+	<style>#search-form > .form-group{margin-left: 10px;}</style>
+	<!-- Main content -->
+	<section class="content">
+		<div class="container-fluid">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h3 class="panel-title"><i class="fa fa-list"></i> 自提点列表</h3>
+				</div>
+				<div class="panel-body">
+					<div class="navbar navbar-default">
+						<form action="" id="search-form2" class="navbar-form form-inline" method="post" onsubmit="return false">
+							<div class="form-group">
+								<select name="province_id" id="province_id" class="form-control" onChange="get_city(this)">
+									<option value="">所有省</option>
+									<foreach name="province" item="v" key="k" >
+										<option value="{$v['id']}"> {$v['name']}</option>
+									</foreach>
+								</select>
+							</div>
+							<div class="form-group">
+								<select name="city_id" id="city" class="form-control" onChange="get_area(this)">
+									<option value="">所有市</option>
+									<foreach name="brandList" item="v" key="k" >
+										<option value="{$v['id']}">{$v['name']}</option>
+									</foreach>
+								</select>
+							</div>
+							<div class="form-group">
+								<select name="district_id" id="district" class="form-control">
+									<option value="">所有区/镇</option>
+									<foreach name="brandList" item="v" key="k" >
+										<option value="{$v['id']}">{$v['name']}</option>
+									</foreach>
+								</select>
+							</div>
+							<div class="form-group">
+								<label class="control-label" for="input-order-id">自提点名称</label>
+								<div class="input-group">
+									<input type="text" name="key_word" value="" placeholder="自提点名称" id="input-order-id" class="form-control">
+								</div>
+							</div>
+							<!--排序规则-->
+							<input type="hidden" name="order_by_field" value="pickup_id" />
+							<input type="hidden" name="order_by_mode" value="desc" />
+							<button type="submit" onclick="ajax_get_table('search-form2',1)" id="button-filter search-order" class="btn btn-primary"><i class="fa fa-search"></i> 筛选</button>
+							<button type="button" onclick="location.href='{:U('Admin/Pickup/add')}'" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>添加自提点</button>
+						</form>
+					</div>
+					<div id="ajax_return"> </div>
+				</div>
+			</div>
+		</div>
+		<!-- /.row -->
+	</section>
+	<!-- /.content -->
+</div>
+<!-- /.content-wrapper -->
+<script>
+	$(document).ready(function(){
+		// ajax 加载商品列表
+		ajax_get_table('search-form2',1);
+
+	});
+
+
+	// ajax 抓取页面 form 为表单id  page 为当前第几页
+	function ajax_get_table(form,page){
+		cur_page = page; //当前页面 保存为全局变量
+		$.ajax({
+			type : "POST",
+			url:"/index.php?m=Admin&c=Pickup&a=ajaxPickupList&p="+page,//+tab,
+			data : $('#'+form).serialize(),// 你的formid
+			success: function(data){
+				$("#ajax_return").html('');
+				$("#ajax_return").append(data);
+			}
+		});
+	}
+
+	// 点击排序
+	function sort(field)
+	{
+		$("input[name='order_by_field']").val(field);
+		var v = $("input[name='order_by_mode']").val() == 'desc' ? 'asc' : 'desc';
+		$("input[name='order_by_mode']").val(v);
+		ajax_get_table('search-form2',cur_page);
+	}
+
+</script>
+</body>
+</html>

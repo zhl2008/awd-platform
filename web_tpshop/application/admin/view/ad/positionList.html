@@ -1,0 +1,64 @@
+<include file="public/min-header" />
+<div class="wrapper">
+	<include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	             <div class="box-header">
+              		<nav class="navbar navbar-default">				
+	               		<div class="pull-right navbar-form">
+	               			<label><a class="btn btn-block btn-primary" href="{:U('Admin/Ad/position')}">新增广告位</a></label>
+	               		</div>
+	               	</nav>	            
+	             </div>
+	             <div class="box-body">
+		           <div class="row">
+		            	<div class="col-sm-12">
+			              <table id="list-table" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+			                 <thead>
+			                   <tr role="row">
+			                   	   <th>广告ID</th>
+				                   <th>广告位名称</th>
+				                   <th>广告位宽度</th>
+				                   <th>广告位高度</th>
+				                   <th>广告位描述</th>
+				                   <th>状态</th>
+				                   <th>操作</th>
+			                   </tr>
+			                 </thead>
+							<tbody>
+							  <foreach name="list" item="vo" key="k" >
+							  	<tr role="row">
+							  	 <td>{$vo.position_id}</td>
+			                     <td>{$vo.position_name}</td>
+			                     <td>{$vo.ad_width}</td>
+			                     <td>{$vo.ad_height}</td>
+			                     <td>{$vo.position_desc}</td>
+			                     <td>
+                                                 <img width="20" height="20" src="__PUBLIC__/images/<if condition='$vo[is_open] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('ad_position','position_id','{$vo.position_id}','is_open',this)"/>                                                                
+                                             </td>
+			                     <td>
+			                      <a class="btn btn-info" href="{:U('Admin/Ad/adList',array('pid'=>$vo['position_id']))}">查看广告</a>
+			                      <a class="btn btn-primary" href="{:U('Admin/Ad/position',array('act'=>'edit','position_id'=>$vo['position_id']))}"><i class="fa fa-pencil"></i></a>
+			                     
+								</td>
+			                   </tr>
+			                  </foreach>
+			                   </tbody>
+			               </table>
+		               </div>
+		          </div>
+		         	
+	              <div class="row">
+	              	    <div class="col-sm-6 text-left"></div>
+	                    <div class="col-sm-6 text-right">{$page}</div>		
+	              </div>
+	          </div>
+	        </div>
+       	</div>
+       </div>
+   </section>
+</div>
+</body>
+</html>

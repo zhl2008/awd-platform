@@ -1,0 +1,3 @@
+<volist name="ad" id="ad_list">
+    document.write("<a href='{$ad_list.ad_link}' title='{$ad_list.ad_name}' <if condition="$ad_list[target] eq 1">target='_blank'</if>><img style='background-color: {$ad_list.bgcolor}' border='0' src='{$ad_list.ad_code}' alt='{$ad_list.ad_name}'/></a>");
+</volist>

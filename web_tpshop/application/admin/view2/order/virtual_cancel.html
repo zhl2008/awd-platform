@@ -1,0 +1,123 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>商家中心</title>
+    <link href="__PUBLIC__/static/css/base.css" rel="stylesheet" type="text/css">
+    <link href="__PUBLIC__/static/font/css/font-awesome.min.css" rel="stylesheet"/>
+    <script type="text/javascript" src="__PUBLIC__/static/js/jquery.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/static/js/layer/layer.js"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+</head>
+<body>
+<style>
+    /* 通用弹出式窗口样式*/
+    .eject_con { background-color: #FFF; overflow: hidden;}
+    .eject_con .alert { display: none; margin: 10px;}
+    .eject_con .alert .error { color: inherit; display: block; clear: both;}
+    .eject_con dl { /*! font-size: 0; */ /*! *word-spacing:-1px/\*IE6、7*\/; */ /*! line-height: 20px; */ /*! display: block; */ /*! clear: both; */ /*! overflow:hidden; */}
+    .eject_con dl dt { font-size: 12px; line-height: 32px; vertical-align: top; letter-spacing: normal; word-spacing: normal; text-align: right; display: inline-block; /*! *display: inline/\*IE6,7*\/; */ width: 29%; padding: 10px 1% 10px 0; margin: 0; /*! zoom: 1; */}
+    .eject_con dl dt i.required { font: 12px/16px Tahoma; color: #F30; vertical-align: middle; margin-right: 4px; }
+    .hint { font-size: 12px; line-height: 16px; color: #BBB; margin-top: 10px; }
+    .eject_con dl dd { font-size: 12px; line-height: 32px; vertical-align: top; letter-spacing: normal; word-spacing: normal; display: inline-block; *display: inline/*IE6,7*/; width: 69%; padding: 10px 0 10px 0; zoom:1;}
+    .eject_con h2 { line-height:20px; font-weight: 600; background-color:#FEFEDA; color: #630; text-align: left; width: 90%; padding:8px 16px; margin: 5px auto 5px auto; border: solid 1px #FFE8C2;}
+    .eject_con span.num { font-weight: 600; color: #390;}
+    .eject_con ul { overflow: hidden;}
+    .eject_con li h2 { font-size: 16px; font-weight: 600; line-height: 32px; color: #555; width: 98%; text-align: left; margin: 0 auto; border-bottom: dashed 1px #E7E7E7;}
+    .eject_con .checked { float: left; padding: 0; margin: 0;}
+    .eject_con .checked li { line-height: 16px; height: 16px; padding: 4px 0;}
+    .eject_con li p { float: left; }
+    .eject_con .strong { padding-left: 10px; color: #ff4e00; }
+    .eject_con .bottom { background-color:#F9F9F9; text-align: center; border-top: 1px solid #EAEAEA; overflow: hidden; }
+    .eject_con .ncsc-upload-btn,
+    .eject_con .ncsc-upload-btn span,
+    .eject_con .ncsc-upload-btn .input-file { width: 80px; height: 30px;}
+    .eject_con .ncsc-upload-btn p { color: #666; width: 78px; height: 20px;}
+    /*弹出框体中的列表*/
+    .eject-con-list { font-size: 0; *word-spacing:-1px/*IE6、7*/; padding: 9px;}
+    .eject-con-list li { font-size: 12px; line-height: 20px; vertical-align: top; letter-spacing: normal; word-spacing: normal; display: inline-block; *display: inline/*IE6,7*/; width: 19%; height: 20px; padding: 4px 0 4px 1%; zoom: 1;}
+    .eject-con-list li .checkbox,
+    .eject-con-list li label { vertical-align: middle; display: inline-block; *display: inline; *zoom: 1;}
+    .eject-con-list li .checkbox { margin-right: 6px;}
+</style>
+<div class="dialog_content w500" style="margin: 0px; padding: 0px;">
+    <div class="eject_con">
+        <div id="warning"></div>
+        <input type="hidden" name="order_id" id="order_id" value="{$order.order_id}">
+        <dl>
+            <dt>订单编号：</dt>
+            <dd><span class="num">{$order.order_sn}</span></dd>
+        </dl>
+        <dl>
+            <dt>取消缘由：</dt>
+            <dd>
+                <ul class="checked">
+                    <li>
+                        <input type="radio" checked="" name="state_info" id="d1" value="无法备齐货物">
+                        <label for="d1">无法备齐货物</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="state_info" id="d2" value="不是有效的订单">
+                        <label for="d2">不是有效的订单</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="state_info" id="d3" value="买家主动要求">
+                        <label for="d3">买家主动要求</label>
+                    </li>
+                    <li>
+                        <input type="radio" name="state_info" flag="other_reason" id="d4" value="">
+                        <label for="d4">其他原因</label>
+                    </li>
+                    <li id="other_reason" style="display:none; height:48px;">
+                        <textarea name="state_info1" rows="2" id="other_reason_input" style="width:200px;"></textarea>
+                    </li>
+                </ul>
+            </dd>
+        </dl>
+        <dl class="bottom">
+            <dt>&nbsp;</dt>
+            <dd>
+                <input type="button" class="submit" id="confirm_button" value="确定" onclick="formSubmit()">
+            </dd>
+        </dl>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('input[name="state_info"]').click(function () {
+            if ($(this).attr('id') == 'd4') {
+                $('#other_reason').show();
+            } else {
+                $('#other_reason').hide();
+            }
+        })
+    });
+
+    function formSubmit() {
+        var admin_note = '';
+        admin_note = $('input[name="state_info"]:checked').val();
+        if (admin_note == '') {
+            admin_note = $('#other_reason_input').val();
+        }
+        if (admin_note == '') {
+            layer.alert('请填写原因', {icon: 2});
+            return false;
+        }
+        $.ajax({
+            type: 'post',
+            url: "{:U('Order/virtual_cancel')}",
+            data: {'order_id': $('#order_id').val(), 'admin_note': admin_note},
+            dataType: 'json',
+            success: function (data) {
+                if (data.status == 1) {
+                    layer.msg('操作成功', {icon: 1});
+                    window.parent.location.reload();
+                } else {
+                    layer.alert(data.msg, {icon: 2});
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

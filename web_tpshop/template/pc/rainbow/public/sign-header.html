@@ -1,0 +1,80 @@
+<div class="m-top-bar editable" moduleid="1539923" style="position:relative;min-height:25px;">
+  <div class="container">
+    <ul class="fl">
+        <!--<if condition="$user[user_id] gt 0">-->
+            <!--<li class="fl J_login_status"><a href="{:U('Home/user/index')}" alt="" title="" target="_self">{$user['nickname']}</a>-->
+                <!--<a  href="{:U('Home/user/logout')}" style="margin:0 10px;" title="退出" target="_self">退出</a></li>-->
+            <!--</li>-->
+            <!--<else/>-->
+            <!--<li class="fl J_login_status"><a class="menu-item fl J_do_login J_chgurl" href="{:U('Home/user/login')}">-->
+                <!--<span>Hi，请登录</span> </a><a class="menu-item fl ht" href="{:U('Home/user/reg')}">免费注册</a>-->
+        <!--</if>-->
+        <div class="ls-dlzc fl nologin">
+            <a href="{:U('Home/user/login')}">Hi,请登录</a>
+            <a class="red" href="{:U('Home/user/reg')}">免费注册</a>
+        </div>
+        <div class="ls-dlzc fl islogin">
+            <a class="red userinfo" href="{:U('Home/user/index')}"></a>
+            <a href="{:U('Home/user/logout')}">退出</a>
+        </div>
+        <script>
+            $(function (){
+                    var uname = getCookie('uname');
+                    if (uname == '') {
+                        $('.islogin').remove();
+                        $('.nologin').show();
+                    } else {
+                        $('.nologin').remove();
+                        $('.islogin').show();
+                        $('.userinfo').html(decodeURIComponent(uname).substring(0,5));
+                    }
+            })
+
+        </script>
+      <li class="fl sep"></li>
+      <!--<li class="fl select-city dropdown">
+        <span class="menu-item">
+        <span>送货至：</span>
+        <a title="" alt="" href="" class="J_cur_place"></a><i class="dd"></i></span>
+      </li>-->
+    </ul>
+    <ul class="fr bar-right">
+      <li class="fl dropdown my-feiniu"><a class="menu-item" target="_blank" href="{:U('/Home/User/index')}">
+        <span>我的商城</span><i class="dd"></i></a>
+        <ul class="sub-panel">
+          <li><a class="J_chgurl" target="_blank" href="{:U('Home/Order/order_list')}">我的订单</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('Home/User/account')}">我的积分</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('Home/User/coupon')}">我的优惠券</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('Home/User/goods_collect')}">我的收藏夹</a></li>
+          <li><a class="J_chgurl" target="_blank" href="{:U('Home/User/comment')}">我的评论</a></li>
+        </ul>
+      </li> 
+      <li class="fl sep"></li>
+      <li class="fl dropdown mobile-feiniu"><a class="menu-item" href=""><i class="fl ico"></i>
+        <span class="fl">手机TPshop网</span>
+        <i class="dd"></i></a>
+        <div class="sub-panel m-lst">
+          <p>扫一扫，下载TPshop客户端</p>
+          <dl>
+            <dt class="fl mr10"><a target="_blank" href=""><img height="80" width="80" src="__STATIC__/images/qrcode_vmall_app01.png"></a></dt>
+            <dd class="fl mb10"><a target="_blank" href=""><i class="andr"></i> Andiord</a></dd>
+            <dd class="fl"><a target="_blank" href=""><i class="iph"></i> iPhone</a></dd>
+          </dl>
+        </div>
+      </li>
+      <li class="fl sep"></li>
+      <li class="fl">
+          <a class="menu-item" href="{:U('Home/Article/detail')}" target="_blank"><span>帮助中心</span></a>
+      </li>
+      <li class="fl sep"></li>
+      <li class="fl about-us"><a class="txt fl" style="line-height:unset;" href="">关注我们：</a></li>
+      <li class="fl dropdown weixin"><a href="" class="fl ico"></a>
+        <div class="sub-panel wx-box">
+          <span class="arrow-b">◆</span>
+          <span class="arrow-a">◆</span>
+          <p class="n"> 扫描二维码 <br>	关注TPshop网官方微信 </p>
+          <img src="__STATIC__/images/qrcode_vmall_app01.png"></div>
+      </li>
+    </ul>
+  </div>
+</div>

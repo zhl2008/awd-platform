@@ -1,0 +1,203 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>优惠券管理</h3>
+                <h5>网站系统优惠券索引与管理</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+            <li>优惠券, 由平台设置管理.</li>
+        </ul>
+    </div>
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ftitle">
+                <h3>优惠券列表</h3>
+                <h5>(共{$pager->totalRows}条记录)</h5>
+            </div>
+            <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+        </div>
+        <div class="hDiv">
+            <div class="hDivBox">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="sign" axis="col0">
+                            <div style="width: 24px;"><i class="ico-check"></i></div>
+                        </th>
+                        <th align="left" abbr="article_title" axis="col3" class="">
+                            <div style="text-align: left; width: 240px;" class="">优惠券名称</div>
+                        </th>
+                        <th align="left" abbr="ac_id" axis="col4" class="">
+                            <div style="text-align: center; width: 60px;" class="">优惠券类型</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 50px;" class="">面额</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 60px;" class="">使用需满金额</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 50px;" class="">发放总量</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 50px;" class="">已发放数</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 50px;" class="">已使用</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 120px;" class="">使用截止日期</div>
+                        </th>
+                        <th align="left" axis="col1" class="handle">
+                            <div style="text-align: center; width: 170px;">操作</div>
+                        </th>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="tDiv">
+            <div class="tDiv2">
+                <a href="{:U('Admin/Coupon/coupon_info')}">
+                    <div class="fbutton">
+                        <div title="添加优惠券" class="add">
+                            <span><i class="fa fa-plus"></i>添加优惠券</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="bDiv" style="height: auto;">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody>
+                    <volist name="lists" id="list">
+                        <tr>
+                            <td class="sign">
+                                <div style="width: 24px;"><i class="ico-check"></i></div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: left; width: 240px;">{$list.name}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 60px;">{$coupons[$list[type]]}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 50px;">{$list.money}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 60px;">{$list.condition}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 50px;">{$list.createnum}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 50px;">{$list.send_num}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 50px;">{$list.use_num}</div>
+                            </td>
+                            <td align="left" class="">
+                                <div style="text-align: center; width: 120px;">{$list.use_end_time|date='Y-m-d',###}</div>
+                            </td>
+                            <td align="left" class="handle">
+                                <div style="text-align: left; width: 170px; max-width:170px;">
+                                    <if condition="$list[type] eq 3 and ($list[send_end_time] gt time())">
+                                        <a class="btn blue" href="{:U('Admin/Coupon/make_coupon',array('id'=>$list['id'],'type'=>$list['type']))}"><i class="fa fa-send"></i>发放</a>  <!--线下发放-->
+                                    <elseif condition="$list[type] eq 1 and ($list[send_end_time] gt time())"/>
+                                        <a class="btn blue send_user" data-url="{:U('Coupon/send_coupon',array('cid'=>$list[id]))}"><i class="fa fa-send-o"></i>发放</a>
+                                    <else/>
+                                        <a class="btn" style="background-color: #999;border-color: #999;color: #fff;box-shadow:none"><i class="fa fa-send-o"></i>发放</a>
+                                    </if>
+                                    <a class="btn blue" href="{:U('Admin/Coupon/coupon_list',array('id'=>$list['id']))}"><i class="fa fa-search"></i>查看</a>
+                                    <a class="btn blue" href="{:U('Admin/Coupon/coupon_info',array('id'=>$list['id']))}"><i class="fa fa-pencil-square-o"></i>编辑</a>
+                                    <a class="btn red" href="javascript:void(0)" data-url="{:U('Admin/Coupon/del_coupon',array('id'=>$list['id']))}" onclick="delfun(this)"><i class="fa fa-trash-o"></i>删除</a>
+                                </div>
+                            </td>
+                            <td align="" class="" style="width: 100%;">
+                                <div>&nbsp;</div>
+                            </td>
+                        </tr>
+                    </volist>
+                    </tbody>
+                </table>
+            </div>
+            <div class="iDiv" style="display: none;"></div>
+        </div>
+        <!--分页位置-->
+        {$page} </div>
+</div>
+<script>
+    $(document).ready(function(){
+        // 表格行点击选中切换
+        $('#flexigrid > table>tbody >tr').click(function(){
+            $(this).toggleClass('trSelected');
+        });
+
+        // 点击刷新数据
+        $('.fa-refresh').click(function(){
+            location.href = location.href;
+        });
+
+    });
+
+    $('.send_user').click(function(){
+        var url = $(this).attr('data-url');
+        layer.open({
+            type: 2,
+            title: '发放优惠券',
+            shadeClose: true,
+            shade: 0.5,
+            area: ['70%', '85%'],
+            content: url,
+        });
+    });
+
+    function delfun(obj){
+        layer.confirm('确认删除？', {
+                    btn: ['确定','取消'] //按钮
+                }, function(){
+                    // 确定
+                    $.ajax({
+                        type : 'post',
+                        url : $(obj).attr('data-url'),
+                        dataType : 'json',
+                        success : function(data){
+                            layer.closeAll();
+                            if(data.status == 1){
+                                $(obj).parent().parent().parent().remove();
+                            }else{
+                                layer.alert(data.msg, {icon: 2});  //alert('删除失败');
+                            }
+                        },
+                        error : function() {
+                            layer.closeAll();
+                            layer.alert('网络请求出错', {icon: 2});
+                        }
+                    })
+                }, function(index){
+                    layer.close(index);
+                }
+        );
+    }
+</script>
+</body>
+</html>

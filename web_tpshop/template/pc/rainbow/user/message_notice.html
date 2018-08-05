@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的消息 </title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css"/>
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <style>
+        .wddd-li ul li {
+            float: left;
+            margin: 10px 20px;
+            font-size: 14px;
+        }
+
+        .tp_message {
+            padding: 40px 26px;
+            background: #fff;
+            margin-top: 0px
+        }
+
+        .tp_message h3 {
+            border-bottom: 1px solid #dedede;
+            margin-bottom: 6px;
+            padding-bottom: 4px;
+            word-wrap: break-word;
+        }
+
+        .tp_message .tpcontent {
+            text-indent: 2em;
+            word-wrap: break-word;
+        }
+
+        .tp_message .checknoti {
+            text-align: right;
+            margin-top: 4px
+        }
+
+        .tp_message a {
+            cursor: pointer;
+            color: #e63547;
+            text-decoration: blink
+        }
+    </style>
+</head>
+<body class="bg-f5">
+<include file="user/header"/>
+<div class="home-index-middle">
+    <div class="w1224">
+        <div class="g-crumbs">
+            <a href="{:U('Home/User/index')}">我的商城</a>
+            <i class="litt-xyb"></i>
+            <span>我的消息</span>
+        </div>
+        <div class="home-main">
+            <include file="user/menu"/>
+            <div class="ri-menu fr" style="background-color: #fff">
+                <div class="wddd-li">
+                    <ul>
+                        <li id="ALL" onclick="ajax_message();"><a href="javascript:" class="red">全部消息</a></li>
+                        <li id="WAITPAY" onclick="ajax_message(0);"><a href="javascript:" >系统消息<em></em></a></li>
+                        <li id="WAITSEND" onclick="ajax_message(1);"><a href="javascript:" >活动通知<em></em></a></li>
+                        <li id="delete"><a href="javascript:;" class="co_blue" onclick="del_all_message(this)" data-msg_type="0">清空消息</a></li>
+                    </ul>
+                </div>
+                <div class="ui_tab">
+                    <div style="border-top: 0;" class="ui_tab_content">
+                        <div class="wddd-js ov-in">
+                            <div class="tp_notice p">
+                            </div>
+                        </div>
+                        <!-- page next star -->
+                        <div class="operating fixed" id="bottom">
+                            <div class="fn_page clearfix">
+                                {$page}
+                            </div>
+                        </div>
+                        <!-- page next end -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer-s-->
+<div class="footer p">
+    <include file="public/footer" />
+</div>
+<!--footer-e-->
+<script type="text/javascript">
+    $(function () {
+        ajax_message();
+        $('.wddd-li ul li a').click(function () {
+            $(this).addClass('red').parent().siblings('li').find('a').removeClass('red');
+        });
+    });
+    /**
+     * @author dyr
+     * 消息ajax请求
+     * @param type
+     */
+    function ajax_message(type) {
+        $('#delete').find('a').attr('data-msg_type',type)
+        $.ajax({
+            type: "POST",
+            url: "{:U('Home/User/ajax_message_notice')}",
+            data: {type: type},
+//            dataType: 'html',
+            success: function (data) {
+                if (data) {
+                    $(".tp_notice").html('');
+                    $(".tp_notice").append(data);
+                } else {
+                    $(".tp_notice").html('');
+                }
+            }
+        });
+    }
+
+
+    /**
+     * 清除这类型下全部消息
+     * @param type
+     */
+    function del_all_message(obj) {
+        layer.confirm('消息删除后将无法找回！', {
+            btn: ['是','否']
+        }, function() {
+            var msg_type = $(obj).data('msg_type');
+            $.ajax({
+                type: "POST",
+                url: "{:U('Home/User/set_message_notice')}",
+                data: {type:msg_type},
+                dataType:'json',
+                success: function (data) {
+                    if (data.status==1) {
+                        layer.alert(data.msg , {icon:1, time:2000});
+                        location.reload()
+                    } else {
+                        layer.alert(data.msg , {icon:2, time:2000});
+                    }
+                },
+                error:function(){
+                    layer.alert('网络错误，请稍后再试', {icon:2, time:2000});
+                }
+            });
+        }, function(tmp){
+            layer.close(tmp);
+        })
+    }
+
+    /**
+     * 清除单条消息
+     * @param type
+     */
+    function del_message(type,msg_id) {
+        layer.confirm('消息删除后将无法找回！', {
+            btn: ['是','否']
+        }, function() {
+            $.ajax({
+                type: "POST",
+                url: "{:U('Home/User/set_message_notice')}",
+                data: {type: type, msg_id: msg_id},
+                dataType: 'json',
+                success: function (data) {
+                    if (data.status == 1) {
+                        layer.alert(data.msg, {icon: 1, time: 2000});
+                        $('#message_' + msg_id).remove()
+                    } else {
+                        layer.alert(data.msg, {icon: 2, time: 2000});
+                    }
+                },
+                error: function () {
+                    layer.alert('网络错误，请稍后再试', {icon: 2, time: 2000});
+                }
+            });
+        }, function(tmp){
+            layer.close(tmp);
+        })
+
+    }
+</script>
+</body>
+</html>

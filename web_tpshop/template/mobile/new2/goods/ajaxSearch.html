@@ -1,0 +1,62 @@
+<include file="public/header" title="搜索"  body=""/>
+<include file="public/header_nav" title="搜索" href="javascript:history.back(-1);"/>
+
+		<div class="p search_pl">
+			<div class="maleri30">
+				<div class="search2">
+                    <form method="post" action="{:U('Goods/search')}" id="sourch_form">
+                        <div class="le_inp"><input type="text" name="q" id="q" value="" placeholder="搜索商品"/></div>
+                        <a href="javascript:;" onclick="ajaxsecrch()" ><div class="ri_ss"><img src="__STATIC__/images/sea.png"/></div></a>
+                    </form>
+				</div>
+			</div>
+		</div>
+		<!--<div class="near-le-ri p">-->
+			<!--<div class="maleri30">-->
+				<!--<span>最近搜索</span>-->
+				<!--<img src="__STATIC__/images/dele.png"/>-->
+			<!--</div>-->
+		<!--</div>-->
+		<!--<div class="lb_showhide se_shien p" style="display: block;">-->
+			<!--<div class="maleri30">-->
+				<!--<ul>-->
+					<!--<li><a href="">返回默认</a></li>-->
+					<!--<li><a href="">手机数码</a></li>-->
+				<!--</ul>-->
+			<!--</div>-->
+		<!--</div>-->
+		<div class="near-le-ri p">
+			<div class="maleri30">
+				<span>热门搜索</span>
+                <!--<a href="">-->
+                    <!--<img src="__STATIC__/images/refresh.png"/>-->
+                <!--</a>-->
+			</div>
+		</div>
+		<div class="lb_showhide se_shien p" style="display: block;">
+			<div class="maleri30">
+				<ul>
+                    <foreach name="tpshop_config.hot_keywords" item="wd" key="k">
+                        <li><a href="{:U('Goods/search',array('q'=>$wd))}" <if condition="$k eq 0">class="ht"</if>>{$wd}</a></li>
+                    </foreach>
+				</ul>
+			</div>
+		</div>
+
+        <!--底部导航-start-->
+        <include file="public/footer_nav"/>
+        <!--底部导航-end-->
+</body>
+</html>
+<script>
+    function ajaxsecrch(){
+        if($.trim($('#q').val()) != ''){
+            $("#sourch_form").submit();
+        }else{
+            layer.open({content:'请输入搜索关键字',time:2});
+        }
+    }
+    $(function(){
+        $('#q').focus();
+    })
+</script>

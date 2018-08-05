@@ -5,6 +5,10 @@
 '''
 import hashlib
 import base64
+import requests
+import sys 
+reload(sys) 
+sys.setdefaultencoding('utf-8')
 
 sleep_time  = 120
 debug = True
@@ -79,7 +83,7 @@ class check():
 
     def index_check(self):
 	res = http('get',host,port,'/index.php?file=news&cid=1&page=1&test=eval&time=%s'%str(my_time),'',headers)
-	if 'hello world' in res:
+	if '首页-开源商城' in res:
 	    return True
 	if debug:
 	    print "[fail!] index_fail"
@@ -87,8 +91,8 @@ class check():
 	
 
     def test_check(self):
-	res = http('get',host,port,'/js/get_scripts.js.php?scripts[]=indexes.js','',headers)
-	if 'checkIndexType' in res:
+	res = http('get',host,port,'/index.php?m=Home&c=Goods&a=goodsList&id=123','',headers)
+	if '全部商品分类' in res:
 	    return True
 	if debug:
 	    print "[fail!] test_fail"
@@ -96,10 +100,9 @@ class check():
 
 
     def test_check_2(self):
-	headers['Cookie'] = ''
-	data = 'key=1'
-	res = http('get',host,port,'/url.php',data,headers)
-	if 'phpMyAdmin' in res:
+	#res = http('get',host,port,'/Admin/admin/login','',headers)
+	res = requests.get('http://%s:%s/Admin/admin/login' % (host,port)).text
+	if '管理中心' in res:
 	    return True
 	if debug:
 	    print "[fail!] test_2_fail"

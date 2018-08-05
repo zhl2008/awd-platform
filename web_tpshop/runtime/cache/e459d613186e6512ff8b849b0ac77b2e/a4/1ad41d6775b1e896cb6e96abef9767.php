@@ -1,0 +1,3 @@
+<?php
+//000000086400[{"link_id":"5","link_name":"\u767e\u5ea6\u641c\u7d22","link_url":"http:\/\/www.baidu.com","link_logo":"","orderby":"50","is_show":"1","target":"1"},{"link_id":"6","link_name":"\u8c37\u6b4c\u4e2d\u56fd","link_url":"http:\/\/www.google.com.hk","link_logo":"","orderby":"50","is_show":"1","target":"1"},{"link_id":"8","link_name":"1111111111","link_url":"11222222222","link_logo":"","orderby":"255","is_show":"1","target":"1"}]
+?>

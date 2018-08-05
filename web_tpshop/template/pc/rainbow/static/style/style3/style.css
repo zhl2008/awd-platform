@@ -1,0 +1,70 @@
+body { background: #F7FBFF url(images/body_bg.png) repeat-x center 121px;}
+a { color: #2E2E2E; }
+a:hover { text-decoration: none; color: #0085CF;}
+/* 导航区域布局控制 */
+.ncsl-nav { position: relative; z-index: 1; width: 1200px; height: 320px; margin: 55px auto 0 auto;}
+/* 导航上部图片控制 */
+.ncsl-nav .banner img { position: absolute; z-index: 1; left:0; top: 0;}
+.ncs-default-banner { background-image: url(images/header.gif); background-repeat: no-repeat; height: 260px; width: 1000px; display: block; position:absolute; z-index: 3; left:0; top: 0;}
+/* 店铺导航 */
+#nav { background-color: transparent; background-image: url(images/nav_bg.gif); background-repeat: no-repeat; background-position: center top; width: 1000px; height: 60px; padding-top: 70px; border: none 0; overflow: hidden; position: absolute; z-index:2; left: 0; top:176px;}
+#nav ul { width: 982px; height: 36px; padding-top:15px; *margin: 18px auto 0 auto; margin: 9px auto 0 auto}
+#nav li { float: left; background:url(images/nav_li.gif) no-repeat 0 0;  padding: 0px 20px 0px 26px;}
+#nav ul li:first-child { background-image: none;}/* 排行列表第一行不显示上虚线 */
+#nav li.normal a span, #nav li.active a span {font-family:"microsoft yahei"; font-size: 18px; font-weight: 600; line-height: 36px; color: #8AC7F9; text-overflow: ellipsis; white-space: nowrap; max-width:160px; height: 36px; float: left; overflow: hidden; }
+#nav li.normal a:hover span {color: #F979B5;}
+#nav li.active a span, #nav li.active a:hover span { color: #F979B5; }
+/* (nc-s-c-s) full name -> Store Container Style */
+.ncs-sidebar-container { box-shadow: 0 -2px 2px rgba(0,0,0,0.1); border-radius: 5px;}
+.ncs-sidebar-container .title { background: url(images/sidebar_title.png) no-repeat scroll 0% 0%; height: 48px; }
+.ncs-sidebar-container .title h4 { font-size: 12px; color:#936; line-height: 22px; margin: 8px 0 18px 14px; display: inline-block; text-shadow: 1px 1px 0 rgba(255,255,255,1);}
+.ncs-sidebar-container .title h4 {*display: inline;}
+.ncs-sidebar-container .title span { }
+.ncs-sidebar-container .content { background: #FFF url(images/sidebar_content.png) repeat-x 0% 0%; padding-bottom: 20px; border: solid #C6E6FD; border-width: 0px 1px 1px 1px; border-radius: 0 0 5px 5px;}
+
+
+.ncs-main-container { box-shadow: 0 -2px 2px rgba(0,0,0,0.1); border-radius: 5px;}
+.ncs-main-container .title { background: #FFF url(images/title_bg.png) no-repeat 0% 0%; height: 24px; padding: 13px 0; border: solid #FFF; border-width: 1px 1px 0 1px; border-radius: 5px 5px 0 0;}
+.ncs-main-container .title h4 { font-weight: normal; font-size: 14px; font-weight: 600; line-height: 22px; color: #006699; display: inline-block; margin: 0 0 0 24px; text-shadow: 1px 1px 0 rgba(255,255,255,1);}
+.nc-s-c-s2 .title h4 { *display: inline;}
+.ncs-main-container .title span { display: inline-block; font-size: 12px; float:right; margin-right: 16px; line-height: 16px; color: #777;}
+.ncs-main-container .content { background: #FFF; border-radius: 0 0 5px 5px; box-shadow: 1px 1px 0 #FFF inset;}
+
+/* 列表翻页 */
+.pagination{ padding: 2px; margin-right: 16px;}
+.pagination ul li span{ line-height: 20px; color: #EEDCC6; padding: 1px 8px; margin: 0px 2px; border: 1px solid #F3E6D7; border-radius: 4px;}
+.pagination ul li a span , .pagination li a:visited span{ color: #CCA881; text-decoration: none; border-color: #F3E6D7;}
+.pagination ul li a:hover span, .pagination li a:active span{ color: #876136; background-color: #FFF; border-color: #F3E6D7;}
+.pagination ul li span.currentpage{ color:#876136; background-color: #FAF2DF; border-color: #E6D3BE; box-shadow: 0 1px 1px rgba(0,0,0,0.1)}
+
+
+.tabbar ul, .ncs-top-tab,{ background-image: url(background.gif);}
+
+/* 侧边栏排行榜 */
+.ncs-top-panel li { border-bottom: solid 1px #D3EAFC;}
+.ncs-top-panel dd.goods-pic a { border: solid 1px #D3EAFC;}
+.ncs-top-panel li:hover dd.goods-pic a { border-color: #D3EAFC; box-shadow: 1px 1px 1px rgba(0,0,0,0.2)}
+.ncs-top-panel dd.goods-pic p { border: solid 1px #C9E5FC;}
+.ncs-top-panel dd.goods-pic p big { border-color: transparent #C9E5FC transparent transparent;}
+.ncs-top-panel dd.goods-pic p small { border-color: transparent #FFFFFF transparent transparent;}
+
+
+
+/* ========================================= */
+/* 商品列表类页面 -> index.php, goods_list.php */
+/* ========================================= */
+
+/* 焦点图轮换 */ 
+.flex-control-nav li a { width: 6px ; height: 6px ; line-height: 6px; background-color: #FFF; border: solid 2px #9EC7F9; text-indent: -9999px;}
+.flex-control-nav li a:hover { width: 10px ; height: 10px ; line-height: 10px; background-color: #9EC7F9; border: none;}
+.flex-control-nav li a.flex-active { width: 10px ; height: 10px ; line-height: 10px; background-color: #F378A4; border: none; box-shadow: none;}
+
+/* 列表排序 */
+.ncs-goodslist-bar { background: #FFF; border-style: solid; border-color: #FFF; border-width: 0 1px; padding:6px 0 12px 0;}
+/* 商品列表 */
+.ncg-list { clear:both;}
+.ncg-price em { font-family: Tahoma; font-weight: normal; font-size: 20px; background: url(images/star.png) no-repeat 0px 0px; line-height: 28px; color: #F03; text-indent: 40px; display: inline-block; padding-top: 4px;}
+.ncg-price em i { font-size: 11px; font-family: Arial; margin-right: 4px;}
+.ncg-sold { color: #999;}
+.ncg-sold strong { color: #09C;}
+

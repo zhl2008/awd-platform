@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>团购</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__PUBLIC__/js/global.js"></script>
+	</head>
+	<body>
+		<style type="text/css">
+			.page .fr{float: none;position: relative;left: 50%;right: 50%;margin-left: -350px;}
+			.f-total{margin-top: 10px;}
+		</style>
+		<!--header-s-->
+		<include file="public/header" w='w1224'/>
+			<!--header-e-->
+		<div class="search-box p" style="padding-bottom: 0">
+			<div class="w1224">
+				<div class="search-path fl">
+					<a href="javascript:void(0);">全部结果</a>
+					<i class="litt-xyb"></i>
+					<span>团购</span>
+				</div>
+				<!--<div class="search-clear fr">
+					<span><a href="{:U('Home/Activity/group_list')}">清空筛选条件</a></span>
+				</div>-->
+			</div>
+		</div>
+        <!--分类-s-->
+		<!--<div class="search-opt classify">
+			<div class="w1224">
+				<div class="opt-list">
+					<dl class="brand-section">
+						<dt>分类:</dt>
+						<dd class="ri-section">
+							<div class="lf-list">
+								<div class="brand-list">
+									<div class="clearfix p">
+										<a href="{:U('Home/Activity/group_list')}">
+											<span>全部</span>
+										</a>
+										<volist name="cat_list" id="vo">
+										<a href="{:U('Home/Activity/group_list',array('cat_id'=>$vo['id']))}">
+											<span>{$vo.name}</span>
+										</a>
+										</volist>
+									</div>
+								</div>
+							</div>
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>-->
+        <!--分类-e-->
+    <!--商品列表-s-->
+		<div class="shop-list-tour p">
+			<div class="w1224">
+				<div class="stsho pre-sts" >
+					<!--<div class="sx_topb presellall group-act">-->
+                        <!--筛选-s-->
+					<!--	<div class="f-sort fl">
+							<ul>
+								<li <if condition="$Think.get.order eq ''">class="red"</if>><a href="{:U('Home/Activity/group_list')}">默认</a></li>
+								<li <if condition="$Think.get.order eq 1">class="red"</if>><a href="{:U('Home/Activity/group_list',array('order'=>1))}">最新</a></li>
+								<li <if condition="$Think.get.order eq 2">class="red"</if>><a href="{:U('Home/Activity/group_list',array('order'=>2))}">推荐</a></li>
+							</ul>
+							<div class="actionname">
+								<span>活动名称：</span>
+								<input class="text-act" type="text" id="title" value="{$Think.get.title}" />
+								<input class="sub-act" type="submit" onclick="search();" value="确定"/>
+							</div>
+						</div>-->
+                        <!--筛选-e-->
+                        <!--当前分页-s-->
+						<!--<div class="f-total fr">
+							<php>$nowPage = $pages->nowPage;$totalPages = $pages->totalPages;</php>
+							<div class="all-fy">
+                                <a <if condition="$nowPage gt 1">href="{:U('Home/Activity/group_list',array('p'=>$nowPage-1))}" </if>>&lt;</a>
+                                <p class="fy-y"><span class="z-cur">{$nowPage}</span>/<span>{$totalPages}</span></p>
+                                <a <if condition="($nowPage+1) lt $totalPages">href="{:U('Home/Activity/group_list',array('p'=>$nowPage+1))}"</if>>&gt;</a>
+                            </div>
+						</div>-->
+                        <!--当前分页-e-->
+					<!--</div>-->
+					<div class="shop-list-splb pre-set-suma groupcy p">
+						<ul>
+                            <empty name="list">
+                                <p class="ncyekjl" style="font-size: 16px;margin:100px auto;text-align: center;">--暂无团购商品--</p>
+                            <else/>
+							    <foreach name="list" item="v" key="k" >
+							<li>
+								<div class="s_xsall">
+									<div class="xs_img">
+										<a href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id],'item_id'=>$v[item_id]))}">
+											<img class="lazy-list" data-original="{$v.goods_id|goods_thum_images=262,262}" />
+										</a>
+									</div>
+									<div class="shop_name2">
+										<a href="{:U('Home/Goods/goodsInfo',array('id'=>$v[goods_id],'item_id'=>$v[item_id]))}">
+											{$v[title]|getSubstr=0,30}
+										</a>
+									</div>
+									<div class="price-tag">
+										<span class="now"><!--<em class="li_xfo">5</em><em>分</em>--></span>
+										<span class="pre-per"><em>{$v[virtual_num] + $v[order_num]}</em>人已参加</span>
+										<div class="gb_nastr p">
+											<div class="squetrian">
+												<div class="arrow-right">
+													<em>{$v[rebate]}</em>&nbsp;<span>折</span>
+												</div>
+											</div>
+											<div class="old-new-prices">
+												<p class="old"><span>￥</span><span>{$v.goods_price}</span></p>
+												<p class="new"><span>￥</span><span>{$v.price}</span></p>
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="attendgorb-ocl">
+									<span>立即团购<i>></i></span>
+								</div>
+                            </li>
+							</foreach>
+                            </empty>
+						</ul>
+					</div>
+					<div class="page p">
+						<div class="operating fixed" id="bottom">
+							<div class="fn_page clearfix">
+								{$page}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+    <!--商品列表-e-->
+		<!--footer-s-->
+		<div class="footer p">
+            <include file="public/footer" />
+			<include file="public/sidebar_cart" />
+		</div>
+		<!--footer-e-->
+		<script src="__STATIC__/js/lazyload.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/js/headerfooter.js" type="text/javascript" charset="utf-8"></script>
+		<script src="__STATIC__/js/common.js"></script>
+		<script>
+			function search()
+			{
+				var title = $('#title').val();
+				if(title == ''){
+					layer.msg('请输入订单号', {icon: 2});
+				}
+				window.location.href='/index.php?m=Home&c=Activity&a=group_list&title='+title;
+			}
+		</script>
+	</body>
+</html>

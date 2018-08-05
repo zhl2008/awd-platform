@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>安全设置</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>忘记密码</span>
+			    </div>
+			    <div class="home-main forgetpaw">
+		    		<div class="menumain">
+		    			<div class="goodpiece">
+							<h1>安全设置</h1>
+							<!--<a href=""><span class="co_blue">帮助</span></a>-->
+						</div>
+			    		<div class="accouun"></div>
+			    		<div class="thirset ma-to-20">
+			    			<div class="wshef">1.填写用户名<i class="spassw"></i></div>
+			    			<div class="wshef yellc">1.验证身份<i class="spassw"></i></div>
+			    			<div class="wshef">2.设置新密码<i class="spassw"></i></div>
+			    			<div class="wshef">3.完成</div>
+			    		</div>
+			    		<div class="personerinfro verifyi">
+			    			
+			    				<ul class="birth_jz">
+									<li class="infor_wi_le"><a>请选择验证方式：</a></li>
+									<li>
+										<a>
+											<select name="sender" id="sender">
+												<if condition="$userinfo[mobile] neq ''"><option value="phone" rel="{$userinfo.mobile}">手机验证</option></if>
+												<if condition="$userinfo[email] neq ''"><option value="email" rel="{$userinfo.email}">邮箱验证</option></if>
+											</select>
+										</a>
+									</li>
+								</ul>
+								<if condition="$userinfo['mobile'] neq ''">
+								<ul class="name_jz">
+									<li class="infor_wi_le"><a>请验证手机号码：</a></li>
+									<li><a>{$userinfo.mobile}</a></li>
+								</ul>
+								</if>
+								<if condition="$userinfo['email'] neq ''">
+								<ul class="name_jz">
+									<li class="infor_wi_le"><a>请验证邮箱号码：</a></li>
+									<li><a>{$userinfo.email}</a></li>
+								</ul>
+								</if>
+								<ul class="name_jz checode">
+									<li class="infor_wi_le"><a>验证码：</a></li>
+									<li class="teaeu">
+										<a>
+											<input class="name_zjxs" type="text"  name="tpcode" id="tpcode" value="">
+										</a>
+										<a>
+											<input class="button_yzm" type="button" onclick="sendcode(this)"  value="获取验证码" />
+										</a>
+									</li>
+								</ul>
+								<ul class="hobby_jz">
+									<li class="infor_wi_le"></li>
+									<div class="save_s">
+										<input class="save" type="button" id="" onclick="checkcode()" value="下一步">
+									</div>
+								</ul>
+			    		
+			    		</div>
+		    		</div>
+			    </div>
+			</div>
+		</div>
+        <input type="hidden" id="username" value="{$userinfo.username}">
+        <!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+        <!--footer-e-->
+	</body>
+	<script type="text/javascript">
+	function sendcode(o){
+		$.ajax({
+			url:'/index.php?m=Home&c=Api&a=send_validate_code&scene=2&t='+Math.random(),
+			type:'get',
+			dataType:'json',
+			data:{type:$('#sender').val(),send:$('#sender').find("option:selected").attr('rel')},
+			success:function(res){
+				if(res.status==1){
+					layer.alert(res.msg, {icon: 1});
+					timer(o);
+				}else{
+					layer.alert(res.msg, {icon: 2});
+				}
+			}
+		})
+	}
+
+	var wait=180;
+	function timer(o) {
+		if (wait == 0) {
+			o.removeAttribute("disabled");
+			o.value="获取验证码";
+			wait = {$tpshop_config['sms_sms_time_out']};
+		} else {
+			o.setAttribute("disabled", true);
+			o.value="重新发送(" + wait + ")";
+			wait--;
+			setTimeout(function() {
+				timer(o)
+			}, 1000)
+		}
+	}
+
+	function checkcode(){
+		var tpcode = $('#tpcode').val();
+		if(tpcode == ''){
+			layer.alert('验证码不能为空', {icon: 2});
+			return false;
+		}
+		if(tpcode.length != 4){
+			layer.alert('验证码不正确', {icon: 2});
+			return false;
+		}
+
+		$.ajax({
+			url:'/index.php?m=Home&c=Api&a=check_validate_code&t='+Math.random(),
+			type:'post',
+			dataType:'json',
+			data:{type:$('#sender').val(),code:tpcode,send:$('#sender').find("option:selected").attr('rel'),scene:2},
+			success:function(res){
+				if(res.status==1){
+					window.location.href='/index.php?m=Home&c=User&a=set_pwd&t='+Math.random();
+				}else{
+					layer.alert(res.msg, {icon: 2});
+					return false;
+				}
+			}
+		})
+	}
+	</script>
+</html>

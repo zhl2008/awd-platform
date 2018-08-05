@@ -1,0 +1,19 @@
+<table class="table table-bordered" >                                
+    <tr>
+        <td><b>颜色</b></td>
+        <td><b>尺寸</b></td>        
+        <td><b>材质</b></td>                
+        <td><b>价格</b></td>
+        <td><b>库存</b></td>
+    </tr>
+    <foreach name="spec_arr" key="k" item="v" >
+    <tr>
+    <>
+       <td>{$v[0]}</td>
+       <td>S</td>
+       <td>M</td>              
+       <td>羽绒</td>
+       <td>天鹅毛</td>       
+    </tr>
+    </foreach>
+</table>

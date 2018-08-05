@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>绑定引导页</title>
+        <script src="__PUBLIC__/js/global.js"></script>
+        <script src="__STATIC__/js/jquery-3.1.1.min.js" type="text/javascript" charset="utf-8"></script>
+    <link href="__STATIC__/css/style.css" rel="stylesheet" />
+</head>
+<body>
+    <div class="relation-user-wrap">
+        <div class="user-photo1-h"><img src="{$head_pic}" alt="" /></div>
+        <p class="relation-des ueser-name1-h">亲爱的用户:<span>{$nickname}</span></p>
+        <p class="relation-des co-black">为了给您更好的服务，请关联一个 {$tpshop_config['shop_info_store_name']} 账号</p>
+        <p class="relation-des p-t-48">还没有 {$tpshop_config['shop_info_store_name']} 账号？</p>
+        <a class="relation-btns register-btns" href="{:U('Mobile/User/reg', array('is_bind'=>1,'nickname'=>$nickname))}">快速注册</a>
+        <p class="relation-des p-t-48">已 {$tpshop_config['shop_info_store_name']} 账号？</p>
+        <a class="relation-btns" href="{:U('Mobile/User/bind_account')}">立即关联</a>
+    </div>
+</body>
+<script src="__PUBLIC__/js/jqueryUrlGet.js"></script><!--获取get参数插件-->
+<script> 
+set_first_leader(); 
+//设置推荐人
+</script>
+</html>

@@ -1,0 +1,102 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>系统设置 - 清除缓存</h3>
+                <h5>网站系统清除缓存</h5>
+            </div>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <ul>
+            <li>如果页面做了修改，建议清除对应的页面以及模板缓存</li>
+            <li>清除商品缩列图到商品列表页面选择性清除, 清除单个商品静态页到商品列表页选择</li>
+        </ul>
+    </div>
+    <form class="form-horizontal" id="cleanCache" method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">静态页面</dt>
+                <dd class="opt">
+                    <ul class="nc-row ncap-waybill-list">
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="index">
+                            <label class="label">首页</label>
+                        </li>
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="goodsList">
+                            <label class="label">商品列表页</label>
+                        </li>
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="goodsInfo">
+                            <label class="label">所有商品详情页</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="clear[]" value="channel">
+                            <label class="label">频道页</label>
+                        </li>
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="articleList">
+                            <label class="label">文章列表页</label>
+                        </li>
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="detail">
+                            <label class="label">文章详情页</label>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">数据</dt>
+                <dd class="opt">
+                    <ul class="nc-row ncap-waybill-list">
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="cache">
+                            <label class="label">模板缓存(Cache)</label>
+                        </li>
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="data">
+                            <label class="label">项目数据(Data)</label>
+                        </li>
+                        <li>
+                            <input class="check" type="checkbox" name="clear[]" value="logs">
+                            <label class="label">logs日志(Logs)</label>
+                        </li>
+                        <li>
+                            <input type="checkbox" name="clear[]" value="temp">
+                            <label class="label">临时数据(Temp)</label>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">清除所有</dt>
+                <dd class="opt">
+                    <ul class="nc-row ncap-waybill-list">
+                        <li>
+                            <input type="checkbox" class="check" id="cacheAll" name="clear[]" value="cacheAll" onclick="$('input[name*=\'clear\']').prop('checked', this.checked);">
+                            <label class="label">所有</label>
+                        </li>
+                    </ul>
+                </dd>
+            </dl>
+
+            <div class="bot"><a href="JavaScript:void(0);" onclick="$('#cleanCache').submit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+
+</script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<include file="public/layout" />
+<script src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+<body style="background-color: #FFF; overflow: auto;"> 
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3> 广告详情</h3>
+        <h5>广告添加与管理</h5>
+      </div>
+    </div>
+  </div>
+    <!--表单数据-->
+    <form method="post" id="handleposition" action="{:U('Admin/Ad/positionHandle')}">
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name"><em>*</em>广告位名称：：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" placeholder="广告位名称" class="input-txt" name="position_name" value="{$info.position_name}" >
+		  <span class="err" id="err_ad_name" style="color:#F00; display:none;">广告名称不能为空</span>                                                  
+          <p class="notic"></p>
+        </dd>
+      </dl>	   
+	  
+	  <dl class="row">
+        <dt class="tit" colspan="2">
+          <label class="" for="s_sort">广告位宽度：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" class="input-txt" name="ad_width" value="{$info.ad_width}" > px
+            <span id="err_ad_width" class="err"  style="color:#F00; display:none;"></span>            
+        </dd>
+      </dl>       
+	  <dl class="row">
+        <dt class="tit" colspan="2">
+          <label class="" for="s_sort">广告位高度：</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" class="input-txt"  name="ad_height" value="{$info.ad_height}" > px
+            <span id="err_ad_height" class="err"  style="color:#F00; display:none;"></span>            
+        </dd>
+      </dl>          
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_name">广告位描述：</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" class="input-txt" name="position_desc" value="{$info.position_desc}" >
+        </dd>
+      </dl>	                                  		 		       
+      <dl class="row">
+        <dt class="tit">
+          <label for="ac_sort">是否启用：</label>
+        </dt>
+        <dd class="opt">
+            <input type="radio" name="is_open" value="1" <if condition="$info[is_open] eq 1"> checked="checked"</if>> 开启
+            <input type="radio" name="is_open" value="0" <if condition="$info[is_open] eq 0"> checked="checked"</if>> 关闭
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>	   	                              
+      <div class="bot"><a href="JavaScript:void(0);" onclick="adsubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+		 <input type="hidden" name="act" value="{$act}">
+         <input type="hidden" name="position_id" value="{$info.position_id}">
+  </form>
+</div>
+<script>
+function adsubmit(){
+	$('#handleposition').submit();
+}
+</script>
+</body>
+</html>

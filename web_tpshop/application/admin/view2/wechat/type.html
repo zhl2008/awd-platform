@@ -1,0 +1,60 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+        <h3 class="ng-binding">选择菜单 【拼团】 要执行的操作</h3>
+    </div>
+    <div class="modal-body">
+        <label class="radio-inline">
+            <input type="radio" value="url" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 链接
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="click" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 触发关键字
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="scancode_push" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 扫码
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="scancode_waitmsg" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 扫码（等待信息）
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="pic_sysphoto" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-valid ng-touched"> 系统拍照发图
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="pic_photo_or_album" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 拍照或者相册发图
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="pic_weixin" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 微信相册发图
+        </label>
+        <label class="radio-inline">
+            <input type="radio" value="location_select" ng-model="activeMenu.type" name="ipt" class="ng-pristine ng-untouched ng-valid"> 地理位置
+        </label>
+        <div ng-show="activeMenu.type == 'url';" class="">
+            <hr>
+            <div class="input-group">
+                <input type="text" ng-model="activeMenu.url" id="ipt-url" class="form-control ng-pristine ng-untouched ng-valid">
+                <div class="input-group-btn">
+                    <button ng-click="select_link()" id="search" class="btn btn-primary"><i class="fa fa-external-link"></i> 系统链接</button>
+                </div>
+            </div>
+            <span class="help-block">指定点击此菜单时要跳转的链接（注：链接需加http://）</span>
+            <span class="help-block"><strong>注意: 由于接口限制. 如果你没有网页oAuth接口权限, 这里输入链接直接进入微站个人中心时将会有缺陷(有可能获得不到当前访问用户的身份信息. 如果没有oAuth接口权限, 建议你使用图文回复的形式来访问个人中心)</strong></span>
+        </div>
+        <div style="position:relative" ng-show="activeMenu.type != 'url';" class="ng-hide">
+            <hr>
+            <div class="input-group">
+                <input type="text" ng-model="activeMenu.forward" id="ipt-forward" class="form-control ng-pristine ng-untouched ng-valid">
+                <div class="input-group-btn">
+                    <button ng-click="search()" id="search" class="btn btn-primary"><i class="fa fa-search"></i> 搜索</button>
+                </div>
+            </div>
+            <div style="width:100%;position:absolute;top:55px;left:0px;display:none;z-index:10000" id="key-result">
+                <ul style="display:block;width:88%;" class="dropdown-menu"></ul>
+            </div>
+            <span class="help-block">指定点击此菜单时要执行的操作, 你可以在这里输入关键字, 那么点击这个菜单时就就相当于发送这个内容至微擎系统</span>
+            <span class="help-block"><strong>这个过程是程序模拟的, 比如这里添加关键字: 优惠券, 那么点击这个菜单是, 微擎系统相当于接受了粉丝用户的消息, 内容为"优惠券"</strong></span>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a data-dismiss="modal" class="pull-right btn btn-primary span2" ng-click="saveMenuAction();" href="javascript:;">保存</a>
+    </div>
+</div>

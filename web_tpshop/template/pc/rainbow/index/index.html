@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>首页-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}"/>
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/base.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/index.css"/>
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <script src="__PUBLIC__/js/global.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="{$tpshop_config['shop_info_store_logo']}" media="screen"/>
+</head>
+<body class="gray_f5">
+<!--header-s-->
+    <include file="public/header" w="w1224"/>
+<!--header-e-->
+<div id="myCarousel" class="carousel clearfix">
+	<ul class="carousel-inner">
+        <adv pid="2" item="v1" limit="5">
+		<li class="item" style="background:{$v1.bgcolor};">
+			<a class="item-pic" href="{$v1[ad_link]}" <if condition="$v1['target'] eq 1">target="_blank"</if>>
+			<img class="w-100" src="{$v1[ad_code]}" title="{$v1[title]}" alt="{$v1[title]}"></a>
+		</li>
+		</adv>
+	</ul>
+	<div class="pagination">
+
+	</div>
+	<a class="carousel-control left-btn t-all" href="javascript:;" data-slide="prev"></a>
+	<a class="carousel-control right-btn t-all" href="javascript:;" data-slide="next"></a>
+	<script>
+		$(function() {
+			function banner() {
+				var windowWidth=$(window).width();  //获取轮播图的宽度（这里是全屏）
+				window.onresize=function(){  //屏幕大小改变时 自适应
+					windowWidth=$(window).width();
+					$_banner.css({'width':windowWidth*(length+2),left:-windowWidth});
+					$_banner.find('.item').css('width',windowWidth);
+				};
+				var $_bannerWrap=$('#myCarousel');
+				var $_banner=$_bannerWrap.find('.carousel-inner');
+				var length=$_banner.find('.item').length;
+				var first=$_banner.find('.item').eq(0).clone();
+				var last=$_banner.find('.item:last').clone();
+				var timer; //定时器
+				$_banner.append(first);
+				$_banner.prepend(last);
+				//初始化 轮播图列表宽度和列表项宽度
+				$_banner.css({'width':windowWidth*(length+2),left:-windowWidth});
+				$_banner.find('.item').css('width',windowWidth);
+
+				var $_pagination=$_bannerWrap.find('.pagination');
+				for(var i=0;i<length;i++){  //自动增加白色索引点击点
+					$_pagination.append('<span class="pagination-item"></span>');
+				}
+				var iNow=1; //索引记录标志
+				hoverActive(iNow); //初始化状态标记
+				$_bannerWrap.find('.left-btn').click(function () {
+					clearInterval(timer);
+					iNow--;
+					bannerRun();
+				});
+				$_bannerWrap.find('.right-btn').click(function () {
+					clearInterval(timer);
+					iNow++;
+					bannerRun();
+				});
+				$_pagination.find('.pagination-item').click(function () {
+					iNow=$(this).index()+1;
+					$_banner.finish().animate({left:-iNow*windowWidth},500);
+					hoverActive(iNow);
+				});
+				function bannerAutoRun(){  //轮播图自动循环播放 间隔4秒
+					timer=setInterval(function() {
+						iNow++;
+						bannerRun();
+					},4000)
+				}
+				bannerAutoRun();
+
+				//移动上面去停止，移动出来继续轮播
+				function hoverChangeRun(ele){
+					ele.hover(function(){
+						clearInterval(timer);
+					},function () {
+						bannerAutoRun();
+					});
+				}
+				hoverChangeRun($_banner.find('.item-pic'));
+				hoverChangeRun($_pagination.find('.pagination-item'));
+				hoverChangeRun($_bannerWrap.find('.carousel-control'));
+
+				function hoverActive(index){ //切换时改变状态
+					$_banner.find('.item').eq(index).addClass('slide-active').siblings().removeClass('slide-active');
+					$_pagination.find('.pagination-item').eq(index-1).addClass('active').siblings().removeClass('active');
+				}
+				function bannerRun(){ //点击切换图片
+					if(iNow>length){
+						$_banner.finish().animate({left:-iNow*windowWidth},300,function(){
+							$_banner.css({left:-1*windowWidth});
+						});
+						iNow=1;
+					}else if(iNow<1){
+						$_banner.finish().animate({left:-iNow*windowWidth},500,function(){
+							$_banner.css({left:-length*windowWidth});
+						});
+						iNow=length;
+					}else{
+						$_banner.finish().animate({left:-iNow*windowWidth},300);
+					}
+					hoverActive(iNow);
+				}
+			}
+			banner();
+		})
+	</script>
+	<div class="banner-right-box">
+	<adv item="vb" pid="52" limit="2">
+		<a class="banner-right-item t-all" href="{$vb[ad_link]}"><img src="{$vb[ad_code]}" alt="{$vb[title]}" /></a>
+	</adv>
+	</div>
+</div>
+
+<div class="adv3 w1224 clearfix">
+	<adv item="vr" pid="50" limit="3">
+	<a class="recommend-brand t-all" href="{$vr[ad_link]}">
+		<img class="w-100" src="{$vr[ad_code]}" alt="{$vr[title]}" title="{$vr[title]}"/>
+	</a>
+	</adv>
+</div>
+
+<adv item="v5" pid="49" limit="1">
+	<a href="{$v5[ad_link]}" class="adver_line">
+		<img class="w-100" src="{$v5[ad_code]}" alt="{$v5[title]}"/>
+	</a>
+</adv>
+
+<foreach name="cateList" item="v" key="k">
+<div class="floor floor{$k+1} w1224">
+	<div class="floor-top">
+		<h3 class="floor-title">{$v[name]}</h3>
+		<div class="floor-nav-list clearfix">
+			<foreach name="v[tmenu]" item="v2" key="k2">
+			<a class="floor-nav-item" href="{:U('Home/Goods/goodsList',array('id'=>$v2[id]))}">{$v2[name]}</a>
+			</foreach>
+		</div>
+		<a class="nav-more-btn" href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}">更多<i>></i></a>
+	</div>
+	<div class="floor-main">
+		<div class="floor-brand">
+			<adv item="vl" pid="10+$k" limit="1">
+			<a class="brand-big" href="{$vl[ad_link]}"><img class="w-100" src="{$vl[ad_code]}" alt="{$vl[title]}" /></a>
+			</adv>
+			<adv item="vs" pid="20+$k" limit="1">
+			<a class="brand-samll" href="{$vs[ad_link]}"><img class="w-100" src="{$vs[ad_code]}" alt="{$vs[title]}" /></a>
+			</adv>
+		</div>
+		<div class="floor-goods-list">
+			<foreach name="v[hot_goods]" item="g" key="gk">
+			<a class="floor-goods-item" href="{:U('Home/Goods/goodsInfo',array('id'=>$g[goods_id]))}">
+				<div class="googs-title ellipsis-1">{$g[goods_name]|getSubstr=0,20}</div>
+				<div class="googs-price ellipsis-1">￥{$g[shop_price]}</div>
+				<div class="goods-pic"><img class="w-100" src="{$g[goods_id]|goods_thum_images=400,400}" alt=""></div>
+			</a>
+			</foreach>
+		</div>
+		<div class="floor-recommend">
+			<div class="floor-recommend-title">热门推荐</div>
+			<div class="floor-recommend-wrap">
+				<div class="floor-recommend-list">
+					<foreach name="v[recommend_goods]" item="rg" key="gk">
+					<a class="floor-recommend-item" href="{:U('Home/Goods/goodsInfo',array('id'=>$rg[goods_id]))}">
+						<div class="floor-recommend-pic">
+							<img class="w-100" src="{$rg[goods_id]|goods_thum_images=200,200}" alt="" />
+						</div>
+						<div class="floor-recommend-cont">
+							<div class="recommend-goods-name ellipsis-1">{$rg[goods_name]|getSubstr=0,15}</div>
+							<div class="recommend-goods-des ellipsis-1">{$rg[goods_remark]}</div>
+							<div class="recommend-goods-price  recommend-goods-des">￥ {$rg[shop_price]}</div>
+						</div>
+					</a>
+					</foreach>
+				</div>
+			</div>
+			<a class="recommend-more-btn" href="{:U('Home/Goods/goodsList',array('id'=>$v[id]))}">更多 <i>></i></a>
+		</div>
+	</div>
+</div>
+</foreach>
+<include file="public/footer"/>
+
+<!--楼层导航-s-->
+<ul class="floor-nav" id="floor-nav">
+<foreach name="cateList" item="v" key="k">
+	<li>
+		<span>{$k+1}F</span>
+		<span>{$v['mobile_name']}</span>
+	</li>
+</foreach>
+</ul>
+
+<!--楼层导航-e-->
+<!--侧边栏-s-->
+<div class="slidebar-right">
+	<a class="slidebar-item ico-slidebar1" target="_blank" href="tencent://message/?uin={$tpshop_config['shop_info_qq2']}&amp;Site=TPshop商城&amp;Menu=yes" >
+		<div class="sbar-hover-txt">客服服务</div>
+	</a>
+	<a class="slidebar-item ico-slidebar2" target="_blank" href="javascript:;" >
+		<div class="sbar-hover-txt">关注微信</div>
+		<div class="sbar-hover-pic">
+			<div class="qrcode-wrap"><img class="w-100" src="__STATIC__/images/qrcode.png" alt="" /></div>
+			<p class="qrcode-des">扫码关注官方微信,先人一步知晓促销活动</p>
+		</div>
+	</a>
+	<a class="slidebar-item ico-slidebar3" target="_blank" href="javascript:;" >
+		<div class="sbar-hover-txt">手机商城</div>
+		<div class="sbar-hover-pic">
+			<div class="qrcode-wrap"><img class="w-100" src="__STATIC__/images/qrcode.png" alt="" /></div>
+			<p class="qrcode-des">扫码下载手机商城,随时随地享受优惠购物</p>
+		</div>
+	</a>
+	<a class="slidebar-item ico-slidebar4 t-all" target="_blank" href="javascript:;" >
+		<div class="sbar-hover-txt">回到顶部</div>
+	</a>
+</div>
+<script>
+function init(){  //初始化函数
+    //首页商品分类显示
+    $('.categorys .dd').show();
+
+    //自动楼层居中设置
+    $('#floor-nav').css('margin-top',(-41*$('#floor-nav').find('li').length+1)/2);
+
+    //推荐列表自动滚动
+    carouselList('.floor-recommend-wrap','.floor-recommend-list','.floor-recommend-item');
+
+    //右侧边栏
+    rightBar();
+
+    //楼层导航切换
+    sidebarRollChange();
+}
+
+function rightBar(){  //右侧边栏
+    var $_slidebar4 = $('.ico-slidebar4');
+    $(window).scroll(function(){
+        if($(window).scrollTop()>100){
+            $_slidebar4.css('height',40);
+        }else{
+            $_slidebar4.css('height',0);
+        }
+    })
+    $_slidebar4.click(function () {
+        $('html,body').animate({'scrollTop':0},500)
+    });
+}
+function carouselList(wrap,list,item,timeWait,timeRun){ //推荐列表滚动
+    /*
+     * wrap：包裹容器
+     * list：列表容器
+     *item：列表单元
+     *timeWait：停顿时间(单位ms,可不传参数，默认3秒)
+     *timeRun：运动时间(单位ms,可不传参数，默认0.5秒)
+     * */
+    if(timeWait===undefined||typeof timeWait!="number"){
+        timeWait=3000;
+    }
+    if(timeRun===undefined||typeof timeRun!="number"){
+        timeRun=500;
+    }
+    $(wrap).each(function(){
+        var length=$(this).find(item).length;
+        if(length<3){
+            return;
+        }
+        var html=$(this).find(list).html();
+        $(this).find(list).html(html+html);
+        var num=1;
+        var _this=this;
+        function interval(){
+            clearInterval($(_this)[0].timer);
+            $(_this)[0].timer=setInterval(function(){
+                num++;
+                if(num==length){
+                    $(_this).find(list).animate({top:-108*num},timeRun,function (){
+                        $(_this).find(list).css('top',0);
+                    });
+                    num=0;
+                }else{
+                    $(_this).find(list).animate({top:-108*num},timeRun);
+                }
+            },timeWait);
+        }
+        interval();
+        $(this).find(item).hover(function (){
+            clearInterval($(_this)[0].timer);
+        },function (){
+            interval();
+        })
+    });
+}
+function sidebarRollChange() {  //楼层切换
+    var $_floorList=$('.floor');
+    var $_sidebar=$('#floor-nav');
+    $_sidebar.find('li').click(function(){ //点击切换楼层
+        $('html,body').animate({'scrollTop':$_floorList.eq($(this).index()).offset().top},500)
+    });
+    $(window).scroll(function(){
+        var scrollTop=$(window).scrollTop();
+        if(scrollTop<$_floorList.eq(0).offset().top-$(window).height()/2){
+            $_sidebar.hide();
+            return;
+        }
+        $_sidebar.show();  //左边侧边栏显示
+        for(var j=0,k=$_floorList.length;j<k;j++){ /*滚动改变侧边栏的状态*/
+            if(scrollTop>$_floorList.eq(j).offset().top-$(window).height()/2){
+                $_sidebar.find('li').eq(j).addClass('floor-nav-ac').siblings().removeClass('floor-nav-ac');
+            }
+        }
+    })
+}
+
+init();
+</script>
+<script src="__STATIC__/js/common.js" type="text/javascript" charset="utf-8"></script>
+</body>
+</html>

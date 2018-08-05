@@ -1,0 +1,229 @@
+<include file="public/header" title="订单详情" body="g4"/>
+<include file="public/header_nav" title="订单详情" href="javascript:history.back(-1)"/>
+
+<div class="edit_gtfix">
+    <div class="namephone fl">
+        <div class="top">
+            <div class="le fl">订单号</div>
+            <div class="lr fl">{$order_info.order_sn}</div>
+        </div>
+        <div class="bot">
+            <i class=""></i>
+            <span></span>
+        </div>
+    </div>
+    <!--<div class="fr youjter">-->
+    <!--</div>-->
+    <div class="ttrebu">
+        <img src="__STATIC__/images/tt.png"/>
+    </div>
+</div>
+<div class="packeg p">
+    <div class="maleri30">
+        <div class="fl">
+            <h1></h1>
+        </div>
+        <div class="fr">
+            <span>{$order_info.order_status_detail}</span>
+        </div>
+    </div>
+</div>
+<!--订单商品列表-s-->
+<div class="ord_list p">
+    <div class="maleri30">
+        <volist name="order_info.order_goods" id="good">
+            <a href="{:U('Mobile/Goods/goodsInfo',array('id'=>$good[goods_id]))}">
+                <div class="shopprice">
+                    <div class="img_or fl">
+                        <img src="{$good[goods_id]|goods_thum_images=100,100}"/>
+                    </div>
+                    <div class="fon_or fl">
+                        <h2 class="similar-product-text">{$good[goods_name]}</h2>
+                        <div><span class="bac">{$good['spec_key_name']}</span></div>
+                    </div>
+                    <div class="price_or fr">
+                        <p><span>￥</span><span>{$good['member_goods_price']}</span></p>
+                        <p>x{$good['goods_num']}</p>
+                    </div>
+                </div>
+            </a>
+        </volist>
+    </div>
+</div>
+<!--订单商品列表-e-->
+<div class="qqz">
+    <div class="maleri30">
+        <a href="tel:{$tpshop_config['shop_info_phone']}">联系客服</a>
+        <if condition="$order_info.virtual_order_button[cancel_btn] gt 0">
+            <a class="closeorder_butt">取消订单</a>
+        </if>
+    </div>
+</div>
+<div class="information_dr ma-to-20">
+    <div class="maleri30">
+        <div class="tit">
+            <h2>基本信息</h2>
+        </div>
+        <div class="xx-list">
+            <p class="p">
+                <span class="fl">订单编号</span>
+                <span class="fr">{$order_info.order_sn}</span>
+            </p>
+            <p class="p">
+                <span class="fl">下单时间</span>
+                <span class="fr"><span>{:date('Y-m-d  H:i:s', $order_info.add_time)}</span></span>
+            </p>
+            <p class="p">
+                <span class="fl">接收手机</span>
+                <span class="fr">{$order_info.mobile}</span>
+            </p>
+            <p class="p">
+                <span class="fl">支付方式</span>
+                <span class="fr">{$order_info.pay_name}</span>
+            </p>
+            <if condition="!empty($vrorders)">
+                <foreach name="vrorders" item="vrorder">
+                    <p class="p">
+                        <span class="fl">电子兑换码</span>
+                        <span class="fr red">{$vrorder.vr_code}</span>
+                    </p>
+                    <p class="p">
+                        <span class="fl">兑换码状态</span>
+                    <span class="fr red">
+                        <if condition='$vrorder[vr_state] eq 1'>
+                            已使用，使用时间{$vrorder.vr_usetime|date='Y-m-d H:i',###}
+                        </if>
+                        <if condition='$vrorder[vr_state] eq 2'>
+                            已过期，有效期至{$vrorder.vr_indate|date='Y-m-d H:i',###}
+                        </if>
+                        <if condition='$vrorder.vr_state eq 0 and $vrorder.refund_lock lt 1'>
+                            未使用，有效期至{$vrorder.vr_indate|date='Y-m-d H:i',###}
+                        </if>
+                        <if condition='$vrorder.refund_lock gt 0'>
+                            已取消，有效期至{$vrorder.vr_indate|date='Y-m-d H:i',###}
+                        </if>
+                    </span>
+                    </p>
+                </foreach>
+            </if>
+            <!--    <p class="p">
+                    <span class="fl">买家留言</span>
+                    <span class="fr">{$order_info.user_note}</span>
+                </p>-->
+        </div>
+    </div>
+</div>
+<div class="information_dr ma-to-20">
+    <div class="maleri30">
+        <div class="tit">
+            <h2>价格信息</h2>
+        </div>
+        <div class="xx-list">
+            <p class="p">
+                <span class="fl">订单金额</span>
+                <span class="fr"><span>￥</span><span>{$order_info.order_amount}</span>元</span>
+            </p>
+            <p class="p">
+                <span class="fl">实付金额</span>
+                <span class="fr red"><span>￥</span><span>{$order_info.order_amount}</span>元</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<!--取消订单-s-->
+<div class="losepay closeorder" style="display: none;">
+    <div class="maleri30">
+        <p class="con-lo">取消订单后,存在促销关系的子订单及优惠可能会一并取消。是否继续？</p>
+        <div class="qx-rebd">
+            <a class="ax">取消</a>
+            <if condition="$order_info.virtual_order_button[cancel_btn] eq 1">
+                <a class="are btn_pay" onClick="cancel_order({$order_info.order_id})">取消订单</a>
+            </if>
+            <if condition="$order_info.virtual_order_button[cancel_btn] eq 2">
+                <a class="are"  href="{:U('Order/refund_order', ['order_id'=>$order_info['order_id']])}">取消订单</a>
+            </if>
+        </div>
+    </div>
+</div>
+<!--取消订单-e-->
+
+<div class="mask-filter-div" style="display: none;"></div>
+
+<!--底部支付栏-s-->
+<div class="payit ma-to-20">
+    <div class="fr s">
+        <if condition="$order_info.virtual_order_button[pay_btn] eq 1">
+            <a href="{:U('/Mobile/Cart/cart4',array('order_id'=>$order_info[order_id]))}'">立即支付</a>
+        </if>
+        <if condition="$order_info.virtual_order_button[receive_btn] eq 1">
+            <a onclick="order_confirm({$order_info['order_id']});">收货确认</a>
+        </if>
+    </div>
+</div>
+<!--底部支付栏-d-->
+<script type="text/javascript">
+    //取消订单按钮
+    $('.closeorder_butt').click(function(){
+        $('.mask-filter-div').show();
+        $('.losepay').show();
+    })
+    //取消取消订单
+    $('.qx-rebd .ax').click(function(){
+        $('.mask-filter-div').hide();
+        $('.losepay').hide();
+    })
+    /**
+     * 确认收货
+     * @param orderId
+     */
+    function order_confirm(orderId)
+    {
+        if(!confirm("确认收货?"))
+            return false;
+        $.ajax({
+            url:"{:U('Virtual/virtual_confirm')}",
+            type:'POST',
+            dataType:'JSON',
+            data:{order_id:orderId},
+            success:function(data){
+                if(data.status == 1){
+                    layer.open({content:data.msg, time:2});
+                    location.href ='/index.php?m=mobile&c=Virtual&a=virtual_order&order_id='+orderId;
+                }else{
+                    layer.open({content:data.msg, time:2});
+                }
+            },
+            error : function() {
+                layer.open({content:'网络失败，请刷新页面后重试', time: 2});
+            }
+        })
+    }
+
+    //确认取消订单
+    function cancel_order(id){
+        $.ajax({
+            type: 'GET',
+            url:"/index.php?m=Mobile&c=Order&a=cancel_order&id="+id,
+            dataType:'JSON',
+            success:function(data){
+                if(data.status == 1){
+                    //成功
+                    layer.open({content:data.msg,time:2});
+                    window.location.href = "/index.php?m=Mobile&c=Virtual&a=virtual_order&order_id="+id;
+                }else{
+                    //状态不允许
+                    layer.open({content:data.msg,time:2});
+                    return false;
+                }
+            },
+            error:function(){
+                layer.open({content:'网络失败，请刷新页面后重试',time:3});
+            },
+        });
+        $('.mask-filter-div').hide();
+        $('.losepay').hide();
+    }
+</script>
+</body>
+</html>

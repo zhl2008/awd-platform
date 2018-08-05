@@ -1,0 +1,163 @@
+<include file="public/header" title="领券中心" />
+<include file="public/header_nav" title="领券中心" href="javascript:history.back(-1)"/>
+		<nav class="storenav grst p">
+			<ul>
+				<li class="<if condition='$Request.param.atype eq 1 OR $Request.param.atype eq 0'>red</if>">
+					<a href="{:U('Activity/coupon_list',array('atype'=>1))}"><span>默认 </span></a>
+				</li>
+				<li class="<if condition='$Request.param.atype eq 2'>red</if>">
+					<a href="{:U('Activity/coupon_list',array('atype'=>2))}"><span>即将过期</span></a>
+					<i></i>
+				</li>
+				<li class="<if condition='$Request.param.atype eq 3'>red</if>">
+					<a href="{:U('Activity/coupon_list',array('atype'=>3))}"><span>面值最大</span></a>
+					<i></i>
+				</li>
+			</ul>
+		</nav>
+		<div class="al_couponlist" id="coupon_list">
+			<empty name="coupon_list">
+				<li style="text-align: center;">暂无可领取的优惠券<li>
+			</empty>
+			<foreach name="coupon_list" item="vo">
+				<if condition="$vo[isget] neq 1">
+				<div class="maleri30">
+					<div class="alcowlone p">
+						<div class="goods-limit fl">
+							<div class="goodsimgbo fl">
+								<img src="__STATIC__/images/coupon.png"/>
+							</div>
+							<div class="goods-limit-fo fl">
+								<p class="name">{$vo.name}</p>
+                                <p >{$vo.use_scope}</p>
+								<p class="condition"><em>{$vo.money|intval}元</em>满{$vo.condition|intval}元可用</p>
+							</div>
+						</div>
+						<div class="get-limit fr">
+							<canvas class="alreadyget" data-num='<if condition="$vo[createnum] gt 0">{$vo[send_num]/$vo[createnum]*100|ceil}<else/>0</if>'  width="100"  height="100"></canvas>
+							<if condition="$vo[send_num] eq $vo[createnum]">
+								<a class="clickgetcoupon" data-coupon-id="{$vo.id}" onclick="getCoupon(this)">已抢完</a>
+								<else/>
+								<a class="clickgetcoupon" data-coupon-id="{$vo.id}" onclick="getCoupon(this)">点击领取</a>
+							</if>
+
+						</div>
+					</div>
+				</div>
+				</if>
+			</foreach>
+		</div>
+		<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+		<script type="text/javascript">
+			$('.slide_list_row a').click(function(){
+				$(this).addClass('bobo2').siblings().removeClass('bobo2');
+			})
+			doOnLoad();
+			function doOnLoad(){
+				var int = setInterval(dod,10);	
+				var a = 135;
+				var t = 0;
+				var c = 0;
+				var atr = [];
+				
+				//获取data-num的最大值
+				function maxDataNum(){
+					for(var i = 0;i<$('.alreadyget').length;i++){
+						var d = $('.alreadyget').eq(i).attr("data-num");
+						atr.push(d);
+					}
+					var max_data_num = Math.max.apply(null, atr)
+					return max_data_num
+				}
+				function dod(){
+					for(var i = 0;i<$('.alreadyget').length;i++){
+						var et = document.getElementsByClassName('alreadyget')[i];
+						var dn = et.getAttribute("data-num");
+						var cc = et.getContext("2d");
+						cc.lineWidth = 7;
+						cc.lineCap = 'round';
+						cc.clearRect(0,0,et.width,et.height);
+						
+						//外圆
+						cc.beginPath();
+						cc.strokeStyle = '#48b3b5';
+						cc.arc(50,50,45,Math.PI*135/180,Math.PI*405/180,false);
+						cc.stroke();
+						cc.closePath();
+						
+						//内圆
+						cc.beginPath();
+						var radian = dn/(100/3) * 90 + 135;
+						cc.strokeStyle= '#ffffff';
+						if (t >=radian) {
+							cc.arc(50,50,45,Math.PI*135/180,Math.PI * radian/180,false);
+							cc.stroke();
+							if(maxDataNum() == dn){
+								clearInterval(int);	
+							}
+						} else{
+							t = a++;
+							cc.arc(50,50,45,Math.PI*135/180,Math.PI * t/180,false);
+							cc.stroke();
+						}
+						cc.closePath();
+						
+						//文本
+						cc.beginPath();
+						cc.font = '24px 黑体,Helvetica,PingFangSC-Regular,Droid Sans,Arial,sans-serif';
+						cc.fillStyle = '#ffffff';
+						cc.textBaseline = 'middle';
+						cc.textAlign = 'center';
+						cc.fillText('已抢', 50, 40);
+						if(c>dn){
+							cc.fillText(dn+'%', 50, 70);
+						}else{
+							c++;
+							cc.fillText(c+'%', 50, 70);
+						}
+						cc.closePath();
+					}
+				}
+			}
+			function getCoupon(obj){
+				$.ajax({
+					type: "POST",
+					url: "{:U('Mobile/Activity/getCoupon')}",
+					data: {coupon_id: $(obj).data('coupon-id')},
+					dataType: "json",
+					error: function () {
+						layer.alert("服务器繁忙, 请联系管理员!");
+					},
+					success: function (data) {
+						if (data.status == 1) {
+							layer.open({content: data.msg,skin: 'msg',time: 2});
+							$(obj).parent().parent().parent().remove();
+						} else {
+							layer.open({content: data.msg,skin: 'msg',time: 2});
+						}
+					}
+				});
+			}
+			/**
+			 * 加载更多商品
+			 **/
+			var  page = 1;
+			function ajax_sourch_submit()
+			{
+				++page;
+				$.ajax({
+					type : "post",
+					url:"/index.php?m=Mobile&c=Activity&a=coupon_list&p="+page,
+					success: function(data) {
+						if ($.trim(data) == '') {
+							$('#getmore').hide();
+						} else {
+							$("#coupon_list").append(data);
+							doOnLoad();
+						}
+					}
+				});
+			}
+		</script>
+	</body>
+</html>

@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>安全设置</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+                    <a href="{:U('User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>安全设置</span>
+			    </div>
+			    <div class="home-main">
+					<include file="user/menu"/>
+			    	<div class="ri-menu fr">
+			    		<div class="menumain">
+			    			<div class="goodpiece">
+								<h1>安全设置</h1>
+								<!--<a href=""><span class="co_blue">帮助</span></a>-->
+							</div>
+				    		<div class="accouun"></div>
+				    		<div class="thirset ma-to-20">
+				    			<div class="wshef <if condition='$step eq 1'>yellc</if>">1.验证身份<i class="spassw"></i></div>
+				    			<div class="wshef <if condition='$step eq 2'>yellc</if>">2.设置支付密码<i class="spassw"></i></div>
+				    			<div class="wshef <if condition='$step eq 3'>yellc</if>">3.完成</div>
+				    		</div>
+				    		<if condition="$step eq 1">
+				    		<div class="personerinfro verifyi">
+				    			<form action="" method="post">
+				    				<ul class="birth_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);">请选择验证方式：</a></li>
+										<li>
+											<a href="javascript:void(0);">
+												<select name="sender" id="sender" onchange="modify_sender(this)">
+													<if condition="$user[mobile] neq ''"><option value="phone" rel="{$user.mobile}">手机验证</option></if>
+													<if condition="$user[email] neq ''"><option value="email" rel="{$user.email}">邮箱验证</option></if>
+												</select>
+											</a>
+										</li>
+									</ul>
+									<ul class="name_jz ischecked">
+										<if condition="$user[mobile] neq ''">
+											<li class="infor_wi_le"><a href="javascript:void(0);">已验证手机号码：</a></li>
+											<li><a href="javascript:void(0);" class="sender">{$user.mobile}</a></li>
+										<else/>
+											<li class="infor_wi_le"><a href="javascript:void(0);">已验证邮箱号码：</a></li>
+											<li><a href="javascript:void(0);" class="sender">{$user.email}</a></li>
+										</if>
+									</ul>
+									<ul class="name_jz checode">
+										<li class="infor_wi_le"><a href="javascript:void(0);">验证码：</a></li>
+										<li class="teaeu">
+											<a href="javascript:void(0);">
+												<input class="name_zjxs" type="text" name="tpcode" id="tpcode" value="">
+											</a>
+											<a href="javascript:void(0);">
+												<input class="button_yzm" type="button" name="" onclick="sendcode(this)" value="获取验证码" />
+											</a>
+										</li>
+									</ul>
+									<ul class="hobby_jz">
+										<li class="infor_wi_le"></li>
+										<div class="save_s">
+											<input class="save" type="button" id="" onclick="nextstep()" name="" value="下一步">
+										</div>
+									</ul>
+				    			</form>
+				    			<p class="las_ver">1.支付密码是购物卡或账户余额的支付凭证，建议不要与其他网站密码相同</p>
+				    		</div>
+				    		</if>
+				    		<if condition="$step eq 2">
+				    		<div class="personerinfro verifyi-next">
+				    			<form action="" method="post" id="pwdform">
+				    				<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);">设置支付密码：</a></li>
+										<li class="teaeu">
+											<a href="javascript:void(0);">
+												<input class="name_zjxs" type="password" name="new_password" id="new_password" value=""placeholder="6-16位字母、数字或符号组合" onkeyup="securityLevel(this.value)">
+												<i class="qrzf"></i>
+											</a>
+											<a class="safebil" href="javascript:void(0);">
+												<span>安全程度：</span>
+												<span class="lowzg red">低</span>
+												<span class="lowzg">中</span>
+												<span class="lowzg">高</span>
+											</a>
+										</li>
+									</ul>
+									<ul class="name_jz">
+										<li class="infor_wi_le"><a href="javascript:void(0);">确认支付密码：</a></li>
+										<li class="teaeu">
+											<a href="javascript:void(0);">
+												<input class="name_zjxs" type="password" name="confirm_password" id="confirm_password" value=""placeholder="6-16位字母、数字或符号组合">
+												<i class="qrzf"></i>
+											</a>
+										</li>
+									</ul>
+									<ul class="hobby_jz">
+										<li class="infor_wi_le"></li>
+										<div class="save_s">
+											<input type="hidden" name="step" value="3">
+											<input class="save" type="button" onclick="checkSubmit()" value="下一步">
+										</div>
+									</ul>
+				    			</form>
+				    			<p class="las-nex ma-to-20">1.支付密码是购物卡或账户余额的支付凭证，建议不要与其他网站密码相同</p>
+				    			<p class="las-nex">2.定期修改支付密码能让账户资金更安全。</p>
+				    		</div>
+				    		</if>
+				    		<if condition="$step eq 3">
+				    		<div class="oversuccen">
+				    			<div class="zaiebox">
+				    				<div class="fljair">
+				    					<img src="__STATIC__/images/flj.png"/>
+				    				</div>
+				    				<div class="fljfon">
+				    					<p>支付密码设置成功</p>
+				    					<p>请牢记您设置的支付密码。<a href="{:U('User/safety_settings')}">查看安全设置</a></p>
+				    				</div>
+				    				<div class="diboback">
+				    					<a href="/">去首页</a>
+				    					<a href="{:U('Home/Cart/index')}">去购物车</a>
+				    				</div>
+				    			</div>
+				    		</div>
+				    		</if>
+			    		</div>
+			    	</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+        <div class="footer p">
+            <include file="public/footer" />
+        </div>
+		<!--footer-e-->
+	</body>
+	<script type="text/javascript">
+        //显示密码安全等级
+        function securityLevel(sValue) {
+            var modes = 0;
+            //正则表达式验证符合要求的
+            if (sValue.length < 6 ) return modes;
+            if (/\d/.test(sValue)) modes++; //数字
+            if (/[a-z]/.test(sValue)) modes++; //小写
+            if (/[A-Z]/.test(sValue)) modes++; //大写
+            if (/\W/.test(sValue)) modes++; //特殊字符
+            $('.lowzg').eq(modes-1).addClass('red').siblings('.lowzg').removeClass('red');
+        };
+	function modify_sender(obj){
+		$('.ischecked .infor_wi_le').children().html('已验证'+$(obj).val());
+		$('.sender').html($(obj).find("option:selected").attr('rel'));
+	}
+	function sendcode(o){
+		$.ajax({
+			url:'/index.php?m=Home&c=Api&a=send_validate_code&scene=6&t='+Math.random(),
+			type:'get',
+			dataType:'json',
+			data:{type:$('#sender').val(),send:$('#sender').find("option:selected").attr('rel')},
+			success:function(res){
+				if(res.status==1){
+					layer.alert(res.msg, {icon: 1});
+					timer(o);
+				}else{
+					layer.alert(res.msg, {icon: 2});
+				}
+			}
+		})
+	}
+
+	var wait=180;
+	function timer(o) {
+	    if (wait == 0) {  
+	        o.removeAttribute("disabled");            
+	        o.value="获取验证码";  
+	        wait = {$tpshop_config['sms_sms_time_out']};
+	    } else {  
+	        o.setAttribute("disabled", true);  
+	        o.value="重新发送(" + wait + ")";  
+	        wait--;  
+	        setTimeout(function() {  
+	          timer(o)  
+	        }, 1000)  
+	    }  
+	}
+	
+	function nextstep(){
+		var tpcode = $('#tpcode').val();
+		if(tpcode == ''){
+			layer.alert('验证码不能为空', {icon: 2});
+			return false;
+		}
+		if(tpcode.length != 4){
+			layer.alert('验证码错误', {icon: 2});
+			return false;
+		}
+		$.ajax({
+			url:'/index.php?m=Home&c=Api&a=check_validate_code&t='+Math.random(),
+			type:'post',
+			dataType:'json',
+			data:{type:$('#sender').val(),code:tpcode,send:$('#sender').find("option:selected").attr('rel'),scene:6},
+			success:function(res){
+				if(res.status==1){
+					is_check = true;
+					window.location.href='/index.php?m=Home&c=User&a=paypwd&step=2&t='+Math.random();
+				}else{
+					layer.alert(res.msg, {icon: 2});
+					return false;
+				}
+			}
+		})
+	}
+	
+	function checkSubmit(){
+		var new_password = $('#new_password').val();
+		var confirm_password = $('#confirm_password').val();
+		if(new_password == ''){
+			layer.alert('新支付密码不能为空', {icon: 2});
+			return false;
+		}
+		if(new_password.length<6 || new_password.length>18){
+			layer.alert('密码长度不符合规范', {icon: 2});
+			return false;
+		}
+		if(new_password != confirm_password){
+			layer.alert('两次密码不一致', {icon: 2});
+			return false;
+		}
+		$('#pwdform').submit();
+	}
+	</script>
+</html>

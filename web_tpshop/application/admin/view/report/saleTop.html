@@ -1,0 +1,109 @@
+<include file="public/min-header" />
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	             <div class="box-header">
+	             <div class="row">
+  					<div class="col-md-10">
+  						<form action="" method="post">	  	  					
+		  					<div class="col-xs-5">         
+			                    <div class="input-group margin">
+			                      <div class="input-group-addon">
+			                       		选择时间  <i class="fa fa-calendar"></i>
+			                      </div>
+			                      <input type="text" class="form-control pull-right" name="timegap" value="{$timegap}" id="start_time">
+			                    </div>
+	  						</div>	
+                   		 	<div class="col-xs-1"><input class="btn btn-block btn-info margin" type="submit" value="确定"></div>
+                  		 </form>
+                 	</div>
+		  		 </div>
+	             </div><!-- /.box-header -->
+	             <div class="box-body">
+	           	 <div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+		                 <thead>
+		                   <tr role="row">
+			                   
+                               <th class="sorting" tabindex="0" aria-controls="example1" >排行</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1" >商品名称</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1" >货号</th>			                   
+			                   <th class="sorting" tabindex="0" aria-controls="example1" >销售量</th>
+			                   <th class="sorting" tabindex="0" aria-controls="example1" >销售额</th>
+		                  	   <th class="sorting" tabindex="0" aria-controls="example1" >均价</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+                         <foreach name="list" item="vo" key="k" >
+                          <tr role="row" align="center">
+                             <td>{$k+1}</td>
+                             <td>{$vo.goods_name}</td>
+		                     <td>{$vo.goods_sn}</td>
+		                     <td>{$vo.sale_num}</td>		                    
+		                     <td>{$vo.sale_amount}</td>
+		                     <td>{$vo['sale_amount']/$vo.sale_num|round=###,2}</td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>
+		                 </tfoot>
+		               </table>
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	          </div>
+	        </div>
+       	</div>
+       </div>
+   </section>
+</div>
+<script type="text/javascript">
+$(document).ready(function() {
+	$('#start_time').daterangepicker({
+		format:"YYYY-MM-DD",
+		singleDatePicker: false,
+		showDropdowns: true,
+		minDate:'2016-01-01',
+		maxDate:'2030-01-01',
+		startDate:'2016-01-01',
+        showWeekNumbers: true,
+        timePicker: false,
+        timePickerIncrement: 1,
+        timePicker12Hour: true,
+        ranges: {
+           '今天': [moment(), moment()],
+           '昨天': [moment().subtract('days', 1), moment().subtract('days', 1)],
+           '最近7天': [moment().subtract('days', 6), moment()],
+           '最近30天': [moment().subtract('days', 29), moment()],
+           '上一个月': [moment().subtract('month', 1).startOf('month'), moment().subtract('month', 1).endOf('month')]
+        },
+        opens: 'right',
+        buttonClasses: ['btn btn-default'],
+        applyClass: 'btn-small btn-primary',
+        cancelClass: 'btn-small',
+	    locale : {
+            applyLabel : '确定',
+            cancelLabel : '取消',
+            fromLabel : '起始时间',
+            toLabel : '结束时间',
+            customRangeLabel : '自定义',
+            daysOfWeek : [ '日', '一', '二', '三', '四', '五', '六' ],
+            monthNames : [ '一月', '二月', '三月', '四月', '五月', '六月','七月', '八月', '九月', '十月', '十一月', '十二月' ],
+            firstDay : 1
+        }
+	});
+	
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<aside class="main-sidebar" style="overflow-y:auto;">
+      <section class="sidebar">
+        <!-- search form -->
+        <form action="#" method="get" class="sidebar-form">
+          <div class="input-group">
+            <input type="text" name="q" class="form-control" placeholder="Search...">
+            <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i></button>
+            </span>
+          </div>
+        </form>
+        <!-- /.search form -->
+        <ul class="sidebar-menu"> 
+	      <foreach name="menu_list" item="vo" key="k" >
+	      	<notempty name="vo.sub_menu">
+        	<li class="treeview">
+        	    <a href="javascript:void(0)">
+	              <i class="fa {$vo.icon}"></i><span>{$vo.name}</span><i class="fa fa-angle-left pull-right"></i>
+	            </a>
+	            <ul class="treeview-menu">
+	            	<foreach name="vo.sub_menu" item="vv" key="kk">
+	            	<li onclick="makecss(this)" data-id="{$vv.act}_{$vv.control}">
+	            		<a href='{:U("$vv[control]/$vv[act]")}' target='rightContent'><i class="fa fa-circle-o"></i>{$vv.name}</a>
+	            	</li>
+	            	</foreach>
+	            </ul>
+        	</li>
+        	</notempty>
+	      </foreach>     
+          <li class="header">帮助中心</li>
+          <li><a href="http://www.tp-shop.cn/index.php/Doc/Index/index" target="_blank"><i class="fa fa-circle-o text-red"></i> <span>使用手册</span></a></li>
+          <li><a href="http://www.99soubao.com/tpshop_video/video.html" target="_blank"><i class="fa fa-circle-o text-yellow"></i> <span>视频教程</span></a></li>
+          <li><a href="http://document.thinkphp.cn/manual_3_2.html" target="_blank"><i class="fa fa-circle-o text-aqua"></i> <span>ThinkPHP手册</span></a></li>
+        </ul>
+      </section>
+</aside>

@@ -1,0 +1,51 @@
+<include file="public/header" title="提现申请记录" body=""/>
+<include file="public/header_nav" title="提现申请记录" href="javascript:history.back(-1)"/>
+<div class="application-record">
+    <div class="maleri30">
+        <ul class="re_tit">
+            <li class="li1"><span>编号</span></li>
+            <li class="li2"><span>申请日期</span></li>
+            <li class="li3"><span>金额</span></li>
+            <li class="li4"><span>状态</span></li>
+        </ul>
+        <foreach name="list" item="v">
+            <ul>
+                <li class="li1"><span>{$v[id]}</span></li>
+                <li class="li2"><span>{:date('Y-m-d', $v[create_time])}</span></li>
+                <li class="li3"><span>{$v[money]}</span></li>
+                <li class="li4"><span class="red">
+                    <if condition="$v[status] eq -2">无效作废</if>
+                    <if condition="$v[status] eq -1">审核失败</if>
+                    <if condition="$v[status] eq 0">申请中</if>
+                    <if condition="$v[status] eq 1">审核通过</if>
+                    <if condition="$v[status] eq 2">提现完成</if>
+                    <if condition="$v[status] eq 3">转款失败</if>
+                </span></li>
+            </ul>
+        </foreach>
+    </div>
+    <div id="getmore"  style="font-size:.32rem;text-align: center;color:#888;padding:.25rem .24rem .4rem; clear:both;display: none">
+        <a >已显示完所有记录</a>
+    </div>
+    <script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+</div>
+<script>
+    var page = 1;
+    function ajax_sourch_submit(){
+        page++;
+        $.ajax({
+            type:'GET',
+            url:'/index.php/Mobile/User/withdrawals_list/is_ajax/1/p/'+page,
+            success:function(data){
+                if($.trim(data)==''){
+                    $('#getmore').show();
+                    return false;
+                }else{
+                    $('.maleri30').append(data);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

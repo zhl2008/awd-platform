@@ -1,0 +1,141 @@
+<include file="public/min-header" />
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content ">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回管理员列表"><i class="fa fa-reply"></i></a>
+            	<a href="javascript:;" class="btn btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/1001/developer/user.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 权限资源管理</h3>
+                </div>
+                <div class="panel-body ">   
+                    <!--表单数据-->
+                    <form method="post" id="adminHandle" action="">                    
+                        <!--通用信息-->
+                    <div class="tab-content col-md-10">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">                           
+                            <table class="table table-bordered">
+                                
+                                <tr>
+                                    <td class="col-sm-2">    权限资源名称：</td>
+                                    <td class="col-sm-8">
+                                        <input type="text" class="form-control" name="name" value="{$info.name}" >                                                                      
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>所属分组：</td>
+                                    <td>
+                         				<select name="group" class="form-control" style="width:150px;">
+                         					<foreach name="group" item="vo" key="key">
+                         						<option value="{$key}" <if condition="$info[group] eq $key">selected</if>>{$vo}</option>
+                         					</foreach>
+                         				</select>                                                                     
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>添加权限码：</td>
+                                    <td>
+                                    	<div  class="col-xs-3">
+	                             			<select id="controller" class="form-control" onchange="get_act_list(this)" style="width:200px;margin-left:-15px;">
+		                          				<option value="">选择控制器</option>
+		                          				<foreach name="planList" item="vo">
+		                          				   <option value="{$vo}">{$vo}</option>
+		                          				</foreach>           
+	                         				</select>
+                         				</div>
+                         				<div class="col-xs-1">@</div>
+                         				<div class="col-xs-2">
+	                         				<select class="form-control" id="act_list" style="width:150px;">
+		                          				               
+	                         				</select> 
+                         				</div>
+                         				<div class="col-xs-1"><input type="button" value="添加" onclick="add_right()" class="btn btn-info"></div>    
+                                    </td>
+                                </tr>                                                           
+                                <tr>
+                                	<td colspan="2">
+                                		<table class="table table-bordered table-hover">
+                                			 <tr><th style="width:80%">权限码</th><th>操作</th></tr>
+                                			 <tbody id="rightList">
+                                			 	<foreach name="info[right]" item="vo">
+                                			 	<tr><td><input name="right[]" type="text" value="{$vo}" class="form-control" style="width:400px;"></td>
+                                			 	<td><a href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td></tr>
+                                			 	</foreach>
+                                			 </tbody>
+                                		</table>
+                                	</td>
+                                </tr>
+                                <tfoot>
+                                	<tr>
+                                	<td>
+                                		<input type="hidden" name="id" value="{$info.id}">
+                                	</td>
+                                	<td class="text-center"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td></tr>
+                                </tfoot>                               
+                            </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function adsubmit(){
+	if($('input[name=name]').val() == ''){
+		layer.msg('权限名称不能为空！', {icon: 2,time: 1000});
+		return false;
+	}
+
+	if($('input[name="right\[\]"]').length == 0){
+		layer.msg('权限码不能为空！', {icon: 2,time: 1000});
+		return false;
+	}
+
+	$('#adminHandle').submit();
+}
+
+function add_right(){
+	var a = [];
+	$('#rightList .form-control').each(function(i,o){
+		if($(o).val() != ''){
+			a.push($(o).val());
+		}
+	})
+	var ncode = $('#controller').val();
+	if(ncode !== ''){
+		var temp = ncode+'@'+ $('#act_list').val();
+		if($.inArray(temp,a) != -1){
+			layer.msg('此权限码已经添加！', {icon: 2,time: 1000});
+			return false;
+		}
+	}
+	var strtr = '<tr>';
+	if(ncode!= ''){
+		strtr += '<td><input type="text" name="right[]" value="'+ncode+'@'+ $('#act_list').val()+'" class="form-control" style="width:400px;"></td>';
+	}else{
+		strtr += '<td><input type="text" name="right[]" value="" class="form-control" style="width:400px;"></td>';
+	}		
+	strtr += '<td><a href="javascript:;" onclick="$(this).parent().parent().remove();">删除</a></td>';
+	$('#rightList').append(strtr);	
+}
+
+function get_act_list(obj){
+	$.ajax({
+		url: "{:U('System/ajax_get_action')}",
+		type:'post',
+		data: {'controller':$(obj).val()},
+		dataType:'html',
+		success:function(res){
+			$('#act_list').empty().append(res);
+		}
+	});
+}
+</script>
+</body>
+</html>

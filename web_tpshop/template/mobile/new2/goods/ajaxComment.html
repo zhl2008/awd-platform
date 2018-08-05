@@ -1,0 +1,114 @@
+<if condition="$count gt 0">
+  <div class="assess-flat " id="comList">
+     <foreach name="commentlist" item="v" key="k">
+            <span class="assess-wrapper"  >
+                <div class="assess-top">
+                    <if condition="$v['is_anonymous'] eq 1">
+                        <span class="user-portrait"><img src="__STATIC__/images/user68.jpg"></span>
+                        <span class="user-name">匿名用户</span>
+                    <else />
+                        <span class="user-portrait"><img src="{$v['head_pic']|default='__STATIC__/images/user68.jpg'}"></span>
+                        <span class="user-name">{$v['username']}</span>
+                    </if>
+                    <span class="assess-date">{$v.add_time|date='Y-m-d H:i',###}</span>
+                </div>
+                <div class="assess-bottom">
+                    <span class="comment-item-star">
+                        <span class="real-star comment-stars-width{$v.service_rank}"></span>
+                    </span>
+                    <p class="assess-content">{$v['content']|htmlspecialchars_decode}</p>
+                    <div class="product-img-module">
+                        <!-- <a class="J_ping" report-eventid="MProductdetail_CommentPictureTab" report-pageparam="1725965683" href="/ware/newCommentDetailPicShow.action?commentId={$v.comment_id}&amp;wareId=1725965683"> -->
+                            <ul class="jd-slider-container gallery">
+                                <foreach name="v['img']" key="key" item="v2">
+                                    <li class="jd-slider-item product-imgs-li">
+                                        <dd><a href="{$v2}"><img src="{$v2}" width="100px" heigth="100px"></a></dd>
+                                    </li>
+                                </foreach>
+                            </ul>
+                        <!-- </a> -->
+                    </div>
+                    <!--商家回复-s-->
+                    <foreach name="replyList[$v['comment_id']]" item="reply" key="k">
+                            <p class="pay-date">{$reply['username']}回复：{$reply['content']}</p>
+                    </foreach>
+                    <!--商家回复-e-->
+                    <!--<p class="product-type">颜色：ML574VB 型号：38/235MM</p>-->
+                </div>
+            </span>
+             <div class="assess-btns-box">
+                 <div class="assess-btns">
+                     <a class="assess-like-btn" id="{$v[comment_id]}" data-comment-id="{$v['comment_id']}" onclick="zan(this);">
+                         <i class="assess-btns-icon btn-like-icon like-grey"></i>
+                         <span class="assess-btns-num" id="span_zan_{$v['comment_id']}" data="0">{$v['zan_num']}</span>
+                         <i class="like">+1</i>
+                     </a>
+                     <a class="assess-reply-btn" id="f135e04a-ca94-4f00-a0db-3a30ac206ceb_0">
+                         <i class="no-assess-btns-icon btn-reply-icon"></i>
+                         <span class="assess-btns-num" id="comment_id{$v[comment_id]}">
+{:count($replyList[$v['comment_id']])}
+                         </span>
+                     </a>
+                 </div>
+             </div>
+     </foreach>
+    </div>
+<else/>
+     <script>
+         $('.getmore').hide();
+     </script>
+    <!--没有内容时-s-->
+    <div class="comment_con p">
+        <div class="score enkecor">此商品暂无评论</div>
+    </div>
+    <!--没有内容时-e-->
+</if>
+ <if condition="($count gt $current_count) AND (count($commentlist) eq $page_count)">
+     <div class="getmore" style="font-size:.32rem;text-align:center;color:#888;padding:.25rem .24rem .4rem; clear:both">
+         <a href="javascript:void(0)" onClick="ajaxSourchSubmit();">点击加载更多</a>
+     </div>
+     <elseif condition="($count elt $current_count AND $count gt 0)" />
+        <div class="score enkecor">已显示完所有评论</div>
+     <else />
+ </if>
+<link href="__STATIC__/css/photoswipe.css" rel="stylesheet" type="text/css">
+<script src="__STATIC__/js/klass.min.js"></script>
+<script src="__STATIC__/js/photoswipe.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var gallery_a = $(".gallery a");
+        if(gallery_a.length > 0){
+            $(".assess-wrapper .gallery a").photoSwipe({
+                enableMouseWheel: false,
+                enableKeyboard: false,
+                allowUserZoom: false,
+                loop:false
+            });
+        }
+    });
+     var page = {$Request.param.p};
+     function ajaxSourchSubmit() {
+         page += 1;
+         $.ajax({
+             type: "GET",
+             url: "{:U('Mobile/Goods/ajaxComment',array('goods_id'=>$goods_id,'commentType'=>$commentType),'')}"+"/p/" + page,
+             success: function (data) {
+                 $('.getmore').hide();
+                 if ($.trim(data) != ''){
+                     $("#comList").append(data);
+                 }
+             }
+         });
+     }
+     function ajax_sourch_submit_hide(){
+         $('.getmore').hide();
+     }
+
+     //点赞
+     function hde(){
+         setTimeout(function(){
+             $('.alert').hide();
+         },1200)
+     }
+
+ </script>

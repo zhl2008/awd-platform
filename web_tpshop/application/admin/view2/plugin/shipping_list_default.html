@@ -1,0 +1,70 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>物流插件管理 - {$plugin.name}配送区域配置</h3>
+                <h5>网站系统物流插件管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="editForm" method="post">
+        <input type="hidden" name="id" value="{$setting.shipping_area_id}">
+        <input type="hidden" name="default" value="1">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>配送区域名称</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$setting.shipping_area_name}" name="shipping_area_name" readonly class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">配送区域名称</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>
+                        首&nbsp;&nbsp;重
+                        <select name="config[first_weight]">
+                            <for start="500" end="8000" step="500" name="v">
+                                <option value="{$v}" <if condition="$setting[config][first_weight] eq $v">selected="selected"</if> >{$v}</option>
+                            </for>
+                        </select>
+                        克以内费用：
+                    </label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$setting.config.money}" name="config[money]" class="input-txt"/>
+                    <span class="err"></span>
+                    <p class="notic">单位：元</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>
+                        续重每
+                        <select name="config[second_weight]">
+                            <for start="500" end="8000" step="500" name="v">
+                                <option value="{$v}" <if condition="$setting[config][second_weight] eq $v">selected="selected"</if> >{$v}</option>
+                            </for>
+                        </select>
+                        克或其零数的费用：
+                    </label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" value="{$setting.config.add_money}" name="config[add_money]" class="input-txt">
+                    <span class="err"></span>
+                    <p class="notic">单位：元</p>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" onclick="$('#editForm').submit();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+        </div>
+    </form>
+</div>
+</body>
+</html>

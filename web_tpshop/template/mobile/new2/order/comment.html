@@ -1,0 +1,83 @@
+<include file="public/header" title="我的评价" body="f3"/>
+<include file="public/header_nav" title="我的评价" href="{:U('/Mobile/User/index')}"/>
+<div class="pjiscion p after-set-li">
+    <ul>
+        <a href="{:U('Mobile/Order/comment',array('status'=>-1))}">
+            <li <if condition='$Request.param.status eq -1'>class="red"</if>>
+                <p>全部评价</p><p></p>
+            </li>
+        </a>
+        <a href="{:U('Mobile/Order/comment',array('status'=>0))}" >
+            <li <if condition='$Request.param.status eq 0'>class="red"</if>>
+                <p>待评价</p><p></p>
+            </li>
+        </a>
+        <a href="{:U('Mobile/Order/comment',array('status'=>1))}">
+            <li <if condition='$Request.param.status eq 1'>class="red"</if>>
+                <p>已评价</p><p></p>
+            </li>
+        </a>
+    </ul>
+</div>
+<div class="quedbox bg_white">
+    <!--<div class="sonfbst">-->
+        <!--<div class="maleri30">-->
+            <!--<span><i class="fbs"></i>立即发表评价晒图，最多可获得50积分</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <if condition="empty($comment_list)">
+        <div class="nonenothing">
+            <img src="__STATIC__/images/nothing.png"/>
+            <p>没找到相关记录</p>
+            <a href="{:U('Mobile/Index/index')}">去逛逛</a>
+        </div>
+<else/>
+    <div class="fukcuid mae">
+        <div class="maleri30">
+            <foreach name="comment_list" item="v1">
+                <div class="shopprice dapco p">
+                    <div class="img_or fl"><img src="{$v1[goods_id]|goods_thum_images=200,200}"></div>
+                    <div class="fon_or fl">
+                        <h2 class="similar-product-text">
+                            <a href="{:U('Goods/goodsInfo',array('id'=>$v1[goods_id]))}">{$v1[goods_name]}</a>
+                        </h2>
+                        <p class="pall0">购买时间：{$v1.add_time|date='Y-m-d H:i',###}</p>
+                    </div>
+                    <div class="dyeai">
+                        <if condition="$v1[is_comment] eq 0">
+                            <a class="compj" href="{:U('Mobile/Order/add_comment',array('rec_id'=>$v1[rec_id]))}"><i class="said"></i>评价订单</a>
+                        <else/>
+                            <a class="compj nomar" href="{:U('Mobile/Order/order_detail',array('id'=>$v1[order_id]))}"><i class="said c23"></i>查看订单</a>
+                        </if>
+                    </div>
+                </div>
+            </foreach>
+        </div>
+    </div>
+    </if>
+</div>
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript">
+    /**
+     * ajax加载更多商品
+     */
+    var  page = 1;
+    function ajax_sourch_submit()
+    {
+        ++page;
+        $.ajax({
+            type : "GET",
+            url:"/index.php?m=Mobile&c=Order&a=comment&is_ajax=1&status={$Request.param.status}&p="+page,
+            success: function(data) {
+                if ($.trim(data) == '') {
+                    $('#getmore').hide();
+                    return false;
+                } else {
+                    $('.maleri30').append(data);
+                }
+            }
+        });
+    }
+</script>
+</body>
+</html>

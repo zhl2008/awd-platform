@@ -1,0 +1,50 @@
+<include file="public/header" title="系统提示" />
+    <div class="classreturn loginsignup">
+        <div class="content">
+            <div class="ds-in-bl return">
+                <a href="javascript:history.back(-1);"><img src="__STATIC__/images/return.png" alt="返回"></a>
+            </div>
+            <div class="ds-in-bl search center">
+                <span>系统提示</span>
+            </div>
+            <!--<div class="ds-in-bl menu">
+                <a href="javascript:void(0);"><img src="i__STATIC__/mages/class1.png" alt="菜单"></a>
+            </div>-->
+        </div>
+    </div>
+
+    <div class="successsystem">
+        <?php if($code == 1) {?>
+            <img src="__STATIC__/images/icogantanhao.png"></div>
+        <?php }else{ ?>
+            <img src="__STATIC__/images/icogantanhao-sb.png"></div>
+        <?php }?>
+    </div>
+    <p class="prompt_s">
+        <?php if($code == 1) {?><?php echo(strip_tags($msg)); ?>
+        <?php }else{?>
+        <?php echo(strip_tags($msg)); ?>
+        <?php }?> ，等待时间：<b id="wait"><?php echo($wait); ?></b>
+    </p>
+
+    <div class="systemprompt">
+        <a href="<?php echo($url); ?>" id="href">返回上一页</a>
+        <a href="{:U('Index/index')}">返回首页</a>
+    </div>
+
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    (function(){
+        var wait = document.getElementById('wait'),href = document.getElementById('href').href;
+        var interval = setInterval(function(){
+            var time = --wait.innerHTML;
+            if(time <= 0) {
+                location.href = href;
+                clearInterval(interval);
+            };
+        }, 1000);
+    })();
+
+</script>
+</body>
+</html>

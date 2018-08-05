@@ -1,0 +1,182 @@
+<include file="public/layout"/>
+<script type="text/javascript" src="__ROOT__/Public/static/js/layer/laydate/laydate.js"></script>
+<style>
+    .ncsc-vr-order-exchange {
+        background: #F5F5F5;
+        padding: 20px 0 20px 250px;
+        margin: 0 auto;
+    }
+
+</style>
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>虚拟商品兑换码兑换</h3>
+                <h5>商城虚拟商品交易兑换码</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <li><a class="" href="{:U('admin/Order/virtual_list')}"><span>虚拟订单</span></a></li>
+                <li><a class="current" href="{:U('admin/Order/verify_code')}"><span>兑换码兑换</span></a></li>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+        <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+        </div>
+        <!--<ul>-->
+            <!--<li>点击查看操作将显示订单（包括电子兑换码）的详细信息</li>-->
+            <!--<li>未付款的订单可以点击取消操作来取消订单</li>-->
+            <!--<li>如果平台已确认收到买家的付款，但系统支付状态并未变更，可以点击收到货款操作，并填写相关信息后更改订单支付状态</li>-->
+        <!--</ul>-->
+    </div>
+    <div class="flexigrid">
+        <div class="mDiv">
+            <div class="ncsc-vr-order-exchange">
+                <dl>
+                    <dt><h3>电子兑换码</h3></dt>
+                    <dd>
+                        <input class="vr-code" name="vr_code" type="text" id="vr_code" placeholder="请输入买家提供的电子兑换码" maxlength="18"  />
+                        <span></span>
+                        <div class="ncsc-keyboard">
+                            <button onclick="demo(this,1)">1</button>
+                            <button onclick="demo(this,1)">2</button>
+                            <button onclick="demo(this,1)">3</button>
+                            <button onclick="demo(this,1)">4</button>
+                            <button onclick="demo(this,1)">5</button>
+                            <button onclick="demo(this,1)">6</button>
+                            <button onclick="demo(this,1)">7</button>
+                            <button onclick="demo(this,1)">8</button>
+                            <button onclick="demo(this,1)">9</button>
+                            <button onclick="demo(this,1)">0</button>
+                            <button class="cn" onclick="demo(this,2)">清除</button>
+                            <button class="cn" onclick="demo(this,3)">后退</button>
+                            <label class="enter-border">
+                                <input type="button" id="_submit" class="enter" value="提交验证">
+                            </label>
+                        </div><p class="hint">请输入买家提供的兑换码，核对无误后提交，每个兑换码抵消单笔消费。</p>
+                    </dd>
+                </dl>
+
+                <div class="bottom">
+
+                </div>
+            </div>
+        </div>
+        <div class="hDiv" style="margin-top: 100px;">
+            <div class="hDivBox" id="ajax_return">
+                <table cellspacing="0" cellpadding="0">
+                    <thead>
+                    <tr>
+                        <th class="sign" axis="col0">
+                            <div style="width: 24px;"><i class="ico-check"></i></div>
+                        </th>
+                        <th align="left" abbr="order_sn" axis="col3" class="">
+                            <div style="text-align: left; width: 200px;" class="">兑换码</div>
+                        </th>
+                        <th align="left" abbr="consignee" axis="col4" class="">
+                            <div style="text-align: left; width: 200px;" class="">商品</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                            <div style="text-align: center; width: 200px;" class="">订单号</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                            <div style="text-align: center; width: 200px;" class="">下单留言</div>
+                        </th>
+                        <th style="width:100%" axis="col7">
+                            <div></div>
+                        </th>
+                    </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+        <div class="bDiv" style="height: auto;margin-top: 220px;">
+            <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+                <table>
+                    <tbody id="order_panel">
+                        <tr id="empty_list" style="display: none">
+                            <td class="no-data" align="center" axis="col0" colspan="50">
+                                <i class="fa fa-exclamation-circle"></i>没有符合条件的记录
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="iDiv" style="display: none;"></div>
+        </div>
+        <!--分页位置-->
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+
+
+        // 点击刷新数据
+        $('.fa-refresh').click(function () {
+            location.href = location.href;
+        });
+
+        // 表格行点击选中切换
+        $('#flexigrid > table>tbody >tr').click(function () {
+            $(this).toggleClass('trSelected');
+        });
+
+    });
+    function demo(obj,tip){
+        if(tip==1){
+            var con=document.getElementById('vr_code').value;
+            document.getElementById('vr_code').value=con+obj.innerHTML;
+        }else if(tip==2){
+            document.getElementById('vr_code').value="";
+        }else if(tip==3){
+            var con=document.getElementById('vr_code').value;
+            document.getElementById('vr_code').value=con.slice(0,-1);
+        }
+    }
+
+    $(document).ready(function(){
+        function exPost() {
+            $.ajax({
+                type:'post',
+                url:"{:U('Order/verify_code')}",
+                data:{'vr_code':$('#vr_code').val()},
+                dataType : 'json',
+                success : function(data){
+                    if(data.status == 1){
+                        layer.msg('兑换成功', {icon: 1});
+                        var html = '<tr> <td class="sign"> <div style="width: 24px;"><i class="ico-check"></i></div> </td>' +
+                                ' <td align="left"> <div style="text-align: left; width: 200px;">  '+data.result.vr_code+' </div> </td>' +
+                                ' <td align="left"> <div style="text-align: left; width: 200px;"><a href="/index.php?m=Home&c=Goods&a=goodsInfo&id='+data.result.order_goods.goods_id+'"> ' +
+                                data.result.order_goods.goods_name+'</a></div> </td> ' +
+                                '<td align="center"> <div style="text-align: center; width: 200px;">' +
+                                '<a href="/index.php?m=admin&c=Order&a=virtual_info&order_id='+data.result.order_goods.order_id+'"> '+
+                                data.result.order.order_sn +'</a></div> </td> <td align="center"> <div style="text-align: left; width: 200px;">'+data.result.order.user_note+
+                                '</div> </td> <td style="width: 100%;"> <div>&nbsp;</div> </td> </tr>';
+                        $('#empty_list').hide();
+                        $('#order_panel').append(html);
+                        $('#vr_code').val('').focus();
+                    }else{
+                        layer.msg(data.msg,{icon:2});
+                    }
+                }
+            });
+        }
+        $('#_submit').on('click',function(){
+            exPost();
+        });
+        $(document).keydown(function(e) {
+            if (e.keyCode == 13) {
+                exPost();
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>专题详情-{$tpshop_config['shop_info_store_title']}</title>
+<meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+<meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+<link rel="stylesheet" href="__STATIC__/css/promoteList.css" type="text/css">
+<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/js/global.js"></script>
+<script src="__PUBLIC__/js/pc_common.js"></script>
+</head>
+<style>
+.mbb_mian{width:100%; position:relative; z-index:3;text-align:center;}
+</style>
+<body>
+<!--------头部开始-------------->
+<include file="public/header" w='w1224'/>
+
+<div class="layout ov-hi">
+    <div class="mbb_mian" style="margin-top:{$topic.topic_margin_top}px;padding:0px;">
+		<iframe width="100%" height="100%" frameborder="0"  hspace="0" vspace="0"  scrolling="no" style="display: inline;" onload="this.height=0;var fdh=(this.Document?this.Document.body.scrollHeight:this.contentDocument.body.offsetHeight);this.height=(fdh&gt;700?fdh+200:700)" src="{:U('Home/Topic/info',array('topic_id'=>$topic['topic_id']))}"></iframe>	
+	</div>
+</div>
+<!--------底部banner-开始-------------->
+<div class="layout layer">
+   	<div class="cen-banne" style="text-align: center;">
+            <adv  pid = "4" limit="1" item="v">            
+   	        <a href="{$v['ad_link']}"<if condition="$v['target'] eq 1">target="_blank"</if>>
+       	        <img src="{$v['ad_code']}" width="1200" height="160"  title="{$v[title]}" style="{$v[style]}"/>
+            </a>    
+            </adv>            
+       </div>
+</div>
+<script type="text/javascript">
+/*
+function iFrameHeight() {
+	var ifm = document.getElementById("mainweb");
+	var subWeb = document.frames ? document.frames["mainweb"].document : ifm.contentDocument;
+	if(ifm != null && subWeb != null) {
+		ifm.height = subWeb.body.scrollHeight;
+	}
+}
+*/
+</script>
+<!--------底部banner-结束-------------->
+<!--------footer-开始-------------->
+<div class="footer p">
+    <include file="public/footer" />
+    <include file="public/sidebar_cart" />
+</div>
+<script src="__STATIC__/js/common.js"></script>
+<!--------footer-结束-------------->
+</body>
+</html>

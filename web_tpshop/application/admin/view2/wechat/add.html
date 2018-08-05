@@ -1,0 +1,208 @@
+<include file="public/layout" />
+ 
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>微信公众号配置</h3>
+        <h5>配置微信公众号, token、Appid、AppSecret要与微信公众开放平台信息一致</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" method="post" id="handlepost" action="">    
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>Token</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="w_token" value="" class="input-txt">
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="cate_id"><em>*</em>所属分类</label>
+        </dt>
+        <dd class="opt">
+        <select class="small form-control" name="cat_id" id="cat_id">
+            <option value="0">选择分类</option>
+            {$cat_select} 
+        </select>        
+          <span class="err"></span>
+          <p class="notic">当选择发布"商城公告"时，还需要设置下面的"出现位置"项</p>
+        </dd>
+      </dl>    
+	  <dl class="row">
+        <dt class="tit">
+          <label for="articleForm">seo关键字</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="keywords"  value="{$info.keywords}" class="input-txt">
+          <span class="err"></span>
+          <p class="notic">用于seo 搜索引擎友好</p>
+        </dd>
+      </dl>        
+      <dl class="row">
+        <dt class="tit">
+          <label for="articleForm">链接</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="link"  value="{$info.link}" class="input-txt">
+          <span class="err"></span>
+          <p class="notic">当填写"链接"后点击文章标题将直接跳转至链接地址，不显示文章内容。链接格式请以http://开头</p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="articleForm">发布时间</label>
+        </dt>
+        <dd class="opt">
+            <input type="text" class="input-txt" id="publish_time" name="publish_time"  value="{$info.publish_time|date="Y-m-d",###}">        
+            <span class="add-on input-group-addon">
+                    <i class="glyphicon glyphicon-calendar fa fa-calendar"></i>
+            </span> 
+          <span class="err"></span>
+        </dd>
+      </dl>       
+      <dl class="row">
+        <dt class="tit">
+          <label>显示</label>
+        </dt>
+        <dd class="opt">
+          <div class="onoff">
+            <label for="article_show1" class="cb-enable <if condition="$info[is_open] eq 1">selected</if>">是</label>
+            <label for="article_show0" class="cb-disable <if condition="$info[is_open] eq 0">selected</if>">否</label>
+            <input id="article_show1" name="is_open" value="1" type="radio" <if condition="$info[is_open] eq 1"> checked="checked"</if>>
+            <input id="article_show0" name="is_open" value="0" type="radio" <if condition="$info[is_open] eq 0"> checked="checked"</if>>
+          </div>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">网页描述</dt>
+        <dd class="opt">
+	      <textarea class="input-txt" id="post_description" name="description" title="">{$info.description}</textarea>
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>文章内容</label>
+        </dt>
+        <dd class="opt">          
+            <textarea class="span12 ckeditor" id="post_content" name="content" title="">
+                {$info.content}
+            </textarea>          
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">图片上传</dt>
+        <dd class="opt">
+          <div class="input-file-show" id="divComUploadContainer">
+            <span class="type-file-box">            
+            <input type="text" id="imagetext" name="thumb" value="{$info.thumb}" class="type-file-text">            
+            <input type="button" class="type-file-button" onClick="GetUploadify(1,'imagetext','article','')" value="上传图片"/>           
+            </span>
+          </div>
+          <div id="thumbnails" class="ncap-thumb-list">
+            <h5><i class="fa fa-exclamation-circle"></i> 请上传图片格式文件。</h5>
+            <ul>
+            </ul>
+          </div>
+        </dd>
+      </dl>
+      <div class="bot"><a href="JavaScript:void(0);" onClick="checkForm()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="article_id" value="{$info.article_id}"></label>    
+  </form>
+</div>
+<script type="text/javascript">
+    var editor;
+    $(function () {
+        //具体参数配置在  editor_config.js 中
+        var options = {
+            zIndex: 999,
+            initialFrameWidth: "70%", //初化宽度
+            initialFrameHeight: 300, //初化高度            
+            focus: false, //初始化时，是否让编辑器获得焦点true或false
+            maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign',//允许的最大字符数 'fullscreen',
+            pasteplain:false, //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
+            autoHeightEnabled: true
+         /*   autotypeset: {
+                mergeEmptyline: true,        //合并空行
+                removeClass: true,           //去掉冗余的class
+                removeEmptyline: false,      //去掉空行
+                textAlign: "left",           //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+                imageBlockLine: 'center',    //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+                pasteFilter: false,          //根据规则过滤没事粘贴进来的内容
+                clearFontSize: false,        //去掉所有的内嵌字号，使用编辑器默认的字号
+                clearFontFamily: false,      //去掉所有的内嵌字体，使用编辑器默认的字体
+                removeEmptyNode: false,      //去掉空节点
+                                             //可以去掉的标签
+                removeTagNames: {"font": 1},
+                indent: false,               // 行首缩进
+                indentValue: '0em'           //行首缩进的大小
+            }*/
+        };
+        editor = new UE.ui.Editor(options);
+        editor.render("post_content");
+      
+        $('#publish_time').layDate(); 
+     
+    });
+	
+	function checkForm(){
+		if($('input[name="title"]').val() == ''){
+            layer.alert("请填写文章标题!", {icon: 2});
+			return false;
+		}
+		if($('#cat_id').val() == '' || $('#cat_id').val() == 0){
+            layer.alert("请选择文章类别!", {icon: 2});
+			return false;
+		}
+		if($('#post_content').val() == ''){
+            layer.alert("请填写文章内容!", {icon: 2});
+			return false;
+		}
+		$('#add_post').submit();
+	}
+
+    <!-- 系统保留分类 start-->
+    var article_main_system_id = <?php echo json_encode($article_main_system_id); ?>;
+    $("#cat_id").change(function(){
+        var v = parseInt($(this).val());
+        if(jQuery.inArray(v, article_main_system_id) != -1){
+            layer.alert("系统保留分类，不允许在该分类添加文章!", {icon: 2});
+            $(this).val(0);
+        }
+
+    });
+
+    $("#cat_id2").change(function(){
+        var v = parseInt($(this).val());
+        if(jQuery.inArray(v, article_main_system_id) != -1){
+            layer.alert("系统保留分类，不允许在该分类添加文章!", {icon: 2});
+            $(this).val(0);
+        }
+
+    });
+ 
+    
+</script>
+</body>
+</html>

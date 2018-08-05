@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>安全设置-{$tpshop_config['shop_info_store_title']}</title>
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+		<link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+		<script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body class="bg-f5">
+		<include file="user/header"/>
+		<div class="home-index-middle">
+			<div class="w1224">
+				<div class="g-crumbs">
+			       	<a href="{:U('User/index')}">我的商城</a>
+			       	<i class="litt-xyb"></i>
+			       	<span>忘记密码</span>
+			    </div>
+			    <div class="home-main forgetpaw">
+		    		<div class="menumain">
+		    			<div class="goodpiece">
+							<h1>安全设置</h1>
+							<!--<a href=""><span class="co_blue">帮助</span></a>-->
+						</div>
+			    		<div class="accouun"></div>
+			    		<div class="thirset ma-to-20">
+			    			<div class="wshef">1.填写用户名<i class="spassw"></i></div>
+			    			<div class="wshef">1.验证身份<i class="spassw"></i></div>
+			    			<div class="wshef">2.设置新密码<i class="spassw"></i></div>
+			    			<div class="wshef yellc">3.完成</div>
+			    		</div>
+			    		<div class="oversuccen">
+			    			<div class="zaiebox">
+			    				<div class="fljair">
+			    					<img src="__STATIC__/images/flj.png"/>
+			    				</div>
+			    				<div class="fljfon">
+			    					<p>密码设置成功</p>
+			    					<p>请牢记您设置的新密码。<a href="{:U('User/safety_settings')}">查看安全设置</a></p>
+			    				</div>
+			    				<div class="diboback">
+			    					<a href="/">去首页</a>
+			    					<a href="{:U('Home/User/login')}">返回登录</a>
+			    				</div>
+			    			</div>
+			    		</div>
+		    		</div>
+			    </div>
+			</div>
+		</div>
+		<!--footer-s-->
+		<include file="user/footer" />
+		<!--footer-e-->
+	</body>
+	<script type="text/javascript">
+
+	</script>
+</html>

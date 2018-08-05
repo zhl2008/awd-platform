@@ -1,0 +1,181 @@
+<include file="public/min-header"/>
+
+<script type="text/javascript">
+    window.UEDITOR_Admin_URL = "__ROOT__/public/plugins/Ueditor/";
+    var URL_upload = "{$URL_upload}";
+    var URL_fileUp = "{$URL_fileUp}";
+    var URL_scrawlUp = "{$URL_scrawlUp}";
+    var URL_getRemoteImage = "{$URL_getRemoteImage}";
+    var URL_imageManager = "{$URL_imageManager}";
+    var URL_imageUp = "{$URL_imageUp}";
+    var URL_getMovie = "{$URL_getMovie}";
+    var URL_home = "{$URL_home}";
+     
+    /*
+     * 删除组图input
+     *
+     * @access   public
+     * @val      string  删除的图片input
+     */
+
+    function ClearPicArr(val,path)
+    {
+    	$("li[rel='"+ val +"']").remove();
+    	$.get(
+    			"{:U('Admin/Uploadify/delupload')}",
+    			{action:"del", filename:val},
+    			function(){}
+    	);
+    }
+    
+    function call_back(fileurl_tmp){
+    	
+		layer.alert(fileurl_tmp, {icon: 1});  //alert(fileurl_tmp);
+    }
+</script>
+
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.config.js"/>
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.all.js"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+   	<section class="content">
+       <div class="row">
+			<div class="col-md-12">
+			
+			<div class="box box-info">
+                <div class="box-header with-border">
+                  <h3 class="box-title">发布单页</h3>
+                </div>
+                <form class="form-horizontal" action="{:U('Admin/Article/aticleHandle')}" id="add_post" method="post">
+                  <div class="box-body">
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">单页标题</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" value="{$info.title}" name="title" >
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">英文名</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" value="{$info.title}" name="title" >
+                      </div>
+                    </div>
+                   <div class="form-group">
+                      <label for="inputEmail3" class="col-sm-2 control-label">单页模板</label>
+                      <div class="col-sm-2">
+                        	<select class="small form-control" name="cat_id">
+                        		<option value="0">模板一</option>
+    							<option value="0">模板二</option>
+    							<option value="0">模板三</option>
+                        	</select>
+                      </div>
+                    </div>
+                    <div class="form-group">
+                    	<label for="text" class="col-sm-2 control-label">banner图</label>     
+                    	
+                    	<div class="col-sm-8"><input type="text" id="imagetext" name="thumb" value=""><input type="button" class="button" onClick="GetUploadify()" onclick="GetUploadify(1,'imagetext','article');" value="上传图片"/></div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-2 control-label">seo关键字</label>
+                      <div class="col-sm-8">
+                        <input type="text" class="form-control" name="keywords"  value="{$info.keywords}">
+                      </div>
+                    </div>
+                    <div class="form-group">
+                      <label for="text" class="col-sm-2 control-label">是否显示</label>
+                      <div class="col-sm-5">
+                        <div class="col-sm-2">
+                           <label><input type="radio" name="is_open"> 显示 </label>                          
+                        </div>
+                         <div class="col-sm-3">
+                           <label><input type="radio" name="is_open"> 不显示</label>                          
+                        </div>
+                      </div>
+                    </div>
+                    
+                    <div class="form-group">
+	                    <label class="control-label col-sm-2">单页内容</label>
+	                    <div class="col-sm-10">
+				        <textarea class="span12 ckeditor" id="sign_content" name="content" title="">
+				            {$info.content}
+				        </textarea>
+	                    </div>
+                      </div>
+                  </div><!-- /.box-body -->
+                  <div class="box-footer">
+                  	 <input type="hidden" name="act" value="{$act}">
+                  	 <input type="hidden" name="article_id" value="{$info.article_id}">
+                     <button type="reset" class="btn btn-default">重置</button>
+                     <button type="submit" class="btn btn-info pull-right">提交</button>
+                  </div>
+                </form>
+              </div>
+
+          </div>
+	   </div>
+	</section>
+</div>
+
+<script type="text/javascript">
+    var editor;
+    $(function () {
+        //具体参数配置在  editor_config.js  中
+        var options = {
+            zIndex: 999,
+            initialFrameWidth: "95%", //初化宽度
+            initialFrameHeight: 400, //初化高度
+            focus: false, //初始化时，是否让编辑器获得焦点true或false
+            maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign'
+            , //允许的最大字符数 'fullscreen',
+            pasteplain: true, autoHeightEnabled: true,
+            autotypeset: {
+                mergeEmptyline: true,        //合并空行
+                removeClass: true,           //去掉冗余的class
+                removeEmptyline: false,      //去掉空行
+                textAlign: "left",           //段落的排版方式，可以是 left,right,center,justify 去掉这个属性表示不执行排版
+                imageBlockLine: 'center',    //图片的浮动方式，独占一行剧中,左右浮动，默认: center,left,right,none 去掉这个属性表示不执行排版
+                pasteFilter: false,          //根据规则过滤没事粘贴进来的内容
+                clearFontSize: false,        //去掉所有的内嵌字号，使用编辑器默认的字号
+                clearFontFamily: false,      //去掉所有的内嵌字体，使用编辑器默认的字体
+                removeEmptyNode: false,      // 去掉空节点
+                                             //可以去掉的标签
+                removeTagNames: {"font": 1},
+                indent: false,               // 行首缩进
+                indentValue: '0em'           //行首缩进的大小
+            },
+        	toolbars: [
+                   ['fullscreen', 'source', '|', 'undo', 'redo',
+                       '|', 'bold', 'italic', 'underline', 'fontborder',
+                       'strikethrough', 'superscript', 'subscript',
+                       'removeformat', 'formatmatch', 'autotypeset',
+                       'blockquote', 'pasteplain', '|', 'forecolor',
+                       'backcolor', 'insertorderedlist',
+                       'insertunorderedlist', 'selectall', 'cleardoc', '|',
+                       'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
+                       'customstyle', 'paragraph', 'fontfamily', 'fontsize',
+                       '|', 'directionalityltr', 'directionalityrtl',
+                       'indent', '|', 'justifyleft', 'justifycenter',
+                       'justifyright', 'justifyjustify', '|', 'touppercase',
+                       'tolowercase', '|', 'link', 'unlink', 'anchor', '|',
+                       'imagenone', 'imageleft', 'imageright', 'imagecenter',
+                       '|', 'insertimage', 'emotion', 'insertvideo',
+                       'attachment', 'map', 'gmap', 'insertframe',
+                       'insertcode', 'webapp', 'pagebreak', 'template',
+                       'background', '|', 'horizontal', 'date', 'time',
+                       'spechars', 'wordimage', '|',
+                       'inserttable', 'deletetable',
+                       'insertparagraphbeforetable', 'insertrow', 'deleterow',
+                       'insertcol', 'deletecol', 'mergecells', 'mergeright',
+                       'mergedown', 'splittocells', 'splittorows',
+                       'splittocols', '|', 'print', 'preview', 'searchreplace']
+               ]
+        };
+        editor = new UE.ui.Editor(options);
+        editor.render("sign_content");
+        //editor.ready(function(){
+         	//editor.setContent('{$v.content}');
+        //});
+    });
+</script>
+</body>
+</html>

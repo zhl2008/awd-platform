@@ -1,0 +1,10 @@
+<foreach name="account_log" item="v" key="k"> 
+<div class="fll_acc"  onclick="ajax_account_detail(this)" data-url="{:U('Mobile/User/account_detail',['log_id'=>$v['log_id']])}">
+   	<ul>
+	      <li class="orderid-h">{$v[order_sn]|default='无'}</li>
+	      <li class="price-h">{$v[user_money]}</li>
+	      <li class="time-h">{:date('Y-m-d H:i:s',$v[change_time])}</li>
+     </ul>
+     <div class="des-h">描述:{$v[desc]}</div>
+</div>
+</foreach>

@@ -1,0 +1,279 @@
+<include file="public/layout" />
+<script type="text/javascript" src="__ROOT__/public/static/js/layer/laydate/laydate.js"></script>
+
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+    <div id="append_parent"></div>
+    <div id="ajaxwaitid"></div>
+    <div class="page">
+        <div class="fixed-bar">
+            <div class="item-title">
+                <div class="subject">
+                    <h3>发票管理</h3>
+                    <h5>商城发票查询及管理</h5>
+                </div>
+            </div>
+        </div>
+        <!-- 操作说明 -->
+        <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+            <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+                <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+                <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+            </div>
+            <ul>
+                <li>查看所有发票记录</li>                
+            </ul>
+        </div>
+        <div class="flexigrid">
+            <div class="mDiv">
+                <div class="ftitle">
+                    <h3>发票列表</h3>
+                    <h5>(共{$page->totalRows}条记录)</h5>
+                </div>
+                <div title="刷新数据" class="pReload"><i class="fa fa-refresh"></i></div>
+                <div class="ftitle" >
+                    <h3>待开发票:{$wait}</h3> 
+                    <h3>累计开票:{$total}</h3>                          
+                </div>
+                <form class="navbar-form form-inline"  method="post" action="{:U('Admin/Invoice/export_invoice')}"  name="search-form2" id="search-form2" onsubmit="return check_form();">
+                    <input type="hidden" name="timegap" id="timegap" value="{$timegap}">
+                    <div class="sDiv">
+                        <div class="sDiv2">
+                            <input type="text" size="30" id="start_time" name="start_time" value="{$start_time}" class="qsbox"  placeholder="开票开始时间">
+                        </div>
+                        <div class="sDiv2">
+                            <input type="text" size="30" id="end_time" name="end_time" value="{$end_time}" class="qsbox"  placeholder="开票结束时间">
+                        </div>
+                        <div class="sDiv2">	 
+                            <select name="status" class="select sDiv3" style="margin-right:5px;margin-left:5px">
+                                <option value="-1">发票状态</option>
+                                <option value="0">待开</option>
+                                <option value="1">已开</option>
+                                <option value="2">作废</option>                                
+                                <!--0待开1已开2作废-->
+                            </select>
+                        </div>
+
+                        <div class="sDiv2">	 
+                            <input type="button" onClick="ajax_get_table('search-form2', 1)"  class="btn" value="搜索">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="hDiv">
+                <div class="hDivBox" id="ajax_return">
+                    <table cellspacing="0" cellpadding="0">
+                        <thead>
+
+
+                            <tr>
+                                <th class="sign" axis="col0">
+                        <div style="width: 24px;"><i class="ico-check"></i></div>
+                        </th>
+                        <th align="left" abbr="order_sn" axis="col3" class="">
+                        <div style="text-align: left; width: 60px;" class="">发票编号</div>
+                        </th>
+                        <th align="left" abbr="consignee" axis="col4" class="">
+                        <div style="text-align: left; width: 150px;" class="">订单编号</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col5" class="">
+                        <div style="text-align: center; width: 150px;" class="">用户名</div>
+                        </th>
+                        
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 60px;" class="">发票类型</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 60px;" class="">开票金额</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 60px;" class="">抬头</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 60px;" class="">发票内容</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 60px;" class="">发票税率</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 120px;" class="">纳税人识别号</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 60px;" class="">发票状态</div><!--0待开1已开2作废-->
+                        </th>
+                        <th align="center" axis="col1" class="handle">
+                        <div style="text-align: center; width: 180px;">创建时间</div>
+                        </th>
+                        <th align="center" axis="col1" class="handle">
+                        <div style="text-align: center; width: 150px;">开票时间</div>
+                        </th>
+
+                        <!--                        <th align="center" axis="col1" class="handle">
+                                                <div style="text-align: center; width: 100px;">操作</div>
+                                                </th>-->
+                        <th style="width:100%" axis="col7">
+                        <div></div>
+                        </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+            <div class="tDiv">
+                <if condition="$total gt 0 or $wait gt 0">
+                <div class="tDiv2">
+                    <div class="fbutton"> <a href="javascript:exportReport()">
+                            <div class="add" title="选定行数据导出excel文件,如果不选中行，将导出列表所有数据">
+                                <span><i class="fa fa-plus"></i>导出数据</span>
+                            </div>
+                        </a> 
+                    </div>
+                </div>
+                </if>
+                <div style="clear:both"></div>
+            </div>
+            
+            <div class="bDiv" style="height: auto;">
+                <div id="flexigrid" cellpadding="0" cellspacing="0" border="0">
+
+                </div>
+                <div class="iDiv" style="display: none;"></div>
+            </div>
+            <!--分页位置--> 
+        </div>
+    </div>
+    <script type="text/javascript">
+
+
+        $(document).ready(function() {
+
+
+            // 起始位置日历控件
+            laydate.skin('molv');//选择肤色
+            laydate({
+                elem: '#start_time',
+                format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+                festival: true, //显示节日
+                istime: false,
+                choose: function(datas) { //选择日期完毕的回调
+                    compare_time($('#start_time').val(), $('#start_time').val());
+                }
+            });
+
+            // 结束位置日历控件
+            laydate({
+                elem: '#end_time',
+                format: 'YYYY-MM-DD', // 分隔符可以任意定义，该例子表示只显示年月
+                festival: true, //显示节日
+                istime: false,
+                choose: function(datas) { //选择日期完毕的回调
+                    compare_time($('#end_time').val(), $('#end_time').val());
+                }
+            });
+
+
+
+            // 点击刷新数据
+            $('.fa-refresh').click(function() {
+                location.href = location.href;
+            });
+
+            ajax_get_table('search-form2', 1);
+
+            $('.ico-check ', '.hDivBox').click(function() {
+                $('tr', '.hDivBox').toggleClass('trSelected', function(index, currentclass) {
+                    var hasClass = $(this).hasClass('trSelected');
+                    $('tr', '#flexigrid').each(function() {
+                        if (hasClass) {
+                            $(this).addClass('trSelected');
+                        } else {
+                            $(this).removeClass('trSelected');
+                        }
+                    });
+                });
+            });
+
+        });
+
+
+        //ajax 抓取页面
+        function ajax_get_table(tab, page) {
+
+            var ajaxUrl = "/index.php/Admin/Invoice/ajaxindex/p/" + page;
+
+            cur_page = page; //当前页面 保存为全局变量
+            $.ajax({
+                type: "POST",
+                url: ajaxUrl,
+                data: $('#' + tab).serialize(), // 你的formid
+                success: function(data) {
+                    $("#flexigrid").html('');
+                    $("#flexigrid").append(data);
+                    // 表格行点击选中切换
+                    $('#flexigrid > table>tbody >tr').click(function() {
+                        $(this).toggleClass('trSelected');
+                    });
+
+                }
+            });
+        }
+
+        // 删除按钮
+        function delfun(obj) {
+            layer.confirm('确定要删除吗？', {
+                btn: ['确定', '取消'] //按钮
+            }, function() {
+                // 确定
+                $.ajax({
+                    type: 'post',
+                    url: $(obj).attr('data-url'),
+                    data: {act: 'del', article_id: $(obj).attr('data-id')},
+                    dataType: 'json',
+                    success: function(data) {
+                        layer.closeAll();
+                        if (data) {
+                            $(obj).parent().parent().parent().remove();
+                        } else {
+                            layer.alert('删除失败', {icon: 2});  //alert('删除失败');
+                        }
+                    }
+                })
+            }, function(index) {
+                layer.close(index);
+            }
+            );
+        }
+
+        function exportReport() {
+            var selected_ids = '';
+            $('.trSelected', '#flexigrid').each(function(i) {
+                selected_ids += $(this).data('order-id') + ',';
+            });
+            if (selected_ids != '') {
+                $('input[name="order_ids"]').val(selected_ids.substring(0, selected_ids.length - 1));
+            }
+            $('#search-form2').submit();
+        }
+
+        function check_form() {
+            var start_time = $.trim($('#start_time').val());
+            var end_time = $.trim($('#end_time').val());
+            if (start_time == '' ^ end_time == '') {
+                layer.alert('请选择完整的时间间隔', {icon: 2});
+                return false;
+            }
+            if (start_time !== '' && end_time !== '') {
+                $('#timegap').val(start_time + " - " + end_time);
+            }
+            if (start_time == '' && end_time == '') {
+                $('#timegap').val('');
+            }
+            return true;
+        }
+        
+        function changetime(invoice_id){
+            $.post("{:U('admin/Invoice/changetime')}",{invoice_id:invoice_id},function(){});
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,20 @@
+<foreach name="comment_list" item="v1">
+    <!--待评价-s-->
+    <div class="shopprice dapco p">
+        <div class="img_or fl"><img src="{$v1[goods_id]|goods_thum_images=200,200}"></div>
+        <div class="fon_or fl">
+            <h2 class="similar-product-text">
+                <a href="{:U('Goods/goodsInfo',array('id'=>$v1[goods_id]))}">{$v1[goods_name]}</a>
+            </h2>
+            <p class="pall0">购买时间：{$v1.add_time|date='Y-m-d H:i',###}</p>
+        </div>
+        <div class="dyeai">
+            <if condition="$v1[is_comment] eq 0">
+                <a class="compj" href="{:U('Mobile/Order/add_comment',array('rec_id'=>$v1[rec_id]))}"><i class="said"></i>评价订单</a>
+            <else/>
+                <a class="compj nomar" href="{:U('Mobile/Order/order_detail',array('id'=>$v1[order_id]))}"><i class="said c23"></i>查看订单</a>
+            </if>
+        </div>
+    </div>
+    <!--待评价-e-->
+</foreach>

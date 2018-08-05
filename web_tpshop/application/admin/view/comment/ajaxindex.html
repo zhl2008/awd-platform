@@ -1,0 +1,75 @@
+<div class="table-responsive">
+    <table class="table table-bordered table-hover">
+        <thead>
+        <tr>
+            <td style="width: 1px;" class="text-center">
+                <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);">
+            </td>
+            <td class="text-center">
+                用户
+            </td>
+            <td class="text-center">
+                评论内容
+            </td>
+            <td class="text-center">
+                商品
+            </td>
+            <td class="text-center">
+                显示
+            </td>
+            <td class="text-center">
+                评论时间
+            </td>
+            <td class="text-center">
+                ip地址
+            </td>
+            <td class="text-center">操作</td>
+        </tr>
+        </thead>
+        <tbody>
+
+        <volist name="comment_list" id="list">
+            <tr>
+                <td class="text-center">
+                    <input type="checkbox" name="selected[]" value="{$list.comment_id}">
+                </td>
+                <td class="text-center">{$list.username}</td>
+                <td class="text-left">{$list.content}</td>
+                <td class="text-left"><a target="_blank" href="{:U('Home/Goods/goodsInfo',array('id'=>$list[goods_id]))}">{$goods_list[$list[goods_id]]}</a></td>
+                <td class="text-center">
+                    <img width="20" height="20" src="__PUBLIC__/images/<if condition='$list[is_show] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('comment','comment_id','{$list.comment_id}','is_show',this)"/>
+                </td>
+                <td class="text-center">{$list.add_time|date='Y-m-d H:i:s',###}</td>
+                <td class="text-center">{$list.ip_address}</td>
+
+                <td class="text-center">
+                    <a href="{:U('Admin/comment/detail',array('id'=>$list[comment_id]))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-eye"></i></a>
+                    <a href="javascript:void(0);" data-href="{:U('Admin/comment/del',array('id'=>$list[comment_id]))}" onclick="del('{$list[comment_id]}',this)" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
+                </td>
+            </tr>
+        </volist>
+
+        </tbody>
+    </table>
+    <select name="operate" id="operate">
+        <option value="0">操作选择</option>
+        <option value="show">显示</option>
+        <option value="hide">隐藏</option>
+        <option value="del">删除</option>
+    </select>
+    <button onclick="op()">确定</button>
+    <form id="op" action="{:U('Comment/op')}" method="post">
+        <input type="hidden" name="selected">
+        <input type="hidden" name="type">
+    </form>
+</div>
+<div class="row">
+    <div class="col-sm-6 text-left"></div>
+    <div class="col-sm-6 text-right">{$page}</div>
+</div>
+<script>
+    $(".pagination  a").click(function(){
+        var page = $(this).data('p');
+        ajax_get_table('search-form2',page);
+    });
+</script>

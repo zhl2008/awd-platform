@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title> 
+     <link href="__STATIC__/css/tpshop.css" rel="stylesheet" />
+     <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+     <script src="__PUBLIC__/js/layer/layer.js" type="text/javascript"></script>
+     <script src="__PUBLIC__/js/global.js" type="text/javascript"></script>
+</head>
+<body>
+<div class="relation-user-wrap">
+    <div class="relation-tips">联合登录</div>
+    <ul class="relation-lists1">
+        <li class="relation-ac">已有TPshop商城账号，请绑定</li>
+        <li>没有TPshop商城账号，请完善资料</li>
+    </ul>
+    <ul class="relation-lists2">
+        <li class="relation-ac">
+            <div class="user-tips1 p">
+                <div class="user-photo1"><img src="{$head_pic}" alt="" /></div>
+                <p class="mes-tips1">Hi, {$nickname} 欢迎来到 {$tpshop_config['shop_info_store_name']}，完成绑定后可以
+                	<if condition="$oauth eq 'weixin'">	微信
+                	<elseif condition="$oauth eq 'qq'" />	QQ
+                	<else/>支付宝
+                	</if>
+                   账号 一键登录哦~</p>
+            </div>
+            <form action="{:U('Home/User/bind_account')}" method="post" id="accountform">
+            	<input type="hidden" name="form_type" value="account"/>
+                <div class="user-login-input">
+                    <label>商 城 账 号</label>
+                    <input type="text" name="mobile" id="mobile" placeholder="邮箱/已验证手机" />
+                </div>
+                <div class="user-login-input">
+                    <label>输 入 密 码</label>
+                    <input type="password" name="password" id="password" placeholder="6-16位字符，建议由字母、数字和符号两种以上组合" />
+                </div>
+                <div class="user-login-input v-code1-h">
+                    <label>验　证　码</label>
+                    <input type="text" placeholder="请输入验证码" name="verify_code" id="verify_code"/>
+                    <img class="v-code-pic" onclick="verify(this);" id="verify_code_img" alt="" />
+                </div>
+                <p class="forget-password"><a href="{:U('Home/User/forget_pwd')}">忘记密码？</a></p>
+                <input class="btn-register" type="button" onclick="checkSubmit(1)" value="立即绑定"  />
+            </form>
+        </li>
+        <li>
+            <div class="user-tips1 p">
+                <div class="user-photo1"><img src="{$head_pic}" alt="" /></div>
+                <p class="mes-tips1">Hi, {$nickname} 欢迎来到 {$tpshop_config['shop_info_store_name']}，完成绑定后可以
+                	<if condition="$oauth eq 'weixin'">	微信
+                	<elseif condition="$oauth eq 'qq'" />	QQ
+                	<else/>支付宝
+                	</if>账号
+                    一键登录哦~</p>
+            </div>
+            <form action="{:U('Home/User/bind_reg')}" method="post" id="regform">
+            	<input type="hidden" name="form_type" value="reg"/>
+            	<div class="user-login-input">
+                    <label>用 户 昵 称</label>
+                    <input type="text" placeholder="用户昵称" name="nickname" id="nickname" value="{$nickname}"/>
+                </div>
+                <div class="user-login-input">
+                    <label>用　户　名</label>
+                    <input type="text" placeholder="已验证手机" name="mobile" id="mobile"/>
+                </div>
+                <div class="user-login-input">
+                    <label>设 置 密 码</label>
+                    <input type="password" placeholder="6-16位字符，建议由字母、数字和符号两种以上组合" name="password" id="password"/>
+                </div>
+                <div class="user-login-input">
+                    <label>确 认 密 码</label>
+                    <input type="password" placeholder="6-16位字符，建议由字母、数字和符号两种以上组合" name="pwdRepeat" id="pwdRepeat"/>
+                </div>
+                <div class="user-login-input v-code1-h">
+                    <label>验　证　码</label>
+                    <input type="text" placeholder="请输入验证码" name="verify_code" id="verify_code"/>
+                    <img class="v-code-pic" onclick="verify(this);" id="verify_code_img2" alt="" />
+                </div>
+                <div class="user-login-input v-code1-h">
+                    <label>手机验证码</label>
+                    <input type="text" placeholder="请输入手机验证码"  name="sms_code" id="sms_code"/>
+                    <button class="v-code-btn v-code-pic" type="button" id="count_down" onclick="send_sms_reg_code()">获取手机验证码</button>
+                </div>
+                <div class="form-agreen">
+                    <input type="checkbox"  value="1"/>
+                    我已阅读并同意
+                    <a class="itxt" href="{:U('Home/Article/detail',['article_id'=>1415])}" target="_blank">《TPshop商城用户注册协议》</a>
+                </div>
+                <input class="btn-register" type="button" onclick="checkSubmit(2)" value="立即绑定"  />
+            </form>
+        </li>
+    </ul>
+    <script>
+    
+	    $(function(){
+	        verify();
+	        
+	        var form_type = "{$Request.param.form_type}";
+	        console.log("form_type : "+form_type);
+	    })
+	    
+	    function verify(){
+	        $('#verify_code_img').attr('src','/index.php?m=Home&c=User&type=user_reg&a=verify&r='+Math.random());
+	        var verify_code = $('#verify_code_img').attr('src');
+	        $('#verify_code_img2').attr('src',verify_code);
+	    }
+    
+        $('.relation-lists1>li').click(function () { //点击切换列表
+            $(this).addClass('relation-ac').siblings().removeClass('relation-ac');
+            $('.relation-lists2>li').eq($(this).index()).addClass('relation-ac').siblings().removeClass('relation-ac');
+        })
+        
+        function checkSubmit(type){
+        	var url = "";
+        	var formData = "";
+        	if(type == 1){
+        		 
+        		//formData = $('#accountform').serialize();
+        		var mobile = $("#accountform").find("input[name='mobile']").val();
+        		//绑定账号 
+        		if(mobile == ''){
+        			showErrorMsg("请输入手机号码");
+        			$("#accountform").find("input[name='mobile']").focus();
+        			return;
+        		}
+        		if(!checkMobile(mobile)){
+        			showErrorMsg("手机号码格式不正确");
+        			$("#accountform").find("input[name='mobile']").focus();
+        			return;
+        		}
+        		
+        	 
+        		if($("#accountform").find("input[name='password']").val() == ''){
+        			showErrorMsg("请输入密码");
+        			$("#accountform").find("input[name='password']").focus();
+        			return;
+        		} 
+        		if($("#accountform").find("input[name='password']").val().length < 6){
+        			showErrorMsg("6-16位字符，建议由字母、数字和符号两种以上组合");
+        			$("#accountform").find("input[name='password']").focus();
+        			return;
+        		}
+        		if($("#accountform").find("input[name='verify_code']").val() == ''){
+        			showErrorMsg("请输入图像验证码");
+        			$("#accountform").find("input[name='verify_code']").focus();
+        			return;
+        		} 
+        		$('#accountform').submit();
+        		console.log('submit');
+        		 
+        	}else{
+        		//注册账号 
+        		formData = $('#regform').serialize();
+        		url = "{:U('Home/User/bind_reg')}";
+        		if($("#regform").find("input[name='mobile']").val() == ''){
+        			showErrorMsg("请输入手机号码");
+        			$("#regform").find("input[name='mobile']").focus();
+        			return;
+        		}
+        		if($("#regform").find("input[name='password']").val() == ''){
+        			showErrorMsg("请输入密码");
+        			$("#regform").find("input[name='password']").focus();
+        			return;
+        		}
+        		if($("#regform").find("input[name='password']").val().length < 6){
+        			showErrorMsg("密码要求6-16位字符，建议由字母、数字和符号两种以上组合");
+        			$("#accountform").find("input[name='password']").focus();
+        			return;
+        		}
+        		if($("#regform").find("input[name='pwdRepeat']").val() == ''){
+        			showErrorMsg("请输入确认密码");
+        			$("#regform").find("input[name='pwdRepeat']").focus();
+        			return;
+        		}
+        		if($("#regform").find("input[name='pwdRepeat']").val().length < 6){
+        			showErrorMsg("密码要求6-16位字符，建议由字母、数字和符号两种以上组合");
+        			$("#accountform").find("input[name='password']").focus();
+        			return;
+        		}
+        		if($("#regform").find("input[name='pwdRepeat']").val() != $("#regform").find("input[name='pwdRepeat']").val()){
+        			showErrorMsg("两次密码输入不正确");
+        			$("#regform").find("input[name='pwdRepeat']").focus();
+        			return;
+        		}
+        		
+        		if($("#regform").find("input[name='sms_code']").val() == ''){
+        			showErrorMsg("请输入短信验证码");
+        			$("#regform").find("input[name='sms_code']").focus();
+        			return;
+        		}
+        		
+        		
+        		if($('input:checkbox').is(':checked')){
+        			$('#regform').submit();
+        		}else{
+        			showErrorMsg("请阅读并同意注册协议");
+        		}
+        	} 
+        }
+        
+        function bind_submit(type){
+        	 
+        }
+        
+    	// 发送手机短信
+        function send_sms_reg_code(){
+            var mobile = $("#regform").find("input[name='mobile']").val();
+            var verify_code = $("#regform").find("input[name='verify_code']").val();
+            if(!checkMobile(mobile)){
+            	showErrorMsg('请输入正确的手机号码'); 
+                return;
+            }
+            if(verify_code == ''){
+            	showErrorMsg('请输入图像验证码'); 
+                return;
+            }
+            var url = "/index.php?m=Home&c=Api&a=send_validate_code&scene=1&type=mobile&mobile="+mobile+"&verify_code="+verify_code;
+            $.ajax({
+                url:url,
+                dataType: "json",
+                success: function(res){
+                	if(res.status == 1)
+        			{
+        				$('#count_down').attr("disabled","disabled");
+        				intAs = {$tpshop_config['sms_sms_time_out']}; // 手机短信超时时间
+                        jsInnerTimeout('count_down',intAs);
+                        layer.alert(res.msg, {icon: 1});
+        			}else{
+        				showErrorMsg(res.msg);
+                        verify()
+                    }
+                }
+            });
+        }
+     
+        $('#count_down').removeAttr("disabled");
+        //倒计时函数
+        function jsInnerTimeout(id,intAs)
+        {
+            var codeObj=$("#"+id);
+            intAs--;
+            if(intAs<=-1)
+            {
+                codeObj.removeAttr("disabled");
+                codeObj.text("发送");
+                return true;
+            }
+            codeObj.text(intAs+'秒');
+            setTimeout("jsInnerTimeout('"+id+"',"+intAs+")",1000);
+        };
+     
+      //提示弹窗
+        function showErrorMsg(msg){
+            layer.alert(msg, {icon: 2});
+        }
+    </script>
+</div>
+</body>
+</html>

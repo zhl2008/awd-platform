@@ -1,0 +1,10 @@
+<foreach name="account_log" item="v">
+    <div class="fll_acc">
+        <ul>
+            <li class="orderid-h">{$v[order_sn]|default='无'}</li>
+            <li class="price-h">{$v[pay_points]}</li>
+            <li class="time-h">{:date('Y-m-d H:i:s',$v[change_time])}</li>
+        </ul>
+        <div class="des-h">描述:{$v[desc]}</div> 
+    </div>
+</foreach>

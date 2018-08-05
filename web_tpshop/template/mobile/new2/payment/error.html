@@ -1,0 +1,18 @@
+<include file="public/header" title="支付失败"/>
+<div class="completionpay">
+    <div class="maleri30">
+        <div class="llog"><img src="{$tpshop_config['shop_info_store_logo']}"/></div>
+        <div class="heses">
+            <div class="zbzim"><img src="__STATIC__/images/icogantanhao-sb.png"/></div>
+            <p class="success"><span class="red">抱歉订单支付失败！</span></p>
+            <p class="ddnum"><span>订单号：</span><span>{$order['order_sn']}</span></p>
+            <p class="ddnum"><span>付款金额：</span><span class="red">{$order['order_amount']}</span><span>元</span></p>
+            <p class="ddnum"><span>您可以重新支付</span></p>
+            <div class="ddxq-succ">
+                <a href="{:U('/Mobile/Order/order_detail',array('id'=>$order['order_id']))}">订单详情</a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>我的账户-{$tpshop_config['shop_info_store_title']}</title>
+    <meta name="keywords" content="{$tpshop_config['shop_info_store_keyword']}" />
+    <meta name="description" content="{$tpshop_config['shop_info_store_desc']}" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/security_set.css"/>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/btn.css"/>
+    <style>
+        .col_main {
+            width: 1000px;
+            float: right;
+        }
+        .main {
+            background-color: #ffffff;
+            padding: 15px;
+        }
+        .themes_title {
+            border-bottom: 2px solid #eee;
+            height: 20px;
+            line-height: 20px;
+            padding: 0 10px 7px 5px;
+            margin-bottom: 20px;
+            position: relative;
+            margin-top: -3px;
+        }
+        .themes_title h3 {
+            color: #6c6c6c;
+            font-size: 14px;
+            font-weight: bold;
+            float:left;
+        }
+        .themes_title h2{
+            float:right;
+            font-weight:700;
+        }
+        .themes_title h2 a{
+            color:#f22e00;
+        }
+        .themes_title h2:after{
+            content:"";
+            clear:both;
+        }
+        .themes_title .blue {
+            position: absolute;
+            right: 10px;
+            bottom: 6px;
+        }
+    </style>
+</head>
+<body class="bg-f5">
+<include file="user/header"/>
+<div class="home-index-middle">
+    <div class="w1224">
+        <div class="g-crumbs">
+            <a href="{:U('Home/User/index')}">我的商城</a>
+        </div>
+        <div class="home-main">
+            <include file="user/menu"/>
+            <div class="col_main">
+                <div class="main security_passwd">
+                    <div class="themes_title">
+                        <h3>安全设置</h3>
+                    </div>
+                    <section class="security_passwd">
+                        <div class="wrapper-3">
+                            <!--<div id="step" class="pub-step">-->
+                                <!--<div class="steps-nav fixed ">-->
+                                    <!--<p class="step-nav step-nav-1 go">1.原邮箱<i></i></p>-->
+                                    <!--<p class="step-nav step-nav-2 go">2.新邮箱<i></i></p>-->
+                                    <!--<p class="step-nav step-nav-3 go">3.完成</p>-->
+                                <!--</div>-->
+                                <form action="" method="post" onSubmit="return check_form();">
+                                    <div id="stepBlock2" class="steps-con block-02">
+                                        <div class="step-col fn-form captcha_row" data-fn-verify="">
+                                            <ul style="display: block;" class="pub-ul verify-captcha-sms">
+                                                <notempty name="user_info.email">
+                                                    <li> <span class="title">原邮箱：</span>
+                                                        <div class="con verify-group">
+                                                            <input type="text" class="it-01 verify-ctrl my_chkpwd" value="{$user_info['email']}" name="old_email" id="old_email" readonly="readonly"
+                                                                   style="cursor: not-allowed;color:#999" />
+                    <span style="display: block" class="v-tips verify-tips" id="span_tips">
+                    	<i class="icon" id="showForPwdtip"></i>
+                        <span class="txt" id="showForPwd"></span>
+                    </span>
+                                                        </div>
+                                                    </li>
+                                                </notempty>
+                                                <li> <span class="title">新邮箱：</span>
+                                                    <div class="con verify-group">
+                                                        <input type="text" class="it-01 verify-ctrl my_chkpwd" value="" name="email" id="new_email">
+                                                        <span style="display: block;" class="v-tips verify-tips"> <i class="icon" id="rightTip"></i> <span id="errorEmail" class="txt"></span> </span> </div>
+                                                </li>
+                                                <li> <span class="title">验证码：</span>
+                                                    <div class="con verify-group">
+                                                        <input type="text" class="msg-code ie-01 verify-ctrl left" name="code" id="new_code">&nbsp;&nbsp;
+                                                        <input type="button"  value="获取验证码"  id="btnemailAuthCode2"  onClick="sendCode(this,'new_email')" style="width:100px;"  intervaltime="120"/>
+                                                    </div>
+                                                </li>
+                                                <li>
+                                                    <button class="btn_120 verify-ctrl" type="submit"> 确定 </button>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer-s-->
+<div class="footer p">
+    <include file="public/footer" />
+</div>
+<!--footer-e-->
+<script>
+
+    // 表单提交验证
+    function check_form()
+    {
+        var old_email = $('#old_email').val();
+        var new_email = $('#new_email').val();
+        //原邮箱不为空的情况下 验证格式
+        if(old_email != ''){
+            if(!checkEmail(old_email) && typeof(old_email) != 'undefined'){
+                layer.alert('原邮箱格式错误', {icon: 2});//alert('原邮箱格式错误');
+                return false;
+            }
+        }
+        if(!checkEmail(new_email)){
+            layer.alert('新邮箱格式错误', {icon: 2});//alert('新邮箱格式错误');
+            return false;
+        }
+
+        if($.trim($('#new_code').val()) == '')
+        {
+            layer.alert('验证码不能为空', {icon: 2});//alert('验证码不能为空');
+            return false;
+        }
+        return true;
+    }
+
+    function sendCode(obj,input_id)
+    {
+        var id = $(obj).attr('id');
+        var input = $('#'+input_id).val();
+        var old_email = $('#old_email').val();
+        //原邮箱不为空的情况下 验证格式
+        if(old_email != '' && typeof(old_email) != 'undefined'){
+            if(!checkEmail(old_email)){
+                layer.alert('原邮箱格式错误', {icon: 2});//alert('原邮箱格式错误');
+                return false;
+            }
+        }
+        if(!checkEmail(input)){
+            layer.alert('邮箱格式错误', {icon: 2});//alert('邮箱格式错误');
+            return false;
+        }
+        var url = "/index.php?m=Home&c=Api&a=send_validate_code&type=email&send="+input;
+        //发送验证码
+        $.ajax({
+            type : "get",
+            url : url,
+            dataType : 'json',
+            error: function(request) {
+                layer.alert('服务器繁忙, 请联系管理员!', {icon: 2});//alert("服务器繁忙, 请联系管理员!");
+                return;
+            },
+            success: function(res) {
+                if(res.status == 1){
+                    jsInnerTimeout(id);
+                }else{
+                    layer.alert(res.msg,{icon: 2});//alert('发送失败');
+                }
+            }
+        });
+    }
+
+    //倒计时函数
+    function jsInnerTimeout(id)
+    {
+
+        var codeObj=$("#"+id);
+        var intAs=parseInt(codeObj.attr("IntervalTime"));
+
+        intAs--;
+        codeObj.attr("disabled","disabled");
+        if(intAs<=-1)
+        {
+            codeObj.removeAttr("disabled");
+            codeObj.attr("IntervalTime",120);
+            codeObj.val("获取验证码");
+            return true;
+        }
+        codeObj.val(intAs+'s后再次获取');
+        codeObj.attr("IntervalTime",intAs);
+        setTimeout("jsInnerTimeout('"+id+"')",1000);
+    };
+
+</script>
+</body>
+</html>

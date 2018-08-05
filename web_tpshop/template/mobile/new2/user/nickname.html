@@ -1,0 +1,17 @@
+<include file="public/header" title="修改昵称" body=""/>
+<include file="public/header_nav" title="修改昵称"  href="{:U('Mobile/User/userinfo')}"/>
+    <div class="loginsingup-input ma-to-20">
+        <form action="{:U('Mobile/User/userinfo')}" method="post">
+            <div class="lsu lsu-recharge">
+                <span>昵　称 : </span>
+                <input type="text" name="nickname" value="{$user.nickname}" placeholder="请输入昵称" onBlur="checkMobilePhone(this.value);"/>
+            </div>
+            <div class="lsu-submit">
+                <input type="submit" name="" id="" value="确认修改" />
+            </div>
+        </form>
+    </div>
+<script>
+</script>
+</body>
+</html>

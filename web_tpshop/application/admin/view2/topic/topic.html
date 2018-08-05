@@ -1,0 +1,131 @@
+<include file="public/layout" />
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.config.js"/>
+<load href="__ROOT__/public/plugins/Ueditor/ueditor.all.min.js"/>
+<script type="text/javascript" charset="utf-8" src="__ROOT__/public/plugins/Ueditor/lang/zh-cn/zh-cn.js"></script>
+<style type="text/css">
+    html, body {
+        overflow: visible;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+            <div class="subject">
+                <h3>专题管理 - 编辑专题</h3>
+                <h5>网站系统专题索引与管理</h5>
+            </div>
+        </div>
+    </div>
+    <form class="form-horizontal" id="handleposition"  method="post">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">
+                    <label><em>*</em>专题标题</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="topic_title" value="{$info.topic_title}"class="input-txt">
+                    <span class="err" id="err_topic_title"></span>
+                    <p class="notic"></p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="topic_image">专题封面</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+                        <span class="show">
+                            <a id="img_a" target="_blank" class="nyroModal" rel="gal" href="{$info.topic_image}">
+                                <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$info.topic_image}>',this,{tips: [1, '#fff']})" onmouseout="layer.closeAll();"></i>
+                            </a>
+                        </span>
+           	            <span class="type-file-box">
+                            <input type="text" id="topic_image" name="topic_image" value="{$info.topic_image}" class="type-file-text">
+                            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','topic','img_call_back')" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">请上传990像素x240像素的图片作为专题页面的封面图</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label>内容块距顶部：</label>
+                </dt>
+                <dd class="opt">
+                    <input type="text" name="topic_margin_top" value="{$info.topic_margin_top}" class="input-txt">px
+                    <span class="err"></span>
+                    <p class="notic">像素</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">专题内容</dt>
+                <dd class="opt">
+                    <textarea class="span12 ckeditor" name="topic_content" id="topic_content" style="">{$info.topic_content|htmlspecialchars_decode}</textarea>
+                </dd>
+            </dl>
+            <div class="bot">
+                <a href="JavaScript:void(0);"  onclick="adsubmit(1)" class="ncap-btn-big ncap-btn-green">保存草稿</a>
+                <a href="JavaScript:void(0);"  onclick="adsubmit(2)" class="ncap-btn-big ncap-btn-green">发布专题</a>
+            </div>
+        </div>
+        <input type="hidden" name="act" value="{$act}">
+        <input type="hidden" name="topic_id" value="{$info.topic_id}">
+        <input type="hidden" id="topic_state" name="topic_state" value="2">
+    </form>
+</div>
+<script type="text/javascript">
+	var url="{:url('Ueditor/index',array('savePath'=>'topic'))}";
+	var ue = UE.getEditor('topic_content',{
+	    serverUrl :url,
+	    zIndex: 999,
+	    initialFrameWidth: "90%", //初化宽度
+	    initialFrameHeight: 300, //初化高度            
+	    focus: false, //初始化时，是否让编辑器获得焦点true或false
+	    maximumWords: 99999, removeFormatAttributes: 'class,style,lang,width,height,align,hspace,valign',//允许的最大字符数 'fullscreen',
+	    pasteplain:false, //是否默认为纯文本粘贴。false为不使用纯文本粘贴，true为使用纯文本粘贴
+	    autoHeightEnabled: true
+	});
+
+    function adsubmit(state) {
+        $('span.err').hide();
+        $('#topic_state').val(state);
+        $.ajax({
+            type: "POST",
+            url: "{:U('Admin/Topic/topicHandle')}",
+            data: $('#handleposition').serialize(),
+            dataType: "json",
+            error: function () {
+                layer.alert("服务器繁忙, 请联系管理员!");
+            },
+            success: function (data) {
+                if (data.status === 1) {
+                    layer.msg(data.msg, {icon: 1,time: 1000}, function() {
+                        location.href = "{:U('Admin/Topic/topicList')}";
+                    });
+                } else if(data.status === 0) {
+                    layer.msg(data.msg, {icon: 2,time: 1000});
+                    $.each(data.result, function(index, item) {
+                        $('#err_' + index).text(item).show();
+                    });
+                } else {
+                    layer.msg(data.msg, {icon: 2,time: 1000});
+                }
+            }
+        });
+    }
+    
+    function img_call_back(fileurl_tmp)
+    {
+        $("#topic_image").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+</script>
+</body>
+</html>

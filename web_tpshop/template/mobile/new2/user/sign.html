@@ -1,0 +1,102 @@
+<include file="public/header" title="签到" body=""/>
+<div class="panel1-sign">
+    <div class="user-sign">
+        <i><img src="__STATIC__/images/user-photo3.png" alt="" /></i>
+        <span>{$user['nickname']}</span>
+    </div>
+    <div class="integral-sign">
+        <span>本月已获：<span id="benyue"><notempty name="$info['thismonth']">{$info['thismonth']}<else/>0</notempty></span>分</span>
+        <span>累计总积分：<span id="cumtrapz"><notempty name="$info['cumtrapz']">{$info['cumtrapz']}<else/>{$cumtrapz|default="0"}</notempty></span>分</span>
+    </div>
+    <notempty name="$tab">
+<!--        <div class="click-sign" id="click-sign"></div>-->
+        
+        <div class="click-sign" id="click-sign">
+            <span id="cgspan">+10积分</span>
+        </div>
+        
+        <else/>
+        <div class="click-sign clicked-sign" id="click-sign">
+            
+        </div>
+    </notempty>
+    <p class="continuity-sign">
+        本月已连续签到 <i > <span id="lianxuday"> <notempty name="$info">{$info['signcount']}<else/>0</notempty></i> </span>天，<span class="c-7">连续签到{$config['sign_signcount']}天即得{$jifen}积分</span><span  class="c-20">连续签到20天即得200积分</span>
+    </p>
+</div>
+<div class="panel2-sign">
+    <h3><i id="year">0</i>年<i id="month">0</i>月签到</h3>
+    <ul class="weeks-sign p">
+        <li>日</li>
+        <li>一</li>
+        <li>二</li>
+        <li>三</li>
+        <li>四</li>
+        <li>五</li>
+        <li>六</li>
+    </ul>
+    <ul class="calendar-sign p" id="calendar-sign">
+    </ul>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var calendar = $('#calendar-sign'); //共用日历包裹元素
+            function setCalendar() { /*生成日历和年月*/
+                var date = new Date();   //实例化一个日历
+                var year = date.getFullYear(); //获取当前年份
+                var month = date.getMonth(); //获取当前月份
+                //填充年、月文本
+                $('#year').text(year);
+                $('#month').text(month + 1);
+                //获取当前月第一天是星期几
+                date.setMonth(month, 1);
+                var day = date.getDay();
+                //获取当前月的天数
+                date.setMonth(month + 1, 0);
+                var length = date.getDate();
+                for (var i = 0; i < day - 1; i++) { //生成空白
+                    calendar.append('<li data-date="-1"></li>');
+                }
+                for (var j = 1; j <= length; j++) { //生成天
+                    calendar.append('<li data-date="' + j + '">' + j + '<i></i></li>');
+                }
+            }
+            setCalendar();
+            function setChecked() { //打钩
+//            var arr=[1,2,3,5,9,10];//模拟天数
+                var arr = [{$str}];
+                for (var i = 0, l = arr.length; i < l; i++) {
+                    calendar.find('li[data-date="' + arr[i] + '"]').addClass('checked');
+                }
+            }
+            setChecked();
+            $('#click-sign').click(function() { //点击签到
+                var d = new Date();
+                var str = d.getFullYear() + "-" + (d.getMonth() + 1) + "-" + d.getDate();               
+                var date = new Date();
+                var daty = date.getDate();
+                $.post("{:U('User/sign')}", {str: str}, function(d) {
+                    var da = eval("(" + d + ")");
+                    if (da.status == 1) {
+                        $('#click-sign').addClass('clicked-sign');
+                        calendar.find('li[data-date="' + daty + '"]').addClass('checked');
+                        $("#cgspan").text("+"+da.result+"积分");
+                        setTimeout(function(){  //使用  setTimeout（）方法设定定时2000毫秒
+                            window.location.reload();//页面刷新
+                        },2000);
+                        
+                    }
+                    layer.open({content: da.msg, time: 2});
+                });
+
+            });
+        });
+    </script>
+</div>
+<div class="rule-sign">
+    <h5>签到规则：</h5>
+    <p>1.用户每日签到可获取积分奖励，连续签到相应天数可额外获得积分奖励；</p>
+    <p>2.签到送积分活动长期有效；</p>
+    <p>3.本活动最终解释权归TPshop商家所有。</p>
+</div>
+</body>
+</html>

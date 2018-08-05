@@ -1,0 +1,240 @@
+<include file="public/layout" />
+ 
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="{:U('Admin/Order/refund_order_list')}" title="返回退款单"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>退款单详情</h3>
+        <h5>用户提交退款单详情</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" method="post" id="refund_form"  name="refund_form" action="{:U('Admin/Order/refund_order')}">
+   <div class="ncap-order-style">
+    <div class="ncap-order-details">
+        <div class="tabs-panels">
+            <div class="misc-info">
+                <h3>基本信息</h3>
+                <dl>
+                    <dt>订单 ID：</dt>
+                    <dd>{$order.order_id}</dd>
+                    <dt>订单号：</dt>
+                    <dd>{$order.order_sn}</dd>
+                    <dt>会员：</dt>
+                    <dd>{$order.consignee}</dd>
+                </dl>
+                <dl>
+                    <dt>E-Mail：</dt>
+                    <dd>{$order.email}</dd>
+                    <dt>电话：</dt>
+                    <dd>{$order.mobile}</dd>
+                    <dt>应付金额：</dt>
+                    <dd>{$order.order_amount}</dd>
+                </dl>
+                <dl>
+                    <dt>订单状态：</dt>
+                    <dd>{$order_status[$order[order_status]]} / {$pay_status[$order[pay_status]]}
+                        / {$shipping_status[$order[shipping_status]]}
+                    </dd>
+                    <dt>下单时间：</dt>
+                    <dd>{$order.add_time|date='Y-m-d H:i',###}</dd>
+                    <dt>支付时间：</dt>
+                    <dd>
+                        <if condition="$order.pay_time neq 0">{$order.pay_time|date='Y-m-d H:i',###}
+                            <else/>
+                            N
+                        </if>
+                    </dd>
+                </dl>
+                <dl>
+                    <dt>支付方式：</dt>
+                    <dd>{$order.pay_name|default='其他方式'}</dd>
+                    <dt>发票抬头：</dt>
+                    <dd>{$order.invoice_title|default='N'}</dd>
+                </dl>
+            </div>
+        
+        <div class="addr-note">
+          <h4>收货信息</h4>
+          <dl>
+            <dt>收货人：</dt>
+            <dd>{$order.consignee}</dd>
+            <dt>联系方式：</dt>
+            <dd>{$order.mobile}</dd>
+          </dl>
+          <dl>
+            <dt>收货地址：</dt>
+            <dd>{$order.address2}</dd>
+          </dl>
+          <dl>
+            <dt>邮编：</dt>
+            	<dd><if condition="$order.zipcode neq ''"> {$order.zipcode}<else/>N</if></dd>
+          </dl>
+          <dl>
+           		<dt>配送方式：</dt>
+            	<dd>{$order.shipping_name}</dd>
+          	</dl>
+          	<dl>
+           		<dt>取消订单留言：</dt>
+            	<dd>{$order.user_note|default=''}</dd>
+          	</dl>
+        </div>
+        <div class="goods-info">
+          <h4>商品信息</h4>
+          <table>
+            <thead>
+              <tr>
+                <th >商品编号</th>
+                <th colspan="2">商品</th>
+                <th>规格属性</th>
+                <th>数量</th>
+                <th>单品价格</th>
+                <th>会员折扣价</th>
+                <th>单品小计</th>
+              </tr>
+            </thead>
+            <tbody>
+            <volist name="orderGoods" id="good">
+           	<tr>
+                <td class="w60">{$good.goods_sn}</td>
+                <td class="w30"><div class="goods-thumb"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$good['goods_id']))}" target="_blank"><img alt="" src="{$good['goods_id']|goods_thum_images=200,200}" /> </a></div></td>
+                <td style="text-align: left;"><a href="{:U('Home/Goods/goodsInfo',array('id'=>$good['goods_id']))}" target="_blank">{$good.goods_name}</a><br/></td>
+                <td class="w80">{$good.spec_key_name}</td>
+                <td class="w60">{$good.goods_num}</td>
+                <td class="w100">{$good.goods_price}</td>
+                <td class="w60">{$good.member_goods_price}</td>
+                <td class="w80">{$good.goods_total}</td>
+              </tr>
+              </volist>
+          </table>
+        </div>
+        <div class="total-amount contact-info">
+          <h3>订单总额：￥{$order.goods_price}</h3>
+        </div>
+        <div class="contact-info">
+          <h3>费用信息 </h3>
+          <div class="form_class">
+          		<a class="btn green" href="{:U('Admin/Order/editprice',array('order_id'=>$order['order_id']))}"><i class="fa fa-pencil-square-o"></i>修改费用</a>
+          </div>   
+          <dl>
+            <dt>小计：</dt>
+            <dd>{$order.goods_price}</dd>
+            <dt>运费：</dt>
+            <dd>+{$order.shipping_price}</dd>
+            <dt>积分 (-{$order.integral})：</dt>
+            <dd>-{$order.integral_money}</dd>
+          </dl>
+          <dl>
+            <dt>余额抵扣：</dt>
+            <dd>-{$order.user_money}</dd>
+            <dt>优惠券抵扣：</dt>
+            <dd>-{$order.coupon_price}</dd>
+            <dt>价格调整：</dt>
+            <dd>减：{$order.discount}</dd>
+          </dl>
+          <dl>
+            <dt>应付：</dt>
+            <dd><strong class="red_common">{$order.order_amount}</strong></dd>
+           </dl>
+        </div>
+        <div class="contact-info">
+          <h3>退款处理</h3>
+             <if condition="$order.pay_status eq 1">
+             <dl class="row">
+                 <dt class="tit">
+                     <label>审核意见</label>
+                 </dt>
+                 <dd class="opt">
+                     <label class="pay_status"><input type="radio" name="pay_status" value="3" checked>同意退款</label>
+                     <label class="pay_status"><input type="radio" name="pay_status" value="4">拒绝退款</label>
+                 </dd>
+             </dl>
+             <dl class="row refund_type">
+                 <dt class="tit">
+                     <label>退款方式</label>
+                 </dt>
+                 <dd class="opt">
+                     <label><input type="radio" name="refund_type" value="0" checked>支付原路退回</label>
+                     <label><input type="radio" name="refund_type" value="1">退到用户余额</label>
+                 </dd>
+             </dl>
+             <dl class="row">
+		        <dt class="tit">
+		          <label for="note">处理备注</label>
+		        </dt>
+		        <dd class="opt" style="margin-left:10px">
+		         <textarea id="admin_note" name="admin_note" style="width:600px" rows="6"  placeholder="请输入操作备注" class="tarea">{$order.admin_note}</textarea>
+		        </dd>
+		      </dl>
+		      <dl class="row">
+		      	<dt  class="tit"></dt>
+		      	<dd class="opt" style="margin-left:10px">
+		      	    <input type="hidden" name="order_id" value="{$order.order_id}">
+               		<a href="JavaScript:;" onClick="refundOrder();" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a>
+		      	</dd>
+		      </dl>
+             </if>
+             <if condition="$order.pay_status eq 3">
+             <dl class="row">
+                 <dt class="tit">
+                     <label>退款信息：</label>
+                 </dt>
+                 <dd class="opt">
+                     <label>  已退款</label>
+                 </dd>
+             </dl>
+             <dl class="row">
+		        <dt class="tit">
+		          <label for="note">处理备注：</label>
+		        </dt>
+		        <dd class="opt" style="margin-left:10px">
+		         <textarea id="admin_note" name="admin_note" style="width:600px" rows="6"  placeholder="请输入操作备注" class="tarea">{$order.admin_note}</textarea>
+		        </dd>
+		      </dl>
+             </if>
+             <if condition="$order.pay_status eq 4">
+             <dl class="row">
+		        <dt class="tit">
+		          <label for="note">处理备注</label>
+		        </dt>
+		        <dd class="opt" style="margin-left:10px">
+		         <textarea id="admin_note" name="admin_note" style="width:600px" rows="6"  placeholder="请输入操作备注" class="tarea">{$order.admin_note}</textarea>
+		        </dd>
+		      </dl>
+             </if>
+        </div>
+      </div>
+  	</div>
+  	</div>
+  </form>
+</div>
+<script type="text/javascript">
+function refundOrder(){
+	var admin_note = $('#admin_note').val();
+	if(admin_note == ''){
+		layer.alert('请填写备注', {icon: 2});
+		return false;
+	} 
+	$('#refund_form').submit();
+}
+//审核意见
+$(document).on('click','.pay_status',function(){
+    var pay_status = $(this).find('input[name="pay_status"]').val();
+    if(pay_status == 4){
+        $('.refund_type').hide()
+    }else{
+        $('.refund_type').show()
+    }
+})
+</script>
+</body>
+</html>

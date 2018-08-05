@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>我的优惠券</title>
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/tpshop.css" />
+    <link rel="stylesheet" type="text/css" href="__STATIC__/css/myaccount.css" />
+    <script src="__STATIC__/js/jquery-1.11.3.min.js" type="text/javascript" charset="utf-8"></script>
+</head>
+
+<body class="bg-f5">
+<include file="user/header"/>
+<div class="home-index-middle">
+    <div class="w1224">
+        <div class="g-crumbs">
+            <a href="{:U('Home/User/index')}">我的商城</a>
+            <i class="litt-xyb"></i>
+            <span>我的优惠券</span>
+        </div>
+        <div class="home-main">
+            <include file="user/menu"/>
+            <div class="ri-menu fr">
+                <div class="menumain p">
+                    <div class="coup-tit p">
+                        <h1>我的优惠券</h1>
+                        <div class="tu">
+                            <!--<div class="sclq lqs">-->
+                                <!--<i class="top-up"></i>-->
+                                <!--<span><a href="">充值优惠券</a></span>-->
+                            <!--</div>-->
+                            <div class="sclq">
+                                <i class="top-up lq"></i>
+                                <span><a href="{:U('Home/Activity/coupon_list')}">领取更多优惠券</a></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="menumain p me-matin">
+                    <div class="cp-type-tit p">
+                        <div class="type p">
+                            <ul class="ty-fir">
+                                <li>优惠券类型：</li>
+                                <!--<li class="coupon-t-s">-->
+                                    <!--<a href="javascript:void(0);"><span class="alltype">全部类型</span><i class="jt-x"></i></a>-->
+                                    <!--<ul class="sec-ul">-->
+                                        <!--<li class="red">-->
+                                            <!--<a href="javascript:void(0);">全部类型</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">自营</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">商城</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">环球购</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">抵用券</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">免邮券</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">礼品券</a>-->
+                                        <!--</li>-->
+                                        <!--<li>-->
+                                            <!--<a href="javascript:void(0);">以旧换新券</a>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                                <li class="coupon-t-s sbs">
+                                    <a href="javascript:void(0);"><span class="alltype"><if condition="$Request.param.type eq 1">已使用<elseif condition="$Request.param.type eq 2"/>已失效<else/>未使用</if></span><i class="jt-x"></i></a>
+                                    <ul class="sec-ul">
+                                        <li <if condition="$Request.param.type eq ''">class="red"</if>>
+                                        <a href="{:U('Home/User/coupon')}">未使用</a>
+                                        </li>
+                                        <li <if condition="$Request.param.type eq 1">class="red"</if>>
+                                            <a href="{:U('Home/User/coupon',array('type'=>1))}">已使用</a>
+                                        </li>
+                                        <li <if condition="$Request.param.type eq 2">class="red"</if>>
+                                            <a href="{:U('Home/User/coupon',array('type'=>2))}">已失效</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <ul class="ty-las">
+                                <!--<li class="red">-->
+                                    <!--<a href="javascript:void(0);">默认</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">最近到账</a>-->
+                                <!--</li>-->
+                                <!--<li>-->
+                                    <!--<a href="javascript:void(0);">即将过期</a>-->
+                                <!--</li>-->
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="howuse">
+                        <a href="" style="display: none">如何使用优惠券？</a>
+                    </div>
+                    <empty name="coupon_list">
+                        <p class="norecode" style="font-size: 12px;color: #999999;padding: 50px 0;text-align: center;">没有记录！</p>
+                    </empty>
+                    <div class="coupon-items">
+                        <volist name="coupon_list" id="coupon">
+                        <div class="coupon-item <if condition="$Request.param.type eq ''">coupon-item-d<else/>coupon-item-dgray</if>">
+                            <div class="c-type">
+                                <div class="c-price">
+                                    <em>¥</em>
+                                    <strong>{$coupon.money}</strong>
+                                </div>
+                                <div class="c-limit">
+                                    【{$coupon.name}】
+                                </div>
+                                <div class="c-time">&nbsp;&nbsp;</div>
+                                <div class="c-time">
+                                    <if condition="$Request.param.type eq 1"/>
+                                        使用时间：{$coupon.use_time|date="Y.m.d",###}
+                                    <else/>
+                                        有效期至：{$coupon.use_end_time|date="Y.m.d",###}
+                                    </if>
+
+                                </div>
+                                <div class="c-type-top"></div>
+                                <div class="c-type-bottom"></div>
+                            </div>
+                            <div class="c-msg">
+                                <div class="c-range">
+                                    <div class="range-item">
+                                        <span class="label">限条件：</span>
+                                        <span class="txt">订单满{$coupon.condition}使用</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">限品类：</span>
+                                        <span class="txt">{$coupon.use_scope}</span>
+                                    </div>
+                                    <div class="range-item" style="display: none">
+                                        <span class="label">券编号：</span>
+                                        <span class="txt">{$coupon.code}</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">&nbsp;&nbsp;</span>
+                                        <span class="txt">&nbsp;&nbsp;</span>
+                                    </div>
+                                </div>
+                                <div class="op-btns">
+                                    <if condition="$Request.param.type eq 1">
+                                        <a class="btncoupon" ><span class="txt">已使用</span><b></b></a>
+                                    <elseif condition="$Request.param.type eq 2"/>
+                                        <a class="btncoupon" ><span class="txt">已失效</span><b></b></a>
+                                    <else/>
+                                        <if condition="$coupon.use_type eq 2">
+                                            <a class="btncoupon" href="{:U('Goods/goodsList',['id'=>$coupon.category_id])}">
+                                        <elseif condition="$coupon.use_type eq 1">
+                                            <a class="btncoupon" href="{:U('Goods/goodsInfo',['id'=>$coupon.goods_id])}">
+                                        <else/>
+                                            <a class="btncoupon" href="/">
+                                        </if>
+                                            <span class="txt">立即使用</span><b></b>
+                                        </a>
+                                    </if>
+                                </div>
+                                <if condition="$Request.param.type eq 1">
+                                    <div class="ftx-03 ac mt5">此优惠券已使用</div>
+                                <elseif condition="$Request.param.type eq 2"/>
+                                    <div class="ftx-03 ac mt5">此优惠券已失效</div>
+                                <else/>
+                                    <div class="ftx-03 ac mt5">此优惠券可以使用</div>
+                                </if>
+                            </div>
+                            <div class="c-del"></div>
+                        </div>
+                    </volist>
+                    </div>
+                </div>
+                <div class="page p">
+                    {$page}
+                </div>
+                <!--好券推荐-s-->
+                <!--<div class="menumain ma-to-20 p">
+                    <div class="goodpiece">
+                        <h1>好卷推荐</h1>
+                        <a href=""><span>更多<i class="top-up tu_more"></i></span></a>
+                    </div>
+                    <div class="coupon-items ma-to-20">
+                        <div class="coupon-item coupon-item-d">
+                            <div class="c-type">
+                                <div class="c-price">
+                                    <em>¥</em>
+                                    <strong>20</strong>
+                                </div>
+                                <div class="c-limit">
+                                    【满21可用】
+                                </div>
+                                <div class="c-time">&nbsp;&nbsp;</div>
+                                <div class="c-time">2017.03.28-2017.03.30</div>
+                                <div class="c-type-top"></div>
+                                <div class="c-type-bottom"></div>
+                            </div>
+                            <div class="c-msg">
+                                <div class="c-range">
+                                    <div class="range-item">
+                                        <span class="label">限品类：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">限平台：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">券编号：</span>
+                                        <span class="txt">9754238363</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">&nbsp;&nbsp;</span>
+                                        <span class="txt">&nbsp;&nbsp;</span>
+                                    </div>
+                                </div>
+                                <div class="op-btns">
+                                    <a class="btncoupon" href=""><span class="txt">立即领取</span><b></b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon-item coupon-item-d">
+                            <div class="c-type">
+                                <div class="c-price">
+                                    <em>¥</em>
+                                    <strong>20</strong>
+                                </div>
+                                <div class="c-limit">
+                                    【满21可用】
+                                </div>
+                                <div class="c-time">&nbsp;&nbsp;</div>
+                                <div class="c-time">2017.03.28-2017.03.30</div>
+                                <div class="c-type-top"></div>
+                                <div class="c-type-bottom"></div>
+                            </div>
+                            <div class="c-msg">
+                                <div class="c-range">
+                                    <div class="range-item">
+                                        <span class="label">限品类：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">限平台：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">券编号：</span>
+                                        <span class="txt">9754238363</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">&nbsp;&nbsp;</span>
+                                        <span class="txt">&nbsp;&nbsp;</span>
+                                    </div>
+                                </div>
+                                <div class="op-btns">
+                                    <a class="btncoupon" href=""><span class="txt">立即领取</span><b></b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon-item coupon-item-d">
+                            <div class="c-type">
+                                <div class="c-price">
+                                    <em>¥</em>
+                                    <strong>20</strong>
+                                </div>
+                                <div class="c-limit">
+                                    【满21可用】
+                                </div>
+                                <div class="c-time">&nbsp;&nbsp;</div>
+                                <div class="c-time">2017.03.28-2017.03.30</div>
+                                <div class="c-type-top"></div>
+                                <div class="c-type-bottom"></div>
+                            </div>
+                            <div class="c-msg">
+                                <div class="c-range">
+                                    <div class="range-item">
+                                        <span class="label">限品类：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">限平台：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">券编号：</span>
+                                        <span class="txt">9754238363</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">&nbsp;&nbsp;</span>
+                                        <span class="txt">&nbsp;&nbsp;</span>
+                                    </div>
+                                </div>
+                                <div class="op-btns">
+                                    <a class="btncoupon" href=""><span class="txt">立即领取</span><b></b></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="coupon-item coupon-item-d">
+                            <div class="c-type">
+                                <div class="c-price">
+                                    <em>¥</em>
+                                    <strong>20</strong>
+                                </div>
+                                <div class="c-limit">
+                                    【满21可用】
+                                </div>
+                                <div class="c-time">&nbsp;&nbsp;</div>
+                                <div class="c-time">2017.03.28-2017.03.30</div>
+                                <div class="c-type-top"></div>
+                                <div class="c-type-bottom"></div>
+                            </div>
+                            <div class="c-msg">
+                                <div class="c-range">
+                                    <div class="range-item">
+                                        <span class="label">限品类：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">限平台：</span>
+                                        <span class="txt">全平台</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">券编号：</span>
+                                        <span class="txt">9754238363</span>
+                                    </div>
+                                    <div class="range-item">
+                                        <span class="label">&nbsp;&nbsp;</span>
+                                        <span class="txt">&nbsp;&nbsp;</span>
+                                    </div>
+                                </div>
+                                <div class="op-btns">
+                                    <a class="btncoupon" href=""><span class="txt">立即领取</span><b></b></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <!--好券推荐-s-->
+            </div>
+        </div>
+    </div>
+</div>
+<!--footer-s-->
+<div class="footer p">
+    <include file="public/footer" />
+</div>
+<!--footer-e-->
+<script type="text/javascript">
+    $(function() {
+        $('.sec-ul li').click(function() {
+            var text = $(this).find('a').text();
+            $(this).parent().siblings().find('.alltype').text(text);
+            $(this).addClass('red').siblings().removeClass('red');
+        })
+        $('.ty-las li').click(function() {
+            $(this).addClass('red').siblings().removeClass('red');
+        })
+    })
+    $(function(){
+        $('.coupon-items .coupon-item').hover(function(){
+            $(this).addClass('coupon-item-hover');
+        },function(){
+            $(this).removeClass('coupon-item-hover');
+        })
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,15 @@
+<if condition="empty($messages)">
+    <p class="norecode" style="font-size: 16px;color: #999999;padding:100px 0;text-align: center;">抱歉，您暂时没有要处理的消息！</p>
+    <else/>
+    <volist name="messages" id="message">
+        <div class="tp_message" id="message_{$message.message_id}">
+            <h3><if condition="$message['category'] eq 1">活动通知<else/>系统通知</if></h3>
+            <p class="tpcontent">{$message['message']}</p>
+            <p class="checknoti"><em>{$message['send_time']|date='Y-m-d H:i:s',###}</em></p>
+            <p class="checknoti">
+                <a href="javascript:;" onclick="del_message({$message.category},{$message.message_id})">删除消息</a>
+            </p>
+            <!--<p class="checknoti"><a href="">查看详情></a></p>-->
+        </div>
+    </volist>
+</if>

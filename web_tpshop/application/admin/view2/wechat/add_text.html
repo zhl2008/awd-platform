@@ -1,0 +1,83 @@
+<include file="public/layout" />
+ 
+<style type="text/css">
+html, body {
+	overflow: visible;
+}
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="微信公众号配置"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>文本回复</h3>
+        <h5>添加或编辑文本回复内容</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" method="post" id="handlepost" action="">    
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label><em>*</em>关键词</label>
+        </dt>
+        <dd class="opt">
+          <input type="text" name="keyword" id="keyword" value="{$keyword.keyword}" class="input-txt">
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="cate_id"><em>*</em>回复内容</label>
+        </dt>
+        <dd class="opt">
+         <textarea name="text" rows="6"  placeholder="回复内容" class="tarea" id="subject_desc">{$keyword.text}</textarea>
+        </dd>
+      </dl>    
+      <input type="hidden" value="{$keyword.id}" name="kid">
+      <div class="bot"><a href="JavaScript:void(0);" onClick="formSubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">确认提交</a></div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+  
+$(document).ready(function(){
+	
+	$("#handlepost").validate({
+		debug: true, //调试模式取消submit的默认提交功能   
+		focusInvalid: false, //当为false时，验证无效时，没有焦点响应  
+        onkeyup: false,   
+        submitHandler: function(form){   //表单提交句柄,为一回调函数，带一个参数：form   
+            form.submit();   //提交表单   
+        },  
+        ignore:":button",	//不验证的元素
+        rules:{
+        	keyword:{
+        		required:true
+        	},
+        	text:{
+        		required:true
+        	}
+        },
+        messages:{
+        	keyword:{
+        		required:"请输入关键词"
+        	},
+        	text:{
+        		required:"请填写回复内容"
+        	} 
+        }
+	});
+	
+	 
+});
+
+function formSubmit(){
+	$("#handlepost").submit();
+}
+    
+</script>
+</body>
+</html>

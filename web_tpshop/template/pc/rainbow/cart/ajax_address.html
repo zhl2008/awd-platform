@@ -1,0 +1,44 @@
+<foreach name="address_list" item="v"  key="k">
+
+    <if condition="$v[is_default] eq 1"> <!--默认选中的地址-->
+        <div class="order-address-list address_current">
+            <table width="100%" cellspacing="0" cellpadding="0" border="1" class="address">
+                <tbody>
+                <tr>
+                    <td width="5%"  class="default"><i></i></td>
+                    <td width="5%"  class="co-red default">寄送至</td>
+                    <td width="5%"  class="address_id"><input type="radio" data-province-id="{$v[province]}" data-city-id="{$v[city]}" data-district-id="{$v[district]}" onclick="swidth_address(this);" name="address_id" value="{$v[address_id]}" checked="checked" /></td>
+                    <td width="15%"  class="consignee"><b>收货人:{$v[consignee]}</b></td>
+                    <td width="40%"  class="address2"><span>地址:{$regionList[$v[province]]} {$regionList[$v[city]]} {$regionList[$v[district]]} {$regionList[$v[twon]]} {$v[address]}</span></td>
+                    <td width="15%"  class="mobile"><span>电话：{$v[mobile]}</span></td>
+                    <td width="5%"  class="wi100"><span>默认地址</span></td>
+                    <td width="5%"  class="wi100"><span><a onclick="add_edit_address({$v[address_id]});">修改</a></span></td>
+                    <td><a onclick="del_address({$v[address_id]});"><div class="gwc-gb ma-ri-20"></div></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <script>
+            ajax_pickup({$v[province]},{$v[city]},{$v[district]},0);
+        </script>
+        <else />
+        <div class="order-address-list">
+            <table width="100%" cellspacing="0" cellpadding="0" border="1" class="address">
+                <tbody>
+                <tr>
+                    <td width="5%"  class="default"><i></i></td>
+                    <td width="5%"  class="co-red default">寄送至</td>
+                    <td width="5%"  class="address_id"><input type="radio" data-province-id="{$v[province]}" data-city-id="{$v[city]}" data-district-id="{$v[district]}" onclick="swidth_address(this);"  name="address_id" value="{$v[address_id]}" /></td>
+                    <td width="15%" class="consignee"><b>收货人:{$v[consignee]}</b></td>
+                    <td width="40%"  class="address2"><span>地址:{$regionList[$v[province]]} {$regionList[$v[city]]} {$regionList[$v[district]]} {$regionList[$v[twon]]} {$v[address]}</span></td>
+                    <td width="15%" class="mobile"><span>电话：{$v[mobile]}</span></td>
+                    <td width="5%"  class="wi100"><span>&nbsp;&nbsp;</span></td>
+                    <td width="5%"  class="wi100"><span><a onclick="add_edit_address({$v[address_id]});">修改</a></span></td>
+                    <td><a onclick="del_address({$v[address_id]});"><div class="gwc-gb ma-ri-20"></div></a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </if>
+
+</foreach>

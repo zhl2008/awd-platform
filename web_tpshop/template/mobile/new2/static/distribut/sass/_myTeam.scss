@@ -1,0 +1,48 @@
+.my_team_alon{
+    position: relative;
+    padding: 34px/$ppr 40px/$ppr;
+    border-bottom: 1px solid #f5f5f5;
+    background: white;
+}
+.team_head{
+    width: 115px/$ppr;
+    height: 115px/$ppr;
+    overflow: hidden;
+    border-radius:50%;
+    float: left;
+    img{
+        width: 115px/$ppr;
+        height: 115px/$ppr;
+        border-radius:50%;
+    }
+}
+.team_name_time{
+    float: left;
+    font-family: "黑体";
+    margin-left: 20px/$ppr;
+    width: 330px/$ppr;
+    padding: 26px/$ppr 0;
+    .t_n{
+        @include fs(font-size,34);
+        color: #555555;
+        display: block;
+        @include cutOut;
+    }
+    .t_t{
+        color: #7f7f7f;
+        @include fs(font-size,24);
+        display: block;
+        margin-top: 6px/$ppr;
+        @include cutOut;
+    }
+}
+.team_price{
+    padding-left: 6px/$ppr;
+    width: 180px/$ppr;
+    margin: 42px/$ppr 0;
+    float: left;
+    color: #e63138;
+    @include fs(font-size,30);
+    display: block;
+    @include cutOut;
+}

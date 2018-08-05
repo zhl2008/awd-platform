@@ -1,0 +1,79 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <include file="public/breadcrumb"/>
+    <section class="content">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">                           		
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i>清除缓存</h3>
+                </div>
+                <div class="panel-body">
+                    <ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_tongyong" data-toggle="tab">选择要清除的缓存</a></li>
+                    </ul>
+                    <!--表单数据-->
+                    <form method="post" id="cleanCache">                    
+                        <!--通用信息-->
+                    <div class="tab-content">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">
+                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td>提示:</td>
+                                    <td>
+                                        <font style="color:#F00">如果页面做了修改，建议清除对应的页面以及模板缓存</font>
+                                        <br/>清除商品缩列图到商品列表页面选择性清除, 清除单个商品静态页到商品列表页选择
+                                    </td>
+                                </tr>                                  
+                                <tr>
+                                    <td>静态页面:</td>
+                                    <td>
+                                        <input type="checkbox" name="clear[]" value="index" /> 首页
+                                        <input type="checkbox" name="clear[]" value="goodsList" /> 商品列表页
+                                        <input type="checkbox" name="clear[]" value="goodsInfo" /> 所有商品详情页
+                                        <input type="checkbox" name="clear[]" value="channel" /> 频道页
+                                        <input type="checkbox" name="clear[]" value="articleList" /> 文章列表页
+                                        <input type="checkbox" name="clear[]" value="detail" /> 文章详情页
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>数据:</td>
+                                    <td>
+                                        <input type="checkbox" name="clear[]" value="cache" /> 模板缓存(Cache)
+                                        <input type="checkbox" name="clear[]" value="data" /> 项目数据(Data)
+                                        <input type="checkbox" name="clear[]" value="logs" /> logs日志(Logs)
+                                        <input type="checkbox" name="clear[]" value="temp" /> 临时数据(Temp)
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>商品缩略图:</td>
+                                    <td>                                        
+                                        清除商品缩列图到商品列表页面选择性清除, 清除单个商品静态页到商品列表页选择
+                                    </td>
+                                </tr> 
+                                <tr>
+                                    <td>清除所有:</td>
+                                    <td>                                        
+                                        <input type="checkbox" id="cacheAll" name="clear[]" value="cacheAll" onclick="$('input[name*=\'clear\']').prop('checked', this.checked);"/> 所有
+                                    </td>
+                                </tr>                                
+                                </tbody>                                
+                                </table>
+                        </div>                           
+                    </div>              
+                    <div class="pull-right">
+                        <button class="btn btn-primary" type="submit" >提交</button>
+                    </div>
+			    </form><!--表单数据-->
+                </div>
+            </div>
+        </div>    <!-- /.content -->
+    </section>
+</div> 
+    
+</body>
+</html>

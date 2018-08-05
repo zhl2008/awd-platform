@@ -1,0 +1,255 @@
+<include file="public/layout" />
+<style>
+    .span_1 {
+        float: left;
+        margin-left: 0px;
+        height: 130px;
+        line-height: 130px;
+    }
+
+    .span_1 ul {
+        list-style: none;
+        padding: 0px;
+    }
+
+    .span_1 ul li {
+        border: 1px solid #CCC;
+        height: 40px;
+        padding: 0px 10px;
+        margin-left: -1px;
+        margin-top: -1px;
+        line-height: 40px;
+    }
+</style>
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+    <div class="fixed-bar">
+        <div class="item-title">
+            <div class="subject">
+                <h3>商城设置</h3>
+                <h5>网站全局内容基本选项设置</h5>
+            </div>
+            <ul class="tab-base nc-row">
+                <foreach name="group_list" item="v" key="k">
+                    <li><a href="{:U('System/index',['inc_type'=> $k])}" <if condition="$k==$inc_type">class="current"</if>><span>{$v}</span></a></li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+    <!-- 操作说明 -->
+    <div class="explanation" id="explanation">
+        <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+            <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+            <span id="explanationZoom" title="收起提示"></span> </div>
+        <ul>
+            <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>
+        </ul>
+    </div>
+    <form method="post" id="handlepost" action="{:U('System/handle')}">
+        <input type="hidden" name="inc_type" value="{$inc_type}">
+        <div class="ncap-form-default">
+            <dl class="row">
+                <dt class="tit">商品图片添加水印</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="is_mark1" class="cb-enable <if condition='$config[is_mark] eq 1'>selected</if>" >开启</label>
+                        <label for="is_mark0" class="cb-disable <if condition='$config[is_mark] eq 0'>selected</if>" >关闭</label>
+                        <input id="is_mark1" name="is_mark" value="1" <if condition="$config['is_mark'] eq 1">checked</if> type="radio">
+                        <input id="is_mark0" name="is_mark" value="0" <if condition="$config['is_mark'] eq 0">checked</if> type="radio">
+                    </div>
+                    <p class="notic">商品图片添加水印</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">水印类型</dt>
+                <dd class="opt">
+                    <div class="onoff">
+                        <label for="mark_type1" class="cb-enable <if condition="$config[mark_type] eq 'text'">selected</if>" >文字</label>
+                        <label for="mark_type0" class="cb-disable <if condition="$config[mark_type] eq 'img'">selected</if>" >图片</label>
+                        <input id="mark_type1" onclick="setwarter('text')" name="mark_type" value="text" <if condition="$config['mark_type'] eq 'text'">checked</if> type="radio">
+                        <input id="mark_type0" onclick="setwarter('img')" name="mark_type"  value="img" <if condition="$config['mark_type'] eq 'img'">checked</if> type="radio">
+                    </div>
+                    <p class="notic">水印类型</p>
+                </dd>
+            </dl>
+            <dl class="row texttr" style="display:none;">
+                <dt class="tit">
+                    <label for="mark_txt">水印文字</label>
+                </dt>
+                <dd class="opt">
+                    <input name="mark_txt" id="mark_txt" value="{$config.mark_txt}" class="input-txt" type="text" />
+                    <p class="notic">水印文字</p>
+                </dd>
+            </dl>
+            <dl class="row texttr" style="display:none;">
+                <dt class="tit">
+                    <label for="mark_txt_size">文字字号</label>
+                </dt>
+                <dd class="opt">
+                    <input name="mark_txt_size" id="mark_txt" value="{$config.mark_txt_size|default=30}" class="input-txt" type="text" />
+                    <p class="notic">字体大小</p>
+                </dd>
+            </dl>
+            <dl class="row texttr" style="display:none;">
+                <dt class="tit">
+                    <label for="mark_txt_color">文字颜色</label>
+                </dt>
+                <dd class="opt">
+                    <input name="mark_txt_color" id="mark_txt" value="{$config.mark_txt_color|default='#000000'}" class="input-txt" type="text" />
+                    <p class="notic">如‘#000000’代表黑色</p>
+                </dd>
+            </dl>
+            <dl class="row imgtr">
+                <dt class="tit">
+                    <label for="mark_img">水印图片</label>
+                </dt>
+                <dd class="opt">
+                    <div class="input-file-show">
+                        <span class="show">
+                            <a id="img_a" class="nyroModal" rel="gal" href="{$config.mark_img}">
+                                <i id="img_i" class="fa fa-picture-o" onmouseover="layer.tips('<img src={$config.mark_img}>',this,{tips: [1, '#fff']});" onmouseout="layer.closeAll();"></i>
+                            </a>
+                        </span>
+           	            <span class="type-file-box">
+                            <input type="text"  name="mark_img" id="mark_img" value="{$config.mark_img}" class="type-file-text">
+                            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+                            <input class="type-file-file" onClick="GetUploadify(1,'','water','call_back');" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+                        </span>
+                    </div>
+                    <span class="err"></span>
+                    <p class="notic">默认网站LOGO,通用头部显示，最佳显示尺寸为240*60像素</p>
+                </dd>
+            </dl>
+            <dl class="row imgtr">
+                <dt class="tit">水印添加条件</dt>
+                <dd class="opt">
+                    <ul class="nofloat">
+                        <li>
+                            <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" value="{$config.mark_width}" name="mark_width" id="mark_width" checked="checked" type="text">
+                            <span class="err">只能输入整数</span>
+                            <label for="mark_width">图片宽度 单位像素(px)</label>
+                        </li>
+                        <li>
+                            <input onKeyUp="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" pattern="^\d{1,}$" value="{$config.mark_height}" name="mark_height" id="mark_height" checked="checked" type="text">
+                            <label for="mark_height">图片高度 单位像素(px)</label>
+                        </li>
+                    </ul>
+                    <p class="notic">水印的宽度和高度</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="mark_degree">水印透明度</label>
+                </dt>
+                <dd class="opt">
+                    <input pattern="^\d{1,}$" onblur="$('#mark_degree2').empty().html(this.value);" name="mark_degree" id="mark_degree" value="{$config.mark_degree}" class="input-txt" type="range" min="0" step="2" max="100">
+                    <span class="err" id="mark_degree2">{$config.mark_degree}</span>
+                    <p class="notic">0代表完全透明，100代表不透明</p>
+                </dd>
+            </dl>
+            <dl class="row imgtr">
+                <dt class="tit">
+                    <label for="mark_degree">JPEG 水印质量</label>
+                </dt>
+                <dd class="opt">
+                    <input pattern="^\d{1,}$" onblur="$('#mark_quality2').empty().html(this.value);" name="mark_quality" id="mark_quality" value="{$config.mark_quality}" class="input-txt" type="range" min="0" step="2" max="100">
+                    <span class="err" id="mark_quality2">{$config.mark_quality}</span>
+                    <p class="notic">水印质量请设置为0-100之间的数字,决定 jpg 格式图片的质量</p>
+                </dd>
+            </dl>
+            <dl class="row">
+                <dt class="tit">
+                    <label for="mark_degree">水印位置</label>
+                </dt>
+                <dd class="opt">
+                    <div style="height:124px; background:#fff">
+                            <span class="span_1">
+                                <ul>
+                                    <li><input type="radio" name="sel" value="1"
+                                        <if condition="$config['sel'] eq '1'">checked</if>
+                                        >&nbsp;顶部居左
+                                    </li>
+                                    <li><input type="radio" name="sel" value="4"
+                                        <if condition="$config['sel'] eq '4'">checked</if>
+                                        >&nbsp;中部居左
+                                    </li>
+                                    <li><input type="radio" name="sel" value="7"
+                                        <if condition="$config['sel'] eq '7'">checked</if>
+                                        >&nbsp;底部居左
+                                    </li>
+                                </ul>
+                            </span>
+                            <span class="span_1">
+                                <ul>
+                                    <li><input type="radio" name="sel" value="2"
+                                        <if condition="$config['sel'] eq '2'">checked</if>
+                                        >&nbsp;顶部居中
+                                    </li>
+                                    <li><input type="radio" name="sel" value="5"
+                                        <if condition="$config['sel'] eq '5'">checked</if>
+                                        >&nbsp;中部居中
+                                    </li>
+                                    <li><input type="radio" name="sel" value="8"
+                                        <if condition="$config['sel'] eq '8'">checked</if>
+                                        >&nbsp;底部居中
+                                    </li>
+                                </ul>
+                            </span>
+                            <span class="span_1">
+                                <ul>
+                                    <li><input type="radio" name="sel" value="3"
+                                        <if condition="$config['sel'] eq '3'">checked</if>
+                                        >&nbsp;顶部居右
+                                    </li>
+                                    <li><input type="radio" name="sel" value="6"
+                                        <if condition="$config['sel'] eq '6'">checked</if>
+                                        >&nbsp;中部居右
+                                    </li>
+                                    <li><input type="radio" name="sel" value="9"
+                                        <if condition="$config['sel'] eq '9'">checked</if>
+                                        >&nbsp;底部居右
+                                    </li>
+                                </ul>
+                            </span>
+                        <div style="clear:both;"></div>
+                    </div>
+                </dd>
+            </dl>
+            <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onclick="adsubmit();">确认提交</a></div>
+        </div>
+    </form>
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+</body>
+<script>
+    function adsubmit(){
+        $('#handlepost').submit();
+    }
+
+    $(document).ready(function(){
+        get_province();
+        var marktype = "{$config['mark_type']}";
+        setwarter(marktype);
+    });
+
+
+    // 上传水印图片成功回调函数
+    function call_back(fileurl_tmp){
+        $("#mark_img").val(fileurl_tmp);
+        $("#img_a").attr('href', fileurl_tmp);
+        $("#img_i").attr('onmouseover', "layer.tips('<img src="+fileurl_tmp+">',this,{tips: [1, '#fff']});");
+    }
+
+    function setwarter(marktype){
+        if(marktype == 'text'){
+            $('.texttr').show();
+            $('.imgtr').hide();
+        }else{
+            $('.texttr').hide();
+            $('.imgtr').show();
+        }
+    }
+</script>
+</html>

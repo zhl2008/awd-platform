@@ -1,0 +1,90 @@
+<include file="public/min-header"/>
+
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	           	<div class="box-header">
+	               <nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('/Admin/topList')}" method="post">
+				            <div class="form-group">
+				              	<input type="text" name="keywords" class="form-control" placeholder="搜索">
+				            </div>
+				            <button type="submit" class="btn btn-default">提交</button>
+				            <div class="form-group pull-right">
+					            <a href="{:U('Topic/topic')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>新增专题</a>
+				            </div>		          
+				          </form>		
+				      	</div>
+	    			</nav>                
+	             </div>	    
+	             <!-- /.box-header -->
+	             <div class="box-body">	             
+	           		<div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable">
+		                 <thead>
+		                   <tr role="row">
+			                   <th class="sorting" tabindex="0">专题标题</th>
+			                   <th class="sorting" tabindex="0">专题状态</th>
+			                   <th class="sorting" tabindex="0">创建时间</th>
+			                   <th class="sorting" tabindex="0">专题封面</th>
+			                   <th class="sorting" tabindex="0">操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+						  <foreach name="list" item="vo" key="k" >
+						  	<tr role="row" align="center">
+		                     <td>{$vo.topic_title}</td>
+		                     <td>{$vo.topic_state}</td>
+		                     <td>{$vo.ctime}</td>
+		                     <td>{$vo.topic_image}</td>
+		                     <td>
+		                      <a target="_blank" href="{:U('Home/Topic/detail',array('topic_id'=>$vo['topic_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+		                      <a class="btn btn-primary" href="{:U('Topic/topic',array('act'=>'edit','topic_id'=>$vo['topic_id']))}"><i class="fa fa-pencil"></i></a>
+		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Topic/topicHandle')}" data-id="{$vo.topic_id}" onclick="delfun(this)"><i class="fa fa-trash-o"></i></a>
+							</td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>
+		                 
+		                 </tfoot>
+		               </table>
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	          </div><!-- /.box-body -->
+	        </div><!-- /.box -->
+       	</div>
+       </div>
+   </section>
+</div>
+<script>
+function delfun(obj){
+	if(confirm('确认删除')){		
+		$.ajax({
+			type : 'post',
+			url : $(obj).attr('data-url'),
+			data : {act:'del',topic_id:$(obj).attr('data-id')},
+			dataType : 'json',
+			success : function(data){
+				if(data){
+					$(obj).parent().parent().remove();
+				}else{
+					layer.alert('删除失败', {icon: 2});  //alert('删除失败');
+				}
+			}
+		})
+	}
+	return false;
+}
+</script>  
+</body>
+</html>

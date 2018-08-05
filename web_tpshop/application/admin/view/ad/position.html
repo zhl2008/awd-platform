@@ -1,0 +1,79 @@
+<include file="public/min-header" />
+<div class="wrapper">
+	<include file="public/breadcrumb"/>		
+    <section class="content ">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+             	<a href="javascript:history.go(-1)" class="btn btn-default"><i class="fa fa-reply"></i> 返回</a>
+            	<a href="javascript:;" class="btn btn-default" data-url="http://www.tp-shop.cn/Doc/Index/article/id/166/developer/user.html" onclick="get_help(this)"><i class="fa fa-question-circle"></i> 帮助</a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="fa fa-list"></i> 添加广告位</h3>
+                </div>
+                <div class="panel-body ">   
+                    <!--表单数据-->
+                    <form method="post" id="handleposition" action="{:U('Admin/Ad/positionHandle')}">                    
+                        <!--通用信息-->
+                    <div class="tab-content col-md-10">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">                           
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="col-sm-2">广告位名称：</td>
+                                    <td class="col-sm-8">
+                                        <input type="text" class="form-control" name="position_name" value="{$info.position_name}" >
+                                        <span id="err_attr_name" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>广告位宽度：</td>
+                                    <td >
+                         				<input type="text" class="input-sm" name="ad_width" value="{$info.ad_width}" > px
+                                        <span id="err_type_id" style="color:#F00; display:none;"></span>                                        
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>广告位高度：</td>
+                                    <td>
+                               			<input type="text" class="input-sm" name="ad_height" value="{$info.ad_height}" > px
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>广告位描述：</td>
+                                    <td>
+                             			<input type="text" class="form-control" name="position_desc" value="{$info.position_desc}" >
+                                    </td>
+                                </tr>  
+                                <tr>
+                                    <td>是否启用：</td>
+                                    <td>
+                      					<input type="radio" name="is_open" value="1" <if condition="$info[is_open] eq 1"> checked="checked"</if>> 开启
+                      					<input type="radio" name="is_open" value="0" <if condition="$info[is_open] eq 0"> checked="checked"</if>> 关闭
+                                    </td>
+                                </tr>                                
+                                </tbody> 
+                                <tfoot>
+                                	<tr>
+                                	<td><input type="hidden" name="act" value="{$act}">
+                                		<input type="hidden" name="position_id" value="{$info.position_id}">
+                                	</td>
+                                	<td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td></tr>
+                                </tfoot>                               
+                                </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function adsubmit(){
+	$('#handleposition').submit();
+}
+</script>
+</body>
+</html>

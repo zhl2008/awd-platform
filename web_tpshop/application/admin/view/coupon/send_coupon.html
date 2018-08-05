@@ -1,0 +1,88 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="navbar navbar-default">
+              <form action="{:U('Coupon/send_coupon')}" id="search-form" class="navbar-form form-inline" method="post">
+                <div class="form-group">
+                  <select name="level_id" id="level_id" class="form-control">
+                    <option value="0">所有会员</option>
+                    <foreach name="level" item="vo">
+                       <option value="{$vo['level_id']}" <if condition="$vo[level_id] eq $level_id">selected</if>> {$vo['level_name']}</option>
+	 			    </foreach>
+                  </select>
+                </div>
+                <input type="hidden" name="cid" id="cid" value="{$cid}">
+                <button type="submit" id="button-filter" class="btn btn-info">确定发送优惠券</button>
+              </form>
+          </div>
+          <div class="navbar navbar-default">
+             <form action="" id="search-form2" class="navbar-form form-inline" method="post" onsubmit="return false">
+               <div class="form-group">
+                   <label class="control-label" for="input-mobile">手机号码</label>
+                   <div class="input-group">
+                       <input type="text" name="mobile" value="" placeholder="手机号码" id="input-mobile" class="form-control">
+                   </div>
+               </div>
+
+               <div class="form-group">
+                   <label class="control-label" for="input-email">email</label>
+                   <div class="input-group">
+                       <input type="text" name="email" value="" placeholder="email" id="input-email" class="form-control">                      
+                   </div>
+               </div>
+               <div class="form-group">
+                  <label class="control-label" for="input-order-id">昵称关键词</label>
+                  <div class="input-group">
+                    <input type="text" name="nickname" value="{$nickname}" placeholder="搜索词" id="input-order-id" class="form-control">
+                  </div>
+                </div>
+                <button type="button" onclick="ajax_get_table('search-form2',1)" id="button-filter search-order" class="btn btn-primary"><i class="fa fa-search"></i>查找</button>
+              	<button type="button" onclick="doconfirm()" id="button-filter" class="btn btn-info pull-right">确定发送优惠券</button>	  
+              </form>
+          </div>
+          <form method="post" action="" id="form-user">
+           <input type="hidden" name="cid" id="cid" value="{$cid}">
+	          <div id="ajax_return"> 
+		
+	          </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+<script>
+    $(document).ready(function(){
+        ajax_get_table('search-form2',1);
+
+    });
+
+    // ajax 抓取页面
+    function ajax_get_table(tab,page){
+        cur_page = page; //当前页面 保存为全局变量
+            $.ajax({
+                type : "POST",
+                url:"/index.php/Admin/Coupon/ajax_get_user/p/"+page,//+tab,
+                data : $('#'+tab).serialize(),// 你的formid
+                success: function(data){
+                    $("#ajax_return").html('');
+                    $("#ajax_return").append(data);
+                }
+            });
+    }
+
+    function doconfirm(){
+  	   if($("input[type='checkbox']:checked").length == 0)
+ 	   {
+ 		   layer.alert('请选择会员', {icon: 2}); //alert('请选择商品');
+ 		   return false;
+ 	   }else{
+ 		   $('#form-user').submit();
+ 	   }
+     }
+</script>
+</div>
+</body>
+</html>

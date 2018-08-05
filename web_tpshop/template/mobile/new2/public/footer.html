@@ -1,0 +1,46 @@
+<footer>
+    <div class="flool1">
+        <ul>
+            <if condition="!empty($_COOKIE['user_id'])">
+                <li><a href="{:U('Mobile/User/index')}"><?php echo getSubstr(urldecode($_COOKIE['uname']),0,3);?></a></li>
+                <li><a href="{:U('Mobile/User/logout')}">退出</a></li>
+            <else/>
+                <li><a href="{:U('Mobile/User/login')}">登录</a></li>
+                <li><a href="{:U('Mobile/User/reg')}">注册</a></li>
+            </if>
+            <li><a href="tel:{$tpshop_config['shop_info_phone']}">反馈</a></li>
+            <li class="comebackTop">回到顶部</li>
+        </ul>
+    </div>
+    <div class="flool2">
+        <ul>
+            <li>
+                <a href="?">
+                    <div class="icon">
+                        <img src="__STATIC__/images/ind_70.png"/>
+                        <p>客户端</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Mobile/Index/index')}">
+                    <div class="icon black">
+                        <img src="__STATIC__/images/ind_72.png"/>
+                        <p>触屏版</p>
+                    </div>
+                </a>
+            </li>
+            <li>
+                <a href="{:U('Home/Index/index')}">
+                    <div class="icon">
+                        <img src="__STATIC__/images/ind_74.png"/>
+                        <p>电脑版</p>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="flool3">
+        <p>Copyright © 2004-2016 TPshop开源商城99soubao.com版权所有</p>
+    </div>
+</footer>

@@ -1,0 +1,171 @@
+<include file="public/min-header"/>
+
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+
+<div class="wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+    	<div class="panel-heading">
+        <ol class="breadcrumb panel-title">
+            <li><a href="#"><i class="fa fa-dashboard"></i> 后台首页</a></li>
+            <li><a href="#" class="active">系统设置</a></li>
+            <!--<li class="active">Data tables</li>-->
+        </ol>
+        </div>
+    </section>
+    <section class="content" style="padding:0px 15px;">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body ">
+                   	<ul class="nav nav-tabs">
+                        <li class="active"><a href="#tab_base" data-toggle="tab">商店信息</a></li>
+                        <foreach name="group_list" item="vo" key="k">
+                     		<li><a href="#tab_{$k}" data-toggle="tab">{$vo}</a></li>
+                     	</foreach>
+                    </ul>
+                    <!--表单数据-->
+                    <form method="post" id="handlepost" action="{:U('System/handle')}">
+                        <!--通用信息-->
+                    <div class="tab-content col-md-10">
+                        <div class="tab-pane active" id="tab_tongyong">
+                            <table class="table table-bordered">
+                                <tbody>
+                                <tr>
+                                    <td class="col-sm-2">商店名称：</td>
+                                    <td class="col-sm-8">
+                                        <input type="text" class="form-control" name="store_name" value="{$config.store_name}" >
+                                        <span id="err_attr_name" style="color:#F00; display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>网站logo：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="store_logo" value="{$config.store_logo}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>商店标题：</td>
+                                    <td >
+                         				<input type="text" class="form-control" name="store_title" value="{$config.store_title}" >
+                                        <span id="err_type_id" style="color:#F00; display:none;"></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>商店描述：</td>
+                                    <td>
+                               			<input type="text" class="form-control" name="store_desc" value="{$config.store_desc}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>商店关键字：</td>
+                                    <td>
+                      					<input type="text" class="form-control" name="store_keyword" value="{$config.store_keyword}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>所在地址：</td>
+                                    <td>
+                      					<select onblur="get_city(this,0)" id="province" name="province">
+                                            <option value="0">选择省份</option>
+                                        </select>
+                                        <select onblur="get_area(this)" id="city" name="city">
+                                            <option value="0">选择城市</option>
+                                        </select>
+                                        <select id="district" name="district">
+                                            <option value="0">选择区域</option>
+                                        </select>
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                <td>详细地址：</td>
+                                 <td>
+                      					<input type="text" class="form-control" name="address" value="{$info.position_style}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td>客服QQ：</td>
+                                 <td>
+                      					<input type="text" class="form-control" name="QQ" value="{$info.position_style}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td>客服电话：</td>
+                                 <td>
+                      					<input type="text" class="form-control" name="phone" value="{$info.position_style}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td>服务口号：</td>
+                                 	<td>
+                      					<input type="text" class="form-control" name="tenet" value="{$info.position_style}" >
+                                    </td>
+                                </tr>
+                                <tr>
+                                <td>商店公告：</td>
+                                 <td>
+                      					<input type="text" class="form-control" name="notice" value="{$info.position_style}" >
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                 <td>是否关闭注册：</td>
+                                 	<td>
+                      					<input type="radio" class="" name="is_reg" value="0" >
+                      					是
+                      					<input type="radio" class="" name="is_reg" value="1" >
+                      					否
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                 <td>网站是否开启：</td>
+                                 <td>
+                      					<input type="radio" class="" name="is_open" value="0" >
+                      					是
+                      					<input type="radio" class="" name="is_open" value="1" >
+                      					否
+                                    </td>
+                                 </tr>
+                                 <tr>
+                                 <td>关闭原因：</td>
+                                 <td>
+                      					<input type="text" class="form-control" name="close_reason" value="" >
+                                 </td>
+                                 </tr>
+                                 <tr>
+                                 <td>版权信息：</td>
+                                 	<td>
+                      				<input type="text" class="form-control" name="version_info" value="" >
+                                  	</td>
+                                </tr>
+                                </tbody>
+                                <tfoot>
+                                	<tr>
+                                	<td></td>
+                                	<td class="text-right"><input class="btn btn-primary" type="buuton" onclick="adsubmit()" value="保存"></td></tr>
+                                </tfoot>
+                                </table>
+                        </div>
+                    </div>
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+function adsubmit(){
+	$('#handlepost').submit();
+}
+
+$(document).ready(function(){
+	get_province();
+});
+</script>
+</body>
+</html>

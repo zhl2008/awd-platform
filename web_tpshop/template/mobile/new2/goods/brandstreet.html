@@ -1,0 +1,91 @@
+<include file="public/header" title="品牌街" body=""/>
+<include file="public/header_nav" title="品牌街" href="javascript:history.back(-1);"/>
+<!--顶部广告图-s-->
+    <div class="banner" id="brandstr">
+        <adv pid='400' limit='1' item='v'>
+            <a href="{$v.ad_link}">
+                <img src="{$v[ad_code]}" title="{$v[title]}" style="{$v[style]}"/>
+            </a>
+        </adv>
+    </div>
+<!--顶部广告图-e-->
+
+<!--商品轮播图-s-->
+    <div class="banner ban1 brandbanner">
+        <div class="maleri30">
+            <div class="mslide" id="slideTpshop">
+                <ul>
+                    <foreach name="recommend_goods" key="k" item="v">
+                        <if condition="count($v) gt 0">
+                            <li>
+                                <foreach name="$v" key="kk" item="good">
+                                <a href="{:U('Goods/goodsInfo',array('id'=>$good[goods_id]))}">
+                                    <img src="{$good[goods_id]|goods_thum_images=200,200}" alt="">
+                                    <p class="red">￥{$good['shop_price']}</p>
+                                    <p class="lineu">￥{$good['market_price']}</p>
+                                </a>
+                                </foreach>
+                            </li>
+                        </if>
+                    </foreach>
+                </ul>
+            </div>
+        </div>
+        <div class="signte">
+            <i class="l"></i>
+            <i class="r"></i>
+        </div>
+    </div>
+<!--商品轮播图-n-->
+
+<!--推荐大牌-s-->
+    <div class="tuijbrand">
+        <h2 class="titb ma-to-20">推荐大牌</h2>
+        <div class="brandlistall">
+            <ul id="brandlist">
+                <foreach name="brand_list" item="list">
+                    <li>
+                        <a href="{:U('Goods/search',array('brand_id'=>$list[id]))}"><img src="{$list[logo]}"/></a>
+                    </li>
+                </foreach>
+            </ul>
+        </div>
+    </div>
+<!--推荐大牌-e-->
+<script type="text/javascript" src="__STATIC__/js/sourch_submit.js"></script>
+<script type="text/javascript">
+    /**
+     * 加载更多品牌
+     */
+    var page=1;
+    function ajax_sourch_submit(){
+        ++page;
+        $.ajax({
+            type:'GET',
+            url:"/index.php?m=Mobile&c=Goods&a=brandstreet&is_ajax=1&p="+page,
+            success:function(data){
+                if($.trim(data) == ''){
+                    $('.more').hide();
+                    return false;
+                }else{
+                   $('.more').before(data);
+                }
+            }
+        });
+    }
+    $(function(){
+        $('#brandstr').swipeSlide({
+            continuousScroll:true,
+            speed : 3000,
+            transitionType : 'cubic-bezier(0.22, 0.69, 0.72, 0.88)',
+            firstCallback : function(i,sum,me){
+                me.find('.dot').children().first().addClass('cur');
+            },
+            callback : function(i,sum,me){
+                me.find('.dot').children().eq(i).addClass('cur').siblings().removeClass('cur');
+            }
+        });
+    });
+</script>
+	</body>
+</html>

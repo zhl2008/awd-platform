@@ -1,0 +1,144 @@
+<include file="public/min-header"/>
+<link href="__PUBLIC__/plugins/daterangepicker/daterangepicker-bs3.css" rel="stylesheet" type="text/css" />
+<script src="__PUBLIC__/plugins/daterangepicker/moment.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/plugins/daterangepicker/daterangepicker.js" type="text/javascript"></script>
+
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content" style="padding:0px 15px;">
+        <!-- Main content -->
+        <div class="container-fluid">
+            <div class="pull-right">
+                <a href="javascript:history.go(-1)" data-toggle="tooltip" title="" class="btn btn-default" data-original-title="返回"><i class="fa fa-reply"></i></a>
+            </div>
+            <div class="panel panel-default">           
+                <div class="panel-body ">   
+                   	<ul class="nav nav-tabs">
+                        <foreach name="group_list" item="vo" key="k">
+                     		<li <if condition="$k eq 'basic'">class="active"</if>><a href="javascript:void(0)" data-url="{:U('System/index',array('inc_type'=>$k))}" data-toggle="tab" onclick="goset(this)">{$vo}</a></li>
+                     	</foreach>                        
+                    </ul>
+                    <!--表单数据-->
+                    <form method="post" id="handlepost" action="{:U('System/handle')}">
+                        <!--通用信息-->
+                    <div class="tab-content" style="padding:20px 0px;">                 	  
+                        <div class="tab-pane active" id="tab_tongyong">                           
+                            <table class="table table-bordered">
+                                <tbody> 
+                                <tr>
+                                    <td>会员注册赠送积分：</td>
+                                    <td><input type="number"  pattern="^\d{1,}$" title="只能输入数字"  class="input-sm" name="reg_integral" value="{$config.reg_integral}" ></td>
+                               		<td></td>
+                                </tr>   
+                              	<tr>
+                                    <td>附件上传大小：</td>
+                                    <td>                         		
+                                        <select class="input-sm" name="file_size">
+                                            <option value="1" <if condition="$config[file_size] eq 1">selected="selected"</if>>1M</option>
+                                            <option value="2" <if condition="$config[file_size] eq 2">selected="selected"</if>>2M</option>
+                                            <option value="3" <if condition="$config[file_size] eq 3">selected="selected"</if>>3M</option>
+                                            <option value="5" <if condition="$config[file_size] eq 4">selected="selected"</if>>5M</option>
+                                            <option value="10"<if condition="$config[file_size] eq 10">selected="selected"</if>>10M</option>
+                                            <option value="50"<if condition="$config[file_size] eq 50">selected="selected"</if>>50M</option>
+                                            <option value="100"<if condition="$config[file_size] eq 100">selected="selected"</if>>100M</option>
+                                        </select>
+                                    </td>
+                                    <td></td>
+                                </tr>
+                                
+                                <tr>
+                                    <td>默认库存：</td>
+                                    <td><input type="number"  pattern="^\d{1,}$" title="只能输入数字"  class="input-sm" name="default_storage" value="{$config.default_storage}" ></td>
+                                	<td></td>
+                                </tr>
+                                <tr>
+                                    <td>库存预警数：</td>
+                                    <td><input type="number"  pattern="^\d{1,}$" title="只能输入数字"  class="input-sm" name="warning_storage" value="{$config.warning_storage}" ></td>
+                                	<td>当商品数量少于X件时，会在系统后台首页<库存预警>显示</td>
+                                </tr>
+                                <tr>
+                                    <td>满多少才能提现：</td>
+                                    <td >
+                                        <input type="text" class="form-control" name="need" id="distribut_need" value="{$config.need}"onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" >
+                                    </td>
+                                    <td class="col-sm-7"></td>
+                                </tr>
+                                <tr>
+                                    <td>最少提现额度：</td>
+                                    <td >
+                                        <input type="text" class="form-control" name="min" id="distribut_min" value="{$config.min}"onpaste="this.value=this.value.replace(/[^\d]/g,'')" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" >
+                                    </td>
+                                    <td class="col-sm-7"></td>
+                                </tr>
+                                <tr>
+                                	<td>发票税率：</td>
+                                	<td><input type="number" class="input-sm" name="tax">%</td>
+                                	<td>当买家需要发票的时候就要增加<商品金额>*<税率>的费用</td>
+                                </tr>   
+                                <!--                                         
+                            	<tr>
+                                    <td>是否开启订单提醒：</td>
+                                    <td >
+                                       	 是<input type="radio" class="" name="is_remind" value="0" <if condition="$config[is_remind] eq 0"> checked="checked"</if>>
+                                       	 否<input type="radio" class="" name="is_remind" value="1" <if condition="$config[is_remind] eq 1"> checked="checked"</if>>                               
+                                    </td>
+                                	<td></td>
+                                </tr>
+                                <tr>
+                                	<td>发货后订单自动完成时间：</td>
+                                	<td><input type="number" class="input-sm" name="order_finish_time">天</td>
+                                	<td>发货后的X天，会自动变为完成状态</td>
+                                </tr> 
+                                <tr>
+                                	<td>未付款订单自动取消时间：</td>
+                                	<td><input type="number" class="input-sm" name="order_cancel_time">天</td>
+                                	<td>未付款订单生成X天，会自动被取消掉</td>
+                                </tr>
+                                -->
+                                <tr>
+                                	<td>首页热门搜索词：</td>
+                                	<td colspan="2"><input type="text" class="form-control" name="hot_keywords" value="{$config.hot_keywords}">
+                                		<p class="text-warning">多个热门搜索关键词请用竖线|分开，如(手机|电脑)</p>
+                                	</td>
+                                </tr>      
+                            	<tr>
+                                    <td>开启APP测试：</td>
+                                    <td >
+                                       	 关<input type="radio" class="" name="app_test" value="0" <if condition="$config[app_test] eq 0"> checked="checked"</if>>
+                                       	 开<input type="radio" class="" name="app_test" value="1" <if condition="$config[app_test] eq 1"> checked="checked"</if>>                               
+                                    </td>
+                                	<td></td>
+                                </tr>                                
+                                </tbody> 
+                                <tfoot>
+                                	<tr>
+                                	<td><input type="hidden" name="inc_type" value="{$inc_type}"></td>
+                                	<td></td>
+                                	<td class="text-right"><input class="btn btn-primary" type="button" onclick="adsubmit()" value="保存"></td>
+                                	</tr>
+                                </tfoot>                               
+                                </table>
+                        </div>                           
+                    </div>              
+			    	</form><!--表单数据-->
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+
+<script>
+function adsubmit(){
+	$('#handlepost').submit();
+}
+
+$(document).ready(function(){
+	get_province();
+});
+
+function goset(obj){
+	window.location.href = $(obj).attr('data-url');
+}
+</script>
+</body>
+</html>

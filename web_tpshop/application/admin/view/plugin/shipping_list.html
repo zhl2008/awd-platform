@@ -1,0 +1,104 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <h1> {$plugin.name} <small></small> </h1>
+
+  </section>
+  
+  <!-- Main content -->
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title"><i class="fa fa-list"></i> {$plugin.name}配送列表
+              <a href="{:U('Admin/Plugin/shipping_list_edit',array('id'=>$list[shipping_area_id],'type'=>$plugin['type'],'code'=>$plugin['code']))}"><button type="button" class="btn btn-info">
+                  <i class="ace-icon fa fa-plus bigger-110"></i>
+              </button></a>
+              <label for="desc">物流描述：</label> <span id="desc_span" ondblclick="show_input(this)">{$shipping_info.desc}</span><input onblur="change_desc('{$shipping_info.code}')" type="text" value="{$shipping_info.desc}" id="desc" style="width: 80%;display: none">
+          </h3>
+        </div>
+        <div class="panel-body">
+          <div id="ajax_return">
+              <div class="table-responsive">
+                  <table class="table table-bordered table-hover">
+                      <thead>
+                      <tr>
+                          <td style="width: 1px;" class="text-center">
+                              <input type="checkbox" onclick="$('input[name*=\'selected\']').prop('checked', this.checked);">
+                          </td>
+                          <td class="text-center">
+                              配送区名称
+                          </td>
+                          <td class="text-center">
+                              配送区域
+                          </td>
+                          <td class="text-center">操作</td>
+                      </tr>
+                      </thead>
+                      <tbody>
+
+                      <volist name="shipping_list" id="list">
+                          <tr>
+                              <td class="text-center">
+                                  <input type="checkbox" name="selected[]" value="{$list.shipping_area_id}">
+                              </td>
+                              <td class="text-center">{$list.shipping_area_name}</td>
+                              <td class="text-center">{$list.region_list}
+                                  <if condition="$list['is_default'] eq 1">
+                                      全国其他地区
+                                    </if>
+                              </td>
+                              <td class="text-center">
+                                  <a href="{:U('Admin/Plugin/shipping_list_edit',array('id'=>$list[shipping_area_id],'type'=>$plugin['type'],'code'=>$plugin['code'],'edit'=>1,'default'=>$list['is_default']))}" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="编辑"><i class="fa fa-pencil"></i></a>
+
+                                  <if condition="$list['is_default'] neq 1">
+                                      <a href="javascript:void(0);" data-href="{:U('Admin/Plugin/del_area',array('id'=>$list[shipping_area_id],'type'=>$plugin['type'],'code'=>$plugin['code']))}" onclick="del('{$list[shipping_area_id]}',this)" id="button-delete6" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="删除"><i class="fa fa-trash-o"></i></a>
+                                  </if>
+                              </td>
+                          </tr>
+                      </volist>
+
+                      </tbody>
+                  </table>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.row --> 
+  </section>
+  <!-- /.content --> 
+</div>
+<!-- /.content-wrapper --> 
+<script>
+        // 删除操作
+        function del(id,t)
+        {
+            if(!confirm('确定要删除吗?'))
+                return false;
+
+            location.href = $(t).data('href');
+        }
+        function change_desc(code){
+            var desc = $('#desc').val();
+            $.post("{:U('Admin/Plugin/shipping_desc')}",{code:code,desc:desc},function(data){
+                data = $.parseJSON(data);
+                $('#desc_span').show();
+                $('#desc').hide();
+                if(data.status == 1){
+                    $('#desc_span').text(desc);
+                }else{
+                    layer.alert('修改失败', {icon: 2});  // alert('修改失败');
+                }
+            })
+        }
+
+    function show_input(t){
+        $(t).hide();
+        $('#desc').show();
+    }
+</script> 
+</body>
+</html>

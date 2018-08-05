@@ -1,0 +1,101 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+  <section class="content">
+    <div class="container-fluid">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="navbar navbar-default">
+              <form action="{:U('Promotion/search_goods',array('tpl'=>'select_goods'))}" id="search-form2" class="navbar-form form-inline" method="post">
+                <div class="form-group">
+                  <select name="cat_id" id="cat_id" class="form-control">
+                    <option value="">所有分类</option>
+                        <foreach name="categoryList" item="v" key="k" >
+                           <option value="{$v['id']}" <if condition="$v[id] eq $cat_id">selected</if>>{$v['name']}</option>
+			 			</foreach>
+                  </select>
+                </div>
+                <div class="form-group">
+                  <select name="brand_id" id="brand_id" class="form-control">
+                    <option value="">所有品牌</option>
+                        <foreach name="brandList" item="v" key="k" >
+                           <option value="{$v['id']}" <if condition="$v[id] eq $brand_id">selected</if>>{$v['name']}</option>
+						</foreach>
+                  </select>
+                </div>                         
+                <div class="form-group">
+                    <select name="intro" class="form-control">
+                        <option value="0">全部</option>
+                        <option value="is_new">新品</option>
+                        <option value="is_recommend">推荐</option>
+                    </select>                
+                </div>                  
+
+                <div class="form-group">
+                  <label class="control-label" for="input-order-id">关键词</label>
+                  <div class="input-group">
+                    <input type="text" name="keywords" value="{$keywords}" placeholder="搜索词" id="input-order-id" class="form-control">
+                  </div>
+                </div>
+                <button type="submit" id="button-filter search-order" class="btn btn-primary"><i class="fa fa-search"></i>查找</button>
+              </form>
+          </div>
+          <div id="ajax_return"> 
+			    <div class="table-responsive">
+			        <table class="table table-bordered table-hover">
+			            <thead>
+			                <td class="text-left">选择</td>
+			                <td class="text-left">商品名称</td>            
+			                <td class="text-left">价格</td>
+			                <td class="text-left">库存</td>
+			                <td class="text-left">操作</td>
+			            </tr>
+			            </thead>
+			            <tbody id="goos_table">
+			                <volist name="goodsList" id="list">
+                               <tr>
+                               	<td class="text-left">                
+                                    <input type="radio" name="goods_id" data-id="{$list.goods_id}" data-name="{$list.goods_name}" data-count="{$list.store_count}" onclick="changeGoods(this)"/>
+                                </td>
+                                <td class="text-left">{$list.goods_name}</td>
+                                <td class="text-left">{$list.shop_price}</td>
+                                <td class="text-left">{$list.store_count}</td>
+                                <td><a href="javascript:void(0)" onclick="javascript:$(this).parent().parent().remove();">删除</a></td>
+                               </tr>                              
+			            	</volist>   
+			            </tbody>
+			        </table>
+			    </div>
+			    <div class="row">
+	              	<div class="text-left col-sm-10">
+	            		{$page}
+	            	</div>
+	                <div class="text-right col-sm-2">
+	                    <a href="javascript:void(0)" style="margin:20px 0;" onclick="select_goods();" class="btn btn-info">确定</a>			                       
+					</div>
+			    </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+  var goods_id = 0 , goods_name = '' , store_count = '';
+  function changeGoods(obj){
+	  goods_id = $(obj).attr('data-id');
+	  goods_name = $(obj).attr('data-name');
+	  store_count = $(obj).attr('data-count');
+  }
+  
+  function select_goods()
+  {	  
+	   if($("input[type='radio']:checked").length == 0)
+	   {
+		   layer.alert('请选择商品', {icon: 2}); //alert('请选择商品');
+		   return false;
+	   }
+       window.parent.call_back(goods_id,goods_name,store_count);
+  }    
+  </script>
+</div>
+</body>
+</html>

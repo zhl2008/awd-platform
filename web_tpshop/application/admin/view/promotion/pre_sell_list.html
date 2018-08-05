@@ -1,0 +1,105 @@
+<include file="public/min-header"/>
+
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	           	<div class="box-header">
+	               <nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('Promotion/pre_sell_list')}" method="get">
+				            <div class="form-group">
+				              	<input type="text" name="keywords" class="form-control" placeholder="搜索">
+				            </div>
+				            <button type="submit" class="btn btn-default">提交</button>
+				            <div class="form-group pull-right">
+					            <a href="{:U('Promotion/pre_sell_info')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i>添加预售活动</a>
+				            </div>		          
+				          </form>		
+				      	</div>
+	    			</nav>                
+	             </div>	    
+	             <!-- /.box-header -->
+	             <div class="box-body">	             
+	           		<div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable">
+		                 <thead>
+		                   <tr role="row">
+			                   <th class="sorting" tabindex="0">编号</th>
+			                   <th class="sorting" tabindex="0">商品名称</th>
+			                   <th class="sorting" tabindex="0">状态</th>
+			                   <th class="sorting" tabindex="0">结束时间</th>
+			                   <th class="sorting" tabindex="0">保证金</th>
+			                   <th class="sorting" tabindex="0">限购</th>
+							   <th class="sorting" tabindex="0">订购商品</th>
+							   <th class="sorting" tabindex="0">订单</th>
+							   <th class="sorting" tabindex="0">当前价格</th>
+			                   <th class="sorting" tabindex="0">操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+						  <foreach name="pre_sell_list" item="vo" key="k" >
+						  	<tr role="row" align="center">
+							 <td>{$vo.act_id}</td>
+		                     <td>{$vo.goods_name}</td>
+		                     <td>{$vo.act_status}</td>
+		                     <td>{$vo.end_time|date='Y-m-d H:i:s',###}</td>
+		                     <td>{$vo.deposit}</td>
+		                     <td>{$vo.restrict_amount}</td>
+							 <td>{$vo.total_goods}</td>
+							 <td>{$vo.total_order}</td>
+							 <td>{$vo.price}</td>
+							 <td>
+								 <a target="_blank" href="{:U('Home/Activity/pre_sell',array('id'=>$vo['act_id']))}" data-toggle="tooltip" title="" class="btn btn-info" data-original-title="查看详情"><i class="fa fa-eye"></i></a>
+		                      <a class="btn btn-primary" href="{:U('Promotion/pre_sell_info',array('id'=>$vo['act_id']))}"><i class="fa fa-pencil"></i></a>
+		                      <a class="btn btn-danger" href="javascript:void(0)" data-url="{:U('Promotion/pre_sell_del')}" data-id="{$vo.act_id}" onclick="del(this)"><i class="fa fa-trash-o"></i></a>
+							</td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		               </table>
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left"></div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	          </div><!-- /.box-body -->
+	        </div><!-- /.box -->
+       	</div>
+       </div>
+   </section>
+</div>
+<script type="text/javascript">
+	function del(obj){
+		layer.confirm('确认删除？', {
+					btn: ['确定','取消'] //按钮
+				}, function(){
+					$.ajax({
+						type : 'post',
+						url : $(obj).attr('data-url'),
+						data : {act:'del',del_id:$(obj).attr('data-id')},
+						dataType : 'json',
+						success : function(data){
+							layer.closeAll();
+							if(data.status == 1){
+								layer.msg('操作成功', {icon: 1});
+								$(obj).parent().parent().remove();
+							}else{
+								console.log(data);
+								layer.msg(data.msg, {icon: 2,time: 2000});
+							}
+						}
+					})
+				}, function(index){
+					layer.close(index);
+					return false;// 取消
+				}
+		);
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<include file="public/header" title="重置密码" body=""/>
+<div class="classreturn loginsignup">
+    <div class="content">
+        <div class="ds-in-bl return">
+            <a href="javascript:history.back(-1);"><img src="__STATIC__/images/return.png" alt="返回"></a>
+        </div>
+        <div class="ds-in-bl search center">
+            <span>重置密码</span>
+        </div>
+        <!--<div class="ds-in-bl menu">
+            <a href="javascript:void(0);"><img src="__STATIC__/images/class1.png" alt="菜单"></a>
+        </div>-->
+    </div>
+</div>
+<div class="reset-pwd-steps">
+    <img src="__STATIC__/images/pic-reset-psw3.jpg" alt="" />
+</div>
+<div class="loginsingup-input">
+    <form action="" method="post" onsubmit="return submitverify(this)">
+        <div class="reset-pwd-title">请设置新密码</div>
+        <div class="lsu">
+            <span class="ico ico-password"></span>
+            <input type="password" name="password" id="new_password" value=""  placeholder="新密码">
+        </div>
+        <div class="lsu">
+            <span class="ico ico-password"></span>
+            <input type="password" name="password2" id="confirm_password" value=""  placeholder="确认新密码">
+        </div>
+        <div class="lsu-submit">
+            <input type="submit" name="" id="sub" value="确认修改">
+        </div>
+    </form>
+</div>
+<script src="__STATIC__/js/style.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript" charset="utf-8">
+    //验证表单
+    function submitverify(obj){
+        var newpass = $.trim($('#new_password').val());
+        var confirmpass = $.trim($('#confirm_password').val());
+        if(newpass =='' ||  confirmpass == ''){
+            layer.open({content:'密码不能为空',time:3});
+            return false;
+        }
+        if(newpass !== confirmpass){
+            layer.open({content:'两次密码不一致',time:3});
+            return false;
+        }
+        if(newpass.length < 6 || confirmpass.length < 6){
+            layer.open({content:'密码长度不能少于6位',time:3});
+            return false;
+        }
+        $(obj).onsubmit();
+    }
+</script>
+</body>
+</html>

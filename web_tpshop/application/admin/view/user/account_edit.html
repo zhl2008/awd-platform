@@ -1,0 +1,86 @@
+<include file="public/min-header"/>
+<div class="wrapper">
+    <include file="public/breadcrumb"/>
+    <section class="content">
+    <!-- Main content -->
+    <!--<div class="container-fluid">-->
+    <div class="container-fluid">
+        <!--新订单列表 操作信息-->
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> 管理资金</h3>
+            </div>
+            <div class="panel-body">
+
+            <form id="delivery-form" method="post" action="">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">金额：</td>
+                            <td colspan="3">
+                                <select name="money_act_type" id="money_act_type" class="input-sm">
+                                    <option value="1">增加</option>
+                                    <option value="0">减少</option>
+                                </select>
+                                <input type="text" name="user_money" class="input-sm" value="{$_REQUEST['user_money']|default='0'}">
+                            </td>
+                        </div>
+                    </tr>
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">积分：</td>
+                            <td colspan="3">
+                                <select name="point_act_type" id="point_act_type" class="input-sm">
+                                    <option value="1">增加</option>
+                                    <option value="0">减少</option>
+                                </select>
+                                <input type="text" name="pay_points" value="0" class="input-sm">
+                            </td>
+                        </div>
+                    </tr>
+                    <!--<tr>-->
+                        <!--<div class="row">-->
+                            <!--<td class="text-right col-sm-2">冻结金额：</td>-->
+                            <!--<td colspan="3">-->
+                                <!--<select name="frozen_act_type" id="frozen_act_type" class="input-sm">-->
+                                    <!--<option value="1">增加</option>-->
+                                    <!--<option value="0">减少</option>-->
+                                <!--</select>-->
+                                <!--<input type="text" name="frozen_money" value="0" class="input-sm">-->
+                            <!--</td>-->
+                        <!--</div>-->
+                    <!--</tr>-->
+
+                    <tr>
+                        <div class="row">
+                            <td class="text-right col-sm-2">操作备注：</td>
+                            <td colspan="3">
+                                    <textarea name="desc" placeholder="请输入操作备注" rows="3" class="form-control">{$_REQUEST['desc']}</textarea>
+                            </td>
+                        </div>
+                    </tr>
+
+                    <tr>
+                        <div class="row">
+                            <td colspan="4">
+                                <div class="form-group text-center">
+                                    <button class="btn btn-primary" type="submit" id="disabled">提交</button>
+                                    <button onclick="history.go(-1)"  class="btn btn-primary" type="button">返回</button>
+                                </div>
+                            </td>
+                        </div>
+                    </tr>
+
+                    </tbody>
+                </table>
+            </form>
+
+            </div>
+        </div>
+
+    </div>    <!-- /.content -->
+        </section>
+</div>
+
+

@@ -1,0 +1,131 @@
+<include file="public/layout" />
+<body style="background-color: #FFF; overflow: auto;">
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title">
+      <div class="subject">
+        <h3>商城设置</h3>
+        <h5>网站全局内容基本选项设置</h5>
+      </div>
+      <ul class="tab-base nc-row">
+	      <li><a href="{:U('System/index')}" class="current"><span>商城信息</span></a></li>
+	      <li><a href="{:U('System/index',array('inc_type'=>'basic'))}" ><span>基本设置</span></a></li>
+	      <li><a href="{:U('System/index',array('inc_type'=>'shopping'))}" ><span>购物流程</span></a></li>
+	      <li><a href="{:U('System/index',array('inc_type'=>'sms'))}" ><span>短信设置</span></a></li>
+	      <li><a href="{:U('System/index',array('inc_type'=>'smtp'))}" ><span>邮件设置</span></a></li>
+	      <li><a href="{:U('System/index',array('inc_type'=>'water'))}" ><span>水印设置</span></a></li>
+        <li><a href="{:U('System/index',array('inc_type'=>'distribut'))}" ><span>分销设置</span></a></li>
+	      <!--<li><a href="{:U('System/index',array('inc_type'=>'wap'))}" ><span>WAP设置</span></a></li>-->
+	      <!--<li><a href="{:U('System/index',array('inc_type'=>'extend'))}" ><span>扩展设置</span></a></li>-->
+      </ul>
+    </div>
+  </div>
+  <!-- 操作说明 -->
+  <div class="explanation" id="explanation">
+    <div class="title" id="checkZoom"><i class="fa fa-lightbulb-o"></i>
+      <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+      <span id="explanationZoom" title="收起提示"></span> </div>
+    <ul>
+      <li>系统平台全局设置,包括基础设置、购物、短信、邮件、水印和分销等相关模块。</li>
+    </ul>
+  </div>
+  <form method="post" enctype="multipart/form-data" name="form1">
+    <input type="hidden" name="form_submit" value="ok" />
+    <div class="ncap-form-default">
+      <dl class="row">
+        <dt class="tit">
+          <label for="site_name">网站名称</label>
+        </dt>
+        <dd class="opt">
+          <input id="site_name" name="site_name" value="好商城V5" class="input-txt" type="text" />
+          <p class="notic">网站名称，将显示在前台顶部欢迎信息等位置</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="site_logo">网站Logo</label>
+        </dt>
+        <dd class="opt">
+          <div class="input-file-show">
+          	<span class="show">
+	          	<a class="nyroModal" rel="gal" href="http://www.tpshop.cn/data/upload/shop/common/logo.png"> 
+	          		<i class="fa fa-picture-o" onMouseOver="layer.tips('<img src=http://www.tpshop.cn/data/upload/shop/common/logo.png>',this,{tips: [1, '#fff']})" onMouseOut="layer.closeAll()"></i>
+	           	</a>
+           	</span>
+           	<span class="type-file-box">
+            <input type="text" name="textfield" id="textfield1" class="type-file-text">
+            <input type="button" name="button" id="button1" value="选择上传..." class="type-file-button">
+            <input class="type-file-file" id="site_logo" name="site_logo" type="file" size="30" hidefocus="true" nc_type="change_site_logo" title="点击前方预览图可查看大图，点击按钮选择文件并提交表单后上传生效">
+            </span></div>
+          <span class="err"></span>
+          <p class="notic">默认网站LOGO,通用头部显示，最佳显示尺寸为240*60像素</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="icp_number">ICP证书号</label>
+        </dt>
+        <dd class="opt">
+          <input id="icp_number" name="icp_number" value="" class="input-txt" type="text" />
+          <p class="notic">前台页面底部可以显示 ICP 备案信息，如果网站已备案，在此输入你的授权码，它将显示在前台页面底部，如果没有请留空</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="site_phone">平台客服电话</label>
+        </dt>
+        <dd class="opt">
+          <input id="site_phone" name="site_phone" value="" class="input-txt" type="text" />
+          <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询，多个请用半角逗号 "," 隔开</p>
+        </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label for="site_qq">平台客服QQ</label>
+        </dt>
+        <dd class="opt">
+          <input id="site_qq" name="site_qq" value="23456789,88997788" class="input-txt" type="text">
+          <span class="err"></span>
+          <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询，多个请用半角逗号 "," 隔开</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="site_email">电子邮件</label>
+        </dt>
+        <dd class="opt">
+          <input id="site_email" name="site_email" value="abc@tpshop.cn" class="input-txt" type="text">
+          <span class="err"></span>
+          <p class="notic">商家中心右下侧显示，方便商家遇到问题时咨询</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">站点状态</dt>
+        <dd class="opt">
+          <div class="onoff">
+            <label for="site_status1" class="cb-enable selected" >开启</label>
+            <label for="site_status0" class="cb-disable " >关闭</label>
+            <input id="site_status1" name="site_status" checked="checked"  value="1" type="radio">
+            <input id="site_status0" name="site_status"  value="0" type="radio">
+          </div>
+          <p class="notic">可暂时将站点关闭，其他人无法访问，但不影响管理员访问后台</p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="closed_reason">关闭原因</label>
+        </dt>
+        <dd class="opt">
+          <textarea name="closed_reason" rows="6" class="tarea" id="closed_reason" >升级中……</textarea>
+          <p class="notic">当网站处于关闭状态时，关闭原因将显示在前台</p>
+        </dd>
+      </dl>
+      <div class="bot"><a href="JavaScript:void(0);" class="ncap-btn-big ncap-btn-green" onClick="document.form1.submit()">确认提交</a></div>
+    </div>
+  </form>
+</div>
+<div id="goTop"> <a href="JavaScript:void(0);" id="btntop"><i class="fa fa-angle-up"></i></a><a href="JavaScript:void(0);" id="btnbottom"><i class="fa fa-angle-down"></i></a></div>
+</body>
+</html>

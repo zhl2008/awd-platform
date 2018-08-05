@@ -1,0 +1,14 @@
+<foreach name="goods_category_list" item="v" key="k" >
+  <dl>
+    <dt style="display: block;" id="category_id_{$v[id]}">{$v[name]}</dt>
+    <dd>
+        <foreach name="list" item="v2" key="k2" >
+        <if condition="$v[id] eq $v2['cat_id1']" >          
+          <label style="display: inline-block;" for="brand_id_{$v2['id']}">                      
+	         <input type="checkbox" id="brand_id_{$v2['id']}" class="brand_change_default_submit_value"  name="brand_id[]" value="{$v2['id']}" <if condition="($v2['type_id'] neq null) and ($type_id eq $v2['type_id'])"> checked="checked"</if> />&nbsp;&nbsp;{$v2['name']}             
+          </label>
+        </if>
+        </foreach>
+    </dd>
+  </dl>
+</foreach>

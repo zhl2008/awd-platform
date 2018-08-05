@@ -1,0 +1,212 @@
+<include file="public/layout" />
+  
+<style type="text/css">
+html, body {
+	overflow: visible;
+} 
+
+a.btn {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #f5f5f5;
+    border-radius: 4px;
+    color: #999;
+    cursor: pointer !important;
+    display: inline-block;
+    font-size: 12px;
+    font-weight: normal;
+    height: 20px;
+    letter-spacing: normal;
+    line-height: 20px;
+    margin: 0 5px 0 0;
+    padding: 1px 6px;
+    vertical-align: top;
+}
+
+ a.red:hover {
+    background-color: #e84c3d;
+    border-color: #c1392b;
+    color: #fff;
+}
+
+</style>  
+<body style="background-color: #FFF; overflow: auto;">
+<div id="toolTipLayer" style="position: absolute; z-index: 9999; display: none; visibility: visible; left: 95px; top: 573px;"></div>
+<div id="append_parent"></div>
+<div id="ajaxwaitid"></div>
+<div class="page">
+  <div class="fixed-bar">
+    <div class="item-title"><a class="back" href="javascript:history.back();" title="返回列表"><i class="fa fa-arrow-circle-o-left"></i></a>
+      <div class="subject">
+        <h3>订单拆分</h3>
+        <h5>分批发货的订单可拆分</h5>
+      </div>
+    </div>
+  </div>
+  <form class="form-horizontal" action="{:U('Admin/Order/split_order')}"  id="split_order" method="post">    
+    <div class="ncap-form-default">
+   	<dl class="row">
+       <dt class="tit">
+         <label>费用信息</label>
+       </dt>
+       <dd class="opt"><input type="hidden" name="order_id" value="{$order.order_id}">
+         <strong>{$order.total_amount}</strong>(商品总价:{$order.goods_price} 运费:{$order.shipping_price})
+          <span class="err"></span>
+          <p class="notic">订单总额=商品总价+运费 </p>
+       </dd>
+      </dl>
+	  <dl class="row">
+        <dt class="tit">
+          <label>收货人</label>
+        </dt>
+        <dd class="opt">
+          {$order.consignee}
+        </dd>
+      </dl>  
+      <dl class="row">
+        <dt class="tit">
+          <label>手机</label>
+        </dt>
+        <dd class="opt" style="width:50%">
+          {$order.mobile}
+          <p class="notic">温馨提示:原单商品不可全部移除 </p>
+        </dd>
+      </dl>
+      <dl class="row">
+        <dt class="tit">
+          <label for="invoice_title">原单商品列表</label>
+        </dt>
+		  <dd class="opt" id="origin" style="width:60%;">
+			  <div class="ncap-order-details" id="goods_list_div">
+				  <div class="hDivBox" id="ajax_return">
+					  <table cellspacing="0" cellpadding="0" style="border:0px">
+						  <thead>
+						  <tr>
+							  <th style="width: 24px"><i class="ico-check"></i></th>
+							  <th class="w200" style="text-align: left">商品名称</th>
+							  <th class="w120" style="text-align: left">规格</th>
+							  <th class="w50" style="text-align: left">原购数</th>
+							  <th class="w50">数量</th>
+							  <th class="w80">操作</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						  <foreach name="orderGoods" item="vo">
+							  <tr>
+								  <td style="width: 24px"><i class="ico-check"></i></td>
+								  <td class=" w200" style="text-align: left">{$vo.goods_name}</td>
+								  <td class=" w120" style="text-align: left">{$vo.spec_key_name}</td>
+								  <td class="w50" style="text-align: left">{$vo.goods_price}</td>
+								  <td class="w50">
+									  <input type="text" class="input-txt" style="width:60px !important;text-align:center" name="old_goods[{$vo.rec_id}]" rel="{$vo.rec_id}"
+											 value="{$vo.goods_num}" onkeyup="this.value=this.value.replace(/[^\d.]/g,'')" onpaste="this.value=this.value.replace(/[^\d.]/g,'')">
+								  </td>
+								  <td class="w80">
+									  <a class="btn red" onclick="delNewRow(this);"><i class="fa fa-trash-o"></i>删除</a>
+								  </td>
+							  </tr>
+						  </foreach>
+						  </tbody>
+					  </table>
+				  </div>
+			  </div>
+		  </dd>
+		  <dd style="float:right ; width:15% !important;">
+			  <a class='ncap-btn-big ncap-btn-gray' style="margin-right:5px" href='javascript:void(0);' onclick='window.location.reload();'><i class='fa fa-repeat'></i>重置</a>
+			  <a class='ncap-btn-big ncap-btn-green'  href='javascript:void(0);' onclick='add_split()'><i class='fa fa-cut'></i>添加拆单</a>
+		  </dd>
+      </dl>
+      <dl class="row" id="last_tr">
+        <dt class="tit">管理员备注</dt>
+        <dd class="opt">
+	      <textarea class="tarea" style="width:440px; height:150px;" name="admin_note" id="admin_note">{$order.admin_note|htmlspecialchars_decode}</textarea>
+          <span class="err"></span>
+          <p class="notic"></p>
+        </dd>
+      </dl>
+      <div class="bot"><a href="JavaScript:void(0);" onClick="checkSubmit()" class="ncap-btn-big ncap-btn-green" id="submitBtn">保存</a></div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript">
+var no = 1;
+$(function(){
+	add_split();
+});
+ 
+function add_split(){
+	var new_order = '';
+	new_order += "<dl id='new_"+no+"' class='new_split row'><dt class='tit'>新单商品列表</dt><dd class='opt' style='width:60%;'>";
+	new_order += $('#origin').html();
+	new_order += "</dt><dd id='new' class='opt' style='float:right ; width:10% !important;'><a class='ncap-btn-big ncap-btn-red'  href='javascript:void(0);' onclick='javascript:$(this).parent().parent().remove();'><i class='fa fa-trash-o'></i>删除</a></dd></dl>";
+	$('#last_tr').before(new_order);
+	$('#new_'+no+' .input-txt').each(function(i,o){
+		var name = $(this).attr('name');
+		$(this).attr('name',no+'_'+name);
+	});
+	no++;
+}
+
+function delNewRow(obj){
+	//判断是原单还是新单商品删除
+	var dlId = $(obj).closest("dd").attr("id");
+	var length = $(obj).closest("table").find("tr").length;
+	//原单
+	if(dlId == "origin"){
+		if(length == 2){
+			layer.alert('原单商品不可全部移除', {icon: 2});
+			return;
+		}
+		$(obj).parent().parent().remove();
+	}else{
+		//新单
+		if(length == 2){
+			$(obj).closest("dl").remove();
+		}else{
+			$(obj).closest("tr").remove();
+		}
+	}
+}
+
+var b = {$goods_num_arr};
+
+function checkSubmit(){
+	var a = [],g = [];
+	$('input[name*=old_goods]').each(function(i,o){
+		var rec_id = $(o).attr('rel');
+		if(!a[rec_id]){
+			a[rec_id] = 0;
+		}
+		a[rec_id] = a[rec_id] + parseInt($(o).val());
+	});
+	
+	$('#origin .input-txt').each(function(){
+		g.push($(this).val());
+	});
+	if($('.new_split').length == 0){
+		layer.alert("请至少拆分一单", {icon: 2});
+		return false;
+	}
+	if(g.length == 0){
+		layer.alert('原单商品不可全部移除', {icon: 2});
+		return false;
+	}
+	
+	for(var k in b){
+
+		if(a[k] > parseInt(b[k]['goods_num'])){
+			var lt = a[k] - parseInt(b[k]['goods_num']);
+			layer.alert(b[k]['goods_name']+',数量大于原商单购买数'+lt+'件', {icon: 2});
+			return false;
+		}
+		if(a[k] < parseInt(b[k]['goods_num'])){
+			var lt = parseInt(b[k]['goods_num']) - a[k];
+			layer.alert(b[k]['goods_name']+',数量少于原商单购买数'+lt+'件', {icon: 2});
+			return false;
+		}
+	}
+	
+	$('#split_order').submit();
+}
+</script>
+</body>
+</html>

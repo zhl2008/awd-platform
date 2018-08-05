@@ -1,0 +1,117 @@
+<include file="public/min-header" />
+<div class="wrapper">
+	<include file="public/breadcrumb"/>
+	<section class="content">
+       <div class="row">
+       		<div class="col-xs-12">
+	       		<div class="box">
+	             <div class="box-header">
+	               	<nav class="navbar navbar-default">	     
+				        <div class="collapse navbar-collapse">
+				          <form class="navbar-form form-inline" action="{:U('Ad/adList')}" method="post">
+				            <div class="form-group">
+				              	<input type="text" name="keywords" class="form-control" placeholder="请输入广告名称">
+				            </div>
+				            <div class="form-group">                       
+				            	 <select name="pid" class="form-control">
+                                            <option value="0">==查看所有==</option>
+                                      <volist name="ad_position_list" id="item" key="k">
+                                            <option value="{$item.position_id}">{$item.position_name}</option>
+                                      </volist>                  
+                                 </select>   
+				            </div>
+				            <button type="submit" class="btn btn-primary">查询</button>
+				            <div class="form-group pull-right">
+					            <a href="{:U('Ad/ad')}" class="btn btn-primary pull-right"><i class="fa fa-plus"></i> 新增广告</a>
+				            </div>		          
+				          </form>
+				      	</div>
+	    			</nav>
+	    			<nav class="navbar navbar-default">	     
+				      <div class="collapse navbar-collapse">
+	    				<div class="navbar-form form-inline">
+				            <div class="form-group">
+				            	<p class="text-success margin blod">预览广告所在页面:</p>
+				            </div>
+				             <div class="form-group">
+                                 <a class="btn btn-default" href="{:U('/Home/Index/index',array('edit_ad'=>1))}">首页</a>&nbsp;&nbsp;&nbsp;&nbsp;                                            
+                                 <a class="btn btn-default" href="{:U('/Mobile/Index/index',array('edit_ad'=>1))}" >手机首页</a>&nbsp;&nbsp;&nbsp;&nbsp;                                            
+                                 <a class="btn btn-default" href="{:U('/Mobile/Goods/categoryList',array('edit_ad'=>1))}" >手机分类页</a>&nbsp;&nbsp;&nbsp;&nbsp;
+                                 
+                                    <select class="form-control" name="intro" onchange="if(this.value != 0) location.href='/index.php?m=Home&c=Channel&a=index&edit_ad=1&id='+this.value;">
+                                        <option value="0">请选择频道页广告</option>
+                                        <tpshop sql="select * from `__PREFIX__goods_category` where `level` = 1" key="k" item='v'>
+	                                        <option value="{$v[id]}">{$v[name]}</option>
+                                      	</tpshop>
+                                    </select>
+                                   
+                                 <!-- <a class="btn btn-default" href="{:U('/Mobile/Index/index',array('edit_ad'=>1))}">手机首页</a>&nbsp;&nbsp;&nbsp;&nbsp;-->
+				            </div>			          
+				          </div>
+				       </div>
+	    		 </nav>	
+	             </div>
+	             <div class="box-body">
+	           	 <div class="row">
+	            	<div class="col-sm-12">
+		              <table id="list-table" class="table table-bordered table-striped dataTable">
+		                 <thead>
+		                   <tr role="row">
+                                           <th>广告id</th>
+                                           <th>广告位置</th>
+			                   <th>广告名称</th>	
+			                   <th>广告图片</th>	                   
+			                   <th>广告链接</th>
+                                           <th>新窗口</th>
+			                   <th>是否显示</th>
+		                  	   <th>排序</th>
+		                  	   <th>操作</th>
+		                   </tr>
+		                 </thead>
+						<tbody>
+                          <foreach name="list" item="vo" key="k" >
+                             <tr role="row">    
+                                     <td>{$vo[ad_id]}</td>
+                                     <td>{$ad_position_list[$vo[pid]][position_name]}</td>
+		                     <td>{$vo.ad_name}</td>	                    
+		                     <td><img alt="" src="{$vo.ad_code}" width="80px" height="50px"></td>
+		                     <td>{$vo.ad_link}</td>
+		                     <td>
+                                         <img width="20" height="20" src="__PUBLIC__/images/<if condition='$vo[target] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('ad','ad_id','{$vo.ad_id}','target',this)"/>
+		                     </td>                                     
+		                     <td>
+                                         <img width="20" height="20" src="__PUBLIC__/images/<if condition='$vo[enabled] eq 1'>yes.png<else />cancel.png</if>" onclick="changeTableVal('ad','ad_id','{$vo.ad_id}','enabled',this)"/>
+		                     </td>
+		                     <td>
+                                        <input type="text" onkeyup="this.value=this.value.replace(/[^\d]/g,'')" onpaste="this.value=this.value.replace(/[^\d]/g,'')" onchange="updateSort('ad','ad_id','{$vo.ad_id}','orderby',this)" size="4" value="{$vo.orderby}" class="input-sm" />		                     	
+		                     </td>
+		                     <td>
+		                      <a class="btn btn-primary" href="{:U('Ad/ad',array('act'=>'edit','ad_id'=>$vo['ad_id']))}"><i class="fa fa-pencil"></i></a>
+		                      <a class="btn btn-danger" onclick="delfunc(this)" data-url="{:U('Ad/adHandle')}" data-id="{$vo.ad_id}"><i class="fa fa-trash-o"></i></a>
+				     </td>
+		                   </tr>
+		                  </foreach>
+		                   </tbody>
+		                 <tfoot>
+		                 
+		                 </tfoot>
+		               </table>
+	               </div>
+	          </div>
+              <div class="row">
+              	    <div class="col-sm-6 text-left">
+              	    	<button class="btn btn-default btn-sm checkbox-toggle"><i class="fa fa-square-o"></i></button>
+              	    </div>
+                    <div class="col-sm-6 text-right">{$page}</div>		
+              </div>
+	          </div>
+	        </div>
+       	</div>
+       </div>
+   </section>
+<script>
+
+</script>
+</div>
+</body>
+</html>   

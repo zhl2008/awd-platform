@@ -1,0 +1,157 @@
+<include file="public/layout" />
+<body style="background-color: rgb(255, 255, 255); overflow: auto; cursor: default; -moz-user-select: inherit;">
+    <div id="append_parent"></div>
+    <div id="ajaxwaitid"></div>
+    <div class="page">
+        <div class="fixed-bar">
+            <div class="item-title">
+                <div class="subject">
+                    <h3>签到管理</h3>
+                    <h5>会员签到及管理设置</h5>
+                </div>
+                <ul class="tab-base nc-row">
+                    <li><a class="current" href="{:U('user/signList')}" data-state="" ><span>签到列表</span></a></li>
+                    <li><a href="{:U('user/signRule')}" data-state="0"  ><span>签到规则</span></a></li>      
+                </ul>
+            </div>
+        </div>
+        <!-- 操作说明 -->
+        <div id="explanation" class="explanation" style="color: rgb(44, 188, 163); background-color: rgb(237, 251, 248); width: 99%; height: 100%;">
+            <div id="checkZoom" class="title"><i class="fa fa-lightbulb-o"></i>
+                <h4 title="提示相关设置操作时应注意的要点">操作提示</h4>
+                <span title="收起提示" id="explanationZoom" style="display: block;"></span>
+            </div>
+            <ul>
+                <li>签到列表：签到人员记录，签到记录最多保持一个月</li>
+                <li>签到规则：可设置功能开启关闭，签到积分和连续签到额外奖励</li>
+
+            </ul>
+        </div>
+        <div class="flexigrid">
+            <div class="mDiv">
+                <div class="ftitle">
+                    <h3>签到列表</h3>
+                    <h5></h5>
+                </div>
+                <form action="" id="search-form2" class="navbar-form form-inline" method="post" onsubmit="return false">
+                    <div class="sDiv">
+                        <div class="sDiv2">          
+                            <input type="text" size="30" name="mobile" class="qsbox" placeholder="搜索用户手机号...">
+                            <input type="button" onclick="ajax_get_table('search-form2', 1)" class="btn" value="搜索">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="hDiv">
+                <div class="hDivBox">
+                    <table cellspacing="0" cellpadding="0">
+                        <thead>
+                            <tr>
+                                <th align="left" abbr="article_title" axis="col6" class="">
+                        <div style="text-align: left; width:50px;" class="" >签到id</div>
+                        </th>
+                        <th align="left" abbr="ac_id" axis="col4" class="">
+                        <div style="text-align: left; width: 150px;" class="" >用户名称</div>
+                        </th>
+                        <th align="left" abbr="ac_id" axis="col4" class="">
+                        <div style="text-align: left; width: 150px;" class="" >手机号码</div>
+                        </th>
+                        <th align="center" abbr="article_show" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="" >累计签到天数</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="" >连续签到天数</div>
+                        </th>
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="">最后签到时间</div>
+                        </th>              
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 500px;" class="" >历史签到</div>
+                        </th>  
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="" >本月积分</div>
+                        </th>     
+                        <th align="center" abbr="article_time" axis="col6" class="">
+                        <div style="text-align: center; width: 100px;" class="">累计签到积分</div>
+                        </th>            
+
+                        <th style="width:100%" axis="col7">
+                        <div></div>
+                        </th>
+                        </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+
+            <div class="bDiv" style="height: auto;">
+                <!--ajax 返回 --> 
+                <div id="ajax_return" cellpadding="0" cellspacing="0" border="0"></div>      
+            </div>
+
+        </div>
+    </div>
+    <script>
+        $(document).ready(function() {
+
+            // 表格行点击选中切换
+            $('#ajax_return').on('click', 'table>tbody >tr', function() {
+                if (!$(this).hasClass('spe_select')) {
+                    $(this).toggleClass('trSelected');
+
+                    var checked = $(this).hasClass('trSelected');
+                    $(this).find('input[type="checkbox"]').attr('checked', checked);
+                }
+            });
+            // 刷选条件 鼠标 移动进去 移出 样式
+            $(".hDivBox > table > thead > tr > th").mousemove(function() {
+                $(this).addClass('thOver');
+            }).mouseout(function() {
+                $(this).removeClass('thOver');
+            });
+
+            // 复选框事件 不联动父类
+            $('#ajax_return').on('click', 'table>tbody >tr input', function(e) {
+                //alert('bbb');
+                e.stopPropagation();
+            })
+
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            // ajax 加载签到列表
+            ajax_get_table('search-form2', 1);
+
+        });
+
+       
+
+        // ajax 抓取页面 form 为表单id  page 为当前第几页
+        function ajax_get_table(form, page) {
+            cur_page = page; //当前页面 保存为全局变量
+            $.ajax({
+                type: "POST",
+                url: "/index.php?m=Admin&c=user&a=ajaxsignList&p=" + page, //+tab,
+                data: $('#' + form).serialize(), // 你的formid
+                success: function(data) {
+                    $("#ajax_return").html('');
+                    $("#ajax_return").append(data);
+                }
+            });
+        }
+
+        function get_sign_list(obj) {
+            var url = $(obj).attr('data-state');
+            $('.tab-base').find('a').removeClass('current')
+            $(obj).addClass('current');
+        }
+
+
+
+
+
+
+    </script>
+</body>
+</html>

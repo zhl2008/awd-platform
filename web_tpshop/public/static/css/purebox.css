@@ -1,0 +1,104 @@
+.pb{ position: fixed; border-radius:5px; box-shadow: 0 0 8px rgba(0,0,0,0.5); border:1px solid #dcdcdc; background:#fff;}
+.pb .cboxContent{}
+
+.pb-hd{ position: relative;padding: 0 25px;height: 40px;line-height: 40px;background: #ecf8ff; border-radius:5px 5px 0 0;}
+.pb-hd .pb-title{ float:left; font-size:14px; color:#2c2c2c; font-weight:bold;}
+.pb-hd .pb-x{ cursor: pointer;display: block;position: absolute;z-index: 100000;top: 14px;right: 20px;overflow: hidden;width: 13px;height: 13px; background:url(../images/admin-icon.png) -141px -456px no-repeat;font-size: 0;text-indent:-99999px;}
+
+.pb-bd{ position: relative; padding:0 25px;}
+.pb-bd .pb-ct:after,.pb-bd .pb-ct:before{ content: ".";display: block;height: 0;clear: both;visibility: hidden;}
+.pb-ft{ overflow:hidden; position:relative; text-align:center; padding:20px 0;}
+.pb-ft .pb-btn{ border:1px solid #ccc; height:28px; line-height:28px; display:inline-block; padding:0 15px; color:#707070; border-radius:3px; cursor:pointer; font-size:14px;}
+.pb-ft .pb-ok{ margin-right:15px; border-color:#ec5151; background-color:#ec5051; color:#fff;}
+.pb-ft .pb-cl{ border-color:#ec5151; color:#ec5151;}
+
+.prompt{ margin-bottom:10px;}
+.prompt h4{ margin-top:15px;}
+.prompt span{ margin-top:10px; display:block;}
+
+#dialog{ display:none;}
+/*扩展分类弹出框*/
+.delete{ width:11px; height:11px; display:inline-block; background:url(../images/admin-icon.png) -141px -456px no-repeat; margin:6px 0 0 7px; cursor:pointer;}
+.delete:hover { background-position: -117px -455px;}
+.addList{ width:20px; height:20px; display:inline-block;background-position: -162px -453px;}
+
+#categroy_dialog .pb-bd{ padding:0 25px;}
+#categroy_dialog .filter{ padding:16px 0 6px; border-bottom:1px dashed #dedede; overflow:hidden;}
+#categroy_dialog .filter span{ margin-bottom:10px;}
+#categroy_dialog .filter .filter_item{ display:block; float:left; height:23px; line-height:23px; border:1px solid #31b4e1; padding:0 5px; border-radius:3px; color:#707070; margin-right:10px;}
+#categroy_dialog .filter .filter_item *{ float:left;}
+
+#categroy_dialog .sort_info{ margin:20px 0 18px;}
+#categroy_dialog .sort_info .sort_list{ width:29%;}
+#categroy_dialog .sort_info .sort_list_one{ margin-right:6.5%;}
+#categroy_dialog .sort_info .sort_point{ right:-40px;}
+#categroy_dialog .sort_info .sort_list .sort_list_warp .category_list{ height:223px;}
+#categroy_dialog .sort_info .sort_list .sort_list_warp li.current{ background-color:#f5faff;}
+#categroy_dialog .sort_info .sort_list .sort_list_warp li.current a{ color:#62b3ff;}
+#categroy_dialog .sort_info .sort_list .sort_list_warp li i{ background-position: -134px -432px;}
+/*扩展分类弹出框end*/
+
+/*添加仓库*/
+.add_warehouse_list{ padding-top:20px; border-bottom:1px dashed #dedede;}
+.warehouse_item{ width:100%; float:left; margin-bottom:10px;}
+.warehouse_item span{ float:left; line-height:30px;}
+.warehouse_item .item{ margin-right:10px;}
+.warehouse_item .item.last{ margin-right:0;}
+.warehouse_item .tit{ color:#6c6c6c; margin-right:8px;}
+.warehouse_item .delete{ margin-top:10px; float:right;}
+.add_warehouse_list .addList{ margin:0 0 10px 2px}
+
+.add_warehouse_list .red_notic{ margin:10px 0 20px; float:left; width:100%;}
+/*添加仓库end*/
+
+/*商品分类 转移商品*/
+.pb_content{ float:left; width:100%; text-align:center; padding:20px 0 30px; border-bottom:1px dashed #dcdcdc;}
+.pb_content .item{ display:inline-block; margin-right:10px;}
+.pb_content .item span{ float:left; display:block; line-height:30px; margin-right:10px;}
+.pb_content .item:last-child{ margin-right:0;}
+/*商品分类 转移商品end*/
+
+.pb .items{ width:100%; float:left; margin:30px 0 0 0; border-bottom:1px dashed #dcdcdc; padding-bottom:20px;}
+.pb .items .item{ float:left; width:100%; margin-bottom:15px;}
+.pb .items .item .label{ float:left; text-align:right; width:190px; margin-right:10px; font-weight:bold; color:#333; line-height:30px;}
+.pb .items .item .value{ float:left; width:375px;}
+.pb .merge_items .item .value{ width:275px;}
+.pb .items .item .value .select{ float:left; margin-right:10px;}
+
+.pb .areaForm_list .items .item{ margin-bottom:0px;}
+
+.set_grab_order{ padding:15px 0;}
+.set_grab_order p{ padding:10px 0 20px;}
+.set_grab_order .set_items{ overflow:auto; max-height:250px;}
+.set_grab_order .checkbox_item{ width:100%; overflow:hidden; padding:5px 0;}
+
+.sku_goods_info{ padding:20px 0;}
+.sku_goods_info .table{ width:100%; border:1px solid #dcdcdc; max-height:450px; overflow:auto;}
+.sku_goods_info .table th{ background: #fff5f9;border-bottom: 1px solid #dcdcdc;}
+.sku_goods_info .table th,.sku_goods_info .table td{ text-align:center;height: 32px;line-height: 32px; border-right:1px solid #dcdcdc;}
+.sku_goods_info .table td{ padding:5px 0; border-bottom:1px solid #dcdcdc;}
+.sku_goods_info .table td .attr_value{ overflow:hidden;white-space: nowrap;text-overflow: ellipsis; width:315px; display:block;}
+.sku_goods_info .table td span .text{ float:none;}
+.sku_goods_info .table .name{ width:300px; overflow:hidden;white-space: nowrap;text-overflow: ellipsis;}
+.sku_goods_info .table tfoot td{ border-top:1px solid #dcdcdc;}
+
+.pb_page{ color:#333; margin-top:15px; width:100%;line-height:30px;}
+.pb_page .turn_span{ float:left;}
+.pb_page .pageDiv{ text-align:center; font-size:0;}
+.pb_page .pageDiv .item{ height:30px; line-height:30px; display:inline-block; font-size:12px; border:1px solid #dcdcdc; margin-left:-1px; padding:0 15px;}
+.pb_page .pageDiv .item_gray{ color:#aaa; cursor:default;}
+.pb_page .pageDiv div.item{ padding:0;}
+.pb_page .pageDiv div.item .text_tz{ height:28px; border:0; width:50px; float:left; padding:0 5px;}
+.pb_page .pageDiv div.item .subimt{ border-left:1px solid #dcdcdc; float:left; display:block; padding:0 10px;}
+.pb_page select{ height:28px; margin-left:10px;}
+
+.pb #merge_dialog .items{ margin-top:20px;}
+.pb #merge_dialog .items .item{ margin-bottom:5px;}
+
+.merge_items .item_attr_list{ float:left; width:100%; max-height:140px; position:relative; overflow:hidden;}
+
+#userInfo .pb-ct{ padding:10px 0 20px;}
+#userInfo .pb-bd{ padding-right:10px;}
+#userInfo .topbar_info{ height:500px; overflow:hidden; position:relative;}
+#userInfo table .label{ width:70px;}
+#userInfo table caption{ height:30px; line-height:30px; text-align:left;}
