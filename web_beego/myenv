@@ -1,0 +1,6 @@
+export GOPATH=/app:/app/go/
+export GOROOT=/app/go/
+export PATH=/app/go/pkg/tool/linux_amd64:$PATH
+export GOARCH=amd64
+export GOTOOLDIR=/app/go/pkg/tool/linux_amd64
+export GOOS=linux

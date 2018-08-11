@@ -1,0 +1,10 @@
+{% if events %}
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Upcoming events</h3></div>
+    <div class="list-group">
+      {% for event in events %}
+        {% include "demo/includes/event_list_item.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

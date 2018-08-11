@@ -1,0 +1,11 @@
+"First Class Functions in Go"
+30 Jun 2011
+Tags: codewalk, function, technical
+
+Andrew Gerrand
+
+* Introduction
+
+Programmers new to Go are often surprised by its support for function types, functions as values, and closures. The [[http://golang.org/doc/codewalk/functions/][First Class Functions in Go]] code walk demonstrates these features with a simulation of the dice game [[http://en.wikipedia.org/wiki/Pig_(dice)][Pig]]. It is a pretty program that uses the language to great effect, and a fun read for Go beginners and veterans alike.
+
+More resources are available at [[http://golang.org/doc/docs.html][golang.org]].

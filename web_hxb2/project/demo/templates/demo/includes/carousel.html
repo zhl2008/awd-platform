@@ -1,0 +1,50 @@
+{% load wagtailimages_tags wagtailembeds_tags %}
+
+
+{% if carousel_items %}
+  <div id="carousel" class="carousel slide" data-ride="carousel">
+    {% if carousel_items|length > 1 %}
+      <ol class="carousel-indicators">
+        {% for carousel_item in carousel_items %}
+          <li data-target="#carousel" data-slide-to="{{ forloop.counter0 }}"{% if forloop.first %} class="active"{% endif %}></li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+
+    <div class="carousel-inner" role="listbox">
+      {% for carousel_item in carousel_items %}
+        <div class="item{% if forloop.first %} active{% endif %}">
+          {% if carousel_item.embed_url %}
+            {# Embedded video - requires an embedly key to be stored in wagtaildemo/settings/local.py #}
+            <div class="text-center">
+              {% embed carousel_item.embed_url 1000 %}
+            </div>
+          {% else %}
+            {# Carousel image - first store image as a variable in order to construct an image tag with a title applied (title is used by bxslider js to construct the caption) #}
+            {% image carousel_item.image width-1000 as carouselimagedata %}
+            <img src="{{ carouselimagedata.url }}" style="width: 100%; min-height: {{ carouselimagedata.height }}px;" alt="{{ carouselimagedata.alt }}" />
+          {% endif %}
+          {% if carousel_item.caption or carousel_item.link %}
+            <div class="carousel-caption">
+              <h3>{{ carousel_item.caption }}</h3>
+              {% if carousel_item.link %}
+                <a href="{{ carousel_item.link }}" class="btn btn-primary">Open</a>
+              {% endif %}
+            </div>
+          {% endif %}
+        </div>
+      {% endfor %}
+    </div>
+
+    {% if carousel_items|length > 1 %}
+      <a class="left carousel-control" href="#carousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a class="right carousel-control" href="#carousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    {% endif %}
+  </div>
+{% endif %}

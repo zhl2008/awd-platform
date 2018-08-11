@@ -1,0 +1,35 @@
+GothamGo: gophers in the big apple
+9 Jan 2015
+
+Francesc Campoy
+campoy@golang.org
+
+* Introduction
+
+Last November more than two hundred gophers from all across the United States got together for the first full-day Go conference in New York City.
+
+The diverse speaker lineup included university students, industry experts, and Go team members.
+
+And good news, everybody! All the talks were recorded and are available:
+
+.image gothamgo/gothamgo.jpg _ 600
+
+- [[http://vimeo.com/115728346][Launching into Go]] _by_Kathy_Spardlin_ - a CockroachDB contributor provides pointers for people getting started with Go.
+- [[http://vimeo.com/115782573][Error Handling]] _by_ [[https://twitter.com/goinggodotnet][_Bill_Kennedy_]] - ideas on how to use the Go error interface.
+- [[http://vimeo.com/115776445][7 common mistakes in Go and how to avoid them]] _by_ [[https://twitter.com/spf13][_Steve_Francia_]] - the author of some popular Go libraries shares his experience.
+- [[http://vimeo.com/115309491][Cancellation, Context, and Plumbing]] _by_ [[https://twitter.com/sajma][_Sameer_Ajmani_]] - the Google NYC Go team lead explains how cancellation works in Go, and how we're retrofitting the Google code base to use it.
+- [[http://vimeo.com/115940605][Dethorning Package Management]] _by_ [[https://twitter.com/krarick][_Keith_Rarick_]] - the creator of godep talks about how to manage your dependencies well.
+- [[http://vimeo.com/115940590][Everything You've Always Wanted to Know About Go Web Apps (But were afraid to ask)]] _by_ [[https://twitter.com/markbates][_Mark_Bates_]] - a survey of Go packages for building web apps, and insights into why there are so few Go "frameworks".
+- [[http://vimeo.com/116215450][Building high-performance database applications using Aerospike]] _by_Chris_Stivers_ - a principal engineer at Aerospike shares his experiences building scalable applications.
+- [[http://vimeo.com/115307069][The state of Go on the Android platform]] _by_ [[https://twitter.com/davidcrawshaw][_David_Crawshaw_]] - the leader of the Go on mobile platforms project tells us what’s coming up and shows a working demo.
+- [[http://vimeo.com/116108566][Mutexes and Locks]] _by_ [[https://twitter.com/frazelledazzell][_Jessie_Frazelle_]] - a member of the Docker core team tells us about concurrency and what to do when things go wrong.
+- [[http://vimeo.com/115618722][Gobot.io]] _by_ [[https://twitter.com/deadprogram][_Ron_Evans_]] - awesome robots controlled by Go, with demos!
+- [[http://vimeo.com/114941260][Doing Go]] _by_ [[https://twitter.com/bryanl][_Bryan_Liles_]] - a DigitalOcean engineer delivers a hilarious comedy routine that happens to be about Go.
+- [[http://vimeo.com/115308225][Things I learned teaching Go]] _by_ [[https://twitter.com/francesc][_Francesc_Campoy_]] - the Developer Advocate for the Go team shares his experience teaching Go and some advice on how to become a better gopher.
+
+Two more talks come from the Go meetup in New York City, which met the day before GothamGo:
+
+- [[http://vimeo.com/114975899][Benchmarking Go]] _by_ [[https://twitter.com/bbulkow][_Brian_Bulkowski_]] - the founder of Aerospike talks about profiling tools for Go and Linux, and micro benchmarks for goroutines, channels, buffers, and and other Go features.
+- [[http://vimeo.com/114736889][Go Static Analysis Tools]] _by_Alan_Donovan_ - a member of the Go team at Google NY gives a guided tour of several static analysis tools designed to help Go programmers understand, navigate , and refactor their code.
+
+Make sure to have a look at all of those in preparation for the [[https://fosdem.org/][FOSDEM]] Go devroom FOSDEM in Brussels (Belgium) and [[http://www.gophercon.in/][gophercon.in]] in Bengaluru (India).

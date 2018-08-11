@@ -1,0 +1,78 @@
+Go at Google I/O and Gopher SummerFest
+6 Oct 2014
+Tags: conference, io, report
+
+Francesc Campoy
+
+* Introduction
+
+The week of June 23rd was a good week for gophers in San Francisco. Go was a big
+part of [[https://www.google.com/events/io][Google I/O]] on Wednesday and
+Thursday, and on Monday we took advantage of the large gopher population to run
+the [[http://www.meetup.com/golangsf/events/170421402/][Go SummerFest]], a
+special instance of the [[http://www.meetup.com/golangsf][GoSF]] meetup. This
+blog post is a recap of both events.
+
+* Gopher SummerFest
+
+.image io2014/summerfest.jpg _ 800
+
+On the Monday, more than 200 gophers gathered at the Google office in San
+Francisco to hear a series of talks:
+
+- The State of Go, ([[https://docs.google.com/a/golang.org/file/d/0B-nws9GU_6qVQm9tdncxWnJGUTQ/edit][slides]] and [[http://www.hakkalabs.co/articles/state-go][video]]) by Andrew Gerrand.
+- I was wrong, again! ([[https://docs.google.com/a/golang.org/file/d/0B-nws9GU_6qVTTUwS25qaFlzMGs/edit][slides]] and [[http://www.hakkalabs.co/articles/why-we-use-go][video]]), by Derek Collison.
+- Go at Splice ([[https://docs.google.com/a/golang.org/file/d/0B-nws9GU_6qVZklnNnJITlhSbXc/edit][slides]]), by Matt Aimonetti
+- Quick testing with quick ([[https://docs.google.com/a/golang.org/file/d/0B-nws9GU_6qVVElmOHpwamp4aTA/edit][slides]]), by Evan Shaw
+- Something about Go (no slides), by Blake Mizerany.
+
+More comments and pictures from the event are available on the
+[[http://www.meetup.com/golangsf/events/170421402/][meetup event page]].
+
+* Go at Google I/O
+
+On the Wednesday and Thursday, Go was at Google I/O in two different
+formats: the Go booth in the sandbox area and the Go code labs available in the
+code lab area and all around the world through
+[[https://www.google.com/events/io/io-extended][I/O Extended]].
+
+** The Go booth
+
+.image io2014/booth.jpg _ 800
+
+The Go booth was part of the Developer Sandbox area.
+
+For the two days of the conference, some gophers from Google and other
+companies gave a series of talks and demonstrations. The talks were not
+recorded, but the slides and some screencasts and blog posts will be shared
+soon.
+
+- Organizing Go Code, by David Crawshaw. ([[https://talks.golang.org/2014/organizeio.slide#1][slides]])
+- Testing Techniques, by Andrew Gerrand. ([[https://www.youtube.com/watch?v=ndmB0bj7eyw][video]] and [[https://talks.golang.org/2014/testing.slide#1][slides]])
+- Go for Java Developers, by Francesc Campoy. ([[https://talks.golang.org/2014/go4java.slide#1][slides]])
+- Camlistore: Android, ARM, App Engine, Everywhere, by Brad Fitzpatrick. ([[https://talks.golang.org/2014/camlistore.slide#1][slides]])
+- Go Compilation Complexities, by Ian Lance Taylor. ([[https://talks.golang.org/2014/compiling.slide#1][slides]])
+- SourceGraph: a Code Search Engine in Go, by Quinn Slack. ([[https://youtu.be/-DpKaoPz8l8][video]] and [[https://go-talks.appspot.com/github.com/sourcegraph/talks/google-io-2014/gio2014.slide#1][slides]])
+
+
+We also organized Q&A sessions and lightning talks by members of the Go
+community:
+
+- [[https://twitter.com/bradrydzewski][Brad Rydzewski]] talked about his project [[https://drone.io/][drone.io]].
+- [[https://twitter.com/barakmich][Barak Michener]] presented [[https://github.com/google/cayley][Cayley]], an open source graph database.
+- [[https://twitter.com/mattetti][Matt Aimonetti]] discussed how Go is used at [[https://splice.com/][Splice]].
+- [[https://twitter.com/ssougou][Sugu Sougoumarane]] talked about how [[https://github.com/youtube/vitess][vitess]] solved scalability problems at YouTube. ([[https://youtu.be/midJ6b1LkA0][video]])
+
+** The Go code lab
+
+This year attendees of Google I/O had a code lab area with self-service
+computers where they could sit and learn Go. The code labs were also available
+to anyone through the Google I/O extended brand. You can try it yourself at
+[[https://io2014codelabs.appspot.com/][io2014codelabs.appspot.com]].
+
+.image io2014/collage.jpg _ 800
+
+* Conclusion
+
+Thanks to the organizers, speakers, and attendees who helped make these events a
+great success. See you next year. (Or at [[http://dotgo.eu][dotGo]] this week!)

@@ -1,0 +1,51 @@
+{
+  "name": "flaskbb-theme-aurora",
+  "description": "The default theme for FlaskBB.",
+  "version": "1.0.0",
+  "license": "BSD-3-Clause",
+  "author": "Peter Justin <peter.justin@outlook.com>",
+  "url": "https://flaskbb.org",
+  "private": true,
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/sh4nks/flaskbb"
+  },
+  "bugs": "https://github.com/sh4nks/flaskbb/issues",
+  "keywords": [
+    "flaskbb",
+    "theme",
+    "aurora"
+  ],
+  "scripts": {
+    "clean": "rm -f node_modules",
+    "autoprefixer": "postcss -u autoprefixer -r static/css/*",
+    "scss": "./tools/build_css",
+    "uglify": "./tools/build_js",
+    "imagemin": "imagemin src/img/* -o static/img",
+    "fonts": "./tools/build_fonts",
+    "build:css": "npm run scss && npm run autoprefixer",
+    "build:js": "npm run uglify",
+    "build:images": "npm run imagemin && npm run fonts",
+    "build:all": "npm run build:css && npm run build:js && npm run build:images",
+    "watch:css": "onchange 'src/scss' -- npm run build:css",
+    "watch:js": "onchange 'src/js' -- npm run build:js",
+    "watch:all": "npm-run-all -p watch:css watch:js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^8.2.0",
+    "imagemin-cli": "^3.0.0",
+    "node-sass": "^4.8.3",
+    "npm-run-all": "^4.1.2",
+    "onchange": "^3.3.0",
+    "postcss-cli": "^5.0.0",
+    "uglify-js": "^3.3.16"
+  },
+  "dependencies": {
+    "bootstrap-markdown": "^2.10.0",
+    "bootstrap-sass": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.3.1",
+    "jquery-textcomplete": "^1.8.4",
+    "marked": "^0.3.19"
+  }
+}

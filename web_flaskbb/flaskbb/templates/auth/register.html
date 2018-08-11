@@ -1,0 +1,34 @@
+{% set page_title = _("Register") %}
+{% set active_forum_nav=True %}
+
+{% extends theme("layout.html") %}
+{% block content %}
+{% from theme("macros.html") import horizontal_field %}
+
+<div class="panel page-panel">
+    <div class="panel-heading page-head">
+        {% trans %}Register{% endtrans %}
+    </div>
+
+    <div class="panel-body">
+        <form class="form-horizontal" role="form" method="POST">
+            {{ form.hidden_tag() }}
+            {{ run_hook('flaskbb_tpl_form_registration_before', form=form) }}
+            {{ horizontal_field(form.username)}}
+            {{ horizontal_field(form.email)}}
+            {{ horizontal_field(form.password)}}
+            {{ horizontal_field(form.confirm_password)}}
+
+            {% if flaskbb_config["RECAPTCHA_ENABLED"] %}
+                {{ horizontal_field(form.recaptcha) }}
+            {% endif %}
+
+            {{ horizontal_field(form.language) }}
+            {{ horizontal_field(form.accept_tos)}}
+            {{ run_hook('flaskbb_tpl_form_registration_after', form=form) }}
+            {{ horizontal_field(form.submit)}}
+        </form>
+    </div>
+</div>
+
+{% endblock %}

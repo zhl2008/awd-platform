@@ -1,0 +1,16 @@
+Upcoming Google I/O Go Events
+12 May 2010
+
+Andrew Gerrand
+
+* Introduction
+
+[[http://code.google.com/events/io/2010/][Google I/O 2010]] is happening next week at the Moscone Centre in San Francisco. Those of you with tickets will be able to catch some of the Go team both at I/O and at [[http://code.google.com/events/io/2010/bootcamp.html][Bootcamp]]. In reverse-chronological order:
+
+Rob Pike and Russ Cox will be presenting a [[http://code.google.com/events/io/2010/sessions/go-programming.html][Go Programming]] talk on Thursday at 10.15am. This session takes a detailed look at how Go differs from other languages in a practical sense. Through a series of examples, they will demonstrate various features of Go and the ways in which they affect program design.
+
+Several members of the Go team will be at the Go cube during [[http://code.google.com/events/io/2010/officehours.html][Office Hours]] on Wednesday between 12pm and 2:30pm. Come by to have your Go questions answered by the experts.
+
+At Bootcamp on Tuesday at 4.15pm, Andrew Gerrand will be giving an introductory talk about Go. The session will give an overview of the problems that motivated us to build a new language, and the ways in which Go addresses those problems.
+
+If you're coming to I/O, we look forward to seeing you there!

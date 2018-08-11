@@ -1,0 +1,63 @@
+Go 1.7 is released
+15 Aug 2016
+
+Chris Broadfoot
+cbro@golang.org
+
+* Introduction
+
+Today we are happy to announce the release of Go 1.7.
+You can get it from the [[https://golang.org/dl/][download page]].
+There are several significant changes in this release: a port for
+[[https://en.wikipedia.org/wiki/IBM_System_z][Linux on IBM z Systems]] (s390x),
+compiler improvements, the addition of the [[https://golang.org/pkg/context/][context]] package,
+and support for [[https://golang.org/pkg/testing/#hdr-Subtests_and_Sub_benchmarks][hierarchical tests and benchmarks]].
+
+A new compiler back end, based on [[https://en.m.wikipedia.org/wiki/Static_single_assignment_form][static single-assignment]] form (SSA),
+has been under development for the past year.
+By representing a program in SSA form, a compiler may perform advanced optimizations more easily.
+This new back end generates more compact, more efficient code that includes
+optimizations like
+[[https://en.wikipedia.org/wiki/Bounds-checking_elimination][bounds check elimination]] and
+[[https://en.wikipedia.org/wiki/Common_subexpression_elimination][common subexpression elimination]].
+We observed a 5–35% speedup across our [[https://golang.org/test/bench/go1/][benchmarks]].
+For now, the new backend is only available for the 64-bit x86 platform ("amd64"),
+but we’re planning to convert more architecture backends to SSA in future releases.
+
+The compiler front end uses a new, more compact export data format, and
+processes import declarations more efficiently.
+While these [[https://golang.org/doc/go1.7#compiler][changes across the compiler toolchain]] are mostly invisible,
+users have [[http://dave.cheney.net/2016/04/02/go-1-7-toolchain-improvements][observed]]
+a significant speedup in compile time and a reduction in binary size by as much as 20–30%.
+
+Programs should run a bit faster due to speedups in the garbage collector and optimizations in the standard library.
+Programs with many idle goroutines will experience much shorter garbage collection pauses than in Go 1.6.
+
+Over the past few years, the [[https://godoc.org/golang.org/x/net/context/][golang.org/x/net/context]]
+package has proven to be essential to many Go applications.
+Contexts are used to great effect in applications related to networking, infrastructure, and microservices
+(such as [[http://kubernetes.io/][Kubernetes]] and [[https://www.docker.com/][Docker]]).
+They make it easy to enable cancelation, timeouts, and passing request-scoped data.
+To make use of contexts within the standard library and to encourage more extensive use,
+the package has been moved from the [[https://godoc.org/golang.org/x/net/context/][x/net]] repository
+to the standard library as the [[https://golang.org/pkg/context/][context]] package.
+Support for contexts has been added to the
+[[https://golang.org/pkg/net/][net]],
+[[https://golang.org/pkg/net/http/][net/http]], and
+[[https://golang.org/pkg/os/exec/][os/exec]] packages.
+For more information about contexts, see the [[https://golang.org/pkg/context][package documentation]]
+and the Go blog post [[https://blog.golang.org/context][_Go_Concurrency_Patterns:_Context_]].
+
+Go 1.5 introduced experimental support for a [[https://golang.org/cmd/go/#hdr-Vendor_Directories]["vendor" directory]],
+enabled by the `GO15VENDOREXPERIMENT` environment variable.
+Go 1.6 enabled this behavior by default, and in Go 1.7, this switch has been removed and the "vendor" behavior is always enabled.
+
+Go 1.7 includes many more additions, improvements, and fixes.
+Find the complete set of changes, and details of the points above, in the
+[[https://golang.org/doc/go1.7.html][Go 1.7 release notes]].
+
+Finally, the Go team would like thank everyone who contributed to the release.
+170 people contributed to this release, including 140 from the Go community.
+These contributions ranged from changes to the compiler and linker, to the standard library, to documentation, and code reviews.
+We welcome contributions; if you'd like to get involved, check out the
+[[https://golang.org/doc/contribute.html][contribution guidelines]].

@@ -1,0 +1,374 @@
+(function(a) {
+	(function() {
+		function b(a, b, e, f) {
+			var g = b.val(),
+				n = a.data("last") || "";
+			g != n && (a.data("last", g), e.val(g.replace(/.*(\\|\/)/, "")), f || b.trigger("change"))
+		}
+		a(document).on("click", "[data-dismiss=upload]", function(c) {
+			var d = a(this);
+			c = a(c.target);
+			if ("button" == c.attr("rel") || "filename" == c.attr("rel")) {
+				c = d.find("input[type=file]");
+				var e = d.find("[rel=filename]");
+				c.click();
+				setTimeout(b, 0, d, c, e)
+			}
+		});
+		a(document).on("change", "[data-dismiss=upload] input[type=file]", function() {
+			var c = a(this),
+				d = c.parents("[data-dismiss=upload]"),
+				e = d.find("[rel=filename]");
+			b(d, c, e, !0)
+		})
+	})();
+	(function() {
+		var b = a.cookie("JsStorage");
+		b && (b = b.split(":::"), 1 < b.length && a.jStorage[b[0]].apply(this, b.splice(1)), a.removeCookie("JsStorage", {
+			path: "/"
+		}))
+	})();
+	(function() {
+		a.fn.mdFilter = function() {
+			var b = a(this);
+			b.find("img").each(function(b, d) {
+				var e = a(d);
+				e.addClass("img-responsive");
+				var f = e.attr("src"),
+					g = f.replace(/(\/img\/.+\.)(\d+)(\.(jpg|png))/, function(a, b, c, d) {
+						return b + "full" + d
+					});
+				g !== f && e.wrap('<a target="_blank" href="' + g + '"></a>')
+			});
+			b.children("p, ol, ul, blockquote").each(function(b, d) {
+				a(d).replaceWith(function() {
+					var b = {},
+						c = a(a(d).outerHTML());
+					c.find("a").each(function(c, d) {
+						b[c] = a(d).outerHTML();
+						a(d).replaceWith("start-ph-a-" + c + "-end")
+					});
+					c = c.outerHTML().replace(/\B([@#])([\d\w-_]+)/g, function(a, b, c) {
+						var d;
+						"@" == b ? (a = "/user/" + c, d = 'target="_blank"') : (a = "#reply" + c, d = 'rel="floor-link"');
+						return '<a href="' + a + '" ' + d + ">" + b + c + "</a>"
+					});
+					return c = c.replace(/start-ph-a-(\d)-end/g, function(a, c) {
+						return b[c]
+					})
+				})
+			});
+			b.find("pre > code").parent().addClass("prettyprint");
+			prettyPrint()
+		}
+	})();
+	a(function() {
+		a("[data-show=tooltip]").each(function(b, c) {
+			var d = a(c);
+			d.tooltip({
+				placement: d.data("placement"),
+				title: d.data("tooltip-text")
+			});
+			d.tooltip("show")
+		});
+		a("[rel=select2]").select2();
+		a(".markdown").mdFilter()
+	});
+})(jQuery);
+
+(function(c) {
+	function t(a) {
+		var c = 0,
+			d = 0,
+			e, l, b;
+		"number" === typeof a.selectionStart && "number" === typeof a.selectionEnd ? (c = a.selectionStart, d = a.selectionEnd) : (l = document.selection.createRange()) && l.parentElement() === a && (b = a.value.length, e = a.value.replace(/\r\n/g, "\n"), d = a.createTextRange(), d.moveToBookmark(l.getBookmark()), a = a.createTextRange(), a.collapse(!1), -1 < d.compareEndPoints("StartToEnd", a) ? c = d = b : (c = -d.moveStart("character", -b), c += e.slice(0, c).split("\n").length - 1, -1 < d.compareEndPoints("EndToEnd", a) ? d = b : (d = -d.moveEnd("character", -b), d += e.slice(0, d).split("\n").length - 1)));
+		return {
+			start: c,
+			end: d
+		}
+	}
+	function u(a, c, d) {
+		d || (d = c);
+		a.setSelectionRange ? (a.focus(), a.setSelectionRange(c, d)) : a.createTextRange ? (a = a.createTextRange(), a.collapse(!0), a.moveStart("character", c), a.moveEnd("character", d), a.select()) : a.selectionStart && (a.selectionStart = c, a.selectionEnd = d)
+	}
+	function B(a) {
+		return (a = a.match(/^\n+/)) ? a[0].length : 0
+	}
+	function E(a, s) {
+		function d() {
+			s && s(p.canUndo(), p.canRedo())
+		}
+		function e(a, b) {
+			"boolean" != typeof b && (b = f == a);
+			f = a;
+			p.save(b)
+		}
+		function l() {
+			var b = a.val();
+			return c.extend({
+				value: b
+			}, t(q))
+		}
+		var b = 0,
+			g = [],
+			f = "none",
+			q = a.get(0);
+		a.on("paste drop dragover dragenter", function() {
+			e("paste", !1)
+		});
+		a.on("keyup", function(a) {
+			a.ctrlKey || a.metaKey || (a = a.keyCode, 33 <= a && 40 >= a || 63232 <= a && 63235 >= a ? e("moving") : 8 == a || 46 == a || 127 == a ? e("deleting") : 13 == a ? e("newlines") : 27 == a ? e("escape") : (16 > a || 20 < a) && 91 != a && e("typing"))
+		});
+		var p = {
+			canRedo: function() {
+				return b < g.length - 1
+			},
+			canUndo: function() {
+				return 0 < b
+			},
+			redo: function() {
+				if (p.canRedo()) {
+					b++;
+					var c = g[b];
+					a.val(c.value);
+					u(q, c.start, c.end)
+				}
+				d();
+				a.focus()
+			},
+			undo: function() {
+				if (p.canUndo()) {
+					b--;
+					var c = g[b];
+					a.val(c.value);
+					u(q, c.start, c.end)
+				}
+				d();
+				a.focus()
+			},
+			save: function(c) {
+				setTimeout(function() {
+					c ? g[b] = l() : p.last() !== a.val() && g.push(l());
+					b = g.length - 1;
+					d()
+				}, 10)
+			},
+			last: function() {
+				if (g.length) return g[g.length - 1].value
+			}
+		};
+		g.push(l());
+		b++;
+		return p
+	}
+	function F(a) {
+		var s = [],
+			d = !1;
+		a.textcomplete([{
+			match: /\B@([\d\w-_]*)$/,
+			search: function(a, l) {
+				var b = function() {
+					var b = 0;
+					l(c.map(s, function(c) {
+						5 > b && 0 === c.indexOf(a) ? b++ : c = null;
+						return c
+					}))
+				};
+				d ? b() : (d = !0, c.post("/api/user", {
+					action: "get-follows"
+				}, function(a) {
+					a.success && a.data && c.each(a.data, function(a, c) {
+						additionMentions[c[1]] = c[0]
+					})
+				}).complete(function() {
+					c.each(additionMentions, function(a, c) {
+						var b = a;
+						a != c && (b = a + " (" + c + ")");
+						s.push(b)
+					});
+					b()
+				}))
+			},
+			index: 1,
+			replace: function(a) {
+				var c = a.indexOf(" "); - 1 != c && (a = a.substr(0, c));
+				return "@" + a + " "
+			}
+		}])
+	}
+	additionMentions = {};
+	c(function() {
+		c(".markdown-editor").each(function(a, s) {
+			function d(a, b) {
+				b ? p.find(".md-btn").not(a).each(function(a, z) {
+					var b = c(z);
+					b.data("isDis", b.hasClass("disabled"));
+					b.addClass("disabled")
+				}) : p.find(".md-btn").not(a).each(function(a, z) {
+					var b = c(z);
+					b.data("isDis") || b.removeClass("disabled")
+				})
+			}
+			function e(a, b, d) {
+				var w = t(v),
+					k = f.val(),
+					m = k.substr(0, w.start).lastIndexOf("\n") + 1,
+					m = k.substring(m, w.start);
+				c.trim(m) && (a = "\n" + a, b && (b += 1), d && (d += 1));
+				k = k.substr(0, w.end) + a + k.substr(w.end);
+				f.val(k);
+				u(v, b, d);
+				r.save()
+			}
+			function l(a, c) {
+				A = !1;
+				var d = a.find(".alert-success").hide(),
+					f = a.find(".alert-danger").hide();
+				c && c.success ? (a.find("[rel=filename]").val(""), a.find("[type=file]").val(""), b.find(".md-image").find("[name=link]").val(c.link), d.show()) : (c && c.msg ? f.text(c.msg) : f.text(f.data("message")), f.show())
+			}
+			var b = c(s),
+				g = b.find(".md-textarea"),
+				f = g.find("textarea"),
+				q = b.find(".md-preview"),
+				p = b.find(".md-toolbar"),
+				x = b.find("[data-meta=undo]"),
+				y = b.find("[data-meta=redo]"),
+				G = b.data("preview-url"),
+				v = f.get(0),
+				C = b.data("savekey"),
+				D = "",
+				n;
+			b.data("editor", {
+				insertText: e,
+				getSel: function() {
+					return t(v)
+				}
+			});
+			"" === f.val() && f.val(c.jStorage.get(C));
+			var H = setInterval(function() {
+				c.jStorage.set(C, f.val())
+			}, 500);
+			f.parents("form:first").on("submit", function() {
+				clearInterval(H)
+			});
+			f.autosize();
+			f.css("resize", "none");
+			F(f);
+			b.on("click", "[data-meta=preview]", function() {
+				var a = c(this);
+				a.hasClass("active") ? (g.show(), q.hide(), a.removeClass("active"), d(a, !1), f.focus()) : (g.hide(), q.show(), a.addClass("active"), d(a, !0), a = c.trim(f.val()), "" === a ? q.html("") : a != D && (D = a, c.post(G, {
+					action: "preview",
+					content: a
+				}, function(a) {
+					a.success && (q.html(a.preview), q.mdFilter && q.mdFilter())
+				})))
+			});
+			f.on("keypress", function(a) {
+				!a.ctrlKey && !a.metaKey || 89 != a.keyCode && 90 != a.keyCode || a.preventDefault()
+			});
+			f.on("keydown", function(a) {
+				var b = f,
+					c = b.get(0),
+					d = t(c),
+					k = d.start,
+					d = d.end,
+					m = b.val(),
+					h = a.ctrlKey || a.metaKey;
+				switch (a.keyCode) {
+					case 89:
+						h && (r.redo(), a.preventDefault());
+						break;
+					case 90:
+						h && (a.shiftKey ? r.redo() : r.undo(), a.preventDefault());
+						break;
+					case 9:
+						var h = m.substring(k, d),
+							e = B(h),
+							h = h.substr(e),
+							k = k + e;
+						e = (e = h.match(/\n+$/)) ? e[0].length : 0;
+						h = h.substr(0, h.length - e);
+						d -= e;
+						if (a.shiftKey) {
+							var e = m.substr(0, k).lastIndexOf("\n") + 1,
+								g = m.substr(d).indexOf("\n"); - 1 == g && (g = 0);
+							var g = g + d,
+								h = m.substring(e, g),
+								l = h.replace(/^([ ]{1,4}|\t)/gm, ""),
+								h = h.length - l.length;
+							0 < h && (k -= 1, m = m.substr(0, e) + l + m.substr(g), b.val(m));
+							e = B(m.substr(k));
+							u(c, k + e, d - h)
+						} else h = "\t" + h.replace(/\n/g, "\n\t"), b.val(m.substr(0, k) + h + m.substr(d)), u(c, k + 1, k + h.length);
+						r.save();
+						a.preventDefault()
+				}
+			});
+			b.find("[data-meta=image]").popover({
+				html: !0,
+				container: b,
+				title: b.find("[rel=image-popover-title]").html(),
+				content: b.find("[rel=image-popover-content]").html()
+			});
+			var A;
+			b.on("click", "[rel=image-insert]", function() {
+				var a = b.find(".md-image").find("[name=link]").val(),
+					d = t(v);
+				e("![](" + a + ")", d.start + 2);
+				c(n).popover("hide")
+			});
+			b.on("click", "[rel=image-upload]", function() {
+				var a = b.find(".md-image-form");
+				a.slideToggle();
+				a.ajaxForm({
+					dataType: "json",
+					beforeSubmit: function() {
+						if (A || "" === a.find("[rel=filename]").val()) return !1;
+						A = !0
+					},
+					success: function(b) {
+						l(a, b)
+					},
+					error: function() {
+						l(a)
+					}
+				})
+			});
+			b.on("click", "[data-meta=code]", function() {
+				var a = t(v);
+				if (a.start != a.end) {
+					var b = f.val(),
+						c = b.substring(a.start, a.end),
+						b = b.substr(0, a.start) + "\n```go\n" + c + "\n```";
+					f.val(b);
+					r.save()
+				} else e("\n```go\n\n```", a.start + 7)
+			});
+			var r = E(f, function(a, b) {
+				a ? x.removeClass("disabled") : x.addClass("disabled");
+				b ? y.removeClass("disabled") : y.addClass("disabled");
+				f.trigger("autosize.resize")
+			});
+			x.on("click", function() {
+				r.undo()
+			});
+			y.on("click", function() {
+				r.redo()
+			});
+			b.on("show.bs.popover", function(a) {
+				n && n != a.target && c(n).popover("hide");
+				n = a.target
+			});
+			b.on("hide.bs.popover", function(a) {
+				n == a.target && (c(n).data("bs.popover").hoverState = "out", n = null)
+			});
+			c(document).on("mousedown", function(a) {
+				if (n && n != a.target) {
+					a = c(a.target);
+					var b = c(n);
+					a.hasClass("md-btn") && a.hasClass("md-btn") && a.data("meta") == b.data("meta") || a.parents(".md-btn").length && a.parents(".md-btn").length && a.parents(".md-btn:first").data("meta") == b.data("meta") || a.parents(".popover").length || b.popover("hide")
+				}
+			})
+		})
+	})
+})(jQuery);

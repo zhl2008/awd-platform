@@ -1,0 +1,11 @@
+{% set link = url_for('auth.activate_account', token=token, _external=True) %}
+
+{% trans link=link %}Dear {{ username }},
+
+Click the link below to activate your account:
+
+{{ link }}
+
+Sincerely,
+The Administration
+{% endtrans %}

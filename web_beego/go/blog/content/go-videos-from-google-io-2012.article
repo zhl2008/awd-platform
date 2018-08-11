@@ -1,0 +1,35 @@
+Go videos from Google I/O 2012
+2 Jul 2012
+Tags: talk, video, concurrency, appengine, ethos
+
+Andrew Gerrand
+
+* Introduction
+
+Phew! Google I/O is over for another year, and what an event it was. Thanks to our guest speakers and everyone who attended the four Go sessions. It was a lot of fun.
+
+Here are the session videos:
+
+*Go*concurrency*patterns* by Rob Pike
+
+_Concurrency_is_the_key_to_designing_high_performance_network_services._Go's_concurrency_primitives_(goroutines_and_channels)_provide_a_simple_and_efficient_means_of_expressing_concurrent_execution._In_this_talk_we_see_how_tricky_concurrency_problems_can_be_solved_gracefully_with_simple_Go_code._
+
+.iframe //www.youtube.com/embed/f6kdp27TYZs 304 540
+
+* Go in production
+
+_Since_Go's_release_in_2009_many_companies_(besides_Google,_of_course)_have_used_the_language_to_build_cool_stuff._In_this_session_Gustavo_Niemeyer_(Canonical),_Keith_Rarick_(Heroku),_Evan_Shaw_(Iron.io),_and_Patrick_Crosby_(StatHat)_share_their_first-hand_experience_using_Go_in_production_environments._
+
+.iframe //www.youtube.com/embed/kKQLhGZVN4A 304 540
+
+* Meet the Go team
+
+_A_panel_discussion_with_David_Symonds,_Robert_Griesemer,_Rob_Pike,_Ken_Thompson,_Andrew_Gerrand,_and_Brad_Fitzpatrick._
+
+.iframe //www.youtube.com/embed/sln-gJaURzk 304 540
+
+*Computing*Map*Tiles*with*Go*on*App*Engine* by Chris Broadfoot and Andrew Gerrand
+
+_In_this_talk_we_use_the_Maps_API_and_Go_on_App_Engine_to_build_an_app_to_build_custom_tile_sets_for_Google_Maps._The_app_demonstrates_using_Go's_suitability_for_computation_in_the_cloud_and_App_Engine's_key_scalability_features,_such_as_Task_Queues_and_Backends._
+
+.iframe //www.youtube.com/embed/sPagpg0b7no 304 540

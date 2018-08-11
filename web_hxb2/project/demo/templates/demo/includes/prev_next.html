@@ -1,0 +1,22 @@
+{% load wagtailcore_tags %}
+
+{% if self.depth > 3 %}{# Previous and next buttons are not relevant for the home page and categories #}
+  {% with prev=self.get_prev_siblings.live.first next=self.get_next_siblings.live.first %}
+    <nav>
+      <ul class="pager">
+        <li class="previous{% if not prev %} disabled{% endif %}">
+          <a href="{% if prev %}{% pageurl prev %}{% else %}#{% endif %}"
+              {% if prev %}title="{{ prev }}"{% endif %}>
+            <i class="glyphicon glyphicon-menu-left" aria-hidden="true"></i> Previous
+          </a>
+        </li>
+        <li class="next{% if not next %} disabled{% endif %}">
+          <a href="{% if next %}{% pageurl next %}{% else %}#{% endif %}"
+              {% if next %}title="{{ next }}"{% endif %}>
+            Next <i class="glyphicon glyphicon-menu-right" aria-hidden="true"></i>
+          </a>
+        </li>
+      </ul>
+    </nav>
+  {% endwith %}
+{% endif %}

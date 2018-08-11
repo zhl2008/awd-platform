@@ -1,0 +1,10 @@
+{% if people %}
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">People</h3></div>
+    <div class="list-group">
+      {% for person in people %}
+        {% include "demo/includes/person_list_item.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

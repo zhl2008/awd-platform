@@ -1,0 +1,51 @@
+GopherCon 2014 Wrap Up
+28 May 2014
+
+Andrew Gerrand
+adg@golang.org
+
+* Introduction
+
+In April this year 700 gophers descended upon Denver to attend [[http://www.gophercon.com/][GopherCon]],
+the world's first large-scale Go conference, organized entirely by the community.
+The three day event featured 24 talks and one panel discussion in a single track over two days,
+followed by an informal "hack day" full of code, conversation,
+and more than 4 hours (!) of lightning talks.
+
+.image gophercon/image02.jpg
+
+A [[http://confreaks.com/events/gophercon2014][complete set of video recordings]] is now available
+(the [[https://github.com/gophercon/2014-talks][slides are here]]).
+
+Two keynotes framed the conference:
+
+- Rob Pike's opening talk [[https://www.youtube.com/watch?v=VoS7DsT1rdM]["Hello, Gophers!"]] ([[http://talks.golang.org/2014/hellogophers.slide][slides]]) discusses the history of Go by walking through two of the first Go programs.
+- Andrew Gerrand's closing talk [[https://www.youtube.com/watch?v=dKGmK_Z1Zl0]["Go for gophers"]] ([[http://talks.golang.org/2014/go4gophers.slide][slides]]) explains the Go design philosophy through the lens of his personal experience learning the language.
+
+One talk that resonated with members of the Go team was Peter Bourgon's
+[[https://www.youtube.com/watch?v=Y1-RLAl7iOI]["Best practices for Production Environments"]]
+([[http://peter.bourgon.org/go-in-production/][notes]]).
+From deployment to dependency management, it answers many frequently asked questions about Go use in the real world and is a must-see for anyone serious about building systems in Go.
+
+But, really, you should just [[http://confreaks.com/events/gophercon2014][watch them all]].
+They're great.
+
+The Go Gopher was everywhere.
+Each attendee received one of the new pink and purple gophers,
+which now accompany the original blue one:
+
+.image gophercon/image01.jpg
+
+The gopher was also seen wearing a cape on the side of the incredible [[https://coreos.com/][CoreOS]] bus:
+
+.image gophercon/image00.jpg
+
+Most of the Go team were at the conference,
+and we were moved by the passion and dedication of the Go community.
+It was a thrill to see the many different ways people are using the language.
+It was also great to put faces to many of the names we know well through their contributions to the project.
+
+We would like to extend our thanks and congratulations to the GopherCon organizers (Brian Ketelsen and Erik St. Martin), the excellent speakers, and the tireless volunteers that pitched in to make the event such a success.
+We look forward to GopherCon 2015, which promises to be bigger and better still.
+
+But if you really can't wait, we'll see you at [[http://www.dotgo.eu/][dotGo]] in Paris on the 10th of October!

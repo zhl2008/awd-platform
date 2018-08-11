@@ -1,0 +1,30 @@
+Metadata-Version: 2.0
+Name: Flask-Alembic
+Version: 2.0.1
+Summary: Flask extension to integrate Alembic migrations
+Home-page: https://bitbucket.org/davidism/flask-alembic
+Author: David Lord
+Author-email: davidism@gmail.com
+License: BSD
+Platform: UNKNOWN
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Flask
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: BSD License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python
+Classifier: Programming Language :: Python :: 2
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.4
+Classifier: Programming Language :: Python :: 3.5
+Classifier: Topic :: Database :: Front-Ends
+Requires-Dist: Flask (>=0.10)
+Requires-Dist: Flask-SQLAlchemy
+Requires-Dist: SQLAlchemy
+Requires-Dist: alembic (>=0.8)
+
+UNKNOWN
+
+

@@ -1,0 +1,110 @@
+<link rel="stylesheet" href="/static/css/tomorrow-night-eighties.css" />
+<script src="/static/javascript/bootstrap.min.js"></script>
+<script src="/static/javascript/jquery.cookie.js"></script>
+<script src="/static/javascript/autosize.js"></script>
+<script src="/static/javascript/pretty.print.js"></script>
+<script src="/static/javascript/jstorage.min.js"></script>
+<script src="/static/javascript/app.min.js"></script>
+
+<form role="form" action="/me/article/add" method="post">
+    <div class="row form-group">
+        <div class="col-xs-6">
+            <input type="text" class="form-control" placeholder="Enter Title" name="title">
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" placeholder="Enter Identity" name="ident">
+        </div>
+        <div class="col-xs-3">
+            <input type="text" class="form-control" placeholder="Enter Keywords" name="keywords">
+        </div>
+    </div>
+    <div class="row form-group">
+        <div class="col-xs-4">
+            <select class="form-control" name="catalog_id">
+                {{range .Catalogs}}
+                <option value="{{.Id}}">{{.Name}}</option>
+                {{end}}
+            </select>
+
+        </div>
+        <div class="col-xs-2">
+            <select class="form-control" name="type">
+                <option value="0">原创</option>
+                <option value="1">翻译</option>
+                <option value="2">转载</option>
+            </select>
+
+        </div>
+        <div class="col-xs-2">
+            <select class="form-control" name="status">
+                <option value="1">立即发布</option>
+                <option value="0">保存草稿</option>
+            </select>
+        </div>
+    </div>
+
+
+    <div class="markdown-editor"  data-preview-url="/api/markdown" data-savekey="post/new">
+
+        <div class="form-group">
+            <div class="btn-toolbar md-toolbar" role="toolbar">
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default md-btn" data-meta="preview"><i class="icon-eye-open"></i> 预览</button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default md-btn" data-meta="image" data-placement="bottom"><i class="icon-picture"></i></button>
+                    <button type="button" class="btn btn-default md-btn" data-meta="code"><i class="icon-code"></i></button>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-default md-btn disabled" data-meta="undo"><div class="icon-rotate-left"></div></button>
+                    <button type="button" class="btn btn-default md-btn disabled" data-meta="redo"><i class="icon-rotate-right"></i></button>
+                </div>
+            </div>
+            <div class="md-textarea">
+                <textarea id="PostForm-Content" name="content" rows="5" class="form-control"></textarea>
+            </div>
+        </div>
+        <div class="md-preview markdown" style="display:none;">
+        </div>
+
+        <script type="text/template" rel="image-popover-title">
+            插入图片
+            <a class="pull-right color-link" rel="image-upload" href="javascript:"><i class="icon-upload-alt"></i> 上传</a>
+        </script>
+
+        <script type="text/template" rel="image-popover-content">
+            <div class="md-image">
+                <form class="md-image-form" style="display:none;" action="/api/upload" data-dismiss="upload" enctype="multipart/form-data" method="POST">
+                    <div style="display:none" class="alert alert-danger alert-small" data-message="Upload Failed! Please retry."></div>
+                    <div style="display:none" class="alert alert-success alert-small">Upload Success!</div>
+                    <input type="hidden" name="type" value="image">
+                    <div class="form-group">
+                        <input class="form-control" type="text" disabled="disabled" rel="filename">
+                        <input style="width:0;height:0;position:fixed;top:9999px;left:9999px;" type="file" name="image">
+                    </div>
+                    <div class="form-group">
+                        <div class="text-center">
+                            <span class="btn-group">
+                                <button class="btn btn-default" type="button" rel="button">Select File</button>
+                                <button class="btn btn-default" type="submit">Upload Now</button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="form-group">
+                    <input class="form-control" type="text" name="link" placeholder="Please enter image link">
+                </div>
+                <button class="btn btn-info btn-block" type="button" rel="image-insert">
+                    Insert
+                </button>
+            </div>
+        </script>
+
+    </div>
+
+    <div class="md-preview markdown" style="display:none;">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+

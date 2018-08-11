@@ -1,0 +1,39 @@
+# German translations for PROJECT.
+# Copyright (C) 2015 ORGANIZATION
+# This file is distributed under the same license as the PROJECT project.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2015.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PROJECT VERSION\n"
+"Report-Msgid-Bugs-To: EMAIL@ADDRESS\n"
+"POT-Creation-Date: 2017-10-07 23:05+0200\n"
+"PO-Revision-Date: 2015-01-05 21:38+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language: de\n"
+"Language-Team: de <LL@li.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.0\n"
+
+#: portal/views.py:36
+msgid ""
+"Please install the plugin first to configure the forums which should be "
+"displayed."
+msgstr ""
+"Bitte installieren sie das Plugin zuerst. Danach können sie es in "
+"der Administration konfigurieren."
+
+#: portal/templates/index.html:87
+msgid "News"
+msgstr "Neuigkeiten"
+
+#: portal/templates/index.html:113
+msgid "Recent Topics"
+msgstr "Aktuelle Themen"
+
+#: portal/templates/index.html:136
+msgid "Statistics"
+msgstr "Statisiken"

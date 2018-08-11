@@ -1,0 +1,29 @@
+{% extends theme("layout.html") %}
+{% block content %}
+{%- from theme('macros.html') import navlink with context -%}
+
+<ol class="breadcrumb flaskbb-breadcrumb">
+    <li><a href="{{ url_for('forum.index') }}">{% trans %}Forum{% endtrans %}</a></li>
+    <li><a href="{{ url_for('user.profile', username=current_user.username) }}">{{ current_user.username }}</a></li>
+    <li class="active">{% trans %}Private Message{% endtrans %}</li>
+</ol>
+
+<div class="row">
+    <div class="col-sm-3 col-md-2">
+        <div class="sidebar">
+            <ul class="nav sidenav">
+                <div class="sidenav-btn">
+                    <a href="{{ url_for('conversations_bp.new_conversation') }}" class="btn btn-success">{% trans %}New Message{% endtrans %}</a>
+                </div>
+                {{ navlink('conversations_bp.inbox', _('Inbox')) }}
+                {{ navlink('conversations_bp.sent', _('Sent')) }}
+                {{ navlink('conversations_bp.drafts', _('Drafts')) }}
+                {{ navlink('conversations_bp.trash', _('Trash')) }}
+            </ul>
+        </div><!--/.sidebar -->
+    </div><!--/.col-sm-3 -->
+    <div class="col-sm-9 col-md-10">
+        {% block message_content %}{% endblock %}
+    </div><!--/.col-sm-9 -->
+</div><!--/.row -->
+{% endblock %}

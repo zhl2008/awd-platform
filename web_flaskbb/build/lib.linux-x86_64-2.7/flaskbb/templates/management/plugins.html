@@ -1,0 +1,94 @@
+{% set page_title = _("Plugins") %}
+
+{% extends theme("management/management_layout.html") %}
+
+{% block breadcrumb %}
+<ol class="breadcrumb flaskbb-breadcrumb">
+    <li><a href="{{ url_for('forum.index') }}">{% trans %}Forum{% endtrans %}</a></li>
+    <li><a href="{{ url_for('management.overview') }}">{% trans %}Management{% endtrans %}</a></li>
+    <li class="active">{% trans %}Plugins{% endtrans %}</li>
+</ol>
+{% endblock %}
+
+{% block management_content %}
+{% from theme('macros.html') import render_pagination %}
+
+<div class="col-md-12 settings-col">
+    <div class="panel settings-panel">
+        <div class="panel-heading settings-head">
+            <span class="fa fa-puzzle-piece"></span> {% trans %}Manage Plugins{% endtrans %}
+        </div>
+        <div class="panel-body settings-body">
+            <div class="settings-content">
+                <div class="settings-meta">
+                    <div class="row settings-row">
+                        <div class="col-md-4 col-sm-4 col-xs-4 meta-item">{% trans %}Plugin{% endtrans %}</div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 meta-item">{% trans %}Information{% endtrans %}</div>
+                        <div class="col-md-4 col-sm-4 col-xs-4 meta-item">{% trans %}Manage{% endtrans %}</div>
+                    </div>
+                </div>
+                {% for plugin in plugins %}
+                <div class="row settings-row hover with-border-bottom">
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                    {{ plugin.name.title() }}
+                    (
+                    {%- if plugin.info.get('home_page') -%}
+                        <a href="{{ plugin.info.get('home_page') }}">{{ plugin.info.get("name") }}</a>
+                    {%- else -%}
+                        {{ plugin.info.get("name") }}
+                    {%- endif -%}
+                    )
+
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        <div class="plugin-version">{% trans %}Version{% endtrans %}: {{ plugin.info.get('version') }}</div>
+                        <div class="plugin-description">{{ plugin.info.get('summary') }}</div>
+                        <div class="plugin-author">{% trans %}by{% endtrans %} {{ plugin.info.get('author') }}</div>
+                    </div>
+                    <div class="col-md-4 col-sm-4 col-xs-4">
+                        {% if not plugin.enabled %}
+                        <form class="inline-form" method="post" action="{{ url_for('management.enable_plugin', name=plugin.name) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <button class="btn btn-success">{% trans %}Enable{% endtrans %}</button>
+                        </form>
+                        {% else %}
+                        <form class="inline-form" method="post" action="{{ url_for('management.disable_plugin', name=plugin.name) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <button class="btn btn-warning">{% trans %}Disable{% endtrans %}</button>
+                        </form>
+                        {% endif %}
+
+                        {% if plugin.is_installable and not plugin.is_installed %}
+                        <form class="inline-form" method="post" action="{{ url_for('management.install_plugin', name=plugin.name) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <button class="btn btn-info" name="confirmDialog" data-toggle="tooltip" data-placement="top" title="Creates the settings for the plugin">
+                                {% trans %}Install{% endtrans %}
+                            </button>
+                        </form>
+                        {% elif plugin.is_installable and plugin.is_installed %}
+                        <form class="inline-form" method="post" action="{{ url_for('management.uninstall_plugin', name=plugin.name) }}">
+                            <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
+                            <button class="btn btn-danger" name="confirmDialog" data-toggle="tooltip" data-placement="top" title="Removes the settings">
+                                {% trans %}Uninstall{% endtrans %}
+                            </button>
+                        </form>
+
+                        <a class="btn btn-info" href="{{ url_for('management.settings', plugin=plugin.name) }}">Settings</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% include theme('confirm_dialog.html') %}
+{% endblock %}
+
+{% block scripts %}
+    <script>
+    $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+    })
+    </script>
+{% endblock %}

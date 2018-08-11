@@ -1,0 +1,21 @@
+Two Go Talks: "Lexical Scanning in Go" and "Cuddle: an App Engine Demo"
+1 Sep 2011
+Tags: appengine, lexer, talk, video
+
+Andrew Gerrand
+
+* Introduction
+
+On Tuesday night Rob Pike and Andrew Gerrand each presented at the [[http://www.sydney-gtug.org/][Sydney Google Technology User Group]].
+
+Rob's talk, "[[http://www.youtube.com/watch?v=HxaD_trXwRE][Lexical Scanning in Go]]", discusses the design of  a particularly interesting and idiomatic piece of Go code, the lexer component of the new [[http://golang.org/pkg/exp/template/][template package.]]
+
+.iframe //www.youtube.com/embed/HxaD_trXwRE 345 560
+
+The slides are [[http://cuddle.googlecode.com/hg/talk/lex.html][available here]]. The new template package is available as [[http://golang.org/pkg/exp/template/][exp/template]] in Go release r59. In a future release it will replace the old template package.
+
+Andrew's talk, "[[http://www.youtube.com/watch?v=HQtLRqqB-Kk][Cuddle: an App Engine Demo]]", describes the construction of a simple real-time chat application that uses App Engine's [[http://code.google.com/appengine/docs/go/datastore/overview.html][Datastore]], [[http://code.google.com/appengine/docs/go/channel/overview.html][Channel]], and [[http://code.google.com/appengine/docs/go/datastore/memcache.html][Memcache]] APIs. It also includes a question and answer session that covers [[http://code.google.com/appengine/docs/go/gettingstarted/][Go for App Engine]] and Go more generally.
+
+.iframe //www.youtube.com/embed/HQtLRqqB-Kk 345 560
+
+The slides are [[http://cuddle.googlecode.com/hg/talk/index.html][available here]]. The code is available at the [[http://code.google.com/p/cuddle/][cuddle Google Code project]].

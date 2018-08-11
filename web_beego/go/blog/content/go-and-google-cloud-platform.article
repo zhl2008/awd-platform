@@ -1,0 +1,36 @@
+Go and the Google Cloud Platform
+12 Jun 2013
+
+Andrew Gerrand
+
+* Introduction
+
+In 2011 we announced the [[https://developers.google.com/appengine/docs/go/overview][Go runtime for App Engine]]. Since then, we have continued to improve the Go App Engine experience, and generally improved Go support for the Google Cloud Platform. For instance, the [[http://code.google.com/p/google-api-go-client][google-api-go-client]] provides a Go interface to a range of Google's public APis, including Compute Engine, Cloud Storage, BigQuery, Drive, and many more.
+
+Learn more by watching these talks from Google I/O this year:
+
+* High Performance Apps with Go on App Engine
+
+_The_Go_runtime_for_App_Engine_is_a_high_performance_engine_for_
+_running_web_applications._It_produces_fast_responses,_
+_starts_instances_in_a_fraction_of_a_second,_makes_the_most_use_
+_of_instance_hours,_and_allows_your_app_to_do_serious_processing_
+_at_full_machine_speed._
+_Come_along_to_hear_how_to_fully_exploit_the_power_of_Go_on_App_
+_Engine_and_make_your_web_applications_the_best_they_can_be._
+
+.iframe //www.youtube.com/embed/fc25ihfXhbg 309 549
+
+* All the Ships in the World
+
+Visualizing Data with Google Cloud and Maps
+
+_Tens_of_thousands_of_ships_report_their_position_at_least_once_
+_every_5_minutes,_24_hours_a_day._
+_Visualizing_that_quantity_of_data_and_serving_it_out_to_large_
+_numbers_of_people_takes_lots_of_power_both_in_the_browser_and_on_the_server._
+_This_session_will_explore_the_use_of_Maps,_
+_App_Engine,_Go,_Compute_Engine,_BigQuery,_Cloud_Storage,_
+_and_WebGL_to_do_massive_data_visualization._
+
+.iframe //www.youtube.com/embed/MT7cd4M9vzs 309 549

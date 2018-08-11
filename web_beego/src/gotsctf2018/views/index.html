@@ -1,0 +1,26 @@
+<style type="text/css">
+#header{padding-right:8px;}
+</style>
+
+<div id="collections">
+    <div class="section container" style="padding:0;">
+        {{range .Catalogs}}
+        <div class="collection-card" itemscope="" itemtype="http://schema.org/CollectionPage">
+            <a style="border-top:1px solid #eee;border-bottom:1px solid #eee;" href="/catalog/{{.Ident}}"><img class="cover" src="{{.ImgUrl}}" alt="{{.Name}}"></a>
+            <div class="card-info">
+                <a href="/catalog/{{.Ident}}"><h3 class="collection-name">{{.Name}}</h3></a>
+
+                <p class="description">
+                    {{.Resume}}
+                    {{if $.IsAdmin}}
+                    <div>
+                    (<a style="display:inline;" href="/me/catalog/edit?id={{.Id}}"> Edit</a><span class="cut-line">|</span><a style="display:inline;" href="/me/catalog/del?id={{.Id}}">Del </a>)
+                    </div>
+                    {{end}}
+                </p>
+            </div>
+            
+        </div>
+        {{end}}
+    </div>
+</div>

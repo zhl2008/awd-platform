@@ -1,0 +1,36 @@
+{% macro is_active() %}
+{% if request.endpoint.startswith("conversations_bp") %}active{% endif %}
+{% endmacro %}
+
+<li class="dropdown {{ is_active() }}">
+    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="fa fa-envelope fa-fw"></span> {% trans %}Inbox{% endtrans %}
+        {% if unread_count > 0 %}
+        <span class="label label-danger">{{ unread_count }}</span>
+        {% else %}
+        <span class="label label-info">{{ unread_count }}</span>
+        {% endif %}
+    </a>
+    <ul class="dropdown-menu dropdown-messages">
+        {% for message in unread_messages %}
+        <li>
+            <a href="{{ url_for('conversations_bp.view_conversation', conversation_id=message.id) }}">
+                <div>
+                    {% if message.from_user %}
+                        <span class="author-name">{{ message.from_user.username }}</span>
+                    {% else %}
+                        {% trans %}Deleted User{% endtrans %}
+                    {% endif %}
+                    <span class="pull-right text-muted">{{ message.last_message.date_created|time_since }}</span>
+                    <div class="message-subject">{{ message.subject }}</div>
+                </div>
+            </a>
+        </li>
+        {% else %}
+        <li><a href="#">{% trans %}No unread messages.{% endtrans %}</a></li>
+        {% endfor %}
+        <li class="divider"></li>
+        <li><a href="{{ url_for('conversations_bp.inbox') }}"><span class="fa fa-envelope fa-fw"></span> {% trans %}Inbox{% endtrans %}</a></li>
+        <li><a href="{{ url_for('conversations_bp.new_conversation') }}"><span class="fa fa-pencil fa-fw"></span> {% trans %}New Message{% endtrans %}</a></li>
+    </ul>
+</li>

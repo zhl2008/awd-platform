@@ -1,0 +1,20 @@
+{% extends "demo/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "demo/includes/intro.html" with intro=self.intro only %}
+
+    {# Uses method defined in models.py to retrieve all upcoming events #}
+    {# See also standard index for creating a listing with a tag #}
+    {% with self.events.all as events %}
+        {% if events %}    
+            <div class="list-group">
+                {% for event in events %}
+                    {% include "demo/includes/event_list_item.html" %}
+                {% endfor %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+    {% include "demo/includes/related_links.html" with related_links=self.related_links.all only %}
+{% endblock %}

@@ -1,0 +1,55 @@
+GopherCon 2015 Roundup
+28 Jul 2015
+Tags: conference, report, gopher
+
+Andrew Gerrand
+
+* Introduction
+
+A few weeks ago, Go programmers from around the world descended on Denver,
+Colorado for GopherCon 2015. The two-day, single-track conference attracted
+more than 1,250 attendees—nearly double last year's number—and featured 22
+talks presented by Go community members.
+
+.image gophercon2015.jpg _ 550
+
+.html gophercon2015.caption
+
+Today the organizers have posted the videos online so you can now enjoy the
+conference from afar:
+
+[[http://gophercon.com/schedule/8july/][Day 1]]:
+
+- Go, Open Source, Community — Russ Cox ([[https://www.youtube.com/watch?v=XvZOdpd_9tc][video]]) ([[http://blog.golang.org/open-source][text]])
+- Go kit: A Standard Library for Distributed Programming — Peter Bourgon ([[https://www.youtube.com/watch?v=1AjaZi4QuGo][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Go%20kit/go-kit.pdf][slides]])
+- Delve Into Go — Derek Parker ([[https://www.youtube.com/watch?v=InG72scKPd4][video]]) ([[http://go-talks.appspot.com/github.com/derekparker/talks/gophercon-2015/delve-into-go.slide][slides]])
+- How a complete beginner learned Go as her first backend language in 5 weeks — Audrey Lim ([[https://www.youtube.com/watch?v=fZh8uCInEfw][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Audrey%20Lim%20-%20How%20a%20Complete%20Beginner%20Picked%20Up%20Go%20as%20Her%20First%20Backend%20Language%20in%205%20weeks/audreylim_slides.pdf][slides]])
+- A Practical Guide to Preventing Deadlocks and Leaks in Go — Richard Fliam ([[https://www.youtube.com/watch?v=3EW1hZ8DVyw][video]])
+- Go GC: Solving the Latency Problem — Rick Hudson ([[https://www.youtube.com/watch?v=aiv1JOfMjm0][video]]) ([[http://talks.golang.org/2015/go-gc.pdf][slides]])
+- Simplicity and Go — Katherine Cox-Buday ([[https://www.youtube.com/watch?v=S6mEo_FHZ5Y][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Katherine%20Cox-Buday:%20Simplicity%20%26%20Go/Simplicity%20%26%20Go.pdf][slides]])
+- Rebuilding Parse.com in Go - an opinionated rewrite — Abhishek Kona ([[https://www.youtube.com/watch?v=_f9LS-OWfeA][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Abhishek%20Kona%20Rewriting%20Parse%20in%20GO/myslides.pdf][slides]])
+- Prometheus: Designing and Implementing a Modern Monitoring Solution in Go — Björn Rabenstein ([[https://www.youtube.com/watch?v=1V7eJ0jN8-E][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Bj%C3%B6rn%20Rabenstein%20-%20Prometheus/slides.pdf][slides]])
+- What Could Go Wrong? — Kevin Cantwell ([[https://www.youtube.com/watch?v=VC3QXZ-x5yI][video]])
+- The Roots of Go — Baishampayan Ghose ([[https://www.youtube.com/watch?v=0hPOopcJ8-E][video]]) ([[https://speakerdeck.com/bg/the-roots-of-go][slides]])
+
+[[http://gophercon.com/schedule/9july/][Day 2]]:
+
+- The Evolution of Go — Robert Griesemer ([[https://www.youtube.com/watch?v=0ReKdcpNyQg][video]]) ([[http://talks.golang.org/2015/gophercon-goevolution.slide][slides]])
+- Static Code Analysis Using SSA — Ben Johnson ([[https://www.youtube.com/watch?v=D2-gaMvWfQY][video]]) ([[https://speakerdeck.com/benbjohnson/static-code-analysis-using-ssa][slides]])
+- Go on Mobile — Hana Kim ([[https://www.youtube.com/watch?v=sQ6-HyPxHKg][video]]) ([[http://talks.golang.org/2015/gophercon-go-on-mobile.slide][slides]])
+- Go Dynamic Tools — Dmitry Vyukov ([[https://www.youtube.com/watch?v=a9xrxRsIbSU][video]]) ([[http://talks.golang.org/2015/dynamic-tools.slide][slides]])
+- Embrace the Interface — Tomás Senart ([[https://www.youtube.com/watch?v=xyDkyFjzFVc][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Tom%C3%A1s%20Senart%20-%20Embrace%20the%20Interface/ETI.pdf][slides]])
+- Uptime: Building Resilient Services with Go — Blake Caldwell ([[https://www.youtube.com/watch?v=PyBJQA4clfc][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Blake%20Caldwell%20-%20Uptime:%20Building%20Resilient%20Services%20with%20Go/2015-GopherCon-Talk-Uptime.pdf][slides]])
+- Cayley: Building a Graph Database — Barak Michener ([[https://www.youtube.com/watch?v=-9kWbPmSyCI][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Barak%20Michener%20-%20Cayley:%20Building%20a%20Graph%20Database/Cayley%20-%20Building%20a%20Graph%20Database.pdf][slides]])
+- Code Generation For The Sake Of Consistency — Sarah Adams ([[https://www.youtube.com/watch?v=kGAgHwfjg1s][video]])
+- The Many Faces of Struct Tags — Sam Helman and Kyle Erf ([[https://www.youtube.com/watch?v=_SCRvMunkdA][video]]) ([[https://github.com/gophercon/2015-talks/blob/master/Sam%20Helman%20%26%20Kyle%20Erf%20-%20The%20Many%20Faces%20of%20Struct%20Tags/StructTags.pdf][slides]])
+- Betting the Company on Go and Winning — Kelsey Hightower ([[https://www.youtube.com/watch?v=wqVbLlHqAeY][video]])
+- How Go Was Made — Andrew Gerrand ([[https://www.youtube.com/watch?v=0ht89TxZZnk][video]]) ([[http://talks.golang.org/2015/how-go-was-made.slide][slides]])
+
+The [[http://gophercon.com/schedule/10july/][hack day]] was also a ton of fun,
+with hours of [[https://www.youtube.com/playlist?list=PL2ntRZ1ySWBeHqlHM8DmvS8axgbrpvF9b][lightning talks]] and a range of activities from programming robots
+to a Magic: the Gathering tournament.
+
+Huge thanks to the event organizers Brian Ketelsen and Eric St. Martin and
+their production team, the sponsors, the speakers, and the attendees for making
+this such a fun and action-packed conference. Hope to see you there next year!

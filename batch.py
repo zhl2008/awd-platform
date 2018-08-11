@@ -27,14 +27,17 @@ useradd ctf
 echo ctf:%s | chpasswd
 sleep 2
 mysql -uroot -proot < *.sql
+if [ -x "extra.sh" ]; then 
+./extra.sh
+fi
 /bin/bash""" % password
 	
 	return content
 
-def generate_docker_sh(teamno):
+def generate_docker_sh(teamno,my_port,my_image):
 	content = """#!/bin/sh
-docker run -p %d:80  -p %d:22 -v `pwd`:/var/www/html -d  --name team%d -ti web_14.04 /var/www/html/run.sh 
-"""% (8800 + teamno, 2200 + teamno,teamno)
+docker run -p %d:%d  -p %d:22 -v `pwd`:/var/www/html -d  --name team%d -ti %s /var/www/html/run.sh 
+"""% (8800 + teamno,my_port, 2200 + teamno,teamno,my_image)
 	return content
 
 def generate_flag_py(teamno,password):
@@ -83,7 +86,16 @@ $record = './score.txt';
 
 def main():
 	dir = sys.argv[1]
-	team_number = int(sys.argv[2])  
+	team_number = int(sys.argv[2])
+	if len(sys.argv) == 3:
+	    my_port = 80
+	    my_image = 'web_14.04'
+	elif len(sys.argv)==4:  
+	    my_port = int(sys.argv[3])
+	    my_image = 'web_14.04'
+	elif len(sys.argv)==5:
+	    my_port = int(sys.argv[3])
+	    my_image = sys.argv[4]
 
 	open('./check_server/pass.txt','w').write("")
 	open('pass.txt','w').write('')
@@ -108,7 +120,7 @@ def main():
 		open(team_dir + '/run.sh','w').write(generate_run_sh(i+1,password))
 		print '[*] write run.sh %s' % team_dir
 
-		open(team_dir + '/docker.sh','w').write(generate_docker_sh(i+1))
+		open(team_dir + '/docker.sh','w').write(generate_docker_sh(i+1,my_port,my_image))
 		print '[*] write docker.sh %s' % team_dir
 
 		open(team_dir + '/flag.py','w').write(generate_flag_py(i+1,password))

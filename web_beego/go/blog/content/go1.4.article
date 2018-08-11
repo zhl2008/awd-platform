@@ -1,0 +1,64 @@
+Go 1.4 is released
+10 Dec 2014
+
+Andrew Gerrand
+adg@golang.org
+
+* Introduction
+
+Today we announce Go 1.4, the fifth major stable release of Go, arriving six
+months after our previous major release [[https://blog.golang.org/go1.3][Go 1.3]].
+It contains a small language change, support for more operating systems
+and processor architectures, and improvements to the tool chain and libraries.
+As always, Go 1.4 keeps the promise of compatibility, and almost everything
+will continue to compile and run without change when moved to 1.4.
+For the full details, see the [[https://golang.org/doc/go1.4][Go 1.4 release notes]].
+
+The most notable new feature in this release is official support for Android.
+Using the support in the core and the libraries in the
+[[https://godoc.org/golang.org/x/mobile][golang.org/x/mobile]] repository,
+it is now possible to write simple Android apps using only Go code.
+At this stage, the support libraries are still nascent and under heavy development.
+Early adopters should expect a bumpy ride, but we welcome the community to get involved.
+
+The language change is a tweak to the syntax of for-range loops.
+You may now write "for range s {" to loop over each item from s,
+without having to assign the value, loop index, or map key.
+See the [[https://golang.org/doc/go1.4#forrange][release notes]] for details.
+
+The go command has a new subcommand, go generate, to automate the running of
+tools to generate source code before compilation.
+For example, it can be used to automate the generation of String methods for
+typed constants using the
+[[https://godoc.org/golang.org/x/tools/cmd/stringer/][new stringer tool]].
+For more information, see the [[https://golang.org/s/go1.4-generate][design document]].
+
+Most programs will run about the same speed or slightly faster in 1.4 than in
+1.3; some will be slightly slower.
+There are many changes, making it hard to be precise about what to expect.
+See the [[https://golang.org/doc/go1.4#performance][release notes]] for more discussion.
+
+And, of course, there are many more improvements and bug fixes.
+
+In case you missed it, a few weeks ago the sub-repositories were moved to new locations.
+For example, the go.tools packages are now imported from "golang.org/x/tools".
+See the [[https://groups.google.com/d/msg/golang-announce/eD8dh3T9yyA/HDOEU_ZSmvAJ][announcement post]] for details.
+
+This release also coincides with the project's move from Mercurial to Git (for
+source control), Rietveld to Gerrit (for code review), and Google Code to
+Github (for issue tracking and wiki).
+The move affects the core Go repository and its sub-repositories.
+You can find the canonical Git repositories at
+[[https://go.googlesource.com][go.googlesource.com]],
+and the issue tracker and wiki at the
+[[https://github.com/golang/go][golang/go GitHub repo]].
+
+While development has already moved over to the new infrastructure,
+for the 1.4 release we still recommend that users who
+[[https://golang.org/doc/install/source][install from source]]
+use the Mercurial repositories.
+
+For App Engine users, Go 1.4 is now available for beta testing.
+See [[https://groups.google.com/d/msg/google-appengine-go/ndtQokV3oFo/25wV1W9JtywJ][the announcement]] for details.
+
+From all of us on the Go team, please enjoy Go 1.4, and have a happy holiday season.

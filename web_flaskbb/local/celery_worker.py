@@ -1,0 +1,1 @@
+/var/www/html/celery_worker.py

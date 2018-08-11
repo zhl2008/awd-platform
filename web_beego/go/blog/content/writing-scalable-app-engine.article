@@ -1,0 +1,18 @@
+Writing scalable App Engine applications
+1 Nov 2011
+Tags: appengine, optimization
+
+David Symonds
+
+* Introduction
+
+Back in May, we [[http://blog.golang.org/2011/05/go-and-google-app-engine.html][announced]] the Go runtime for App Engine. Since then, we've opened it up for everyone to use, added many new APIs, and improved performance. We have been thrilled by all the interesting ways that people are using Go on App Engine.
+One of the key benefits of the Go runtime, apart from working in a fantastic language, is that it has high performance. Go applications compile to native code, with no interpreter or virtual machine getting between your program and the machine.
+
+Making your web application fast is important because it is well known that a web site's latency has a measurable impact on user happiness, and [[http://googlewebmastercentral.blogspot.com/2010/04/using-site-speed-in-web-search-ranking.html][Google web search uses it as a ranking factor]]. Also announced in May was that App Engine would be [[http://googleappengine.blogspot.com/2011/05/year-ahead-for-google-app-engine.html][leaving its Preview status]] and transitioning to a [[http://www.google.com/enterprise/cloud/appengine/pricing.html][new pricing model]], providing another reason to write efficient App Engine applications.
+
+To make it easier for Go developers using App Engine to write highly efficient, scalable applications, we recently updated some existing App Engine articles to include snippets of Go source code and to link to relevant Go documentation.
+
+- [[http://code.google.com/appengine/articles/scaling/overview.html][Best practices for writing scalable applications]]
+
+- [[http://code.google.com/appengine/articles/managing-resources.html][Managing Your App's Resource Usage]]

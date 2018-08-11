@@ -1,0 +1,142 @@
+/* line 7, /var/www/html/project/demo/static/demo/css/main.scss */
+html {
+  background-color: whitesmoke; }
+
+/* fonts */
+/* line 12, /var/www/html/project/demo/static/demo/css/main.scss */
+body {
+  font-family: 'Open Sans', Helvetica, Arial, sans-serif; }
+
+/* body image styles - classes supplied by rich text editor */
+/* line 18, /var/www/html/project/demo/static/demo/css/main.scss */
+.body-content {
+  width: 100%;
+  overflow: hidden;
+  clear: both;
+  margin-bottom: 1em; }
+  /* line 23, /var/www/html/project/demo/static/demo/css/main.scss */
+  .body-content img {
+    margin-bottom: 2%;
+    margin-top: 2%; }
+  /* line 28, /var/www/html/project/demo/static/demo/css/main.scss */
+  .body-content img.full-width {
+    width: 100%; }
+  /* line 32, /var/www/html/project/demo/static/demo/css/main.scss */
+  .body-content img.left {
+    width: 45%;
+    margin-right: 5%;
+    float: left; }
+  /* line 38, /var/www/html/project/demo/static/demo/css/main.scss */
+  .body-content img.right {
+    width: 45%;
+    margin-left: 5%;
+    float: right; }
+  /* line 44, /var/www/html/project/demo/static/demo/css/main.scss */
+  .body-content h1, .body-content h2, .body-content h3, .body-content h4, .body-content h5 {
+    clear: both; }
+
+/* line 50, /var/www/html/project/demo/static/demo/css/main.scss */
+.img-wrapper {
+  margin-bottom: 1em;
+  position: relative; }
+  /* line 54, /var/www/html/project/demo/static/demo/css/main.scss */
+  .img-wrapper img {
+    display: block;
+    width: 100%;
+    margin-bottom: 0; }
+  /* line 60, /var/www/html/project/demo/static/demo/css/main.scss */
+  .img-wrapper.left {
+    float: left;
+    width: 45%;
+    margin-right: 5%; }
+  /* line 65, /var/www/html/project/demo/static/demo/css/main.scss */
+  .img-wrapper.right {
+    float: right;
+    width: 45%;
+    margin-left: 5%; }
+
+/* line 72, /var/www/html/project/demo/static/demo/css/main.scss */
+.intro {
+  font-size: 1.4em; }
+
+/* line 76, /var/www/html/project/demo/static/demo/css/main.scss */
+.caption {
+  padding: 0.2em 1em 0.2em 0.5em;
+  margin: 0;
+  font-weight: 400;
+  background: #F2f2f2;
+  font-style: italic;
+  display: inline-block;
+  z-index: 2;
+  position: absolute;
+  bottom: 5px;
+  left: 5px;
+  font-size: 0.9em;
+  max-width: calc(100% - 10px); }
+  /* line 90, /var/www/html/project/demo/static/demo/css/main.scss */
+  .caption p {
+    margin: 0 !important; }
+
+/* line 95, /var/www/html/project/demo/static/demo/css/main.scss */
+blockquote {
+  margin: 2em 0; }
+  /* line 98, /var/www/html/project/demo/static/demo/css/main.scss */
+  blockquote span {
+    display: block;
+    color: #AAA;
+    font-size: 0.8em; }
+
+/* List styling - tweaks to include images */
+/* line 108, /var/www/html/project/demo/static/demo/css/main.scss */
+a.list-group-item {
+  clear: both;
+  width: 100%;
+  overflow: hidden; }
+  /* line 112, /var/www/html/project/demo/static/demo/css/main.scss */
+  a.list-group-item .list-group-item-text {
+    margin-top: 1%; }
+    /* line 114, /var/www/html/project/demo/static/demo/css/main.scss */
+    a.list-group-item .list-group-item-text img {
+      float: left;
+      margin-right: 2%;
+      margin-bottom: 1%; }
+
+/* Style pager */
+/* line 123, /var/www/html/project/demo/static/demo/css/main.scss */
+.col-sm-4.pages {
+  text-align: center; }
+
+/* line 127, /var/www/html/project/demo/static/demo/css/main.scss */
+.col-sm-4.next {
+  text-align: right; }
+
+/* line 131, /var/www/html/project/demo/static/demo/css/main.scss */
+.main {
+  padding-top: 66px;
+  min-height: 700px; }
+
+/* line 136, /var/www/html/project/demo/static/demo/css/main.scss */
+.carousel {
+  margin-bottom: 15px; }
+  /* line 138, /var/www/html/project/demo/static/demo/css/main.scss */
+  .carousel .carousel-caption {
+    background-color: rgba(0, 127, 127, 0.6);
+    padding-top: 0; }
+    /* line 141, /var/www/html/project/demo/static/demo/css/main.scss */
+    .carousel .carousel-caption .btn {
+      margin-bottom: 10px; }
+
+/* line 147, /var/www/html/project/demo/static/demo/css/main.scss */
+p {
+  text-align: justify; }
+  /* line 150, /var/www/html/project/demo/static/demo/css/main.scss */
+  p:last-child {
+    margin-bottom: 0; }
+
+/* line 155, /var/www/html/project/demo/static/demo/css/main.scss */
+.advert-list {
+  margin-top: 15px;
+  margin-bottom: 0;
+  padding: 15px 0;
+  background-color: whitesmoke;
+  border-top: 1px solid #b5b5b5; }

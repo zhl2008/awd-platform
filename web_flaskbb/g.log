@@ -1,0 +1,9 @@
+[2018-05-04 22:40:11 +0000] [31851] [INFO] Starting gunicorn 19.8.1
+[2018-05-04 22:40:11 +0000] [31851] [INFO] Listening at: http://0.0.0.0:80 (31851)
+[2018-05-04 22:40:11 +0000] [31851] [INFO] Using worker: sync
+[2018-05-04 22:40:11 +0000] [31855] [INFO] Booting worker with pid: 31855
+[2018-05-04 22:40:11 +0000] [31857] [INFO] Booting worker with pid: 31857
+[2018-05-04 22:40:48 +0000] [31851] [INFO] Handling signal: int
+[2018-05-04 22:40:48 +0000] [31857] [INFO] Worker exiting (pid: 31857)
+[2018-05-04 22:40:48 +0000] [31855] [INFO] Worker exiting (pid: 31855)
+[2018-05-04 22:40:48 +0000] [31851] [INFO] Shutting down: Master

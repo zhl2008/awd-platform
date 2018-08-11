@@ -1,0 +1,23 @@
+Real Go Projects: SmartTwitter and web.go
+19 Oct 2010
+Tags: guest
+
+Michael Hoisie
+
+* Introduction
+
+_This_week's_article_is_written_by_ [[http://www.hoisie.com/][_Michael_Hoisie_]]. _A_programmer_based_in_San_Francisco,_he_is_one_of_Go's_early_adopters_and_the_author_of_several_popular_Go_libraries._He_describes_his_experiences_using_Go:_
+
+I was introduced to Go by a post on [[http://news.ycombinator.com/][Hacker News]]. About an hour later I was hooked. At the time I was working at a web start-up, and had been developing internal testing apps in Python. Go offered speed, better concurrency support, and sane Unicode handling, so I was keen to port my programs to the language. At that time there wasn't an easy way to write web apps in Go, so I decided to build a simple web framework, [[http://github.com/hoisie/web.go][web.go]]. It was modeled after a popular Python framework, [[http://webpy.org/][web.py]], which I had worked with previously. While working on web.go I got involved in the Go community, submitted a bunch of bug reports, and hacked on some standard library packages (mainly [[http://golang.org/pkg/http/][http]] and [[http://golang.org/pkg/json/][json]]).
+
+After a few weeks I noticed that web.go was getting attention at Github. This was surprising because I'd never really promoted the project. I think there's a niche for simple, fast web applications, and I think Go can fill it.
+
+One weekend I decided to write a simple Facebook application: it would re-post your Twitter status updates to your Facebook profile. There is an official Twitter application to do this, but it re-posts everything, creating noise in your Facebook feed. My application allowed you to filter retweets, mentions, hashtags, replies, and more. This turned into [[http://www.facebook.com/apps/application.php?id=135488932982][Smart Twitter]], which currently has nearly 90,000 users.
+
+The entire program is written in Go, and uses [[http://code.google.com/p/redis/][Redis]] as its storage back-end. It is very fast and robust. It currently processes about two dozen tweets per second, and makes heavy use of Go's channels. It runs on a single Virtual Private Server instance with 2GB of RAM, which has no problem handling the load. Smart Twitter uses very little CPU time, and is almost entirely memory-bound as the entire database is kept in memory. At any given time there are around 10 goroutines running concurrently: one accepting HTTP connections, another reading from the Twitter Streaming API, a couple for error handling, and the rest either processing web requests or re-posting incoming tweets.
+
+Smart Twitter also spawned other open-source Go projects: [[http://github.com/hoisie/mustache.go][mustache.go]], [[http://github.com/hoisie/redis.go][redis.go]], and [[http://github.com/hoisie/twitterstream][twitterstream]].
+
+I see a lot of work left to do on web.go. For instance, I'd like to add better support for streaming connections, websockets, route filters, better support in shared hosts, and improving the documentation. I recently left the start-up to do software freelancing, and I'm planning to use Go where possible. This means I'll probably use it as a back end for personal apps, as well as for clients that like working with cutting edge technology.
+
+Finally, I'd like to thank the Go team for all their effort. Go is a wonderful platform and I think it has a bright future. I hope to see the language grow around the needs of the community. There's a lot of interesting stuff happening in the community, and I look forward to seeing what people can hack together with the language.

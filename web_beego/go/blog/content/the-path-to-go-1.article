@@ -1,0 +1,15 @@
+The path to Go 1
+14 Mar 2013
+Tags: talk, video, go1
+
+Andrew Gerrand
+
+* Introduction
+
+In July 2012, Rob Pike and I presented a talk at OSCON titled _The_path_to_Go_1_. In it we explain how Go 1 came to be, and outline the process by which Go was refined and stabilized to become the clean, consistent programming environment that it is today. We present the major highlights of the release and discuss the details behind some specific libraries and tools.
+
+.iframe //www.youtube.com/embed/bj9T2c2Xk_s 309 550
+
+The slides for the talk are [[http://talks.golang.org/2012/go1.slide][available here]].
+
+It's almost a year since we cut Go 1.0 and we are now busy preparing Go 1.1. The release will include performance improvements to the gc compiler, garbage collector, and goroutine scheduler, some standard library additions, and many bug fixes and other improvements. Stay tuned, as we hope to release Go 1.1 in the coming weeks.

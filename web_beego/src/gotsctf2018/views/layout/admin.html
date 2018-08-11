@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>后台管理 - {{.BlogTitle}}</title>
+    <link rel="stylesheet" href="/static/css/lib.min.css"/>
+    <link rel="stylesheet" href="/static/css/g.css"/>
+    <script type="text/javascript" src="/static/javascript/lib.min.js"></script>
+</head>
+<body>
+    <div id="screen">
+        <header id="header" class="mt20">
+            <div class="fl">
+                <a href="/" ><img id="logo-img" src="{{.BlogLogo}}" class="img-circle" width="90" height="90"></a>
+            </div>
+            <div class="fl">
+                <div id="blog-title">{{.BlogTitle}}</div>
+                <div id="blog-resume">{{.BlogResume}}</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+        </header>
+        <ul class="nav nav-pills mb20">
+            <li class="{{if .IsAddCatalog}}active{{end}}"><a href="/me/catalog/add">增加分类</a></li>
+            <li class="{{if .IsPost}}active{{end}}"><a href="/me/article/add">发表博文</a></li>
+            <li class="{{if .IsDraft}}active{{end}}"><a href="/me/article/draft">[草稿箱]</a></li>
+            <li><a href="/logout">退出</a></li>
+            <!-- **CHECKER USING** Do NOT edit unless you know what you are doing. -->
+            <li><a href="#">Check your flag: {{.FlagData}}</a></li>
+        </ul>
+        {{.LayoutContent}}
+    </div>
+</body>
+</html>

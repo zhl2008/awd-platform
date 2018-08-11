@@ -1,0 +1,25 @@
+Gccgo in GCC 4.7.1
+11 Jul 2012
+Tags: release
+
+Ian Lance Taylor
+
+* Introduction
+
+The Go language has always been defined by a [[http://golang.org/ref/spec][spec]], not an implementation.  The Go team has written two different compilers that implement that spec: gc and gccgo.  Having two different implementations helps ensure that the spec is complete and correct: when the compilers disagree, we fix the spec, and change one or both compilers accordingly.  Gc is the original compiler, and the go tool uses it by default.  Gccgo is a different implementation with a different focus, and in this post we’ll take a closer look at it.
+
+Gccgo is distributed as part of GCC, the GNU Compiler Collection.  GCC supports several different frontends for different languages; gccgo is a Go frontend connected to the GCC backend.  The Go frontend is separate from the GCC project and is designed to be able to connect to other compiler backends, but currently only supports GCC.
+
+Compared to gc, gccgo is slower to compile code but supports more powerful optimizations, so a CPU-bound program built by gccgo will usually run faster.  All the optimizations implemented in GCC over the years are available, including inlining, loop optimizations, vectorization, instruction scheduling, and more.  While it does not always produce better code, in some cases programs compiled with gccgo can run 30% faster.
+
+The gc compiler supports only the most popular processors: x86 (32-bit and 64-bit) and ARM.  Gccgo, however, supports all the processors that GCC supports.  Not all those processors have been thoroughly tested for gccgo, but many have, including x86 (32-bit and 64-bit), SPARC, MIPS, PowerPC and even Alpha.  Gccgo has also been tested on operating systems that the gc compiler does not support, notably Solaris.
+
+Gccgo provides the standard, complete Go library.  Many of the core features of the Go runtime are the same in both gccgo and gc, including the goroutine scheduler, channels, the memory allocator, and the garbage collector.  Gccgo supports splitting goroutine stacks as the gc compiler does, but currently only on x86 (32-bit or 64-bit) and only when using the gold linker (on other processors, each goroutine will have a large stack, and a deep series of function calls may run past the end of the stack and crash the program).
+
+Gccgo distributions do not yet include a version of the go command.  However, if you install the go command from a standard Go release, it already supports gccgo via the `-compiler` option: go build `-compiler`gccgo`myprog`.  The tools used for calls between Go and C/C++, cgo and SWIG, also support gccgo.
+
+We have put the Go frontend under the same BSD license as the rest of the Go
+tools.  You can download the source code for the frontend at the
+[[https://github.com/golang/gofrontend][gofrontend project]]. Note that when the Go frontend is linked with the GCC backend to make gccgo, GCC’s GPL license takes precedence.
+
+The latest release of GCC, 4.7.1, includes gccgo with support for Go 1.  If you need better performance for CPU-bound Go programs, or you need to support processors or operating systems that the gc compiler does not support, gccgo might be the answer.

@@ -1,0 +1,19 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{# Individual person item in a list - used on people index and home page #}
+<a class="list-group-item" href="{% pageurl person %}">
+  <div class="media">
+    {% if person.feed_image %}
+      <div class="media-left">
+        {% image person.feed_image width-200 as img %}
+        <img class="media-object" src="{{ img.url }}" />
+      </div>
+    {% endif %}
+    <div class="media-body">
+      <h4 class="media-heading">{{ person.first_name }} {{ person.last_name }}</h4>
+      {% if person.search_description %}
+        <p>{{ person.search_description }}</p>
+      {% endif %}
+    </div>
+  </div>
+</a>

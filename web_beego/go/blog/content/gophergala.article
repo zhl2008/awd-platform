@@ -1,0 +1,35 @@
+The Gopher Gala is the first worldwide Go hackathon
+7 Jan 2015
+
+Francesc Campoy
+campoy@golang.org
+
+* Introduction
+
+The [[http://gophergala.com/][Gopher Gala]] is the first Go hackathon at a
+global scale and will take place from January 23rd through the 25th. The event
+is organized by the community, supported by the Go team, and sponsored by
+Google among others.
+
+.image gophergala/fancygopher.jpg _ 300
+.caption _Fancy_Gopher,_by_ [[http://www.reneefrench.com/][_Renée_French_]]
+
+You can read about the rules of the hackathon
+[[http://gophergala.com/rules/][here]], but if you know about
+[[http://railsrumble.com/][Rails Rumble]] or
+[[http://nodeknockout.com/][Node Knockout]] you already have a pretty good idea
+of what to expect.
+
+During this event gophers from all around the globe will form teams to build
+great applications using Go as the main tool. Afterwards, all the participants
+will vote for their favorite applications and the 20 highest voted applications
+will be ranked by a jury of renowned names from the community, including some
+members of the Go core team. More information on the judging phase can be found
+[[http://gophergala.com/judging/][here]].
+
+And in case you needed one more reason to
+[[https://gophers.typeform.com/to/wondM5][get involved]] there will be prizes!
+
+"What prizes?" you ask. Well, that’s a
+[[http://gophergala.com/prizes/][secret]] until January 10th but we’re pretty
+sure you won’t be disappointed.

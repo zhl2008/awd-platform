@@ -1,0 +1,15 @@
+Get thee to a Go meetup
+27 Feb 2013
+Tags: community, talk
+
+Andrew Gerrand
+
+* Introduction
+
+Last week, David Symonds and I each gave talks at Sydney's Go meetup, [[http://www.meetup.com/golang-syd/][golang-syd]]. Dave spoke about [[http://talks.godoc.org/github.com/dsymonds/talks/2013-feb-golang-syd/golang-syd.slide][Go API design in the context of Protocol Buffers]], and I discussed some neat tricks in the construction of [[http://talks.godoc.org/github.com/nf/streak/talk.slide][a small command-line program]]. The presentations were short but provoked some good questions and interesting discussion. Of the 50-odd attendees, most were regular Go programmers and a fair chunk write Go code professionally. It was a fun night.
+
+It would have been great to see you there but, statistically, you're not from Sydney. Despair not, however, as there are likely some people in your area who either run a Go meetup or want to start one.
+
+The Go wiki lists [[https://golang.org/wiki/GoUserGroups][Go user groups]] around the world, so if there's one nearby you should consider going along to the next event.
+
+If not, why not start your own? To gauge interest, ask around in the [[https://plus.google.com/communities/114112804251407510571][Go+ Community]] and the [[http://groups.google.com/group/golang-nuts][golang-nuts mailing list]], and take a look at this [[http://golang.meetup.com/all/][list of people]] waiting for a Go meetup in their area. Once you have a few people interested - and at least one person willing to present something - pick a venue and set a date. If you build it, they will come.

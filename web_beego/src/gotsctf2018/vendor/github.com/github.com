@@ -1,0 +1,1 @@
+/app/src/gotsctf2018/vendor/github.com

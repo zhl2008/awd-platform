@@ -1,0 +1,68 @@
+{% extends "demo/base.html" %}
+{% load demo_tags wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    <div class="well">
+        <p><strong>
+            {{ self.date_from }}{% if self.date_to %} to {{ self.date_to }}{% endif %}
+            {% if self.time_from %}{{ self.time_from|time }}{% endif %}{% if self.time_to %} to {{ self.time_to|time }}{% endif %}
+        </strong></p>
+        {% if self.location %}<p>Location: {{ self.location }}</p>{% endif %}
+        {% if self.audience %}
+            <p>Audience:
+            {# From EVENT_AUDIENCE_CHOICES in models.py #}
+            {{ self.get_audience_display }}</p>
+        {% endif %}
+        {% if self.cost %}
+            <p>Cost: {{ self.cost }}</p>
+        {% endif %}
+
+        {% if self.signup_link %}
+            <p>Sign up: <a href="{{ self.signup_link }}">{{ self.signup_link }}</a></p>
+        {% endif %}
+
+        <p>
+            <a class='calendar' href= "{{ self.url }}?format=ical">
+                Add to calendar
+            </a>
+        </p>
+    </div>
+
+    {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+
+    {% if self.body %}
+        <div class="body-content">
+            {{ self.body|richtext }}
+        </div>
+    {% endif %}
+
+    {% with self.speakers.all as speakers %}
+        {% if speakers %}    
+            <div class="page-header"><h3>Speakers</h3></div>
+                {% for speaker in speakers %}
+                    {% cycle '<div class="row">' '' '' %} {# Open row div before first speaker then every 3 loops #}
+                        <div class="col-sm-4">
+
+                            {% if speaker.link %}
+                                <a href="{{ speaker.link }}">
+                            {% endif %}
+
+                                {# Speaker name_display fields concatenates first_name and last_name fields #}
+                                <h4>{{ speaker.name_display }}</h4>
+                                {% if speaker.image %}
+                                    <div class="image">{% image speaker.image width-200 %}</div>
+                                {% endif %}
+                                    
+                            {% if speaker.link %}
+                                </a>
+                            {% endif %}
+                        </div>
+                    {% cycle '' '' '</div>' %} {# Close row div before every 3rd speaker #}
+                {% endfor %}
+            {% if not speakers|length|divisibleby:'3' %}</div>{% endif %} {# Last close of row div if speakers list not exactly divisble by 3 #}      
+        {% endif %}
+    {% endwith %}
+
+
+    {% include "demo/includes/related_links.html" with related_links=self.related_links.all only %}
+{% endblock %}

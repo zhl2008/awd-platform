@@ -1,0 +1,46 @@
+<form class="form-horizontal" role="form" method="post" action="/me/catalog/edit" enctype="multipart/form-data">
+    <input type="hidden" name="catalog_id" value="{{.Catalog.Id}}">
+    <div class="form-group">
+        <label for="name" class="col-sm-2 control-label">分类名称：</label>
+
+        <div class="col-sm-3">
+            <input class="form-control" id="name" name="name" value="{{.Catalog.Name}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="ident" class="col-sm-2 control-label">英文标识：</label>
+
+        <div class="col-sm-3">
+            <input class="form-control" id="ident" name="ident" value="{{.Catalog.Ident}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="resume" class="col-sm-2 control-label">分类简介：</label>
+
+        <div class="col-sm-10">
+            <input class="form-control" id="resume" name="resume" value="{{.Catalog.Resume}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="display_order" class="col-sm-2 control-label">排序权值：</label>
+
+        <div class="col-sm-1">
+            <input class="form-control" id="display_order" name="display_order" value="{{.Catalog.DisplayOrder}}">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="img" class="col-sm-2 control-label">封面图片：</label>
+
+        <div class="col-sm-2">
+            <input id="img" type="file" name="img">
+        </div>
+         <div class="col-sm-8">
+            后台如果发现没有选择新的图片文件，就会使用原来的图片，不用担心丢失
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button type="submit" class="btn btn-primary">修改</button>
+        </div>
+    </div>
+</form>

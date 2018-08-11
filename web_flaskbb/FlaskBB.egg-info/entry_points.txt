@@ -1,0 +1,4 @@
+
+        [console_scripts]
+        flaskbb=flaskbb.cli:flaskbb
+    

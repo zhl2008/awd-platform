@@ -1,0 +1,73 @@
+Go at OSCON
+20 Aug 2014
+Tags: conference, oscon
+
+Francesc Campoy
+
+* Introduction
+
+What happens in Portland in July? [[http://www.oscon.com/oscon2014][OSCON]]! At
+this year's conference, Go was more present than ever before, with five talks,
+two workshops, a
+[[http://en.wikipedia.org/wiki/Birds_of_a_feather_(computing)][Birds of a Feather]]
+session, and a meetup.
+
+* Talks
+
+[[http://twitter.com/mstine][Matt Stine]] talked about his experience switching
+from Java to Go with
+[[http://www.slideshare.net/mstine/java-devlearnstogooscon][A recovering Java developer learns Go]]
+while [[https://twitter.com/spf13][Steve Francia]] presented
+[[http://spf13.com/presentation/MongoDB-and-Go][Painless Data Storage with MongoDB and Go]].
+Steve also presented
+[[http://spf13.com/presentation/go-for-object-oriented-programmers][Go for Object Oriented Programmers]],
+where he explained how some object oriented concepts can be implemented in Go.
+
+.image osconreport/talks.png _ 800
+
+Finally, [[http://twitter.com/offbymany][Josh Bleecher Snyder]] talked about his
+experience writing tools to work with Go source code in
+[[https://talks.golang.org/2014/hammers.slide#1][Gophers with hammers]],
+and [[http://twitter.com/francesc][Francesc Campoy]] talked about all the things
+that could have gone wrong and what the Go team did to prevent them
+[[http://talks.golang.org/2014/playground.slide][Inside the Go playground]].
+
+* Workshops
+
+At the beginning of OSCON's workshop day, Steve Francia presented how to build a
+web application and a CLI tool during
+[[http://spf13.com/presentation/first-go-app][Getting started with Go]] to a big
+room full of Gophers.
+
+.image osconreport/workshops.png _ 800
+
+In the afternoon, [[https://twitter.com/mmceniry][Chris McEniry]] gave his
+[[http://cdn.oreillystatic.com/en/assets/1/event/115/A%20Quick%20Introduction%20to%20System%20Tools%20Programming%20with%20Go%20Presentation.pdf][Quick introduction to system tools programming with Go]] where he went over some useful skills to
+write system tools using Go and its standard library.
+
+* Additional events
+
+To take advantage of the increased Gopher population in Portland during OSCON, we
+organized two extra events: the first [[https://twitter.com/pdxgolang][PDXGolang]]
+meetup and a
+[[http://www.oscon.com/oscon2014/public/schedule/detail/37775][Birds of a Feather session]].
+
+.image osconreport/meetup.png _ 800
+
+At the meetup Francesc Campoy talked about
+[[http://talks.golang.org/2013/bestpractices.slide][Go Best Practices]] and
+[[https://twitter.com/kelseyhightower][Kelsey Hightower]] gave a great
+introduction to [[https://github.com/GoogleCloudPlatform/kubernetes][Kubernetes]],
+a container management system for clusters written in Go by Google. If you live
+in Portland, make sure you [[http://meetup.com/pdx-go][join the group]] and come
+along to the next meeting.
+
+The "Birds of a Feather" (or, more aptly, "Gophers of a Feather") was a lot of
+fun for everyone involved. We hope to see more of you there next year.
+
+* In conclusion
+
+.image osconreport/random.png _ 800
+
+Thanks to all the gophers that participated in OSCON. After the successes of
+this year we look forward to more Go fun at OSCON 2015.

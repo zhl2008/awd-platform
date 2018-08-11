@@ -1,0 +1,19 @@
+Concurrency is not parallelism
+16 Jan 2013
+Tags: concurrency, talk, video
+
+Andrew Gerrand
+
+* Introduction
+
+If there's one thing most people know about Go, is that it is designed for concurrency. No introduction to Go is complete without a demonstration of its goroutines and channels.
+
+But when people hear the word _concurrency_ they often think of _parallelism_, a related but quite distinct concept. In programming, concurrency is the _composition_ of independently executing processes, while parallelism is the simultaneous _execution_ of (possibly related) computations. Concurrency is about _dealing_with_ lots of things at once. Parallelism is about _doing_ lots of things at once.
+
+To clear up this conflation, Rob Pike gave a talk at [[http://heroku.com/][Heroku]]'s [[http://waza.heroku.com/][Waza]] conference entitled _Concurrency_is_not_parallelism_, and a video recording of the talk was released a few months ago.
+
+.iframe //player.vimeo.com/video/49718712?badge=0 281 500
+
+The slides are available at [[http://talks.golang.org/2012/waza.slide][talks.golang.org]] (use the left and right arrow keys to navigate).
+
+To learn about Go's concurrency primitives, watch [[http://www.youtube.com/watch?v=f6kdp27TYZs][Go concurrency patterns]] ([[http://talks.golang.org/2012/concurrency.slide][slides]]).

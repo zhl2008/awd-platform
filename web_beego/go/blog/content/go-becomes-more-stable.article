@@ -1,0 +1,21 @@
+Go becomes more stable
+16 Mar 2011
+Tags: release
+
+Andrew Gerrand
+
+* Introduction
+
+The Go project is moving fast. As we learn more about Go we are compelled to change our tools, libraries, and occasionally even the language itself. We permit backward-incompatible changes so that we can learn from, rather than immortalize, our mistakes. We believe flexibility at this stage of Go’s development is essential to the project’s development and, ultimately, its longevity.
+
+Since Go's launch we have been making releases approximately once a week. Accompanying each release are [[http://golang.org/doc/devel/release.html][notes describing what changed]], with any backwards-incompatible changes signposted. Questions I hear often are "Is Go stable? How can I be sure that I won’t have to update my Go code every week?" The answer to those questions are now "Yes," and "You won't."
+
+With this week’s release we’re introducing a new release tagging scheme. We intend to continue with our weekly releases, but have renamed the existing tags from `release` to `weekly`. The `release` tag will now be applied to one hand-picked stable release each month or two. This more relaxed release schedule should make life easier for the average Go programmer.
+
+Users will still need to update their code periodically (this is the cost of using a young language) but with less frequency. An additional benefit is that by tagging stable releases less often we can put more effort into automating updates. To this end we have introduced gofix, a tool that will help you update your code.
+
+The revision formerly tagged `release.2011-03-07.1` (now `weekly.2011-03-07.1`) has been nominated our first stable release, and has been given the tag `release.r56`. As we tag each stable release we will post an announcement to the new [[http://groups.google.com/group/golang-announce][golang-announce]] mailing list. (Why not [[http://groups.google.com/group/golang-announce/subscribe][subscribe now]]?)
+
+What’s the upshot of all this? You can continue to keep your Go installation updated using `hg`update`release`, but now you should only need to update when we tag a new stable release. If you wish to stay at the leading edge, you should switch to the weekly tag with `hg`update`weekly`.
+
+Happy coding!

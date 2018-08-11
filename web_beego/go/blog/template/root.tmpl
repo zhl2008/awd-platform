@@ -1,0 +1,170 @@
+{{/* This template is combined with other templates to render blog pages. */}}
+
+{{define "root"}}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<meta name="viewport" content="width=device-width">
+	<meta name="theme-color" content="#375EAB">
+	<title>{{template "title" .}}</title>
+	<link type="text/css" rel="stylesheet" href="/lib/godoc/style.css">
+	<link rel="alternate" type="application/atom+xml" title="blog.golang.org - Atom Feed" href="//blog.golang.org/feed.atom" />
+	<script type="text/javascript">window.initFuncs = [];</script>
+	<style>
+		#sidebar {
+			float: right;
+			padding-left: 20px;
+			width: 40%;
+			max-width: 250px;
+			background: #F3F3F3;
+			margin: 20px 0 20px 20px;
+		}
+		#sidebar ul {
+			padding: 0;
+		}
+		#sidebar li {
+			list-style-type: none;
+		}
+		#content .author {
+			font-style: italic;
+		}
+		#content .article {
+			margin-bottom: 50px;
+		}
+		#content .date {
+			color: #999;
+		}
+		#content .tags {
+			color: #999;
+			font-size: smaller;
+		}
+		#content .iframe, #content .image {
+			margin: 20px;
+		}
+		#content .title {
+			margin: 20px 0;
+		}
+		#content img {
+			max-width: 100%;
+		}
+	</style>
+</head>
+<body>
+
+<div id="topbar"><div class="container">
+
+<div class="top-heading" id="heading-wide"><a href="{{.GodocURL}}/">The Go Programming Language</a></div>
+<div class="top-heading" id="heading-narrow"><a href="{{.GodocURL}}/">Go</a></div>
+<a href="#" id="menu-button"><span id="menu-button-arrow">&#9661;</span></a>
+<form method="GET" action="{{.GodocURL}}/search">
+<div id="menu">
+<a href="{{.GodocURL}}/doc/">Documents</a>
+<a href="{{.GodocURL}}/pkg/">Packages</a>
+<a href="{{.GodocURL}}/project/">The Project</a>
+<a href="{{.GodocURL}}/help/">Help</a>
+<a href="{{.BasePath}}/">Blog</a>
+<input type="text" id="search" name="q" class="inactive" value="Search" placeholder="Search">
+</div>
+</form>
+
+</div></div>
+
+<div id="page">
+<div class="container">
+
+<div id="sidebar">
+	{{with .Doc}}
+		{{with .Newer}}
+			<h4>Next article</h4>
+			<p><a href="{{.Path}}">{{.Title}}</a></p>
+		{{end}}
+		
+		{{with .Older}}
+			<h4>Previous article</h4>
+			<p><a href="{{.Path}}">{{.Title}}</a></p>
+		{{end}}
+	{{end}}
+	
+	<h4>Links</h4>
+	<ul>
+	<li><a href='//golang.org/'>golang.org</a></li>
+	<li><a href='//golang.org/doc/install.html'>Install Go</a></li>
+	<li><a href='//tour.golang.org/'>A Tour of Go</a></li>
+	<li><a href='//golang.org/doc/'>Go Documentation</a></li>
+	<li><a href='//groups.google.com/group/golang-nuts'>Go Mailing List</a></li>
+	<li><a href='//plus.google.com/101406623878176903605'>Go on Google+</a></li>
+	<li><a href='//plus.google.com/112164155169467723645/posts'>Go+ Community</a></li>
+	<li><a href='//twitter.com/golang'>Go on Twitter</a></li>
+	</ul>
+	
+	<p><a href="{{.BasePath}}/index">Blog index</a></p>
+</div><!-- #sidebar -->
+
+<div id="content">
+	<h1><a href="{{.BasePath}}/">The Go Blog</a></h1>
+	{{template "content" .}}
+</div><!-- #content -->
+
+<div id="footer">
+	<p>
+	Except as
+	<a href="https://developers.google.com/site-policies#restrictions">noted</a>,
+	the content of this page is licensed under the Creative Commons
+	Attribution 3.0 License,<br>
+	and code is licensed under a <a href="//golang.org/LICENSE">BSD license</a>.<br>
+	<a href="//golang.org/doc/tos.html">Terms of Service</a> | 
+	<a href="//www.google.com/intl/en/policies/privacy/">Privacy Policy</a>
+	</p>
+</div><!-- #footer -->
+
+</div><!-- .container -->
+</div><!-- #page -->
+
+</body>
+<script src="/lib/godoc/jquery.js"></script>
+<script src="/lib/godoc/playground.js"></script>
+<script src="/lib/godoc/play.js"></script>
+<script src="/lib/godoc/godocs.js"></script>
+<script>
+$(function() {
+	// Insert line numbers for all playground elements.
+	$('.playground > pre.numbers, .code > pre.numbers').each(function() {
+		var $spans = $(this).find('> span');
+
+		// Compute width of number column (including trailing space).
+		var max = 0;
+		$spans.each(function() {
+			var n = $(this).attr('num')*1;
+			if (n > max) max = n;
+		});
+		var width = 2;
+		while (max > 10) {
+			max = max / 10;
+			width++;
+		}
+
+		// Insert line numbers with space padding.
+		$spans.each(function() {
+			var n = $(this).attr('num')+' ';
+			while (n.length < width) n = ' '+n;
+			$('<span class="number">').text(n).insertBefore(this);
+		});
+	});
+
+	initPlayground(new HTTPTransport());
+});
+</script>
+</html>
+{{end}}
+
+{{define "doc"}}
+	<div class="article">
+		<h3 class="title"><a href="{{.Path}}">{{.Title}}</a></h3>
+		<p class="date">{{.Time.Format "2 January 2006"}}</p>
+		{{.HTML}}
+		{{with .Authors}}
+			<p class="author">By {{authors .}}</p>
+		{{end}}
+	</div>
+{{end}}

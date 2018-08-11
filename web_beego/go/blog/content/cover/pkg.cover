@@ -1,0 +1,49 @@
+package main
+
+func Size(a int) string {
+	GoCover.Count[0] = 1
+	switch {
+	case a < 0:
+		GoCover.Count[2] = 1
+		return "negative"
+	case a == 0:
+		GoCover.Count[3] = 1
+		return "zero"
+	case a < 10:
+		GoCover.Count[4] = 1
+		return "small"
+	case a < 100:
+		GoCover.Count[5] = 1
+		return "big"
+	case a < 1000:
+		GoCover.Count[6] = 1
+		return "huge"
+	}
+	GoCover.Count[1] = 1
+	return "enormous"
+}
+
+var GoCover = struct {
+	Count     [7]uint32
+	Pos       [3 * 7]uint32
+	NumStmt   [7]uint16
+} {
+	Pos: [3 * 7]uint32{
+		3, 4, 0x90019, // [0]
+		16, 16, 0x130002, // [1]
+		5, 6, 0x140002, // [2]
+		7, 8, 0x100002, // [3]
+		9, 10, 0x110002, // [4]
+		11, 12, 0xf0002, // [5]
+		13, 14, 0x100002, // [6]
+	},
+	NumStmt: [7]uint16{
+		1, // 0
+		1, // 1
+		1, // 2
+		1, // 3
+		1, // 4
+		1, // 5
+		1, // 6
+	},
+}

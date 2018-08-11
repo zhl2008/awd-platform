@@ -1,0 +1,15 @@
+Advanced Go Concurrency Patterns
+23 May 2013
+Tags: talk, video, concurrency
+
+Andrew Gerrand
+
+* Introduction
+
+At Google I/O a year ago Rob Pike presented [[http://talks.golang.org/2012/concurrency.slide][_Go_Concurrency_Patterns_]], an introduction to Go's concurrency model. Last week, at I/O 2013, Go team member Sameer Ajmani continued the story with [[http://talks.golang.org/2013/advconc.slide][_Advanced_Go_Concurrency_Patterns_]], an in-depth look at a real concurrent programming problem. The talk shows how to detect and avoid deadlocks and race conditions, and demonstrates the implementation of deadlines, cancellation, and more. For those who want to take their Go programming to the next level, this is a must-see.
+
+.iframe //www.youtube.com/embed/QDDwwePbDtw?rel=0 309 549
+
+The slides are [[http://talks.golang.org/2013/advconc.slide][available here]] (use the left and right arrows to navigate).
+
+The slides were produced with [[http://godoc.org/golang.org/x/tools/present][the present tool]], and the runnable code snippets are powered by the [[http://play.golang.org/][Go Playground]]. The source code for this talk is in [[https://github.com/golang/talks/blob/master/2013/advconc.slide][the go.talks sub-repository]].

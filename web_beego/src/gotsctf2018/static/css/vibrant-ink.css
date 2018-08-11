@@ -1,0 +1,158 @@
+/* Vibrant Ink Theme */
+/* Original theme - http://alternateidea.com/blog/articles/2006/1/3/textmate-vibrant-ink-theme-and-prototype-bundle */
+pre {
+font-family: Consolas, Monaco, Menlo, "Courier New", monospace;
+display: block;
+padding: 8.5px;
+margin: 0 0 9px;
+font-size: 12px;
+line-height: 1.428571429;
+color: #333333;
+word-break: break-all;
+word-wrap: break-word;
+border: 1px solid #cccccc;
+border-radius: 4px;
+}
+
+.prettyprint {
+  background: black;
+  line-height: 1.5;
+  border: 1px solid #ccc;
+  padding: 10px;
+}
+
+pre code span {
+    font-family: Consolas, Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, monospace;
+    font-size: 14px;
+}
+
+.pln {
+  color: white;
+}
+
+@media screen {
+  .str {
+    color: #66ff00;
+  }
+
+  .kwd {
+    color: #ff6600;
+  }
+
+  .com {
+    color: #9933cc;
+  }
+
+  .typ {
+    color: #445588;
+  }
+
+  .lit {
+    color: #445588;
+  }
+
+  .pun {
+    color: white;
+  }
+
+  .opn {
+    color: white;
+  }
+
+  .clo {
+    color: white;
+  }
+
+  .tag {
+    color: white;
+  }
+
+  .atn {
+    color: #99cc99;
+  }
+
+  .atv {
+    color: #66ff00;
+  }
+
+  .dec {
+    color: white;
+  }
+
+  .var {
+    color: white;
+  }
+
+  .fun {
+    color: #ffcc00;
+  }
+}
+@media print, projection {
+  .str {
+    color: #006600;
+  }
+
+  .kwd {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .com {
+    color: #600;
+    font-style: italic;
+  }
+
+  .typ {
+    color: #404;
+    font-weight: bold;
+  }
+
+  .lit {
+    color: #004444;
+  }
+
+  .pun, .opn, .clo {
+    color: #444400;
+  }
+
+  .tag {
+    color: #006;
+    font-weight: bold;
+  }
+
+  .atn {
+    color: #440044;
+  }
+
+  .atv {
+    color: #006600;
+  }
+}
+/* Specify class=linenums on a pre to get line numbering */
+ol.linenums {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* IE indents via margin-left */
+li.L0,
+li.L1,
+li.L2,
+li.L3,
+li.L4,
+li.L5,
+li.L6,
+li.L7,
+li.L8,
+li.L9 {
+  /* */
+}
+
+/* Alternate shading for lines */
+li.L1,
+li.L3,
+li.L5,
+li.L7,
+li.L9 {
+  /* */
+}

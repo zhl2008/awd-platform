@@ -1,0 +1,42 @@
+Go at Google I/O 2011: videos
+23 May 2011
+Tags: appengine, gopher, talk, video
+
+Andrew Gerrand
+
+* Introduction
+
+The Go team had a great time at Google I/O 2011. It was a pleasure to meet so many programmers who share our enthusiasm for Go, and to share our work of the past few months. For those of you that couldn’t be there in person, you can now watch videos of our two Go presentations on YouTube.
+
+* Writing Web Apps in Go
+
+In “[[http://www.youtube.com/watch?v=-i0hat7pdpk][Writing Web Apps in Go]]” we announce the [[http://blog.golang.org/2011/05/go-and-google-app-engine.html][Go runtime for Google App Engine]] and walk through the development and deployment of [[http://moustach-io.appspot.com/][Moustachio]], the first Go App Engine app.
+
+.iframe //www.youtube.com/embed/-i0hat7pdpk 349 560
+
+(See the [[http://golang.org/doc/talks/io2011/Writing_Web_Apps_in_Go.pdf][presentation slides]].)
+
+The [[https://code.google.com/p/appengine-go/source/browse/example/moustachio][source code]] for Moustachio is available as part of [[http://code.google.com/appengine/downloads.html#Google_App_Engine_SDK_for_Go][the SDK]] along with some other examples, such as this [[http://mandelbrot-tiles.appspot.com/][Mandelbrot demo]].
+
+Most important, this talk features the debut of the plush gopher.
+
+.image go-at-google-io-2011-videos_gopher.jpg
+
+For those that didn’t get one at the conference, we hope to make him available for purchase online soon.
+
+* Real World Go
+
+“[[http://www.youtube.com/watch?v=7QDVRowyUQA][Real World Go]]”, presented at [[http://io-bootcamp.com][I/O Bootcamp]], gives a brief introduction to Go and four case studies of its use in solving real problems:
+- [[http://heroku.com][Heroku]] with [[https://github.com/ha/doozerd][Doozer]], a highly available consistent data store,
+
+- [[http://mroffice.org/telephony.html][MROffice Dialer]], a VOIP system for call centers,
+
+- [[http://www.atlassian.com][Atlassian]]’s virtual machine cluster management system,
+
+- [[http://www.camlistore.org][Camlistore]], a content addressable storage system.
+
+.iframe //www.youtube.com/embed/7QDVRowyUQA 349 560
+
+(See the [[http://golang.org/doc/talks/io2011/Real_World_Go.pdf ][presentation slides]].)
+
+Thanks to everyone who attended our talks and workshops. We look forward to seeing you again soon!

@@ -1,0 +1,28 @@
+Go version 1 is released
+28 Mar 2012
+Tags: release, go1
+
+Andrew Gerrand
+
+* Introduction
+
+.image go-version-1-is-released_gophermega.jpg
+Today marks a major milestone in the development of the Go programming language. We're announcing Go version 1, or Go 1 for short, which defines a language and a set of core libraries to provide a stable foundation for creating reliable products, projects, and publications.
+
+Go 1 is the first release of Go that is available in supported binary distributions. They are available for Linux, FreeBSD, Mac OS X and, we are thrilled to announce, Windows.
+
+The driving motivation for Go 1 is stability for its users. People who write Go 1 programs can be confident that those programs will continue to compile and run without change, in many environments, on a time scale of years. Similarly, authors who write books about Go 1 can be sure that their examples and explanations will be helpful to readers today and into the future.
+
+Forward compatibility is part of stability. Code that compiles in Go 1 should, with few exceptions, continue to compile and run throughout the lifetime of that version, even as we issue updates and bug fixes such as Go version 1.1, 1.2, and so on. The [[http://golang.org/doc/go1compat.html][Go 1 compatibility document]] explains the compatibility guidelines in more detail.
+
+Go 1 is a representation of Go as it is used today, not a major redesign. In its planning, we focused on cleaning up problems and inconsistencies and improving portability. There had long been many changes to Go that we had designed and prototyped but not released because they were backwards-incompatible. Go 1 incorporates these changes, which provide significant improvements to the language and libraries but sometimes introduce incompatibilities for old programs. Fortunately, the [[http://golang.org/cmd/go/#Run_go_tool_fix_on_packages][go fix]] tool can automate much of the work needed to bring programs up to the Go 1 standard.
+
+Go 1 introduces changes to the language (such as new types for [[http://golang.org/doc/go1.html#rune][Unicode characters]] and [[http://golang.org/doc/go1.html#errors][errors]]) and the standard library (such as the new [[http://golang.org/doc/go1.html#time][time package]] and renamings in the [[http://golang.org/doc/go1.html#strconv][strconv package]]). Also, the package hierarchy has been rearranged to group related items together, such as moving the networking facilities, for instance the [[http://golang.org/pkg/net/rpc/][rpc package]], into subdirectories of net. A complete list of changes is documented in the [[http://golang.org/doc/go1.html][Go 1 release notes]]. That document is an essential reference for programmers migrating code from earlier versions of Go.
+
+We also restructured the Go tool suite around the new [[http://golang.org/doc/go1.html#cmd_go][go command]], a program for fetching, building, installing and maintaining Go code. The go command eliminates the need for Makefiles to write Go code because it uses the Go program source itself to derive the build instructions. No more build scripts! 
+
+Finally, the release of Go 1 triggers a new release of the [[https://developers.google.com/appengine/docs/go][Google App Engine SDK]]. A similar process of revision and stabilization has been applied to the App Engine libraries, providing a base for developers to build programs for App Engine that will run for years.
+
+Go 1 is the result of a major effort by the core Go team and our many contributors from the open source community. We thank everyone who helped make this happen.
+
+There has never been a better time to be a Go programmer. Everything you need to get started is at [[http://golang.org/][golang.org]].

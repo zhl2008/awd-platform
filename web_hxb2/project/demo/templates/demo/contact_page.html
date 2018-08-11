@@ -1,0 +1,22 @@
+{% extends "demo/base.html" %}
+
+{% load demo_tags wagtailcore_tags %}
+
+{% block content %}
+    {% if self.body %}
+        <div class="body-content">
+            {{ self.body|richtext }}
+        </div>
+    {% endif %}
+
+    {% include "demo/includes/contact.html" with contact=self only %}
+
+    {%  if self.post_code %}
+
+        {% get_google_maps_key as google_maps_key %}
+
+        <div class="page-header"><h3>Map</h3></div>
+
+        <img src="https://maps.googleapis.com/maps/api/staticmap?center={{ self.post_code }}&amp;zoom=13&amp;size=800x400&amp;maptype=roadmap&amp;sensor=false&amp;markers=color:green|{{ self.post_code }}{% if google_maps_key %}&amp;key={{ google_maps_key }}{% endif %}" />
+    {% endif %}
+{% endblock %}

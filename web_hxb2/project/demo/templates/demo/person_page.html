@@ -1,0 +1,24 @@
+{% extends "demo/base.html" %}
+{% load wagtailcore_tags wagtailimages_tags %}
+
+{% block content %}
+    {% include "demo/includes/intro.html" with intro=self.intro only %}
+
+    {% if self.image %}
+        {% image self.image width-300 class="img-thumbnail" %}
+    {% endif %}
+
+    {% if self.biography %}
+        <div class="page-header"><h3>Biography</h3></div>
+    {% endif %}
+
+    {% if self.body %}
+        <div class="body-content">
+            {{ self.body|richtext }}
+        </div>
+    {% endif %}
+
+    {% include "demo/includes/contact.html" with contact=self only %}
+
+    {% include "demo/includes/related_links.html" with related_links=self.related_links.all only %}
+{% endblock %}

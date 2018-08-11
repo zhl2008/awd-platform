@@ -1,0 +1,21 @@
+{% extends theme("layout.html") %}
+
+{% block content %}
+{%- from theme('macros.html') import navlink with context -%}
+
+{% block breadcrumb %}
+{% endblock %}
+
+<div class="panel panel-tabs management-panel">
+    <div class="panel-heading management-head">
+        <ul class="nav nav-tabs nav-justified">
+        {% for view, text, icon in run_hook('flaskbb_tpl_admin_settings_menu', user=current_user, is_markup=False) %}
+            {{ navlink(view, _(text), icon, active) }}
+        {% endfor %}
+        </ul>
+    </div>
+    <div class="panel-body management-body">
+        {% block management_content %}{% endblock %}
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,43 @@
+GolangUK 2015
+09 Oct 2015
+Tags: conference, golanguk
+
+Francesc Campoy
+
+* Introduction
+
+On August 21st the Go community gathered in London for the first edition of
+[[https://golanguk.com][Golang UK]]. The conference featured two parallel
+tracks and nearly 400 gophers attended.
+
+.image gouk15/gouk.jpg 300 _ 
+
+The conference started with the opening keynote by [[https://twitter.com/calavera][David Calavera]]
+called Crossing the Language Chasm ([[https://www.youtube.com/watch?v=JPVRnEZ4v_w&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+and continued with two concurrently executed [[http://golanguk.com/schedule/][tracks]].
+
+Main track:
+
+- Stupid Gopher Tricks, by [[https://twitter.com/enneff][Andrew Gerrand]] ([[https://www.youtube.com/watch?v=UECh7X07m6E&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Complex Concurrency Patterns in Go, by [[https://twitter.com/eapache][Evan Huus]] ([[https://www.youtube.com/watch?v=2HOO5gIgyMg&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Code Analysis [no reading required], by [[https://twitter.com/francesc][Francesc Campoy]] ([[https://www.youtube.com/watch?v=oorX84tBMqo&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Go kit: a toolkit for microservices [[https://twitter.com/peterbourgon][Peter Bourgon]] ([[https://www.youtube.com/watch?v=aL6sd4d4hxk&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Dependency Management Conundrum, by [[https://twitter.com/goinggodotnet][William Kennedy]] ([[https://www.youtube.com/watch?v=CdhucJShJU8&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+
+Side track:
+
+- Building APIs, by [[https://twitter.com/matryer][Mat Ryer]] ([[https://www.youtube.com/watch?v=tIm8UkSf6RA&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Building a Bank with Go, by [[https://twitter.com/mattheath][Matt Heath]] ([[https://www.youtube.com/watch?v=cFJkLfujOts&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- CockroachDB: Make Data Easy, by [[https://twitter.com/bendarnell][Ben Darnell]] ([[https://www.youtube.com/watch?v=33oqpLmQ3LE&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Understanding memory allocation in Go, by [[https://twitter.com/DeanElbaz][Dean Elbaz]] ([[https://www.youtube.com/watch?v=zjoieOpy5hE&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+- Whispered Secrets, by [[https://twitter.com/feyeleanor][Eleanor McHugh]] ([[https://www.youtube.com/watch?v=ViBRx-F4Z2U&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]])
+
+Finally [[https://twitter.com/dgryski][Damian Gryski]] took the stage for the
+closing keynote ([[https://www.youtube.com/watch?v=IiSyFc10Jj0&list=PLDWZ5uzn69ezRJYeWxYNRMYebvf8DerHd][video]]),
+giving an overview of how the Go community has evolved over time and hinting
+to what the future might look like.
+
+On the day before the conference [[https://twitter.com/goinggodotnet][William Kennedy]]
+gave a full day Go workshop.
+
+It was a great conference, so congratulations to the organizers and see you next year in London!

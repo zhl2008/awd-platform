@@ -1,0 +1,17 @@
+{% extends "demo/base.html" %}
+
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% include "demo/includes/intro.html" with intro=self.intro only %}
+
+    {% include "demo/includes/carousel.html" with carousel_items=self.carousel_items.all only %}
+
+    {% if self.body %}
+        <div class="body-content">
+            {{ self.body|richtext }}
+        </div>
+    {% endif %}
+
+    {% include "demo/includes/related_links.html" with related_links=self.related_links.all only %}
+{% endblock %}

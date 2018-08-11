@@ -1,0 +1,41 @@
+Go: one year ago today
+10 Nov 2010
+Tags: birthday
+
+Andrew Gerrand
+
+* Introduction
+
+On the 10th of November 2009 we launched the Go project: an open-source programming language with a focus on simplicity and efficiency. The intervening year has seen a great many developments both in the Go project itself and in its community.
+
+We set out to build a language for systems programming - the kinds of programs one might typically write in C or C++ - and we were surprised by Go’s utility as a general purpose language. We had anticipated interest from C, C++, and Java programmers, but the flurry of interest from users of dynamically-typed languages like Python and JavaScript was unexpected.  Go’s combination of native compilation, static typing, memory management, and lightweight syntax seemed to strike a chord with a broad cross-section of the programming community.
+
+That cross-section grew to become a dedicated community of enthusiastic Go coders. Our [[http://groups.google.com/group/golang-nuts][mailing list]] has over 3,800 members, with around 1,500 posts each month. The project has over 130 [[http://golang.org/CONTRIBUTORS][contributors]] (people who have submitted code or documentation), and of the 2,800 commits since launch almost one third were contributed by programmers outside the core team. To get all that code into shape, nearly 14,000 emails were exchanged on our [[http://groups.google.com/group/golang-dev][development mailing list]].
+
+Those numbers reflect a labor whose fruits are evident in the project’s code base. The compilers have improved substantially, with faster and more efficient code generation, more than one hundred reported bugs fixed, and support for a widening range of operating systems and architectures. The Windows port is approaching completion thanks to a dedicated group of contributors (one of whom became our first non-Google committer to the project). The ARM port has also made great progress, recently reaching the milestone of passing all tests.
+
+The Go tool set has been expanded and improved. The Go documentation tool, [[http://golang.org/cmd/godoc/][godoc]], now supports the documentation of other source trees (you can browse and search your own code) and provides a [[http://golang.org/doc/codewalk/]["code walk"]] interface for presenting tutorial materials (among many more improvements). [[http://golang.org/cmd/goinstall/][Goinstall]] , a new package management tool, allows users to install and update external packages with a single command. [[http://golang.org/cmd/gofmt/][Gofmt]], the Go pretty-printer, now makes syntactic simplifications where possible. [[http://golang.org/misc/goplay/][Goplay]], a web-based “compile-as-you-type” tool, is a convenient way to experiment with Go for those times when you don’t have access to the [[http://golang.org/doc/play/][Go Playground]].
+
+The standard library has grown by over 42,000 lines of code and includes 20 new [[http://golang.org/pkg/][packages]].  Among the additions are the [[http://golang.org/pkg/image/jpeg/][jpeg]], [[http://golang.org/pkg/rpc/jsonrpc/][jsonrpc]], [[http://golang.org/pkg/mime/][mime]], [[http://golang.org/pkg/netchan/][netchan]], and [[http://golang.org/pkg/smtp/][smtp]] packages, as well as a slew of new [[http://golang.org/pkg/crypto/][cryptography]] packages. More generally, the standard library has been continuously refined and revised as our understanding of Go’s idioms deepens.
+
+The debugging story has gotten better, too. Recent improvements to the DWARF output of the gc compilers make the GNU debugger, GDB, useful for Go binaries, and we’re actively working on making that debugging information more complete. (See the [[http://blog.golang.org/2010/11/debugging-go-code-status-report.html][ recent blog post]] for details.) 
+
+It’s now easier than ever to link against existing libraries written in languages other than Go.  Go support is in the most recent [[http://www.swig.org/][SWIG]] release, version 2.0.1, making it easier to link against C and C++ code, and our [[http://golang.org/cmd/cgo/][cgo]] tool has seen many fixes and improvements.
+
+[[http://golang.org/doc/gccgo_install.html][Gccgo]], the Go front end for the GNU C Compiler, has kept pace with the gc compiler as a parallel Go implementation. It now has a working garbage collector, and has been accepted into the GCC core.  We’re now working toward making [[http://code.google.com/p/gofrontend/][gofrontend]] available as a BSD-licensed Go compiler front end, fully decoupled from GCC.
+
+Outside the Go project itself Go is starting to be used to build real software. There are more than 200 Go programs and libraries listed on our [[http://godashboard.appspot.com/project][Project dashboard]], and hundreds more on [[http://code.google.com/hosting/search?q=label:Go][Google Code]] and [[https://github.com/search?q=language:Go][Github]]. On our mailing list and IRC channel you can find coders from around the world who use Go for their programming projects. (See our [[http://blog.golang.org/2010/10/real-go-projects-smarttwitter-and-webgo.html][guest blog post]] from last month for a real-world example.) Internally at Google there are several teams that choose Go for building production software, and we have received reports from other companies that are developing sizable systems in Go. We have also been in touch with several educators who are using Go as a teaching language.
+
+The language itself has grown and matured, too. In the past year we have received many feature requests. But Go is a small language, and we’ve worked hard to ensure that any new feature strikes the right compromise between simplicity and utility. Since the launch we have made a number of language changes, many of which were driven by feedback from the community.
+
+- Semicolons are now optional in almost all instances. [[http://golang.org/doc/go_spec.html#Semicolons][spec]]
+- The new built-in functions `copy` and `append` make management of slices more efficient and straightforward. [[http://golang.org/doc/go_spec.html#Appending_and_copying_slices][spec]]
+- The upper and lower bounds may be omitted when making a sub-slice. This means that `s[:]` is shorthand for `s[0:len(s)]`. [[http://golang.org/doc/go_spec.html#Slices][spec]]
+- The new built-in function `recover` complements `panic` and `defer` as an error handling mechanism.  [[http://blog.golang.org/2010/08/defer-panic-and-recover.html][blog]], [[http://golang.org/doc/go_spec.html#Handling_panics][spec]]
+- The new complex number types (`complex`, `complex64`, and `complex128`) simplify certain mathematical operations. [[http://golang.org/doc/go_spec.html#Complex_numbers][spec]], [[http://golang.org/doc/go_spec.html#Imaginary_literals][spec]]
+- The composite literal syntax permits the omission of redundant type information (when specifying two-dimensional arrays, for example). [[http://golang.org/doc/devel/release.html#2010-10-27][release.2010-10-27]], [[http://golang.org/doc/go_spec.html#Composite_literals][spec]]
+- A general syntax for variable function arguments (`...T`) and their propagation (`v...`) is now specified. [[http://golang.org/doc/go_spec.html#Function_Types][spec]], [[http://golang.org/doc/go_spec.html#Passing_arguments_to_..._parameters][ spec]], [[http://golang.org/doc/devel/release.html#2010-09-29][release.2010-09-29]]
+ 
+Go is certainly ready for production use, but there is still room for improvement. Our focus for the immediate future is making Go programs faster and more efficient in the context of high performance systems. This means improving the garbage collector, optimizing generated code, and improving the core libraries. We’re also exploring some further additions to the type system to make generic programming easier. A lot has happened in a year; it’s been both thrilling and satisfying.  We hope that this coming year will be even more fruitful than the last.
+
+_If_you’ve_been_meaning_to_get_[back]_into_Go,_now_is_a_great_time_to_do_so!_Check_out_the_ [[http://golang.org/doc/docs.html][_Documentation_]] _and_ [[http://golang.org/doc/install.html][_Getting_Started_]] _pages_for_more_information,_or_just_go_nuts_in_the_ [[http://golang.org/doc/play/][_Go_Playground_]].

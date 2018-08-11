@@ -1,0 +1,67 @@
+The Go Gopher
+24 Mar 2014
+Tags: gopher
+
+Rob Pike
+
+Andrew Gerrand
+
+* The Go Gopher
+
+.image gopher/header.jpg
+
+The Go gopher is an iconic mascot and one of the most distinctive features of the Go project. In this post we'll talk about its origins, evolution, and behavior.
+
+About 15 years ago—long before the Go project—the gopher first appeared as a promotion for the [[https://wfmu.org/][WFMU radio station]] in New Jersey. [[http://reneefrench.blogspot.com][Renee French]] was commissioned to design a T-shirt for an annual fundraiser and out came the gopher.
+
+.image gopher/wfmu.jpg
+
+The gopher next made an appearance at Bell Labs, as Bob Flandrena's [[http://research.swtch.com/face][avatar]] in the Bell Labs mail system. Other Renee drawings became avatars for ken, r, rsc, and others. (Of course, Peter Weinberger's was his own [[http://spinroot.com/pico/pjw.html][iconic face]].)
+
+.image gopher/avatars.png
+
+Another Bell Labs activity led to Renee creating [[http://plan9.bell-labs.com/plan9/glenda.html][Glenda]], the Plan 9 mascot, a distant cousin of the WFMU gopher.
+
+.image gopher/glenda.png
+
+When we started the Go project we needed a logo, and Renee volunteered to draw it. It was featured on the first Go T-shirt and the Google Code site.
+
+.image gopher/logo.png
+
+For the open source launch in 2009, Renee suggested adapting the WFMU gopher as a mascot. And the Go gopher was born:
+
+.image gopher/gopher.png
+
+(The gopher has no name, and is called just the "Go gopher".)
+
+For the [[https://www.youtube.com/watch?v=-i0hat7pdpk#t=24m40s][launch]] of the [[https://developers.google.com/appengine/docs/go][Go App Engine runtime]] at Google I/O 2011 we engaged [[http://squishable.com][Squishable]] to manufacture the plush gophers. This was the first time the gopher was colored blue and appeared in three dimensions. The first prototype was kinda hairy:
+
+.image gopher/prototype.jpg
+
+But the second one was just right:
+
+.image gopher/plush.jpg
+
+Around the same time, Renee roughed out a gopher in clay. This inspired a refined sculpture that became a vinyl figurine made by [[http://www.kidrobot.com/][Kidrobot]]. The vinyls were first distributed at OSCON 2011.
+
+.image gopher/vinyl.jpg
+
+The gopher therefore exists in many forms, but has always been Renee's creation. It stands for the Go project and Go programmers everywhere, and is one of the most popular things in the Go world.
+
+The Go gopher is a character; a unique creation. Not any old gopher, just as Snoopy is not any old cartoon dog.
+
+The [[http://golang.org/doc/gopher/][gopher images]] are Creative Commons Attributions 3.0 licensed. That means you can play with the images but you must give credit to their creator (Renee French) wherever they are used.
+
+Here are a few gopher adaptations that people have used as mascots for user group mascots and similar organizations.
+
+.image gopher/usergroups.png
+
+They're cute and we like them, but by the Creative Commons rules the groups should give Renee credit, perhaps as a mention on the user group web site.
+
+The vinyl and plush gophers are copyrighted designs; accept no substitutes! But how can you get one? Their natural habitat is near high concentrations of Go programmers, and their worldwide population is growing. They may be purchased from the [[https://www.googlemerchandisestore.com/Google+Redesign/Fun/Go+Gopher+Blue+Squishable.axd?cid=1399][Google Store]], although the supply can be irregular. (These elusive creatures have been spotted in all [[http://www.flickr.com/photos/pinkhamsters/sets/72157627910426064/][kinds]] [[https://plus.google.com/107966629974328136037/posts/TcFA9zHzQB8][of]] [[https://twitter.com/goroutine][places]].)
+
+Perhaps the best way to get a gopher is to catch one in the wild at a Go conference. There are two big chances this year: [[http://gophercon.com/][GopherCon]] (Denver, April 24-26) and [[http://dotgo.eu][dotGo]] (Paris, October 10).
+
+.image gopher/portrait.jpg
+
+_(Photo_by_ [[https://twitter.com/noahhlo/status/437395572081688576][_Noah_Lorang_]]_.)_

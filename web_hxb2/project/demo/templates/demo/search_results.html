@@ -1,0 +1,44 @@
+{% extends "demo/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block title %}Search{% if search_results %} results{% endif %}{% endblock %}
+
+{% block heading %}
+  <h1 class="page-header">
+    Search results{% if request.GET.query %} for “{{ request.GET.query }}”{% endif %}
+  </h1>
+{% endblock %}
+
+
+{% block content %}
+    {% if search_picks %}
+        <div class="well">
+            <h3>Editors picks</h3>
+            <ul>
+                {% for pick in search_picks %}
+                    <li>
+                        <h4><a href="{% pageurl pick.page %}">{{ pick.page.title }}</a></h4>
+                        <p>{{ pick.description }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    {% endif %}
+
+    {% if search_results %}
+        <ul>
+            {% for result in search_results %}
+                <li>
+                    <h4><a href="{% pageurl result.specific %}">{{ result.specific }}</a></h4>
+                    {% if result.specific.search_description %}
+                        {{ result.specific.search_description }}
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif search_query %}
+        No results found
+    {% else %}
+        You didn’t search anything!
+    {% endif %}
+{% endblock %}

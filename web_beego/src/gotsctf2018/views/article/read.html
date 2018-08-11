@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/static/css/tomorrow-night-eighties.css" />
+<style type="text/css">
+img{border-radius: 4px;}
+</style>
+<script src="/static/javascript/pretty.print.js"></script>
+<script src="/static/javascript/lib.min.js"></script>
+<div class="entry-list">
+<div class="item" itemscope="" itemtype="http://schema.org/Article">
+    <h2 class="entry-title" itemprop="name">
+        <div class="icon-link">{{.Blog.Title}}</div>
+    </h2>
+    <div class="entry-views">{{.Blog.Views}}</div>
+
+    <div class="entry-meta">
+      <span><a style="color:#ccc;text-decoration: underline;" href="/catalog/{{.Catalog.Ident}}">{{.Catalog.Name}}</a></span>
+      <span class="dot">·</span>
+      <span>{{dateformat .Blog.Created "2006-01-02 15:04:05"}}</span>
+    </div>
+    <div class="entry-snippet markdown">{{str2html .Content}}</div>
+  </div>
+</div>
+<script type="text/javascript">
+var $pre = $('pre > code').parent();
+$pre.addClass("prettyprint");
+prettyPrint();
+</script>

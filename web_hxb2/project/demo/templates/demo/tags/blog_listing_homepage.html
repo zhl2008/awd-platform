@@ -1,0 +1,10 @@
+{% if blogs %}
+  <div class="panel panel-default">
+    <div class="panel-heading"><h3 class="panel-title">Recent blog posts</h3></div>
+    <div class="list-group">
+      {% for blog in blogs %}
+        {% include "demo/includes/blog_list_item.html" %}
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}

@@ -1,0 +1,103 @@
+Half a decade with Go
+10 Nov 2014
+
+Andrew Gerrand
+adg@golang.org
+
+* Introduction
+
+Five years ago we launched the Go project. It seems like only yesterday that we
+were preparing the initial public release: our
+[[https://web.archive.org/web/20091112094121/http://golang.org/][website]] was
+a lovely shade of yellow, we were calling Go a "systems language", and you had
+to terminate statements with a semicolon and write Makefiles to build your
+code. We had no idea how Go would be received. Would people share our vision
+and goals? Would people find Go useful?
+
+At launch, there was a flurry of attention. Google had produced a new
+programming language, and everyone was eager to check it out. Some programmers
+were turned off by Go's conservative feature set—at first glance they saw
+"nothing to see here"—but a smaller group saw the beginnings of an ecosystem
+tailored to their needs as working software engineers. These few would form the
+kernel of the Go community.
+
+.image 5years/gophers5th.jpg _ 850
+
+[[/gopher][_Gopher_]] _illustration_by_ [[http://reneefrench.blogspot.com.au/][_Renee_French_]]
+
+After the initial release, it took us a while to properly communicate the
+goals and design ethos behind Go. Rob Pike did so eloquently in his 2012 essay
+[[http://talks.golang.org/2012/splash.article][_Go_at_Google:_Language_Design_in_the_Service_of_Software_Engineering_]] and
+more personally in his blog post
+[[http://commandcenter.blogspot.com.au/2012/06/less-is-exponentially-more.html][_Less_is_exponentially_more_]].
+Andrew Gerrand's
+[[http://vimeo.com/53221560][_Code_that_grows_with_grace_]]
+([[http://talks.golang.org/2012/chat.slide][slides]]) and
+[[https://www.youtube.com/watch?v=dKGmK_Z1Zl0][_Go_for_Gophers_]]
+([[http://talks.golang.org/2014/go4gophers.slide][slides]]) give a
+more in-depth, technical take on Go's design philosophy.
+
+Over time, the few became many. The turning point for the project was the
+release of Go 1 in March 2012, which provided a stable language and standard
+library that developers could trust. By 2014, the project had hundreds of core
+contributors, the ecosystem had countless [[https://godoc.org/][libraries and tools]]
+maintained by thousands of developers, and the greater community had
+many passionate members (or, as we call them, "gophers"). Today, by our current
+metrics, the Go community is growing faster than we believed possible.
+
+Where can those gophers be found? They are at the many Go events that are
+popping up around the world. This year we saw several dedicated Go conferences:
+the inaugural [[http://blog.golang.org/gophercon][GopherCon]] and
+[[http://www.dotgo.eu/][dotGo]] conferences in Denver and Paris, the
+[[http://blog.golang.org/fosdem14][Go DevRoom at FOSDEM]] and two more
+instances of the biannual [[https://github.com/GoCon/GoCon][GoCon]] conference
+in Tokyo. At each event, gophers from around the globe eagerly presented their
+Go projects. For the Go team, it is very satisfying to meet so many programmers
+that share our vision and excitement.
+
+.image 5years/conferences.jpg
+
+_More_than_1,200_gophers_attended_GopherCon_in_Denver_and_dotGo_in_Paris._
+
+There are also dozens of community-run
+[[http://golang.org/wiki/GoUserGroups][Go User Groups]] spread across cities
+worldwide. If you haven't visited your local group, consider going along. And
+if there isn't a group in your area, maybe you should
+[[https://blog.golang.org/getthee-to-go-meetup][start one]]?
+
+Today, Go has found a home in the cloud. Go arrived as the industry underwent a
+tectonic shift toward cloud computing, and we were thrilled to see it quickly
+become an important part of that movement. Its simplicity, efficiency, built-in
+concurrency primitives, and modern standard library make it a great fit for
+cloud software development (after all, that's what it was designed for).
+Significant open source cloud projects like
+[[https://www.docker.com/][Docker]] and
+[[https://github.com/GoogleCloudPlatform/kubernetes][Kubernetes]] have been
+written in Go, and infrastructure companies like Google, CloudFlare, Canonical,
+Digital Ocean, GitHub, Heroku, and Microsoft are now using Go to do some heavy
+lifting.
+
+So, what does the future hold? We think that 2015 will be Go's biggest year yet.
+
+Go 1.4—in addition to its [[http://tip.golang.org/doc/go1.4][new features and fixes]]—lays
+the groundwork for a new low-latency garbage collector and support for running
+Go on mobile devices. It is due to be released on December 1st 2014.
+We expect the new GC to be available in Go 1.5, due June 1st 2015, which will
+make Go appealing for a broader range of applications.
+We can't wait to see where people take it.
+
+And there will be more great events, with [[http://gothamgo.com/][GothamGo]] in
+New York (15 Nov), another Go DevRoom at FOSDEM in Brussels (Jan 31 and Feb 1;
+[[https://groups.google.com/d/msg/golang-nuts/1xgBazQzs1I/hwrZ5ni8cTEJ][get involved!]]),
+[[http://www.gophercon.in/][GopherCon India]] in Bengaluru (19-21 Feb),
+the original [[http://gophercon.com/][GopherCon]] back at Denver in July, and
+[[http://www.dotgo.eu/][dotGo]] on again at Paris in November.
+
+The Go team would like to extend its thanks to all the gophers out there.
+Here's to the next five years.
+
+_To_celebrate_5_years_of_Go,_over_the_coming_month_the_
+[[http://blog.gopheracademy.com/][_Gopher_Academy_]]
+_will_publish_a_series_of_articles_by_prominent_Go_users._Be_sure_to_check_out_
+[[http://blog.gopheracademy.com/][_their_blog_]]
+_for_more_Go_action._

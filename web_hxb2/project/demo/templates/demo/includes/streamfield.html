@@ -1,0 +1,46 @@
+{% load wagtailcore_tags wagtailimages_tags %}
+
+<div class="stream-field">
+    {% for child in content %}
+        {% if child.block_type == 'h2' %}
+            <h2>{{ child }}</h2>
+        {% elif child.block_type == 'h3' %}
+            <h3>{{ child }}</h3>
+        {% elif child.block_type == 'h4' %}
+            <h4>{{ child }}</h4>
+        {% elif child.block_type == 'intro' %}
+            <div class="intro">{{ child }}</div>
+        {% elif child.block_type == 'aligned_html' %}
+            {% if child.value.alignment == 'normal' %}
+                {{ child.value.bound_blocks.html.render }}
+            {% else %}
+                {{ child.value.bound_blocks.html.render }}
+            {% endif %}
+        {% elif child.block_type == 'pullquote' %}
+            <blockquote>
+                {{ child.value.quote }}
+                {% if child.value.attribution %}<span>- {{ child.value.attribution }}</span>{% endif %}
+            </blockquote>
+        {% elif child.block_type == 'paragraph' %}
+            {{ child.value|richtext }}
+        {% elif child.block_type == 'aligned_image' %}
+            <div class="img-wrapper {{ child.value.alignment }}">
+                {% if child.value.alignment == "left" or child.value.alignment == "right" %}
+                    {% image child.value.image width-300 as theimage %}
+                {% else %}
+                    {% image child.value.image width-1280 as theimage %}
+                {% endif %}
+
+                <img src="{{ theimage.url }}" width="{{ theimage.width }}" height="{{ theimage.height }}" alt="{{ theimage.alt }}" />
+
+                {% if child.value.caption %}
+                    <div class="caption">
+                        {{ child.value.caption|richtext }}
+                    </div>
+                {% endif %}
+            </div>
+        {% else %}
+            {{ child }}
+        {% endif %}
+    {% endfor %}
+</div>

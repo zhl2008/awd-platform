@@ -1,0 +1,16 @@
+{{/* This file is combined with the root.tmpl to display the blog index. */}}
+
+{{define "title"}}Article index - The Go Blog{{end}}
+{{define "content"}}
+
+  <h1 class="title">Article index</h1>
+  
+  {{range .Data}}
+  <p class="blogtitle">
+    <a href="{{.Path}}">{{.Title}}</a><br>
+    <span class="date">{{.Time.Format "2 January 2006"}}</span><br>
+    {{with .Tags}}<span class="tags">{{range .}}{{.}} {{end}}</span>{{end}}
+  </p>
+  {{end}}
+
+{{end}}

@@ -1,0 +1,12 @@
+New Talk and Tutorials
+5 May 2010
+
+Andrew Gerrand
+
+* Introduction
+
+Rob Pike recently gave a talk at Stanford's [[http://www.stanford.edu/class/ee380/][Computer Systems Colloquium]] (EE380). Titled [[http://www.stanford.edu/class/ee380/Abstracts/100428.html][_Another_Go_at_Language_Design_]], the presentation gives an overview of the itches Go was built to scratch, and how Go addresses those problems. You can view [[http://stanford-online.stanford.edu/courses/ee380/100428-ee380-300.asx][a video stream of the talk]], and [[http://www.stanford.edu/class/ee380/Abstracts/100428-pike-stanford.pdf][download the slides]].
+
+Last week's release included a code lab, [[http://golang.org/doc/codelab/wiki/][Writing Web Applications]], that details the construction of a simple wiki program. It is a practical introduction to some fundamental Go concepts, and the first of a series of Go code labs.
+
+Lastly, we are often asked "How do Go packages work?" It's easier to show than to explain, so I put together a [[http://www.youtube.com/watch?v=jDWBJOXs_iI][Go Packages screen cast]] that demonstrates the process of writing, building, installing, and redistributing Go packages. I hope to post more of these covering a variety of Go programming topics to the [[http://youtube.com/gocoding][gocoding YouTube channel]] in the near future.

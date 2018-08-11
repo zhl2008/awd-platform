@@ -1,0 +1,12 @@
+{% extends "demo/base.html" %}
+{% load wagtailcore_tags %}
+
+{% block content %}
+    {% include "demo/includes/intro.html" with intro=self.intro only %}
+
+    <form action="{% pageurl self %}" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit">
+    </form>
+{% endblock %}

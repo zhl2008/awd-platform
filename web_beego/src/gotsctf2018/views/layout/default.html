@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{.PageTitle}} - {{.BlogTitle}}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/ee22d.css">
+    <link rel="stylesheet" href="/static/css/g.css"/>
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <style>
+        #screen{margin:0 auto; width:630px; }
+    </style>
+</head>
+<body>
+    <div id="screen">
+        <header id="header" class="mt20">
+            <div class="fl">
+                <a href="/" ><img id="logo-img" src="{{.BlogLogo}}" class="img-circle" width="90" height="90"></a>
+            </div>
+            <div class="fl">
+                <div id="blog-title"><a href="/">{{.BlogTitle}}</a></div>
+                <div id="blog-resume">{{.BlogResume}}</div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+        </header>
+        {{.LayoutContent}}
+
+
+<div class="clear"></div>
+<footer>
+    <div class="site-source">
+        <a href="/">TSCTF-Blog</a><br />
+        May 2018
+    </div>
+    <div class="sfc-member">
+        Modified for TSCTF<br />
+        by Henryzhao.
+    </div>
+</footer>
+
+    </div>
+</body>
+</html>

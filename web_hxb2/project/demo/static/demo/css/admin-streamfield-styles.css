@@ -1,0 +1,63 @@
+/* Example styling for an intro field */
+
+.fieldname-intro input,
+.fieldname-intro textarea,
+.fieldname-intro .richtext{
+    font-size:1.4em;
+}
+
+/* Example styling for a blockquote block, where labels aren't required */
+
+.blockname-pullquote .fields label{
+    display:none;
+}
+
+.blockname-pullquote .fields input,
+.blockname-pullquote .fields textarea{
+    border:0;
+    background-color:transparent;
+    padding:0;
+}
+
+.fieldname-quote .input{
+    position: relative;
+    padding-left: 3em;
+    padding-right: 3em;
+}
+
+    .fieldname-quote .input:before,
+    .fieldname-quote .input:after{
+        content: "\201C";
+        position: absolute;
+        font-family: Bitter, Georgia, Serif;
+        font-size: 5em;
+        line-height: 1em;
+        color :#CCC;
+    }
+
+        .fieldname-quote .input:before{
+            left: 0;
+        }
+        .fieldname-quote .input:after{
+            right: 0;
+            top: 0;
+        }
+
+    .fieldname-quote textarea{
+        font-size: 2em;
+        font-family: Bitter, Georgia, Serif;
+    }
+
+.fieldname-attribution .field-content{
+    margin-left:2em;
+}
+    .fieldname-attribution .input{
+        padding-left:1em;
+        position:relative;
+    }
+        .fieldname-attribution .input:before{
+            content: "—";
+            position: absolute;
+            left: 0;
+           
+        }

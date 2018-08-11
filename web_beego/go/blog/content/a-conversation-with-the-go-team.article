@@ -1,0 +1,158 @@
+A conversation with the Go team
+6 Jun 2013
+
+* Introduction
+
+At Google I/O 2013, several members of the Go team hosted a "Fireside chat."
+Robert Griesemer, Rob Pike, David Symonds, Andrew Gerrand, Ian Lance Taylor,
+Sameer Ajmani, Brad Fitzpatrick, and Nigel Tao took questions from the audience
+and people around the world about various aspects of the Go project.
+
+.iframe //www.youtube.com/embed/p9VUCp98ay4 309 549
+
+We also hosted a similar session at I/O last year:
+[[http://www.youtube.com/watch?v=sln-gJaURzk][_Meet_the_Go_team_]].
+
+There were many more questions from Google Moderator than we were able to
+answer in the short 40 minute session.
+Here we answer some of those we missed in the live session.
+
+_Linking_speed_(and_memory_usage)_for_the_gc_toolchain_are_a_known_problem._
+_Are_there_any_plans_to_address_this_during_the_1.2_cycle?_
+
+*Rob:* Yes. We are always thinking about ways to improve performance of the
+tools as well as the language and libraries.
+
+_I_have_been_very_pleased_to_see_how_quickly_Go_appears_to_be_gaining_traction._
+_Can_you_talk_about_the_reactions_you_have_experienced_working_with_other_
+_developers_inside_and_outside_Google?_Are_there_any_major_sticking_points_remaining?_
+
+*Robert:* A lot of developers that seriously tried Go are very happy with it.
+Many of them report a much smaller, more readable and thus maintainable code
+base: A 50% code size reduction or more when coming from C++ seems common.
+Developers that switched to Go from Python are invariably pleased with the
+performance gain. The typical complaints are about small inconsistencies in the
+language (some of which we might iron out at some point). What surprises me is
+that almost nobody complains about the lack of generics.
+
+_When_will_Go_be_a_first-class_language_for_Android_development?_
+
+*Andrew:* This would be great, but we don't have anything to announce.
+
+_Is_there_a_roadmap_for_the_next_version_of_Go?_
+
+*Andrew:* We have no feature roadmap as such. The contributors tend to work on
+what interests them. Active areas of development include the gc and gccgo
+compilers, the garbage collector and runtime, and many others. We expect the
+majority of exciting new additions will be in the form of improvements to our
+tools. You can find design discussions and code reviews on the
+[[http://groups.google.com/group/golang-dev][golang-dev mailing list]].
+
+As for the timeline, we do have
+[[https://docs.google.com/document/d/106hMEZj58L9nq9N9p7Zll_WKfo-oyZHFyI6MttuZmBU/edit?usp=sharing][concrete plans]]:
+we expect to release Go 1.2 on December 1, 2013.
+
+_Where_do_you_guys_want_to_see_Go_used_externally?_
+_What_would_you_consider_a_big_win_for_Go_adoption_outside_Google?_
+_Where_do_you_think_Go_has_the_potential_to_make_a_significant_impact?_
+
+*Rob:* Where Go is deployed is up to its users, not to us. We're happy to see
+it gain traction anywhere it helps. It was designed with server-side software
+in mind, and is showing promise there, but has also shown strengths in many
+other areas and the story is really just beginning. There are many surprises to
+come.
+
+*Ian:* It’s easier for startups to use Go, because they don’t have an
+entrenched code base that they need to work with. So I see two future big wins
+for Go. One would be a significant use of Go by an existing large software
+company other than Google. Another would be a significant IPO or acquisition
+of a startup that primarily uses Go. These are both indirect: clearly choice
+of programming language is a very small factor in the success of a company.
+But it would be another way to show that Go can be part of a successful
+software system.
+
+_Have_you_thought_any_(more)_about_the_potential_of_dynamically_loading_
+_Go_packages_or_objects_and_how_it_could_work_in_Go?_
+_I_think_this_could_enable_some_really_interesting_and_expressive_constructs,_
+_especially_coupled_with_interfaces._
+
+*Rob:* This is an active topic of discussion. We appreciate how powerful the
+concept can be and hope we can find a way to implement it before too long.
+There are serious challenges in the design approach to take and the need to
+make it work portably.
+
+_There_was_a_discussion_a_while_ago_about_collecting_some_best-of-breed_
+`database/sql` _drivers_in_a_more_central_place._
+_Some_people_had_strong_opinions_to_the_contrary_though._
+_Where_is_ `database/sql` _and_its_drivers_going_in_the_next_year?_
+
+*Brad:* While we could create an official subrepo (“go.db”) for database
+drivers, we fear that would unduly bless certain drivers. At this point we’d
+still rather see healthy competition between different drivers. The
+[[https://golang.org/wiki/SQLDrivers][SQLDrivers wiki page]]
+lists some good ones.
+
+The `database/sql` package didn’t get much attention for a while, due to lack of
+drivers. Now that drivers exist, usage of the package is increasing and
+correctness and performance bugs are now being reported (and fixed). Fixes will
+continue, but no major changes to the interface of `database/sql` are planned.
+ There might be small extensions here and there as needed for performance or to
+assist some drivers.
+
+_What_is_the_status_of_versioning?_
+_Is_importing_some_code_from_github_a_best_practice_recommended_by_the_Go_team?_
+_What_happens_when_we_publish_our_code_that_is_dependent_on_a_github_repo_and_
+_the_API_of_the_dependee_changes?_
+
+*Ian:* This is frequently discussed on the mailing list. What we do internally
+is take a snapshot of the imported code, and update that snapshot from time to
+time. That way, our code base won't break unexpectedly if the API changes.
+But we understand that that approach doesn’t work very well for people who are
+themselves providing a library. We’re open to good suggestions in this area.
+Remember that this is an aspect of the tools that surround the language rather
+than the language itself; the place to fix this is in the tools, not the
+language.
+
+_What_about_Go_and_Graphical_User_Interfaces?_
+
+*Rob:* This is a subject close to my heart. Newsqueak, a very early precursor
+language, was designed specifically for writing graphics programs (that's what
+we used to call apps). The landscape has changed a lot but I think Go's
+concurrency model has much to offer in the field of interactive graphics.
+
+*Andrew:* There are many
+[[https://golang.org/wiki/Projects#Graphics_and_Audio][bindings for existing graphics libraries]]
+out there, and a few Go-specific projects. One of the more promising ones is
+[[https://github.com/skelterjohn/go.uik][go.uik]], but it's still in its early
+days. I think there's a lot of potential for a great Go-specific UI toolkit for
+writing native applications (consider handling user events by receiving from a
+channel), but developing a production-quality package is a significant
+undertaking. I have no doubt one will come in time.
+
+In the meantime, the web is the most broadly available platform for user
+interfaces. Go provides great support for building web apps, albeit only on the
+back end.
+
+_In_the_mailing_lists_Adam_Langley_has_stated_that_the_TLS_code_has_not_been_
+_reviewed_by_outside_groups,_and_thus_should_not_be_used_in_production._
+_Are_there_plans_to_have_the_code_reviewed?_
+_A_good_secure_implementation_of_concurrent_TLS_would_be_very_nice._
+
+*Adam*: Cryptography is notoriously easy to botch in subtle and surprising ways
+and I’m only human. I don’t feel that I can warrant that Go’s TLS code is
+flawless and I wouldn’t want to misrepresent it.
+
+There are a couple of places where the code is known to have side-channel
+issues: the RSA code is blinded but not constant time, elliptic curves other
+than P-224 are not constant time and the Lucky13 attack might work. I hope to
+address the latter two in the Go 1.2 timeframe with a constant-time P-256
+implementation and AES-GCM.
+
+Nobody has stepped forward to do a review of the TLS stack however and I’ve not
+investigated whether we could get Matasano or the like to do it. That depends
+on whether Google wishes to fund it.
+
+_What_do_you_think_about_ [[http://www.gophercon.com/][_GopherCon_2014_]]_?_
+_Does_anyone_from_the_team_plan_to_attend?_
+
+*Andrew:* It's very exciting. I'm sure some of us will be there.

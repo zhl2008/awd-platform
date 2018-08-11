@@ -1,0 +1,8 @@
+{% extends "wagtailadmin/userbar/item_base.html" %}
+{% load i18n %}
+
+{% block item_content %}
+    <div class="wagtail-action wagtail-icon wagtail-icon-edit">
+        <a href="{% url 'wagtailadmin_pages:edit' self.page.id %}" target="_parent">{% trans 'Edit this page' %}</a>
+    </div>
+{% endblock %}

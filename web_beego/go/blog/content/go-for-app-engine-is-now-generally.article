@@ -1,0 +1,19 @@
+Go for App Engine is now generally available
+21 Jul 2011
+Tags: appengine, release
+
+Andrew Gerrand
+
+* Introduction
+
+The Go and App Engine teams are excited to announce that the Go runtime for App Engine is now generally available. This means you can take that Go app you've been working on (or meaning to work on) and deploy it to App Engine right now with the new [[http://code.google.com/appengine/downloads.html][1.5.2 SDK]].
+
+Since we announced the Go runtime at Google I/O we have continued to [[http://code.google.com/p/googleappengine/wiki/SdkForGoReleaseNotes][improve and extend]] Go support for the App Engine APIs and have added the Channels API. The Go Datastore API now supports transactions and ancestor queries, too. See the [[https://code.google.com/appengine/docs/go/][Go App Engine documentation]] for all the details.
+
+For those who have been using the Go SDK already, please note that the 1.5.2 release introduces `api_version` 2. This is because the new SDK is based on Go `release.r58.1` (the current stable version of Go) and is not backwards compatible with the previous release. Existing apps may require changes as per the [[http://golang.org/doc/devel/release.html#r58][r58 release notes]]. Once you've updated your code, you should redeploy your app with the line `api_version:`2` in its `app.yaml` file. Apps written against `api_version` 1 will stop working after the 18th of August.
+
+Finally, we owe a huge thanks to our trusted testers and their many bug reports. Their help was invaluable in reaching this important milestone.
+
+_The_fastest_way_to_get_started_with_Go_on_App_Engine_is_with_the_ [[http://code.google.com/appengine/docs/go/gettingstarted/][_Getting_Started_guide_]].
+
+_Note_that_the_Go_runtime_is_still_considered_experimental;_it_is_not_as_well-supported_as_the_Python_and_Java_runtimes._

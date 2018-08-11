@@ -1,0 +1,161 @@
+$navbar-height: 51px;
+$padding-vertical: 15px;
+$wagtail-color: rgb(0, 127, 127);
+$html-background-color: whitesmoke;
+
+
+html {
+    background-color: $html-background-color;
+}
+
+/* fonts */
+body {
+    font-family: 'Open Sans', Helvetica, Arial, sans-serif;
+}
+
+
+/* body image styles - classes supplied by rich text editor */
+.body-content {
+    width: 100%;
+    overflow: hidden;
+    clear: both;
+    margin-bottom: 1em;
+    img {
+        margin-bottom: 2%;
+        margin-top: 2%;
+    }
+
+    img.full-width {
+        width: 100%;
+    }
+
+    img.left{
+        width: 45%;
+        margin-right: 5%;
+        float: left;
+    }
+
+    img.right{
+        width: 45%;
+        margin-left: 5%;
+        float: right;
+    }
+
+    h1, h2, h3, h4, h5 {
+        clear: both;
+    }
+}
+
+
+.img-wrapper {
+    margin-bottom: 1em;
+    position: relative;
+    
+    img {
+        display: block;
+        width: 100%;
+        margin-bottom:0;
+    }
+
+    &.left {
+        float:left;
+        width: 45%;
+        margin-right: 5%;
+    }
+    &.right {
+        float:right;
+        width: 45%;
+        margin-left: 5%;
+    }
+}
+
+.intro{
+    font-size:1.4em;
+}
+
+.caption {
+    padding: 0.2em 1em 0.2em 0.5em;
+    margin: 0;
+    font-weight: 400;
+    background: #F2f2f2;
+    font-style: italic;
+    display: inline-block;
+    z-index: 2;
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+    font-size: 0.9em;
+    max-width: calc(100% - 10px);
+
+    p{
+        margin:0 !important;
+    }
+}
+
+blockquote{
+    margin:2em 0;
+
+    span{
+        display:block;
+        color: #AAA;
+        font-size:0.8em;
+    }
+}
+
+
+/* List styling - tweaks to include images */
+
+a.list-group-item {
+    clear: both;
+    width: 100%;
+    overflow: hidden;
+    .list-group-item-text {
+        margin-top: 1%;
+        img {
+            float: left;
+            margin-right: 2%;
+            margin-bottom: 1%;
+        }
+    }
+}
+
+/* Style pager */
+.col-sm-4.pages {
+    text-align: center;
+}
+
+.col-sm-4.next {
+    text-align: right;
+}
+
+.main {
+    padding-top: $navbar-height + $padding-vertical;
+    min-height: 700px;
+}
+
+.carousel {
+    margin-bottom: $padding-vertical;
+    .carousel-caption {
+        background-color: transparentize($wagtail-color, 0.4);
+        padding-top: 0;
+        .btn {
+            margin-bottom: 10px;
+        }
+    }
+}
+
+p {
+    text-align: justify;
+    
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+.advert-list {
+    margin-top: $padding-vertical;
+    margin-bottom: 0;
+    padding: $padding-vertical 0;
+    background-color: $html-background-color;
+    border-top: 1px solid darken($html-background-color, 25%);
+}

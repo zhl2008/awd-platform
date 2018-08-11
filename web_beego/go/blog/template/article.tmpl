@@ -1,0 +1,15 @@
+{{/* This file is combined with the root.tmpl to display a single article. */}}
+
+{{define "title"}}{{.Doc.Title}} - The Go Blog{{end}}
+{{define "content"}}
+	{{template "doc" .Doc}}
+	{{with .Doc.Related}}
+		<h2>Related articles</h2>
+		<ul>
+		{{range .}}
+			<li><a href="{{.Path}}">{{.Title}}</a></li>
+		{{end}}
+		</ul>
+	{{end}}
+{{end}}
+

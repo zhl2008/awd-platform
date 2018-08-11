@@ -1,0 +1,24 @@
+<div class="entry-list">
+{{range .Blogs}}
+<div class="item" itemscope="" itemtype="http://schema.org/Article">
+    <h2 class="entry-title" itemprop="name">
+        <a class="icon-link" href="/article/{{.Ident}}" itemprop="url" style="text-decoration: none;">{{.Title}}</a>
+    </h2>
+    <div class="entry-views">{{.Views}}</div>
+
+    <div class="entry-meta">
+      <span>发表于：{{dateformat .Created "2006-01-02 15:04:05"}}</span>
+      {{if $.IsAdmin}}
+      (<a href="/me/article/edit?id={{.Id}}">Edit</a>
+      <span class="cut-line">|</span>
+      <a href="/me/article/del?id={{.Id}}">Del</a>)
+      {{end}}
+    </div>
+    <a class="entry-snippet" itemprop="description" href="/article/{{.Ident}}">
+      {{.Content.HTMLContent}}...
+    </a>
+  </div>
+{{end}}
+</div>
+
+{{template "inc/paginator.html" .}}

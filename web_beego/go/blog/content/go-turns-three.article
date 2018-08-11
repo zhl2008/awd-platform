@@ -1,0 +1,76 @@
+Go turns three
+10 Nov 2012
+Tags: community, birthday
+
+Russ Cox
+
+* Introduction
+
+The Go open source project is
+[[http://google-opensource.blogspot.com/2009/11/hey-ho-lets-go.html][three years old today]].
+
+It's great to look at how far Go has come in those three years.
+When we launched, Go was an idea backed by two implementations that worked on Linux and OS X.
+The syntax, semantics, and libraries changed regularly as we reacted to feedback from users
+and experience with the language.
+
+Since the open source launch,
+we've been joined by
+[[http://tip.golang.org/CONTRIBUTORS][hundreds of external contributors]],
+who have extended and improved Go in myriad ways,
+including writing a Windows port from scratch.
+We added a package management system
+[[https://groups.google.com/d/msg/golang-nuts/8JFwR3ESjjI/cy7qZzN7Lw4J][goinstall]],
+which eventually became the
+[[http://golang.org/cmd/go/][go command]].
+We also added
+[[http://blog.golang.org/2011/07/go-for-app-engine-is-now-generally.html][support for Go on App Engine]].
+Over the past year we've also given [[http://golang.org/doc/#talks][many talks]], created an [[http://tour.golang.org/][interactive introductory tour]]
+and recently we added support for [[http://golang.org/pkg/strings/#pkg-examples][executable examples in package documentation]].
+
+Perhaps the most important development in the past year
+was the launch of the first stable version,
+[[http://blog.golang.org/2012/03/go-version-1-is-released.html][Go 1]].
+People who write Go 1 programs can now be confident that their programs will
+continue to compile and run without change, in many environments,
+on a time scale of years.
+As part of the Go 1 launch we spent months cleaning up the
+[[http://golang.org/doc/go1.html][language and libraries]]
+to make it something that will age well.
+
+We're working now toward the release of Go 1.1 in 2013. There will be some
+new functionality, but that release will focus primarily on making Go perform
+even better than it does today.
+
+We're especially happy about the community that has grown around Go:
+the mailing list and IRC channels seem like they are overflowing with discussion,
+and a handful of Go books were published this year. The community is thriving.
+Use of Go in production environments has also taken off, especially since Go 1.
+
+We use Go at Google in a variety of ways, many of them invisible to the outside world.
+A few visible ones include
+[[https://groups.google.com/d/msg/golang-nuts/BNUNbKSypE0/E4qSfpx9qI8J][serving Chrome and other downloads]],
+[[http://code.google.com/p/vitess/][scaling MySQL database at YouTube]],
+and of course running the
+[[http://golang.org/][Go home page]]
+on [[https://developers.google.com/appengine/docs/go/overview][App Engine]].
+Last year's
+[[http://blog.golang.org/2011/12/from-zero-to-go-launching-on-google.html][Thanksgiving Doodle]]
+and the recent
+[[http://www.jamwithchrome.com/technology][Jam with Chrome]]
+site are also served by Go programs.
+
+Other companies and projects are using Go too, including
+[[http://www.quora.com/Go-programming-language/Is-Google-Go-ready-for-production-use/answer/Kunal-Anand][BBC Worldwide]],
+[[http://dave.cheney.net/wp-content/uploads/2012/08/august-go-meetup.pdf][Canonical]],
+[[http://blog.cloudflare.com/go-at-cloudflare][CloudFlare]],
+[[http://blog.golang.org/2011/04/go-at-heroku.html][Heroku]],
+[[https://plus.google.com/114945221884326152379/posts/d1SVaqkRyTL][Novartis]],
+[[http://backstage.soundcloud.com/2012/07/go-at-soundcloud/][SoundCloud]],
+[[http://sorcery.smugmug.com/2012/04/06/deriving-json-types-in-go/][SmugMug]],
+[[http://blog.golang.org/2011/12/building-stathat-with-go.html][StatHat]],
+[[https://tinkercad.com/about/jobs][Tinkercad]],
+and
+[[https://golang.org/wiki/GoUsers][many others]].
+
+Here's to many more years of productive programming in Go.

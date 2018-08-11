@@ -1,0 +1,3 @@
+[flaskbb_plugins]
+portal = portal
+

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="/static/css/semantic.min.css"/>
+    <script src="/static/javascript/lib.min.js"></script>
+    <script src="/static/javascript/crypto-js.js"></script>
+    <style>
+        *{ font:12pt Verdana,Arial,Microsoft YaHei,sans-serif; color:#666666; word-wrap:break-word;}
+        #screen{margin:0 auto; width:420px; margin-top:100px; }
+        .field label {font-weight: bold;}
+        .ui.message .header {font-size: 1em;}
+    </style>
+    <script type="text/javascript">
+        function login() {
+            var name = $("#name").val()
+            var password = $("#password").val()
+            if (name.length == 0) {
+                $("#err .header").html("username is blank");
+                $("#err").show("fast");
+                return false;
+            }
+
+            if (password.length == 0) {
+                $("#err .header").html("password is blank");
+                $("#err").show("fast");
+                return false;
+            }
+
+            $.post("{{urlfor "LoginController.DoLogin"}}", {"name":name, "password": password + ''}, function(data){
+                if (data == 'login success') {
+                    window.location.href="/";
+                } else {
+                    $("#err .header").html(data);
+                    $("#err").show("fast");
+                }
+            });
+        }
+        $(function(){
+            $("#name").keypress(function(e){
+                $("#err").hide("fast");
+                if(e.keyCode==13){
+                    login();
+                }
+            });
+            $("#password").keypress(function(e){
+                $("#err").hide("fast");
+                if(e.keyCode==13){
+                    login();
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div id="screen">
+        <div class="ui form segment">
+            <div class="field">
+                <label>Username</label>
+                <div class="ui left labeled icon input">
+                    <input type="text" placeholder="Username" id="name">
+                    <i class="user icon"></i>
+                    <div class="ui corner label">
+                        <i class="icon asterisk"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="field">
+                <label>Password</label>
+                <div class="ui left labeled icon input">
+                    <input type="password" id="password">
+                    <i class="lock icon"></i>
+                    <div class="ui corner label">
+                        <i class="icon asterisk"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="ui error message" id="err">
+                <div class="header"></div>
+            </div>
+            <a class="ui blue submit button" id="login" href="javascript:login();">Login</a>
+        </div>
+    </div>
+</body>
+</html>

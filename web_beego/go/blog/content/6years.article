@@ -1,0 +1,50 @@
+Six years of Go
+10 Nov 2015
+
+Andrew Gerrand
+adg@golang.org
+
+* Six years of Go
+
+Six years ago today the Go language was released as an open source project.
+Since then, more than 780 contributors have made over 30,000 commits to the
+project's 22 repositories. The ecosystem continues to grow, with GitHub
+reporting more than 90,000 Go repositories. And, offline, we see new Go events
+and user groups pop up [[https://blog.golang.org/gophercon2015][around]]
+[[http://blog.golang.org/gouk15][the]]
+[[http://blog.golang.org/gopherchina][world]] with regularity.
+
+.image 6years-gopher.png
+
+In August we [[https://blog.golang.org/go1.5][released Go 1.5]], the most
+significant release since Go 1. It features a completely
+[[https://golang.org/doc/go1.5#gc][redesigned garbage collector]] that makes
+the language more suitable for latency-sensitive applications; it marks the
+transition from a C-based compiler tool chain to one
+[[https://golang.org/doc/go1.5#c][written entirely in Go]]; and it includes
+ports to [[https://golang.org/doc/go1.5#ports][new architectures]], with better
+support for ARM processors (the chips that power most smartphones).
+These improvements make Go better suited to a broader range of tasks, a trend
+that we hope will continue over the coming years.
+
+Improvements to tools continue to boost developer productivity.
+We introduced the [[https://golang.org/cmd/trace/][execution tracer]] and the
+"[[https://golang.org/cmd/go/#hdr-Show_documentation_for_package_or_symbol][go doc]]"
+command, as well as more enhancements to our various
+[[https://talks.golang.org/2014/static-analysis.slide][static analysis tools]].
+We are also working on an
+[[https://groups.google.com/forum/#!topic/Golang-nuts/8oCSjAiKXUQ][official Go plugin for Sublime Text]],
+with better support for other editors in the pipeline.
+
+Early next year we will release more improvements in Go 1.6, including 
+HTTP/2 support for [[https://golang.org/pkg/net/http/][net/http]] servers and
+clients, an official package vendoring mechanism, support for blocks in text
+and HTML templates, a memory sanitizer that checks both Go and C/C++ code, and
+the usual assortment of other improvements and fixes.
+
+This is the sixth time we have had the pleasure of writing a birthday blog post
+for Go, and we would not be doing so if not for the wonderful and passionate
+people in our community. The Go team would like to thank everyone who has
+contributed code, written an open source library, authored a blog post, helped
+a new gopher, or just given Go a try. Without you, Go would not be as complete,
+useful, or successful as it is today. Thank you, and celebrate!
