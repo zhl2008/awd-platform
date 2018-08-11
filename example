@@ -1,0 +1,10 @@
+special to start up with batch.py:
+
+web_beego: python batch.py web_beego/ 4 8080
+
+web_hxb2: python batch.py  web_hxb2/ 4 8080 ubuntu:16.10
+
+web_nodecms: python batch.py  web_nodecms/ 4 8080 
+
+web_flaskbb: python batch.py  web_flaskbb/ 4 5000 ubuntu:16.10
+ 
