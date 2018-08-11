@@ -1,0 +1,82 @@
+<% include ./header.ejs %>
+<div class="blog-page main grid-wrap">
+        <header class="grid col-full">
+            <hr>
+            <p class="fleft">文章</p>
+        </header>
+                
+        <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+            <%if(data.length){ %>
+                <%data.forEach(function(one,key){%>
+                    <article class="post">
+                        <h2><a href="/index/<%=currentMenu%>/<%=one.id%>" class="post-title"><%=one.title%></a></h2>
+                        <div class="meta">
+                            <p>
+                                创建时间: 
+                                <span class="time"><%=dateFormat(one.createtime)%></span>  
+                                浏览量：
+                                <span class="hits"><%=one.hits%> </span>
+                            </p>
+                        </div>
+                        <div class="entry">
+                            <%if(one.thumb){%>
+                                <img src="<%-one.thumb%>" alt="">
+                            <%}%>
+                            <p><%=one.description%></p>
+                        </div>
+                        <footer>
+                            <a href="/index/<%=currentMenu%>/<%=one.id%>" class="more-link">更多...</a>
+                        </footer>
+                    </article>
+                <%})%>
+            <%}else{%>
+                <p>抱歉,没有找到记录!</p>
+            <%}%>
+           
+            <!-- 分页 -->
+            <ul class="page-numbers">
+                <%if(paging.current_page == 1){%>
+                    <li><a href="#">«</a></li>
+                <%}else{%>
+                    <li><a href="/index/<%=currentMenu%>/?p=<%=(Number(paging.current_page)-1)%>">«</a></li>
+                <%}%>
+                <%for(var i=1;i<=paging.count;i++){%>
+                    <li class="<%if(paging.current_page==i){%>current<%}%>"><a href="/news/index?p=<%=i%>"><%=i%></a></li>
+                <%}%>
+                <%if(paging.current_page == paging.count){%>
+                    <li><a href="#">»</a></li>
+                <%}else{%>
+                    <li><a href="/index/<%=currentMenu%>/?p=<%=(Number(paging.current_page)+1)%>">»</a></li>
+                <%}%>
+            </ul>
+        </section>
+        <aside class="grid col-one-quarter mq2-col-one-third mq3-col-full blog-sidebar">
+                
+            <div class="widget">
+                <input id="search" type="search" name="search" value="" placeholder="输入关键字搜索">
+            </div>
+            
+            <div class="widget">
+            <p>合抱之木,生于毫末;九层之台,起于垒土</p>
+            </div>
+            
+            <div class="widget">
+            <h2>热点文章</h2>
+            <ul>
+                <%hot_records.forEach(function(one,key){%>
+                    <li><a href="/index/<%=currentMenu%>/<%-one.id%>" title=""><%=one.title%></a></li>   
+                <%});%>
+            </ul>
+            </div>
+            
+            <div class="widget">
+            <h2>分类</h2>
+            <ul>
+                <%categorys.forEach(function(one,key){%>
+                    <li><a href="/index/<%=one.dir%>"  class="<%if(category == one.dir){%>buttonactive<%}%>"><%=one.name%></a><br></li>
+                <%})%>
+            </ul>
+            </div>
+        </aside>
+    </div>
+<% include ./footer.ejs %>

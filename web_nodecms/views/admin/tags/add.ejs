@@ -1,0 +1,60 @@
+<% include ../header.ejs %>
+<link href="/admin_lte/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .box-body .row{margin-top:20px;}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-body dataTables_wrapper form-inline dt-bootstrap" >
+                <div class="row">
+                    <form class="form-horizontal col-sm-12" method="post" action=" <%-req.url%> ">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">标题</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="title" name="title" placeholder="标题" value="<%-tags.title%>">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">顺序</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="listorder" name="listorder" placeholder="顺序" value="<%-tags.listorder%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">状态</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="1" <%if(tags.status == "1" || !tags.status){%> checked=""  <%}%> >
+                                        启动
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="0" <%if(tags.status == "0"){%> checked=""  <%}%>>
+                                        禁用
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <hr>
+                            <div class="form-group col-sm-12">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../footer.ejs %>

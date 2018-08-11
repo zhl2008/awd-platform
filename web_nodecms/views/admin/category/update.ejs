@@ -1,0 +1,149 @@
+<% include ../header.ejs %>
+<style type="text/css">
+    .box-body .row{margin-top:20px;}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-body dataTables_wrapper form-inline dt-bootstrap" >
+                <div class="row">
+                    <form class="form-horizontal col-sm-12" method="post" action=" <%-req.url%> ">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">栏目名称</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="name" name="name" placeholder="栏目名称" value="<%-category.name%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">栏目别名</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="dir" name="dir" placeholder="栏目别名" value="<%-category.dir%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">栏目模型</label>
+                                <div class="col-sm-8">
+                                    <!-- todo 从数据库取出 -->
+                                    <select name="model" id="model" class="form-control">
+                                        <%models.forEach(function(one, key) {%>
+                                            <option value="<%-one.varname%>" <% if(category.model == one.varname){ %> selected <%}%> > <%=__("model_"+one.varname)%></option>
+                                        <%})%>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">上级栏目</label>
+                                <div class="col-sm-8">
+                                    <!-- todo 从数据库取出 -->
+                                    <select name="parent" id="parent" class="form-control">
+                                        <option value="0">顶级栏目</option>
+                                        <%categorys.forEach(function(one, key) {%>
+                                            <option value="<%-one.id%>" <% if(category.parent == one.id){ %> selected <%}%> > <%=spaceX(one.deep)%><%=one.name%></option>
+                                        <%})%>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">SEO标题</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="title" name="title" placeholder="SEO标题" value="<%-category.title%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">SEO关键词</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="keywords" name="keywords" placeholder="SEO标题" value="<%-category.keywords%>">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">SEO描述</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="3" cols="79" name="description" id="description"  class="form-control"><%-category.description%></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group" style="width:100%">
+                                <label class="col-sm-2 control-label">内容</label>
+                                <div class="col-sm-10">
+                                    <textarea rows="3" cols="79" name="content" id="content"  class="form-control kindeditor"><%-category.content%></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">分页条数</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="pagesize" name="pagesize" placeholder="分页条数" value="<%-category.pagesize%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">列表页模板</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="tpllist" name="tpllist" placeholder="列表页模板" value="<%-category.tpllist%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">内容页模板</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="tpldetail" name="tpldetail" placeholder="内容页模板" value="<%-category.tpldetail%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">顺序</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="listorder" name="listorder" placeholder="顺序" value="<%-category.listorder%>">
+                                </div>
+                            </div>
+                        </div>
+        
+                        <div class="row">
+                            <hr>
+                            <div class="form-group col-sm-12">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script charset="utf-8" src="/lib/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+    KindEditor.ready(function(K) {
+        editor = K.create('.kindeditor', {
+            resizeType : 0,
+            allowPreviewEmoticons : false,
+            uploadJson : '/admin/resource/index',
+            allowImageUpload : true,
+            width: '80%',
+            height: '500px',
+            items : [
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 'removeformat', 
+                '|', 
+                'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 
+                'lineheight',
+                '|',
+                'link', 'unlink',
+                '|', 
+                'image', 'table', 'media','map'
+            ]
+        });
+    });
+</script>
+<% include ../footer.ejs %>

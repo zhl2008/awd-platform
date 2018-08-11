@@ -1,0 +1,96 @@
+<% include ../header.ejs %>
+<link href="/admin_lte/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .box-body .row{margin-top:20px;}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-body dataTables_wrapper form-inline dt-bootstrap" >
+                <div class="row">
+                    <form class="form-horizontal col-sm-12" method="post" action=" <%-req.url%> ">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">标题</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="title" name="title" placeholder="标题" value="<%-type.title%>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">类型</label>
+                                <div class="col-sm-8">
+                                    <select name="class" id="class" class="form-control">
+                                        <%['link','slide','navigation'].forEach(function(one, key) {%>
+                                            <option value="<%-one%>" <% if(type.class == one){ %> selected <%}%> ><%=__(one)%></option>
+                                        <%})%>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">备注</label>
+                                <div class="col-sm-8">
+                                    <textarea rows="5" cols="80" class="form-control" name="remark" id="remark"><%-type.remark%></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">缩略图</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="thumb" name="thumb" placeholder="缩略图" value="<%-type.thumb%>">
+                                    <a href="javascript:void(0)" class="btn btn-upload" id="upload_input">点击上传</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">顺序</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="listorder" name="listorder" placeholder="顺序" value="<%-type.listorder%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">状态</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="1" <%if(type.status == "1" || !type.status){%> checked=""  <%}%> >
+                                        启动
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="0" <%if(type.status == "0"){%> checked=""  <%}%>>
+                                        禁用
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <hr>
+                            <div class="form-group col-sm-12">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="/js/ajaxupload.js" type="text/javascript"></script>
+<script src="/js/upload.js" type="text/javascript"></script>
+
+<% include ../footer.ejs %>

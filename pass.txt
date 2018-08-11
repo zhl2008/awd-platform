@@ -1,4 +1,4 @@
-team1:ctf:b219d94ecf487c58ec2f6d892ea486e4
-team2:ctf:360440f7baae2dbeb0be66b49e60d13f
-team3:ctf:3118a81a5c212090b7be22f3bef22142
-team4:ctf:1c6c6d6e27f8d59bb58ec6b5fd493ce6
+team1:ctf:c325f4ee345e8be369b28ecd272d9421
+team2:ctf:9f78a8eef5aa737a6313518de46bd655
+team3:ctf:4fd4c3aafcf104a4304d471e255bf6a5
+team4:ctf:9e7218884c370815d2aed0e6e5c91b9a

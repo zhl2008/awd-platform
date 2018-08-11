@@ -1,0 +1,48 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title">站点设置</h3>
+            </div>
+            <div class="box-body" >
+                <div class="nav-tabs-custom clearfix" >
+                    <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                        <li class=""><a href="/admin/site/" >基本设置</a></li>
+                        <li class=""><a href="/admin/site/mail" >邮箱配置</a></li>
+                        <li class="active"><a href="/admin/site/lang" >语言设置</a></li>
+                        <li class=""><a href="/admin/site/attr" >附件配置</a></li>
+                        <li class=""><a href="/admin/site/add" >添加系统变量</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <form class="form-horizontal col-sm-6" method="post" action="/admin/site/update">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">后台语言</label>
+                            <div class="col-sm-10">
+                                <select name="site_adminlang" id="site_adminlang">
+                                    <option value="zh_cn" <%if(config.site_adminlang.value == "zh_cn" || !config.site_adminlang.value){%> selected=""  <%}%> >简体中文</option>
+                                    <option value="en" <%if(config.site_adminlang.value == "en" || !config.site_adminlang.value){%> selected=""  <%}%> >English</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">前台默认语言</label>
+                            <div class="col-sm-10">
+                                <select name="site_frontlang" id="site_frontlang">
+                                    <option value="zh_cn" <%if(config.site_frontlang.value == "zh_cn" || !config.site_frontlang.value){%> selected=""  <%}%> >简体中文</option>
+                                    <option value="en" <%if(config.site_frontlang.value == "en" || !config.site_frontlang.value){%> selected=""  <%}%> >English</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">提 交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

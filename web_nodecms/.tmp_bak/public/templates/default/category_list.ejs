@@ -1,0 +1,44 @@
+<% include ./header.ejs %>
+<div class="works-page main grid-wrap">
+
+        <header class="grid col-full">
+            <hr>
+            <p class="fleft">案例</p>
+        </header>
+
+        <aside class="grid col-one-quarter mq2-col-full">
+            <p class="mbottom">
+                艺术的价值在于打动， <br>
+                网站的价值在于传播，<br>
+                一个有思想工匠便是艺术家。
+            </p>
+            <menu>
+                <%categorys.forEach(function(one,key){%>
+                <a href="/index/<%=one.dir%>"  class=" <%if(category == one.dir){%>buttonactive<%}%>"><%=one.name%></a><br>
+                <%})%>
+            </menu>
+        </aside>
+        
+        <section class="grid col-three-quarters mq2-col-full">
+        
+            <div class="grid-wrap works">
+                <%if(data.length){ %>
+                    <%data.forEach(function(one,key){%>
+                        <figure class="grid col-one-third mq1-col-one-half mq2-col-one-third mq3-col-full work_1">
+                            <a href="/index/<%=currentMenu%>/<%=one.id%>">
+                                <img src="<%-one.thumb%>" alt="">
+                            <span class="zoom" style="opacity: 0;"></span>
+                            </a>
+                            <figcaption>
+                                <a href="/index/<%=currentMenu%>/<%=one.id%>" class=""><%=one.title%></a>
+                                <p><%-one.description%></p>
+                            </figcaption>
+                        </figure>
+                    <%})%>
+                <%}else{%>
+                    <p>抱歉,没有找到记录!</p>
+                <%}%>
+            </div>
+        </section>  
+    </div>
+<% include ./footer.ejs %>

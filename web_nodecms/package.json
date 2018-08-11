@@ -1,0 +1,27 @@
+{
+  "name": "nodecms",
+  "private": true,
+  "version": "0.0.0",
+  "description": "a Sails application",
+  "keywords": [],
+  "dependencies": {
+    "connect-redis": "^1.4.5",
+    "ejs": "^2.3.4",
+    "es6-promise": "^3.0.2",
+    "moment": "^2.10.6",
+    "node-serialize": "^0.0.4",
+    "sails": "^0.11.2",
+    "sails-mysql": "^0.11.3"
+  },
+  "scripts": {
+    "debug": "node debug app.js",
+    "start": "node server.js"
+  },
+  "main": "server.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/anonymous node/sails user/nodecms.git"
+  },
+  "author": "anonymous node/sails user",
+  "license": ""
+}

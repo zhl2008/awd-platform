@@ -1,0 +1,211 @@
+<% include ../header.ejs %>
+<link href="/admin_lte/plugins/datepicker/datepicker3.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+    .box-body .row{margin-top:20px;}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-body dataTables_wrapper form-inline dt-bootstrap" >
+                <div class="row">
+                    <form class="form-horizontal col-sm-12" method="post" action=" <%-req.url%> ">
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">选择栏目</label>
+                                <div class="col-sm-8">
+                                    <select name="category" id="category" class="form-control">
+                                        <%categorys.forEach(function(one, key) {%>
+                                            <option value="<%-one.id%>" <% if(product.category == one.id){ %> selected <%}%> > <%=spaceX(one.deep)%><%=one.name%></option>
+                                        <%})%>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">标题</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="title" name="title" placeholder="标题" value="<%-product.title%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">关键词</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="keywords" name="keywords" placeholder="关键词" value="<%-product.keywords%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label class="col-sm-2 control-label">描述</label>
+                                <div class="col-sm-10">
+                                    <textarea rows="5" cols="80" class="form-control kindeditor" name="description" id="description"><%-product.description%></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-12">
+                                <label class="col-sm-2 control-label">产品介绍</label>
+                                <div class="col-sm-10">
+                                    <textarea  class="form-control kindeditor" name="content" id="content"><%-product.content%></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">标签</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="tags" name="tags" placeholder="标签" value="<%-product.tags%>">
+                                    <span class="after">以逗号来分割关键词</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">图片</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="thumb" name="thumb" placeholder="图片" value="<%-product.thumb%>">
+                                    <a href="javascript:void(0)" class="btn btn-upload" id="upload_input">点击上传</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">访问量</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="hits" name="hits" placeholder="访问量" value="<%-product.hits%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">发布日期</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control datepicker" id="puttime" name="puttime" placeholder="发布日期" value="<%-dateFormat(product.puttime)%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">模板文件</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="tpl" name="tpl" placeholder="模板文件" value="<%-product.tpl%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">顺序</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="listorder" name="listorder" placeholder="顺序" value="<%-product.listorder%>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">状态</label>
+                                <div class="col-sm-8">
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="1" <%if(product.status == "1" || !product.status){%> checked=""  <%}%> >
+                                        启动
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="status" value="0" <%if(product.status == "0"){%> checked=""  <%}%>>
+                                        禁用
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- 额外字段 -->
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">client</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="client" name="client" placeholder="client" value="<%-product.client%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">details</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="details" name="details" placeholder="details" value="<%-product.details%>">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">technology</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="technology" name="technology" placeholder="technology" value="<%-product.technology%>">
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">links</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="links" name="links" placeholder="links" value="<%-product.links%>">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group col-sm-6">
+                                <label class="col-sm-4 control-label">testimonial</label>
+                                <div class="col-sm-8">
+                                    <input type="input" class="form-control" id="testimonial" name="testimonial" placeholder="testimonial" value="<%-product.testimonial%>">
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <hr>
+                            <div class="form-group col-sm-12">
+                                <div class="col-sm-offset-2 col-sm-8">
+                                    <button type="submit" class="btn btn-primary">提 交</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- datepicker -->
+<script src="/admin_lte/plugins/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
+<script src="/admin_lte/plugins/datepicker/locales/bootstrap-datepicker.zh-CN.js" type="text/javascript"></script>
+
+<script charset="utf-8" src="/lib/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+    KindEditor.ready(function(K) {
+        editor = K.create('.kindeditor', {
+            resizeType : 0,
+            allowPreviewEmoticons : false,
+            uploadJson : '/admin/resource/index',
+            allowImageUpload : true,
+            width: '80%',
+            height: '500px',
+            items : [
+                'source',
+                'formatblock', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'strikethrough', 'removeformat', 
+                '|', 
+                'justifyleft', 'justifycenter', 'justifyright',
+                'justifyfull', 'insertorderedlist', 'insertunorderedlist', 
+                'lineheight',
+                '|',
+                'link', 'unlink',
+                '|', 
+                'image', 'table', 'media','map'
+            ]
+        });
+    });
+
+    $(function(){
+        $(".datepicker").datepicker({
+            format: "yyyy-mm-dd",
+            language: "zh-CN"
+        });
+    })
+</script>
+<script src="/js/ajaxupload.js" type="text/javascript"></script>
+<script src="/js/upload.js" type="text/javascript"></script>
+
+<% include ../footer.ejs %>

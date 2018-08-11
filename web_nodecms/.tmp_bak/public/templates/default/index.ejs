@@ -1,0 +1,95 @@
+<% include ./header.ejs %>
+            <section class="grid-wrap" >
+                <header class="grid col-full">
+                    <hr>
+                    <p class="fleft">首页</p>
+                    <a href="/page/index/about" class="arrow fright">see more infos</a>
+                </header>
+                
+                <div class="grid col-one-half mq2-col-full">
+                                    
+                <h1 style="font-weight:normal;font-size:4.1em;color:#555555;font-family:'Open sans', 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;">
+                    网站是企业形象 <br>
+                    <sub>没有理由不用心打造</sub>
+                    </h1>
+                    <p style="color:#555555;font-family:'Open sans', 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;font-size:13px;">
+                        我们把始终把为企业制作网站定位为艺术设计。我们会用代码实现、时刻维护运行的服务器资源，但主角依然是用户的品牌和设计师。<br>
+                    </p>
+                    <p style="color:#555555;font-family:'Open sans', 'Helvetica Neue', HelveticaNeue, Helvetica, Arial, sans-serif;font-size:13px;">
+                        We always put the site for the production of Web sites for the art design. We will use the code to achieve, always maintain the running of the server resources, but the protagonist is still the user's brand and designer.
+                    </p>
+                </div>
+                
+                <div class="slider grid col-one-half mq2-col-full">
+                    <div class="flexslider">
+                        <div class="slides">
+                            <%products.forEach(function(one,key){%>
+                            <div class="slide">
+                                <figure>
+                                    <img src="<%=one.thumb%>" alt="">
+                                    <figcaption>
+                                    <div>
+                                        <h5><%=one.title%></h5>
+                                        <p style="text-align:left"><%-one.description%>, <a href="<%=one.url%>">查看</a></p>
+                                    </div>
+                                    </figcaption>
+                                </figure>
+                            </div>
+                            <%})%>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+            <div class="copyrights">Collect from <a href="http://www.cssmoban.com/" >免费网站模板</a></div>
+            <section class="services grid-wrap">
+                <header class="grid col-full">
+                    <hr>
+                    <p class="fleft">我们的工作流程</p>
+                    <a href="/page/index/service" class="arrow fright">see more service</a>
+                </header>
+                
+                <article class="grid col-one-third mq3-col-full">
+                <aside>01</aside>
+                <h5>沟通策划</h5>
+                <p>首先，我们会与您进行充分沟通，充分了解您的需求和预期，比如：网站的整体风格如何？对哪些人群展示哪些信息？用户可以在网站上进行哪些互动操作？有那些参考网站？等等；通过这个流程，我们明确您想要的风格。同时需要您准备文案、资料，当然也可以由我们代为完成。</p>
+                </article>
+                
+                <article class="grid col-one-third mq3-col-full">
+                <aside>02</aside>
+                <h5>设计开发</h5>
+                <p>
+                    接下来的就可以完全交给我们,设计师会根据公司品牌寻找合适的创意、配色，以求和品牌以及VI符合，做出适合企业的设计。当功能确定之后，我们会为您量身定制一套网站的服务方案，并交由设计师进行界面和交互设计，一般耗时5~15个工作日。
+                </p>
+                </article>
+            
+            <article class="grid col-one-third mq3-col-full">
+            <aside>03</aside>
+            <h5>上线运营</h5>
+            <p>
+                最后我们的工程师会完成剩下的开发任务，根据设计师提供的界面设计来合成一个完整的网站。根据不同的网站复杂度，这个环节一般耗时5~10个工作日。同时，需要完成域名注册、服务器环境搭建。运行中我们会监控网站运行情况，同时对数据进行定期备份。
+            </p>
+            </article>
+        </section>
+        <section class="works grid-wrap">
+            <header class="grid col-full">
+                <hr>
+                <p class="fleft">我们的作品</p>
+                <a href="/index/product" class="arrow fright">see more works</a>
+            </header>
+        
+            <%products.forEach(function(one,key){%>
+            <figure class="grid col-one-quarter mq2-col-one-half">
+                <a href="/index/product/<%=one.id%>">
+                    <img src="<%-one.thumb%>" alt="">
+                    <span class="zoom"></span>
+                </a>
+                <figcaption>
+                <a href="/index/product/<%=one.id%>" class="arrow"><%=one.title%></a>
+                <p><%-one.description%></p>
+                </figcaption>
+            </figure>
+            <%})%>
+        </section>
+<% include ./footer.ejs %>
+

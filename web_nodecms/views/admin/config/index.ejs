@@ -1,0 +1,89 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title">站点设置</h3>
+            </div>
+            <div class="box-body" >
+                <div class="nav-tabs-custom clearfix" >
+                    <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                        <li class="active"><a href="/admin/site/" >基本设置</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <form class="form-horizontal col-sm-6" method="post" >
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">网站名称</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_name" name="site_name" placeholder="网站名称" value="<%-config.site_name.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">网站标题</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_title" name="site_title" placeholder="网站标题" value="<%-config.site_title.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">关键词</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_keywords" name="site_keywords" placeholder="关键词" value="<%-config.site_keywords.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">网站简介</label>
+                            <div class="col-sm-10">
+                                <textarea class="form-control" rows="5" id="site_description" name="site_description" placeholder="网站简介" ><%-config.site_description.value%></textarea>
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">附加代码（统计、分享等）</label>
+                            <div class="col-sm-10">
+                                <textarea type="text" rows="5" class="form-control" id="site_code" name="site_code" placeholder="附加代码" ><%-config.site_code.value%></textarea>
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">网站logo</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_logo" name="site_logo" placeholder="网站logo"  value="<%-config.site_logo.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">首页模板</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_home" name="site_home" placeholder="首页模板" value="<%-config.site_home.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">模板文件夹</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_template" name="site_template" placeholder="模板文件夹" value="<%-config.site_template.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">备案号</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="site_beian" name="site_beian" placeholder="备案号" value="<%-config.site_beian.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">提 交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

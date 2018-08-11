@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="UTF-8">
+    
+    <!-- Remove this line if you use the .htaccess -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width">
+    
+    <meta name="description" content="Designa Studio, a HTML5 / CSS3 template.">
+    <meta name="author" content="Sylvain Lafitte, Web Designer, sylvainlafitte.com">
+    
+    <title>bige 网页视觉设计</title>
+    
+    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
+    
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="<%=static_dir%>/css/style.css">
+    
+    <!--[if lt IE 9]>
+    <script src="<%=static_dir%>/http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+    <!-- Prompt IE 7 users to install Chrome Frame -->
+    <!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+    <div class="container">
+        <header id="navtop">
+            <a href="/" class="logo fleft">
+                <img src="<%=static_dir%>/img/logo.png" alt="Designa Studio">
+            </a>
+            <nav class="fright">
+                <ul>
+                    <li><a href="/" class="<%if(currentMenu == "home"){%>navactive<%}%>">首页</a></li>
+                    <li><a href="/index/news" class="<%if(currentMenu == "news"){%>navactive<%}%>">Blog</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/index/product" class="<%if(currentMenu == "product"){%>navactive<%}%>">案例</a></li>
+                    <li><a href="/page/index/about" class="<%if(currentMenu == "about"){%>navactive<%}%>">关于</a></li>
+                </ul>
+                <ul>
+                    <li><a href="/page/index/service" class="<%if(currentMenu == "service"){%>navactive<%}%>">服务</a></li>
+                </ul>
+            </nav>
+        </header>
+        <div class="home-page main">

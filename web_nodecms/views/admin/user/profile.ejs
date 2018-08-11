@@ -1,0 +1,81 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title"> <%headers.name%> </h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <form class="form-horizontal col-sm-6" method="post">
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-10">
+                            <span class="input"> <%-user.username%></span>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="email" class="col-sm-2 control-label">邮箱</label>
+                        <div class="col-sm-10">
+                            <input type="email" class="form-control" id="email" name="email" placeholder="邮箱" value="<%-params.email%>">
+                            <%if(errors && errors.email){%><span class="input-err"> <%=errors.email%> </span><%}%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="realname" class="col-sm-2 control-label">真实姓名</label>
+                        <div class="col-sm-10">
+                            <input type="realname" class="form-control" id="realname" name="realname" placeholder="真实姓名" value="<%-params.realname%>">
+                            <%if(errors && errors.realname){%><span class="input-err"> <%=errors.realname%> </span><%}%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="sex" class="col-sm-2 control-label">性别</label>
+                        <div class="col-sm-10">
+                            <input type="radio" name="sex" value="1" checked=""> 男
+                            <input type="radio" name="sex" value="2"> 女
+                            <input type="radio" name="sex" value="0"> 保密
+                            <%if(errors && errors.sex){%><span class="input-err"> <%=errors.sex%> </span><%}%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="tel" class="col-sm-2 control-label">联系电话</label>
+                        <div class="col-sm-10">
+                            <input type="tel" class="form-control" id="tel" name="tel" placeholder="联系电话" value="<%-params.tel%>">
+                            <%if(errors && errors.tel){%><span class="input-err"> <%=errors.tel%> </span><%}%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="mobile" class="col-sm-2 control-label">手机</label>
+                        <div class="col-sm-10">
+                            <input type="mobile" class="form-control" id="mobile" name="mobile" placeholder="手机" value="<%-params.mobile%>">
+                            <%if(errors && errors.mobile){%><span class="input-err"> <%=errors.mobile%> </span><%}%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fax" class="col-sm-2 control-label">传真</label>
+                        <div class="col-sm-10">
+                            <input type="fax" class="form-control" id="fax" name="fax" placeholder="传真" value="<%-params.fax%>">
+                            <%if(errors && errors.fax){%><span class="input-err"> <%=errors.fax%> </span><%}%>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="address" class="col-sm-2 control-label">地址</label>
+                        <div class="col-sm-10">
+                            <input type="address" class="form-control" id="address" name="address" placeholder="地址" value="<%-params.address%>">
+                            <%if(errors && errors.address){%><span class="input-err"> <%=errors.address%> </span><%}%>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-primary">提 交</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../footer.ejs %>

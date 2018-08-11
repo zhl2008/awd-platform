@@ -1,0 +1,72 @@
+<% include ../header.ejs %>
+<style type="text/css">
+.modal-content{width:800px;}
+</style>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title">下载列表</h3>
+            </div>
+            <div class="box-body dataTables_wrapper form-inline dt-bootstrap" >
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <a href="/admin/down/add" class="btn btn-primary">添加下载</a>
+                            </div>
+                        </div>
+                        <hr>
+                        <table  class="table table-bordered table-striped dataTable" role="grid" >
+                            <thead>
+                                <tr role="row">
+                                    <th>顺序</th>
+                                    <th>ID</th>
+                                    <th>标题</th>
+                                    <th>访问量</th>
+                                    <th>真实量</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>    
+                            <tbody>
+                                <%data.forEach(function(one, key) {%>
+                                <tr role="row" class="color-palette">
+                                    <td><%=one.listorder%></td>
+                                    <td><%=one.id%></td>
+                                    <td><%=one.title%></td>
+                                    <td><%=one.hits%></td>
+                                    <td><%=one.realhits%></td>
+                                    <td><%=__("status_"+one.status)%></td>
+                                    <td>
+                                        <a href="/admin/down/update/<%=one.id%>">编辑</a>
+                                        <a href="/admin/down/delete/<%=one.id%>" onclick="if(!confirm('删除后不可恢复,确定删除纪录吗?'))return false;">删除</a>
+                                    </td>
+                                </tr>
+                                <%})%>
+                            </tbody>
+                        </table>
+                        
+                        <ul class="pagination  no-margin pull-right">
+                            <%if(paging.current_page == 1){%>
+                                <li><a href="#">«</a></li>
+                            <%}else{%>
+                                <li><a href="/admin/down?p=<%=(Number(paging.current_page)-1)%>">«</a></li>
+                            <%}%>
+                            <%for(var i=1;i<=paging.count;i++){%>
+                                <li class="<%if(paging.current_page==i){%>active<%}%>"><a href="/admin/down?p=<%=i%>"><%=i%></a></li>
+                            <%}%>
+                            <%if(paging.current_page == paging.count){%>
+                                <li><a href="#">»</a></li>
+                            <%}else{%>
+                                <li><a href="/admin/down?p=<%=(Number(paging.current_page)+1)%>">»</a></li>
+                            <%}%>
+                        </ul>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../footer.ejs %>

@@ -1,0 +1,86 @@
+<div id="groups_d_purview" class="ajax_form">
+	<style type="text/css">
+		.main_view{max-height:400px;overflow:auto;}
+	</style>
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="exampleModalLabel">添加</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <form class="form-horizontal col-sm-12" method="post" action="<%-req.url%>">
+                <div class="form-group">
+                    <div class="col-sm-12">
+					    <input type="hidden" name="action" id="action" value="http://localhost.x6cms.com/index.php?/admin/usergroup">
+					    <input type="hidden" name="id" value="6">
+					    <div id="main_view" class="main_view">
+					        <table cellspacing="0" width="100%" class="table table-striped">
+					            <thead>
+					                <tr>
+					                    <th align="left"><input type="checkbox" class="btn-checkallclass"></th>
+					                    <th align="left">方法</th>
+					                    <th align="left"><input type="checkbox" class="btn-checkallmethod">功能</th>
+					                </tr>
+					            </thead>
+					            <tbody>
+                                <%purviews.forEach(function(one, key) {%>
+					                <tr>
+					                	<td width="30">
+					                		<input type="checkbox" class="input_class"  name="<%=one.class%>[has]" value="1" <%if(purview[one.class]){%> checked <%}%> >
+					                	</td>
+					                	<td width="150"><b><%=__("purview_"+one.class)%></b></td>
+					                	<td>
+	                            			<input type="hidden" name="<%=one.class%>[id]" value="<%=one.id%>">
+	                            			<input type="hidden" name="<%=one.class%>[class]" value="<%=one.class%>">
+	                            			<input type="hidden" name="<%=one.class%>[method]" value="false">
+					                	</td>
+					                </tr>
+	                                <%one.children.forEach(function(subone) {%>
+						                <tr>
+						                	<td width="30">
+						                		<input type="checkbox" class="input_class" name="<%=subone.class%>[has]" value="1" <%if(purview[subone.class]){%> checked <%}%>>
+						                	</td>
+						                	<td width="150">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%=__("purview_"+subone.class)%></td><td>
+											
+											<input type="hidden" name="<%=subone.class%>[id]" value="<%=subone.id%>">
+                                			<input type="hidden" name="<%=subone.class%>[class]" value="<%=subone.class%>">
+						                	<%if(subone.method){%>
+							                	<input type="checkbox" name="<%=subone.class%>_method[]" class="btn-checklinemethod">全选
+												<%
+													var methodArr = subone.method.split(",");
+												%>
+		                                		<%methodArr.forEach(function(method) {%>
+							                		<input type="checkbox" class="input_method" name="<%=subone.class%>[method][<%=method%>]" <%if(purview[subone.class] && purview[subone.class]['method'] && purview[subone.class]['method'].indexOf(method) != -1){%> checked <%}%> value="1" ><%=__(method)%>
+		                                		<%})%>
+	                                		<%}else{%>
+												<input type="hidden" name="<%=subone.class%>[method]" value="false">
+	                                		<%}%>
+						                </tr>
+	                                <%})%>
+                                <%})%>
+					            </tbody>
+					        </table>
+					    </div>
+                    </div>
+                </div>
+				<div class="form-group">
+				    <div class="col-sm-offset-2 col-sm-8">
+				        <button type="submit" class="btn btn-primary">提 交</button>
+				    </div>
+				</div>
+			</form>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <script type="text/javascript">
+    		$(document).on("change",".btn-checkallclass",function(event) {
+    			$(".input_class").prop('checked',$(this).prop("checked"));
+    		});
+    		$(document).on("change",".btn-checkallmethod",function(event) {
+    			$(".input_method").prop('checked',$(this).prop("checked"));
+    		});
+    		$(document).on("change",".btn-checklinemethod",function(event) {
+    			$(this).nextAll(".input_method").prop('checked',$(this).prop("checked"));
+    		});
+    </script>
+</div>

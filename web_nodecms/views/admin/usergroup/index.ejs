@@ -1,0 +1,74 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title">分组列表</h3>
+                
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
+                    </button>
+                </div>
+            </div>
+            <div class="box-body dataTables_wrapper form-inline dt-bootstrap" >
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="row clearfix">
+                            <div class="col-sm-12">
+                                <button href="/admin/usergroup/d_add" class="btn  btn-primary btn-form">添加用户组</button>
+                            </div>
+                        </div>
+                        <hr>
+                        <table id="example1" class="table table-bordered table-striped dataTable" role="grid" aria-describedby="example1_info">
+                            <thead>
+                                <tr role="row">
+                                    <th>顺序</th>
+                                    <th>ID</th>
+                                    <th>标题</th>
+                                    <th>变量名</th>
+                                    <th>状态</th>
+                                    <th>操作</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <%data.forEach(function(one, key) {%>
+                                <tr role="row" class="color-palette">
+                                    <td><%=one.listorder%></td>
+                                    <td><%=one.id%></td>
+                                    <td><%=__(one.varname)%></td>
+                                    <td><%=one.varname%></td>
+                                    <td><%=__("status_"+one.status)%></td>
+                                    <td>
+                                        <a class="btn-form" href="/admin/usergroup/d_update/<%=one.id%>">编辑</a>
+                                        <a class="btn-form" href="/admin/usergroup/d_grant/<%=one.id%>">权限</a>
+                                        <a href="/admin/usergroup/delete/<%=one.id%>" onclick="if(!confirm('删除后不可恢复,确定删除纪录吗?'))return false;">删除</a>
+                                    </td>
+                                </tr>
+                                <%})%>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- jquery 表单异步提交 -->
+<script type="text/javascript" src="/lib/jquery.form.js"></script>
+<script type="text/javascript">
+
+$(document).on("submit",".ajax_form form",function () {
+    $(".ajax_form form").ajaxSubmit({
+        success: function (data) {
+            if(typeof data === "object" && data.result){
+                window.location.reload();
+            }
+            if(typeof data === "string"){
+                $(".ajax_form").replaceWith(data);
+            }
+        }
+    });
+    return false;
+});
+</script>
+<% include ../footer.ejs %>

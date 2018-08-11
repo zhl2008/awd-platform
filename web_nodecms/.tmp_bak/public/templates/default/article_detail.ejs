@@ -1,0 +1,53 @@
+<% include ./header.ejs %>
+<div class="blogpost-page main grid-wrap">
+    <header class="grid col-full">
+        <hr>
+        <p class="fleft"><%=article.title%></p>
+    </header>
+    <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+        <article class="post post-single">
+            <h2><a href="#" class="post-title"><%=article.title%></a></h2>
+            <div class="meta">
+                <p>
+                    创建时间: 
+                    <span class="time"><%=dateFormat(article.createtime)%></span>  
+                    浏览量：
+                    <span class="hits"><%=article.hits%> </span>
+                </p>
+            </div>
+            <div class="entry">
+                <%-article.content%>
+            </div>
+        </article>
+    </section>
+
+    <aside class="grid col-one-quarter mq2-col-one-third mq3-col-full blog-sidebar">
+            
+        <div class="widget">
+            <input id="search" type="search" name="search" value="" placeholder="输入关键字搜索">
+        </div>
+        
+        <div class="widget">
+        <p>心不唤物，物不至</p>
+        </div>
+        
+        <div class="widget">
+        <h2>热点文章</h2>
+        <ul>
+            <%hot_records.forEach(function(one,key){%>
+                <li><a href="/index/<%=currentMenu%>/<%-one.id%>" title=""><%=one.title%></a></li>   
+            <%});%>
+        </ul>
+        </div>
+            
+        <div class="widget">                                             
+        <h2>分类</h2>
+        <ul>
+            <%categorys.forEach(function(one,key){%>
+                <li><a href="/index/<%=one.dir%>"  class="<%if(category == one.dir){%>buttonactive<%}%>"><%=one.name%></a><br></li>
+            <%})%>
+        </ul>
+        </div>
+    </aside>
+</div>
+<% include ./footer.ejs %>

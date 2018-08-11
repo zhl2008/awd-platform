@@ -1,0 +1,66 @@
+<% include ./header.ejs %>
+<div class="work-page main grid-wrap">
+
+        <header class="grid col-full">
+            <hr>
+            <p class="fleft">案例</p>
+        </header>
+        <aside class="grid col-one-quarter mq2-col-one-third mq3-col-full">
+            <p class="mbottom">
+                <%-product.description%>
+            </p>
+            <%console.log(product)%>
+            <%if(product.client){%>
+                <h6>客户</h6>
+                <p class="halfmbottom">
+                    <%product.client.split(",").forEach(function(one,key){%>
+                        <p><%-one%></p>
+                    <%})%>
+                </p>
+            <%}%>
+
+
+            <%if(product.details){%>
+                <h6>工作内容</h6>
+                <ul class="halfmbottom">
+                    <%product.details.split(",").forEach(function(one,key){%>
+                        <li><%-one%></li>
+                    <%})%>
+                </ul>
+            <%}%>
+
+
+            <%if(product.technology){%>
+            <h6>主要技术</h6>
+            <ul class="halfmbottom">
+                <%product.technology.split(",").forEach(function(one,key){%>
+                    <li><%-one%></li>
+                <%})%>
+            </ul>
+            <%}%>
+
+            <%if(product.links){%>
+            <h6>预览</h6>
+            <ul class="mbottom">
+                <%product.links.split(",").forEach(function(one,key){%>
+                    <li><a href="<%-one%>"><%-one%></a></li>
+                <%})%>
+            </ul>
+            <%}%>
+
+            <%if(product.testimonial){%>
+            <h6>客户评价</h6>
+            <blockquote>
+            <%=product.testimonial%>
+            </blockquote>
+            <%}%>
+        </aside>
+
+        <section class="grid col-three-quarters mq2-col-two-thirds mq3-col-full">
+            <h4><%=product.title%></h4>
+            <div class="content">
+                <p><%-product.content%></p>
+            </div>
+        </section>  
+    </div>
+<% include ./footer.ejs %>

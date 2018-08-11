@@ -1,0 +1,78 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title">站点设置</h3>
+            </div>
+            <div class="box-body" >
+                <div class="nav-tabs-custom clearfix" >
+                    <ul class="nav nav-tabs pull-left ui-sortable-handle">
+                        <li class=""><a href="/admin/site/" >基本设置</a></li>
+                        <li class="active"><a href="/admin/site/mail" >邮箱配置</a></li>
+                        <li class=""><a href="/admin/site/lang" >语言设置</a></li>
+                        <li class=""><a href="/admin/site/attr" >附件配置</a></li>
+                        <li class=""><a href="/admin/site/add" >添加系统变量</a></li>
+                    </ul>
+                </div>
+                <div class="row">
+                    <form class="form-horizontal col-sm-6" method="post" action="/admin/site/update">
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">邮件发送模式</label>
+                            <div class="col-sm-8">
+                                <label class="radio-inline">
+                                    <input type="radio" name="mail_type" value="smtp" <%if(config.mail_type.value == "smtp" || !config.mail_type.value){%> checked=""  <%}%> >
+                                    SMTP
+                                </label>
+                                <label class="radio-inline">
+                                    <input type="radio" name="mail_type" value="sendmail" <%if(config.mail_type.value == "sendmail"){%> checked=""  <%}%>>
+                                    sendmail
+                                </label>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP服务器</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="smtp_host" name="smtp_host" placeholder="SMTP服务器" value="<%-config.smtp_host.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="smtp_user" name="smtp_user" placeholder="SMTP用户名" value="<%-config.smtp_user.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP密码</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="smtp_pass" name="smtp_pass" placeholder="SMTP密码" value="<%-config.smtp_pass.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">SMTP端口</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="smtp_port" name="smtp_port" placeholder="SMTP端口"  value="<%-config.smtp_port.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label">发信人邮箱</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="smtp_sendmail" name="smtp_sendmail" placeholder="发信人邮箱" value="<%-config.smtp_sendmail.value%>">
+                                <span class="input"> </span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-sm-offset-2 col-sm-10">
+                                <button type="submit" class="btn btn-primary">提 交</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

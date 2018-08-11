@@ -1,0 +1,92 @@
+<% include ../header.ejs %>
+<div class="row">
+    <div class="col-md-12">
+        <div class="box box">
+            <div class="box-header with-border">
+                <h3 class="box-title">系统信息</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <tbody>
+                            <tr>
+                                <td>用户名</td>
+                                <td><span class="label label-success"><%=user.username%></span></td>
+                                <td>运行模式</td>
+                                <td><span class="label label-success"><%=__(sails.config.environment)%></span></td>
+                            </tr>
+                            <tr>
+                                <td>用户组</td>
+                                <td><span class="label label-success"><%=user.usergroup.varname%></span></td>
+                                <td>系统目录</td>
+                                <td><span class="label label-success"><%=sails.config.appPath%></span></td>
+                            </tr>
+                            <tr>
+                                <td>最后登录时间</td>
+                                <td><span class="label label-success"><%=dateFormat(user.lasttime)%></span></td>
+                                <td>端口</td>
+                                <td><span class="label label-success"><%=sails.config.port%></span></td>
+                            </tr>
+                            <tr>
+                                <td>最后登录ip</td>
+                                <td><span class="label label-success"><%=user.lastip%></span></td>
+                                <td>数据库</td>
+                                <td><span class="label label-success"><%=sails.config.models['connection']%></span></td>
+                            </tr>
+                            <tr>
+                                <td>登录次数</td>
+                                <td><span class="label label-success"><%=user.logincount%></span></td>
+                                <td>错误级别</td>
+                                <td><span class="label label-success"><%=sails.config.log['level']%></span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6">
+        <div class="box box-info">
+            <div class="box-header with-border">
+                <h3 class="box-title">网站统计</h3>
+                <div class="box-tools pull-right">
+                    <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
+                </div>
+            </div>
+            <div class="box-body">
+                <div class="table-responsive">
+                    <table class="table no-margin">
+                        <tbody>
+                            <tr>
+                                <td><a href="/admin/article">文章统计</a></td>
+                                <td><%=stat[0]%></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/admin/down">下载统计</a></td>
+                                <td><%=stat[1]%></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/admin/product">产品统计</a></td>
+                                <td><%=stat[2]%></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/admin/ask">问答统计</a></td>
+                                <td><%=stat[3]%></td>
+                            </tr>
+                            <tr>
+                                <td><a href="/admin/hr">招聘统计</a></td>
+                                <td><%=stat[4]%></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<% include ../footer.ejs %>
