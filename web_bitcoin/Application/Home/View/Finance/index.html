@@ -1,0 +1,193 @@
+<include file="Public:header" />
+	
+    
+
+	
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 我的财产	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+
+<include file="Finance:left" />
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						我的财产					</span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p>
+				
+				
+                <notempty name="prompt_text">
+                    {$prompt_text}
+                </notempty>
+				
+				</p>			
+				
+				</div>
+			<div class="pur_dy" style="height: inherit;">
+								<ul style="    height: 108px;">
+					<li class="pur_dy_li pur_dy_li2 ml25 ">
+						<a> <img src="/comfile/images/mall_car.jpg"> <br>可用人民币：
+							<em>￥{$cny['ky']|NumToStr}</em>
+						</a>
+					</li>
+					<li class="pur_dy_li pur_dy_li2">
+						<a> <img src="/comfile/images/mall_car1.jpg"> <br> 冻结人民币：
+							<em>￥{$cny['dj']|NumToStr}</em>
+						</a>
+					</li>
+										<li class="pur_dy_li pur_dy_li3">
+						<a> <img src="/comfile/images/mall_car2.jpg"> <br>预估总资产：
+							<em>￥{$cny['zj']|NumToStr}</em>
+						</a>
+					</li>
+									</ul>
+
+							</div>
+			<div class="pur_shop_title">
+				<ul>
+					<li class="pl25 w180">数字资产</li>
+					<li class="w120 ml130">可用</li>
+					<li class="w120 ml130">冻结</li>
+					<li class="w120 ml130">总计</li>
+					<li class="w120 ml130">折合</li>
+					<li class="" style="margin-left: 25px">操作</li>
+				</ul>
+			</div>
+			<ul class="coin_list" id="grid-finan">
+			
+			
+			<volist name="coinList" id="vo">
+				 <li>
+					<dl>
+						<dd class="w200" style="margin-left: 0;">
+							<div class="coin_pic mr20">
+								<img src="__UPLOAD__/coin/{$vo['img']}" alt="" width="40"/>
+							</div>
+							<div class="coin_name" style="width: 100px;">
+
+																<div>{$vo['title']}</div>
+								
+
+								<p class="orange">¥{$vo['jia']|NumToStr}</p>
+							</div>
+						</dt>
+						<dd class="">{$vo['xnb']|NumToStr}</dd>
+						<dd class="">{$vo['xnbd']|NumToStr}</dd>
+						<dd class="">{$vo['xnbz']|NumToStr}</dd>
+						<dd class="">{$vo['zhehe']|NumToStr}</dd>
+						<dd class="">
+					
+							<input type="button" value="去交易" class="btns" style="margin-left:-40px;width: 60px"
+                                   onclick="top.location='/trade/index/market/{:C('market_type')[$vo['name']]}'">
+						</dd>
+					</dl>
+				</li>
+				
+			 </volist>     	
+				
+                
+            </ul>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+	// 左边tab切换&浮动导航
+	$(function () {
+		// 左边tab切换&浮动导航
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_index').addClass('active');
+</script>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<include file="Public:footer" />

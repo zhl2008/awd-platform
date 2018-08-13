@@ -1,0 +1,112 @@
+<include file="Public:header" />
+<script src="__PUBLIC__/Home/js/datepicker.min.js"></script>
+<div class="autobox">
+ <div class="now">
+  <a href="/" class="orange">首页</a> &gt; <a href="/game/index.html" class="orange">应用中心</a> &gt; 合成详情
+ </div>
+ <div class="assets_center clear po_re zin70">
+  <!--左侧菜单-->
+  <include file="Game:left" />
+  <!--右侧内容-->
+  <div class="assets_content w900 right bg_w">
+   <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+    <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">合成详情</h1>
+   </div>
+   <div class="sj" style="top: 40px; left: 60px;"></div>
+   <br>
+   <div class="nav_info" style="padding-left: 26px;">
+    <p>
+     <i></i><span>合成费用详情!</span>
+    </p>
+   </div>
+   <br>
+   <div class="cnyin_record">
+    <div class="f_body">
+     <div class="f_body_main">
+      <div class="f_tab_body">
+       <div>
+        <table class="f_table" id="investLog_content">
+						<thead>
+							<tr>
+                                <th id="sublist-grid_c0">合成名称</th>
+                                <th id="sublist-grid_c0">本金币种</th>
+                                <th id="sublist-grid_c0">利息币种</th>
+                                <th id="sublist-grid_c1">费用类型</th>
+                                <th id="sublist-grid_c2">费用数量</th>
+                                <th id="sublist-grid_c2">详情</th>
+                                <th id="sublist-grid_c2">日期</th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="list" id="vo">
+							<tr>
+                                <td>{$vo['money']['name']}</td>
+                                <td>{$vo['money']['coinname']}</td>
+                                <td>{$vo['money']['feecoin']}</td>
+                                <td>
+                                    <eq name="vo.type" value="1">
+                                        <font color="green">收入</font> <else />
+                                        <font color="red">支出</font>
+                                    </eq>
+                                </td>
+
+                                <td>{$vo['num']|NumToStr}</td>
+                                <td>{$vo['content']}</td>
+								<td>{$vo.addtime|addtime}</td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+        <div class="pages">{$page}</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<br>
+<br>
+<script>
+
+ function beforeGet(id,fee){
+     var msg = fee ?  '提前取出本金需要支付' + fee + '% 的利息,确定提前取出?' : '确定提前提取本金?'
+     layer.confirm(msg, {
+         btn: ['确定','取消'] //按钮
+     }, function(){
+         $.post('{:U(\'/Money/beforeGet\')}',{id:id},function(ret){
+                if(ret.status){
+                   layer.msg(ret.info);
+                    window.setTimeout("window.location.reload()",1000);
+                }else{
+                    layer.msg(ret.info);
+                }
+         },'json');
+         layer.closeAll();
+     }, function(){
+         layer.closeAll();
+     });
+ }
+
+
+
+
+
+ $('.unlock').click(function(){
+  $.post("{:U('Issue/unlock')}",{id:$(this).attr('id'),},function(data){
+   if(data.status==1){
+    layer.msg(data.info,{icon:1});
+   window.location="{:U('Issue/log')}";
+   }else{
+    layer.msg(data.info,{icon:2});
+   }
+  });
+ });
+</script>
+<script>
+	//菜单高亮
+	$('#game_moneydlog').addClass('active');
+	$('#game_moneydlog i').attr('class','coin_menu_op_7');
+</script>
+<include file="Public:footer" />

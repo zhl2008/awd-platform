@@ -1,0 +1,46 @@
+qq3479015851_user_coin   用户资产记录
+
+
+qq3479015851_admin。管理员账号
+
+
+qq3479015851_adver  广告列表。（不确定）
+
+qq3479015851_user_log 用户登录记录表（）
+
+
+qq3479015851_trade. 用户的交易记录（字段说明）买卖的挂单等
+
+
+qq3479015851_trade_json:  暂时不知道干啥用的
+
+
+
+qq3479015851_user_qianbao 记录用户zhuanchu qianbao address	
+
+
+
+qq3479015851_trade_log 交易日志。目前不知道用来干啥的
+
+
+qq3479015851_finance   资金充值等记录表（不知道干啥的）
+
+
+
+zr_jz  zhuanrujinzhi
+
+
+
+
+
+table coin: zc_user:手续费地址   zc_fee  手续费
+
+
+
+
+
+new  column :ltc_addr btc_addr
+
+new  func: apply for cz_address
+
+

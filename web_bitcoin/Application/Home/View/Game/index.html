@@ -1,0 +1,36 @@
+<include file="Public:header"/>
+<script src="__PUBLIC__/Home/js/datepicker.min.js"></script>
+<div class="autobox">
+    <div class="now">
+        <a href="/" class="orange">首页</a> &gt; <a href="/game/" class="orange">应用中心</a> &gt; 应援中心
+    </div>
+    <div class="assets_center clear po_re zin70">
+        <!--左侧菜单-->
+        <include file="Game:left"/>
+        <!--右侧内容-->
+        <div class="assets_content w900 right bg_w">
+            <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+                <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">应用中心</h1>
+            </div>
+            <div class="sj" style="top: 40px; left: 60px;"></div>
+
+            <notempty name="prompt_text">
+                <div class="mytips">
+                    <h6 style="color: #ff8000;">温馨提示</h6>
+                    {$prompt_text}
+                </div>
+            </notempty>
+            <br>
+            <div class="cnyin_record"  style="width: 916px;">
+
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<script>
+    //菜单高亮
+    $('#game_box').addClass('active');
+</script>
+<include file="Public:footer"/>

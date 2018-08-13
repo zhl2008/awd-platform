@@ -1,0 +1,162 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title"><a href="{$Think.server.HTTP_REFERER}">广告列表</a> >></span>
+			<span class="h1-title"><empty name="data">添加广告<else /> 编辑广告</empty></span>
+		</div>
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<form id="form" action="{:U('App/ads_edit')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">广告名称 :</td>
+									<td><input type="text" class="form-control" name="name" value="{$data.name}" ></td>
+									<td class="item-note"></td>
+								</tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">广告内容 :</td>
+                                    <td><input type="text" class="form-control" name="content" value="{$data.content}" ></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+								<tr class="controls">
+									<td class="item-label">广告链接 :</td>
+									<td><input type="text" class="form-control" name="url" value="{$data.url}" ></td>
+									<td class="item-note"></td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label">广告图片 :</td>
+									<td>
+                                        <div id="addpicContainer">
+                                            <!-- 利用multiple="multiple"属性实现添加多图功能 -->
+                                            <!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+                                            <!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+                                            <!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+
+                                            <notempty name="data.img">
+                                                <!--没有图片显示默认图片-->
+                                                <img id="up_img"  onclick="getElementById('inputfile').click()" style="cursor:pointer;border: 1px solid #AABBCC;"
+                                                     title="点击添加图片" alt="点击添加图片" src="{$data.img}">
+                                                <else/>
+                                                <!--没有图片显示默认图片-->
+                                                <img id="up_img"  onclick="getElementById('inputfile').click()" style="cursor:pointer;border:0;"
+                                                     title="点击添加图片" alt="点击添加图片"
+                                                     src="/Upload/app/addimg.png">
+                                            </notempty>
+                                            <input type="hidden" id="img" name="img" value="{$data.img}">
+                                            <input type="file" id="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;"
+                                                   value=""/>
+                                        </div>
+									</td>
+									<td class="item-note">600px*600px</td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label">状态 :</td>
+									<td><select name="status" class="input-small">
+										<option value="1" <eq name="data.status" value="1">selected</eq> >可用
+										</option>
+										<option value="0" <eq name="data.status" value="0">selected</eq> >禁用
+										</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确
+												定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+											<notempty name="data.id"> <input type="hidden" name="id" value="{$data.id}" /> </notempty>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+                    $(document).ready(function(){
+                        //响应文件添加成功事件
+                        $("#inputfile").change(function(){
+                            //创建FormData对象
+                            var data = new FormData();
+                            //为FormData对象添加数据
+                            $.each($('#inputfile')[0].files, function(i, file) {
+                                data.append('upload_file'+i, file);
+                            });
+                            //发送数据
+                            $.ajax({
+                                url:'/Admin/App/upload',
+                                type:'POST',
+                                data:data,
+                                cache: false,
+                                contentType: false,		//不可缺参数
+                                processData: false,		//不可缺参数
+                                success:function(data){
+                                    if(data){
+                                        $('#up_img').attr("src",data);
+                                        $('#img').val(data);
+                                        $('#up_img').show();
+                                    }
+                                },
+                                error:function(){
+                                    alert('上传出错');
+                                    $(".loading").hide();	//加载失败移除加载图片
+                                }
+                            });
+                        });
+                    });
+
+					//提交表单
+					$('#submit').click(function() {
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function(K) {
+		editor = K.create('textarea[name="content"]', {
+			width : '600px',
+			height : '250px',
+			allowPreviewEmoticons : false,
+			allowImageUpload : true,
+			uploadJson : "{:U('Adver/save','type=images')}",//图片上传后的处理地址
+			items : [
+						'source','fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+						'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+						'insertunorderedlist', '|', 'emoticons', 'image', 'link','fullscreen'],
+			afterBlur: function () { this.sync(); }
+		});
+	});
+</script>
+
+
+
+<script type="text/javascript">
+	$(function() {
+		//主导航高亮
+		$('.Adver-box').addClass('current');
+		//边导航高亮
+		$('.Adver-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,61 @@
+<include file="Public:header" />
+<!-- 管理员用户组新增和编辑页面 -->
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+
+        <div class="main-title-h">
+            <span class="h1-title"><a href="{:U('User/auth')}">权限管理</a> >></span>
+            <span class="h1-title"><empty name="data">添加权限
+                <else/>
+                                                      编辑权限
+            </empty></span>
+        </div>
+
+
+        <div class="tab-wrap">
+            <div class="tab-content">
+                <form action="{:U('User/authEdit')}" enctype="application/x-www-form-urlencoded" method="POST" class="form-horizontal">
+                    <div id="tab" class="tab-pane in tab">
+                        <div class="form-item cf">
+                            <table>
+                                <tr class="controls">
+                                    <td class="item-label">用户组 :</td>
+                                    <td><input type="text" class="form-control input-10x" name="title" value="{$data.title}"></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">描述 :</td>
+                                    <td><textarea class="form-control input-10x" type="text" name="description">{$data.description}</textarea></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label"></td>
+                                    <td>
+                                        <div class="form-item cf">
+                                            <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+                                            <a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </form>
+    </div>
+</div>
+<include file="Public:footer" />
+<block name="script">
+    <script type="text/javascript" charset="utf-8">
+        //导航高亮
+        highlight_subnav("{:U('User/auth')}");
+    </script>
+</block>

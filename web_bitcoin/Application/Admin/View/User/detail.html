@@ -1,0 +1,158 @@
+<include file="Public:header" />
+
+<link href="__PUBLIC__/Admin/index_css/style.css" rel="stylesheet">
+<link href="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.css" rel="stylesheet">
+
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
+
+<div id="main-content">
+
+
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<section class="wrapper">
+		<div class="main-title-h">
+			<span class="h1-title">用户详情</span>
+
+		</div>
+
+		<nav role="navigation" class="navbar  navbar-default">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="#">系统每天定时统计生成报表(生成时间:2016/3/26 20:00:05)</a></li>
+			</ul>
+			<div class="collapse navbar-collapse">
+				<select id="search_field" name="field" class="navbar-btn navbar-right  form-control select select-default select-sm">
+					<option value="username"<empty name="field">selected</empty> >用户名</option>
+					<option value="moble"<eq name="field" value="moble">selected </eq>>手机号码</option>
+					<option value="truename"<eq name="field" value="truename">selected </eq>>真实姓名</option>
+					<option value="idcard"<eq name="field" value="idcard">selected </eq>>身份证号</option>
+					<option value="alipay"<eq name="field" value="alipay">selected </eq>>支付宝</option>
+					<option value="bankcard"<eq name="field" value="bankcard">selected </eq>>银行卡号</option>
+				</select>
+			</div>
+		</nav>
+
+		<div class="row state-overview">
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-wealth">
+						<i class="glyphicon glyphicon-bold"></i>
+					</div>
+					<div class="value">
+						<h1 class="count">495元</h1>
+						<p>某某币总值</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-transe">
+						<i class="glyphicon glyphicon-transfer"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count2">947</h1>
+						<p>交易量</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-fee">
+						<i class="glyphicon glyphicon-tower"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count3">328元</h1>
+						<p>总手续费</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-more">
+						<i class="glyphicon glyphicon-list-alt"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count4">30%</h1>
+						<p>涨幅</p>
+					</div>
+				</section>
+			</div>
+		</div>
+
+		<div id="morris">
+			<div class="row">
+				<div class="col-lg-12">
+					<section class="panel">
+						<header class="panel-heading text-warning">
+							市场资产分布
+						</header>
+						<div class="panel-body">
+							<div id="hero-bar" class="graph"></div>
+						</div>
+					</section>
+				</div>
+				<div class="col-lg-12">
+					<section class="panel">
+						<header class="panel-heading text-success">
+							系统 充值/提现 统计图
+						</header>
+						<div class="panel-body">
+							<div id="hero-graph" class="graph"></div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script>
+	var Script = function () {
+
+		//morris chart
+		$(function () {
+			//币统计
+			Morris.Bar({
+				element: 'hero-bar',
+				data: [
+					{x: 'BTC', sum: 5, gold: 3, fz: 2},
+					{x: 'MSC', sum: 6, gold: 1, fz: 5},
+					{x: 'LTC', sum: 9, gold: 2, fz: 7},
+				],
+				xkey: 'x',
+				ykeys: ['sum', 'gold', 'fz'],
+				labels: ['总额', '可用', '冻结'],
+				stacked: true
+			});
+		});
+
+		//市场交易报表
+		Morris.Area({
+			element: 'hero-graph',
+			data: [
+				{date: '2016-02-24', btc: 2666, msc: null, ltc: 2647},
+				{date: '2016-02-25', btc: 2778, msc: 2294, ltc: 2441},
+				{date: '2016-02-26', btc: 4912, msc: 1969, ltc: 2501},
+				{date: '2016-02-27', btc: 3767, msc: 3597, ltc: 5689},
+			],
+
+			xkey: 'date',
+			ykeys: ['btc', 'msc', 'ltc'],
+			labels: ['比特币', '动说币', '莱特币'],
+			hideHover: 'auto',
+			lineWidth: 1,
+			pointSize: 5,
+			lineColors: ['#4a8bc2', '#ff6c60', '#a9d86e'],
+			fillOpacity: 0.5,
+			smooth: true,
+			postUnits:' 元',
+			xLabels:'day',
+		});
+
+	}();
+
+</script>
+
+<include file="Public:footer" />

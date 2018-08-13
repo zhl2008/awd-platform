@@ -1,0 +1,101 @@
+<include file="Public:header" />
+<div id="main-content">
+ <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+  <button class="close fixed" style="margin-top: 4px;">&times;</button>
+  <div class="alert-content">警告内容</div>
+ </div>
+ <div id="main" class="main">
+  <div class="main-title-h">
+   <span class="h1-title"><a href="{:U('Money/index')}">理财列表</a> &gt;&gt;</span>
+   <span class="h1-title">理财记录</span>
+  </div>
+  <div class="cf">
+   <div class="search-form fr cf">
+    <div class="sleft">
+     <form name="formSearch" id="formSearch" method="get" name="form1">
+      <input type="text" name="name" class="search-input" value="{$Think.get.name}" placeholder="请输入用户名"> <a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i>
+     </a>
+     </form>
+     <script>
+      //搜索功能
+      $(function(){
+       $('#search').click(function(){
+        $('#formSearch').submit();
+       });
+      });
+      //回车搜索
+      $(".search-input").keyup(function(e){
+       if(e.keyCode===13){
+        $("#search").click();
+        return false;
+       }
+      });
+     </script>
+    </div>
+   </div>
+  </div>
+  <div class="data-table table-striped">
+   <table class="">
+    <thead>
+     <tr>
+      <th class="row-selected row-selected"><input class="check-all" type="checkbox" /></th>
+      <th class="">ID</th>
+      <th>理财名称</th>
+      <th>用户</th>
+      <th>理财币种</th>
+      <th>涨息币种</th>
+      <th>累计次数</th>
+      <th>累计获利</th>
+      <th>理财金额</th>
+      <th>费率</th>
+      <th>周期</th>
+      <th>结束时间</th>
+      <th>状态</th>
+     </tr>
+    </thead>
+    <tbody>
+     <notempty name="list">
+
+      <volist name="list" id="vo">
+       <tr>
+        <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+        <td>{$vo.id}</td>
+        <td>{$vo['money']['name']}</td>
+        <td>{$vo['username']}</td>
+        <td>{$vo['money']['coinname']}</td>
+        <td>{$vo['money']['feecoin']}</td>
+        <td>{$vo['times']}</td>
+        <td>{$vo['allfee']|NumToStr}</td>
+        <td>{$vo['num']|NumToStr}</td>
+        <td>{$vo['money']['fee']|NumToStr}%</td>
+        <td>{$vo['money']['tian']}</td>
+        <td>{$vo.addtime|addtime}</td>
+        <td>
+         <eq name="vo.status" value="0"> <font color="#0096dd">已完成</font> <else />
+          <font color="#23a800">涨息中</font></eq>
+         |
+         <a href="{:U('Money/dlog',array('userid' => $vo['userid'],'money_id'=>$money_id ) )}" target="_blank">详细记录</a>
+        </td>
+       </tr>
+      </volist>
+
+      <else />
+     <td colspan="13" class="text-center">Oh! 暂时还没有内容!</td>
+     </notempty>
+    </tbody>
+   </table>
+   <div class="page">
+    <div>{$page}</div>
+   </div>
+  </div>
+ </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.issue-box').addClass('current');
+		//边导航高亮
+		$('.issue-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

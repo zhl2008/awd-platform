@@ -1,0 +1,165 @@
+<include file="Public:header_1"/>
+<div class="autobox main">
+    <div class="wraphtml">
+
+        <div class="f_title clearfix">
+            <div class="f_title_span left" style="    margin-top: 20px;">
+						<span class="current">
+						<i></i>
+							<a href="{:U('Shop/index')}">逛商城</a>
+						</span>
+						<span class="">
+							<a href="{:U('Shop/log')}">购物记录</a>
+						</span>
+                        <span class="">
+							<a href="{:U('User/goods')}">收货地址</a>
+						</span>
+            </div>
+
+        </div>
+        <notempty name="prompt_text">
+            <div class="mytips" style="    margin: 0px;">
+                <h6 style="color: #ff8000;">温馨提示</h6>
+                {$prompt_text}
+            </div>
+        </notempty>
+        <div class="category-nav">
+
+            <notempty name="C['shop_logo']">
+            <div class="all_coin_price">
+                <div class="logo">
+                    <a href="/"><img src="{$C['shop_logo']}" alt="" /></a>
+                </div>
+            </div>
+            </notempty>
+
+            <div class="search-box" style="    padding: 26px 0 0 300px;    height: 60px;    float: inherit;">
+                <form action="/Shop/index" method="get">
+                    <input type="hidden" name="c" value="List">
+
+                    <div class="search">
+                        <input name="name" type="text" class="search-text" autocomplete="off" value="{$name}">
+                        <input type="submit" value="搜 索" class="search-btn" hidefocus="true">
+                    </div>
+                    <input type="hidden" name="spm" value="921">
+
+                </form>
+                <div class="ad-div" style="padding: 3px 0px 0 0px;float: right;margin-top: -60px;margin-right: 17px;"><a href="/" target="_blank">
+                    <img height="80" src="__PUBLIC__/Home/images/aaaa.jpg" alt=""></a>
+                </div>
+            </div>
+            <dl>
+                <dt>商品分类：</dt>
+                <dd>
+                    <a href="{:U('Shop/index')}"
+                    <notpresent name="Think.get.type">class="current"</notpresent>
+                    >全部</a>
+                    <volist name="shop_type_list" id="vo">
+                        <a href="{:U('Shop/index' ,array('name'=>$name,'type'=>$key,'deal'=>$deal,'addtime'=>$addtime,'price'=>$price))}"
+                        <eq name="Think.get.type" value="$key">class="current"</eq>
+                        >{$vo}</a>
+                    </volist>
+                </dd>
+            </dl>
+            <dl>
+                <dt>排序方式：</dt>
+                <dd>
+                    <a href="{:U('Shop/index',array('type'=>$type))}"
+                    <if condition="empty($price) AND empty($deal)  AND empty($addtime)  ">class="current"</if>
+                    ><span style="background: none;" about="" accesskey="">默认</span></a>
+                    <a href="{:U('Shop/index',array('name'=>$name,'type'=>$type,'deal'=>$deal,'addtime'=>$addtime,'price'=>'price_desc'))}"
+                    <eq name="price" value="price_desc">class="current"</eq>
+                    ><span style="background: none;" about="" accesskey="">价格从高到低</span></a>
+                    <a href="{:U('Shop/index',array('name'=>$name,'type'=>$type,'deal'=>$deal,'addtime'=>$addtime,'price'=>'price_asc'))}"
+                    <eq name="price" value="price_asc">class="current"</eq>
+                    ><span style="background: none;">价格从低到高</span></a>
+                    <a href="{:U('Shop/index',array('name'=>$name,'type'=>$type,'deal'=>'deal_desc','addtime'=>$addtime,'price'=>$price))}"
+                    <eq name="deal" value="deal_desc">class="current"</eq>
+                    ><span style="background: none;">销量从高到低</span></a>
+                    <a href="{:U('Shop/index',array('name'=>$name,'type'=>$type,'deal'=>'deal_asc','addtime'=>$addtime,'price'=>$price))}"
+                    <eq name="deal" value="deal_asc">class="current"</eq>
+                    ><span style="background: none;">销量从低到高</span></a>
+                    <a href="{:U('Shop/index',array('name'=>$name,'type'=>$type,'deal'=>$deal,'addtime'=>'addtime_desc','price'=>$price))}"
+                    <eq name="addtime" value="addtime_desc">class="current"</eq>
+                    ><span style="background: none;">上架时间从先到后</span></a>
+                    <a href="{:U('Shop/index',array('name'=>$name,'type'=>$type,'deal'=>$deal,'addtime'=>'addtime_asc','price'=>$price))}"
+                    <eq name="addtime" value="addtime_asc">class="current"</eq>
+                    ><span style="background: none;">上架时间从后到先</span></a>
+                </dd>
+            </dl>
+        </div>
+    </div>
+    <div class="wrapbody">
+        <div class="main">
+            <div class="wraphtml">
+                <div id="content" style="background: #fff;">
+                    <div class="box">
+                        <div class="ProductList">
+                            <ul class="clearfix">
+                                <volist name="list" id="vo" mod="4">
+                                    <li class="">
+                                        <div class="productListBox">
+                                            <div class="listImg">
+                                                <a href="/Shop/view.html?id={$vo.id}">
+                                                    <img src="{$vo.img}">
+                                                </a>
+                                            </div>
+                                            <div class="listText">
+                                                <a href="/Shop/view.html?id={$vo.id}" style="font-size: 14px;">{$vo.name}</a>
+                                            </div>
+                                            <div class="listWrap">
+                                                <strong style="font-size: 16px;">￥{$vo.price|Num}</strong>
+												<span>{$vo.buycoin}</span>
+                                                <span style="text-decoration: line-through;">￥{$vo.market_price|Num}</span>
+												
+                                            </div>
+                                            <div class="listStar">
+											<span> 总销量:<strong>{$vo.deal|Num}</strong>
+											</span>
+                                                <em>剩余库存:{$vo.num|Num}</em>
+                                            </div>
+                                            <div class="listWrapBtn pages" style="text-align: right;margin-top: -45px;">
+                                                <a href="/Shop/view.html?id={$vo.id}" id="btn">立 即 购 买</a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </volist>
+                            </ul>
+                            <div class="pages" style="margin: 0px;">{$page}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<script>
+    //菜单高亮
+    $('#shop_box').addClass('active');
+</script>
+<include file="Public:footer_1"/>
+<script>
+    $('input').focus(function () {
+        var t = $(this);
+        if (t.attr('type') == 'text' || t.attr('type') == 'password')
+            t.css({
+                'box-shadow': '0px 0px 3px #e55600',
+                'border': '1px solid #e55600',
+                'color': '#333'
+            });
+        if (t.val() == t.attr('placeholder'))
+            t.val('');
+    });
+    $('input').blur(function () {
+        var t = $(this);
+        if (t.attr('type') == 'text' || t.attr('type') == 'password')
+            t.css({
+                'box-shadow': '0px 0px 1px #e55600',
+                'border': '0px solid #e55600'
+            });
+        // t.css({'box-shadow':'none','border':'1px solid #e55600','color':'#333' });
+        if (t.attr('type') != 'password' && !t.val())
+            t.val(t.attr('placeholder'));
+    });
+</script>

@@ -1,0 +1,64 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">短信配置--请参考安装说明文档进行配置</span>
+		</div>
+		<div class="tab-wrap" style="display:none;">
+			<div class="tab-content">
+				<form id="form" action="{:U('Config/mobleEdit')}" method="post" class="form-horizontal">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">短信接口URL :</td>
+									<td>
+										<input type="text" class="form-control input-10x" id="moble_url" name="moble_url" value="{$C['moble_url']}">
+									</td>
+									<td class="item-note">短信接口URL 接口申请地址:<a href="http://www.webchinese.com.cn/" target="_blank">立即申请</a>
+									</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">短信接口名称 :</td>
+									<td>
+										<input type="text" class="form-control input-10x" id="moble_user" name="moble_user" value="{$C['moble_user']}">
+									</td>
+									<td class="item-note">短信接口用户名</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">短信接口安全码 :</td>
+									<td>
+										<input type="password" class="form-control input-10x" id="moble_pwd" name="moble_pwd" value="{$C['moble_pwd']}">
+									</td>
+									<td class="item-note">短信接口安全秘钥</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+											<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+											</notempty>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function () {
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>

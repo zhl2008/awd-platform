@@ -1,0 +1,37 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main" style="padding: 0px">
+		<iframe id="market" src="" name="main" width="100%" height="100%"
+                frameborder="0" scrolling="yes"
+        style="height: 1800px;width: 100%"
+        >
+        </iframe>
+		<form id="install_form" action="{:U('Admin/Cloud/install')}" method="post">
+			<input id="install_token" type="hidden" name="token">
+			<input id="install_cookie" type="hidden" name="cookie">
+		</form>
+		<script>
+			$('.zuocoin_up').hide();
+
+
+			var website_title = "{:C('WEB_SITE_NAME','','config')}";
+			window.addEventListener('message', function (event, domain) {
+				if (event.data.type == 'getWebSiteInfo') {
+					document.getElementById("market").contentWindow.postMessage({
+						'type': 'returnWebSiteInfo',
+						'domain': window.location.host,
+						'title': website_title
+					}, '*');
+				}
+				if (event.data.type == 'install') {
+					$('#install_token').val(event.data.token);
+					$('#install_cookie').val(event.data.cookie);
+					$('#install_form').submit();
+				}
+			})
+		</script>
+		<include file="Public:footer"/>

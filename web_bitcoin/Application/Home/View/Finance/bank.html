@@ -1,0 +1,341 @@
+<include file="Public:header" />
+	
+	
+	
+	
+<script type="text/javascript" src="/comfile/js/cityselect.js"></script>
+<style>
+	.ydt-bank {position: relative;padding-top: 20px;color: #7b808c;
+		line-height: 1;font: 14px/1.5 Tahoma, Helvetica, Arial, "Microsoft YaHei", SimSun;}
+	.yb-list-window {position:relative;z-index:2;width: 960px;margin: 0 auto;overflow: hidden;}
+	.yb-list-wapper {float: left;}
+	.yb-add {width: 225px; height: 148px;background-position: -10px -355px;float: left;margin-left: 10px;padding-top: 50px;cursor: pointer;background-image: url('/comfile/images/index_sprites_24.png');background-repeat: no-repeat;}
+	.yb-ico-add {width:16px;height:16px;margin:0 auto;background-position: -100px -10px;background-image: url('/comfile/images/index_sprites_24.png');background-repeat: no-repeat;}
+	.yb-txt { text-align: center;margin-top: 10px;}
+	.yb-item {position:relative;float: left;height: 174px;line-height: 1;}
+	.yb-info {width: 225px; height: 147px;padding-top: 10px;margin-left:13px;background-position: -10px -200px;cursor: pointer;background-image: url('/comfile/images/index_sprites_24.png');background-repeat: no-repeat;}
+	.yb-item .yb-name {padding-left: 4px;}
+	.bank-cmb{display: inline-block;text-indent: 1em; position: relative;  height: 33px;  width: 141px;  overflow: hidden;  line-height:37px;  font-weight: bold;vertical-align: top;}
+	.yb-type{display: inline-block;float: right;margin-top: 10px;white-space: nowrap;overflow: hidden;margin-right:13px;}
+	.yb-num{color: #3a3d42;  font-size: 20px;  width: 194px;  margin: 0 auto;  padding: 18px 0 14px;  white-space: nowrap;  overflow: hidden;}
+	.yb-links {display: block;width: 200px;margin: 0 auto;padding-top: 25px;}
+	.yb-link {float: left; line-height: 20px;  }
+	.yb-link a{color: #00b1ee;text-decoration: none;}
+	.yb-split {  width: 1px;  height: 13px;  float: left;  background-color: #d1d1d1;  margin: 4px 11px 0;overflow: hidden;}
+	.yb-link {float: left;line-height: 20px;}
+	.hide {display: none;}
+	.yb-ico{}
+</style>
+	
+    
+
+	
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 账户提现	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						提现地址					</span>
+					 <span>
+                        <a href="/finance/mytx"  class="step fz_12 ml50 pd6 ">账户提现</a>
+						     <a href="/finance/outlog" class="step fz_12 ml20 pd6 ">提现记录</a>
+                        <a href="/finance/bank"  class="step fz_12 ml20 pd6 active">提现地址管理</a>
+                    </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+
+				<p> <notempty name="prompt_text">
+                    {$prompt_text}
+                </notempty></p>			
+			</div>
+
+			<div class="ydt-bank">
+				<div class="yb-list-window">
+					<div class="yb-list-wapper">
+						<div id="bank_wrap" data-marginleft="979" data-on-cls="current" data-page-num="4" class="yb-list">
+							<div class="yb-add" onclick="showA()" >
+								<div class="yb-ico-add" onclick="showA()"></div>
+								<div class="yb-txt" onclick="showA()">添加银行卡</div>
+							</div>
+							
+							
+			<volist name="UserBank" id="vo">				
+							
+			<div class="yb-item  js-bank-item js-bank-index-1 current" >
+								<div class="yb-info">
+									<div class="yb-name clearfix">
+										<div title="" class="yb-ico bank-cmb">{$vo.name}</div>
+										<div class="yb-type">{$vo.bank}</div>
+									</div>
+									<div class="yb-num ">
+										{$vo.bankcard}								</div>
+									<div class="yb-links clearfix">
+										<div class="js-bank-opt">
+                <span id="cur_bank_opt">
+                <div class="yb-link"><a href="/finance/mycz.html" class="js-opt @BANKCARD.FUN_C@" data-fun="C"><span>充值</span></a></div>
+                <span class="yb-split"></span>
+                <div class="yb-link"><a href="/finance/mytx.html" class="js-opt @BANKCARD.FUN_Pay@" data-fun="Pay"><span>提现</span></a></div>
+            </span>
+											<span class="yb-split"></span>
+											<div class="yb-link">
+												<span class="hide" id="cur_status" data-open="已开启" data-close="已关闭" data-active="未激活">已开启</span>
+												<a href="javascript:void(0)" class="selected cancel"  data="{$vo.id}" onclick="bank_del(this)"><span>解绑</span></a>
+												
+											</div>
+										</div>
+									</div>
+								</div>
+								<div class="yb-ico-up"></div>
+							</div>
+							
+				</volist>			
+							
+							
+						</div>
+						</div>
+					</div>
+				</div>
+				<div class="yb-arrows">
+					<div id="bank_pre_btn" class="yb-ico-left i-hide"></div>
+					<div id="bank_next_btn" class="yb-ico-right i-hide"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="all_mask_loginbox" id="step1" style="display: none;">
+	<div class="login_title pl20">添加一个提现地址</div>
+	<form id="form-login" class="mask_wrap login-fb">
+		<div class="login_text zin90">
+			<div class="mask_wrap_title">备注名称：</div>
+			<input id="bank_name" class="texts" type="text">
+		</div>
+		<div class="login_text zin80" style="display:none;">
+			<div class="mask_wrap_title">币种名称：</div>
+			<select name="bank" id="bank_coinname" class="texts">
+				<option value="" selected="selected">--选择币种--</option>
+								<option value="cny" selected>人民币 (CNY)</option>
+				 </select>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">开户银行：</div>
+			<select name="bank" id="bank_bank" class="texts">
+				<option value="0">--选择银行--</option>
+				   <volist name="UserBankType" id="vo">
+				   <option value="{$vo['title']}">{$vo['title']}</option>
+				   </volist>
+				 </select>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">开户省市：</div>
+			<span class="controls" id="city_1">
+				<select class="prov texts" id="bank_prov" name="prov" style="width: 98px;"></select>
+				<select class="city texts" id="bank_city" name="city" style="width: 98px; display: none;"></select>
+            </span>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">开户支行：</div>
+			<input id="bank_bankaddr" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">开户姓名：</div>
+			<input id="bank_username" class="texts" type="text" value="{$truename}" disabled=true>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">银行卡号：</div>
+			<input id="bank_bankcard" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">交易密码：</div>
+			<input id="bank_paypassword" class="texts" type="password"><a href="/findpwd/findpwd" class="move ml5">忘记?</a>
+		</div>
+		<div class="login_button">
+			<input type="button" class="btns2" value="立即添加" onclick="bank_up();">
+		</div>
+	</form>
+	<div class="mask_wrap_close " onclick="showB()"><i class="fa fa-close fa-2x move"></i></div>
+</div>
+<div id="step2" class="all_mask" style="height: 0px;display: none;"></div>
+<script>
+	$(function () {
+		var height = $(document).height();
+		if (height < 1000) {
+			height = 1000;
+		}
+		$('#step2').height(height);
+		$("#city_1").citySelect({nodata: "none", required: false});
+	});
+	function showA() {
+		$("#step1").show();
+		$("#step2").show();
+	}
+	function showB() {
+		$("#step1").hide();
+		$("#step2").hide();
+	}
+	function bank_up() {
+		var name        = $('#bank_name').val();
+		var bank        = $('#bank_bank option:selected').val();
+		var bankprov    = $('#bank_prov option:selected').val();
+		var bankcity    = $('#bank_city option:selected').val();
+		var bank_coinname    = $('#bank_coinname option:selected').val();
+		var bankaddr    = $('#bank_bankaddr').val();
+		var bankcard    = $('#bank_bankcard').val();
+		var paypassword = $('#bank_paypassword').val();
+		if (name == "" || name == null) {
+			layer.tips("请输入备注名称", '#bank_name', {tips: 2});
+			return false;
+		}
+		if (bank_coinname == "" || bank_coinname == null) {
+			layer.tips("请选择币种", '#bank_coinname', {tips: 2});
+			return false;
+		}
+		if (bankaddr == "" || bankaddr == null) {
+			layer.tips("请输入开户支行", '#bank_bankaddr', {tips: 2});
+			return false;
+		}
+		if (bankcard == "" || bankcard == null) {
+			layer.tips("请输入银行账号", '#bank_bankcard', {tips: 2});
+			return false;
+		}
+		
+		if(bankcard.length < 16 || bankcard.length > 19){
+			layer.tips("请输入正确的银行账号", '#bank_bankcard', {tips: 2});
+			return false;
+		}
+		
+		
+		
+		
+		if (paypassword == "" || paypassword == null) {
+			layer.tips("请输入交易密码", '#bank_paypassword', {tips: 2});
+			return false;
+		}
+		$.post("{:U('Finance/upbank')}", {
+			name: name,
+			bank: bank,
+			bankprov: bankprov,
+			bank_coinname: bank_coinname,
+			bankcity: bankcity,
+			bankaddr: bankaddr,
+			bankcard: bankcard,
+			paypassword: paypassword
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+	function bank_del(_this) {
+		var id = $(_this).attr('data');
+		layer.config({
+			extend: 'extend/layer.ext.js'
+		});
+		layer.ready(function () {
+			layer.prompt({
+				title: "输入交易密码，并确认",
+				formType: 1
+			}, function (val) {
+				if (val) {
+					$.post("{:U('User/delbank')}", {id: id, paypassword: val}, function (data) {
+						if (data.status == 1) {
+							layer.msg(data.info, {icon: 1});
+							location.reload();
+						} else {
+							layer.msg(data.info, {icon: 2});
+							if (data.url) {
+								window.location = data.url;
+							}
+						}
+					}, "json");
+				}
+				;
+			});
+		});
+	}
+</script>
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_out').addClass('active');
+</script>	
+	
+	
+
+	
+<include file="Public:footer" />

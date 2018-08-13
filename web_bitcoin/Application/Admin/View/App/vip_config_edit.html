@@ -1,0 +1,201 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title"><a href="{:U('App/vip_config_list')}">VIP配置列表</a> >></span>
+			<span class="h1-title"><empty name="data">添加VIP<else /> 编辑VIP</empty></span>
+		</div>
+
+		<div class="tab-wrap">
+
+			<div class="tab-content">
+				<form id="form" action="{:U('App/vip_config_edit')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">VIP名称 :</td>
+									<td><input type="text" class="form-control" name="name" value="{$data.name}" ></td>
+									<td class="item-note"></td>
+								</tr>
+                                <tr class="controls">
+                                    <td class="item-label">VIP次序 :</td>
+                                    <td><input type="text" class="form-control" name="tag" value="{$data.tag}" ></td>
+                                    <td class="item-note">等级升级次序,依次为1,2,3,4,5 ... 级</td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">广告限额 :</td>
+                                    <td><input type="text" class="form-control" name="times" value="{$data.times}" ></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">奖励币种 :</td>
+                                    <td>
+                                        <select name="price_coin">
+                                            <volist name="coin" id="vo">
+                                                <option   <eq name="vo.id" value="$data.price_coin">selected</eq>
+                                                 value="{$vo.id}"> {$vo.title}({$vo.name})
+                                                </option>
+                                            </volist>
+                                        </select>
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">奖励数量 :</td>
+                                    <td><input type="text" class="form-control" name="price_num" value="{$data.price_num}" ></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+
+                                <input type="hidden" class="form-control" id="rule" name="rule" value="" >
+                                <tr class="controls">
+                                    <td class="item-label">VIP规则 :</td>
+                                    <td>满足以下币种数量即可自动升级到该等级</td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td colspan="2">
+                                        <div  id="rule_block" >
+                                            <volist name="data.rule" id="rule" key="rule_key">
+                                                <div style="display:-webkit-box;margin: 10px 0;" class="rule_list" id="rule_list{$rule_key-1}">
+                                                    <select>
+                                                        <volist name="coin" id="vo" k="key">
+                                                            <option name="coinname"
+                                                            <eq name="vo.id" value="$rule.id">selected</eq>
+                                                            value="{$vo.id}">
+                                                                {$vo.title}({$vo.name})
+                                                            </option>
+                                                        </volist>
+                                                    </select>
+
+                                                    <input type="text" id="rule_list_input_{$rule_key-1}" onblur="num_format({$rule_key-1})"
+                                                           name="rule_list" value="{$rule.num}">个
+
+                                                    <button onclick="del_vip({$rule_key-1});" class="btn btn-danger btn-xs" type="button">删除</button>
+                                                </div>
+                                            </volist>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td></td>
+                                    <td colspan="2">
+                                        <button onclick="add_vip();" class="btn btn-primary  btn-xs btn-success" type="button">
+                                        新增
+                                        </button>
+                                    </td>
+                                </tr>
+
+								<tr class="controls">
+									<td class="item-label">状态 :</td>
+									<td><select name="status" class="input-small">
+										<option value="1" <eq name="data.status" value="1">selected</eq> >可用
+										</option>
+										<option value="0" <eq name="data.status" value="0">selected</eq> >禁用
+										</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确
+												定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+											<notempty name="data.id"> <input type="hidden" name="id" value="{$data.id}" /> </notempty>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+
+
+                <div id="coin_select" style="display: none">
+                    <select>
+                        <volist name="coin" id="vo">
+                            <option name="coinname" value="{$vo.id}">{$vo.title}({$vo.name})</option>
+                        </volist>
+                    </select>
+                </div>
+
+
+				<script type="text/javascript">
+                    var rule = {$rule_str};
+                    var idi = {$idi};
+                    function add_vip(){
+                        var coin_select = $('#coin_select').html();
+                        var str = '<div style="display:-webkit-box;margin: 10px 0;" class="rule_list" id="rule_list'+idi+'">'
+                                + coin_select +
+                                '<input type="text" id="rule_list_input_'+idi+'" onblur="num_format('+idi+')" name="rule_list" value="">个' +
+                                '<button onclick="del_vip('+idi+');" class="btn btn-danger btn-xs" type="button">删除</button>'+
+                                '</div>';
+                        rule[idi] = 1;
+                        idi++;
+                        $('#rule_block').append(str);
+                    }
+
+                    function num_format(id){
+                        var num = parseFloat($('#rule_list_input_' + id).val());
+                        if(isNaN(num)){
+                            num = 0;
+                        }
+                        $('#rule_list_input_' + id).val(num);
+                    }
+
+                    function del_vip(id){
+                        rule[id] = 0;
+                        $('#rule_list'+id).fadeOut();
+                    }
+
+					//提交表单
+					$('#submit').click(function() {
+                        var rule_list_len = rule.length;
+                        var rule_data = [];
+                        var id='',num='';
+                        for(var i = 0;i<rule_list_len;i++){
+                            if(rule[i] == 1){
+                                id = $('#rule_list'+i+' select').val();
+                                num = parseFloat($('#rule_list_input_' + i).val());
+                                if(isNaN(num)){
+                                    num = 0;
+                                }
+                                if(num){
+                                    rule_data.push({"id":id,"num":num});
+                                }
+                            }
+                        }
+                        var rule_data_json = JSON.stringify(rule_data);
+                        console.log(rule_data_json);
+                        $('#rule').val(rule_data_json);
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script type="text/javascript">
+	$(function() {
+		//主导航高亮
+		$('.Adver-box').addClass('current');
+		//边导航高亮
+		$('.Adver-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

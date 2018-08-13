@@ -1,0 +1,240 @@
+<include file="Public:header_1"/>
+<script type="text/javascript" src="__PUBLIC__/Home/js/cityselect.js"></script>
+<div class="autobox" style=" ">
+    <div class="f_title clearfix">
+        <div class="f_title_span left" style="    margin-top: 20px;">
+						<span class="">
+
+							<a href="{:U('Shop/index')}">逛商城</a>
+						</span>
+						<span class="">
+							<a href="{:U('Shop/log')}">购物记录</a>
+						</span>
+                        <span class="current">
+                            <i></i>
+							<a href="{:U('User/goods')}">收货地址</a>
+						</span>
+        </div>
+    </div>
+    <notempty name="prompt_text">
+        <div class="mytips" style="    margin: 0px;">
+            <h6 style="color: #ff8000;">温馨提示</h6>
+            {$prompt_text}
+        </div>
+    </notempty>
+    <div class="category-nav" style="padding-bottom: 1px;">
+    </div>
+</div>
+<div class="wrapbody">
+    <div class="main">
+        <div class="myright" style="width: 1168px;">
+            <div class="wraphtml">
+
+
+                    <div class="f_body">
+                        <div class="f_body_main">
+                            <div class="f_tab_body">
+                                <div>
+                                    <table class="f_table" id="investLog_content">
+                                        <thead>
+                                        <tr>
+                                            <th>备注名称</th>
+                                            <th>联系姓名</th>
+                                            <th>身份证号</th>
+                                            <th>联系电话</th>
+                                            <th>详细地址</th>
+                                            <th>添加时间</th>
+                                            <th>操作</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <volist name="userGoodsList" id="vo">
+                                            <tr>
+                                                <td>{$vo.name}</td>
+                                                <td>{$vo.truename}</td>
+                                                <td>{$vo.idcard}</td>
+                                                <td>{$vo.moble}</td>
+                                                <td>{$vo.addr}</td>
+                                                <td>{$vo.addtime|addtime}</td>
+                                                <td>
+                                                    <a class="cancel" href="javascript:void(0)" onclick="UpdateB({$vo['id']})">删除</a>
+                                                </td>
+                                            </tr>
+                                        </volist>
+                                        </tbody>
+                                    </table>
+                                    <div class="pages">
+                                        <a href="javascript:void(0)" onclick="showA()">添加一个地址</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+</div></div>
+        </div>
+
+</div>
+<div class="okcoinPop" id="withdrawCnyAddress" style="display: none;">
+    <div class="dialog_content" id="dialog_content_CnyAddress" style="margin-left: -200px; margin-top: 200px; left: 50%; top: 21px;">
+        <div class="dialog_title" id="dialog_title_CnyAddress">
+            <span id="CnyAddressTitle">添加一个联系地址</span>
+            <a href="javascript:closeAddress();" class="dialog_closed" title="关闭"></a>
+        </div>
+        <div class="dialog_body center">
+            <div style="line-height: 35px; text-align: left; padding-left: 50px;">
+                <ul class="PopLayer">
+                    <li>
+                        <span class="c2" id="lotteryAmountSpan1">地址备注:</span>
+                        <input name="name" id="goods_name" type="text" class="cztxinput" style="width: 200px; padding: 2px; padding-bottom: 5px;">
+                    </li>
+                    <li>
+                        <span class="c2" id="lotteryAmountSpan2">联系姓名:</span>
+                        <input name="name" id="goods_truename" type="text" class="cztxinput" style="width: 200px; padding: 2px; padding-bottom: 5px;">
+                    </li>
+                    <li>
+                        <span class="c2" id="lotteryAmountSpan3">身份证号:</span>
+                        <input name="name" id="goods_idcard" type="text" class="cztxinput" style="width: 200px; padding: 2px; padding-bottom: 5px;">
+                    </li>
+                    <li>
+                        <span class="c2" id="lotteryAmountSpan4">联系电话:</span>
+                        <input name="name" id="goods_moble" type="text" class="cztxinput" style="width: 200px; padding: 2px; padding-bottom: 5px;">
+                    </li>
+                    <li>
+                        <span class="c2" id="lotteryAmountSpan5">送货地址:</span>
+                        <input name="name" id="goods_addr" type="text" class="cztxinput" style="width: 200px; padding: 2px; padding-bottom: 5px;">
+                    </li>
+                    <li>
+                        <span class="c2" id="lotteryAmountSpan6">交易密码:</span>
+                        <input name="name" id="goods_paypassword" type="password" class="cztxinput" style="width: 100px; padding: 2px; padding-bottom: 5px;">
+                        <a href="/Login/findpaypwd.html" class="reg_floatr">忘记?</a>
+                    </li>
+                    <li>
+                        <a href="javascript:void(0)" onclick="Update()" class="btn" id="btn" style="">立 即 添 加</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="dialogBoxShadow" style="position: absolute; top: 0px; left: 0px; z-index: 100; background-color: rgb(0, 0, 0); opacity: 0.4; width: 100%; background-position: initial initial; background-repeat: initial initial; display: none;"></div>
+<br>
+
+<script>
+
+
+    var coin = "{$xnb}";
+
+
+    $("#city_1").citySelect({
+        nodata: "none",
+        required: false
+    });
+
+    $('#dialogBoxShadow').height($(document).height());
+    function closeAddress() {
+        $("#withdrawCnyAddress").hide();
+        $("#dialogBoxShadow").hide();
+    }
+    function showA() {
+        $("#withdrawCnyAddress").show();
+        $("#dialogBoxShadow").show();
+    }
+    function Update() {
+        var name = $('#goods_name').val();
+        var truename = $('#goods_truename').val();
+        var idcard = $('#goods_idcard').val();
+        var moble = $('#goods_moble').val();
+        var addr = $('#goods_addr').val();
+        var paypassword = $('#goods_paypassword').val();
+
+
+        if (name == "" || name == null) {
+            layer.tips('请输入备注名称', '#goods_name', {tips: 3});
+            return false;
+        }
+        if (truename == "" || truename == null) {
+            layer.tips('请输入联系姓名', '#goods_truename', {tips: 3});
+            return false;
+        }
+        if (moble == "" || moble == null) {
+            layer.tips('请输入联系电话', '#goods_moble', {tips: 3});
+            return false;
+        }
+        if (idcard == "" || idcard == null) {
+            layer.tips('请输入身份证号', '#goods_idcard', {tips: 3});
+            return false;
+        }
+
+        if (addr == "" || addr == null) {
+            layer.tips('请输入联系地址', '#goods_addr', {tips: 3});
+            return false;
+        }
+        if (paypassword == "" || paypassword == null) {
+            layer.tips('请输入交易密码', '#goods_paypassword', {tips: 3});
+            return false;
+        }
+
+
+        $.post("{:U('Shop/upgoods')}", {
+            name: name,
+            truename: truename,
+            moble: moble,
+            addr: addr,
+            idcard: idcard,
+            paypassword: paypassword
+        }, function (data) {
+            if (data.status == 1) {
+                layer.msg(data.info, {icon: 1});
+                window.location = "{:U('Shop/goods')}";
+            } else {
+                layer.msg(data.info, {icon: 2});
+                if (data.url) {
+                    window.location = data.url;
+                }
+            }
+        }, "json");
+    }
+
+    function UpdateB(id) {
+        layer.config({
+            extend: 'extend/layer.ext.js'
+        });
+        layer.ready(function () {
+            //默认prompt
+            layer.prompt({
+                title: '输入交易密码，并确认',
+                formType: 1
+            }, function (val) {
+                if (val) {
+                    //需要执行的方法
+                    $.post("{:U('Game/shop_delgoods')}", {
+                        id: id,
+                        paypassword: val
+                    }, function (data) {
+                        if (data.status == 1) {
+                            layer.msg(data.info, {icon: 1});
+                            window.location = "{:U('Game/shop_goods')}";
+                        } else {
+                            layer.msg(data.info, {icon: 2});
+                            if (data.url) {
+                                window.location = data.url;
+                            }
+                        }
+                    }, "json");
+
+
+                }
+                ;
+            });
+
+        });
+
+
+    }
+</script>
+<script>
+    //菜单高亮
+    $('#shop_box').addClass('active');
+</script>
+<include file="Public:footer_1"/>

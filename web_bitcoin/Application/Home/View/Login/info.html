@@ -1,0 +1,54 @@
+<include file="Public:header" />
+
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页 </a>&gt; 注册账户	</div>
+	<div class="login_step">
+		<ul class="order clear">
+			<li><i class="fa fa-circle  fz_40"><span>1</span></i>用户注册				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40"><span>2</span></i>交易密码				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40 "><span>3</span></i>实名认证				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40 move"><span>4</span></i>成功</li>
+		</ul>
+	</div>
+	<div class="reg_box">
+		<div class="reg_su">
+			<div class="reg_su_title"><i class="fa fa-check mr5 fz_40"></i>恭喜您，已经注册成功！</div>
+			<div class="reg_info">
+				<ul>
+					<li>&nbsp;&nbsp;&nbsp;手机号：<span>{$user.moble}</span></li>
+					<li>证件类型：<span>身份证</span></li>
+					<li>真实姓名：<span>{$user.truename}</span></li>
+					<li>证件号码：<span>{$user.idcard}</span></li>
+				</ul>
+				<div class="auto_btn mb35">
+					<a href="/trade/index.html" class="center btns2">去交易</a>
+					<div class="right_side"></div>
+				</div>
+				<div class="reg_otherlink">
+					您还可以： <a href="{:U('Finance/mycz')}" target="_blank">人民币充值</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	$('#index_box').addClass('active');
+</script>
+
+<include file="Public:footer" />

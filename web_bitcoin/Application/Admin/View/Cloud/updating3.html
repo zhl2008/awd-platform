@@ -1,0 +1,62 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>{:L("_EXTENDED_AUTOMATIC_UPGRADE_")}-{:L("_UPGRADE_CODE_")}</h2>
+    </div>
+    <div class="with-padding" style="width:700px;">
+        <include file="_updatingGoods"/>
+        <p><strong class="text-success">1.{:L("_DOWNLOAD_THE_UPDATE_PACKAGE_AND_GET_THE_UPDATED_FILE_LIST_")} -》 2.{:L("_LOCAL_FILE_CONTRAST_")}-》 3.{:L("_COMBINED_CODE_")}</strong>-》 4.{:L("_DATABASE_UPGRADE_")}-》{:L("_UPGRADE_")}</p>
+        <div id="message" style="border: 1px solid #ccc;padding: 20px;height: 243px;overflow: auto">
+
+        </div>
+        <h4>{:L("_THE_UPDATED_FILE_")}</h4>
+        <div id="file" style="border: 1px solid #ccc;padding: 20px;height: 250px;overflow: auto">
+
+        </div>
+
+        <h4>{:L("_BACKUP_FILE_STORAGE_LOCATION_")}</h4>
+        <p>
+           {$backup_path}
+        </p>
+
+        <a id="compare_btn" disabled="disabled" href="{:U('updating4')}" class="btn btn-success btn-block">{:L("_FILE_COVER_IMPORT_DATABASE_")}</a>
+
+        <div style="margin-top: 10px">
+            <div class="progress progress-striped active hide" style="border-radius: 3px">
+                <div id="progress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width:0">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function writeFile($data) {
+            $('#file').append('<div><i class="icon-file"></i> '+$data+'</div>');
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable(){
+            $('#compare_btn').removeAttr('disabled','');
+        }
+    </script>
+</block>

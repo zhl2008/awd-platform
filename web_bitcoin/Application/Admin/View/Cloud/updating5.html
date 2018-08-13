@@ -1,0 +1,130 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>{:L("_EXTENDED_AUTOMATIC_UPGRADE_")}-{:L("_COMPLETE_SYNCHRONIZED_VERSION_NUMBER_AND_TOKEN_")}</h2>
+    </div>
+    <div class="with-padding" style="width:700px;">
+        <h3 style="padding-top: 0;margin-top: 0">
+           {:L("_CURRENT_ESCALATION_")}
+        </h3>
+        <ul class="module-list">
+                <li class="clearfix" style="margin-bottom: 0">
+                    <div class="cover-wrapper">
+                        <empty name="goodsInfo.version_info.goods.cover_url">
+                            <div class="cover-icon">
+                                <i class="icon-{$goodsInfo.icon}"></i>
+                            </div>
+                            <else/>
+                            <img class="cover"
+                                 src="{$goodsInfo.version_info.goods.cover_url}"/>
+                        </empty>
+
+
+                    </div>
+                    <div class="content-wrapper">
+                        <div class="title">
+                            <a href="{:U('Admin/Module/edit', array('name' => $goodsInfo['name']))}">{$goodsInfo.alias} <span class="text-muted">{$goodsInfo.name}</span></a>
+
+                            <div class="pull-right"><span class="label label-info">{$goodsInfo.version_info.title}</span>
+                                <empty name="goodsInfo.update_list">
+                                    <else/>
+                                    <a style="text-decoration: none"
+                                            ><span class=" label label-success ">{:L("_LATEST_EDITION_")}{$goodsInfo.update_list.0.title}</span></a>
+                                </empty>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-muted text-ellipsis">{$goodsInfo.summary}</p>
+                        </div>
+                        <div>{:L("_DEVELOPER_")}{:L("_COLON_")}  <a style="color: #666">{$goodsInfo.developer}</a></div>
+                        <div class="clearfix bottom-btns">
+                            <div class="pull-left">
+                                <a class="btn btn-default"
+                                   href="{:U('Module/edit', array('name' => $goodsInfo['name']))}">{:L("_EDIT_")}</a>
+                            </div>
+                            <div class="pull-right">
+                                <empty name="goodsInfo.token">
+                                    <span class="label label-circle label-danger">{:L("_LOCAL_MODULE_")}</span>
+                                    <else/>
+                                    <a target="_blank"
+                                       href="{:appstoreU('Appstore/Index/goodsDetail',array('token'=>$goodsInfo['token']))}"
+                                       class="btn btn-info">{:L("_GO_TO_THE_CLOUD_MARKET_VIEW_")}</a>
+                                </empty>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+        </ul>
+        <p><strong class="text-success">1.{:L("_DOWNLOAD_THE_UPDATE_PACKAGE_AND_GET_THE_UPDATED_FILE_LIST_")}-》 2.{:L("_LOCAL_FILE_CONTRAST_")}-》 3.{:L("_CODE_UPGRADE_")}-》 4.{:L("_DATABASE_UPGRADE_")}-》{:L("_UPGRADE_")}</strong></p>
+        <h4>
+            {:L("_CONGRATULATIONS_THE_UPGRADE_IS_SUCCESSFUL_THE_CURRENT_VERSION_IS_")} {$goodsInfo.version_info.title}
+        </h4>
+
+        <p>{:L("_IF_YOU_FIND_A_PROBLEM_AFTER_THE_UPGRADE_PLEASE_FIND_THE_BACKUP_FILE_AND_RESTORE_THE_BACKUP_DATABASE_")}</p>
+
+
+        <p>
+            {$path}/backup
+
+        </p>
+
+        <div class="row">
+            <div class="col-xs-7">
+                <a id="compare_btn" class="btn btn-success btn-block"
+                  href="{:U('updateGoods',array('token'=>$token))}">{:L("_RETURN_HOME_PAGE_")}</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function updateDB(obj) {
+            if (!confirm({:L('_OK_IMPORT?_STRONGLY_RECOMMENDED_FOR_DATABASE_BACKUP_BEFORE_IMPORT_WITH_SINGLE_')})) {
+                return false;
+            } else {
+                toast.showLoading();
+                $(obj).attr('disabled', 'disabled');
+                $(obj).text('{:L("_IS_UPGRADING_THE_DATABASE_PLEASE_WAIT_PATIENTLY_")}……');
+                $.post('__SELF__', function (msg) {
+                    if (msg.status) {
+                        $(obj).removeAttr('disabled');
+                        toast.hideLoading();
+                        toast.success({:L('_DATABASE_UPGRADE_SUCCESSFULLY_WITH_SINGLE_')});
+                        $(obj).text({:L('_UPGRADE_DATABASE_SUCCESSFULLY_ENTER_NEXT_WITH_SINGLE_')});
+                        $(obj).attr('href',"{:U('finish')}");
+
+                    } else {
+                        toast.error({:L('_UPGRADE_FAILED._PLEASE_CHECK_IT_AND_TRY_AGAIN_WITH_SINGLE_')})
+                    }
+                })
+            }
+        }
+        function writeFile($data) {
+            $('#file').append('<div><i class="icon-file"></i> ' + $data + '</div>');
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable() {
+            $('#compare_btn').removeAttr('disabled', '');
+        }
+    </script>
+</block>

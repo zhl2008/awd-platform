@@ -1,0 +1,187 @@
+<include file="Public:header" />
+		
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 邀请朋友	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						邀请朋友					</span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p>
+				
+						<notempty name="prompt_text">
+								{$prompt_text}
+						</notempty>
+				
+				
+				</p>			</div>
+			<div id="qrcode-wallet" style="display: inline-block;margin-top: 60px;float: right;margin-right: 30px;" width="100">
+				<saon id="codeaa"></saon>
+				<p id="qrcode-t" style="font-size: 22px;text-align: center;margin-top: 30px;" class="move">您的推广专属二维码</p>
+			</div>
+			<div class="quicklink invite-content" style="margin-top: 15px;">
+				<h4>专属邀请码</h4>
+				<p class="tip">这是您的专用邀请码，您可点击【复制】按钮分享给朋友，让他们注册帐号时输入您的邀请码：</p>
+				<p>
+					<input type="text" class="area texts" id="invite-input" value="{$user['invit']}" style="width: 100px;vertical-align: bottom;"><input type="button" value="复制" data-clipboard-target="invite-input" class="ml20  btn-quick inviteCopyButton  btns2" id="copy_button1" style="width:100px;">
+				</p>
+			</div>
+			<div class="quicklink invite-content">
+				<h4>专属链接</h4>
+				<p class="tip">这是您的专用链接，您可点击【复制】按钮，将本文粘贴并发送给您的好友：</p>
+				<p>
+					<input type="text" class="area texts" id="invite-inputa" value="http://{$_SERVER['HTTP_HOST']}/?invit={$user['invit']}" style="width: 250px;vertical-align: bottom;"><input type="button" value="复制" data-clipboard-target="invite-inputa" class="ml20 btn-quick inviteCopyButton btns2" id="copy_button2" style="width:100px;">
+				</p>
+			</div>
+			<div class="quicklink invite-content">
+				<h4>专属广告语</h4>
+				<p class="tip">这是您的专属广告语，您可点击【复制】按钮，将本文粘贴并发送给您的好友：</p>
+				<p>
+					<textarea type="text" class="area texts" id="invite-textarea" style="width: 350px;height: 100px;line-height: 25px;" >{$C['invit_text_txt']} http://{$_SERVER['HTTP_HOST']}/?invit={$user['invit']}</textarea>
+					<input type="button" value="复制" data-clipboard-target="invite-textarea" class="ml20 btn-quick inviteCopyButton zeroclipboard-is-hover btns2 " id="copy_button3" style="width:100px;">
+				</p>
+			</div>
+			
+			
+			
+			<div class="quicklink">
+				<h4>快速分享到社区</h4>
+				<div class="reward-share">
+					<a href="javascript:;" title="分享到新浪微博" class="wlb_tsina"> <span class="icon icon-sina"></span> <i>新浪微博</i> </a> 
+					<a href="javascript:;" title="分享到豆瓣网" class="wlb_douban"> <span class="icon icon-douban"></span> <i>豆瓣网</i> </a> 
+					<a href="javascript:;" title="分享到QQ空间" class="wlb_qzone"> <span class="icon icon-qzone"></span> <i>QQ空间</i> </a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.qrcode.min.js"></script>
+       <script type="text/javascript" >
+       $('#codeaa').qrcode({
+         render: "table", //table方式
+         size:200,
+         text: "http://{$_SERVER['HTTP_HOST']}/?invit={$user['invit']}" //任意内容
+       }); //任意字符串
+       </script>
+	   
+	   
+<script type="text/javascript" src="__PUBLIC__/Home/js/ZeroClipboard.min.js"></script>
+<script>
+	var client = new ZeroClipboard(document.getElementById("copy-button"));
+	client.on("ready", function (readyEvent) {
+		client.on("aftercopy", function (event) {
+			event.target.style.display = "none";
+		});
+	});
+	ZeroClipboard.config({swfPath:'__PUBLIC__/Home/js/ZeroClipboard.swf'});
+	var clip = new ZeroClipboard(document.getElementById("copy"));
+	var _share_title = encodeURI("邀请好友");
+	var _share_content = encodeURI("{$C['invit_text_txt']}");
+	var _share_url = encodeURIComponent("http://{$_SERVER['HTTP_HOST']}/?invit={$user['id']}");
+	var _share_pic = '/';
+	$(document).ready(function () {
+		var clip1 = new ZeroClipboard(document.getElementById("copy_button1"));
+		var clip2 = new ZeroClipboard(document.getElementById("copy_button2"));
+		var clip3 = new ZeroClipboard(document.getElementById("copy_button3"));
+		clip1.on("copy", function (e) {
+			layer.msg('复制成功！', {icon: 1});
+		});
+		clip2.on("copy", function (e) {
+			layer.msg('复制成功！', {icon: 1});
+		});
+		clip3.on("copy", function (e) {
+			layer.msg('复制成功！', {icon: 1});
+		});
+		$(".wlb_tsina").click(function () {
+			window.open("http://v.t.sina.com.cn/share/share.php?url=" + _share_url + "&title=" + _share_content);
+		});
+		$(".wlb_douban").click(function () {
+			window.open("http://www.douban.com/recommend/?url=" + _share_url + "&title=" + _share_content);
+		});
+		$(".wlb_qzone").click(function () {
+			window.open("http://sns.qzone.qq.com/cgi-bin/qzshare/cgi_qzshare_onekey?url=" + _share_url + "&title=" + _share_title + "&pics=" + _share_pic + "&desc=" + _share_content);
+		});
+	});
+</script>
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_invit').addClass('active');
+</script>	
+	
+<include file="Public:footer" />

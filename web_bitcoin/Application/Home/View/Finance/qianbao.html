@@ -1,0 +1,488 @@
+<include file="Public:header" />
+	
+	
+	
+	
+<script type="text/javascript" src="/comfile/js/cityselect.js"></script>
+
+
+<style>
+	.yb-add{
+		width:231px;
+		margin-left:12px;
+		height:147px;
+		background-position:-10px -355px;
+		float:left;
+		padding-top:50px;
+		cursor:pointer;
+		padding-right:7px;
+	}
+	.ydt-bank .yb-list-window{
+		position:relative;
+		z-index:2;
+		width:990px;
+		margin:0 auto;
+		overflow:hidden;
+	}
+	.yb-ico-add{
+		width:16px;
+		height:16px;
+		margin:0 auto;
+		background-position:-100px -10px;
+	}
+	.ydt-title .yt-ico-arrow,
+	.ydt-bank .yb-arrows .yb-ico-left,
+	.ydt-bank .yb-arrows .yb-ico-right,
+	.ydt-bank .yb-list .yb-item .yb-info,
+	.ydt-bank .yb-list .yb-item .yb-ico-up,
+	.ydt-bank .yb-add,
+	.ydt-bank .yb-add .yb-ico-add,
+	.ico-up{
+		background-image:url('/comfile/images/index_sprites_24.png');
+		_background-image:url('/comfile/images/index_sprites_24.png');
+		background-repeat:no-repeat;
+	}
+	.ydt-bank .yb-add .yb-txt{
+		text-align:center;
+		margin-top:10px;
+	}
+	.ydt-bank .yb-list .yb-item.current .yb-info{
+		background-position:-10px -200px;
+	}
+	.ydt-bank .yb-list .yb-item .yb-info{
+		width:225px;
+		height:151px;
+		padding-top:10px;
+		margin-left:9px;
+		background-position:-10px -40px;
+		cursor:pointer;
+	}
+	.ydt-bank .yb-list .yb-item .yb-num{
+		display:block;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		margin-left:15px;
+		color:#1A81D6;
+		font-size:20px;
+		width:192px;
+		padding:25px 0 14px;
+		white-space:nowrap;
+	}
+	.ydt-bank .yb-list .yb-item .yb-links .yb-link{
+		line-height:0px;
+	}
+	a:hover{
+		color:#6CD9FF;
+	}
+	.ydt-bank .yb-list .yb-item .yb-links .yb-split{
+		width:1px;
+		padding-right:-1px;
+		height:13px;
+		float:left;
+		background-color:#D1D1D1;
+		margin:-6px 27px 10px;
+	}
+	.ydt-bank .yb-arrows{
+		position:absolute;
+		width:100%;
+		height:18px;
+		top:82px;
+	}
+	.ydt-bank .yb-arrows .yb-ico-left{
+		left:0;
+	}
+	.ydt-bank .yb-arrows .yb-ico-right{
+		right:0;
+	}
+	.ydt-bank .yb-arrows div{
+		position:absolute;
+		display:inline-block;
+		_display:inline;
+		*display:inline;
+		zoom:1;
+		width:10px;
+		height:18px;
+		cursor:pointer;
+	}
+	.yb-item.current .yb-links{
+		display:block;
+	}
+	.yb-item .yb-links{
+		width:191px;
+		margin:0 auto;
+		padding-top:21px;
+		display:none;
+	}
+	.yb-name div{
+		float:left;
+	}
+	.banke{
+		margin-top:19px;
+		margin-left:15px;
+		width:60px;
+		overflow:hidden;
+	}
+	.chuxu{
+		margin-top:-16px;
+		margin-left:98px;
+	}
+	.yb-info{
+		float:left;
+	}
+	.yb-item{
+		float:left;
+		word-wrap:break-word;
+		word-break:break-all;
+	}
+	.current{
+		width:243px;
+	}
+	.zhuanru{
+		color:#00B1EE;
+	}
+	.zhuanchu{
+		color:#00B1EE
+	}
+	.jiebang{
+		color:#00B1EE
+	}
+	.img_name{
+		margin-left:11px;
+		margin-top:10px;
+	}
+	.name{
+		display:block;
+		white-space:nowrap;
+		overflow:hidden;
+		text-overflow:ellipsis;
+		width:73px;
+		margin-left:20px;
+		margin-top:16px;
+	}
+</style>
+	
+    
+
+	
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 转出地址	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						转出地址					</span>
+	 <span>
+                        <a href="/finance/myzc" class="step fz_12 ml50 pd6 ">转出数字资产</a>
+		 <a href="/finance/coinoutlog" class="step fz_12 ml20 pd6 ">转出记录</a>
+                        <a href="/finance/qianbao" class="step fz_12 ml20 pd6 active">转出地址管理</a>
+                    </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+
+				<p>
+				
+				<notempty name="prompt_text">
+					{$prompt_text}
+				</notempty>
+				
+				</p>			
+			</div>
+			<div class="mytable-body ">
+				<div class="f_body  step2">
+					<table class="f_table" id="investLog_content">
+						<thead>
+						<tr>
+							<th style="width: 150px;text-align: left;padding-left: 10px;">
+								<select name="type" id="coinnam-select">
+									<option value="">--全部币种--</option>
+										<volist name="coin_list" id="vo">
+											<eq name="xnb" value="$key">
+												<option value="{$vo['name']}" selected="selected">{$vo.title} ({$vo['name']|strtoupper})</option>
+												<else/>
+												<option value="{$vo['name']}">{$vo.title} ({$vo['name']|strtoupper})</option>
+											</eq>
+										</volist>
+									 </select>
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+				</div>
+			</div>
+			<div class="ydt-bank">
+				<div class="yb-list-window">
+					<div class="yb-list-wapper">
+						<div id="bank_wrap" data-marginleft="979" data-on-cls="current" data-page-num="4" class="yb-list">
+							<div class="yb-add js-add-bank-card js-bank-index-0" onclick="showA()">
+								<a href="javascript:void(0)">
+									<div class="yb-ico-add"></div>
+								</a>
+								<div class="yb-txt">添加钱包</div>
+							</div>
+									
+
+
+
+
+<volist name="userQianbaoList" id="vo">
+
+									
+					<div class="yb-item  js-bank-item js-bank-index-1 current" id="item_bank" data-serial="">
+								<div class="yb-info">
+									<div class="yb-name">
+										<div class="img_name">
+											<img src="/Upload/coin/{$coin_list[$vo['coinname']]['img']}" class="mr5" style="margin-bottom: -5px; width: 22px;"/>
+											{$coin_list[$vo['coinname']]['title']}({$vo.coinname})
+										</div>
+										<div class="name">{$vo.name}</div>
+									</div>
+									<div class="yb-num " onclick="show_addr('{$vo.addr}')">
+										{$vo.addr}									</div>
+									<div class="yb-links clearfix">
+										<div class="js-bank-opt">
+                <span id="cur_bank_opt">
+                <div class="yb-link">
+	                <a href="/finance/myzr.html" class="js-opt @BANKCARD.FUN_C@" data-fun="C"><span class="zhuanru">转入</span></a>
+                </div>
+                <span class="yb-split"></span>
+                <div class="yb-link"><a href="/finance/myzc.html" class="js-opt @BANKCARD.FUN_Pay@" data-fun="Pay"><span class="zhuanchu">转出</span></a>
+                </div>
+            </span> <span class="yb-split"></span>
+											<div class="yb-link">
+												<a href="javascript:void(0)" data-align="{$vo.id}" onclick="del(this)" class="selected @BANKCARD.CHANGESTATUS@ js-cur-status-switch" data-open="<span>关闭</span>" data-close="<span>开启</span>" data-active="<span>激活</span>"><span class="jiebang">解绑</span></a>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+													
+													
+</volist>												
+									
+
+
+									
+													
+													</div>
+						<div class="pages">{$page}</div>
+					</div>
+				</div>
+				<div class="yb-arrows">
+					<div id="bank_pre_btn" class="yb-ico-left i-hide"></div>
+					<div id="bank_next_btn" class="yb-ico-right i-hide"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="all_mask_loginbox" id="step1" style="display: none;">
+	<div class="login_title pl20">添加一个钱包地址</div>
+	<form id="form-login" class="mask_wrap login-fb">
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">币种名称：</div>
+			<select name="bank" id="qianbao_coinname" class="texts">
+				<option value="" selected="selected">--选择币种--</option>
+					<volist name="coin_list" id="vo">
+
+							<option value="{$vo['name']}">{$vo.title} ({$vo['name']|strtoupper})</option>
+
+					</volist>
+				 </select>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">钱包标识：</div>
+			<input id="qianbao_name" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">钱包地址：</div>
+			<input id="qianbao_addr" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">交易密码：</div>
+			<input id="qianbao_paypassword" class="texts" type="password"><a href="/findpwd/findpwd" class="move ml5">忘记?</a>
+		</div>
+		<div class="login_button">
+			<input type="button" class="btns2" value="立即添加" onclick="qianbao_up();">
+		</div>
+	</form>
+	<div class="mask_wrap_close " onclick="showB()"><i class="fa fa-close fa-2x move"></i></div>
+</div>
+<div id="step2" class="all_mask" style="height: 0px;display: none;"></div>
+<script>
+	$("#coinnam-select").val("{$xnb}");
+	$("#coinnam-select").change(function () {
+		var coinname = $("#coinnam-select option:selected").val();
+		var url      = '/finance/qianbao';
+		if (coinname) {
+			url += '/coin/' + coinname;
+		}
+		window.location = url;
+	});
+	function show_addr(addr) {
+		layer.alert(addr, {title: "您的钱包地址是"});
+	}
+	function del(o) {
+		var id = $(o).attr('data-align');
+		layer.config({
+			extend: 'extend/layer.ext.js'
+		});
+		layer.ready(function () {
+			layer.prompt({
+				title: '输入交易密码，并确认',
+				formType: 1
+			}, function (val) {
+				if (val) {
+					$.post("{:U('User/delqianbao')}", {
+						id: id,
+						paypassword: val
+					}, function (data) {
+						if (data.status == 1) {
+							layer.msg(data.info, {icon: 1});
+							location.reload();
+						} else {
+							layer.msg(data.info, {icon: 2});
+							if (data.url) {
+								window.location = data.url;
+							}
+						}
+					}, "json");
+				}
+				;
+			});
+		});
+	}
+	$(function () {
+		var height = $(document).height();
+		if (height < 1000) {
+			height = 1000;
+		}
+		$('#step2').height(height);
+	});
+	function showA() {
+		$("#step1").show();
+		$("#step2").show();
+	}
+	function showB() {
+		$("#step1").hide();
+		$("#step2").hide();
+	}
+	function qianbao_up() {
+		var coinname    = $("#qianbao_coinname option:selected").val();
+		var name        = $('#qianbao_name').val();
+		var addr        = $('#qianbao_addr').val();
+		var paypassword = $('#qianbao_paypassword').val();
+		if (coinname == "" || coinname == null) {
+			layer.tips('请选择币种', '#qianbao_coinname', {tips: 2});
+			return false;
+		}
+		if (name == "" || name == null) {
+			layer.tips('请输入钱包标识', '#qianbao_name', {tips: 2});
+			return false;
+		}
+		if (addr == "" || addr == null) {
+			layer.tips('请输入钱包地址', '#qianbao_addr', {tips: 2});
+			return false;
+		}
+		if (paypassword == "" || paypassword == null) {
+			layer.tips('请输入交易密码', '#qianbao_paypassword', {tips: 2});
+			return false;
+		}
+		$.post("{:U('User/upqianbao')}", {
+			coin: coinname,
+			name: name,
+			addr: addr,
+			paypassword: paypassword
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+</script>
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_out').addClass('active');
+</script>	
+	
+	
+
+	
+<include file="Public:footer" />

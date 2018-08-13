@@ -1,0 +1,315 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i>
+		<a href="/" class="">首页 </a> &gt; 
+		<a href="/user/index.html" class="">安全中心 </a> &gt;绑定手机
+		</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="User:left" />
+
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+                        绑定手机					</span>
+					<span>
+                                                <a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right fz_14 mr5 move"></i><span class="fz_12 move">查看介绍</span></a>
+                        					</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p>
+				
+            <notempty name="prompt_text">
+                {$prompt_text}
+            </notempty>
+				
+				</p>			</div>
+			<div class="pwtrade mart30 mt50">
+								<div class="step3">
+					<div class="band_succ move" style="margin-bottom: 20px;margin-left: 155px;">
+						<i class="fa fa-check mr5"></i>您的账户已启用手机验证					</div>
+					<dl>
+						<dt>手机号码：</dt>
+						<dd id="dd-mobilebindc" title="联系管理员修改">
+							<input type="text" value="{$user.moble}" readonly>
+						</dd>
+					</dl>
+					<dl>
+						<dt>绑定时间：</dt>
+						<dd id="dd-mobilebindd"> {$user.mobletime|date="Y-m-d H:i:s",###}</dd>
+					</dl>
+					<dl style="margin-left: -70px;">
+						<dt></dt>
+						<dd><input type="button" class="btns2" value="更换绑定" onclick="new_moble()"></dd>
+					</dl>
+				</div>
+				<div class="step4" style="display:none;">
+					<form class="pwtrade mart30">
+						<dl>
+							<dt>新手机号码：</dt>
+							<dd>
+								<input type="text" id="mobles_new" class="texts" style="display: none;"> 
+								<input type="text" id="moble_new" class="texts" style="padding-left: 40px;">
+							</dd>
+							<link rel="stylesheet" href="/comfile/css/intlTelInput.css">
+							
+							
+						</dl>
+						<dl class="step5">
+							<dt>当前手机号码：</dt>
+							<dd class="yuyin">
+								<div class="clear">
+									{$user.moble} (接收验证码)
+								</div>
+							</dd>
+						</dl>
+						<dl class="step5">
+							<dt>获取验证码：</dt>
+							<dd class="yuyin">
+								<div class="clear">
+																		<input type="button" value="发送短信验证码" class="btns" onclick="send_moble_new('sms')" style="width: 100px;font-size: 12px;"/>
+																										</div>
+							</dd>
+						</dl>
+						<dl class="step6" style="display:none;">
+							<dt>短信验证码：</dt>
+							<dd>
+								<input type="text" id="moble_verify_new" value="" class="texts" placeholder="请输入短信验证码"/> <span id="reg_moble_new"></span>
+							</dd>
+						</dl>
+						<dl>
+							<dt></dt>
+							<dd>
+								<input type="button" value="更换绑定" id="genghuan" disabled  class="btns2" onclick="moble_news()"/>
+							</dd>
+						</dl>
+					</form>
+				</div>
+				
+							</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+</script>
+
+<script src="/comfile/js/intlTelInput.js"></script>
+<script>
+						$("#mobles").intlTelInput({
+							autoHideDialCode: false,
+							defaultCountry: "cn",
+							nationalMode: false,
+							preferredCountries: ['cn', 'us', 'hk', 'tw', 'mo'],
+						});
+					</script>
+<script>
+					function new_send() {
+						$(".step2").hide();
+						$(".step1").show();
+					}
+
+					function moble_set() {
+						var moble        = $("#moble").val();
+						var mobles       = $("#mobles").val();
+						var moble_verify = $("#moble_verify").val();
+						if (moble == "" || moble == null) {
+							layer.tips("请输入手机号码", '#moble', {tips: 3});
+							return false;
+						}
+						if (moble_verify == "" || moble_verify == null) {
+							layer.msg("请输入短信验证码", {icon: 2});
+							//layer.tips("请输入短信验证码", '#moble_verify', {tips: 3});
+							return false;
+						}
+						$.post("/user/moble_set.html", {
+							moble: moble,
+							mobles: mobles,
+							moble_verify: moble_verify
+						}, function (data) {
+							if (data.status == 1) {
+								layer.msg(data.info, {icon: 1});
+								location.reload();
+							} else {
+								layer.msg(data.info, {icon: 2});
+								if (data.url) {
+									window.location = data.url;
+								}
+							}
+						}, "json");
+					}
+				</script>
+<script src="/comfile/js/intlTelInput.js"></script>
+<script>
+	$("#mobles_new").intlTelInput({
+		autoHideDialCode: false,
+		defaultCountry: "cn",
+		nationalMode: false,
+		preferredCountries: ['cn', 'us', 'hk', 'tw', 'mo'],
+	});
+</script>
+<script>
+					function new_moble() {
+						$(".step3").hide();
+						$(".step4").show();
+					}
+
+					function send_new() {
+						$(".step6").hide();
+						$(".step5").show();
+					}
+
+					function send_moble_new(type) {
+						var moble      = "{$user.moble}";
+						var moble_new  = $("#moble_new").val();
+						var mobles_new = $("#mobles_new").val();
+						
+						if (moble_new == "" || moble_new == null) {
+							layer.tips("请输入新手机号码", '#moble_new', {tips: 3});
+							return false;
+						}
+						
+						if (moble == "" || moble == null) {
+							layer.tips("请输入手机号码", '#moble', {tips: 3});
+							return false;
+						}
+						$.post("/Verify/real_qq.html", {
+							moble: moble,
+							moble_new: moble_new,
+							mobles_new: mobles_new,
+							type: type,
+						}, function (data) {
+							if (data.status == 1) {
+							
+								$("#genghuan").removeAttr("disabled");
+							
+								layer.msg(data.info, {icon: 1});
+								$(".step5").hide();
+								$(".step6").show();
+								$('#moble_new').attr("disabled", "disabled");
+								var obj      = $('#reg_moble_new');
+								var wait     = 60;
+								var interval = setInterval(function () {
+									obj.html(wait + "秒可再次发送");
+									wait--;
+									if (wait < 0) {
+										clearInterval(interval);
+										$(".reloadverify_new").click();
+										$("#verify_new").val('');
+										obj.html('<a class="move" onclick="send_new()">没有收到？重新发送</a>');
+									}
+									;
+								}, 1000);
+							} else {
+								layer.msg(data.info, {icon: 2});
+								if (data.url) {
+									window.location = data.url;
+								}
+							}
+						}, "json");
+					}
+					function moble_news() {
+						var moble_new        = $("#moble_new").val();
+						var mobles_new       = $("#mobles_new").val();
+						var moble_verify_new = $("#moble_verify_new").val();
+						if (moble_new == "" || moble_new == null) {
+							layer.tips("请输入手机号码", '#moble_new', {tips: 3});
+							return false;
+						}
+						if (moble_verify_new == "" || moble_verify_new == null) {
+							layer.tips("请输入短信验证码", '#moble_verify_new', {tips: 3});
+							return false;
+						}
+						$.post("/User/upmoble_qq.html", {
+							moble_new: moble_new,
+							mobles_new: mobles_new,
+							moble_verify_new: moble_verify_new
+						}, function (data) {
+							if (data.status == 1) {
+								layer.msg(data.info, {icon: 1});
+								location.reload();
+							} else {
+								layer.msg(data.info, {icon: 2});
+								if (data.url) {
+									window.location = data.url;
+								}
+							}
+						}, "json");
+					}
+				</script>
+<script>
+	$('.user_moble').addClass('active');
+</script>
+
+
+
+
+
+<include file="Public:footer" />

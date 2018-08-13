@@ -1,0 +1,216 @@
+<include file="Public:header"/>
+<div class="autobox">
+    <div class="now">
+        <a href="/" class="orange">首页</a> &gt;
+        <a href="/Game/" class="orange">应用中心</a> &gt; 话费充值
+    </div>
+    <div class="assets_center clear po_re zin70">
+        <!--左侧菜单-->
+        <include file="Game:left"/>
+        <!--右侧内容-->
+        <div class="assets_content w900 right bg_w">
+            <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+                <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">话费充值</h1>
+            </div>
+            <div class="sj" style="top: 40px; left: 62px;"></div>
+            <notempty name="prompt_text">
+                <div class="mytips">
+                    <h6 style="color: #ff8000;">温馨提示</h6>
+                    {$prompt_text}
+                </div>
+            </notempty>
+            <br>
+
+            <div class="weituo_bizhong">
+                <div class="bizhong_select">
+                    <div class="bz_btn">
+                        <img src="__PUBLIC__/Home/images/coin_rmb.png" alt="" style="width: 22px; float: left; margin-top: 7px; margin-right: 5px;"/>
+                        <apan style="float: left;
+padding-top: 9px;">　人民币(CNY)
+                        </apan>
+                    </div>
+                </div>
+                <div class="bizhong_type" style="width: 200px;">
+                    <span>可用<em class="coin-name"></em>：<font class="coin-balance">{$user_coin['cny']|Num}</font></span>
+                </div>
+            </div>
+            <div class="choosepaymethod">
+                <div class="choosebanks" style="margin-top: 20px;">
+                    <div class="methodway clearfix">
+                        <div class="w_div clearfix">
+                            <div class="w1">充值手机：</div>
+                            <div class="w2">
+                                <input type="text" class="cztxinput" id="huafei_moble" value="">
+                            </div>
+                        </div>
+                        <div class="w_div clearfix">
+                            <div class="w1">充值金额：</div>
+                            <div class="w2">
+                                <select name="type" id="huafei_num" style="width: 200px; height: 38px;">
+                                    <option value="">--选择充值金额--</option>
+                                    <volist name="huafei_num" id="vo">
+                                        <option value="{$key}">{$vo}</option>
+                                    </volist>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="w_div clearfix">
+                            <div class="w1">付款方式：</div>
+                            <div class="w2">
+                                <select name="type" id="huafei_type" style="width: 200px; height: 38px;">
+                                    <option value="">--选择付款方式--</option>
+                                    <volist name="huafei_type" id="vo">
+                                        <option value="{$key}">{$vo[0]}</option>
+                                    </volist>
+                                </select>
+                                <volist name="huafei_type" id="vo">
+                                    <span class="huafei_type_{$key}  huafei_type " style="display: none;color:#e55600; " id="huafei_type_{$key}">1{$vo[0]}等于   {$vo[1]} 人民币</span>
+                                </volist>
+                            </div>
+                        </div>
+                        <div class="w_div clearfix">
+                            <div class="w1">交易密码：</div>
+                            <div class="w2">
+                                <input type="password" class="cztxinput" id="paypassword" name="paypassword" autocomplete="off">
+                                <a href="{:U('Login/findpaypwd')}" class="reg_floatr">忘记密码?</a>
+                            </div>
+                        </div>
+                        <div class="w_div clearfix">
+                            <div class="w1">&nbsp;</div>
+                            <div class="w2">
+                                <input type="button" class="btn-cztx" id="" onclick="Update()" value="提 交" title="提 交">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="f_body">
+                    <table class="f_table" id="investLog_content">
+                        <thead>
+                        <tr>
+                            <th>充值时间</th>
+                            <th>充值手机</th>
+                            <th>充值金额</th>
+                            <th>付款方式</th>
+                            <th>付款金额</th>
+                            <th>处理时间</th>
+                            <th>状态</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <volist name="list" id="vo">
+                            <tr>
+                                <td>{$vo['addtime']|addtime}</td>
+                                <td>{$vo['moble']}</td>
+                                <td>{$vo['num']|Num}</td>
+                                <td>{$vo['type']}</td>
+                                <td>{$vo['mum']|Num}</td>
+                                <td>
+                                    {$vo.endtime|addtime}
+                                </td>
+                                <td>
+                                    <eq name="vo['status']" value="0">正在处理</eq>
+                                    <eq name="vo['status']" value="1">已到账</eq>
+                                    <eq name="vo['status']" value="2">已撤销</eq>
+                                </td>
+                            </tr>
+                        </volist>
+                        </tbody>
+                    </table>
+                    <div class="pages">{$page}</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<script>
+    $("#huafei_type").change(function () {
+        var huafei_type = $("#huafei_type option:selected").val();
+        $(".huafei_type").hide();
+        $("#huafei_type_" + huafei_type).show();
+    });
+
+    function Update() {
+        var moble = $("#huafei_moble").val();
+        var num = $('#huafei_num option:selected').val();
+        var type = $('#huafei_type option:selected').val();
+        var paypassword = $("#paypassword").val();
+
+        if (moble == "" || moble == null) {
+            layer.tips('请输入手机号码', '#huafei_moble', {
+                tips: 3
+            });
+            return false;
+        }
+        if (num == "" || num == null) {
+            layer.tips('请选择充值金额', '#huafei_num', {
+                tips: 3
+            });
+            return false;
+        }
+        if (type == "" || type == null) {
+            layer.tips('请选择付款方式', '#huafei_type', {
+                tips: 3
+            });
+            return false;
+        }
+
+        if (paypassword == "" || paypassword == null) {
+            layer.tips('请输入交易密码', '#paypassword', {
+                tips: 3
+            });
+            return false;
+        }
+
+        //信息框
+        layer.alert(
+                '充值手机：' + moble + '<br>' +
+                '充值金额：' + num + '<br>' +
+                '充值方式：' + type + '<br><br>' +
+                '你确定充值么？', {
+                    time: 0 //不自动关闭
+                    ,
+                    btn: [
+                        '确认',
+                        '取消'
+                    ]
+                    ,
+                    title: '订单详情'
+                    ,
+                    yes: function () {
+
+
+                        $.post("{:U('Huafei/index')}", {
+                            moble: moble,
+                            num: num,
+                            type: type,
+                            paypassword: paypassword,
+                        }, function (data) {
+                            if (data.status == 1) {
+                                layer.msg(data.info, {
+                                    icon: 1
+                                });
+                                window.location = "{:U('Huafei/index')}";
+                            } else {
+                                layer.msg(data.info, {
+                                    icon: 2
+                                });
+                                if (data.url) {
+                                    window.location = data.url;
+                                }
+                            }
+                        }, "json");
+
+
+                    }
+                });
+    }
+</script>
+<script>
+    //顶部菜单高亮
+    $('#game_box').addClass('active');
+    $('#game_huafei').addClass('active');
+    $('#game_huafei i').attr('class', 'coin_menu_op_8');
+</script>
+<include file="Public:footer"/>

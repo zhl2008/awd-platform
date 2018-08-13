@@ -1,0 +1,67 @@
+<div class="coin_menu">
+    <if condition="authgame('issue') neq '1'">
+        <div class="coin_menu_box">
+            <ul>
+                <li id="game_issue">
+                    <i class="coin_menu_op_11_1"></i><a href="{:U('Issue/index')}">认购中心</a>
+                </li>
+                <li id="game_issuelog">
+                    <i class="coin_menu_op_7_1"></i><a href="{:U('Issue/log')}">认购记录</a>
+                </li>
+            </ul>
+        </div>
+    </if>
+    <if condition="authgame('fenhong') eq '1'">
+        <div class="coin_menu_box" style="display:none;">
+            <ul>
+                <li id="game_fenhong">
+                    <i class="coin_menu_op_10_1"></i><a href="{:U('Fenhong/index')}">分红中心</a>
+                </li>
+                <li id="game_fenhonglog">
+                    <i class="coin_menu_op_7_1"></i><a href="{:U('Fenhong/log')}">分红记录</a>
+                </li>
+            </ul>
+        </div>
+    </if>
+
+    <if condition="authgame('huafei') eq '1'">
+
+        <div class="coin_menu_box" style="display:none;">
+            <ul>
+                <li id="game_huafei">
+                    <i class="coin_menu_op_8_1"></i><a href="{:U('Huafei/index')}">话费充值</a>
+                </li>
+            </ul>
+        </div>
+
+    </if>
+
+    <if condition="authgame('money') eq '1'">
+        <div class="coin_menu_box" style="display:none;">
+            <ul>
+                <li id="game_money">
+                    <i class="coin_menu_op_6_1"></i><a href="{:U('Money/index')}">理财中心</a>
+                </li>
+                <li id="game_moneylog">
+                    <i class="coin_menu_op_7_1"></i><a href="{:U('Money/log')}">理财记录</a>
+                </li>
+            </ul>
+        </div>
+    </if>
+
+
+    <if condition="authgame('bazaar') eq '1'">
+        <div class="coin_menu_box" style="display:none;">
+            <ul>
+                <li id="game_bazaar">
+                    <i class="coin_menu_op_6_1"></i><a href="{:U('Bazaar/index')}">集市交易</a>
+                </li>
+                <li id="game_bazaarlog">
+                    <i class="coin_menu_op_7_1"></i><a href="{:U('Bazaar/log')}">集市记录</a>
+                </li>
+            </ul>
+        </div>
+    </if>
+
+
+</div>

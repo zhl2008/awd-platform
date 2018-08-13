@@ -1,0 +1,76 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">自动升级</span>
+		</div>
+		<div class="with-padding" style="width:100%;">
+			<div class="alert alert-info">
+				<p>当前远程最新版本<strong>{$version.0.name}</strong></p>
+				<p>当前的系统版本号<strong>{$currentVersion}</strong></p>
+			</div>
+			<p class="alert alert-danger">在安装更新之前，请先 <a href="{:U('Tools/database?type=export')}">备份数据库</a>,以防数据或者二次开发内容丢失。
+			</p>
+			<p class="alert alert-danger">请先到后台 <a href="{:U('Config/index')}">系统设置</a> 页面，关闭网站。 </p>
+			<table class="table table-hover">
+				<thead>
+				<tr>
+					<th>编号</th>
+					<th>版本名</th>
+					<th style="width: 100px">版本号</th>
+					<th style="width: 180px">发布时间</th>
+					<th style="width: 180px">更新时间</th>
+					<th style="width: 120px">更新说明</th>
+					<th style="width: 300px">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="version" id="vo">
+					<tr class="{$vo.class}">
+						<td>
+							{$vo.number}
+						</td>
+						<td><a onclick="hangqing('{$vo.name}')">{$vo.title}</a>{$vo.word}</td>
+						<td>
+							<strong>{$vo.name}</strong>
+						</td>
+						<td>{$vo.create_time|addtime}</td>
+						<td>{$vo.update_time|addtime}</td>
+						<td>
+							<a onclick="hangqing('{$vo.name}')">查看详情</a>
+						</td>
+						<td>
+							<if condition="version_compare($vo['name'],$currentVersion) eq 0">
+								<span style="color: red;">>>当前版本 </span>
+								<else/>
+								<if condition="version_compare($vo['name'],$currentVersion) eq -1">
+									历史版本
+									<else/>
+									未来版本&nbsp;|&nbsp;<a href="{:U('getFileList',array('version'=>$vo['name']))}">自动升级</a>
+								</if>
+							</if>
+						</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+<script>
+	$('.zuocoin_up').hide();
+	function hangqing(name) {
+
+		$.getJSON("/Admin/Cloud/version?name=" + name + "&t=" + Math.random(), function (data) {
+
+			layer.alert(data, {title: '更新日志', area: ['630px', '360px'],});
+		});
+
+
+	}
+</script>
+<include file="Public:footer"/>

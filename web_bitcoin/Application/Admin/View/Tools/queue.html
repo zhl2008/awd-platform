@@ -1,0 +1,39 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+
+		<div class="main-title-h">
+			<span class="h1-title">服务器队列</span>
+		</div>
+
+
+		<block name="body">
+		<div class="container-span">
+			<div class="span4" style="margin: 0 0px;width: 100%;">
+				<div class="columns-mod">
+					<div class="hd cf">
+						<h5>队列信息</h5>
+					</div>
+					<div class="bd">
+						<div class="sys-info">
+							<table>
+								<tr>
+									<th>{$str}</th>
+									<td>{$status}</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</block>
+	</div>
+</div>
+
+<!-- /内容区 -->
+<include file="Public:footer" />

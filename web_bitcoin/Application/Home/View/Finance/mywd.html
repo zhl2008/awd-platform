@@ -1,0 +1,192 @@
+<include file="Public:header" />
+		
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 我的推荐</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+
+
+
+		<div class="tag-list-content">
+				<div class="assets_content bg_w">
+					<div class="safe_center clear ">
+						<h1>我的推荐  <a class="right" onclick="$('#hints').slideToggle();"> <i class="fa fa-hand-o-right move fz_14 mr5"></i> <span class="fz_12 move">查看介绍</span> </a> 						</h1>
+					</div>
+					<div id="hints" class="mytips" style="display:none;">
+						
+						<p>
+						
+             <notempty name="prompt_text">
+
+                        {$prompt_text}
+
+                </notempty>
+						
+						</p>		</div>
+					<div class="mytable-body ">
+						<div class="f_body  step2">
+							<table class="f_table" id="investLog_content">
+								<thead>
+								<tr>
+									<th width="180" style="text-align: left; padding-left: 30px;">下家类型</th>
+									<th>用户名</th>
+									<th>注册时间</th>
+									<th>是否认证</th>
+								</tr>
+								</thead>
+								<tbody>
+																
+         <volist name="list" id="v">
+          <tr>
+           <td style="text-align: left; padding-left: 20px;"><a href="javascript:void(0)" onclick="Address({$v['id']})">
+             <img class="invit_img_{$v['id']}" src="__PUBLIC__/Home/images/jia.png" style="width: 18px; vertical-align: middle; margin-top: -5px;">一级下家({$v.invitss})
+            </a></td>
+
+		   <td>{$v.username|substr_replace='****',3,6}</td> 
+           <td>{$v.addtime|addtime}</td>
+           <td><empty name="v.moble"> <font class="buy">未认证 </font> <else /> <font class="sell">已认证 </font></empty></td>
+          </tr>
+          <notempty name="v['invits']"> <volist name="v['invits']" id="vv">
+          <tr class="invit_{$v['id']}" style="display: none;">
+           <td style="text-align: left; padding-left: 40px;"><a href="javascript:void(0)" onclick="Address({$vv['id']})">
+             <img class="invita_img_{$v['id']} invit_img_{$vv['id']}" src="__PUBLIC__/Home/images/jia.png" style="width: 18px; vertical-align: middle; margin-top: -5px;">二级下家({$vv.invitss})
+            </a></td>
+           <td>{$vv.username|substr_replace='****',3,6}</td>
+           <td>{$vv.addtime|addtime}</td>
+           <td><empty name="vv.moble"> <font class="buy">未认证 </font> <else /> <font class="sell">已认证 </font></empty></td>
+          </tr>
+          <notempty name="vv['invits']"> <volist name="vv['invits']" id="vvv">
+          <tr class="invita_{$v['id']} invit_{$vv['id']} " style="display: none;">
+           <td style="text-align: left; padding-left: 60px;"><a href="javascript:void(0)" onclick="Address({$vvv['id']})">
+             <img class="invita_img_{$v['id']} invit_img_{$vvv['id']}" src="__PUBLIC__/Home/images/jian.png" style="width: 18px; vertical-align: middle; margin-top: -5px;">三级下家
+            </a></td>
+           <td>{$vvv.username|substr_replace='****',3,6}</td>
+           <td>{$vvv.addtime|addtime}</td>
+           <td><empty name="vvv.moble"> <font class="buy">未认证 </font> <else /> <font class="sell">已认证 </font></empty></td>
+          </tr>
+          </volist> </notempty> </volist> </notempty> </volist>							
+																
+								</tbody>
+							</table>
+							<div class="pages">{$page}</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	
+	
+function Address(id){
+	var img1="__PUBLIC__/Home/images/jia.png";
+	var img2="__PUBLIC__/Home/images/jian.png";
+	var img=$(".invit_img_"+id).attr("src");
+	
+	
+	//alert(img)
+	if(img==img1){
+		$(".invit_img_"+id).attr("src",img2);
+	
+		$(".invit_"+id).show();
+	}else{
+		$(".invit_img_"+id).attr("src",img1);
+		$(".invita_img_"+id).attr("src",img1);
+		$(".invit_"+id).hide();
+		$(".invita_"+id).hide();
+	}
+}
+
+
+
+
+function Addressb(id){
+	var img1="__PUBLIC__/Home/images/jia.png";
+	var img2="__PUBLIC__/Home/images/jian.png";
+	var img=$(".invit_img_"+id).attr("src");
+	
+	
+	//alert(img)
+	if(img==img1){
+		$(".invit_img_"+id).attr("src",img2);
+		
+		$(".invit_"+id).show();
+	}else{
+		$(".invit_img_"+id).attr("src",img1);
+		$(".invit_"+id).hide();
+		$(".invita_"+id).hide();
+	}
+}
+	
+	
+	
+	
+	$('#finance_box').addClass('active');
+	$('.finan_invitlog').addClass('active');
+</script>	
+	
+<include file="Public:footer" />

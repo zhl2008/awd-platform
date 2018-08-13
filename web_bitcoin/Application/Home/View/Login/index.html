@@ -1,0 +1,109 @@
+<include file="Public:header" />
+<div class="wrapper">
+	<div class="register" style="border-radius: 15px;">
+		<table style="float: right; margin: 50px 100px 60px auto;">
+			<tbody>
+				<tr>
+					<th align="right">用户名：</th>
+					<td><div class="formbody" style="width: 250px;">
+							<i class="icon_username"></i>
+							<input type="text" class="username" id="username" name="username" placeholder="请输入用户名或手机号">
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right">登录密码：</th>
+					<td><div class="formbody" style="width: 250px;">
+							<i class="icon_password"></i>
+							<input type="password" class="password" id="password" name="password" placeholder="请输入登录密码">
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right">验证码：</th>
+					<td><div class="formbody">
+							<i class="icon_code"></i>
+							<input type="text" class="code" id="verify" name="code" placeholder="请输入验证码" style="width: 100px;"><img id="codeImg" src="{:U('Verify/code')}" width="145" height="42" onclick="this.src=this.src+'?t='+Math.random()" style="float: left; cursor: pointer;" title="换一张">
+						</div></td>
+				</tr>
+				<tr>
+					<th align="right"></th>
+					<td><div class="autologin" style="margin-bottom: 20px;">
+							<label><input type="checkbox" id="autologin" style="vertical-align: -1px;" checked="checked"> 自动登陆</label>
+							<a href="/Login/findpwd.html" class="reg_floatr" style="float: right;">忘记密码?</a>
+						</div></td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><div class="formbody">
+							<input type="button" class="zuocoin_btn" name="index_submit" id="loginSubmin" onclick="Update();" value="立即登录" title="立即登录" style="width: 320px;">
+						</div></td>
+					<td>&nbsp;</td>
+				</tr>
+				<tr>
+					<td>&nbsp;</td>
+					<td><div class="formbody">
+							<span style="display: block; margin: 10px auto; width: 150px; font-size: 14px;">
+								没有帐号？
+								<a href="{:U('Login/register')}"> 免费注册</a>
+							</span>
+						</div></td>
+					<td>&nbsp;</td>
+				</tr>
+			</tbody>
+		</table>
+		<div class="logo">
+			<a>
+				<img src="__PUBLIC__/Home/images/login_log.jpg" style="margin: 40px 50px;">
+			</a>
+		</div>
+	</div>
+</div>
+<script>
+	//记住账号
+	var cookieValue=$.cookies.get('cookie_username');
+	if(cookieValue!=''&&cookieValue!=null){
+		$("#username").val(cookieValue);
+		$("#autoLogin").attr("checked",true);
+	}
+
+
+	function Update(){
+		var username=$("#username").val();
+		var password=$("#password").val();
+		var verify=$("#verify").val();
+		if(username==""||username==null){
+			layer.tips('请输入用户名','#username',{tips:3});
+			return false;
+		}
+		if(password==""||password==null){
+			layer.tips('请输入登录密码','#password',{tips:3});
+			return false;
+		}
+		if(verify==""||verify==null){
+			layer.tips('请输入验证码','#verify',{tips:3});
+			return false;
+		}
+
+
+		$.post("/Login/index",{username:username,password:password,verify:verify},function(data){
+			if(data.status==1){
+				if($("#autologin").attr("checked")=='checked'){
+					$.cookies.set('cookie_username',username);
+				}else{
+					$.cookies.set('cookie_username',null);
+				}
+				layer.msg(data.info,{icon:1});
+				window.setTimeout("window.location='/Finance'",1000);
+			}else{
+				layer.msg(data.info,{icon:2});
+				if(data.url){
+					window.setTimeout("window.location="+data.url,1000);
+				}
+			}
+		},"json");
+	}
+</script>
+<script>
+	//顶部菜单高亮
+	$('#menu_top_index').addClass('current');
+</script>
+<include file="Public:footer" />

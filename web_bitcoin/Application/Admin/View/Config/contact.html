@@ -1,0 +1,221 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">客服配置</span>
+		</div>
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<form id="form" action="{:U('Config/contactEdit')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">联系号码:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="contact_moble" value="{$C['contact_moble']}">
+									</td>
+									<td class="item-note">联系号码</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">新浪微博:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="contact_weibo" value="{$C['contact_weibo']}">
+									</td>
+									<td class="item-note">联系新浪微博</td>
+								</tr>
+								
+								<tr class="controls">
+									<td class="item-label">微信公众号:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="contact_weixin" value="{$C['contact_weixin']}">
+									</td>
+									<td class="item-note">微信公众号</td>
+								</tr>
+								
+								
+								<tr class="controls"  style="display:none;">
+									<td class="item-label">联系腾讯微博:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="contact_tqq" value="{$C['contact_tqq']}">
+									</td>
+									<td class="item-note">联系腾讯微博</td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">微信公众号二维码 :</td>
+									<td>
+										<div id="addpicContainer">
+											<notempty name="data.contact_weixin_img">
+												<!--没有图片显示默认图片-->
+												<img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="/Upload/public/{$data.contact_weixin_img}">
+												<else/>
+												<!--没有图片显示默认图片-->
+												<img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+											</notempty>
+											<input type="hidden" id="img" name="contact_weixin_img" value="{$data.contact_weixin_img}">
+											<input type="file" id="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+										</div>
+									</td>
+									<td class="item-note">尺寸100px*100px</td>
+								</tr>
+								
+								
+								
+								<tr class="controls">
+									<td class="item-label">手机版二维码 :</td>
+									<td>
+										<div id="addpicContainer">
+											<notempty name="data.contact_app_img">
+												<!--没有图片显示默认图片-->
+												<img id="up_imga" onclick="getElementById('inputfilea').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="/Upload/public/{$data.contact_app_img}">
+												<else/>
+												<!--没有图片显示默认图片-->
+												<img id="up_imga" onclick="getElementById('inputfilea').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+											</notempty>
+											<input type="hidden" id="imga" name="contact_app_img" value="{$data.contact_app_img}">
+											<input type="file" id="inputfilea" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+										</div>
+									</td>
+									<td class="item-note">尺寸100px*100px</td>
+								</tr>
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								
+								<tr class="controls">
+									<td class="item-label">联系QQ:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="contact_qq" value="{$C['contact_qq']}">
+									</td>
+									<td class="item-note">联系QQ 多个用户“|”分割</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">联系QQ群:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="contact_qqun" value="{$C['contact_qqun']}">
+									</td>
+									<td class="item-note">联系QQ群 多个用户“|”分割</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class="btn submit-btn ajax-post" target-form="form-horizontal" id="submit" type="submit">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function () {
+						$('#form').submit();
+					});
+					
+					
+					$(document).ready(function () {
+						//响应文件添加成功事件
+						$("#inputfile").change(function () {
+							//创建FormData对象
+							var data = new FormData();
+							//为FormData对象添加数据
+							$.each($('#inputfile')[0].files, function (i, file) {
+								data.append('upload_file' + i, file);
+							});
+
+
+							//发送数据
+							$.ajax({
+								url: '/Admin/Config/image',
+								type: 'POST',
+								data: data,
+								cache: false,
+								contentType: false,		//不可缺参数
+								processData: false,		//不可缺参数
+								success: function (data) {
+									if (data) {
+										$('#up_img').attr("src", '/Upload/public/' + data);
+										$('#img').val(data);
+										$('#up_img').show();
+									}
+								},
+								error: function () {
+									alert('上传出错');
+									$(".loading").hide();	//加载失败移除加载图片
+								}
+							});
+
+						});
+					});
+									
+					
+					
+					
+				$(document).ready(function () {
+					//响应文件添加成功事件
+					$("#inputfilea").change(function () {
+						//创建FormData对象
+						var data = new FormData();
+						//为FormData对象添加数据
+						$.each($('#inputfilea')[0].files, function (i, file) {
+							data.append('upload_file' + i, file);
+						});
+
+
+						//发送数据
+						$.ajax({
+							url: '/Admin/Config/image',
+							type: 'POST',
+							data: data,
+							cache: false,
+							contentType: false,		//不可缺参数
+							processData: false,		//不可缺参数
+							success: function (data) {
+								if (data) {
+									$('#up_imga').attr("src", '/Upload/public/' + data);
+									$('#imga').val(data);
+									$('#up_imga').show();
+								}
+							},
+							error: function () {
+								alert('上传出错');
+								$(".loading").hide();	//加载失败移除加载图片
+							}
+						});
+
+					});
+				});
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>

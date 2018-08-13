@@ -1,0 +1,81 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>{:L("_EXTENDED_AUTOMATIC_UPGRADE_")}-{:L("_COMPARE_LOCAL_FILE_")}</h2>
+    </div>
+    <div class="with-padding" style="width:1000px;">
+        <include file="_updatingGoods"/>
+        <p><strong class="text-success">1.{:L("_DOWNLOAD_THE_UPDATE_PACKAGE_AND_GET_THE_UPDATED_FILE_LIST_")}-》 2.{:L("_LOCAL_FILE_CONTRAST_")}</strong> -》 3.{:L("_CODE_UPGRADE_")}-》4.{:L("_DATABASE_UPGRADE_")}-》{:L("_UPGRADE_")}</p>
+        <p class="alert alert-warning">{:L("_PLEASE_MAKE_SURE_THAT_ALL_THE_FILES_INVOLVED_ARE_IN_THE_STATE_OF_")}<strong class="text-success">{:L("_YOU_CAN_WRITE_")}</strong> 。{:L("_COULD_NOT_ENTER_THE_NEXT_STEP._PLEASE_WRITE_TO_THE_FTP_FILE_THAT_YOU_DO_NOT_HAVE_PERMISSION_TO_WRITE_TO_THE_RIGHT_")} <strong class="text-success">{:L("_REFRESH_")}</strong>{:L("_THIS_PAGE_")}</p>
+        <p class="alert alert-info">{:L("_FOR_CONFLICT_FILES_DEVELOPERS_WILL_FIND_A_NEW_FILE_MANUALLY_MERGE_CODE_COMBINED_WITH_THE_COMPLETION_OF_THE_")}，{:L("_CLICK_THE_GRAY_BUTTON_TO_SKIP_THE_CODE_AUTO_UPDATE_TO_ENSURE_THAT_YOUR_TWO_DEVELOPMENT_IS_KEPT_")}</p>
+        <p>{:L("_IF_YOU_DO_NOT_MODIFY_THE_FILE_BUT_FOUND_THAT_ALL_THE_FILES_HAVE_A_CONFLICT_THEN_MAKE_SURE_YOU_UPLOAD_THE_FILE_IN_A_WAY_OF_2_")}。</p>
+
+        <h4>{:L("_THE_UPDATED_FILE_")}</h4>
+
+        <table class="table table-hover table-strip" id="file" style="border: 1px solid #ccc">
+            <thead>
+            <tr><th>{:L("_FILE_NAME_")}</th><th>{:L("_STATE_")}</th><th>{:L("_JURISDICTION_")}</th></tr>
+            </thead>
+        </table>
+
+        <h4>{:L("_BACKUP_FILE_STORAGE_LOCATION_")}</h4>
+
+        <p>
+            <span class="text-success">{$path}/backup</span>
+        </p>
+
+        <p>
+           {:L("_IF_YOU_HAVE_DEVELOPED_TWO_TIMES_AND_HAVE_RESULTED_IN_DIFFERENCES_IN_THE_FILE_YOU_CAN_RETRIEVE_THE_FILES_THAT_ARE_COVERED_HERE_")}
+        </p>
+
+        <div class="row">
+            <div class="col-xs-7">
+                <a id="compare_btn" href="{:U('updating3')}" class="btn btn-danger btn-block" disabled="disabled"
+                   onclick="if(!confirm({:L('_DETERMINE_THE_COVER_FILE_UPGRADE?_THIS_OPERATION_MAY_CAUSE_THE_EXPANSION_TO_BE_UNABLE_TO_RUN_PLEASE_CONFIRM_THE_UPGRADE_WITH_SINGLE_')})){return false}">{:L("_NEXT_COVER_THE_FILES_AND_LOSE_THE_CHANGE_")}，{:L("_AND_UPGRADE_MAYBE_AN_ERROR_")}</a>
+            </div>
+            <div class="col-xs-5">
+                <a href="{:U('updating4')}" class="btn btn-default btn-block"
+                   onclick="if(!confirm('{:L("_DETERMINE_SKIP_FILE_UPGRADE_STEPS?_IF_YOU_ARE_NOT_A_DEVELOPER_OR_YOU_ARE_NOT_MERGED_WITH_THE_CODE_")}，{:L("_PLEASE_DONT_JUMP_OVER_")}')){return false}">{:L("_I_HAVE_TO_MERGE_THE_CODE_SKIP_FILE_UPGRADE_")}</a>
+            </div>
+        </div>
+
+
+        <div style="margin-top: 10px">
+            <div class="progress progress-striped active hide" style="border-radius: 3px">
+                <div id="progress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width:0">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function writeFile($data) {
+            $('#file').append($data);
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable() {
+            $('#compare_btn').removeAttr('disabled', '');
+        }
+    </script>
+</block>

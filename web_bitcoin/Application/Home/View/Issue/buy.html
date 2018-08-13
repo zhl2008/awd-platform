@@ -1,0 +1,440 @@
+<include file="Public:header"/>
+
+
+<link rel="stylesheet" href="/comfile/css/issue.css"/>
+
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页</a> &gt; <a href="/issue/index.html" class="orange">认购中心</a> &gt; 立即认购	</div>
+	<div class="main-content mb20">
+		<div class=" assets_content bg_w" style="min-height:30px;">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						立即认购					</span>
+	                <span>
+                        <a href="/issue/index.html" id="step1" class="step fz_12 ml50 pd6 active">认购列表</a>
+                        <a href="/issue/ALLlog.html" id="step2" class="step fz_12 ml20 pd6 ">认购记录</a>
+						<a href="/issue/log.html" id="step3" class="step fz_12 ml20 pd6 ">我的认购</a>
+	                </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p>
+					<notempty name="prompt_text">
+						{$prompt_text}
+					</notempty>
+				
+				</p>			
+			</div>
+			<div class="crowd_con clear">
+				<div class="crowd_con_l ">
+					<div class="crowd_bi clear">
+						<img src="__UPLOAD__/coin/{$issue['img']}" style="width: 30px;margin-top: 10px;" class="left">
+						<h2><a href="#" style="" class="left">{$issue['name']}</a></h2>
+					</div>
+					<ul class="crowd_subscribe clear">
+						<li style="width:180px">
+							<p>认购总量</p>
+							<span class="red">
+                                {$issue['num']*1}					</span>
+						</li>
+						<li style="width:180px">
+							<p>认购单价</p>
+							<span class="red">
+								{$issue['price']*1}						</span>
+						</li>
+						<li>
+							<p>认购限量</p>
+							<span class="red">
+								{$issue['limit']*1}						</span>
+						</li>
+						<li>
+							<p>累计已认购</p>
+							<span class="green">
+								{$issue['deal']*1}					</span>
+						</li>
+					</ul>
+					<div class="crowd_time">
+					
+					
+					<eq name="issue['status']" value="0">	
+					
+						<div class="dowebok_move">
+							<p class="crowd_con_lp " style="text-align: center;font-size: 22px;letter-spacing: 1px;line-height: 70px;">当前认购已经结束</p>
+						</div>
+					</eq>	
+						
+					<eq name="issue['status']" value="1">	
+					
+						<div class="dowebok_move">
+							<p class="crowd_con_lp " style="text-align: center;font-size: 22px;letter-spacing: 1px;line-height: 70px;">正在认购中</p>
+						</div>
+					</eq>	
+						
+						
+					<eq name="issue['status']" value="2">	
+					
+						<div class="dowebok_move">
+							<p class="crowd_con_lp " style="text-align: center;font-size: 22px;letter-spacing: 1px;line-height: 70px;">没有开始当前认购</p>
+						</div>
+					</eq>	
+						
+						
+					</div>
+					<div class="crowd_pro">
+						<progress value="{$issue['bili']}" max="100"></progress>
+						<span>{$issue['bili']}%</span></div>
+					<div class="crowd_xq">
+						<span class=" mr10">开始时间：<b class="red">{$issue['time']}</b></span> <span class=" mr10">结束时间：<b class="red">{$issue['endtime']}</b></span> <span class=" mr10">付款币种：<b class="green">{$issue['buycoin']|strtoupper}</b>  </span>
+					</div>
+				</div>
+				<div class="crowd_con_r">
+					<div class="crowd_my">
+						<h2>我要认购</h2>
+						<div class="login_button mt10">
+							<p class="crowd_con_lp crowd_con_lp2">您目前可用{$issue['buycoin']|strtoupper}：<span id="finance_span" class="green">{$user_coin[$issue['buycoin']]*1}</span>
+							</p>
+						</div>
+						<div class="login_text zin90 clear mt10">
+							<span>认购数量:</span> <input type="text" id="num" class="texts">
+						</div>
+						<div class="login_text zin80 clear mt10">
+							<span>交易密码:</span> <input type="password" id="paypassword" class="texts">
+						</div>
+						<div class="login_button">
+							<eq name="issue['status']" value='1'>
+								<input type="button" value="立即认购" class="btns2" onclick="qq3479015851_buy_up_tishi()" style="margin-left: 55px;">
+						    <else/>
+								<input type="button" value="当前不可认购" class="btns2" disabled='disabled' style="margin-left: 55px;">
+							</eq>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="crowd_list clear">
+				<span class="crowd_rule_t fz_20">认购介绍</span>
+				<div class="crowd_list_state mt10">
+				<notempty name="issue['img']">
+					<img src="__UPLOAD__/issue/{$issue['image']}" style="max-width:500px;"/><br/>
+				</notempty>	
+				{$issue['content']|htmlspecialchars_decode}
+				
+				
+				
+				</div>
+			</div>
+
+			
+
+		</div>
+	</div>
+</div>
+
+
+
+
+
+
+
+<style>
+
+
+.modal-open {
+    overflow: hidden;
+}
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 10000;
+    display: none;
+    overflow: hidden;
+    -webkit-overflow-scrolling: touch;
+    outline: 0;
+}
+.modal.fade .modal-dialog {
+    -webkit-transition: -webkit-transform .3s ease-out;
+    -o-transition:      -o-transform .3s ease-out;
+    transition:         transform .3s ease-out;
+    -webkit-transform: translate(0, -25%);
+    -ms-transform: translate(0, -25%);
+    -o-transform: translate(0, -25%);
+    transform: translate(0, -25%);
+}
+.modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
+    -ms-transform: translate(0, 0);
+    -o-transform: translate(0, 0);
+    transform: translate(0, 10%);
+    /*transform: translate(0, 0);*/
+}
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.modal-dialog {
+    position: relative;
+    width: auto;
+    margin: 10px;
+}
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, .2);
+    border-radius: 6px;
+    outline: 0;
+    -webkit-box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+    box-shadow: 0 3px 9px rgba(0, 0, 0, .5);
+}
+.modal-backdrop {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1040;
+    background-color: #000;
+}
+.modal-backdrop.fade {
+    filter: alpha(opacity=0);
+    opacity: 0;
+}
+.modal-backdrop.in {
+    filter: alpha(opacity=50);
+    opacity: .5;
+}
+.modal-header {
+    min-height: 16.42857143px;
+    padding: 15px;
+}
+.modal-header .close {
+    margin-top: -2px;
+}
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+}
+.modal-body {
+    position: relative;
+    padding: 15px;
+}
+.modal-footer {
+    padding: 5px 0 20px 0;
+    text-align: center;
+}
+.modal-footer .btn + .btn {
+    margin-bottom: 0;
+    margin-left: 5px;
+}
+.modal-footer .btn-group .btn + .btn {
+    margin-left: -1px;
+}
+.modal-footer .btn-block + .btn-block {
+    margin-left: 0;
+}
+.modal-scrollbar-measure {
+    position: absolute;
+    top: -9999px;
+    width: 50px;
+    height: 50px;
+    overflow: scroll;
+}
+@media (min-width: 768px) {
+    .modal-dialog {
+        width: 600px;
+        margin: 0px auto;
+    }
+    .modal-content {
+        -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, .5);
+    }
+    .modal-sm {
+        width: 300px;
+    }
+}
+@media (min-width: 992px) {
+    .modal-lg {
+        width: 900px;
+    }
+}
+
+.modal-footer:before,
+.modal-footer:after {
+    display: table;
+    content: " ";
+}
+.modal-footer:after {
+    clear: both;
+}
+
+
+
+</style>
+
+
+
+<div class="modal" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="text-align: center;display: none;padding-right: 16px;">
+	<div class="modal-dialog" style="width:640px;text-align:center;">
+		<div id="autoCenter" class="modal-content" style="padding: 10px 30px 10px; height: auto; margin-top: 164px;">
+			
+			
+			<div class="modal-header" style="border:none;text-align:left;margin-left:20px;">
+				
+				<h3 class="modal-title" id="myModalLabel" style="font-size:18px;">
+					{$C['web_name']}提醒您:
+				</h3>
+			</div>
+			<div class="modal-body" style="font-size:18px;width: 550px;margin-top:-30px;">
+				<div class="paragraph paragraph_news" style="font-size:14px;text-indent:2em;line-height: 30px;text-align:left;">
+                      {$C['qq_3479015851_issue_waring']}              
+				</div>
+
+			</div>
+			<div class="modal-footer" style="border:none;">
+				<button type="button" style="cursor:pointer;font-family:Microsoft YaHei !important;font-size:18px;background: #009200;width:250px;height:40px;border:0px;color:white" class="btn btn-warning" data-dismiss="modal" id="yes_sure">
+				我已了解以上风险,确认认购
+				</button>
+				
+				<button type="button" style="cursor:pointer;font-family:Microsoft YaHei !important;font-size:18px;background: #f60;width:250px;height:40px;border:0px;color:white" class="btn btn-warning" data-dismiss="modal" id="no_sure">
+				我已了解以上风险,取消认购
+				</button>
+				
+			</div>
+		</div>
+	</div>
+</div>
+
+<div class="modal-backdrop fade in" style="display:none;"></div>
+
+<script>
+
+	$("#yes_sure").click(function(){
+		$('#myModal').css('display','none');
+		$('.modal-backdrop').css('display','none');
+		buy_up();
+	});
+	
+	
+	$("#no_sure").click(function(){
+		$('#myModal').css('display','none');
+		$('.modal-backdrop').css('display','none');
+	});
+
+	function qq3479015851_buy_up_tishi(){
+
+		$('#myModal').css('display','block');
+		$('.modal-backdrop').css('display','block');
+
+    }
+
+
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	function buy_up() {
+		var id          = "{$issue['id']}";
+		var num         = $('#num').val();
+		var paypassword = $('#paypassword').val();
+		if (num == "" || num == null) {
+			layer.tips('请输入认购数量', '#num', {tips: 3});
+			return false;
+		}
+		if (paypassword == "" || paypassword == null) {
+			layer.tips('请输入交易密码', '#paypassword', {tips: 3});
+			return false;
+		}
+		$.post("{:U('Issue/upbuy')}", {
+			id: id,
+			num: num,
+			paypassword: paypassword,
+			token:""
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location = "/issue/log";
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#Issue_box').addClass('active');
+	
+	function goumai(_this) {
+		window.location = "/issue/buy/id/" + $(_this).attr('data');
+	}
+
+	
+</script>	
+
+
+
+
+
+<include file="Public:footer"/>

@@ -1,0 +1,185 @@
+<include file="Trade:header" />
+<div class="wrapbody">
+ <div class="main">
+  <div class="myright" style="width: 1200px; padding: 0px;margin-top: 20px;">
+   <div class="wraphtml">
+    <div class="autobox mt20 clear" style="padding-top: 0px;">
+     <div class="maintain-content">
+      <div class="coin-intro">
+       <h4 class="intro-title" style="margin-top: 0;">{$C['market'][$market]['xnbtitle']}({$xnb|strtoupper})评分</h4>
+       <div class="box-padding-add13">
+        <div class="star-level">
+         评价星级：
+         <php> $aaa=($C['coin'][$xnb]['tp_js']/$C['coin'][$xnb]['tp_zs']+$C['coin'][$xnb]['tp_yy']/$C['coin'][$xnb]['tp_zs']+$C['coin'][$xnb]['tp_qj']/$C['coin'][$xnb]['tp_zs'])/3; $bba=$aaa-0; $bbb=$aaa-1; $bbc=$aaa-2; $bbd=$aaa-3; $bbe=$aaa-4; </php>
+         <ul id="star">
+          <egt name="aaa" value="1">
+          <li class="active"></li>
+          <else /> <gt name="bba" value="0">
+          <li><i style="width: {$bba*100}"></i></li>
+          <else />
+          <li class=""></li>
+          </gt></egt>
+          <egt name="aaa" value="2">
+          <li class="active"></li>
+          <else /> <gt name="bbb" value="0">
+          <li><i style="width: {$bbb*100}"></i></li>
+          <else />
+          <li class=""></li>
+          </gt></egt>
+          <egt name="aaa" value="3">
+          <li class="active"></li>
+          <else /> <gt name="bbc" value="0">
+          <li><i style="width: {$bbc*100}"></i></li>
+          <else />
+          <li class=""></li>
+          </gt> </egt>
+          <egt name="aaa" value="4">
+          <li class="active"></li>
+          <else /> <gt name="bbd" value="0">
+          <li><i style="width: {$bbd*100}"></i></li>
+          <else />
+          <li class=""></li>
+          </gt> </egt>
+          <egt name="aaa" value="5">
+          <li class="active"></li>
+          <else /> <gt name="bbe" value="0">
+          <li><i style="width: {$bbe*100}"></i></li>
+          <else />
+          <li class=""></li>
+          </gt> </egt>
+         </ul>
+         （共 <span style="color: #e55600;">{$C['coin'][$xnb]['tp_zs']}</span> 人投票）
+        </div>
+        <div class="level-content">
+         <ul>
+          <li>技术评分：
+           <div class="progress">
+            <div class="progress-bar" style="width:{$C['coin'][$xnb]['tp_js']/$C['coin'][$xnb]['tp_zs']*20}%"></div>
+           </div> <span style="color: #e55600;">{$C['coin'][$xnb]['tp_js']/$C['coin'][$xnb]['tp_zs']|round=2}分</span>
+          </li>
+          <li>应用评分：
+           <div class="progress">
+            <div class="progress-bar" style="width: {$C['coin'][$xnb]['tp_yy']/$C['coin'][$xnb]['tp_zs']*20}%"></div>
+           </div> <span style="color: #e55600;">{$C['coin'][$xnb]['tp_yy']/$C['coin'][$xnb]['tp_zs']|round=2}分</span>
+          </li>
+          <li>前景评分：
+           <div class="progress">
+            <div class="progress-bar" style="width: {$C['coin'][$xnb]['tp_qj']/$C['coin'][$xnb]['tp_zs']*20}%"></div>
+           </div> <span style="color: #e55600;">{$C['coin'][$xnb]['tp_qj']/$C['coin'][$xnb]['tp_zs']|round=2}分</span>
+          </li>
+         </ul>
+        </div>
+       </div>
+      </div>
+      <div class="link-cc">
+       <h4 class="intro-title">我来讲两句</h4>
+       <div class="box-padding-add13">
+        <div style="width: 50%; float: left;">
+         <textarea id="msgaaa" class="text-area"></textarea>
+         <div class="pinglun-bonus" style="margin-top: 15px;">
+          <a onclick="upcomment()" class="sub-comment">提交评论</a>
+         </div>
+        </div>
+        <div style="width: 50%; float: left;">
+         <ol class="score-ol">
+          <li>技术评分：<label><input name="s1" type="radio" checked="checked" value="5">&nbsp;5分</label><label><input name="s1" type="radio" value="4">&nbsp;4分</label><label><input name="s1" type="radio" value="3">&nbsp;3分</label><label><input name="s1" type="radio" value="2">&nbsp;2分</label><label><input name="s1" type="radio" value="1">&nbsp;1分</label>
+          </li>
+          <li>应用评分：<label><input name="s2" type="radio" checked="checked" value="5">&nbsp;5分</label><label><input name="s2" type="radio" value="4">&nbsp;4分</label><label><input name="s2" type="radio" value="3">&nbsp;3分</label><label><input name="s2" type="radio" value="2">&nbsp;2分</label><label><input name="s2" type="radio" value="1">&nbsp;1分</label>
+          </li>
+          <li>前景评分：<label><input name="s3" type="radio" checked="checked" value="5">&nbsp;5分</label><label><input name="s3" type="radio" value="4">&nbsp;4分</label><label><input name="s3" type="radio" value="3">&nbsp;3分</label><label><input name="s3" type="radio" value="2">&nbsp;2分</label><label><input name="s3" type="radio" value="1">&nbsp;1分</label>
+          </li>
+         </ol>
+        </div>
+       </div>
+      </div>
+      <script>
+						
+					
+						
+						
+						
+						
+						
+						
+</script>
+      <div class="detail-Parameter" style="width: 1060px;">
+       <h4 class="intro-title">币民都在说</h4>
+       <div style="border-bottom: 1px dotted #dcdcdc; padding-bottom: 20px;">
+        <volist name="list" id="vo">
+        <div class="single-comment" id="single-comment-7379">
+         <div class="comment-title">
+          <div>
+           <span style="color: #ff731e;">{$vo.username}</span> <span style="color: #777; padding-left: 3px;">评价说：</span> <span style="float: right; margin-right: 10px;"> <span onclick="subcomment({$vo.id},1)" class="dianzan"> 超级赞 <span class="dianzan-value" id="zan_7379_2">({$vo.cjz})</span>
+           </span> <span onclick="subcomment({$vo.id},2)" class="dianzan"> 太中庸 <span class="dianzan-value" id="zan_7379_1">({$vo.tzy})</span>
+           </span> <span onclick="subcomment({$vo.id},3)" class="dianzan"> 瞎扯淡 <span class="dianzan-value" id="zan_7379_0">({$vo.xcd})</span>
+           </span>
+           </span>
+          </div>
+         </div>
+         <div class="comment-content">{$vo.content}</div>
+         <span>{$vo.addtime|addtime}</span>
+        </div>
+        </volist>
+       </div>
+       <div class="pages">{$page}</div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<br>
+<br>
+<script type="text/javascript">
+var id;
+var a;
+
+function upcomment(){
+	var msgaaa=$("#msgaaa").val();
+	var xnb="{$xnb}";
+	var s1=$(':radio[name="s1"]:checked').val();
+	var s2=$(':radio[name="s2"]:checked').val();
+	var s3=$(':radio[name="s3"]:checked').val();
+	
+	
+	$.post("{:U('Ajax/upcomment')}",{msgaaa:msgaaa,s1:s1,s2:s2,s3:s3,xnb:xnb
+		
+	},function(data){
+		if(data.status==1){
+			layer.msg(data.info,{icon:1});
+			window.location="{:U('Trade/comment')}";
+		}else{
+			layer.msg(data.info,{icon:2});
+		}
+	},'json');
+
+
+}
+
+
+
+
+
+function subcomment(id,a){
+	
+	$.post("{:U('Ajax/subcomment')}",{id:id,type:a},function(data){
+		if(data.status==1){
+			layer.msg(data.info,{icon:1});
+			window.location="{:U('Trade/comment')}";
+		}else{
+			layer.msg(data.info,{icon:2});
+		}
+	},'json');
+
+
+}
+
+
+
+	</script>
+<script>
+ //菜单高亮
+ $('#list-tab_comment').addClass('on');
+</script>
+<include file="Public:footer_1" />

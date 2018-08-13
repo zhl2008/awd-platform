@@ -1,0 +1,183 @@
+<include file = "Public:header" />
+<div id = "main-content" >
+    <div id = "top-alert" class = "fixed alert alert-error" style = "display: none;" >
+        <button class = "close fixed" style = "margin-top: 4px;" >&times;</button >
+        <div class = "alert-content" >警告内容</div >
+    </div >
+    <div id = "main" class = "main" >
+        <div class = "main-title-h" >
+            <span class = "h1-title" >APP基本配置</span >
+        </div >
+        <div class = "tab-wrap" >
+            <div class = "tab-content" >
+                <form id = "form" action = "{:U('App/config')}" method = "post" class = "form-horizontal" >
+                    <div id = "tab" class = "tab-pane in tab" >
+                        <div class = "form-item cf" >
+                            <table>
+                                <input type = "hidden" class = "form-control" name = "id" value = "{$appCon['id']}" ></td>
+                                <tr class = "controls" >
+                                    <td class = "item-label" >APP显示名称 :</td >
+                                    <td >
+                                        <input type = "text" class = "form-control" name = "web_name" value = "{$appCon['web_name']}" >
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+
+                                <tr class = "controls" >
+                                    <td class = "item-label" >APP显示标题 :</td >
+                                    <td >
+                                        <input type = "text" class = "form-control" name = "web_title" value = "{$appCon['web_title']}" >
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+                                <tr class = "controls" >
+                                    <td class = "item-label" >APP显示备案号 :</td >
+                                    <td >
+                                        <input type = "text" class = "form-control" name = "web_icp" value = "{$appCon['web_icp']}" >
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+
+                                <tr class = "controls" >
+                                    <td class = "item-label" >APP启动页图片 :</td >
+                                    <td >
+                                        <textarea name = "index_img" class = "form-control" style = "width: 300px;" >{$appCon['index_img']}</textarea >
+                                    </td >
+                                    <td class = "item-note" >一行一个图片链接</td >
+                                </tr >
+
+                                <!--//支付宝充值信息-->
+                                <tr class = "controls" >
+                                    <td class = "item-label" >支付宝信息 :</td >
+                                    <td >
+                                        支付宝户主:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type = "text" class = "" name = "pay[alipay][name]" value = "{$appCon['pay']['alipay']['name']}" >
+                                        支付宝账号:&nbsp;<input type = "text" class = "" name = "pay[alipay][value]" value = "{$appCon['pay']['alipay']['value']}" >
+                                    </td >
+                                    <td class = "item-note" >不填写默认不显示</td >
+                                </tr >
+
+                                <!--//网银充值信息-->
+                                <tr class = "controls" >
+                                    <td class = "item-label" >网银信息 :</td >
+                                    <td >
+                                        网银户主(开户行):&nbsp;<input type = "text" class = "" name = "pay[bank][name]" value = "{$appCon['pay']['bank']['name']}" >
+                                        网银账号:&nbsp;&nbsp;&nbsp;&nbsp;<input type = "text" class = "" name = "pay[bank][value]" value = "{$appCon['pay']['bank']['value']}" >
+                                    </td >
+                                    <td class = "item-note" >不填写默认不显示</td >
+                                </tr >
+
+                                <tr><td>&nbsp;</td></tr>
+                                <tr class = "controls" >
+                                    <td class = "item-label" >提现说明文字 :</td >
+                                    <td >
+                                        <textarea name = "withdraw_notice" class = "form-control" style = "height: 80px;" >{$appCon['withdraw_notice']}</textarea >
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+                                <tr><td>&nbsp;</td></tr>
+                                <tr class = "controls" >
+                                    <td class = "item-label" >充值说明文字 :</td >
+                                    <td >
+                                        <textarea name = "charge_notice" class = "form-control" style = "height: 80px;" >{$appCon['charge_notice']}</textarea >
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+                                <tr><td>&nbsp;</td></tr>
+                                <tr class = "controls" style="border: solid 1px red;">
+                                    <td class = "item-label" >APP上架币种 :</td >
+                                    <td >
+                                        <div style="width: 500px;text-align: left">
+                                            <volist name = "appCon.show_coin" id = "show_coin" >
+                                                <label style="margin-left: 15px;"><input name="show_coin[]" type = "checkbox"
+                                                    <eq name = "show_coin.flag" value = "1" >checked</eq >
+                                                    value="{$show_coin['id']}"/>{$show_coin['name']} </label >
+                                            </volist >
+                                        </div>
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+                                <tr><td>&nbsp;</td></tr>
+                                <tr class = "controls" style="border: solid 1px green;margin-top: 10px" >
+                                    <td class = "item-label" >APP上架市场 :</td >
+                                    <td >
+                                        <div style="width: 500px;text-align: left">
+                                            <volist name = "appCon.show_market" id = "show_market" >
+                                                <label style="margin-left: 15px;"><input name="show_market[]" type = "checkbox"
+                                                    <eq name = "show_market.flag" value = "1" >checked</eq >
+                                                    value="{$show_market['id']}"/>{$show_market['name']} </label >
+                                            </volist >
+                                        </div>
+                                    </td >
+                                    <td class = "item-note" ></td >
+                                </tr >
+
+
+                                <tr class = "controls" >
+                                    <td class = "item-label" ></td >
+                                    <td >
+                                        <div class = "form-item cf" >
+                                            <button class = "btn submit-btn  ajax-post" target-form = "form-horizontal" id = "submit" type = "submit" >确 定</button >
+                                            <a class = "btn btn-return" href = "{$Think.server.HTTP_REFERER}" >返 回</a >
+                                        </div >
+                                    </td >
+                                </tr >
+                            </table >
+                        </div >
+                    </div >
+                </form >
+                <script type = "text/javascript" >
+                    //提交表单
+                    $('#submit').click(function () {
+                        $('#form').submit();
+                    });
+                </script >
+            </div >
+        </div >
+    </div >
+</div >
+<script type = "text/javascript" src = "__PUBLIC__/kindeditor/kindeditor-min.js" ></script >
+<script type = "text/javascript" >
+
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('textarea[name="web_reg"]', {
+            width: '465px',
+            height: '60px',
+            items: [
+                'source',
+                'fontname',
+                'fontsize',
+                '|',
+                'forecolor',
+                'hilitecolor',
+                'bold',
+                'italic',
+                'underline',
+                'removeformat',
+                '|',
+                'justifyleft',
+                'justifycenter',
+                'justifyright',
+                'insertorderedlist',
+                'insertunorderedlist',
+                '|',
+                'emoticons',
+                'link',
+                'fullscreen'
+            ],
+            afterBlur: function () {
+                this.sync();
+            }
+        });
+    });
+</script >
+<script type = "text/javascript" >
+    $(function () {
+        //主导航高亮
+        $('.config-box').addClass('current');
+        //边导航高亮
+        $('.config-index').addClass('current');
+    });
+</script >
+<include file = "Public:footer" />

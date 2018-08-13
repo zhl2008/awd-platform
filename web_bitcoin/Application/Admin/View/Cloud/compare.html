@@ -1,0 +1,87 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h">
+            <span class="h1-title">自动升级 - 比较本地文件</span>
+        </div>
+    <div class="with-padding" style="width:1000px;">
+        <div class="alert alert-info">
+            <p>当前需要升级的版本<strong>{$nextVersion.name}</strong></p>
+
+            <p>当前的系统版本号<strong>{$currentVersion.name}</strong></p>
+        </div>
+        <p><strong class="text-success">1.下载更新包，获取更新文件列表-》 2.本地文件对比</strong> -》 3.代码升级-》4.数据库升级-》升级完成</p>
+        <p class="alert alert-warning">请确保所有涉及的文件状态为<strong class="text-success">可写</strong> 。无法进入下一步。请在ftp上赋予这些未具备可写权限的文件写入权限后
+            <strong class="text-success">刷新</strong>本页面。</p>
+        <p class="alert alert-info">对于冲突文件，开发者请自行找到新文件手动合并代码，合并完成后，点击灰色按钮跳过代码自动更新，以保证你的二次开发内容被保留。</p>
+
+        <p>本次更新涉及的文件</p>
+
+        <table class="table table-hover table-strip" id="file" style="border: 1px solid #ccc">
+            <thead>
+            <tr><th>文件名</th><th>状态</th><th>权限</th></tr>
+            </thead>
+        </table>
+
+        <p>备份文件存放位置</p>
+
+        <p>
+            <span class="text-success">{$path}/backup</span>
+        </p>
+
+        <p>
+            如果您进行了二次开发，并导致了文件差异，您可以在此找回这些被覆盖的文件
+        </p>
+
+        <div class="row">
+            <div class="col-xs-7">
+                <a id="compare_btn" href="{:U('cover')}" class="btn btn-success btn-block" disabled="disabled"
+                   >下一步，覆盖这些文件，并升级（可能会出错）</a>
+            </div>
+        </div>
+
+
+        <div style="margin-top: 10px">
+            <div class="progress progress-striped active hide" style="border-radius: 3px">
+                <div id="progress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width:0">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <script>
+        function writeFile($data) {
+            $('#file').append($data);
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable() {
+            $('#compare_btn').removeAttr('disabled', '');
+        }
+    </script>
+
+        <include file="Public:footer"/>

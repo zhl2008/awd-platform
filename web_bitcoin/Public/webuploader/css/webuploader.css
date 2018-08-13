@@ -1,0 +1,35 @@
+.webuploader-container {
+    position: relative;
+}
+
+.webuploader-element-invisible {
+    position: absolute !important;
+    clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+    clip: rect(1px, 1px, 1px, 1px);
+}
+
+.webuploader-pick {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+    vertical-align: middle;
+    border: 1px solid #ccc;
+    padding: 3px 5px;
+    border-radius: 2px;
+}
+
+.webuploader-pick-hover {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+    text-align: center;
+    overflow: hidden;
+}
+
+.webuploader-pick-disable {
+    opacity: 0.6;
+    pointer-events: none;
+}
+

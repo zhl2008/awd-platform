@@ -1,0 +1,55 @@
+<h3 style="padding-top: 0;margin-top: 0">
+   {:L("_THE_UPCOMING_UPGRADE_")}
+</h3>
+<ul class="module-list">
+        <li class="clearfix" style="margin-bottom: 0">
+            <div class="cover-wrapper">
+                <empty name="goodsInfo.version_info.goods.cover_url">
+                    <div class="cover-icon">
+                        <i class="icon-{$goodsInfo.icon}"></i>
+                    </div>
+                    <else/>
+                    <img class="cover"
+                         src="{$goodsInfo.version_info.goods.cover_url}"/>
+                </empty>
+
+
+            </div>
+            <div class="content-wrapper">
+                <div class="title">
+                    <a href="{:U('Admin/Module/edit', array('name' => $goodsInfo['name']))}">{$goodsInfo.alias} <span class="text-muted">{$goodsInfo.name}</span></a>
+
+                    <div class="pull-right"><span class="label label-info">{$goodsInfo.version_info.title}</span>
+                        <empty name="goodsInfo.update_list">
+                            <else/>
+                            <a style="text-decoration: none"
+                                    ><span class=" label label-success ">{:L("_LATEST_EDITION_")}{$goodsInfo.update_list.0.title}</span></a>
+                        </empty>
+                    </div>
+                </div>
+                <div>
+                    <p class="text-muted text-ellipsis">{$goodsInfo.summary}</p>
+                </div>
+                <div>{:L("_DEVELOPER_")}：<a style="color: #666">{$goodsInfo.developer}</a></div>
+                <div class="clearfix bottom-btns">
+                    <div class="pull-left">
+
+                    </div>
+                    <div class="pull-right">
+                        <empty name="goodsInfo.token">
+                            <span class="label label-circle label-danger">{:L("_LOCAL_MODULE_")}</span>
+                            <else/>
+                            <a target="_blank"
+                               href="{:appstoreU('Appstore/Index/goodsDetail',array('token'=>$goodsInfo['token']))}"
+                               class="btn btn-info">{:L("_GO_TO_THE_CLOUD_MARKET_VIEW_")}</a>
+                        </empty>
+                    </div>
+                </div>
+            </div>
+        </li>
+</ul>
+<div class="alert alert-info">
+    <p>{:L("_CURRENT_VERSION_TO_UPGRADE_")}{:L("_COLON_")}<strong>{$versionList.0.title}</strong></p>
+
+    <p>{:L("_CURRENT_VERSION_NUMBER_")}{:L("_COLON_")}<strong>{$version.title}</strong></p>
+</div>

@@ -1,0 +1,9 @@
+<IfModule mod_rewrite.c>
+	RewriteEngine On
+	#RewriteCond %{SERVER_PORT} !^443$
+	#RewriteRule ^.*$ https://www.thbtc.com%{REQUEST_URI} [L,R]
+
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	RewriteRule ^(.*)$ index.php?s=/$1 [QSA,PT,L]
+</IfModule>

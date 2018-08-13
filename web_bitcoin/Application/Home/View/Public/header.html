@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta name="renderer" content="webkit">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<title>{:C('web_title')}</title>
+<meta name="Keywords" content="{:C('web_keywords')}">
+<meta name="Description" content="{:C('web_description')}">
+<meta name="author" content="comfile">
+<meta name="coprright" content="comfile">
+<link rel="shortcut icon" href="/favicon.ico"/>
+<link rel="stylesheet" href="/comfile/css/font-awesome.min.css">
+<link rel="stylesheet" href="/comfile/css/style.css" id="theme"/>
+<link rel="stylesheet" href="/comfile/css/common.css"/>
+<script type="text/javascript" src="/comfile/js/jquery.min.js"></script>
+<script type="text/javascript" src="/comfile/js/jquery.cookies.2.2.0.js"></script>
+<script type="text/javascript" src="/comfile/js/layer.js"></script>
+<script type="text/javascript" src="/comfile/js/posfixed.js"></script>
+<script type="text/javascript" src="/comfile/js/dot.min.js"></script>
+<link rel="stylesheet" href="/comfile/css/slider.css">
+<script type="text/javascript" src="/comfile/js/slider.js"></script>
+</head>
+<body lang="zh-CN">
+<!--[if lt IE 10]>
+<div id="kie-bar" class="kie-bar ">
+    您现在使用的浏览器版本过低，可能会导致浏览效果和信息的缺失。 建议立即升级到
+    <a href="http://rj.baidu.com/soft/detail/14917.html" target="_blank" title="免费升级至IE8浏览器">IE 10+</a> 或
+    <a href="http://rj.baidu.com/soft/detail/14744.html" target="_blank" title="免费升级至360安全浏览器">谷歌浏览器</a> 或
+    <a href="http://rj.baidu.com/soft/detail/17451.html" target="_blank" title="免费升级至360安全浏览器">360安全浏览器</a> ，安全更放心！
+</div><![endif]-->
+<div id="roebx_header" style=" display:none;z-index: 999;min-width: 1200px;width:100%;" ;>
+    <div class="header">
+        <div class="header-content">
+            <ul class="trade-status">
+
+                <li style="padding: 0px 10px 0px 0px;">
+                    <i class="fa fa-home fa-lg left move mr5"></i> 
+					<span>{:C('top_name')}</span>
+                </li>
+            </ul>
+            <ul class="user-status">
+				
+				<gt name="Think.session.userId" value="0">
+				
+                <li>
+                    <i class="fa fa-user fa-lg left move mr5"></i>
+                    <a href="/finance/" id="user_top" class="move">{$Think.session.userName}</a>
+                    <div id="mywallet_list" class="mywallet_list" style="display: none;">
+                        <div class="clear">
+                            <ul class="freeze_list">
+                                <h4>可用人民币</h4>
+                                <li style=" padding: 0;">
+                                    <a href="javascript:void(0)">
+                                        <img src="__UPLOAD__/coin/cny.png" width="18" class="left mt5 mr5">
+                                        <span class="fz_14">{$userCoin_top['cny']*1}</span></a>
+                                </li>
+                            </ul>
+                            <ul class="freeze_list">
+                                <h4>冻结人民币</h4>
+                                <li style=" padding: 0;">
+                                    <a href="javascript:void(0)">
+                                        <img src="__UPLOAD__/coin/cny.png" width="18" class="left mt5 mr5">
+                                        <span class="fz_14">{$userCoin_top['cnyd']*1}</span></a>
+                                </li>
+                            </ul>
+                            <ul class="balance_list">
+                                <h4>人民币总资产:</h4>
+                                <li style=" padding: 0;">
+                                    <a href="javascript:void(0)">
+                                        <img src="__UPLOAD__/coin/cny.png" width="18" class="left mt5 mr5 ">
+                                        <span class="fz_14">{$userCoin_top['allcny']*1}</span></a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="mywallet_btn_box">
+                            <a href="/Finance/mycz.html" class="texts">人民币充值</a>
+                            <a href="/Finance/mytx.html" class="texts">人民币提现</a>
+                            <a href="/Finance/index.html" class="texts">财务中心</a>
+                            <a href="/User/index.html" class="texts">安全中心</a>
+                        </div>
+                        <i class="fa fa-caret-up move" style="position: absolute;top: -21px;right: 34px;font-size: 28px;"></i>
+                        <div class="nocontent"></div>
+                    </div>
+                </li>
+                <li>
+                    <a href="{:U('Login/loginout')}" class="">退出</a>
+                </li>
+				<else/>
+				
+                <li>
+                    <i class="fa fa-user left move fz_16"></i> <a href="{:U('Login/register')}" class="ma-l move"> 注册</a>
+                </li>
+
+                <li>
+                    <a href="javascript:loginpop();" class="darker">登录</a>
+                </li>
+				
+				
+				</gt>
+				
+				
+				
+				
+				
+				
+				
+				
+				
+            </ul>
+        </div>
+    </div>
+</div>
+<style>
+.header-mark {
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    opacity: .25;
+    filter: alpha(opacity = 25);
+    background: #000;
+    width: 100%;
+    height: 78px;
+}
+
+.common-nav a, .crumbs-content a {
+    color: #fff;
+}
+
+.common-nav{
+	position:absolute;
+	top:0px;
+	left:0px;
+	z-index:9999999999;width:100%;
+	background-color:#015FD9;
+
+}
+
+li.active > a{
+	color:#da2e22;
+}
+
+</style>
+<div class="header-mark"></div>
+<div class="common-nav">
+    <div class="nav-bar">
+        <div class="logo" style="margin-top: 12px;">
+            <a href="/" class="xiaozhu-logo"> 
+				<img src="__UPLOAD__/public/{$C['web_logo']}" alt=""/>
+			</a>         
+		</div>
+        <div class="nav-content">
+            <ul class="common-nav-list">
+                <li id="index_box">
+                    <a href="/">首页</a>
+                </li>
+                <li id="trade_box">
+                    <a href="#" id="trade_top" class="darker">交易中心                    
+						<i class="fa fa-angle-down"></i> 
+					</a>
+                    
+					
+					
+					
+                   <script id="trade_list_tpl" type="text/x-dot-template">
+                        <ul id="trade-nav-tabs">
+                            {{ for(var k in it) { }}
+                            <li class="trade-tab {{? k == 0}}current{{?}}">
+                                {{=it[k]['title']}}
+                            </li>
+                            {{ } }}
+                        </ul>
+                        <div id="trade-nav-body">
+                            {{ for(var k in it) { }} {{? k == 0}}
+                            <dl style="display: block">
+                                {{??}}
+                                <dl style="display: none">
+                                    {{?}} {{ for(var kk in it[k]['data']) { }}
+                                    <dd>
+                                        <a style="color:#000;" href="/trade/index/market/{{=kk}}"><img src="/upload/coin/{{=it[k]['data'][kk]['img']}}" style="width: 18px;vertical-align: -4px;margin-right: 5px;">{{=it[k]['data'][kk]['title']}}</a>
+                                    </dd>
+                                    {{ } }}
+                                </dl>
+                                {{ } }}
+                            </dl>
+                        </div>
+                        <i class="fa fa-caret-up move" style="position: absolute;top: -21px;left: 18px;font-size: 28px;"></i>
+                        <div class="nocontent"></div>
+                    </script>
+
+                    <div id="trade_list" class="deal_list " style="left:1px;     top: 80px;">
+                    </div>
+                    </li>
+					
+					
+					
+					<volist name="daohang" id="vo">
+						<li id="{$vo['name']}_box">
+							<a href="/{$vo['url']}">{$vo['title']}</a>
+						</li>
+					</volist>	
+
+					<gt name="Think.session.userId" value="0">
+						<li id="">
+							<a href="/login/loginout.html">退出</a>
+						</li>											
+					</gt>
+					
+						
+				</ul>
+        </div>
+    </div>
+</div>
+<script>
+    $('#trade_top').hover(function () {
+        $('#trade_list').show();
+    }, function () {
+        $('#trade_list').hide();
+    });
+    $('#trade_tops').hover(function () {
+        $('#trade_lists').show();
+    }, function () {
+        $('#trade_lists').hide();
+    });
+    $('#trade_list').hover(function () {
+        $('#trade_list').show();
+    }, function () {
+        $('#trade_list').hide();
+    });
+    $('#trade_lists').hover(function () {
+        $('#trade_lists').show();
+    }, function () {
+        $('#trade_lists').hide();
+    });
+    $.post("/ajax/top_coin_menu?t=" + Math.random(), function (data) {
+        if (data) {
+            var interText = doT.template($("#trade_list_tpl").text());
+            var interTexts = doT.template($("#trade_list_tpls").text());
+            $("#trade_list").html(interText(data));
+            $("#trade_lists").html(interTexts(data));
+            var $li = $('#trade-nav-tabs > li');
+            var $lis = $('#trade-nav-tabss > li');
+            var $ul = $('#trade-nav-body > dl');
+            var $uls = $('#trade-nav-bodys > dl');
+            $li.mouseover(function () {
+                var $this = $(this);
+                var $t = $this.index();
+                $li.removeClass();
+                $this.addClass('current');
+                $ul.css('display', 'none');
+                $ul.eq($t).css('display', 'block');
+            })
+            $lis.mouseover(function () {
+                var $this = $(this);
+                var $t = $this.index();
+                $lis.removeClass();
+                $this.addClass('current');
+                $uls.css('display', 'none');
+                $uls.eq($t).css('display', 'block');
+            })
+        }
+    }, "json");
+    $('#game_top').hover(function () {
+        $('#game_list').show();
+    }, function () {
+        $('#game_list').hide();
+    });
+    $('#game_list').hover(function () {
+        $('#game_list').show();
+    }, function () {
+        $('#game_list').hide();
+    });
+    $('#user_top').hover(function () {
+        $('#mywallet_list').show();
+    }, function () {
+        $('#mywallet_list').hide();
+    });
+    $('#mywallet_list').hover(function () {
+        $('#mywallet_list').show();
+    }, function () {
+        $('#mywallet_list').hide();
+    });
+</script>
+<script>
+    $(document).ready(function () {
+        $("#roebx_header").posfixed({});
+    });
+</script>
+
+<!-- top 结束  -->

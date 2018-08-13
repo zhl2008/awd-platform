@@ -1,0 +1,44 @@
+
+<link href="/Application/Home/View/Kefu/b/css/style.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="/Application/Home/View/Kefu/b/js/lrtk.js"></script>
+
+<div class="main-im">
+	<div id="open_im" class="open-im" style="height:400px;">&nbsp;</div>
+	<div class="im_main" id="im_main">
+		<div id="close_im" class="close-im"><a href="javascript:void(0);" title="点击关闭">&nbsp;</a></div>
+
+
+		<volist name=":C('contact_qq')" id="v">
+
+
+			<a href="http://wpa.qq.com/msgrd?v=3&amp;uin={$v}&amp;site=qq&amp;menu=yes" target="_blank" class="im-qq qq-a" id="jisuan_qq"  title="在线QQ客服">
+				<div class="qq-container"></div>
+				<div class="qq-hover-c"><img class="img-qq" src="/Application/Home/View/Kefu/b/images/qq.png"></div>
+				<span> QQ在线咨询{$i}</span>
+			</a>
+		</volist>
+
+
+
+
+		<div class="im-tel">
+
+			<volist name=":C('contact_qqun')" id="v">
+
+				<div>官方QQ群{$i}:</div>
+				<div class="tel-num"> {$v}</div>
+
+			</volist>
+
+			<notempty name="C['contact_moble']">
+				<div>客服热线:</div>
+				<div class="tel-num"> {:C('contact_moble')}</div>
+
+			</notempty>
+
+
+		</div>
+
+	</div>
+</div>
+</div>

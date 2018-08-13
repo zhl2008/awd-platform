@@ -1,0 +1,103 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">币种评论</span>
+		</div>
+		<div class="cf">
+			<div class="fl">
+				<button class="btn ajax-post confirm btn-danger " url="{:U('Trade/commentStatus',array('type'=>'del'))}" target-form="ids">删 除
+				</button>
+			</div>
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<select style="width: 160px; float: left; margin-right: 10px;" name="coinname" class="form-control">
+							<option value=""
+							<empty name="Think.get.coinname">selected</empty>
+							>交易币种</option>
+							<volist name="C['coin']" id="vo">
+								<option value="{$vo['name']}"
+								<eq name="vo['name']" value="$Think.get.coinname">selected</eq>
+								>{$vo['title']}</option>
+							</volist>
+						</select>
+						<select style=" width: 160px; float: left; margin-right: 10px;" name="field" class="form-control">
+							<option value="username"
+							<eq name="Think.get.field" value="username">selected</eq>
+							>用户名</option>
+						</select>
+						<input type="text" name="name" class="search-input form-control  " value="{$Think.get.name}" placeholder="请输入查询内容" style="">
+						<a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a>
+					</form>
+					<script>
+						//搜索功能
+						$(function () {
+							$('#search').click(function () {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function (e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+					<th class="">ID</th>
+					<th class="">用户名</th>
+					<th class="">币种</th>
+					<th class="">内容</th>
+					<th class="">超级赞</th>
+					<th class="">太中庸</th>
+					<th class="">瞎扯淡</th>
+					<th class="">时间</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="list">
+					<volist name="list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+							<td>{$vo.id}</td>
+
+							<td>{$vo['username']}</td>
+							<td>{$vo['coinname']}</td>
+							<td>{$vo['content']}</td>
+							<td>{$vo['cjz']}</td>
+							<td>{$vo['tzy']}</td>
+							<td>{$vo['xcd']}</td>
+							<td>{$vo.addtime|addtime}</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('Trade/comment')}");
+	</script>
+</block>

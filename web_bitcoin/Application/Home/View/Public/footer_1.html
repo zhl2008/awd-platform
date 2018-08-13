@@ -1,0 +1,627 @@
+<style>
+	.footer{
+		clear:both;
+	}
+
+	.footer .main{
+		height:240px;
+	}
+
+	#footer a{
+		color:#FFF;
+		margin:0px 0px;
+	}
+
+	.footer .bottom{
+		height:80px;
+		background:#2C2C2C;
+	}
+
+	.footer .main .list{
+		float:left;
+		margin-top:40px;
+		width: 185px;
+		padding: 0px 5px;
+	}
+
+	.footer .main .list label{
+		margin-top:10px;
+		display:block;
+		font-weight:bold;
+		color:#FFF;
+		font-size:16px;
+		text-align: left;
+		padding-left: 45px;
+	}
+
+	.footer .main .list ul{
+		margin:10px 0px 0px;
+		padding:0px;
+	}
+
+	.footer .main .list li{
+		display:block;
+		height:30px;
+		line-height:30px;
+		color:#CCC;
+		text-align:center;
+		list-style:none;
+		text-align: left;
+		padding-left: 45px;
+	}
+
+	.footer .main .list li a{
+		display:block;
+		width:100%;
+		height:100%;
+		color:#CCC;
+		font-size:14px;
+	}
+
+	.footer .about_me{
+		float:left;
+		margin-top:40px;
+		width:280px;
+		height:150px;
+		border-right:1px #606060 solid;
+		padding-right:50px;
+	}
+
+	.footer .wx{
+		margin-top:50px;
+		height:55px;
+	}
+
+	.footer .wx a{
+		position:relative;
+		margin:0 14px;
+		cursor:pointer;
+	}
+
+	.footer .wx a img{
+
+		left:-69px;
+
+		transition:300ms;
+		-webkit-transition:300ms;
+		-ms-transition:300ms;
+		-o-transition:300ms;
+		-moz-transition:300ms;
+	}
+
+	.footer .wx a:hover img{
+		display:block;
+		top:-180px;
+	}
+
+	.footer .footer_wx_icon{
+		float:left;
+
+		border-radius:55px;
+		-webkit-border-radius:55px;
+		-ms-border-radius:55px;
+		-o-border-radius:55px;
+		-moz-border-radius:55px;
+
+		transition:300ms;
+		-webkit-transition:300ms;
+		-ms-transition:300ms;
+		-o-transition:300ms;
+		-moz-transition:300ms;
+	}
+
+	.footer .footer_wx_icon:hover{
+
+	}
+
+	.footer .footer_sn_icon{
+		float:left;
+		width:55px;
+		height:55px;
+
+		background-color:#34353A;
+
+		border-radius:55px;
+		-webkit-border-radius:55px;
+		-ms-border-radius:55px;
+		-o-border-radius:55px;
+		-moz-border-radius:55px;
+
+		transition:300ms;
+		-webkit-transition:300ms;
+		-ms-transition:300ms;
+		-o-transition:300ms;
+		-moz-transition:300ms;
+	}
+
+	.footer .footer_sn_icon:hover{
+
+		background-color:#F00;
+	}
+
+	.footer .footer_qq_icon{
+		float:left;
+		width:55px;
+		height:55px;
+
+		background-color:#34353A;
+
+		border-radius:55px;
+		-webkit-border-radius:55px;
+		-ms-border-radius:55px;
+		-o-border-radius:55px;
+		-moz-border-radius:55px;
+
+		transition:300ms;
+		-webkit-transition:300ms;
+		-ms-transition:300ms;
+		-o-transition:300ms;
+		-moz-transition:300ms;
+	}
+
+	.footer .footer_qq_icon:hover{
+
+		background-color:#F00;
+	}
+
+	.footer .about_me h4{
+		margin:10px 0px 0px 44px;
+		color:#FFF;
+		font-size:14px;
+		font-weight:normal;
+	}
+
+	.footer .about_me .about_me_text{
+		margin-top:20px;
+		margin-left:44px;
+		font-size:14px;
+		color:#CCC;
+	}
+
+	.footer .contact_us{
+		float:left;
+		margin-top:50px;
+		padding-left:57px;
+		border-left:1px #606060 solid;
+		height:150px;
+		color:#CCC;
+		font-size:14px;
+	}
+
+	.footer .contact_us_text1{
+		margin-top:6px;
+		font-size:28px;
+		color:#FFF;
+	}
+
+	.footer .contact_us_text2{
+		margin-top:5px;
+		font-size:12px;
+	}
+
+	.footer .contact_us_text3 span{
+		float:left;
+		line-height:31px;
+	}
+
+	.footer .contact_us_text3{
+		margin-top:18px;
+		display:block;
+		color:#CCC;
+	}
+
+	.footer .contact_us_text3 i{
+		display:block;
+		float:left;
+		margin-left:10px;
+		width:32px;
+		height:30px;
+		cursor:pointer;
+		border:1px #CCC solid;
+
+		border-radius:16px;
+		-webkit-border-radius:16px;
+		-ms-border-radius:16px;
+		-o-border-radius:16px;
+		-moz-border-radius:16px;
+
+		transition:300ms;
+		-webkit-transition:300ms;
+		-ms-transition:300ms;
+		-o-transition:300ms;
+		-moz-transition:300ms;
+
+	}
+
+	.footer .contact_us_text3 i:hover{
+		border:1px #DB0015 solid;
+		background-color:#DB0015;
+	}
+
+	.footer .bottom .text{
+		float:left;
+		margin-top:34px;
+		color:#999;
+		font-size:14px;
+	}
+
+	.footer .bottom .g{
+		float:right;
+		margin-right:10px;
+	}
+
+	.footer .bottom .g a{
+		float:left;
+		margin-left:20px;
+		margin-top:24px;
+		width:100px;
+		height:36px;
+	}
+</style>
+
+
+
+
+<footer id="footer" class="footer" style="padding: 0px 0px 20px 0px;">
+	<section class="main">
+		<div class="about_me">
+			<div class="wx">
+				<a href="javascript:" class="footer_wx_icon"><img src="__UPLOAD__/public/{$C['footer_logo']}"></a>
+			</div>
+		</div>
+		<div class="layout_center">
+			<volist name="footerArticleType" id="vo">
+
+				<div class="list"><label>{$vo['title']}</label>
+					<ul>
+						<volist name="footerArticle[$vo['name']]" id="vvo">
+							<li><a href="{:U('Article/type',array('id'=>$vvo['id']))}" style="overflow: hidden;">{$vvo['title']}</a></li>
+
+						</volist>
+						<li><a href="{:U('Article/type',array('id'=>$vo['id']))}" style="overflow: hidden;    text-align: left;">更多</a></li>
+					</ul>
+				</div>
+
+			</volist>
+
+
+
+
+
+			<div class="contact_us">
+				<div class="contact_us_text0" style="text-align: left;">全国免费咨询电话 :</div>
+				<div class="contact_us_text1" style="text-align: left;margin-top: 10px;margin-bottom: 12px;">{:C('contact_moble')}</div>
+				<div class="contact_us_text2" style="text-align: left;margin-bottom: 5px;">工作时间：周一至周日 8:00-23:00</div>
+				<volist name=":C('contact_qqun')" id="v">
+					<a href="#" class="contact_us_text3"><span>会员群号 :{$i}群：{$v}</span></a>
+				</volist>
+			</div>
+		</div>
+	</section>
+</footer>
+<div class="footer_bottom">
+
+		<div style="margin-bottom: 5px;width:1200px;margin:0 auto;">
+			<span class="text-danger">风险提示：比特币等数字资产交易具有极高的风险（预挖、暴涨暴跌、庄家操控、团队解散、技术缺陷等），据国家五部委《关于防范比特币风险的通知》，{$C['web_name']}网仅为数字资产的爱好者提供一个自由的网上交换平台，对币的投资价值不承担任何审查、担保、赔偿的责任，您需要完全对自己的投资损失承担责任，如果您不能接受，请不要进行交易！谢谢！</span>
+		</div>
+
+	<div class="autobox" style="height: 40px;margin-top: 5px;">
+		<span style="display: inline-block;color:#A6A9AB;">CopyRight© 2013-2017 {$C['web_name']}交易平台 All Rights Reserved &nbsp;&nbsp;|&nbsp;&nbsp;<a href="http://www.miitbeian.gov.cn/publish/query/indexFirst.action" target="_blank">{$C['web_icp']}</a><span style="display: inline-block; color:#A6A9AB"></span></span>
+		<span style="float: right;">
+			<a href="http://www.gov.cn/" target="_blank" class="margin10" style="margin-left:5px;"> <img src="__UPLOAD__/footer/footer_1.png">
+			</a>
+			<a href="http://www.szfw.org/" target="_blank" class="margin10" style="margin-left:5px;"> <img src="__UPLOAD__/footer/footer_2.png">
+			</a>
+			<a href="http://www.miibeian.gov.cn/" target="_blank" class="margin10" style="margin-left:5px;"><img src="__UPLOAD__/footer/footer_3.png">
+			</a>
+			<a href="http://www.cyberpolice.cn/" target="_blank" class="margin10" style="margin-left:5px;"><img src="__UPLOAD__/footer/footer_4.png">
+			</a>
+		</span>
+	</div>
+	<!-- 原安全验证位置 -->
+</div>
+<include file="$kefu"/>
+<div id="all_mask" class="all_mask" style="height: 0px; display: none;"></div>
+<div class="all_mask_loginbox" style="top: 313px; display: none;">
+	<div class="login_title pl20">登录</div>
+	<form id="form-login" class="mask_wrap login-fb">
+		<div class="login_text zin90">
+			<div class="mask_wrap_title">账号：</div>
+			<input id="login_username" name="username" type="text" placeholder="请输入手机号/会员名">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">密码：</div>
+			<input id="login_password" name="password" type="password" placeholder="请输入登录密码">
+		</div>
+		<eq name="C['login_verify']" value="1">
+			<div class="login_text zin70" id="ga-box-i">
+				<img id="codeImg reloadverifyindex" src="{:U('Verify/code')}" width="120" height="38" onclick="this.src=this.src+'?t='+Math.random()" style="margin-top: 1px; cursor: pointer;" title="换一张">
+				<input type="text" class="code" id="login_verify" name="code" placeholder="请输入验证码" style="width: 106px; float: left;">
+			</div>
+		</eq>
+		<div class="login_button">
+			<input type="button" value="登录" onclick="upLogin();">
+		</div>
+		<div class="login-footer wwxwwx" style="border-bottom-left-radius: 3px; border-bottom-right-radius: 3px;">
+			<!--<a target="_blank" href="/"><img src="__PUBLIC__/Home/images/qq2.png" style="vertical-align: text-bottom; padding-right: 5px;">zzQQ登录</a>-->
+
+			<span style="color: #CCC; float: right; margin-right: 25px;">
+			<a style="font-size: 12px;" href="{:U('Login/register')}">免费注册</a>｜<a href="{:U('Login/findpwd')}" style="font-size: 12px;">忘记密码</a></span>
+		</div>
+	</form>
+	<div class="mask_wrap_close" onclick="wrapClose()"></div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.cookies.2.2.0.js"></script>
+<script>
+	$('input').focus(function () {
+		var t = $(this);
+		if (t.attr('type') == 'text' || t.attr('type') == 'password')
+			t.css({'box-shadow': '0px 0px 3px #1583fb', 'border': '1px solid #1583fb'});
+		if (t.val() == t.attr('placeholder'))
+			t.val('');
+	});
+	$('input').blur(function () {
+		var t = $(this);
+		if (t.attr('type') == 'text' || t.attr('type') == 'password')
+			t.css({'box-shadow': 'none', 'border': '1px solid #e1e1e1'});
+		if (t.attr('type') != 'password' && !t.val())
+			t.val(t.attr('placeholder'));
+	});
+
+
+	function NumToStr(num) {
+		if (!num) return num;
+		num = Math.round(num * 100000000) / 100000000;
+		num = num.toFixed(8);
+		var min = 0.0001;
+		var times = 0;
+		var arr;
+		if (num <= min) {
+			times = 0;
+			while (num <= min) {
+				num *= 10;
+				times++;
+				if (times > 100) break;
+			}
+			num = num + '';
+			arr = num.split(".");
+			for (var i = 0; i < times; i++) {
+				arr['1'] = '0' + arr['1'];
+			}
+			return arr[0] + '.' + arr['1'] + '';
+		}
+		return num.toFixed(8) + ' ';
+	}
+
+
+	function loginpop() {
+		$('.all_mask').css({'height': $(document).height()});
+		$('.all_mask').show();
+		$('.all_mask_loginbox').show();
+		$(".reloadverify").click();
+	}
+
+	var is_login = {$Think.session.userId
+	}
+	;
+
+	if (window.location.hash == '#login') {
+		if (!is_login) {
+			loginpop();
+		}
+	}
+
+	if (is_login) {
+		$.getJSON("/Ajax/allfinance?t=" + Math.random(), function (data) {
+
+			$('#user_finance').html(data);
+		});
+	}
+
+
+	function wrapClose() {
+		$('.all_mask').hide();
+		$('.all_mask_loginbox').hide();
+	}
+
+	var cookieValue = $.cookies.get('cookie_username');
+	if (cookieValue != '' && cookieValue != null) {
+		$("#login_username").val(cookieValue);
+	}
+
+	function upLogin() {
+		var username = $("#login_username").val();
+		var password = $("#login_password").val();
+		var verify = $("#login_verify").val();
+		if (username == "" || username == null) {
+			layer.tips('请输入用户名', '#login_username', {tips: 3});
+			return false;
+		}
+		if (password == "" || password == null) {
+			layer.tips('请输入登录密码', '#login_password', {tips: 3});
+			return false;
+		}
+
+		$.post("{:U('Login/submit')}", {
+			username: username,
+			password: password,
+			verify: verify,
+		}, function (data) {
+			if (data.status == 1) {
+				$.cookies.set('cookie_username', username);
+				//document.cookie="cookie_username="+username;
+				layer.msg(data.info, {icon: 1});
+				window.location = '/Finance';
+			} else {
+				//刷新验证码
+				$(".reloadverifyindex").click();
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+
+
+    var allverfiy = function() {
+        if ($('#login_username').val() == '' || $('#login_username').val().length == 0) {
+            layer.tips('请输入用户名', '#login_username', {tips: 3});
+            return;
+        }
+        if ($('#login_password').val() == '' || $('#login_password').val().length == 0) {
+            layer.tips('请输入登录密码', '#login_password', {tips: 3});
+            return;
+        }
+        if ($('#login_verify').val() == '' || $('#login_verify').val().length == 0) {
+            layer.tips('图形验证码不能为空!', '#login_verify', {tips: 3});
+            return;
+        }
+        return true;
+    }
+    var allloginClick = function() {
+        var e = event || window.event || arguments.callee.caller.arguments[0];
+        if (e && e.keyCode == 13) { // enter 键
+            if (!allverfiy()) {
+                return;
+            }
+            upLogin();
+        }
+    }
+    $('#login_username').bind('keydown', allloginClick);
+    $('#login_password').bind('keydown', allloginClick);
+    $('#login_verify').bind('keydown', allloginClick);
+</script>
+
+
+<style>
+.th-lts-con-t {
+    width: 100%;
+    background: #fff;
+}
+
+.th-lts-con-t h1 {
+    height: 30px;
+    line-height: 30px;
+    width: 100%;
+    background: #f8f8f8;
+    font-size: 12px;
+    color: #333;
+    padding-left: 10px;
+    box-sizing: border-box;
+    font-weight: normal;
+    letter-spacing: 1px;
+}
+
+#marqueebox1 {
+    height: 450px;
+    max-height: 450px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+#marqueebox1 li{
+    font-size:14px;
+    text-align:left;
+    padding:1px;
+    padding-left:5px;
+}
+
+#marqueebox1 li:hover{
+    background:#ebf4fe;
+}
+
+</style>
+
+  <div class="right" style="position:fixed;right:0px;bottom:0px;z-index:999;display:none;" id="trade_moshi_liaotian_1">
+	<div class="coinBox buyonesellone">
+		<div class="coinBoxBody buybtcbody2">
+			<div class="th-lts-con-t"> <h1>土豪币聊天室 <span onclick="javacript:$('#trade_moshi_liaotian_1').hide();$('#kf1').show();$('#chat1').show();" style="float:right;cursor:pointer;">关闭</span></h1>
+			
+			</div>
+			
+			
+			<div id="marqueebox1" style="height:450px;max-height: 450px;" class="">
+				<ul id="chat_content">
+				</ul>
+			</div>
+			<div id="marqueebox2">
+				<ul class="clearfix">
+					<li id="face" class="left"><a href="javascript:void(0);" class="face faceBtn" id="face1">
+						<img src="__PUBLIC__/Home/images/face.gif" width="20">
+					</a></li>
+					<li id="msg" class="left">
+					<input type="text" name="msg" class="text" id="chat_text"></li>
+					<li id="send" class="right"><input class="tijiao" type="button" value="发送"
+													   onclick="upChat()"></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.qqFace.js"></script>
+
+<script type="text/javascript">
+    //@他
+    function atChat(_this) {
+        $("#chat_text").val('@' + $(_this).html() + ' :');
+    }
+    // 回车提交聊天
+    $("#chat_text").keyup(function (e) {
+        if (e.keyCode === 13) {
+            upChat();
+            return false;
+        }
+    });
+    // 提交聊天
+    function upChat() {
+        var content = $("#chat_text").val();
+        if (content == "" || content == null) {
+            layer.tips('请输入内容', '#chat_text', {tips: 3});
+            return false;
+        }
+        $.post("/Ajax/upChat", {content: content}, function (data) {
+            if (data.status == 1) {
+                $("#chat_text").val('');
+                getChat();
+            } else {
+                layer.tips(data.info, '#chat_text', {tips: 3});
+                return false;
+            }
+        }, 'json');
+    }
+    //表情盒子的ID//给那个控件赋值//表情存放的路径
+    $('#face1').qqFace({id: 'facebox1', assign: 'chat_text', path: '__UPLOAD__/face/'});
+
+
+    function getChat() {
+        //if (trade_moshi == 2) {
+            $.getJSON("/Ajax/getChat?t=" + Math.random(), function (data) {
+                if (data) {
+
+
+                    var list = '';
+                    for (i = 0; i < data.length; i++) {
+                        list += '<li><a href="javascript:void(0);" onclick="atChat(this)">' + data[i][1] + '</a>：' + data[i][2] + '</li>';
+					}
+                    list = list.replace(/\[\/#([0-9]*)\]/g, '<img src="__UPLOAD__/face/$1.gif"  width="18">');
+
+                    if ($("#chat_content").html() != list) {
+                        $("#chat_content").html(list);
+                        $("#marqueebox1").scrollTop(40000);
+                    }
+
+
+                }
+            });
+            setTimeout('getChat()', 5000);
+        //}
+    }
+
+	
+	getChat();
+
+</script>	
+
+</body></html>

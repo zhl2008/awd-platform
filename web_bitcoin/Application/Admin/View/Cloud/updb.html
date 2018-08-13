@@ -1,0 +1,111 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h">
+            <span class="h1-title">自动升级 - 更新数据库</span>
+        </div>
+    <div class="with-padding" style="width:700px;">
+        <div class="alert alert-info">
+            <p>当前需要升级的版本<strong>{$nextVersion.name}</strong></p>
+
+            <p>当前的系统版本号<strong>{$currentVersion.name}</strong></p>
+        </div>
+        <p><strong class="text-success">1.下载更新包，获取更新文件列表-》 2.本地文件对比-》 3.代码升级-》 4.数据库升级</strong>-》升级完成</p>
+
+        <empty name="sql">
+            <div class="alert alert-success">
+                本次更新不涉及数据库改动，可以直接跳过。
+            </div>
+            <a href="{:U('finish')}"  class="btn btn-success btn-block">无需升级数据库，跳过数据库升级</a>
+
+            <else/>
+
+            <p>
+                本次更新的数据库改动
+            </p>
+
+            <p>如果您改动过数据库，请手动核对下面的数据库改动，如存在冲突，请自行修改数据库后，<strong>跳过数据库升级</strong></p>
+
+            <div style="border: 1px solid #ccc;padding: 20px;height: 243px;overflow: auto">
+                {$sql}
+            </div>
+
+            <p>涉及的数据库更新脚本位置</p>
+
+            <p>
+                {$path}/update.sql
+
+            </p>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <a id="compare_btn" class="btn btn-success btn-block"
+                       onclick="updateDB(this)">我未改动过数据库，升级数据库</a>
+                </div>
+                <div class="col-xs-5">
+                    <a href="{:U('finish')}" class="btn btn-default btn-block"
+                       >我已经自行合并数据库升级，跳过</a>
+                </div>
+            </div>
+
+
+
+        </empty>
+
+
+    </div>
+
+
+    <script>
+        function updateDB(obj) {
+            if (!confirm('123')) {
+                return false;
+            } else {
+                toast.showLoading();
+                $(obj).attr('disabled', 'disabled');
+                $(obj).text('{:L("_IS_UPGRADING_THE_DATABASE_PLEASE_WAIT_PATIENTLY_")}……');
+                $.post('__SELF__', function (msg) {
+                    if (msg.status) {
+                        $(obj).removeAttr('disabled');
+                        toast.hideLoading();
+                        toast.success({:L('_DATABASE_UPGRADE_SUCCESSFULLY_WITH_SINGLE_')});
+                        $(obj).text({:L('_UPGRADE_DATABASE_SUCCESSFULLY_ENTER_NEXT_WITH_SINGLE_')});
+                        $(obj).attr('href',"{:U('finish')}");
+                        $(obj).attr('onclick','');
+                    } else {
+                        toast.error({:L('_UPGRADE_FAILED._PLEASE_CHECK_IT_AND_TRY_AGAIN_WITH_SINGLE_')})
+                    }
+                })
+            }
+        }
+        function writeFile($data) {
+            $('#file').append('<div><i class="icon-file"></i> ' + $data + '</div>');
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable() {
+            $('#compare_btn').removeAttr('disabled', '');
+        }
+    </script>
+        <include file="Public:footer"/>

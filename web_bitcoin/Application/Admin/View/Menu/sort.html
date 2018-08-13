@@ -1,0 +1,42 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">菜单排序 [ <a href="{:U('index',array('pid'=>I('pid')))}">返回列表</a> ]</span>
+		</div>
+
+		<div class="sort">
+			<form action="{:U('sort')}" method="post">
+				<!-- 			<div class="sort_top">
+                                查找：<input type="text"><button class="btn search" type="button">查找</button>
+                            </div> -->
+				<div class="sort_center">
+					<div class="sort_option">
+						<select value="" size="8">
+							<volist name="list" id="vo">
+								<option class="ids" title="{$vo.title}" value="{$vo.id}">{$vo.title}</option>
+							</volist>
+						</select>
+					</div>
+					<div class="sort_btn">
+						<button class="top btn" type="button">第 一</button>
+						<button class="up btn" type="button">上 移</button>
+						<button class="down btn" type="button">下 移</button>
+						<button class="bottom btn" type="button">最 后</button>
+					</div>
+				</div>
+				<div class="sort_bottom">
+					<input type="hidden" name="ids">
+					<button class="sort_confirm btn submit-btn" type="button">确 定</button>
+					<button class="sort_cancel btn btn-return" type="button" url="{$Think.cookie.__forward__}">返 回</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>
+
+<include file="Public:footer" />

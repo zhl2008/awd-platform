@@ -1,0 +1,81 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h">
+            <span class="h1-title">自动升级 - 下载更新包</span>
+        </div>
+    <div class="with-padding" style="width:1000px;">
+
+        <div class="alert alert-info">
+            <p>当前需要升级的版本<strong>{$nextVersion.name}</strong></p>
+
+            <p>当前的系统版本号<strong>{$currentVersion.name}</strong></p>
+        </div>
+        <p><strong class="text-success">1.下载更新包，获取更新文件列表</strong>  -》 2.代码升级 -》 3.数据库升级-》 4.升级完成</p>
+        <div id="message" style="border: 1px solid #ccc;padding: 20px;height: 243px;overflow: auto">
+
+        </div>
+        <p>本次更新涉及的本地文件</p>
+        <div id="file" style="border: 1px solid #ccc;padding: 20px;height: 250px;overflow: auto">
+
+        </div>
+
+        <p>下载的文件存放位置</p>
+        <p>
+            原版文件存放位置{$path}/old.zip
+
+        </p>
+
+        <p>
+            更新文件存放位置{$path}/new.zip
+        </p>
+        <a id="compare_btn" disabled="disabled" href="{:U('compare')}" class="btn btn-success btn-block">下载完成，比较文件</a>
+
+        <div style="margin-top: 10px">
+            <div class="progress progress-striped active hide" style="border-radius: 3px">
+                <div id="progress" class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="40"
+                     aria-valuemin="0" aria-valuemax="100" style="width:0">
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+    </div>
+
+    <script>
+        function writeFile($data) {
+            $('#file').append('<div><i class="icon-file"></i> '+$data+'</div>');
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable(){
+            $('#compare_btn').removeAttr('disabled','');
+        }
+    </script>
+</block>
+
+
+<include file="Public:footer"/>

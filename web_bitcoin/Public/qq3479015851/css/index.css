@@ -1,0 +1,249 @@
+﻿.benotice{font-size:14px; text-align:center; 
+height:36px; line-height:36px;background:#fffaeb;}
+
+/*********login***********/
+.login-box {
+	position: relative;
+	z-index: 100;
+}
+
+.login {
+	width: 24.5em;
+	position: absolute;
+	top:7em;
+	border:3px solid #999;
+	right: 10px;
+	color: #fff;
+}
+.top5em{top:5em !important;}
+.top3em{top:3em !important;}
+
+.login .form-control, .login .btn {
+	border-radius: 0;
+	height: 35px;
+}
+.carousel-indicators li{margin:0 5px;height:12px;width:12px;border:1px solid #ddd}
+.carousel-indicators .active{width:24px;}
+.login-bg {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+	background: #000;
+	opacity: .35;
+	filter: alpha(opacity =   35);
+}
+
+.login-bg.loginin {
+	opacity: 0.7;
+	filter: alpha(opacity =   70);
+}
+
+.login-cn {
+	position: relative;
+	z-index: 1;
+	padding: 2.2em;
+}
+
+.login-cn .login-cn-title {
+	font-size: 18px;
+	margin-bottom: 25px;
+}
+
+.login .login-login-cn {
+	font-size: 14px;
+}
+
+.login .login-login-cn span.infobox {
+	color: #fff;
+	line-height: 35px;
+	display: block;
+	border: #5f5e7d 1px solid;
+	margin-bottom: 15px;
+}
+
+.login .login-login-cn span.info-left {
+	padding: 0 10px;
+	border-right: #5f5e7d 1px solid;
+	display: inline-block;
+	color: #1b1d48;
+	background: #fff;
+}
+
+.login .login-login-cn span.info-right {
+	display: inline-block;
+	padding: 0 5px;
+}
+
+.login .btn-left {
+	padding-left: 2px;
+}
+
+.login .btn-right {
+	padding-right: 2px;
+}
+
+.login-cn a {
+	color: #fff;
+}
+
+.login .otherlogin {
+	position: relative;
+	background-color: #0c0103;
+	font-size: 13px;
+	margin-bottom: 0px;
+	opacity: 0.8;
+}
+
+.login .login-other-bg {
+	position: absolute;
+	height: 45px;
+	width: 100%;
+	z-index: 0;
+	background: #040001;
+	opacity: .45;
+	filter: alpha(opacity = 45);
+	bottom: 0;
+	border-bottom-left-radius: 5px;
+	border-bottom-right-radius: 5px;
+}
+
+.login .login-other {
+	position: absolute;
+	height: 45px;
+	width: 100%;
+	bottom: 0;
+	padding: 0 30px;
+	z-index: 10;
+}
+
+.login .login-other .split {
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 1px;
+	height: 100%;
+	background: #393639;
+}
+
+.login .login-other a {
+	padding-left: 30px;
+	line-height: 45px;
+	display: inline-block;
+	color: #9c9a9c;
+	text-decoration: none;
+}
+
+.login .login-other a:hover {
+	color: #fff;
+}
+
+.login .login-other a:last-child {
+	padding-left: 38px;
+}
+
+.login .login-other a:last-child:hover {
+	color: #fff;
+}
+
+
+/**coin.css**/
+.coinarea{position:relative;margin-top:0px;}
+.coinarea .table>thead>tr>th{border-bottom:none;}
+.coinarea .for_coin{ height:42px;margin:0px 20px auto 0px;padding-left:0px;}
+.coinarea .for_coin li{ float:left; width:120px; text-align:center; height:42px; line-height:42px; margin-right:5px;}
+.coinarea .for_coin li a{ display:block; height:42px; text-decoration:none; color:#333; font-size:16px;}
+.coinarea .for_coin li a:hover{ color:#e55600;}
+.coinarea .coin_list{border:1px solid #f2f2f2;}
+.coinarea .coin_list thead tr{ height:40px; color:#333;}
+.coinarea .coin_list thead tr th{ text-align:right; background:#fbfaf8; font-size:14px;}
+.coinarea .coin_list tbody tr:hover{ background:#f6f6f6;}
+
+.coinarea .coin_list tbody tr td{ border-bottom:1px solid #f2f2f2; height:30px; text-align:right; font-size:14px;}
+.coinarea .coin_list tbody tr td a{text-decoration:none; height:30px; line-height:30px;}
+
+.coinarea .coin_list tbody tr td .buy{ color:#e55600;}
+.coinarea .coin_list tbody tr td .sell{ color:#009900}
+.coinarea .coin_list tbody .coin_num .coin_name{ text-align:left; font-weight:bold; color:#333;}
+ 
+#tags_coin #tags li.selectTag a {
+    color: #e55600;
+    background: url(/Public/comfile/images/qq3479015851.jpg) center top no-repeat;
+    height: 42px;
+}
+#tags_coin #tags li a {
+    display: block;
+    height: 42px;
+    text-decoration: none;
+    color: #333;
+    font-size: 16px;
+    background: none;
+    width: 120px;
+    cursor: pointer;
+}
+.panel-heading .iconfont{font-size:18px;}
+.panel-heading span{font-size:16px;}
+.panel-heading a{padding-top:5px;}
+
+.service_1{background:url(../images/service.png) no-repeat 0 -40px ;}
+.service_2{background:url(../images/service.png) no-repeat 0 -80px ;}
+.service_3{background:url(../images/service.png) no-repeat 0 -120px;}
+.service_4{background:url(../images/service.png) no-repeat 0 -160px;}
+.service_5{background:url(../images/service.png) no-repeat 0 0;}
+
+.service li{float:left;width:20%;}
+.web_service_pic{float:left;width:50px;height:39px}
+.web_service_pic_num{float:left;font-size:12px;color:#888;font-family:Microsoft YaHei}
+.web_service_pic_num p{font-size:18px;color:#e55600;margin-bottom:0px;}
+
+.safety_tips{text-align:center;margin:20px auto;}
+.safety_tips li{float:left;width:25%;text-align:center;padding:0 20px;}
+.safety_tips li h4{height:34px;margin-top:8px;font-size:16px;line-height:34px}
+.safety_tips li p{text-align:left;line-height:20px;font-size:12px;margin:0 auto}
+.friendlink{margin:10px 0;}
+.friendlink li{padding:0 10px 10px;}
+.homepage-lump {
+	zoom: 1
+}
+.homepage-lump>div {
+	float: left;
+	height: 210px;
+	margin:20px 0px;
+	background-color: #fafafa;border:2px solid #fff;
+}
+.homepage-lump>.current{
+	background-color: #fffaeb;
+	}
+.homepage-lump>div>span {
+	display: block
+}
+
+.homepage-lump .icons {
+	height: 90px;
+	padding-top: 20px;
+	text-align: center
+}
+
+.homepage-lump .name {
+	height: 30px;
+	line-height: 30px;
+	padding-top: 2px;
+	text-align: center;
+	font-size: 18px
+}
+
+.homepage-lump .notice {
+	padding-top: 3px;
+	line-height: 20px;
+	color: #999;
+	text-align: center
+}
+
+.homepage-lump .spacint-wh-191 {
+	width: 191px
+}
+.form-group #captchaimg{ position:absolute;top:0;right:0px;}
+.table>tbody+tbody{border-top:none;}
+
+.newlist span{font-size:12px;}
+

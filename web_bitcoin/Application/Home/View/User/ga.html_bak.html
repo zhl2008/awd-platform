@@ -1,0 +1,266 @@
+<include file="Public:header"/>
+<div class="autobox">
+    <div class="now">
+        <a href="/" class="orange">首页</a> &gt;
+        <a href="/user/index.html" class="orange">安全中心 </a> &gt; 双重验证
+    </div>
+    <div class="assets_center clear po_re zin70">
+        <!--左侧菜单-->
+        <include file="User:left"/>
+        <!--右侧内容-->
+        <div class="assets_content w900 right bg_w">
+            <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+                <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">设置双重验证</h1>
+            </div>
+
+<notempty name="prompt_text">
+                    <div class="mytips">
+                        <h6 style="color: #ff8000;">温馨提示</h6>
+                        {$prompt_text}
+                    </div>
+                </notempty>
+
+            <br>
+
+            <eq name="is_ga" value="0">
+                <form id="form-gaa" class="assets_content w900 right bg_w">
+                    <div class="pb29">
+                        <div class="dv_info">
+                            <p>Google Authenticator双重验证可以更安全的保护您的账户，未开户双重验证不影响正常的交易</p>
+
+                            <p>开户双重验证功能后，在您每次进行提现操作时，系统都会提示您输入手机应用程序上显示的一次性密码，来确保您的资金安全。您可以依照下面的步骤来设置并启用这一功能。</p>
+                        </div>
+                        <div class="dv_title">
+                            <em class="dv_num_1"></em> 在您的手机上安装双重验证程序：Google Authenticator
+                        </div>
+                        <div class="dv_content">
+                            <div class="mbphone_btn" id="mbphone_btn">
+                                <dl>
+                                    <dt>iPhone手机：在App Store中搜索Google Authenticator</dt>
+                                    <dd>
+                                        <a target="_blank"
+                                           href="http://itunes.apple.com/cn/app/google-authenticator/id388497605?mt=8">点此查看</a>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>Android手机：在应用市场中搜索“谷歌身份验证器”，或搜索Google Authenticator</dt>
+                                    <dd>
+                                        <a target="_blank" href="http://apk.hiapk.com/html/2013/07/1643619.html">点此下载</a>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>Nokia手机：不支持扫描二维码，可手动输入密钥</dt>
+                                    <dd>
+                                        <a target="_blank" href="http://code.google.com/p/lwuitgauthj2me/">点此下载</a>
+                                    </dd>
+                                </dl>
+                            </div>
+                        </div>
+                        <div class="dv_title">
+                            <em class="dv_num_2"></em> 安装完成后，您需要对该应用程序进行如下配置
+                        </div>
+                        <div class="dv_content">
+                            <p>在“Google Authenticator (身份验证器)”应用程序中，点击“添加新账户 (iOS 下是 +
+                                号)”，然后选择“扫描条形码”。将手机上的相机镜头对准下图扫描该条形码。</p>
+
+                            <div class="dv_ewm" id="qrcode"></div>
+                            <p>
+                                如果您无法扫描成功上图的条形码，您还可以手动添加账户，并输入如下密匙：<b>{$Asecret}</b>
+                            </p>
+                        </div>
+                        <div class="dv_title">
+                            <em class="dv_num_3"></em>配置完成
+                        </div>
+                        <div class="dv_content">
+                            <p>配置完成后，手机上会显示一个 6 位数字，每隔 30 秒变化一次。这个数字即为您的双重验证密码。</p>
+
+                            <p class="orange">请勿删除此双重验证密码账户，否则会导致您无法进行账户操作</p>
+
+                            <p class="orange">
+                                您可将密钥记录下来:
+                                <b>{$Asecret}</b> 如果误删，可通过手动输入密钥来恢复。
+                            </p>
+
+                            <p>输入双重验证密码，以开启或关闭双重验证功能</p>
+
+                            <div class="dv_input">
+                                <input type="hidden" name="secret" value="{$Asecret}"> 双重验证密码：<input id="ga" type="text"
+                                                                                                     name="ga"/>
+
+                                <div class="dv_ts">
+                                    <em></em>请输入手机应用程序上显示的双重验证密码。
+                                </div>
+                            </div>
+                            <div class="dv_radio">
+                                配置验证的模块：
+                                <label for="ga-login">
+                                    <input type="checkbox" id="ga-login" name="login" checked="1">登录</label>
+                                <label for="ga-transfer"><input type="checkbox" id="ga-transfer" checked="1"
+                                                                name="transfer">资金转出</label>
+                            </div>
+                        </div>
+                        <div class="dv_title">
+                            <em class="dv_num_4"></em>
+
+                            <div class="dv_submit">
+                                <input type="button" onclick="goole_verify()" value="验证并启用">
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.qrcode.min.js"></script>
+                <script>
+                    $('#qrcode').qrcode({
+                        render: "table", //table方式
+                        size: 200,
+                        text: "{$qrCodeUrl}" //任意内容
+                    }); //任意字符串
+
+                    function goole_verify() {
+                        var ga = $('#ga').val();
+                        var ga_login = $('#ga-login').is(':checked') ? 1 : 0;
+                        var ga_transfer = $('#ga-transfer').is(':checked') ? 1 : 0;
+                        var ga = $('#ga').val();
+                        if (!ga) {
+                            layer.tips('请输入验证码', '#ga', {
+                                tips: [
+                                    1,
+                                    '#0FA6D8'
+                                ]
+                            });
+                            return;
+                        }
+                        $.post("{:U('user/ga')}", {
+                            ga: ga,
+                            ga_login: ga_login,
+                            ga_transfer: ga_transfer,
+                            type: 'add'
+                        }, function (ret) {
+                            if (ret.status) {
+                                layer.msg('操作成功跳转中...', {icon: 16});
+                                setTimeout('flash()', 3000);
+                            } else {
+                                layer.msg(ret.info);
+                            }
+                        }, 'json');
+                    }
+                </script>
+                <else/>
+                <form id="form-ga" class="assets_content w900 right bg_w">
+                    <div class="set_verify">
+                        <ul>
+                            <li>配置验证的模块：</li>
+                            <li>
+                                <label for="ga-login">
+                                    <input type="checkbox" id="ga-login" name="login"
+                                    <eq name="ga_login" value="1">checked="1"</eq>
+                                    >
+                                    登录</label>
+                                <span>(登录时显示双重认证码)</span>
+                            </li>
+                            <li>
+                                <label for="ga-transfer">
+                                    <input type="checkbox" id="ga-transfer" name="transfer"
+                                    <eq name="ga_transfer" value="1">checked="1"</eq>
+                                    >
+                                    资金转出
+                                </label>
+                                <span>(资金转出时显示双重认证码)</span>
+                            </li>
+                            <li>
+                                <div class="sv_input">
+                                    <input id="ga" placeholder="请输入双重验证密码" type="text">
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="save_verify">
+                            <input value="保存" type="button" onclick="google_set()">
+                        </div>
+                    </div>
+                    <div class="off_fn">
+                        <dl>
+                            <dt>开启或关闭双重验证功能：</dt>
+                            <dd>
+                                <div class="off_fn_input">
+                                    <input id="ga_delete" name="ga_delete" placeholder="请输入双重验证密码" type="text">
+                                </div>
+                            </dd>
+                            <dd class="clear">
+                                <a onclick="ga_cancel()">取消双重验证</a>
+                            </dd>
+                        </dl>
+                    </div>
+                </form>
+                <script>
+                    function google_set() {
+                        var ga = $('#ga').val();
+                        var ga_login = $('#ga-login').is(':checked') ? 1 : 0;
+                        var ga_transfer = $('#ga-transfer').is(':checked') ? 1 : 0;
+                        var ga = $('#ga').val();
+                        if (!ga) {
+                            layer.tips('请输入验证码', '#ga', {
+                                tips: [
+                                    1,
+                                    '#0FA6D8'
+                                ]
+                            });
+                            return;
+                        }
+                        $.post("{:U('user/ga')}", {
+                            ga: ga,
+                            ga_login: ga_login,
+                            ga_transfer: ga_transfer,
+                            type: 'update'
+                        }, function (ret) {
+                            if (ret.status) {
+                                layer.msg('操作成功跳转中...', {icon: 16});
+                                setTimeout('flash()', 3000);
+                            } else {
+                                layer.msg(ret.info);
+                            }
+                        }, 'json');
+                    }
+
+                    function ga_cancel() {
+                        var ga = $('#ga_delete').val();
+                        var ga = $('#ga_delete').val();
+                        if (!ga) {
+                            layer.tips('请输入验证码', '#ga_delete', {
+                                tips: [
+                                    1,
+                                    '#0FA6D8'
+                                ]
+                            });
+                            return;
+                        }
+                        $.post("{:U('user/ga')}", {
+                            ga: ga,
+                            type: 'delete'
+                        }, function (ret) {
+                            if (ret.status) {
+                                layer.msg('操作成功跳转中...', {icon: 16});
+                                setTimeout('flash()', 3000);
+                            } else {
+                                layer.msg(ret.info);
+                            }
+                        }, 'json');
+                    }
+                </script>
+            </eq>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<script>
+
+    $('#user_box').addClass('active');
+    $('#user_ga').addClass('active');
+    $('#user_ga i').attr('class', 'coin_menu_op_11');
+
+    function flash() {
+
+        window.location = "{:U('user/ga')}"
+    }
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,148 @@
+<include file="Public:header"/>
+<link href="__PUBLIC__/Admin/index_css/style.css" rel="stylesheet">
+<link href="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.css" rel="stylesheet">
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<section class="wrapper">
+		<div class="main-title-h">
+			<span class="h1-title">市场统计</span>
+			<select id="name-select" name="market" class="navbar-btn  form-control select select-default select-sm" style="       height: 30px; width: 150px;min-width:150px;">
+				<volist name="C['market']" id="vo">
+					<option value="{$vo['name']}"
+					<eq name="vo['name']" value="$market">selected</eq>
+					>{$vo['title']}					</option>
+				</volist>
+			</select>
+
+			<button class="btn btn-success " onclick="chk_xin('{$market}');" style="    margin-top: -10px; margin-left: 5px;">重新初始化当前市场统计</button>
+
+
+		</div>
+		<div class="row state-overview">
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-wealth">
+						<i class="glyphicon glyphicon-bold"></i>
+					</div>
+					<div class="value">
+						<h1 class="count" style="font-size: 20px;">{$data['trance_ci']}</h1>
+						<p>累计成交次数</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-transe">
+						<i class="glyphicon glyphicon-transfer"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count2" style="font-size: 20px;">{$data['trance_num']*1}</h1>
+						<p>累计交易量</p>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-fee">
+						<i class="glyphicon glyphicon-tower"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count3" style="font-size: 20px;">{$data['trance_fee']*1}</h1>
+						<p>累计手续费</p>
+						<h1 class=" count3" style="font-size: 12px;">买入{$data['trance_buyfee']*1}</h1>
+						<h1 class=" count3" style="font-size: 12px;">卖出{$data['trance_sellfee']*1}</h1>
+					</div>
+				</section>
+			</div>
+			<div class="col-lg-3 col-sm-6">
+				<section class="panel">
+					<div class="symbol all-coin-more">
+						<i class="glyphicon glyphicon-list-alt"></i>
+					</div>
+					<div class="value">
+						<h1 class=" count4" style="font-size: 20px;">{$data['trance_mum']*1}</h1>
+						<p>累计交易额</p>
+					</div>
+				</section>
+			</div>
+		</div>
+		<div id="morris">
+			<div class="row">
+				<div class="col-lg-12">
+					<section class="panel">
+						<header class="panel-heading text-success">
+							手续费走势图
+						</header>
+						<div class="panel-body">
+							<div id="hero-graph" class="graph"></div>
+						</div>
+					</section>
+				</div>
+			</div>
+		</div>
+	</section>
+</div>
+<script>
+	$("#name-select").change(function () {
+		var coinname = $("#name-select option:selected").val();
+		window.location = '/Admin/Index/market/market/' + coinname + '.html';
+	});
+
+
+	function chk_xin($market) {
+		$.get("{:U('Index/marketSet')}", {
+			market: $market,
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+
+
+
+
+	var Script = function () {
+
+		//morris chart
+		$(function () {
+
+			//市场交易报表
+			Morris.Area({
+				element: 'hero-graph',
+				data: {$cztx},
+				xkey: 'date',
+				ykeys: ['num', 'mum', 'fee_buy', 'fee_sell'],
+				labels: ['成交量', '成交额', '买入手续费', '卖出手续费'],
+				hideHover: 'auto',
+				lineWidth: 1,
+				pointSize: 5,
+				lineColors: ['#4a8bc2', '#ff6c60', '#a94442', '#afgh4e'],
+				fillOpacity: 0.5,
+				smooth: true,
+				postUnits: ' ',
+				xLabels: 'day',
+			});
+		});
+
+
+	}();
+</script>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('Index/market')}");
+	</script>
+</block>

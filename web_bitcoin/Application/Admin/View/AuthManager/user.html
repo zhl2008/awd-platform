@@ -1,0 +1,98 @@
+<!-- 成员授权编辑页面 -->
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">成员授权</span>
+		</div>
+		<div class="cf">
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<select name="group">
+							<volist name="auth_group" id="vo">
+								<option value="{:U('AuthManager/user',array('group_id'=>$vo['id'],'group_name'=>$vo['title']))}"
+								<eq name="vo['id']" value="$this_group['id']">selected</eq> >{$vo.title}</option>
+							</volist>
+						</select>
+
+						</a>
+					</form>
+					<script>
+						//搜索功能
+						$(function(){
+							$('#search').click(function(){
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function(e){
+							if(e.keyCode===13){
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="">ID</th>
+					<th class="">username</th>
+					<th class="">昵称</th>
+					<th class="">最后登录时间</th>
+					<th class="">最后登录IP</th>
+					<th class="">状态</th>
+					<th class="">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<volist name="_list" id="vo">
+					<tr>
+						<td>{$vo.id} </td>
+						<td>{$vo.username} </td>
+						<td>{$vo.nickname}</td>
+						<td><span>{$vo.last_login_time|time_format}</span></td>
+						<td><span>{$vo.last_login_ip|long2ip}</span></td>
+						<td>{$vo.status_text}</td>
+						<td><a href="{:U('AuthManager/removeFromGroup?uid='.$vo['id'].'&group_id='.I('group_id'))}"
+							   class="ajax-get">解除授权</a>
+
+						</td>
+					</tr>
+				</volist>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+
+
+			<table class="">
+				<form class="add-user" action="{:U('addToGroup')}" method="post" enctype="application/x-www-form-urlencoded" >
+					<input class="input-4x" type="text" name="uid" placeholder="请输入uid,多个用英文逗号分隔">
+					<input type="hidden" name="group_id" value="{:I('group_id')}">
+					<button type="submit" class="ajax-post" target-form="add-user">新 增</button>
+				</form>
+			</table>
+
+		</div>
+	</div>
+</div>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		$('select[name=group]').change(function(){
+			location.href = this.value;
+		});
+		//导航高亮
+		highlight_subnav('{:U('AuthManager/index')}');
+	</script>
+</block>
+<include file="Public:footer" />

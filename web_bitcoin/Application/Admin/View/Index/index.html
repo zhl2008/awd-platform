@@ -1,0 +1,280 @@
+<include file="Public:header"/>
+<link href="__PUBLIC__/Admin/index_css/style.css" rel="stylesheet">
+<link href="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.css" rel="stylesheet">
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/morris.min.js" type="text/javascript"></script>
+<script src="__PUBLIC__/Admin/index_js/morris.js-0.4.3/raphael-min.js" type="text/javascript"></script>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <section class="wrapper">
+        <!--state overview start-->
+        <div class="row state-overview">
+            <div class="col-lg-3 col-sm-6">
+                <section class="panel">
+                    <div class="symbol terques">
+                        <i class="glyphicon glyphicon-user"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class="count" style="font-size: 12px;">{$arr['reg_sum']}</h1>
+
+                        <p>注册总人数</p>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <section class="panel">
+                    <div class="symbol red">
+                        <i class="glyphicon glyphicon-signal"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class=" count2" style="font-size: 12px;">{$arr['cny_num']}</h1>
+
+                        <p>人民币总计</p>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <section class="panel">
+                    <div class="symbol yellow">
+                        <i class="glyphicon glyphicon-tower"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class=" count3" style="font-size: 12px;">{$arr['trance_mum']}</h1>
+
+                        <p>累计交易额</p>
+                    </div>
+                </section>
+            </div>
+            <div class="col-lg-3 col-sm-6">
+                <section class="panel">
+                    <div class="symbol blue">
+                        <i class="glyphicon glyphicon-list-alt"></i>
+                    </div>
+                    <div class="value">
+                        <h1 class=" count4" style="font-size: 12px;">{$arr['art_sum']}</h1>
+
+                        <p>文章总数</p>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div id="morris">
+            <div class="row">
+                <div class="col-lg-6">
+                    <section class="panel">
+                        <header class="panel-heading text-warning">
+                            用户注册报表(30天)
+                        </header>
+                        <div class="panel-body">
+                            <div id="hero-bar" class="graph"></div>
+                        </div>
+                    </section>
+                </div>
+                <div class="col-lg-6">
+                    <section class="panel">
+                        <header class="panel-heading text-success">
+                            系统 充值/提现 统计图(30天)
+                        </header>
+                        <div class="panel-body">
+                            <div id="hero-graph" class="graph"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+            <style>
+                .version a {
+                    animation: myfirst 2s;
+                    -moz-animation: myfirst 2s; /* Firefox */
+                    -webkit-animation: myfirst 2s; /* Safari and Chrome */
+                    -o-animation: myfirst 2s; /* Opera */
+                }
+
+                @keyframes myfirst {
+                    from {
+                        color: #2f4154;
+                    }
+                    to {
+                        color: green;
+                    }
+                }
+
+                @-moz-keyframes myfirst /* Firefox */
+                {
+                    from {
+                        color: #2f4154;
+                    }
+                    to {
+                        color: green;
+                    }
+                }
+
+                @-webkit-keyframes myfirst /* Safari and Chrome */
+                {
+                    from {
+                        color: #2f4154;
+                    }
+                    to {
+                        color: green;
+                    }
+                }
+
+                @-o-keyframes myfirst /* Opera */
+                {
+                    from {
+                        color: #2f4154;
+                    }
+                    to {
+                        color: green;
+                    }
+                }
+            </style>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="container-span">
+                        <div class="span4" style="width: 100%;margin-left: 0;">
+                            <div class="columns-mod">
+                                <div class="bd" style="background-color: #fff">
+                                    <div class="sys-info">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="container-span">
+                        <div class="span4" style="width: 100%;margin-left: 0;">
+                            <div class="columns-mod">
+                                <div class="bd" style="background-color: #fff">
+                                    <div class="sys-info">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+    var Script = function () {
+        $(function () {
+            show_cztx({$cztx});
+            show_reg({$reg});
+
+            //系统 充值/提现 统计图
+            function show_cztx(data) {
+                Morris.Line({
+                    element: 'hero-graph',
+                    data: data,
+                    xkey: 'date',
+                    ykeys: [
+                        'charge',
+                        'withdraw'
+                    ],
+                    labels: [
+                        '充值',
+                        '提现'
+                    ],
+                    lineColors: [
+                        '#8075c4',
+                        '#6883a3'
+                    ],
+                    xLabels: 'day',
+                    postUnits: ' 元'
+                });
+            }
+
+            //用户注册报表
+            function show_reg(data) {
+                Morris.Bar({
+                    element: 'hero-bar',
+                    data: data,
+                    xkey: 'date',
+                    ykeys: ['sum'],
+                    labels: ['人数'],
+                    barRatio: 0.4,
+                    xLabelAngle: 35,
+                    hideHover: 'auto',
+                    barColors: ['#6883a3'],
+                    xLabels: 'day',
+                    postUnits: ' 人',
+                });
+            }
+
+            //市场交易报表
+            function show_trance(data) {
+                Morris.Area({
+                    element: 'hero-area',
+                    data: [
+                        {date: '2016-02-24', btc: 2666, msc: null, ltc: 2647},
+                        {date: '2016-02-25', btc: 2778, msc: 2294, ltc: 2441},
+                        {date: '2016-02-26', btc: 4912, msc: 1969, ltc: 2501},
+                        {date: '2016-02-27', btc: 3767, msc: 3597, ltc: 5689},
+                        {date: '2016-02-28', btc: 3767, msc: 3597, ltc: 5689},
+                        {date: '2016-02-29', btc: 3767, msc: 3597, ltc: 5689},
+                        {date: '2016-02-30', btc: 3767, msc: 3597, ltc: 5689},
+                        {date: '2016-02-31', btc: 3767, msc: 3597, ltc: 5689},
+                        {date: '2016-03-1', btc: 3767, msc: 3597, ltc: 5689},
+                        {date: '2016-03-2', btc: 3767, msc: 3597, ltc: 5689},
+                    ],
+
+                    xkey: 'date',
+                    ykeys: [
+                        'btc',
+                        'msc',
+                        'ltc'
+                    ],
+                    labels: [
+                        '比特币',
+                        '动说币',
+                        '莱特币'
+                    ],
+                    hideHover: 'auto',
+                    lineWidth: 1,
+                    pointSize: 10,
+                    lineColors: [
+                        '#4a8bc2',
+                        '#ff6c60',
+                        '#a9d86e'
+                    ],
+                    fillOpacity: 0.5,
+                    smooth: true,
+                    postUnits: ' 元',
+                    xLabels: 'day',
+                });
+            }
+
+            //市场活跃报表
+            function show_active() {
+                Morris.Donut({
+                    element: 'hero-donut',
+                    data: [
+                        {label: '人民币', value: 10450},
+                        {label: '人民币总计', value: 8440},
+                    ],
+                    colors: [
+                        '#41cac0',
+                        '#ff6c60',
+                        '#FF6C60'
+                    ],
+                    formatter: function (y) {
+                        return y + "总之"
+                    }
+                });
+            }
+        });
+
+    }();
+</script>
+<include file="Public:footer"/>
+<block name="script">
+    <script type="text/javascript" charset="utf-8">
+        //导航高亮
+        highlight_subnav("{:U('Index/index')}");
+    </script>
+</block>

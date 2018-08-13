@@ -1,0 +1,78 @@
+<include file="Public:header" />
+<div id="main-content">
+    <div id="main" class="main">
+        <div class="main-title-h">
+            <span class="h1-title">VIP等级管理</span>
+        </div>
+        <div id="top-alert" class="alert">
+            <div class="alert-content" style="color: #2ecc71;font-size: 14px;">
+                温馨提示:<br>
+                1.不同等级请严格按照币种数量递增形式填写升级规则,否则容易造成等级错乱.<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;(等级越高,所需币种数量和数目肯定比前一个等级多)<br>
+                2.等级设置后,运营期间请勿随意修改,否则会造成会员等级错位现象.<br>
+                3.默认等级vip0,完善资料且符合vip1规则则自动升级为vip1,后续依次类推.
+            </div>
+        </div>
+        <div class="cf">
+            <div class="fl">
+                <a class="btn btn-success navbar-btn btn-sm" href="{:U('App/vip_config_edit')}">新 增</a>
+                <button class="btn ajax-post btn-info navbar-btn btn-sm" url="{:U('App/vip_config_edit_status',array('method'=>'resume'))}" target-form="ids">启 用</button>
+                <button class="btn ajax-post btn-warning navbar-btn btn-sm" url="{:U('App/vip_config_edit_status',array('method'=>'forbid'))}" target-form="ids">禁 用</button>
+                <button class="btn ajax-post confirm btn-danger navbar-btn btn-sm" url="{:U('App/vip_config_edit_status',array('method'=>'delete'))}" target-form="ids">删 除</button>
+            </div>
+        </div>
+        <div class="data-table table-striped">
+            <table class="">
+                <thead>
+                <tr>
+                    <th class="row-selected row-selected"><input class="check-all" type="checkbox" /></th>
+                    <th class="">ID</th>
+                    <th class="">次序</th>
+                    <th class="">VIP等级名称</th>
+                    <th class="">日限次</th>
+                    <th class="">奖励</th>
+                    <th class="">升级规则</th>
+                    <th class="">添加时间</th>
+                    <th class="">状态</th>
+                    <th class="">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <notempty name="list"> <volist name="list" id="vo">
+                    <tr>
+                        <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+                        <td>{$vo.id}</td>
+                        <td>{$vo.tag}</td>
+                        <td>{$vo.name}</td>
+                        <td>{$vo.times}次</td>
+                        <td>{$coinMap[$vo['price_coin']]}:{$vo.price_num}个</td>
+                        <td>
+                            <volist name="vo.rule" id="sub_rule">
+                                {$coinMap[$sub_rule['id']]}:{$sub_rule.num}个<br>
+                            </volist>
+                        </td>
+                        <td>{$vo.addtime|addtime}</td>
+                        <td><eq name="vo.status" value="1">可用<else/>禁用</eq></td>
+                        <td>
+                            <a href="{:U('App/adsblock_edit?id='.$vo['id'])}" class="btn btn-warning btn-xs">{$vo.name}会员</a>
+                            <a href="{:U('App/vip_config_edit?id='.$vo['id'])}" class="btn btn-primary btn-xs">编辑</a>
+                    </tr>
+                </volist> <else />
+                    <td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+                </notempty>
+                </tbody>
+            </table>
+            <div class="page">
+                <div>{$page}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //主导航高亮
+    //	$('.Appads-box').addClass('current');
+    //	//边导航高亮
+    //	$('.Appads-index').addClass('current');
+</script>
+<!-- /内容区 -->
+<include file="Public:footer" />

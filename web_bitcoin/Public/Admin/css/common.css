@@ -1,0 +1,242 @@
+/** 
+ * 描       述: 定义公共类名及jquery插件样式
+ * 作用范围: 公共，独立样式
+ */
+
+/* 实心小三角 */
+.arrow {
+	display: inline-block;
+	width: 0;
+	height: 0;
+	line-height: 0;
+	vertical-align: middle;
+	border: 4px dashed transparent;
+}
+.arrow-down {
+	border-top-style: solid;
+	border-top-color: #000;
+	border-bottom-width: 0;
+}
+.arrow-up {
+	border-bottom-style: solid;
+	border-bottom-color: #000;
+	border-top-width: 0;
+}
+.arrow-left {
+	border-right-style: solid;
+	border-right-color: #000;
+	border-left-width: 0;
+}
+.arrow-right {
+	border-left-style: solid;
+	border-left-color: #000;
+	border-right-width: 0;
+}
+
+/* 提醒框 */
+.alert {
+	color: #c09853;
+	font-weight: bold;
+	border: 1px solid #fbeed5;
+	background-color: #fcf8e3;
+}
+.alert .close {
+    float: right;
+    position: relative;
+    top: -2px;
+    right: -21px;
+    font: bold 20px/20px arial; 
+	color: #c09853;
+    opacity: 0.4;
+}
+.alert .close:hover {
+	opacity: 0.6;
+}
+button.close {
+    padding: 0;
+    cursor: pointer;
+    border: 0 none;
+	background: none;
+}
+.close {
+    float: right;
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 20px;
+    color: #000000;
+    text-shadow: 0 1px 0 #ffffff;
+    opacity: 0.2;
+    filter: alpha(opacity=20);
+}
+.alert-info {
+	background-color: #D9EDF7;
+    border-color: #BCE8F1;
+    color: #3A87AD;
+}
+.alert-error {
+	color: white;
+	border-color: #eed3d7;
+	background-color: #FF6666;
+}
+.alert-success {
+    color: #468847;
+    background-color: #CCFF99;
+    border-color: #eed3d7;
+}
+#top-alert {
+    display: block;
+    top: 50px;
+    left: 220px;
+    right: 20px;
+    z-index: 3000;
+	margin-top: 20px;
+	padding-top: 12px;
+	padding-bottom: 12px;
+    overflow: hidden;
+    font-size: 16px;
+}
+#top-alert .close{
+    right:35px;
+    position: fixed;
+    top:75px;
+}
+.alert-content{
+	margin-left: 14px;
+    max-width:600px;
+    word-wrap: break-word;
+    word-break: break-word;
+}
+
+/* = Thinkbox弹出层插件样式
+------------------------------------------ */
+.thinkbox-content{
+    padding: 15px;
+    min-width: 100px;
+}
+.thinkbox-default .thinkbox-tools {
+    border:none!important; 
+    background-color: #fff!important;
+}
+.thinkbox-default .thinkbox-top-left {
+    border-radius: 0!important;
+}
+.thinkbox-default .thinkbox-top-right {
+    border-radius: 0!important;
+}
+.thinkbox-default .thinkbox-bottom-left {
+    border-radius: 0!important;
+}
+.thinkbox-default .thinkbox-bottom-right {
+    border-radius: 0!important;
+}
+.thinkbox-default .thinkbox-window-actions button {
+    margin-right: 6px!important;
+    /* background-image:none!important; */
+    /* background-color:#dd0000!important; */
+}
+
+/* = uploadify上传插件样式
+------------------------------------------ */
+.uploadify-button {
+	position: relative;
+	text-align: center;
+	color: #fff;
+	cursor: pointer;
+	background-color: #27ae60;
+}
+.uploadify-queue-item {
+	position: absolute;
+	margin-top: 4px;
+	padding: 15px;
+	width: 470px;
+	border: 1px solid #ccc;
+	background-color: #fff;
+}
+.uploadify-queue-item .cancel {
+	float: right;
+}
+.uploadify-queue-item .cancel a,
+.uploadify-queue-item .cancel a:hover {
+	font-family: Consolas;
+	color: #404040;
+	text-decoration: none;
+	border-bottom: 0 none;
+}
+.uploadify-queue-item .fileName {
+	color: #2D7200;
+}
+.uploadify-error {
+	background-color: #FDE5DD !important;
+}
+.uploadify-queue-item.completed {
+	background-color: #E5E5E5;
+}
+.uploadify-progress {
+	background-color: #E5E5E5;
+	margin-top: 10px;
+	width: 100%;
+}
+.uploadify-progress-bar {
+	background-color: #0099FF;
+	height: 3px;
+	width: 1px;
+}
+.upload-img-box {
+	margin-top: 4px;
+}
+.upload-img-box .upload-pre-item {
+	padding: 1px;
+	width: 120px;
+	max-height: 120px;
+	overflow: hidden;
+	text-align: center;
+	cursor: pointer;
+	border: 1px solid #ccc;
+	transition: all .3s linear;
+}
+.upload-img-box .upload-pre-item img {
+	vertical-align: top;
+}
+.upload-img-box .upload-pre-file {
+	padding: 0 10px;
+	width: 380px;
+	height: 35px;
+	line-height: 35px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	border: 1px dashed #ccc;
+	background-color: #fff;
+}
+/* 上传图片点击弹出层 */
+.upload-img-popup {
+	position: fixed;
+	z-index: 9999;
+	padding: 3px;
+	border: 1px solid #c3c3c3;
+	background-color: #fff;
+	box-shadow: 0 0 4px rgba(0,0,0,.5);
+}
+.upload-img-popup .close-pop {
+	position: absolute;
+	top: -8px;
+	right: -8px;
+	width: 17px;
+	height: 17px;
+	background: url(../images/bg_icon.png) no-repeat -25px 0;
+}
+.upload-img-popup .close-pop:hover {
+	text-decoration: none;
+	border-bottom: 0 none;
+}
+.upload-img-popup img {
+	display: block;
+}
+.upload_icon_all {
+	width: 15px;
+	height: 15px;
+	background: url(../images/attachment_1.png);
+	display: inline-block;
+	vertical-align: middle;
+	margin-right: 5px
+}

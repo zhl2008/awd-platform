@@ -1,0 +1,74 @@
+<include file="Public:header"/>
+<script src="__PUBLIC__/Home/js/datepicker.min.js"></script>
+<div class="autobox">
+    <div class="now">
+        <a href="/" class="orange">首页</a> &gt;
+        <a href="/game/index.html" class="orange">应用中心</a> &gt; 分红记录
+    </div>
+    <div class="assets_center clear po_re zin70">
+        <!--左侧菜单-->
+        <include file="Game:left"/>
+        <!--右侧内容-->
+        <div class="assets_content w900 right bg_w">
+            <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+                <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">分红记录</h1>
+            </div>
+            <div class="sj" style="top: 40px; left: 60px;"></div>
+
+<notempty name="prompt_text">
+                    <div class="mytips">
+                        <h6 style="color: #ff8000;">温馨提示</h6>
+                        {$prompt_text}
+                    </div>
+                </notempty>  <br>
+            <div class="cnyin_record" style="width: 918px;">
+                <div class="f_body">
+                    <div class="f_body_main">
+                        <div class="f_tab_body">
+                            <div>
+                                <table class="f_table" id="investLog_content">
+                                    <thead>
+                                    <tr>
+                                        <th id="sublist-grid_c0">创建时间</th>
+                                        <th id="sublist-grid_c1">分红名称</th>
+                                        <th id="sublist-grid_c6">分红币种</th>
+                                        <th id="sublist-grid_c3">奖励币种</th>
+                                        <th id="sublist-grid_c2">分红总额</th>
+                                        <th id="sublist-grid_c7">每个分红</th>
+                                        <th id="sublist-grid_c4">我的持币</th>
+                                        <th id="sublist-grid_c5">我的分红</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="list" id="vo">
+                                        <tr>
+                                            <td>{$vo.addtime|date='m-d H:i:s',###}</td>
+                                            <td>{$vo['name']}</td>
+                                            <td>{$vo['coinname']}</td>
+                                            <td>{$vo['coinjian']}</td>
+                                            <td>{$vo['fenzong']|Num}</td>
+                                            <td>{$vo['price']|Num}</td>
+                                            <td>{$vo['num']|Num}</td>
+                                            <td>{$vo['mum']|Num}</td>
+                                        </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                                <div class="pages">{$page}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<br>
+<br>
+<script>
+    //菜单高亮
+    $('#game_box').addClass('active');
+    $('#game_fenhonglog').addClass('active');
+    $('#game_fenhonglog i').attr('class', 'coin_menu_op_7');
+</script>
+<include file="Public:footer"/>

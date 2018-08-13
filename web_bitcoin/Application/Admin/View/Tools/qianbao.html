@@ -1,0 +1,100 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">钱包检查</span>
+		</div>
+		<block name="body">
+		<div class="container-span">
+			<div class="span4" style="margin: 0 0px;width: 100%;">
+				<div class="columns-mod">
+					<div class="hd cf">
+						<h5>检查钱包状态</h5>
+					</div>
+					<div class="bd">
+						<div class="sys-info">
+							<table id="qianbao_table">
+								<tr>
+									<th><button class="btn" onclick="start_chk_qianbao();">检查钱包</button></th>
+									<td><div id="loader"></div></td>
+								</tr>
+							</table>
+						</div>
+					</div>
+					<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.percentageloader-0.1.min.js"></script>
+					<script type="text/javascript">
+							var $loader;
+							var totalKb = '{$cacheSize}';
+							var kb = 0;
+							var clearCacheFlag = 0;
+							var list_len = '{$list_len}';
+							$loader  = $("#loader").percentageLoader({
+								width : 200,
+								height : 200,
+								progress : 0
+							});
+							$loader.setValue('检查');
+
+							function init(){
+								$('#qianbao_table').html('<tr> <th><button class="btn" onclick="start_chk_qianbao();">检查钱包</button></th> <td><div id="loader"></div></td> </tr>');
+								$loader  = $("#loader").percentageLoader({
+									width : 200,
+									height : 200,
+									progress : 0
+								});
+								$loader.setValue('检查');
+							}
+
+							var lock_click = 0;
+							var first = 1;
+							function start_chk_qianbao(){
+								if(lock_click){
+									layer.msg('点击太频繁...');
+									return;
+								}
+								lock_click = 1;
+								if(!first){
+									init();
+								}
+								first = 0;
+								request(-1);
+							}
+
+							function request(id){
+								$loader.setProgress((id +1 )/ list_len);
+								$loader.setValue('检查第' + id + '个');
+
+
+								console.log(id);
+								$.getJSON('/Admin/Tools/qianbao',{id:id}).success(function(data){
+									console.log(data);
+									if(data.status ===1){
+										$('#qianbao_table').append('<tr><td colspan="2" style="color: green">'+data.info+'</td></tr>');
+										request(++id);
+									}else if(data.status === -1){
+										$('#qianbao_table').append('<tr><td colspan="2" style="color: yellowgreen;font-weight: bold">'+data.info+'</td></tr>');
+										request(++id);
+									}else if(data.status == -2){
+										$('#qianbao_table').append('<tr><td colspan="2" style="color: red;font-weight: bold">'+data.info+'</td></tr>');
+										request(++id);
+									}else if(data.status == 100){
+										lock_click = 0;
+										$('#qianbao_table').append('<tr><td colspan="2">'+data.info+'</td></tr>');
+									}
+								});
+							}
+					</script>
+
+				</div>
+			</div>
+		</div>
+		</block>
+	</div>
+</div>
+
+<!-- /内容区 -->
+<include file="Public:footer" />

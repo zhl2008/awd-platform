@@ -1,0 +1,496 @@
+<include file="Public:header"/>
+<style>
+	.plugin-list .card-content{
+		height:70px;
+	}
+
+	.btn{
+		border-radius:0;
+	}
+
+	.module-list{
+		padding-left:0;
+	}
+
+	.module-list li{
+		border:1px solid #EEE;
+		background:#FBFBFB;
+		margin-right:25px;
+		margin-bottom:20px;
+		display:inline-block;
+		padding:10px;
+		width:520px;
+		list-style:none;
+	}
+
+	.module-list li .cover-wrapper{
+		width:120px;
+		margin-right:15px;
+		float:left;
+	}
+
+	.module-list li .cover-wrapper .cover{
+		width:120px;
+		height:120px;
+		border-radius:6px;
+	}
+
+	.module-list li .cover-wrapper .cover-icon{
+		width:120px;
+		height:120px;
+		text-align:center;
+		background:#999;
+		border-radius:6px;
+		display:inline-block;
+	}
+
+	.module-list li .cover-wrapper .cover-icon i{
+		font-size:64px;
+		line-height:120px;
+		color:white;
+	}
+
+	.module-list li .content-wrapper{
+		width:320px;
+		float:left;
+	}
+
+	.module-list li .content-wrapper .title{
+		margin-bottom:6px;
+	}
+
+	.module-list li .content-wrapper .title a{
+		font-size:16px;
+		color:#333;
+	}
+
+	.module-list li .content-wrapper .bottom-btns{
+		margin-top:10px;
+	}
+
+	body{
+		font-family:"Microsoft Yahei", "å®‹ä½“";
+	}
+
+	.admin-bar{
+		border-radius:0;
+	}
+
+	.pager span{
+		padding:5px 12px;
+		display:inline-block;
+	}
+
+	.form-input-width{
+		width:400px;
+	}
+
+	.form-text-area-size{
+		width:400px;
+		height:400px;
+	}
+
+	.form-select-size{
+		width:auto;
+	}
+
+	.panel-menu{
+		position:absolute;
+		top:50px;
+		left:0;
+		width:100px;
+		bottom:0;
+		overflow:auto;
+		background:#E7E8E9;
+		z-index:13;
+		border-right:1px solid #CCC;
+	}
+
+	.panel-menu .nav-primary > li.active > a,
+	.panel-menu .nav-primary > li.active > a:hover,
+	.panel-menu .nav-primary > li.active > a:focus{
+		background:#4F8AD0;
+	}
+
+	.panel-menu .nav-stacked.nav-primary > li:last-child > a{
+		border-radius:0;
+	}
+
+	.panel-menu .nav-stacked.nav-primary > li,
+	.panel-menu .nav-stacked.nav-primary > li > a{
+		border-radius:0;
+	}
+
+	.panel-menu .nav-primary > li.active > a,
+	.panel-menu .nav-primary > li.active > a:hover,
+	.panel-menu .nav-primary > li.active > a:focus{
+		border:none;
+	}
+
+	.panel-menu .nav-primary > li > a{
+		border-right:none;
+	}
+
+	.panel-menu i{
+		font-size:28px;
+	}
+
+	#cloud-market{
+		position:fixed;
+		bottom:0;
+		left:0;
+		background:#E7E8E9;
+		width:100px;
+	}
+
+	#cloud-market i{
+		font-size:28px;
+	}
+
+	.panel-main{
+		position:absolute;
+		top:50px;
+		left:100px;
+		bottom:0;
+		right:0;
+		z-index:12;
+		overflow:hidden;
+	}
+
+	.panel-main .nav-parent > a{
+		font-size:17px;
+	}
+
+	.panel-header{
+		position:absolute;
+		top:0;
+		left:0;
+		right:0;
+		height:50px;
+		z-index:14;
+		min-width:1024px;
+		border-bottom:1px solid #618FC2;
+		background:#4F8AD0;
+	}
+
+	.panel-header .navbar-header{
+		line-height:50px;
+	}
+
+	.panel-header .navbar-inverse{
+		background:#4F8AD0;
+		border-bottom:1px solid #618FC2;
+		height:50px;
+	}
+
+	.panel-header .navbar-nav > li > a{
+		padding-top:14px;
+		padding-bottom:14px;
+	}
+
+	.panel-header .navbar-inverse .navbar-nav > .active > a,
+	.panel-header .navbar-inverse .navbar-nav > .active > a:hover,
+	.panel-header .navbar-inverse .navbar-nav > .active > a:focus,
+	.panel-header .navbar-inverse .navbar-nav > li > a:hover,
+	.panel-header .navbar-inverse .navbar-nav > li > a:focus{
+		background:#5799E6;
+	}
+
+	.panel-header .navbar-brand{
+		margin-top:5px;
+		color:white;
+	}
+
+	.panel-header .logo{
+		width:32px;
+		float:left;
+		margin-top:-10px;
+		margin-left:0;
+		margin-right:10px;
+	}
+
+	.panel-header .admin-title{
+		color:white;
+		margin-left:10px;
+		font-size:16px;
+	}
+
+	.panel-header .admin-title a{
+		color:white;
+		text-decoration:none;
+	}
+
+	.sub_menu_wrapper{
+		border-right:1px solid #DDD;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li:first-child > a,
+	.sub_menu_wrapper .menu > .nav > li:first-child.nav-heading{
+		border-top:none;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li.show > a,
+	.sub_menu_wrapper .menu > .nav > li.show > a:hover,
+	.sub_menu_wrapper .menu > .nav > li.show > a:focus,
+	.sub_menu_wrapper .menu > .nav > li:first-child > a,
+	.sub_menu_wrapper .menu > .nav > li:first-child.nav-heading,
+	.sub_menu_wrapper .nav-primary > li > a,
+	.sub_menu_wrapper .menu > .nav > li:last-child > a{
+		border-right:none;
+		border-left:none;
+		border-radius:0;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li.show:last-child > .nav > li:last-child > a{
+		border-right:none;
+		border-left:none;
+		border-radius:0;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li > .nav > li > a{
+		border-right:none;
+		border-left:none;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li > .nav{
+		background:white;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li > .nav > li.active > a,
+	.sub_menu_wrapper .menu > .nav > li > .nav > li.active > a:hover,
+	.sub_menu_wrapper .menu > .nav > li > .nav > li.active > a:focus{
+		background:#F1F2F3;
+		color:#333;
+	}
+
+	.sub_menu_wrapper .menu > .nav > li > .nav > li > a{
+		border:none;
+	}
+
+	.sub_menu_wrapper nav{
+		border-bottom:1px solid #DDD;
+	}
+
+	.count > div > a{
+		background:#6FA7CE;
+		display:block;
+		color:white;
+	}
+
+	.count a,
+	.count i{
+		font-size:32px;
+		text-decoration:none;
+	}
+
+	.node-list label[class=checkbox]{
+		padding-top:0;
+		display:inline-block;
+	}
+
+	.node-list input[type=checkbox]{
+		margin-top:8px;
+	}
+
+	label{
+		font-weight:normal;
+	}
+
+	.item-label{
+		font-weight:bold;
+	}
+
+	.upload-img-box .upload-pre-item img{
+		width:150px;
+	}
+
+	.upload-img-box .upload-pre-item .del_btn{
+		width:150px;
+		position:absolute;
+		color:#FFF;
+		margin-top:-30px;
+		height:30px;
+		line-height:30px;
+		cursor:pointer;
+	}
+
+	.upload-img-box .upload-pre-item .opacity{
+		filter:alpha(opacity=50);
+		-moz-opacity:0.5;
+		-khtml-opacity:0.5;
+		background:#000;
+		opacity:0.5;
+	}
+
+	.multiImage .upload-img-box .upload-pre-item .each{
+		display:inline-block;
+		margin-right:5px;
+		margin-bottom:5px;
+	}
+
+	.multiImage .upload-img-box .upload-pre-item img{
+		width:150px;
+		height:150px;
+	}
+
+	.multiImage .upload-img-box .upload-pre-item .del_btn{
+		width:150px;
+		position:absolute;
+		color:#FFF;
+		margin-top:-30px;
+		height:30px;
+		line-height:30px;
+		cursor:pointer;
+	}
+
+	.multiImage .upload-img-box .upload-pre-item .opacity{
+		filter:alpha(opacity=50);
+		-moz-opacity:0.5;
+		-khtml-opacity:0.5;
+		background:#000;
+		opacity:0.5;
+	}
+
+	.report_feedback{
+		cursor:pointer;
+	}
+
+	.report_feedback .report_icon{
+		background:url("../images/report_icon.png");
+		width:100px;
+		height:100px;
+		position:absolute;
+		right:35px;
+		bottom:35px;
+		z-index:998;
+	}
+
+	.report_feedback .report_point{
+		position:absolute;
+		right:45px;
+		bottom:120px;
+		z-index:999;
+	}
+
+	/*åŽå°å¯¼èˆªä¿®æ”¹*/
+	.channel-ul .target_input{
+		display:none;
+	}
+
+	.channel-ul > li{
+		background:#FFF;
+	}
+
+	.channel-ul li{
+		border-left:1px #CCC dashed;
+		border-bottom:1px #CCC dashed;
+		padding:10px 30px;
+		list-style:none;
+	}
+
+	.channel-ul li.dragging{
+		background-color:#FFF4E5;
+		opacity:0.35;
+	}
+
+	.channel-ul li select,
+	.channel-ul li input{
+		display:inline-block;
+	}
+
+	.channel-ul .new-blank{
+		margin-top:7px;
+		margin-left:10px;
+	}
+
+	.channel-ul .i-list{
+		margin-top:7px;
+	}
+
+	.channel-ul .i-list a{
+		margin-left:10px;
+	}
+
+	.channel-ul .icon-chose{
+		margin-left:20px;
+	}
+
+	.channel-ul .band-text{
+		margin-left:20px;
+	}
+
+	.channel-ul .color-chose{
+		margin-top:10px;
+		margin-left:20px;
+	}
+
+	.oneselect{
+		display:inline-block;
+		margin-left:10px;
+	}
+
+	.oneselect .title{
+		float:left;
+		line-height:32px;
+	}
+
+	.oneselect .select_box{
+		float:left;
+		line-height:32px;
+	}
+
+	.oneselect .select_box select{
+		min-width:200px;
+	}
+</style>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">客服代码</span>
+		</div>
+		<div class="cf"></div>
+		<div class="data-table table-striped">
+			<div class="with-padding">
+				<ul class="module-list">
+					<volist name="fileArr" id="vo">
+						<li class="clearfix" style="width: 300px;border-radius: 8px;    border: 1px solid #e55600;">
+							<div class="cover-wrapper" style="width: 264px;height:500px;">
+								<div style="height:460px;">
+									<a href="/Application/Home/View/Kefu/{$key}/index.png" target="_blank">
+								<img src="/Application/Home/View/Kefu/{$key}/index.png"  style="    max-width: inherit;margin-bottom:20px;max-height:460px;">
+										</a>
+								</div>
+									<eq name="C['kefu']" value="$key">
+									<a class="btn btn-danger ajax-get" href="#" style="    margin-left: 25px;">当前</a>
+									<else/>
+									<a class="btn btn-success  ajax-get" href="{:U('Cloud/kefuUp',array('kefu'=>$key))}" style="    margin-left: 25px;">使用</a>
+								</eq>
+
+								<empty name="mianfei[$key]">
+									<span style="    float: right;font-size: 16px;margin-top: 8px;">免费</span>
+
+									<else />
+									<span style="    float: right;font-size: 16px;margin-top: 8px;">{$mianfei[$key]}元</span>
+								</empty>
+							</div>
+						</li>
+					</volist>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(function () {
+		//主导航高亮
+		$('.issue-box').addClass('current');
+		//边导航高亮
+		$('.issue-index').addClass('current');
+	});
+</script>
+<include file="Public:footer"/>

@@ -1,0 +1,103 @@
+<include file="Public:header"/>
+<script type="text/javascript" src="__PUBLIC__/layer/laydate/laydate.js"></script>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h" style="font-size: 24px;">
+			<span class="h1-title">{$title|htmlspecialchars}</span>
+			<if condition="$suggest">（{$suggest|htmlspecialchars}）</if>
+			<present name="Think.get.name">
+				<i class="ca"></i>[<a href="{$titleList['url']}"> {$titleList['title']|htmlspecialchars}</a> ]
+			</present>
+		</div>
+		<div class="cf">
+			<div class="fl">
+				<present name="buttonList['add']">
+					<a class="btn add-btn btn-success" href="{$buttonList['add']['url']}">{$buttonList['add']['title']}</a>
+				</present>
+				<present name="buttonList['resume']">
+					<button class="btn ajax-post btn-info" url="{$buttonList['resume']['url']}" target-form="ids">{$buttonList['resume']['title']}</button>
+				</present>
+				<present name="buttonList['forbid']">
+					<button class="btn ajax-post btn-warning" url="{$buttonList['forbid']['url']}" target-form="ids">{$buttonList['forbid']['title']}</button>
+				</present>
+				<present name="buttonList['delete']">
+					<button class="btn ajax-post confirm delete-btn btn-danger" url="{$buttonList['delete']['url']}" target-form="ids">{$buttonList['delete']['title']}</button>
+				</present>
+			</div>
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form action="{$searchPostUrl||default='__SELF__'}" name="formSearch" id="formSearch" method="get" name="form1">
+						<volist name="searches" id="search">
+							<if condition="$search['type'] == 'select'">
+								<select size="1" name="{$search['name']}" class="search-input form-control form-input-width" style="height: 32px; font-size: 14px; width: 110px; float: left; margin-right: 5px;" name="field">
+									<volist name="search['attr']" id="svo">
+										<php>$search_name=isset($_GET[$search['name']])?$_GET[$search['name']]:''</php>
+										<option value="{$key}"
+										<eq name="key" value="$search_name">selected</eq>
+										>{$svo}</option>
+									</volist>
+								</select>
+								<elseif condition="$search['type'] == 'time'"/>
+								<input type="text" class="search-input input-1x" name="{$search.name}" value="{:I($search['name'])}" placeholder="{$search.attr}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"></td>
+								<else/>
+								<input type="text" name="{$search.name}" class="search-input" value="{:I($search['name'])}" placeholder="{$search.attr}" style="width: 150px">
+								<a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a></if>
+						</volist>
+					</form>
+					<script>
+						//搜索功能
+						$(function () {
+							$('#search').click(function () {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function (e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<!-- 数据表格 -->
+		<if condition="$keyList">
+			<div class="data-table table-striped">
+				<table class="">
+					<thead>
+					<tr>
+						<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+						<volist name="keyList" id="field">
+							<th>{$field.title|htmlspecialchars}</th>
+						</volist>
+					</tr>
+					</thead>
+					<tbody>
+					<notempty name="list">
+						<volist name="list" id="e">
+							<tr>
+								<td><input class="ids" type="checkbox" name="id[]" value="{$e['id']}"/></td>
+								<volist name="keyList" id="field">
+									<td class="text-ellipsis">{$e[$field['name']]}</td>
+								</volist>
+							</tr>
+						</volist>
+						<else/>
+						<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+					</notempty>
+					</tbody>
+				</table>
+				<div class="page">
+					<div>{$pagination}</div>
+				</div>
+			</div>
+		</if>
+	</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,138 @@
+<include file="Public:header"/>
+
+
+<link rel="stylesheet" href="/comfile/css/issue.css"/>
+
+
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页</a> &gt;
+		<a href="/issue/index.html" class="orange">认购中心</a> &gt; 认购记录	</div>
+	<div class="main-content mb20">
+		<div class=" assets_content bg_w" style="min-height:30px;">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						认购中心					</span>
+	                <span>
+                        <a href="/issue/index.html" id="step1" class="step fz_12 ml50 pd6 ">认购列表</a>
+                        <a href="/issue/ALLlog.html" id="step2" class="step fz_12 ml20 pd6 ">认购记录</a>
+						<a href="/issue/log.html" id="step3" class="step fz_12 ml20 pd6 active">我的认购</a>
+                    </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+
+				<p>
+				
+				
+					<notempty name="prompt_text">
+						{$prompt_text}
+					</notempty>
+				
+				
+				</p>			</div>
+			<div class="cnyin_record">
+				<div class="f_body">
+					<div class="f_body_main">
+						<div class="f_tab_body">
+							<div>
+								<table class="f_table" id="investLog_content">
+									<thead>
+									<tr>
+										<th>认购名称</th>
+										<th>认购价格</th>
+										<th id="sublist-grid_c3">认购数量</th>
+										<th id="sublist-grid_c4">认购总价</th>
+										<th id="sublist-grid_c0">认购时间</th>
+										<th id="sublist-grid_c1" style="display:none;">上次解冻</th>
+										<th id="sublist-grid_c8" style="display:none;">解冻次数</th>
+										<th id="sublist-grid_c5" style="display:none;">剩余冻结</th>
+										<th id="sublist-grid_c9" style="display:none;">状态</th>
+										<th id="sublist-grid_c6" style="display:none;">操作</th>
+									</tr>
+									</thead>
+									<tbody>
+									
+									
+                                    <volist name="list" id="vo">
+                                        <tr>
+                                            
+                                            
+                                            <td>{$vo['name']}</td>
+                                            <td>{$vo['price'] * 1}</td>
+                                            <td>{$vo['num'] * 1}</td>
+                                            <td>{$vo['mum']*1}</td>
+											<td>{$vo.addtime|date='m-d H:i:s',###}</td>
+											<td style="display:none;">{$vo.endtime|date='m-d H:i:s',###}</td>
+                                            <td style="display:none;">{$vo['unlock']}/{$vo['ci']}</td>
+                                            <td style="display:none;">{$vo['shen'] * 1}</td>
+                                            <td style="display:none;">
+                                                <eq name="vo.status" value="1"><font color="#0096dd">已完成</font>
+                                                    <else/>
+                                                    <font color="#23a800">解冻中</font></eq>
+                                            </td>
+                                            <td style="display:none;">
+                                                <eq name="vo.status" value="0">
+                                                    <a class="unlock" id="{$vo.id}" href="javascript:void(0)">解冻</a>
+                                                </eq>
+                                            </td>
+                                        </tr>
+                                    </volist>
+									
+									
+									</tbody>
+								</table>
+								<div class="pages">{$page}</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$('.unlock').click(function () {
+		$.post("{:U('Issue/unlock')}", {id: $(this).attr('id')}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#Issue_box').addClass('active');
+</script>	
+
+
+
+
+
+<include file="Public:footer"/>

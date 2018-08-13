@@ -1,0 +1,96 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页 </a>&gt; 注册账户	</div>
+	<div class="login_step">
+		<ul class="order clear">
+			<li><i class="fa fa-circle  fz_40"><span>1</span></i> 用户注册				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40"><span>2</span></i>交易密码				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40 move"><span>3</span></i>实名认证				<div class="order_line"></div>
+			</li>
+			<li><i class="fa fa-circle  fz_40"><span>4</span></i>成功</li>
+		</ul>
+	</div>
+	<div class="reg_box">
+		<div class="reg_wrap pt47">
+			<div class="reg_warning"><i class="fa fa-exclamation-sign mr5"></i>
+			<span>
+				根据 国家相关规定，请填写您的真实身份信息
+			</span></div>
+			<div class="reg_input_box reg-fb">
+				<div class="reg_title">真实姓名：</div>
+				<input type="text" id="truename" class="texts w300"/>
+			</div>
+			<div class="reg_input_box reg-fb" style="display:none;">
+				<div class="reg_title">证件类型：</div>
+				<select id="idcardtype" class="select texts w300">
+					<option value="">请选择</option>
+					<option value="1" selected>身份证</option>
+					<option value="2">军官证</option>
+					<option value="3">护照</option>
+					<option value="4">台湾居民通行证</option>
+					<option value="5">港澳居民通行证</option>
+					<option value="9">其他</option>
+				</select>
+			</div>
+
+			<div class="reg_input_box reg-fb">
+				<div class="reg_title">身份证号：</div>
+				<input type="text" id="idcard" class="texts w300"/>
+			</div>
+			<div class="reg_button_box">
+				<input type="button" class="btns2 w300" value="下一步" onclick="truename_up();"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script>
+	function truename_up() {
+		var idcardtype = $('#idcardtype option:selected').html();
+		var truename   = $("#truename").val();
+		var idcard     = $("#idcard").val();
+
+		if (idcardtype == "" || idcardtype == null) {
+			layer.tips("请选择证件类型", '#idcardtype', {tips: 2});
+			return false;
+		}
+		if (truename == "" || truename == null) {
+			layer.tips("请输入真实姓名", '#truename', {tips: 2});
+			return false;
+		}
+		if (idcard == "" || idcard == null) {
+			layer.tips("请输入证件号码", '#idcard', {tips: 2});
+			return false;
+		}
+		$.post("/Login/upregister3.html", {
+			idcardtype: idcardtype,
+			truename: truename,
+			idcard: idcard,
+			token: ""
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+
+					window.location ='/Login/info';
+
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+</script>
+
+
+<script>
+	$('#index_box').addClass('active');
+</script>
+
+<include file="Public:footer" />

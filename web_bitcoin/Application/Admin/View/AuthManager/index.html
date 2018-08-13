@@ -1,0 +1,78 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">权限管理</span>
+		</div>
+		<nav role="navigation" class="cf">
+			<div class="fl">
+				<a id="add-group" class="btn btn-success navbar-btn btn-sm" href="{:U('createGroup')}">新 增</a>
+				<a url="{:U('changestatus',array('method'=>'resumeGroup'))}" class="btn ajax-post btn-info navbar-btn btn-sm" target-form="ids" >启 用</a>
+				<a url="{:U('changestatus',array('method'=>'forbidGroup'))}" class="btn ajax-post btn-warning navbar-btn btn-sm" target-form="ids" >禁 用</a>
+				<a url="{:U('changestatus',array('method'=>'deleteGroup'))}" class="btn ajax-post confirm btn-danger navbar-btn btn-sm" target-form="ids" >删 除</a>
+
+			</div>
+		</nav>
+		<!-- 数据列表 -->
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+					<th class="">用户组</th>
+					<th class="">描述</th>
+
+					<th class="">授权</th>
+					<th class="">状态</th>
+					<th class="">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="_list">
+					<volist name="_list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+							<td><a href="{:U('AuthManager/editgroup?id='.$vo['id'])}">{$vo.title}</a> </td>
+							<td><span>{:mb_strimwidth($vo['description'],0,60,"...","utf-8")}</span></td>
+
+
+							<td><a class="btn btn-warning btn-xs" href="{:U('AuthManager/access?group_name='.$vo['title'].'&group_id='.$vo['id'])}" >访问授权</a>
+								<a class="btn btn-info btn-xs" href="{:U('AuthManager/user?group_name='.$vo['title'].'&group_id='.$vo['id'])}" >成员授权</a>
+							</td>
+							<td
+								<eq name="vo.status" value="0">
+								class="text-warning">{$vo.status_text}
+							</eq>
+								<eq name="vo.status" value="1">
+									class="text-success">{$vo.status_text}
+								</eq>
+
+							</td>
+
+							<td><eq name="vo.status" value="1">
+								<a href="{:U('AuthManager/changeStatus?method=forbidGroup&id='.$vo['id'])}" class="ajax-get btn btn-warning btn-xs">禁用</a>
+								<else/>
+								<a href="{:U('AuthManager/changeStatus?method=resumeGroup&id='.$vo['id'])}" class="ajax-get btn btn-primary btn-xs">启用</a>
+							</eq>
+								<a href="{:U('AuthManager/changeStatus?method=deleteGroup'.$vo['id'])}" class="confirm ajax-get btn btn-danger btn-xs">删除</a>
+							</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="6" class="text-center"> aOh! 暂时还没有内容! </td>
+				</notempty>
+				</tbody>
+			</table>
+
+		</div>
+		<div class="page">
+			{$_page}
+		</div>
+	</div>
+</div>
+
+<include file="Public:footer" />

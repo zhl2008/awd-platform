@@ -1,0 +1,191 @@
+<!-- 管理员用户组新增和编辑页面 -->
+<include file="Public:header"/>
+<style>
+	#nav li a{
+		padding:0 10px;
+	}
+
+	#nav{
+		margin-bottom:20px;
+	}
+
+	.child_row label{
+
+	}
+
+	#tab-content dt{
+		height:35px;
+		line-height:35px;
+	}
+
+	#tab-content dt label{
+		height:35px;
+		line-height:35px;
+	}
+
+	#tab-content dt input{
+		height:28px;
+		line-height:35px;
+	}
+</style>
+<link href="__PUBLIC__/Admin/index_css/style.css" rel="stylesheet">
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">访问授权</span>
+			<select name="group" class="navbar-btn  form-control select select-default select-sm" style="       height: 30px; width: 150px;min-width:150px;">
+				<volist name="auth_group" id="vo">
+					<option value="{:U('User/authAccess',array('group_id'=>$vo['id'],'group_name'=>$vo['title']))}"
+					<eq name="vo['id']" value="$this_group['id']">selected</eq>
+					>{$vo.title}</option>
+				</volist>
+			</select>
+		</div>
+		<div id="tab-content" class="tab-content">
+			<!-- 访问授权 -->
+			<div style="display: block" class="tab-pane">
+				<form action="{:U('User/authAccessUp')}" enctype="application/x-www-form-urlencoded" method="POST" class="form-horizontal auth-form">
+					<volist name="node_list" id="node">
+						<dl class="checkmod">
+							<dt class="hd">
+								<label class="checkbox"><input class="auth_rules rules_all" type="checkbox" name="rules[]" value="<?php echo $main_rules[$node['url']] ?>">{$node.title}管理</label>
+							</dt>
+							<dd class="bd">
+								<present name="node['child']">
+									<volist name="node['child']" id="child">
+										<div class="rule_check">
+											<label class="checkbox"
+											<notempty name="child['tip']">title='{$child.tip}'</notempty>
+											>
+											<input class="auth_rules" type="checkbox" name="rules[]" value="<?php echo $auth_rules[$child['url']] ?>"/>{$child.title}</label>
+											<notempty name="child['operator']">
+												<span class="divsion">&nbsp;</span>
+                                           <span class="child_row">
+                                               <volist name="child['operator']" id="op">
+	                                               <label class="checkbox"
+	                                               <notempty name="op['tip']">title='{$op.tip}'</notempty>
+	                                               >
+	                                               <input class="auth_rules" type="checkbox" name="rules[]" value="<?php echo $auth_rules[$op['url']] ?>"/>{$op.title}</label>
+                                               </volist>
+                                           </span>
+											</notempty>
+										</div>
+									</volist>
+								</present>
+							</dd>
+						</dl>
+					</volist>
+					<input type="hidden" name="id" value="{$this_group.id}"/>
+					<button type="submit" class="btn submit-btn ajax-post" target-form="auth-form">确 定</button>
+					<button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+				</form>
+			</div>
+			<!-- 成员授权 -->
+			<div class="tab-pane"></div>
+			<!-- 分类 -->
+			<div class="tab-pane"></div>
+		</div>
+	</div>
+</div>
+<block name="script">
+	<script type="text/javascript" src="__PUBLIC__/Admin/js/qtip/jquery.qtip.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/Admin/js/qtip/jquery.qtip.min.css" media="all">
+	<script type="text/javascript" charset="utf-8">
+		+function ($) {
+			var rules = [{$this_group.rules
+		}]
+			;
+			$('.auth_rules').each(function () {
+				if ($.inArray(parseInt(this.value, 10), rules) > -1) {
+					$(this).prop('checked', true);
+				}
+				if (this.value == '') {
+					$(this).closest('span').remove();
+				}
+			});
+
+			//全选节点
+			$('.rules_all').on('change', function () {
+				$(this).closest('dl').find('dd').find('input').prop('checked', this.checked);
+			});
+			$('.rules_row').on('change', function () {
+				$(this).closest('.rule_check').find('.child_row').find('input').prop('checked', this.checked);
+			});
+
+			$('.checkbox').each(function () {
+				$(this).qtip({
+					content: {
+						text: $(this).attr('title'),
+						title: $(this).text()
+					},
+					position: {
+						my: 'bottom center',
+						at: 'top center',
+						target: $(this)
+					},
+					style: {
+						classes: 'qtip-dark',
+						tip: {
+							corner: true,
+							mimic: false,
+							width: 10,
+							height: 10
+						}
+					}
+				});
+			});
+
+			$('select[name=group]').change(function () {
+				location.href = this.value;
+			});
+			//导航高亮
+		}(jQuery);
+
+
+		$('button:not([type="submit"])').on('click', function (e) {
+			var $this = $(this);
+
+			if (!!$this.attr('data-radiocheck-check')) {
+				var el = $this.attr('data-radiocheck-check');
+				$(el).radiocheck('check');
+			} else if (!!$this.attr('data-radiocheck-uncheck')) {
+				var el = $this.attr('data-radiocheck-uncheck');
+				$(el).radiocheck('uncheck');
+			} else if (!!$this.attr('data-radiocheck-toggle')) {
+				var el = $this.attr('data-radiocheck-toggle');
+				$(el).radiocheck('toggle');
+			} else if (!!$this.attr('data-radiocheck-indeterminate')) {
+				var el = $this.attr('data-radiocheck-indeterminate');
+				$(el).radiocheck('indeterminate');
+			} else if (!!$this.attr('data-radiocheck-determinate')) {
+				var el = $this.attr('data-radiocheck-determinate');
+				$(el).radiocheck('determinate');
+			} else if (!!$this.attr('data-radiocheck-disable')) {
+				var el = $this.attr('data-radiocheck-disable');
+				$(el).radiocheck('disable');
+			} else if (!!$this.attr('data-radiocheck-enable')) {
+				var el = $this.attr('data-radiocheck-enable');
+				$(el).radiocheck('enable');
+			} else if (!!$this.attr('data-radiocheck-destroy')) {
+				var el = $this.attr('data-radiocheck-destroy');
+				$(el).radiocheck('destroy');
+			} else if (!!$this.attr('data-radiocheck-init')) {
+				var el = $this.attr('data-radiocheck-init');
+				$(el).radiocheck();
+			}
+
+			e.preventDefault();
+		});
+	</script>
+</block>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('User/auth')}");
+	</script>
+</block>

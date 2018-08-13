@@ -1,0 +1,199 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">其他配置</span>
+		</div>
+
+		<div class="tab-wrap">
+
+			<div class="tab-content">
+				<form id="form" action="{:U('Config/qitaEdit')}" method="post" class="form-horizontal" >
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+
+								<tr class="controls">
+									<td class="item-label">默认币种:</td>
+									<td><select class="form-control input-10x" name="xnb_mr">
+
+										<volist name="C['xnb_list']" id="vo">
+											<option value="{$vo['name']}" <eq name="vo['name']" value="$C['xnb_mr']">selected</eq>> {$vo['title']}
+											</option>
+										</volist>
+									</select> </td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">默认市场:</td>
+									<td><select class="form-control input-10x" name="market_mr">
+
+										<volist name="C['market']" id="vo">
+											<option value="{$vo['name']}"<eq name="vo['name']" value="$C['market_mr']">selected</eq>>{$vo['title']}
+											</option>
+										</volist>
+									</select> </td>
+									<td class="item-note"></td>
+								</tr>
+
+
+
+								<tr class="controls">
+									<td class="item-label">交易聊天开启 :</td>
+									<td><select name="trade_moshi" class="form-control input-10x" >
+										<option value="1"<eq name="C['trade_moshi']" value="1">selected</eq>>开启聊天</option>
+										<option value="0"<eq name="C['trade_moshi']" value="0">selected</eq>>禁止聊天</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label">交易行情显示 :</td>
+									<td><select name="trade_hangqing" class="form-control input-10x" >
+										<option value="1"<eq name="C['trade_hangqing']" value="1">selected</eq>>显示行情</option>
+										<option value="0"<eq name="C['trade_hangqing']" value="0">selected</eq>>不显示行情</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+                                <tr class="controls">
+                                    <td class="item-label">显示累计交易额 :</td>
+                                    <td><select name="index_lejimum" class="form-control input-10x" >
+                                        <option value="1"<eq name="C['index_lejimum']" value="1">selected</eq>>显示</option>
+                                        <option value="0"<eq name="C['index_lejimum']" value="0">selected</eq>>不显示</option>
+                                    </select></td>
+                                    <td class="item-note">首页显示累计交易额</td>
+                                </tr>
+
+
+								<tr class="controls">
+									<td class="item-label">注册奖励开启 :</td>
+									<td><select name="reg_award" class="form-control input-10x" >
+										<option value="0"<eq name="C['reg_award']" value="0">selected</eq>>关闭奖励</option>
+										<option value="1"<eq name="C['reg_award']" value="1">selected</eq>>开启奖励</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">注册奖励币种 :</td>
+									<td><select name="reg_award_coin" class="form-control  input-10x">
+										<volist name="C['coin']" id="v">
+											<option value="{$v['name']}"
+											<eq name="C['reg_award_coin']" value="$v['name']">selected</eq>
+											>{$v['title']}</option>
+										</volist>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">奖励数量 :</td>
+									<td><input type="text" class="form-control input-10x" name="reg_award_num" value="{$C['reg_award_num']}"></td>
+									<td class="item-note"></td>
+								</tr>
+								
+                                <tr class="controls">
+                                    <td class="item-label">登陆验证码 :</td>
+                                    <td><select name="login_verify" class="form-control input-10x">
+                                        <option value="1"<eq name="C['login_verify']" value="1">selected</eq>>需要</option>
+                                        <option value="0"<eq name="C['login_verify']" value="0">selected</eq>>不需要</option>
+                                    </select></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+
+
+								<tr class="controls">
+									<td class="item-label">专属推广语 :</td>
+									<td><input type="text" class="form-control input-10x" name="invit_text_txt" value="{$C['invit_text_txt']}"></td>
+									<td class="item-note"></td>
+								</tr>
+                                <tr class="controls">
+                                    <td class="item-label">头部文字信息 :</td>
+                                    <td><input type="text" class="form-control input-10x" name="top_name" value="{$C['top_name']}"></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+
+								<tr class="controls">
+									<td class="item-label">首页风险警告 :</td>
+									<td><textarea name="web_waring" class="form-control input-10x" style="height: 80px; margin-top: 24px;">{$C['web_waring']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+								<script type="text/javascript">
+
+									var editor;
+									KindEditor.ready(function(K){
+										editor=K.create('textarea[name="web_reg"]',{width:'465px',height:'60px',items:['source','fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline','removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','|','emoticons','link','fullscreen'],afterBlur: function () { this.sync(); }});
+									});
+								</script>
+								
+								
+								
+								<tr class="controls">
+									<td class="item-label">认购页面风险警告 :</td>
+									<td><textarea name="qq_3479015851_issue_waring" class="form-control input-10x" style="height: 80px; margin-top: 24px;">{$C['qq_3479015851_issue_waring']}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+								<script type="text/javascript">
+
+									var editor;
+									KindEditor.ready(function(K){
+										editor=K.create('textarea[name="qq_3479015851_issue_waring"]',{width:'465px',height:'60px',items:['source','fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline','removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','|','emoticons','link','fullscreen'],afterBlur: function () { this.sync(); }});
+									});
+								</script>
+								
+								
+								
+								
+								
+
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class= "btn submit-btn ajax-post"  target-form="form-horizontal" id="submit" type="submit">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+										</div>
+									</td>
+								</tr>
+
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function(){
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+
+	var editor;
+	KindEditor.ready(function(K){
+		editor=K.create('textarea',{width:'500px',height:'200px',items:['source','fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline','removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','|','emoticons','link','fullscreen'],afterBlur: function () { this.sync(); }});
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.config-box').addClass('current');
+		//边导航高亮
+		$('.config-contact').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

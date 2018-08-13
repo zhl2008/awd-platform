@@ -1,0 +1,78 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h" style="font-size: 24px;">
+            <span class="h1-title">充值金额</span>
+            <present name="Think.get.name">
+                <i class="ca"></i>[<a href="{:U('Huafei/type')}"> 金额列表</a> ]
+            </present>
+        </div>
+        <div class="cf">
+            <div class="fl">
+                <button class="btn ajax-post btn-info navbar-btn btn-sm" url="{:U('Huafei/resumeType')}" target-form="ids">启 用</button>
+                <button class="btn ajax-post btn-warning navbar-btn btn-sm" url="{:U('Huafei/forbidType')}" target-form="ids">禁 用</button>
+            </div>
+            <div class="search-form fr cf">
+
+            </div>
+        </div>
+        <div class="data-table table-striped">
+            <table class="">
+                <thead>
+                <tr>
+                    <th class="row-selected row-selected">
+                        <input class="check-all" type="checkbox"/>
+                    </th>
+                    <th class="">ID</th>
+                    <th class="">金额</th>
+                    <th class="">名称</th>
+                    <th class="">状态</th>
+                    <th class="">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <notempty name="list">
+                    <volist name="list" id="vo">
+                        <tr>
+                            <td>
+                                <input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/>
+                            </td>
+                            <td>{$vo.id}</td>
+                            <td>{$vo.name}</td>
+                            <td>{$vo.title}</td>
+                            <td>
+                                <eq name="vo['status']" value="0">禁用</eq>
+                                <eq name="vo['status']" value="1">启用</eq>
+                            </td>
+                            <td>
+                                <eq name="vo['status']" value="0">
+                                    <a href="{:U('Huafei/resumeType?id='.$vo['id'])}" class="btn btn-info btn-xs ajax-get confirm">启用</a>
+                                </eq>
+                                <eq name="vo['status']" value="1">
+                                    <a href="{:U('Huafei/forbidType?id='.$vo['id'])}" class="btn btn-warning btn-xs ajax-get confirm">禁用</a>
+                                </eq>
+
+                        </tr>
+                    </volist>
+                    <else/>
+                    <td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+                </notempty>
+                </tbody>
+            </table>
+            <div class="page">
+                <div>{$page}</div>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    //主导航高亮
+    $('.Adver-box').addClass('current');
+    //边导航高亮
+    $('.Adver-index').addClass('current');
+</script><!-- /内容区 -->
+<include file="Public:footer"/>

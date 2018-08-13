@@ -1,0 +1,94 @@
+<include file="Public:header" />
+<script src="__PUBLIC__/Home/js/datepicker.min.js"></script>
+<div class="autobox">
+ <div class="now">
+  <a href="/" class="orange">首页</a> &gt; <a href="/finance/" class="orange">财务中心</a> &gt; 成交查询
+ </div>
+ <div class="assets_center clear po_re zin70">
+  <!--左侧菜单-->
+  <include file="Finance:left" />
+  <!--右侧内容-->
+  <div class="assets_content w900 right bg_w">
+
+         <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+    <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">成交查询</h1>
+   </div>
+   <div class="sj" style="top: 40px; left: 60px;"></div>
+      <notempty name="prompt_text">
+                    <div class="mytips">
+                        <h6 style="color: #ff8000;">温馨提示</h6>
+                        {$prompt_text}
+                    </div>
+                </notempty>
+   <br>
+
+
+   <div class="cnyin_record" style="width: 918px;">
+    <div class="f_body">
+     <div class="f_body_main">
+      <div class="f_tab_body">
+       <div>
+        <table class="f_table" id="investLog_content">
+         <thead>
+          <tr>
+           <th><img src="__UPLOAD__/coin/{$coin_list[$market_list[$market]['xnb']]['img']}" alt="" style="margin-bottom: -5px; width: 22px;" /> <select name="market-selectTest" id="market-selectTest">
+             <volist name="market_list" id="vo"> <eq name="market" value="$key">
+             <option value="{$vo['name']}" selected="selected">{$coin_list[$vo['xnb']]['title']}({$vo['xnb']|strtoupper}/{$vo['rmb']|strtoupper})</option>
+             <else />
+             <option value="{$vo['name']}">{$coin_list[$vo['xnb']]['title']}({$vo['xnb']|strtoupper}/{$vo['rmb']|strtoupper})</option>
+             </eq> </volist>
+           </select></th>
+           <th>成交时间</th>
+           <th><select name="type-selectTest" id="type-selectTest">
+             <option value="0"<eq name="type" value="0">selected</eq>>-全部-
+             </option>
+             <option value="1"<eq name="type" value="1">selected</eq>>买入
+             </option>
+             <option value="2"<eq name="type" value="2">selected</eq>>卖出
+             </option>
+           </select></th>
+           <th>成交价格</th>
+           <th>成交数量</th>
+           <th>总金额</th>
+           <th>手续费</th>
+          </tr>
+         </thead>
+         <tbody>
+          <volist name="list" id="vo">
+          <tr>
+           <td>{$coin_list[$market_list[$vo['market']]['xnb']]['title']} ({$market_list[$vo['market']]['xnb']|strtoupper}/{$market_list[$vo['market']]['rmb']|strtoupper})</td>
+           <td>{$vo.addtime|date='m-d H:i:s',###}</td>
+           <td><eq name="vo['userid']" value="$vo['peerid']"> <font class="buy">自买</font><font class="sell">自卖</font> <else /> <if condition="($vo['userid'] eq $userid) AND ($vo['type'] eq 1)"> <font class="buy">买入</font> </if> <if condition="($vo['userid'] eq $userid) AND ($vo['type'] eq 2)"> <font class="buy">买入</font> </if> <if condition="($vo['peerid'] eq $userid) AND ($vo['type'] eq 1)"> <font class="sell">卖出</font> </if> <if condition="($vo['peerid'] eq $userid) AND ($vo['type'] eq 2)"> <font class="sell">卖出</font> </if> </eq></td>
+           <td>{$vo['price']|NumToStr}</td>
+           <td>{$vo['num']|NumToStr}</td>
+           <td>{$vo['mum']|NumToStr}</td>
+           <td><if condition="($vo['userid'] eq $userid)"> {$vo['fee_buy']} <else /> {$vo['fee_sell']} </if></td>
+          </tr>
+          </volist>
+         </tbody>
+        </table>
+        <div class="pages">{$page}</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<br>
+<br>
+<script>
+	$("#type-selectTest,#market-selectTest").change(function(){
+		var type=$("#type-selectTest option:selected").val();
+		var market=$("#market-selectTest option:selected").val();
+		window.location='/Finance/mycj/type/'+type+'/market/'+market+'.html';
+	});
+</script>
+<script>
+	//菜单高亮
+	$('#finance_box').addClass('active');
+	$('#finance_mycj').addClass('active');
+	$('#finance_mycj i').attr('class','coin_menu_op_7');
+</script>
+<include file="Public:footer" />

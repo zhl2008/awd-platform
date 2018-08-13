@@ -1,0 +1,56 @@
+<!--代码部分begin-->
+<div id="floatTools" class="rides-cs" style="height: 200px;">
+	<div class="floatL">
+		<a id="aFloatTools_Show" class="btnOpen" title="查看在线客服" style="top: 20px; display: block" href="javascript:void(0);">展开</a>
+		<a id="aFloatTools_Hide" class="btnCtn" title="关闭在线客服" style="top: 20px; display: none" href="javascript:void(0);">收缩</a>
+	</div>
+	<div id="divFloatToolsView" class="floatR" style="display: none; width: 140px; background: #E55600;">
+		<div class="cn">
+			<h3 class="titZx">官方在线客服</h3>
+			<ul id="jisuan_qq">
+				<volist name=":C('contact_qq')" id="v">
+					<li>
+						<span>客服{$i}</span>
+						<a target="_blank" href="http://wpa.qq.com/msgrd?v=3&amp;uin={$v}&amp;site=qq&amp;menu=yes">
+							<img border="0" src="/Application/Home/View/Kefu/a/images/online.png" alt="点击这里给我发消息" title="点击这里给我发消息"/>
+						</a>
+					</li>
+				</volist>
+				<volist name=":C('contact_qqun')" id="v">
+					<li>
+						<span>QQ群{$i}</span> {$v}
+					</li>
+				</volist>
+				<notempty name="C['contact_moble']">
+				<li style="border: none;">
+					<span>电话：{:C('contact_moble')}</span>
+				</li>
+					</notempty>
+			</ul>
+		</div>
+	</div>
+</div>
+<script>
+	$(function () {
+		$("#floatTools").hover(function () {
+			$('#divFloatToolsView').animate({
+				width: 'show',
+				opacity: 'show'
+			}, 100, function () {
+				$('#divFloatToolsView').show();
+			});
+			$('#aFloatTools_Show').hide();
+			$('#aFloatTools_Hide').show();
+		}, function () {
+			$('#divFloatToolsView').animate({
+				width: 'hide',
+				opacity: 'hide'
+			}, 100, function () {
+				$('#divFloatToolsView').hide();
+			});
+			$('#aFloatTools_Show').show();
+			$('#aFloatTools_Hide').hide();
+		});
+		$("#divFloatToolsView").height(36 + $("#jisuan_qq li").length * 40);
+	});
+</script>

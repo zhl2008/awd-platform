@@ -1,0 +1,120 @@
+<include file = "Public:header" />
+<div id = "main-content" >
+    <div id = "top-alert" class = "fixed alert alert-error" style = "display: none;" >
+        <button class = "close fixed" style = "margin-top: 4px;" >&times;</button >
+        <div class = "alert-content" >警告内容</div >
+    </div >
+    <div id = "main" class = "main" >
+        <div class = "main-title-h" >
+            <span class = "h1-title" >VIP等级配置</span >
+        </div >
+        <div class = "tab-wrap" >
+            <div class = "tab-content" >
+                <form id = "form" action = "{:U('App/config')}" method = "post" class = "form-horizontal" >
+                    <input type = "hidden" class = "form-control" name = "id" value = "{$appCon['id']}" >
+                    <div style="position: absolute;top: 170px;">
+                        <div class="span3" style="min-width: 300px;float: left;">
+                            <h3 class="demo-panel-title">VIP2</h3>
+                            <div class="share mrl">
+                                <ul>
+                                    <li>
+                                        <label class="share-label">升级条件</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币股</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币股</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币股</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                </ul>
+                                <a href="#" class="btn btn-warning btn-block btn-large">删除</a>
+                            </div> <!-- /share -->
+                        </div>
+                        <div class="span3" style="min-width: 300px;float: left;">
+                            <h3 class="demo-panel-title">VIP2</h3>
+                            <div class="share mrl">
+                                <ul>
+                                    <li>
+                                        <label class="share-label">升级条件</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币股</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                    <li>
+                                        <label class="share-label">动说币股</label>
+                                        <label class="toggle-radio">100个</label>
+                                    </li>
+                                </ul>
+                                <a href="#" class="btn btn-warning btn-block btn-large">删除</a>
+                            </div> <!-- /share -->
+                        </div>
+                        <div class="span3" style="float: left;min-height: 500px;">
+                            <h3 class="demo-panel-title">&nbsp;</h3>
+                            <div class="share mrl">
+                                <button onclick="add_vip()" type="button" class="btn btn-primary btn-block btn-large" style="    width: 50px;
+    margin: 0;
+    text-align: center;
+    height: 200px;
+    /* padding-top: 128%; */
+    position: static;
+    vertical-align: middle;
+    display: table-cell;">新增</button>
+                            </div> <!-- /share -->
+                        </div>
+                    </div>
+                </form >
+                <script type = "text/javascript" >
+
+                    function add_vip(){
+                        //自定页
+                        layer.open({
+                            type: 1,
+                            skin: 'layui-layer-demo', //样式类名
+                            closeBtn: 0, //不显示关闭按钮
+                            shift: 2,
+                            shadeClose: true, //开启遮罩关闭
+                            content: '内容'
+                        });
+                    }
+
+
+                    //提交表单
+                    $('#submit').click(function () {
+                        $('#form').submit();
+                    });
+                </script >
+            </div >
+        </div >
+    </div >
+</div >
+
+<div>
+    新增
+</div>
+
+
+
+<script type = "text/javascript" >
+    $(function () {
+        //主导航高亮
+        $('.config-box').addClass('current');
+        //边导航高亮
+        $('.config-index').addClass('current');
+    });
+</script >
+<include file = "Public:footer" />

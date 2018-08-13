@@ -1,0 +1,249 @@
+<include file="Public:header_1"/>
+<div class="autobox" style=" ">
+    <div class="f_title clearfix">
+        <div class="f_title_span left" style="    margin-top: 20px;">
+						<span class="current">
+						<i></i>
+							<a href="{:U('Shop/index')}">逛商城</a>
+						</span>
+						<span class="">
+							<a href="{:U('Shop/log')}">购物记录</a>
+						</span>
+                        <span class="">
+							<a href="{:U('User/goods')}">收货地址</a>
+						</span>
+        </div>
+    </div>
+    <notempty name="prompt_text">
+        <div class="mytips" style="    margin: 0px;">
+            <h6 style="color: #ff8000;">温馨提示</h6>
+            {$prompt_text}
+        </div>
+    </notempty>
+    <div class="category-nav"></div>
+    <div class="wrapbody">
+        <div class="main">
+            <div class="showContent margin clearfix">
+                <div class="gallery">
+                    <div id="detail">
+                        <div class="jqzoom_pm" style="    height: 420px;">
+                            <img src="{$data.img}">
+                        </div>
+                    </div>
+                </div>
+                <form action="javascript:addToCart(33)" method="post" name="ECS_FORMBUY" id="ECS_FORMBUY">
+					<div class="property">
+                        <h2>{$data.name}</h2>
+
+                        <div class="ProductD clearfix">
+                            <div class="productDL">
+                                <dl>
+                                    <dt>市&nbsp;&nbsp;场&nbsp;&nbsp;价：</dt>
+                                    <dd>
+                                        <strong style="text-decoration: line-through;">￥{$data.market_price|Num}</strong>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>商品价格：</dt>
+                                    <dd>
+                                        <span id="ECS_SHOPPRICE">￥{$data.price|Num}</span> {$data.buycoinname}
+                                    </dd>
+                                </dl>
+								
+								
+								
+								<neq name="data.buycoin" value="cny">
+									<eq name="errormsg" value="nodata">
+										
+										<dl>
+											<dt>等价人民币：</dt>
+											<dd>
+												<span id='currentcny'>暂无{$data.buycoinname}的交易价格,无法购买</span>
+											</dd>
+										</dl>
+										
+										
+									<else/>
+
+										<dl>
+											<dt>等价人民币：</dt>
+											<dd>
+												<span id='currentcny'>{$coinprice}</span>
+											</dd>
+										</dl>
+									
+									</eq>
+								</neq>
+								
+								
+								
+							<gt name="data.qq3479015851_awardcoinnum" value="0">
+							   <dl>
+                                    <dt>赠送：</dt>
+                                    <dd>
+                                        <span id="ECS_SHOPPRICE">{$data.qq3479015851_awardcoinnum}</span> 个{$data.qq3479015851_awardcoin}
+                                    </dd>
+                                </dl>
+							</gt>	
+								
+                                <dl>
+                                    <dt>总&nbsp;&nbsp;库&nbsp;&nbsp;存：</dt>
+                                    <dd>
+                                        <strong>{$data.num|Num}件</strong>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>累计售出：</dt>
+                                    <dd>
+                                        <strong>{$data.deal|Num}件</strong>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>上架时间：</dt>
+                                    <dd>{$data.addtime|addtime}</dd>
+                                </dl>
+                                <dl>
+                                    <dt>购买数量：</dt>
+                                    <dd>
+                                        <input type="text" class="cztxinput" id="num" value="" style="padding: 5px;background-color: #ffffff;">
+                                    </dd>
+                                </dl>
+
+                                <dl>
+                                    <dt>收货地址：</dt>
+                                    <dd>
+                                        <select name="type" id="shop_goods" style=" height: 28px;width: 194px;">
+                                            <volist name="goods_list" id="vo">
+                                                <option value="{$key}">{$vo}</option>
+                                            </volist>
+                                            <option value="tianjia">新添加一个地址</option>
+                                        </select>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>交易密码：</dt>
+                                    <dd>
+                                        <input type="password" class="cztxinput" id="paypassword" value="" style="padding: 5px;background-color: #ffffff;">
+                                        <a href="/Login/findpaypwd.html" class="reg_floatr">忘记密码?</a>
+                                    </dd>
+                                </dl>
+                                <dl>
+                                    <dt>&nbsp;</dt>
+                                    <dd>
+											<input type="button" class="btn-cztx" id="online_bank" onclick="Update()" value="立即购买" title="立即购买">
+
+									</dd>
+                                </dl>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="clearfix">
+                <div class="mainListRight fr" id="status1">
+                    <div class="productContent">
+                        <div class="attributes-list"></div>
+                        <h3 class="techanPdcontent">
+                            <strong>产 品 介 绍</strong>
+                            <span>Product Ovierview</span>
+                        </h3>
+
+                        <div class="techanProducts clearfix"></div>
+                        <div class="description">{$data.content}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div></div>
+<script>
+    $("#shop_goods").change(function () {
+        var type = $("#shop_goods option:selected").val();
+        if (type == 'tianjia') {
+            window.location = '/User/goods';
+        }
+    });
+    $(function () {
+        $(".coin_price_1").show();
+    });
+
+    $("#coin_type").change(function () {
+        var coin_type = $("#coin_type option:selected").val();
+
+        $(".coin_price").hide();
+
+
+        $("#coin_price_" + coin_type).show();
+
+
+    });
+</script>
+<script>
+	trans_lock = 0;
+    function Update() {
+        if (trans_lock) {
+            layer.msg('不要重复提交', {icon: 2});
+            return;
+        }
+        trans_lock = 1;
+	
+	
+        var type = $("#coin_type option:selected").val();
+        var goods = $("#shop_goods option:selected").val();
+
+        $.post("{:U('Shop/buyShop')}", {
+            id: "{$data['id']}",
+            goods: goods,
+            num: $('#num').val(),
+            paypassword: $('#paypassword').val(),
+
+
+        }, function (data) {
+			trans_lock = 0;
+            if (data.status == 1) {
+                layer.msg(data.info, {icon: 1});
+                window.location = "{:U('Shop/log')}";
+            } else {
+                layer.msg(data.info, {icon: 2});
+                if (data.url) {
+                    window.setTimeout("window.location='" + data.url + "'", 3000);
+                }
+            }
+        }, 'json');
+    }
+	
+	
+    function getCurrentCny(type,price) {
+	
+		if(type=="cny"){
+			return false;
+		}
+	
+		$.getJSON("/Ajax/getCurrentCny?type="+type+"&t=" + Math.random(), function (data) {
+			if (data!="nodata"){
+				var cur = price*data;
+				
+				$("#currentcny").html(cur+"元");
+				
+			}else{
+				$("#currentcny").html("暂无{$data.buycoinname}的交易价格,无法购买");
+			}
+
+		});
+		setTimeout("getCurrentCny('{$data.buycoin}',{$data.price|Num})", 5000);
+    }
+
+	
+	getCurrentCny('{$data.buycoin}',{$data.price|Num});
+
+	
+	
+	
+	
+	
+</script>
+<script>
+    //菜单高亮
+    $('#shop_box').addClass('active');
+</script>
+<include file="Public:footer_1"/>

@@ -1,0 +1,115 @@
+<include file="Public:header" />
+<script src="__PUBLIC__/Home/js/datepicker.min.js"></script>
+<div class="autobox">
+ <div class="now">
+  <a href="/" class="orange">首页</a> &gt; <a href="/finance/" class="orange">财务中心</a> &gt; 委托管理
+ </div>
+ <div class="assets_center clear po_re zin70">
+  <!--左侧菜单-->
+  <include file="Finance:left" />
+  <!--右侧内容-->
+  <div class="assets_content w900 right bg_w">
+
+       <div class="safe_center clear" style="padding-left: 0px; border-bottom: 2px solid #e55600;">
+    <h1 style="margin-top: 0px; margin-bottom: 15px; line-height: 15px;">委托管理</h1>
+   </div>
+   <div class="sj" style="top: 40px; left: 60px;"></div>
+       <notempty name="prompt_text">
+                    <div class="mytips">
+                        <h6 style="color: #ff8000;">温馨提示</h6>
+                        {$prompt_text}
+                    </div>
+                </notempty>
+   <br>
+
+   
+   <div class="cnyin_record"  style="width: 918px;">
+    <div class="f_body">
+     <div class="f_body_main">
+      <div class="f_tab_body">
+       <div>
+        <table class="f_table" id="investLog_content">
+         <thead>
+          <tr>
+           <th><img src="__UPLOAD__/coin/{$coin_list[$market_list[$market]['xnb']]['img']}" alt="" style="margin-bottom: -5px; width: 22px;" /> <select name="market-selectTest" id="market-selectTest">
+             <volist name="market_list" id="vo"> <eq name="market" value="$key">
+             <option value="{$vo['name']}" selected="selected">{$coin_list[$vo['xnb']]['title']}({$vo['xnb']|strtoupper}/{$vo['rmb']|strtoupper})</option>
+             <else />
+             <option value="{$vo['name']}">{$coin_list[$vo['xnb']]['title']}({$vo['xnb']|strtoupper}/{$vo['rmb']|strtoupper})</option>
+             </eq> </volist>
+           </select></th>
+           <th>委托时间</th>
+           <th><select name="type-selectTest" id="type-selectTest">
+             <option value="0"<eq name="type" value="0">selected</eq>>-全部-
+             </option>
+             <option value="1"<eq name="type" value="1">selected</eq>>买入
+             </option>
+             <option value="2"<eq name="type" value="2">selected</eq>>卖出
+             </option>
+           </select></th>
+           <th>委托价格</th>
+           <th>委托数量</th>
+           <th>已成交量</th>
+           <th><select name="status-selectTest" id="status-selectTest">
+             <option value="0"<eq name="status" value="0">selected</eq>>---全部---
+             </option>
+             <option value="1"<eq name="status" value="1">selected</eq>>交易中
+             </option>
+             <option value="2"<eq name="status" value="2">selected</eq>>已完成
+             </option>
+             <option value="3"<eq name="status" value="3">selected</eq>>已撤销
+             </option>
+           </select></th>
+          </tr>
+         </thead>
+         <tbody>
+          <volist name="list" id="vo">
+          <tr>
+           <td>{$coin_list[$market_list[$vo['market']]['xnb']]['title']} ({$market_list[$vo['market']]['xnb']|strtoupper}/{$market_list[$vo['market']]['rmb']|strtoupper})</td>
+           <td>{$vo.addtime|date='m-d H:i:s',###}</td>
+           <td><eq name="vo.type" value="1"> <font class="buy">买入</font> <else /> <font class="sell">卖出</font></eq></td>
+           <td>{$vo['price']|NumToStr}</td>
+           <td>{$vo['num']|NumToStr}</td>
+           <td>{$vo['deal']|NumToStr}</td>
+           <td><eq name="vo.status" value="0">交易中 | <a class="cancel" id="{$vo.id}" href="javascript:void(0);">撤销</a></eq> <eq name="vo.status" value="1">已完成</eq> <eq name="vo.status" value="2">已撤销</eq></td>
+          </tr>
+          </volist>
+         </tbody>
+        </table>
+        <div class="pages">{$page}</div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </div>
+  </div>
+ </div>
+</div>
+<br>
+<br>
+<script>
+	$("#type-selectTest,#status-selectTest,#market-selectTest").change(function(){
+		var type=$("#type-selectTest option:selected").val();
+		var status=$("#status-selectTest option:selected").val();
+		var market=$("#market-selectTest option:selected").val();
+		window.location='/Finance/mywt/type/'+type+'/status/'+status+'/market/'+market+'.html';
+	});
+
+	$('.cancel').click(function(){
+		$.post("{:U('Trade/chexiao')}",{id : $(this).attr('id'), },function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon : 1 });
+				window.setTimeout("window.location='{:U('Finance/mywt')}'",1000);
+			}else{
+				layer.msg(data.info,{icon : 2 });
+			}
+		});
+	});
+</script>
+<script>
+	//菜单高亮
+	$('#finance_box').addClass('active');
+	$('#finance_mywt').addClass('active');
+	$('#finance_mywt i').attr('class','coin_menu_op_6');
+</script>
+<include file="Public:footer" />

@@ -1,0 +1,195 @@
+<include file="Public:header" />
+		
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 账户提现	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						提现记录					</span>
+					 <span>
+                        <a href="/finance/mytx"  class="step fz_12 ml50 pd6 ">账户提现</a>
+						    <a href="/finance/outlog" class="step fz_12 ml20 pd6 active">提现记录</a>
+                        <a href="/finance/bank"  class="step fz_12 ml20 pd6">提现地址管理</a>
+                    </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+
+				<p>
+					<notempty name="prompt_text">
+						{$prompt_text}
+					</notempty>	
+				</p>			</div>
+			<div class="mytable-body ">
+				<div class="step2 f_body  ">
+					<table class="f_table" id="investLog_content">
+						<thead>
+						<tr>
+							<th>提现时间</th>
+							<th>提现金额</th>
+							<th>手续费</th>
+							<th>到账金额</th>
+							<th>提现地址</th>
+							<th width="">
+								<span>
+									<select id="status-select">
+										<option value=""
+										<eq name="status" value="">selected</eq>
+										>全部状态</option>
+										<option value="1"
+										<eq name="status" value="1">selected</eq>
+										>已申请</option>
+										<option value="2"
+										<eq name="status" value="2">selected</eq>
+										>提现成功</option>
+										<option value="3"
+										<eq name="status" value="3">selected</eq>
+										>已撤销</option>
+										<option value="4"
+										<eq name="status" value="4">selected</eq>
+										>正在处理</option>
+									</select>
+								</span>
+							</th>
+						</tr>
+						</thead>
+						<tbody>
+						
+						
+						<volist name="list" id="vo">
+							<tr>
+								<td>{$vo['addtime']|date='Y-m-d H:i:s',###}</td>
+								<td>￥{$vo['num']|default="0.00"}</td>
+								<td>￥{$vo['fee']|default="0.00"}</td>
+								<td>￥{$vo['mum']|default="0.00"}</td>
+								<td>{$vo['name']}</td>
+								<td>
+									<eq name="vo.status" value="0">
+										已申请
+										<a onclick="out_chexiao(this)" data="{$vo['id']}" href="javascript:void(0)" style="color:#2674FF!important;">撤销</a>
+									</eq>
+									<eq name="vo.status" value="1">
+										提现成功
+									</eq>
+									<eq name="vo.status" value="2">
+										已撤销
+									</eq>
+									<eq name="vo.status" value="3">
+										正在处理
+									</eq>
+								</td>
+							</tr>
+						</volist>
+						
+						
+						
+						</tbody>
+					</table>
+					<div class="pages"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$("#status-select").val("{$status}");
+	$("#status-select").change(function () {
+		var status = $("#status-select option:selected").val();
+		var url    = '/finance/outlog';
+		if (status) {
+			url += '/status/' + status;
+		}
+		window.location = url;
+	});
+	function out_chexiao(_this) {
+		var id = $(_this).attr('data');
+		$.post("{:U('Finance/mytxChexiao')}", {id: id}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+			}
+		}, "json");
+	}
+</script>
+
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_out').addClass('active');
+</script>	
+	
+<include file="Public:footer" />

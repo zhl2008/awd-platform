@@ -1,0 +1,102 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">清理缓存</span>
+		</div>
+		<block name="body">
+			<div class="container-span">
+				<div class="span4" style="margin: 0 0px;width: 100%;">
+					<div class="columns-mod">
+						<div class="hd cf">
+							<h5>系统信息</h5>
+						</div>
+						<div class="bd">
+							<div class="sys-info">
+								<table>
+									<tr>
+										<td>当前缓存数据大小:{$cacheSize}KB</td>
+
+										<td><div id="loader"></div></td>
+									</tr>
+									<tr>
+
+										<td><button class="btn" onclick="animateFunc();">清理</button></td>
+
+									</tr>
+
+
+								</table>
+							</div>
+						</div>
+						<script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.percentageloader-0.1.min.js"></script>
+						<script type="text/javascript">
+							var $loader;
+							var totalKb = '{$cacheSize}';
+							var kb = 0;
+							var clearCacheFlag = 0;
+							$loader  = $("#loader").percentageLoader({
+								width : 200,
+								height : 200,
+								progress : 0
+							});
+							function animateFunc() {
+								kb += 17;
+								if (kb > totalKb) {
+									kb = totalKb;
+								}
+								$loader.setProgress(kb / totalKb);
+								$loader.setValue(kb.toString() + 'kb');
+								if((kb/totalKb) > 0.98 && clearCacheFlag == 0){
+									clearCacheFlag = 1;
+									clearCache();
+								}
+								if (kb < totalKb) {
+									setTimeout(animateFunc, 25);
+								}
+							}
+
+							function clearCache(){
+								$.get('/Admin/Tools/delcache').success(function(data){
+									if (data.status==1) {
+										if (data.url) {
+											updateAlert(data.info + ' 页面即将自动跳转~','alert-success');
+										}else{
+											updateAlert(data.info+ ' 页面即将自动跳转~','alert-success');
+										}
+										setTimeout(function(){
+											if (data.url) {
+												location.href=data.url;
+											}else if( $(this).hasClass('no-refresh')){
+												$('#top-alert').find('button').click();
+											}else{
+												location.reload();
+											}
+										},1500);
+									}else{
+										updateAlert(data.info);
+										setTimeout(function(){
+											if (data.url) {
+												location.href=data.url;
+											}else{
+												$('#top-alert').find('button').click();
+											}
+										},1500);
+									}
+								});
+							}
+						</script>
+
+					</div>
+				</div>
+			</div>
+		</block>
+	</div>
+</div>
+
+<!-- /内容区 -->
+<include file="Public:footer" />

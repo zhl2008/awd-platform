@@ -1,0 +1,36 @@
+<div style="background:#f6f6f6; padding:20px 0; min-height:240px;">
+    <div class="tn_introduce_con">
+        <div class="tn_news clearfix" style="margin-top:0;">
+
+            <div class="tn_notice left">
+                <div class="tn_news_title clearfix">
+                    <h3 class="left">官方公告</h3>
+                    <a href="/Article/index/id/{$indexArticleType[0]['id']}" class="right">更多</a>
+                </div>
+                <ul>
+                    <volist name="indexArticle[0]" id="vo">
+                        <li>
+                            <a class="left" target="_blank" href="{:U('Article/detail','id='.$vo['id'])}">{$vo['title']} </a>
+                            <span class="right">[ {$vo['addtime']|date="y-m-d",###} ]</span>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+
+            <div class="tn_notice right">
+                <div class="tn_news_title clearfix">
+                    <h3 class="left">行业资讯</h3>
+                    <a href="/Article/index/id/{$indexArticleType[1]['id']}" class="right">更多</a>
+                </div>
+                <ul>
+                    <volist name="indexArticle[1]" id="vo">
+                        <li>
+                            <a class="left" target="_blank" href="{:U('Article/detail','id='.$vo['id'])}">{$vo['title']} </a>
+                            <span class="right">[ {$vo['addtime']|date="y-m-d",###} ]</span>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>{:C('web_title')}</title>
+    <meta name="Keywords" content="{:C('web_keywords')}">
+    <meta name="Description" content="{:C('web_description')}">
+    <meta name="robots" content="index,follow"/>
+    <meta name="author" content="zuocoin.com">
+    <meta name="coprright" content="zuocoin.com">
+    <link rel="shortcut icon" href=" /favicon.ico"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/zuocoin.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/style.css"/>
+    <link rel="stylesheet" href="__PUBLIC__/Home/css/font-awesome.min.css"/>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/script.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.flot.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/Home/js/jquery.cookies.2.2.0.js"></script>
+    <script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+</head>
+<body>
+<div class="header bg_w" style="position: fixed; z-index: 99;">
+    <div class="hearder_top">
+        <div class="autobox po_re zin100" id="header">
+            <div class="logo-small" style="max-height: 25px;">
+                <a href="/"><img src="__UPLOAD__/public/{$C['web_llogo_small']}" alt=""/></a>
+            </div>
+            <div class="nav fz_12">
+                <ul>
+                    <li style="text-align: right; padding-right: 20px;">
+                        <a href="/" id="index_box">首页</a>
+                    </li>
+                    <li>
+                        <a id="trade_box" class="active"><span class="active">交易中心</span>
+                            <img src="/Public/Home/images/down.png"></a>
+
+                        <div class="deal_list " style="display: none;   top: 36px;">
+                            <dl id="menu_list_json"></dl>
+                            <div class="sj"></div>
+                            <div class="nocontent"></div>
+                        </div>
+                    </li>
+                    <volist name="daohang" id="vo">
+                        <li>
+                            <a id="{$vo['name']}_box" href="/{$vo['url']}">{$vo['title']}</a>
+                        </li>
+                    </volist>
+                </ul>
+            </div>
+            <div class="right orange" id="login">
+                <gt name="Think.session.userId" value="0">
+                    <dl class="mywallet">
+                        <dt id="user-finance">
+                        <div class="mywallet_name clear">
+                            <a href="/finance/">{$Think.session.userName}</a><i></i>
+                        </div>
+                        <div class="mywallet_list" style="display: none;">
+                            <div class="clear">
+                                <ul class="balance_list">
+                                    <h4>可用余额</h4>
+                                    <li>
+                                        <a href="javascript:void(0)"><em style="margin-top: 5px;" class="deal_list_pic_cny"></em><strong>人民币：</strong><span>{$userCoin_top['cny']}</span></a>
+                                    </li>
+                                </ul>
+                                <ul class="freeze_list">
+                                    <h4>委托冻结</h4>
+                                    <li>
+                                        <a href="javascript:void(0)"><em style="margin-top: 5px;" class="deal_list_pic_cny"></em><strong>人民币：</strong><span>{$userCoin_top['cnyd']}</span></a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="mywallet_btn_box">
+                                <a href="/finance/mycz.html">充值</a><a href="/finance/mytx.html">提现</a><a href="/finance/myzr.html">转入</a><a href="/finance/myzc.html">转出</a><a href="/finance/mywt.html">委托管理</a><a href="/finance/mycj.html">成交查询</a>
+                            </div>
+                        </div>
+                        </dt>
+                        <dd>
+                            ID：<span>{$Think.session.userId}</span>
+                        </dd>
+                        <dd>
+                            <a href="{:U('Login/loginout')}">退出</a>
+                        </dd>
+                    </dl>
+                    <else/> <!-- 登陆前 -->
+                    <div class="orange">
+                        <span class="zhuce"><a class="orange" href="{:U('Login/register')}">注册</a></span> |
+                        <a href="{:U('/index#login')}" class="orange" onclick="#">登录</a>
+                    </div>
+                </gt>
+            </div>
+        </div>
+    </div>
+    <div class="autobox">
+        <div class="all_coin_price">
+            <div class="all_coin_show">
+                <a href=""><img src="__UPLOAD__/coin/{$C['market'][$market]['xnbimg']}" style="float: left; width: 40px; height: 40px; margin-right: 5px;"><span>{$C['market'][$market]['title']}</span><em></em></a>
+            </div>
+            <div class="all_coin_list" style="display: none;">
+                <div class="all_coin_box">
+                    <ul id="all_coin"></ul>
+                </div>
+            </div>
+        </div>
+        <dl class="all_coin_info">
+            <dt id="market_new_price"></dt>
+            <dd>
+                <p class="orange" id="market_max_price"></p>
+                最高价
+            </dd>
+            <dd>
+                <p class="green" id="market_min_price"></p>
+                最低价
+            </dd>
+            <dd>
+                <p id="market_buy_price"></p>
+                买一价
+            </dd>
+            <dd>
+                <p id="market_sell_price"></p>
+                卖一价
+            </dd>
+            <dd class="w150">
+                <p id="market_volume"></p>
+                成交量
+            </dd>
+            <dd class="w150">
+                <p id="market_change"></p>
+                日涨跌
+            </dd>
+        </dl>
+    </div>
+</div>
+<div class="list-tab-box">
+    <ul class="list-tab">
+		<!-- {$C['market'][$market]['title']}  -->
+        <li id="list-tab_index" style="width: 180px; margin: 0px;">
+            <a href="{:U('Trade/index','market='.$market)}">{:C('coin')[$xnb]['title']}交易</a>
+        </li>
+        <li id="list-tab_chart" style="width: 180px;">
+            <a href="{:U('Trade/chart','market='.$market)}">{:C('coin')[$xnb]['title']}行情</a>
+        </li>
+        <li id="list-tab_info">
+            <a href="{:U('Trade/info','market='.$market)}"><i class="arrow-tab"></i>了解{:C('coin')[$xnb]['title']}</a>
+        </li>
+        <li id="list-tab_comment" style="display:none;">
+            <a href="{:U('Trade/comment','market='.$market)}"><i class="arrow-tab"></i>评价{:C('coin')[$xnb]['title']}</a>
+        </li>
+    </ul>
+</div>
+<!--头部结束-->
+
+<script>
+    $.getJSON("/Ajax/getJsonMenu?t=" + Math.random(), function (data) {
+        if (data) {
+            var list = '';
+            for (var i in data) {
+                list += '<dd><a href="/Trade/index/market/' + data[i]['name'] + '"><img src="/Upload/coin/' + data[i]['img'] + '" style="width: 18px; margin-right: 5px;">' + data[i]['title'] + '</a></dd>';
+            }
+            $("#menu_list_json").html(list);
+        }
+    });
+    $('#trade_box').hover(function () {
+        $('.deal_list').show()
+    }, function () {
+        $('.deal_list').hide()
+    });
+    $('.deal_list').hover(function () {
+        $('.deal_list').show()
+    }, function () {
+        $('.deal_list').hide()
+    });
+    $('#user-finance').hover(function () {
+        $('.mywallet_list').show();
+    }, function () {
+        $('.mywallet_list').hide()
+    });
+</script>
+
+
+
+<script>
+    function getJsonTop() {
+        $.getJSON("/Ajax/getJsonTop?market={$market}&t=" + Math.random(), function (data) {
+            if (data) {
+                if (data['info']['new_price']) {
+                    $('#market_new_price').removeClass('buy');
+                    $('#market_new_price').removeClass('sell');
+                    if ($("#market_new_price").html() > data['info']['new_price']) {
+                        $('#market_new_price').addClass('sell');
+                    }
+                    if ($("#market_new_price").html() < data['info']['new_price']) {
+                        $('#market_new_price').addClass('buy');
+                    }
+                    $("#market_new_price").html(data['info']['new_price']);
+                }
+                if (data['info']['buy_price']) {
+                    $('#market_buy_price').removeClass('buy');
+                    $('#market_buy_price').removeClass('sell');
+                    if ($("#market_buy_price").html() > data['info']['buy_price']) {
+                        $('#market_buy_price').addClass('sell');
+                    }
+                    if ($("#market_buy_price").html() < data['info']['buy_price']) {
+                        $('#market_buy_price').addClass('buy');
+                    }
+                    $("#market_buy_price").html(data['info']['buy_price']);
+                    $("#sell_best_price").html('￥' + data['info']['buy_price']);
+                }
+                if (data['info']['sell_price']) {
+                    $('#market_sell_price').removeClass('buy');
+                    $('#market_sell_price').removeClass('sell');
+                    if ($("#market_sell_price").html() > data['info']['sell_price']) {
+                        $('#market_sell_price').addClass('sell');
+                    }
+                    if ($("#market_sell_price").html() < data['info']['sell_price']) {
+                        $('#market_sell_price').addClass('buy');
+                    }
+                    $("#market_sell_price").html(data['info']['sell_price']);
+                    $("#buy_best_price").html('￥' + data['info']['sell_price']);
+                }
+                if (data['info']['max_price']) {
+                    $("#market_max_price").html(data['info']['max_price']);
+					$("#zhangting").html("￥"+data['info']['max_price']);
+                }
+                if (data['info']['min_price']) {
+                    $("#market_min_price").html(data['info']['min_price']);
+					$("#dieting").html("￥"+data['info']['min_price']);
+                }
+                if (data['info']['volume']) {
+                    if (data['info']['volume'] > 10000) {
+                        data['info']['volume'] = (data['info']['volume'] / 10000).toFixed(2) + "万"
+                    }
+                    if (data['info']['volume'] > 100000000) {
+                        data['info']['volume'] = (data['info']['volume'] / 100000000).toFixed(2) + "亿"
+                    }
+                    $("#market_volume").html(data['info']['volume']);
+                }
+                if (data['info']['change']) {
+                    $('#market_change').removeClass('buy');
+                    $('#market_change').removeClass('sell');
+                    if (data['info']['change'] > 0) {
+                        $('#market_change').addClass('buy');
+                    } else {
+                        $('#market_change').addClass('sell');
+                    }
+                    $("#market_change").html(data['info']['change'] + "%");
+                }
+
+
+                if (data['list']) {
+                    var list = '';
+                    for (var i in data['list']) {
+                        list += '<li><a href="/Trade/index/market/' + data['list'][i]['name'] + '"> <img src="__UPLOAD__/coin/' + data['list'][i]['img'] + '" style="width: 40px; float: left; margin-right: 5px;"> <span class="all_coin_name"><p>' + data['list'][i]['title'] + '</p> <span id="all_coin_' + data['list'][i]['name'] + '">' + data['list'][i]['new_price'] + '</span></span></a></li>';
+                    }
+                    $("#all_coin").html(list);
+                }
+
+
+            }
+        });
+        setTimeout('getJsonTop()', 5000);
+    }
+    $(function () {
+        getJsonTop();
+        $('.all_coin_price').hover(function () {
+            $('.all_coin_list').show()
+        }, function () {
+            $('.all_coin_list').hide()
+        });
+    });
+</script>
+<notempty name="prompt_text">
+    <div class="mytips">
+        <h6 style="color: #ff8000;">温馨提示</h6>
+        {$prompt_text}
+    </div>
+</notempty>

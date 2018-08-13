@@ -1,0 +1,495 @@
+<include file="Public:header"/>
+<script type="text/javascript" src="__PUBLIC__/layer/laydate/laydate.js"></script>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title"><a href="{:U('Trade/market')}">市场列表</a> >></span>
+
+            <span class="h1-title"><empty name="data">添加市场
+	            <else/>
+                                                      编辑市场
+            </empty></span>
+		</div>
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<form id="form_form" action="{:U('Trade/marketEdit')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<empty name="data['id']">
+									<tr class="controls" style="display:none;">
+										<td class="item-label">买方币种 :</td>
+										<td><select name="buyname" class="form-control input-10x">
+											
+											<!--
+											<volist name="C['coin']" id="v">
+												<option value="{$v['name']}">{$v['title']}</option>
+											</volist>
+											-->
+											
+
+											<option value="cny">人民币</option>
+
+											
+											
+										</select>
+										</td>
+										<td class="item-note">(*请只选择人民币)</td>
+									</tr>
+									<tr class="controls">
+										<td class="item-label">出售币种 :</td>
+										<td><select name="sellname" class="form-control input-10x">
+											<volist name="C['coin']" id="v">
+												<neq name="v['name']" value="cny">
+													<option value="{$v['name']}">{$v['title']}</option>
+												</neq>
+											</volist>
+										</select>
+										</td>
+										<td class="item-note"></td>
+									</tr>
+									<else/>
+									<tr class="controls">
+										<td class="item-label">市场名称 :</td>
+										<td>{$data.name}</td>
+										<td class="item-note"></td>
+									</tr>
+								</empty>
+								 
+								
+								<tr class="controls">
+									<td class="item-label">所属交易区</td>
+									<td>
+										<select name="jiaoyiqu">
+											<volist name="qq3479015851_getCoreConfig" id="v">
+											
+												<option value="{$key}"
+												
+												<eq name="data.jiaoyiqu" value="$key">
+													selected
+												</eq>
+												
+												>{$v}</option>
+												
+											</volist>
+										</select>
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								
+								
+								
+								
+								
+								
+								<tr class="controls">
+									<td class="item-label">小数位数:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="round" value="{$data.round}">
+									</td>
+									<td class="item-note">填1--6整数，比如填3就表示3位小数</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">买入手续费:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="fee_buy" value="{$data.fee_buy}">
+									</td>
+									<td class="item-note">%有挂单的时候不能再修改</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">卖出手续费:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="fee_sell" value="{$data.fee_sell}">
+									</td>
+									<td class="item-note">%有挂单的时候不能再修改</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">买入最小交易价:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="buy_min" value="{$data.buy_min}">
+									</td>
+									<td class="item-note">买入最小交易价 默认0.000001</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">买入最大交易价:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="buy_max" value="{$data.buy_max}">
+									</td>
+									<td class="item-note">买入最大交易价 默认1000000</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">卖出最小交易价:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="sell_min" value="{$data.sell_min}">
+									</td>
+									<td class="item-note">卖出最小交易价 默认0.000001</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">卖出最大交易价:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="sell_max" value="{$data.sell_max}">
+									</td>
+									<td class="item-note">卖出最大交易价 默认1000000</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">单笔最小交易额:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="trade_min" value="{$data.trade_min}">
+									</td>
+									<td class="item-note">单笔最小交易额 默认1000000</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">单笔最大交易额:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="trade_max" value="{$data.trade_max}">
+									</td>
+									<td class="item-note">单笔最大交易额 默认1000000</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">一代赠送比例:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="invit_1" value="{$data.invit_1}">
+									</td>
+									<td class="item-note">%根据单笔交易手续费计算</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">二代赠送比例:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="invit_2" value="{$data.invit_2}">
+									</td>
+									<td class="item-note">%根据单笔交易手续费计算</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">三代赠送比例:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="invit_3" value="{$data.invit_3}">
+									</td>
+									<td class="item-note">%根据单笔交易手续费计算</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">买家上家赠送 :</td>
+									<td><select name="invit_buy" class="form-control input-10x">
+										<option value="1"
+										<eq name="data.invit_buy" value="1">selected</eq>
+										>开启赠送</option>
+										<option value="0"
+										<eq name="data.invit_buy" value="0">selected</eq>
+										>禁止赠送</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">卖家上家赠送 :</td>
+									<td><select name="invit_sell" class="form-control input-10x">
+										<option value="1"
+										<eq name="data.invit_sell" value="1">selected</eq>
+										>开启赠送</option>
+										<option value="0"
+										<eq name="data.invit_sell" value="0">selected</eq>
+										>禁止赠送</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">发行价格:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="qq3479015851_faxingjia" value="{$data.qq3479015851_faxingjia}">
+									</td>
+									<td class="item-note">用于新市场无交易时计算涨跌幅</td>
+								</tr>
+								
+								
+								
+								<tr class="controls">
+									<td class="item-label">涨幅限制:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="zhang" value="{$data.zhang}">
+									</td>
+									<td class="item-note">%根据昨日最后一笔交易计算</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">跌幅限制:</td>
+									<td>
+										<input type="text" class="form-control input-10x" name="die" value="{$data.die}">
+									</td>
+									<td class="item-note">%根据昨日最后一笔交易计算</td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">每日交易开始时间:</td>
+									<td>
+										<input type="hidden" name="begintrade" id="begintrade" />
+										<select id="beginshi">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+										</select>:
+										
+										<select id="beginfen">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+											<option value="24">24</option>
+											<option value="25">25</option>
+											<option value="26">26</option>
+											<option value="27">27</option>
+											<option value="28">28</option>
+											<option value="29">29</option>
+											<option value="30">30</option>
+											<option value="31">31</option>
+											<option value="32">32</option>
+											<option value="33">33</option>
+											<option value="34">34</option>
+											<option value="35">35</option>
+											<option value="36">36</option>
+											<option value="37">37</option>
+											<option value="38">38</option>
+											<option value="39">39</option>
+											<option value="40">40</option>
+											<option value="41">41</option>
+											<option value="42">42</option>
+											<option value="43">43</option>
+											<option value="44">44</option>
+											<option value="45">45</option>
+											<option value="46">46</option>
+											<option value="47">47</option>
+											<option value="48">48</option>
+											<option value="49">49</option>
+											<option value="50">50</option>
+											<option value="51">51</option>
+											<option value="52">52</option>
+											<option value="53">53</option>
+											<option value="54">54</option>
+											<option value="55">55</option>
+											<option value="56">56</option>
+											<option value="57">57</option>
+											<option value="58">58</option>
+											<option value="59">59</option>
+											
+										</select>
+
+										
+									</td>
+									<td class="item-note">时分 格式示例 09:00</td>
+								</tr>
+								
+								
+								<tr class="controls">
+									<td class="item-label">每日交易结束时间:</td>
+									<td>
+										<input type="hidden" name="endtrade" id="endtrade" />
+										<select id="endshi">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+										</select>:
+										
+										<select id="endfen">
+											<option value="00">00</option>
+											<option value="01">01</option>
+											<option value="02">02</option>
+											<option value="03">03</option>
+											<option value="04">04</option>
+											<option value="05">05</option>
+											<option value="06">06</option>
+											<option value="07">07</option>
+											<option value="08">08</option>
+											<option value="09">09</option>
+											<option value="10">10</option>
+											<option value="11">11</option>
+											<option value="12">12</option>
+											<option value="13">13</option>
+											<option value="14">14</option>
+											<option value="15">15</option>
+											<option value="16">16</option>
+											<option value="17">17</option>
+											<option value="18">18</option>
+											<option value="19">19</option>
+											<option value="20">20</option>
+											<option value="21">21</option>
+											<option value="22">22</option>
+											<option value="23">23</option>
+											<option value="24">24</option>
+											<option value="25">25</option>
+											<option value="26">26</option>
+											<option value="27">27</option>
+											<option value="28">28</option>
+											<option value="29">29</option>
+											<option value="30">30</option>
+											<option value="31">31</option>
+											<option value="32">32</option>
+											<option value="33">33</option>
+											<option value="34">34</option>
+											<option value="35">35</option>
+											<option value="36">36</option>
+											<option value="37">37</option>
+											<option value="38">38</option>
+											<option value="39">39</option>
+											<option value="40">40</option>
+											<option value="41">41</option>
+											<option value="42">42</option>
+											<option value="43">43</option>
+											<option value="44">44</option>
+											<option value="45">45</option>
+											<option value="46">46</option>
+											<option value="47">47</option>
+											<option value="48">48</option>
+											<option value="49">49</option>
+											<option value="50">50</option>
+											<option value="51">51</option>
+											<option value="52">52</option>
+											<option value="53">53</option>
+											<option value="54">54</option>
+											<option value="55">55</option>
+											<option value="56">56</option>
+											<option value="57">57</option>
+											<option value="58">58</option>
+											<option value="59">59</option>
+											
+										</select>
+
+										
+									</td>
+									<td class="item-note">时分 格式示例 23:00</td>
+								</tr>
+								
+								
+								
+								<tr class="controls">
+									<td class="item-label">开启交易 :</td>
+									<td><select name="trade" class="form-control input-10x">
+										<option value="1"
+										<eq name="data.trade" value="1">selected</eq>
+										>开启交易</option>
+										<option value="0"
+										<eq name="data.trade" value="0">selected</eq>
+										>禁止交易</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">状态 :</td>
+									<td><select name="status" class="form-control input-10x">
+										<option value="1"
+										<eq name="data.status" value="1">selected</eq>
+										>可用</option>
+										<option value="0"
+										<eq name="data.status" value="0">selected</eq>
+										>禁用</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定
+											</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+											<notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+											</notempty>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					
+					
+					$("#beginshi").find("option").eq('{$beginshi}').attr("selected", "selected");
+					$("#beginfen").find("option").eq('{$beginfen}').attr("selected", "selected");
+					$("#endshi").find("option").eq("{$endshi}").attr("selected", "selected");
+					$("#endfen").find("option").eq('{$endfen}').attr("selected", "selected");
+					
+					$('#submit').click(function () {
+						$("#begintrade").val($("#beginshi").val() + ":"+$("#beginfen").val()+":00");
+						$("#endtrade").val($("#endshi").val() + ":"+$("#endfen").val()+":00");
+						$('#form_form').submit();
+					});
+
+					
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('Trade/market')}");
+	</script>
+</block>

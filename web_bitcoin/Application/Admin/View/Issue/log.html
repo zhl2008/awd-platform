@@ -1,0 +1,99 @@
+<include file="Public:header" />
+<div id="main-content">
+ <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+  <button class="close fixed" style="margin-top: 4px;">&times;</button>
+  <div class="alert-content">警告内容</div>
+ </div>
+ <div id="main" class="main">
+  <div class="main-title-h">
+   <span class="h1-title">认购记录</span>
+  </div>
+  <div class="cf">
+   <div class="search-form fr cf">
+    <div class="sleft">
+     <form name="formSearch" id="formSearch" method="get" name="form1">
+      <select style=" width: 160px; float: left; margin-right: 10px;" name="field" class="form-control">
+       <option value="username"
+       <eq name="Think.get.field" value="username">selected</eq>
+       >用户名</option>
+      </select>
+      <input type="text" name="name" class="search-input form-control  " value="{$Think.get.name}" placeholder="请输入查询内容" style="">
+      <a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a>
+     </form>
+     <script>
+						//搜索功能
+						$(function(){
+							$('#search').click(function(){
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function(e){
+							if(e.keyCode===13){
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+    </div>
+   </div>
+  </div>
+  <div class="data-table table-striped">
+   <table class="">
+    <thead>
+     <tr>
+      <th class="row-selected row-selected"><input class="check-all" type="checkbox" /></th>
+      <th class="">ID</th>
+      <th class="">用户名</th>
+      <th class="">认购名称</th>
+      <th class="">认购币种</th>
+      <th class="">付款币种</th>
+      <th class="">认购单价</th>
+      <th class="">认购数量</th>
+      <th class="">认购总额</th>
+      <th class="" style="display:none;">解冻次数</th>
+      <th class="" style="display:none;">解冻间隔</th>
+      <th class="">认购时间</th>
+      <th class="" style="display:none;">解冻状态</th>
+      <th class="" style="display:none;">上次解冻</th>
+      <th class="" style="display:none;">状态</th>
+     </tr>
+    </thead>
+    <tbody>
+     <notempty name="list"> <volist name="list" id="vo">
+     <tr>
+      <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+      <td>{$vo.id}</td>
+      
+      <td>{$vo['username']}</td>
+      <td>{$vo.name}</td>
+      <td>{$C['coin'][$vo['coinname']]['title']}</td>
+      <td>{$C['coin'][$vo['buycoin']]['title']}</td>
+      <td>{$vo['price']*1}</td>
+      <td>{$vo['num']*1}</td>
+      <td>{$vo['mum']*1}</td>
+      <td style="display:none;">{$vo['ci']}</td>
+      <td style="display:none;">{$vo['jian']}</td>
+      <td>{$vo.addtime|addtime}</td>
+      <td style="display:none;"><eq name="vo['unlock']" value="$vo['ci']">已完成<else />{$vo.unlock}/{$vo.ci}</eq></td>
+      <td style="display:none;">{$vo.endtime|addtime}</td>
+      <td style="display:none;"><eq name="vo.status" value="1">完成<else />解冻中</eq></td>
+     </tr>
+     </volist> <else />
+     <td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+     </notempty>
+    </tbody>
+   </table>
+   <div class="page">
+    <div>{$page}</div>
+   </div>
+  </div>
+ </div>
+</div>
+<include file="Public:footer" />
+<block name="script">
+ <script type="text/javascript" charset="utf-8">
+  //导航高亮
+  highlight_subnav("{:U('Issue/log')}");
+ </script>
+</block>

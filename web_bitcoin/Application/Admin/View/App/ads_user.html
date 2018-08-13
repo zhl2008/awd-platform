@@ -1,0 +1,52 @@
+<include file="Public:header" />
+<div id="main-content">
+ <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+  <button class="close fixed" style="margin-top: 4px;">&times;</button>
+  <div class="alert-content">警告内容</div>
+ </div>
+ <div id="main" class="main">
+     <div class="main-title-h">
+         <span class="h1-title">广告用户管理</span>
+     </div>
+  <div class="data-table table-striped">
+   <table class="">
+    <thead>
+     <tr>
+      <th class="row-selected row-selected"><input class="check-all" type="checkbox" /></th>
+      <th class="">ID</th>
+      <th class="">会员名</th>
+      <th class="">会员级别</th>
+      <!--<th class="">广告总获利</th>-->
+      <!--<th class="">今日广告获利</th>-->
+      <th class="">操作</th>
+     </tr>
+    </thead>
+    <tbody>
+     <notempty name="list"> <volist name="list" id="vo">
+      <tr>
+       <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+       <td>{$vo.id}</td>
+       <td>{$vo.username}</td>
+       <td>{$vo.vip_name}(级别:{$vo.tag})</td>
+       <td>
+          <a href="{:U('App/ads_user_detail?uid='.$vo['uid'])}" class="btn btn-success btn-xs">点击日志</a>
+      </tr>
+     </volist> <else />
+     <td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+     </notempty>
+    </tbody>
+   </table>
+   <div class="page">
+    <div>{$page}</div>
+   </div>
+  </div>
+ </div>
+</div>
+<script type="text/javascript">
+	//主导航高亮
+//	$('.Appads-box').addClass('current');
+//	//边导航高亮
+//	$('.Appads-index').addClass('current');
+</script>
+<!-- /内容区 -->
+<include file="Public:footer" />

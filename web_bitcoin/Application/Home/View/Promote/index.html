@@ -1,0 +1,428 @@
+<include file="Public:header" />
+<style type="text/css">
+
+ul{
+	display: block;
+	list-style-type: disc;
+	-webkit-margin-before: 1em;
+	-webkit-margin-after: 1em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 40px;
+}
+
+li {
+	display: list-item;
+	text-align: -webkit-match-parent;
+}
+
+.prompt-container{
+	padding: 0 0 50px;
+	background: #ffe6a6;
+}
+.visible-xs{
+	display: block!important;
+}
+
+.prompt-banner>img {
+	display: block;
+	width: 100%;
+}
+
+.container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+}
+
+.prompt-main {
+	padding: 10px;
+	width:1000px;
+}
+
+.prompt-share {
+	position: relative;
+}
+
+.prompt-share .tip {
+	display: block;
+	margin-top: 20px;
+	background-color: #fff;
+	border: 1px solid #ff8900;
+	line-height: 50px;
+	text-align: center;
+}
+
+.prompt-blk {
+	position: relative;
+	padding: 95px 40px 40px;
+	background-color: #fff;
+	border-radius: 40px;
+	margin-top: 110px;
+	border: 12px solid #f66;
+}
+
+.prompt-blk h2 {
+	position: absolute;
+	top: -40px;
+	left: 0;
+	width: 100%;
+	text-align: center;
+}
+
+.prompt-award>ul {
+	width: 260px;
+	font-size: 12px;
+}
+
+.prompt-award>ul {
+	width: 620px;
+	margin: 0 auto;
+	font-size: 24px;
+}
+
+.list-unstyled {
+	padding-left: 0;
+	list-style: none;
+}
+
+.prompt-award>ul>li {
+	padding: 32px 0;
+	line-height: 120px;
+}
+.prompt-award>ul>li {
+	position: relative;
+}
+
+.prompt-award>ul>li>img {
+	
+}
+.prompt-award>ul>li>img {
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.prompt-award>ul>li:nth-child(2) {
+	text-align: right;
+}
+
+.prompt-award>ul>li:nth-child(2)>img {
+	left: 0;
+}
+.prompt-award>ul>li:nth-child(3)>img {
+	top: 0px;
+	right:-150px;
+}
+
+.cred {
+	color:#ff0d00 !important;
+}
+
+.prompt-rank {
+	border-color:#44b2ff;
+}
+
+
+.prompt-blk h2>img {
+	display: block;
+	margin: 0 auto;
+}
+
+.panel{
+	margin-bottom: 20px;
+	background-color: #fff;
+	border: 1px solid transparent;
+	border-radius: 4px;
+	-webkit-box-shadow: 0 1px 1px rgba(0,0,0,.05);
+	box-shadow: 0 1px 1px rgba(0,0,0,.05);
+}
+.panel-default {
+	border-color:#ddd;
+}
+.panel-body {
+	padding: 15px;
+	text-align:left;
+	font-size: 14px;
+	line-height: 20px;
+	font-family: "Microsoft YaHei";
+	color: #333;
+}
+
+.row {
+	margin-right: -15px;
+	margin-left: -15px;
+}
+
+.rank-blk {
+	line-height: 40px;
+	text-align: center;
+}
+.col-sm-6 {
+	width: 45%;
+	float:left;
+	position: relative;
+	min-height: 1px;
+	padding-right: 15px;
+	padding-left: 15px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+	line-height: inherit;
+}
+
+.h3, h3 {
+	font-size: 24px;
+}
+.rank-tb {
+margin-top: 10px;
+width: 100%;
+}
+table {
+background-color: transparent;
+}
+table {
+border-spacing: 0;
+border-collapse: collapse;
+}
+
+.prompt-my {
+border-color: #ff9000;
+}
+
+.btn {
+background-color: #F5F5F5;
+border-color: #E6E6E6 #E6E6E6 #ccc;
+border-image: none;
+border-radius: 4px;
+border-style: solid;
+border-width: 1px;
+box-shadow: 0 1px 0 rgba(255,255,255,0.6) inset,0 1px 2px rgba(0,0,0,0.08);
+cursor: pointer;
+display: inline-block;
+margin-bottom: 0;
+padding: 4px 12px;
+text-shadow: 0 1px 1px rgba(255,255,255,0.75);
+}
+
+.btn-blue {
+background-color: transparent;
+border-color: #2bb1f0;
+color: #2bb1f0;
+}
+.btn-group-lg>.btn, .btn-lg {
+padding: 10px 16px;
+font-size: 18px;
+line-height: 1.3333333;
+border-radius: 6px;
+}
+
+.text-center {
+	text-align: center;
+	height:86px;
+}
+
+
+.rank-tb th,td{
+border-bottom: 1px dashed #e3e3e3;
+font-weight: normal;
+text-align: center;
+font-size: 14px;
+line-height: 20px;
+font-family: "Microsoft YaHei";
+color: #333;
+}
+
+
+</style>
+<!-- main start -->
+	<div class="prompt-container">
+		<!-- wap banner start -->
+		<div class="prompt-banner visible-xs">
+			<img src="/Public/Home/images/prompt-banner-sm.png" alt="推广返佣">
+		</div>
+
+		<div class="container prompt-main">
+		
+			<!-- 如何邀请 start -->
+			<div class="prompt-share">
+								<!-- 未登录 -->
+				<p class="tip">
+				
+				<gt name="Think.session.userId" value="0">
+				
+				   <a class="btn btn-blue btn-lg loginBtn" href="/finance/myjp.html">点击查看推广奖励</a>&nbsp;
+				
+				<else/> 
+					<span class="cgray">还没有账号？注册即可拥有！</span>
+					<a class="cblue" href="{:U('Login/register')}">点击立即注册</a>&nbsp;
+					<span class="cgray">已有账号？</span>
+					<a class="cblue" href="javascript:;" onclick="loginpop();">立即登录</a>
+				</gt>	
+					
+					
+				</p>
+				
+				
+				
+		    </div>
+			<!-- 如何邀请 end -->
+			
+			
+			<!-- 奖励机制 start -->
+			<div class="prompt-blk prompt-award">
+				<h2><img src="/Public/Home/images/prompt-award.png" alt="奖励机制"></h2>
+				<ul class="list-unstyled">
+					<li>
+						<p><span class="cred">★</span>推荐佣金，一次推广，终身拿佣金</p>
+						<img src="/Public/Home/images/person1.png" alt="推荐佣金，一次推广，终身拿佣金">
+					</li>
+					<li>
+						<p><span class="cred">★</span>奖励下线充值金额的<span class="cred">0.6%</span></p>
+						<img src="/Public/Home/images/person2.png" alt="奖励下线充值金额的0.6%">
+					</li>
+					<li>
+						<p><span class="cred">★</span>奖励下线金额<span class="cred">三级分红:一代0.3%  二代0.2%  三代0.1</span></p>
+						<img src="/Public/Home/images/person3.png" alt=""/>
+					</li>
+				</ul>
+			</div>
+			<!-- 奖励机制 end -->
+			
+			
+			<!-- 推广达人 start -->
+			<div class="prompt-blk prompt-rank" style="display:block;height:700px;">
+				<h2><img src="/Public/Home/images/prompt-rank.png" alt="推广达人"></h2>
+				<div class="panel panel-default">
+				   <div class="panel-body" style="text-align: left;">
+				   	活动时间：2016年12月25日-2017年1月25日<br>
+活动说明：分为邀请达人（相同ip算一人）和收益（充值奖励和交易奖励之和）达人两种，每种前十名获得奖品<br>
+活动奖品：<br>
+邀请达人：第一名<br>第一名奖10000土豪币，2-3名奖5000土豪币 ，4-10名奖1000土豪币
+收益达人：第一名<br>第一名奖3000土豪币+1000元，2-3名奖1000土豪币+600元 ，4-10名奖500土豪币+200元		  
+					</div>
+				</div>
+				<div class="row">
+					<!-- 邀请人数排行榜 start -->
+					<div class="col-sm-6 rank-blk">
+						<h3><img src="/Public/Home/images/rank-flag1.png" alt="邀请人数排行榜"></h3>
+						<!-- <p class="time">2016年8月</p> -->
+						<table class="rank-tb">
+							<thead>
+								<tr>
+									<th>排名</th>
+									<th>会员名</th>
+									<th>邀请人数</th>
+									
+								</tr>
+							</thead>
+							<tbody>
+								
+								     <notempty name="list"> 
+										<volist name="list" id="vo">
+											<tr>
+												<td><img src="/Public/Home/images/no{$i}.png" alt="第{$i}名"></td>
+												<td>{$vo['username']}</td>
+												<td>{$vo.pnum}</td>
+											</tr>
+											
+										</volist> 
+									 <else />
+									   <tr>
+											<td><img src="https://www.toubi.net/assets/home/images/no1.png" alt="没有数据"></td>
+											<td>暂时无数据</td>
+											<td>暂时无数据</td>
+										</tr>
+									 </notempty>
+								
+
+
+							</tbody>
+						</table>
+					</div>
+					<!-- 邀请人数排行榜 end -->
+					<!-- 收益排行榜 start -->
+					<div class="col-sm-6 rank-blk">
+						<h3><img src="/Public/Home/images/rank-flag2.png" alt="收益排行榜"></h3>
+						<!-- <p class="time">2016年8月</p> -->
+						<table class="rank-tb">
+							<thead>
+								<tr>
+									<th>排名</th>
+									<th>会员名</th>
+									<th>收益</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+									<notempty name="list_jiner"> 
+										<volist name="list_jiner" id="vo_jiner">
+											<tr>
+												<td><img src="/Public/Home/images/no{$i}.png" alt="第{$i}名"></td>
+												<td>{$vo_jiner['username']}</td>
+												<td>{$vo_jiner.jiner}</td>
+											</tr>
+											
+										</volist> 
+									 <else />
+									   <tr>
+											<td><img src="https://www.toubi.net/assets/home/images/no1.png" alt="没有数据"></td>
+											<td>暂时无数据</td>
+											<td>暂时无数据</td>
+										</tr>
+									 </notempty>
+								
+							</tbody>
+						</table>
+					</div>
+					<!-- 收益排行榜 end -->
+				
+				</div>
+				
+			</div>	
+			<!-- 推广达人 end -->
+			
+			
+			
+			<!-- 我的推广 start -->
+			<div class="prompt-blk prompt-my">
+				<h2><img src="/Public/Home/images/prompt-my.png" alt="我的推广"></h2>
+				<p class="text-center">
+				<gt name="Think.session.userId" value="0">
+				
+				   <a class="btn btn-blue btn-lg loginBtn" href="/finance/myjp.html">点击查看推广奖励</a>&nbsp;
+				
+				<else/> 
+					<a href="javascript:;" onclick="loginpop();" class="btn btn-blue btn-lg loginBtn">立即登陆查看推广情况</a>
+					<br><br>没有账号，<a href="{:U('Login/register')}" target="_blank" class="cred">免费注册</a>
+					
+				</gt>
+				</p>
+					
+			</div>
+			<!-- 我的推广 end -->
+			
+		
+		
+		</div>
+		
+	</div>
+	<!-- main end -->
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+<include file="Public:footer" />

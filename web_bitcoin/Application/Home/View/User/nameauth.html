@@ -1,0 +1,331 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i>
+		<a href="/" class="">首页 </a> &gt; 
+		<a href="/user/index.html" class="">安全中心 </a> &gt;实名认证
+		</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="User:left" />
+
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						实名认证					</span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span> </a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p><notempty name="prompt_text">{$prompt_text}</notempty></p>			</div>
+			<div class="pwtrade">
+			
+				
+				
+					<eq name="user['idcardauth']" value='0'>
+					
+						<eq name="user['idcardimg1']" value=''>
+						
+						
+							<div class="band_succ move" style="padding-left: 210px;color: red !important;">	
+								<i class="fa fa-check mr5"></i>	 
+							  未通过实名认证
+							</div> 
+							
+							
+						<else/>
+						
+							<div class="band_succ move" style="padding-left: 210px;color: red !important;">	
+								<i class="fa fa-check mr5"></i>	 
+							  <eq name="user['idcardinfo']" value=''>等待审核中.
+							  <else/>
+								{$user['idcardinfo']}.<br>
+								请上传身份证正面照，身份证反面照，手持半身身份证照,完善认证资料。1-3个工作日审核	
+							  </eq>
+							</div> 
+
+						</eq>
+					  <else/>
+					<div class="band_succ move" style="padding-left: 210px;">
+						<i class="fa fa-check mr5"></i>	 
+					  已通过实名认证
+					</div>  
+					</eq>	
+
+					  
+				
+								
+								
+				
+								
+								
+								
+								
+								<br>
+				<div class="set_verify">
+					<ul>
+						<li>您的身份信息</li>
+						<li>真实姓名：{$user.truename}</li>
+						<li>证件类型：身份证</li>
+						<li>证件号码：{$user.idcard}</li>
+						<eq name="user['idcardauth']" value='0'>
+							<neq name="userimg" value=''>
+								{$userimg}
+							</neq>
+						</eq>
+						<li>认证时间：{$user['addtime']|addtime}</li>
+						<li>
+							<input type="button" class="btns2" onclick="$('.set_verify_img').slideToggle();" value="申请修改">
+						</li>
+					</ul>
+				</div>
+				<div class="set_verify_img" style="display:none;">
+					<div class="sv_title">更改实名认证信息流程：</div>
+					<div class="sv_text">
+						<p>
+							<span>1.</span>发送与上方认证信息一致的 证件正反面照片或扫描件 以及 手持证件头部照给客服						</p>
+						<p>
+							<span>2.</span>审核更改申请；审核完成后，客服通知您申请是否通过						</p>
+						<p>
+							<span>3.</span>申请通过，请您登录重新进行实名认证						</p>
+						<p>
+							<span>4.</span>申请失败，则请您根据提示信息重新提交申请						</p>
+					</div>
+				</div>
+				
+				
+				
+				<div class="set_upload_img" style="display:none;">
+				</div>
+				
+				
+				
+				
+				
+			</div>
+
+			
+			
+			
+			
+			
+		<eq name="allowImg" value="true">	
+			<div class="pwtrade" id="shang_qq_chuandiv">
+
+			<div class="band_succ move" style="padding-left: 210px;color: red !important;">
+					<i class="fa fa-check mr5"></i>请上传身份证正面照，身份证反面照，手持半身身份证照,完善认证资料。1-3个工作日审核	
+					<br/>
+					仅支持png,jpg格式，大小不超过2M
+			</div>
+
+				<br>
+				<div class="set_verify">
+					<ul>
+						<li>
+							<style>
+								.file {
+									position: relative;
+									display: inline-block;
+									background: #D0EEFF;
+									border: 1px solid #99D3F5;
+									border-radius: 4px;
+									padding: 4px 12px;
+									overflow: hidden;
+									color: #1E88C7;
+									text-decoration: none;
+									text-indent: 0;
+									line-height: 20px;
+								}
+								.file input {
+									position: absolute;
+									font-size: 100px;
+									right: 0;
+									top: 0;
+									opacity: 0;
+								}
+								.file:hover {
+									background: #AADFFD;
+									border-color: #78C3F3;
+									color: #004974;
+									text-decoration: none;
+								}
+								.sv_text p {
+									padding-left: 5px;
+								}
+							</style>
+
+							
+                            <img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-width:500px;" title="" alt="" src="/Public/Admin/images/addimg.png">
+                            <input type="file" accept="image/gif, image/jpeg, image/jpg, image/png" id="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+
+							
+						</li>
+
+					</ul>
+				</div>
+
+				
+
+
+
+			</div>
+			
+		</eq>	
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<script>
+					var hints = "0";
+					if(hints == 1){
+						$('#hints').show();
+					}
+				</script>
+<script>
+    $(document).ready(function () {
+        //响应文件添加成功事件
+        $("#inputfile").change(function () {
+            //创建FormData对象
+            var data = new FormData();
+            //为FormData对象添加数据
+            $.each($('#inputfile')[0].files, function (i, file) {
+                data.append('upload_file' + i, file);
+            });
+
+
+            //发送数据
+            $.ajax({
+                url: '/ajax/imgUser',
+                type: 'POST',
+                data: data,
+                cache: false,
+                contentType: false,		//不可缺参数
+                processData: false,		//不可缺参数
+                success: function (data) {
+                    if (data) {
+						if(data=="error"){
+							alert("请选择正确的文件类型和大小！");
+							return false;
+						}
+						
+						if(data=="error2"){
+							alert("您已经上传了3张图片！");
+							return false;
+						}
+					
+						  $('<img />', {
+							src : '/Upload/idcard/' + data,
+							height : "100px",
+							width  : "300px",
+						  }).appendTo($('.set_upload_img'));
+					
+						
+					
+						$('.set_upload_img').show();
+
+						if($('.set_upload_img').find('img').length >= 3){
+							$('#shang_qq_chuandiv').hide();
+							alert("您已经成功上传3张认证图片,请等待审核");
+						}
+					
+                        //$('#up_img').attr("src", '/Upload/idcard/' + data);
+						//$('#up_img').attr("height", '100px');
+						//$('#up_img').attr("width", '300px');
+						//$('#up_img').attr("disabled", 'true');
+                       //$('#up_img').show();
+                    }
+                },
+                error: function () {
+                    alert('上传出错');
+					$('.set_upload_img').hide();
+                    //$(".loading").hide();	//加载失败移除加载图片
+                }
+            });
+
+        });
+    });
+
+</script>
+<script>
+	$('.user_truename').addClass('active');
+</script>
+
+
+
+
+
+
+<include file="Public:footer" />

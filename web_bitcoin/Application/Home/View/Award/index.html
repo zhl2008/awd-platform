@@ -1,0 +1,257 @@
+<include file="Public:header" />
+<style>
+.container{background: #60D0F8;}
+.wfull{width:100%}
+.center {text-align: center;}
+.po_re{position:relative}
+.white {color: #fff!important;}
+.min_mybox{width:1048px;height:462px; margin: 65px 0px 0px 89px; }
+.margin_c{ margin: 0px auto;}
+.lottery_con1{}
+.lottery_con1_t{padding-top: 10px;}
+.lottery_activity_con{width: 1219px; height: 772px; box-sizing: border-box; background: url("/Public/Home/award/images/lottery_con1.png") no-repeat center;}
+.lottery_result{padding: 55px 0px 37px; height: 70px; line-height: 70px; font-size: 26px; font-weight: 400;}
+.lottery_result a{font-size: 26px; color: #ffd31a; font-weight: 400; margin: 0px 2px;}
+
+
+
+#lottery{width:574px;height:584px;margin:0px auto;background:url(/Public/Home/award/images/bg.jpg) no-repeat;padding: 50px 55px;}
+#lottery table td{width:142px;height:142px;text-align:center;vertical-align:middle;color:#333;font-index:-999}
+#lottery table td a{width:284px;height:284px;line-height:150px;display:block;text-decoration:none;}
+#lottery table td.active{background-color:#ea0000;}
+
+.lottery_con2{margin-top:-100px;}
+.lottery_explain{width: 1211px;height: 608px;background: url("/Public/Home/award/images/lottery_con2.png") no-repeat center; background-size: 1211px auto;margin-top: 27px;padding: 50px 170px; box-sizing: border-box;}
+.lottery_explain_con{width:358px;height:340px;line-height:34px;overflow:Hidden;margin:40px auto 0px; }
+.lottery_explain_con li{height: 34px;}
+.lottery_explain_con li span{display: inline-block; margin-right: 11px;color: #fff; line-height: 34px; height: 34px; overflow: hidden;}
+.lottery_explain_con li span:last-child{margin-right: 0px;}
+.lottery_explain_t{width: 410px; line-height: 46px; font-size: 24px;}
+.lottery_explain .right{ padding: 72px 0px 0px 50px; width: 410px;}
+.lottery_explain .right h2{font-size: 18px; font-weight: 500; margin-bottom: 10px;}
+.lottery_explain .right p{font-size: 14px; line-height: 26px; margin-bottom: 5px;}
+.lottery_explain .right p em{display: inline-block; float: left;}
+.lottery_explain .right p i{display: inline-block; float: left; width: 380px;}
+
+.turntableRight {
+    //float: right;
+    margin-left: 35%;
+
+}
+
+
+.turntableRight .ring {
+    width: 380px;
+    height: 380px;
+    position: relative;
+    margin: 44px 20px 0 0;
+}
+
+
+.turntableRight .ring .award {
+    width: 100%;
+    height: 100%;
+}
+.turntableRight .ring .begin_btn {
+    width: 158px;
+    height: 158px;
+    background: url("/Public/Home/award/images/begin_btn.png") no-repeat center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin: -88px 0 0 -77px;
+    background-size: 100%;
+    cursor: pointer;
+}
+
+
+</style>
+<script type="text/javascript" src="/Public/Home/award/js/awardRotate.js"></script>
+
+
+<link rel="stylesheet" type="text/css" href="/Public/Home/award/css/sweet-alert.css">
+<div class="container wfull">
+
+	<div class="lottery_con1 wfull">
+        <div class="lottery_con1_t center"><img src="/Public/Home/award/images/lottery_t1.png" width="512"> </div>
+        <div class="lottery_activity_con margin_c po_re">
+            <div class="lottery_result center white">
+			<gt name="Think.session.userId" value="0">
+                <font size="4px;">今日已经抽奖<font color='green'><span id="cjcs">{$uinfo['awardNumToday']}</span></font>次,共<font color='red'>{$uinfo['awardTotalToday']}</font>次抽奖机会</font>
+			<else/> 
+				请<a href="#" onclick="loginpop();return false;">登录</a>后再来参与抽奖
+			</gt>	
+            </div>
+
+			
+			
+			
+		    <div class="turntableRight">
+                <div class="ring">
+                    <div class="award" id="drawPointer">
+                        <img src="/Public/Home/award/images/prize.png">
+                    </div>
+                    <input type="hidden" id="isWheeling" value="0">
+                    <div class="begin_btn" onclick="javascript:signInWheel();"></div>
+                </div>
+            </div>
+
+			
+			
+
+        </div>
+    </div>
+	
+	
+<div class="lottery_con2 wfull">
+        <div class="lottery_con1_t center"><img src="/Public/Home/award/images/lottery_t2.png" width="512"> </div>
+        <div class="lottery_explain margin_c">
+            <div class="left">
+                <h2 class="lottery_explain_t white center">幸运名单</h2>
+                <div class="lottery_explain_con">
+                    <ul id="FontScroll" style="margin-top: -6.63341px;">
+        
+					</ul>
+                </div>
+            </div>
+            <div class="right">
+                <h2>活动说明</h2>
+                <p class="clear"><em>1、</em><i>活动时间截止到2017年12月28日24点；</i></p>
+                <p class="clear"><em>2、</em><i>活动期间内单日交易（买入卖出都算）金额达300元人民币就能获得一次抽奖机会；</i></p>
+                <p class="clear"><em>3、</em><i>每个账户每日限6次抽奖机会；</i></p>
+                <p class="clear"><em>4、</em><i>交易金额越高，抽中大额奖品概率越大；</i></p>
+                <p class="clear"><em>5、</em><i>抽奖机会当日有效，不可累计至次日使用；</i></p>
+                <p class="clear"><em>6、</em><i>以上图片仅供参考，具体奖品请以实物为准;</i></p>
+                <p class="clear"><em>7、</em><i>最终解释权归土豪时代币网所有。</i></p>
+            </div>
+        </div>
+    </div>
+	
+	
+	
+	
+
+</div>
+<script type="text/javascript" src="/Public/Home/award/js/sweet-alert.min.js"></script>
+<script>
+
+function onescroll(id){
+	var oul=id;
+	function c(){
+		oul.animate({marginTop:'-34px'},800,function(){
+			$(this).css({marginTop:'0px'}).find('li:first').appendTo(this);
+		});
+	}
+	var timeID = setInterval(c,2000);
+	id.hover(function(){clearInterval(timeID)},function(){timeID = setInterval(c,2000);});
+}
+
+
+    function getAwardInfo() {
+        $.getJSON("/Ajax/getAwardInfo?t=" + Math.random(), function (data) {
+            if (data) {
+			
+                if (data['awardInfo']) {
+                    var list = '';
+                    var type = '';
+                    var typename = '';
+                    for (var i in data['awardInfo']) {
+                        list = list + "<li>";
+						list = list + "<span>恭喜</span><span class='w_109'>";
+						list = list + data['awardInfo'][i]['username'];
+						list = list + "</span><span>"; 
+						list = list + data['awardInfo'][i]['addtime']; 
+						list = list + "</span><span class='w_100'>获得【"; 
+						list = list + data['awardInfo'][i]['awardname']; 
+						list = list + "】奖"; 
+						list = list + "</span></li>"; 
+						
+                    }
+                    $("#FontScroll").html(list);
+					
+				   var awardsList = $('#FontScroll');
+					if(awardsList.find('li').size()>10){
+						onescroll(awardsList);
+					}
+
+                }
+            }
+        });
+        setTimeout('getAwardInfo()', 300000);
+    }
+
+
+getAwardInfo();
+
+
+function signInWheel() {
+    var isWheeling = document.getElementById("isWheeling").value;
+    if(isWheeling == 1) {
+        return ;
+    }
+    document.getElementById("isWheeling").value = 1;
+    // 发送抽奖请求
+    var url = "/award/award?random="+Math.round(Math.random()*100);
+    jQuery.post(url,null,function(data){
+			if(data.loginState==0){
+				swal({title: "请登录后再抽奖!"});
+				document.getElementById("isWheeling").value = 0;
+				return false;
+			}
+			if(data.awardStatus==1){
+				swal({title: "您今日没有抽奖机会!"});
+				document.getElementById("isWheeling").value = 0;
+				return false;
+			}
+			if(data.awardStatus==2){
+				swal({title: "您今日抽奖机会已经用完!"});
+				document.getElementById("isWheeling").value = 0;
+				return false;
+			}
+			
+			if(data.loginState==4){
+				swal({title: "抽奖活动已经结束!"});
+				document.getElementById("isWheeling").value = 0;
+				return false;
+			}
+
+        if(data.loginState == 3){
+
+			var prize_id=data.prize_id;
+			var prize_name=data.prize_name;
+
+            var animateTo = 360 * 10;
+            if(data.loginState==3) {
+                var type = prize_id;
+                animateTo = animateTo + (11-type) * 36;
+            }
+
+            // 转盘
+            jQuery("#drawPointer").rotate({
+                angle:0,
+                duration: 8000,
+                animateTo: animateTo,
+                callback:function(){
+ 
+                    if(data.loginState==3) {
+
+						if(prize_id!=8 && prize_id!=10){
+							swal({title:prize_name,imageUrl: "/public/home/award/images/gx.png" });
+						}else{
+							swal({title: "谢谢参与,再接再厉!"});
+						}
+						$('#cjcs').text(parseInt($('#cjcs').text())+1);
+                    }
+                    document.getElementById("isWheeling").value = 0;
+                }
+            });
+        }
+
+    }, "json");
+}
+
+
+
+	
+</script>
+<include file="Public:footer" />

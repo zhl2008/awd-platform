@@ -1,0 +1,101 @@
+<include file="Public:header" />
+<div class="wrapbody">
+	<div class="main">
+		<div class="myright" style="width: 1168px;margin-top: 10px;">
+			<div class="wraphtml">
+				<div class="f_title clearfix">
+					<div class="f_title_span left">
+							<span class="">
+
+							<a href="{:U('Game/bazaar')}">逛集市</a>
+						</span>
+						<span class="current">
+
+							<a href="{:U('Game/bazaar_mywt')}">集市委托</a>
+						</span>
+                        <span class="">
+                             <i></i>
+							<a href="{:U('Game/bazaar_mycj')}">我的交易</a>
+						</span>
+						<span class="">
+							<a href="{:U('Game/bazaar_whole')}">全站记录</a>
+						</span>
+					</div>
+				</div>
+				<notempty name="prompt_text">
+					<div class="mytips" style="    margin: 0px;">
+						<h6 style="color: #ff8000;">温馨提示</h6>
+						{$prompt_text}
+					</div>
+				</notempty>
+				<div class="f_body">
+					<table class="f_table" id="investLog_content">
+						<thead>
+							<tr>
+								<th id="sublist-grid_c0">
+                                    <select name="type" id="coin_selectTest">
+										<volist name=":C('coin_list')" id="vo">
+										<option value="{$key}"<eq name="coin" value="$key">selected</eq>>{$vo['title']}</option>
+										</volist>
+								</select>
+                                </th>
+								<th id="sublist-grid_c2">单价</th>
+								<th id="sublist-grid_c1">委托数量</th>
+								<th id="sublist-grid_c1">剩余数量</th>
+								<th id="sublist-grid_c3">总金额</th>
+								<th id="sublist-grid_c4">佣金比例</th>
+								<th id="sublist-grid_c4">佣金金额</th>
+								<th id="sublist-grid_c4">已到账金额</th>
+								<th id="sublist-grid_c4">委托时间</th>
+								<th id="sublist-grid_c4">状态</th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="list" id="vo">
+							<tr>
+								<td>{:$coin}</td>
+								<td>{$vo['price']}</td>
+								<td>{$vo['num']}</td>
+								<td>{$vo['num']-$vo['deal']}</td>
+								<td>{$vo['mum']}</td>
+								<td>{$vo['fee']}%</td>
+								<td>{$vo['mum']/100*$vo['fee']}</td>
+								<td>{$vo['deal']*$vo['price']}</td>
+								<td>{$vo['addtime']|addtime}</td>
+								<td><eq name="vo.status" value="0">交易中 |
+                                    <a class="cancel" id="{$vo.id}" href="javascript:void(0);">撤销</a></eq>
+                                    <eq name="vo.status" value="1">已完成</eq> <eq name="vo.status" value="2">已撤销</eq>
+                                </td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+					<div class="pages">{$page}</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<script>
+    $("#coin_selectTest").change(function () {
+        var coin = $("#coin_selectTest option:selected").val();
+        window.location = '/Game/bazaar_mywt/coin/' + coin + '.html';
+    });
+
+	$('.cancel').click(function(){
+		$.post("{:U('Game/bazaar_mywt')}",{id:$(this).attr('id'),},function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon:1});
+				window.setTimeout("window.location.reload(true);",1000);
+			}else{
+				layer.msg(data.info,{icon:2});
+			}
+		});
+	});
+</script>
+<script>
+    //菜单高亮
+    $('#bazaar_box').addClass('active');
+</script>
+<include file="Public:footer" />

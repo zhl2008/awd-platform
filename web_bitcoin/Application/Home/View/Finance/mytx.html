@@ -1,0 +1,345 @@
+<include file="Public:header" />
+	
+    
+
+	
+<div class="autobox ">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="movesay">首页</a> &gt; <a href="/finan/index.html" class="movesay">财务中心 </a> &gt; 我的财产	</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+
+<include file="Finance:left" />
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						账户提现					</span>
+					 <span>
+                        <a href="/finance/mytx.html" class="step fz_12 ml50 pd6 active">账户提现</a>
+                        <a href="/finance/outlog.html" class="step fz_12 ml20 pd6">提现记录</a>
+                        <a href="/finance/bank.html" class="step fz_12 ml20 pd6">提现地址管理</a>
+                    </span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+
+				<p>               <notempty name="prompt_text">
+                    {$prompt_text}
+                </notempty></p>			</div>
+			<div class="mytable-body ">
+				<div class="step1  pwtrade  pw  mt50">
+					<div class="weituo_bizhong" style="margin-left: 149px;
+    margin-bottom: 10px;">
+						<div class="bizhong_select">
+							<div class="bz_btn">
+																<img src="/upload/coin/cny.png" alt="" style=" width: 22px;float: left;
+margin-top: 7px;
+margin-right: 5px;"/>
+																<span id="coin-default">
+									<select name="type" id="coin-select" style="margin-top: 6px;">
+																				<option value="cny"  selected="selected"  >人民币 (CNY)</option>
+			
+																			</select>
+								</span>
+							</div>
+						</div>
+
+						<div class="bizhong_type" style="width: 220px;">
+							<span>可用<em class="coin-name"></em>：<font class="coin-balance">{$user_coin['cny']|NumToStr}</font></span>
+						</div>
+						
+						
+
+						
+					</div>
+					
+					
+					<div style="margin-left:149px;">
+						最小提现金额<span style="color:#ff0000">{:C('mytx_min')}</span>元,
+						最大提现金额<span style="color:#ff0000">{:C('mytx_max')}</span>元,
+						提现金额是<span style="color:#ff0000">{:C('mytx_bei')}</span>的倍数。
+					</div>
+					<br>
+
+					
+					
+					<dl>
+						<dt>提现地址：</dt>
+						<dd>
+							<span>
+								<select id="out_bank" class="texts">
+									<option value="">--选择提现地址--</option>
+									
+									<volist name="userBankList" id="vo">
+										<option value="{$vo.id}">{$vo.name}</option>
+									</volist>
+									
+									 <option value="tianjia">新添加一个提现地址</option>
+								</select>
+							</span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>提现金额：</dt>
+						<dd style="position: relative;">
+							<input type="text" class="texts" id="out_num" maxlength="12" value="">
+							<notempty name="C['mytx_fee']">提现手续费{$C['mytx_fee']}%	</notempty>											</dd>
+					</dl>
+					<dl class="step5">
+						<dt>短信验证码：</dt>
+						<dd class="yuyin">
+							<div class="clear">
+																<input type="button" value="发送短信验证码" class="btns" onclick="send_moble_out('sms')" style="width: 100px;font-size: 12px;"/>
+																								{$moble}(接收验证码)
+							</div>
+						</dd>
+					</dl>
+					<dl class="step6" style="display:none;">
+						<dt>短信验证码：</dt>
+						<dd>
+							<input type="text" id="out_moble_verify" value="" class="texts" placeholder="请输入短信验证码"/> <span id="reg_moble_new"></span>
+						</dd>
+					</dl>
+					<dl>
+						<dt>交易密码：</dt>
+						<dd>
+							<input type="password" class="texts" id="out_paypassword"  value=""><a href="/findpwd/findpwd" class="move ml5">忘记?</a>
+						</dd>
+					</dl>
+					<dl>
+						<dt></dt>
+						<dd>
+							<input type="button" class="btns2" value="立即提现" onclick="out_up()">
+						</dd>
+					</dl>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+	$("#out_bank").change(function () {
+		var type = $("#out_bank option:selected").val();
+		if (type == 'tianjia') {
+			window.location = "/finance/bank.html";
+		}
+	});
+	function send_new() {
+		$(".step6").hide();
+		$(".step5").show();
+	}
+	function send_moble_out(type) {
+		$.post("{:U('Verify/mytx')}", {
+			type: type,
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				$(".step5").hide();
+				$(".step6").show();
+				$("#out_moble_verify").focus();
+				$('#moble_new').attr("disabled", "disabled");
+				var obj      = $('#reg_moble_new');
+				var wait     = 60;
+				var interval = setInterval(function () {
+					obj.html(wait + "秒可再次发送");
+					wait--;
+					if (wait < 0) {
+						clearInterval(interval);
+						$(".reloadverify_new").click();
+						$("#verify_new").val('');
+						obj.html('<a class="move" onclick="send_new()">没有收到？重新发送</a>');
+					}
+					;
+				}, 1000);
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+	function out_up() {
+		var num          = $("#out_num").val();
+		var paypassword  = $("#out_paypassword").val();
+		var moble_verify = $("#out_moble_verify").val();
+		var bank         = $('#out_bank option:selected').val();
+		var coinname         = $('#coin-select option:selected').val();
+		if (moble_verify == "" || moble_verify == null) {
+			layer.msg('请输入短信验证码', {
+				icon: 2
+			});
+			return false;
+		}
+		if (num == "" || num == null) {
+			layer.tips('请输入提现金额', '#out_num', {tips: 2});
+			return false;
+		}
+		if (bank == "" || bank == null) {
+			layer.tips('请选择提现地址', '#out_bank', {tips: 2});
+			return false;
+		}
+		if (paypassword == "" || paypassword == null) {
+			layer.tips('请输入交易密码', '#out_paypassword', {tips: 2});
+			return false;
+		}
+		var goole ="0";
+		if(goole == 1){
+			layer.config({
+				extend: 'extend/layer.ext.js'
+			});
+			layer.ready(function () {
+				layer.prompt({
+					title: '输入谷歌验证码，并确认',
+					formType: 1
+				}, function (val) {
+					if (val) {
+						$.post("/finan/out_up", {
+							num: num,
+							paypassword: paypassword,
+							moble_verify: moble_verify,
+							bank: bank,
+							goole:val,
+							coinname:coinname,
+						}, function (data) {
+							if (data.status == 1) {
+								layer.msg(data.info, {icon: 1});
+								window.location = '/finance/outlog.html';
+							} else {
+								layer.msg(data.info, {icon: 2});
+								if (data.url) {
+									window.location = data.url;
+								}
+							}
+						}, "json");
+					}
+					;
+				});
+			});
+		}else{
+			$.post("{:U('Finance/mytxUp')}", {
+				num: num,
+				paypassword: paypassword,
+				moble_verify: moble_verify,
+				type: bank,
+				coinname:coinname,
+			}, function (data) {
+				if (data.status == 1) {
+					layer.msg(data.info, {icon: 1});
+					window.location = '/finance/outlog.html';
+				} else {
+					layer.msg(data.info, {icon: 2});
+					if (data.url) {
+						window.location = data.url;
+					}
+				}
+			}, "json");
+		}
+	}
+</script>
+<script>
+	$('.finan_out').addClass('active');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+<script>
+	var hints = "0";
+	if(hints == 1){
+		$('#hints').show();
+	}
+	$('#finance_box').addClass('active');
+	$('.finan_pay').addClass('active');
+</script>	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+<include file="Public:footer" />

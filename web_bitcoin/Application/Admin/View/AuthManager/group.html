@@ -1,0 +1,36 @@
+<include file="Public:header" />
+<block name="body">
+	<div class="main-title">
+        <h2>用户组授权</h2>
+	</div>
+
+    <div id="auth_groups">
+        <form class="form-horizontal" action="{:U('addToGroup')}" method="post" enctype="application/x-www-form-urlencoded" >
+			<label class="item-label">{$nickname} 所属的用户组列表</label>
+            <volist name="auth_groups" id="vo">
+                <label class="checkbox">
+                    <input class="auth_groups" type="checkbox" name="group_id[]" value="{$vo.id}">{$vo.title}
+                </label>
+            </volist>
+            <input type="hidden" name="uid" value="{:I('uid')}">
+            <input type="hidden" name="batch" value="true">
+            <div style="margin-top: 10px;">
+                <button type="submit" class="btn submit-btn ajax-post" target-form="form-horizontal">确 定</button>
+                <button class="btn btn-return" onclick="javascript:history.back(-1);return false;">返 回</button>
+            </div>
+        </form>
+    </div>
+<block>
+<block name="script">
+<script type="text/javascript">
+    $(function(){
+        var group = [{$user_groups}];
+        $('.auth_groups').each(function(){
+            if( $.inArray( parseInt(this.value,10),group )>-1 ){
+                $(this).prop('checked',true);
+            }
+        });
+    });
+    // 导航高亮
+</script>
+</block>

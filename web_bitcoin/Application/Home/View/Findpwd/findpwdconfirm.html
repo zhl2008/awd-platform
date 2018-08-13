@@ -1,0 +1,88 @@
+<include file="Public:header" />
+
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页 </a>&gt; 找回交易密码	</div>
+	<div class="login_step">
+		<div class="login_step">
+			<ul class="order clear" style="margin-left: 312px;">
+				<li><i class="fa fa-circle  fz_40 "><span>1</span></i>确认账号					<div class="order_line"></div>
+				</li>
+				<li><i class="fa fa-circle  fz_40 move"><span>2</span></i>重置交易密码					<div class="order_line"></div>
+				</li>
+				<li><i class="fa fa-circle  fz_40"><span>3</span></i>完成</li>
+			</ul>
+		</div>
+	</div>
+	<div class="reg_box">
+		<div class="reg_wrap pt47">
+			<div class="reg_input_box reg-fb">
+				<div class="reg_title">新交易密码：</div>
+				<input type="password" id="password" class="texts w300"/>
+			</div>
+			<div class="reg_input_box reg-fb">
+				<div class="reg_title">确认交易密码：</div>
+				<input type="password" id="repassword" class="texts w300"/>
+			</div>
+			<br/>
+			<div class="reg_button_box">
+				<input type="button" class="btns2 w300" value="下一步" onclick="password_up();"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+<script>
+	function password_up() {
+
+		var password   = $("#password").val();
+		var repassword = $("#repassword").val();
+
+
+
+		if (password == "" || password == null) {
+			layer.tips("请输入新密码", '#password', {tips: 3});
+			return false;
+		}
+		if (repassword == "" || repassword == null) {
+			layer.tips("请输入确认密码", '#repassword', {tips: 3});
+			return false;
+		}
+		if (password != repassword) {
+			layer.tips("确认密码错误", '#repassword', {tips: 3});
+			return false;
+		}
+
+		$.post("/Findpwd/password_up.html", {
+			password: password,
+			repassword:repassword,
+			token: ""
+		}, function (data) {
+			console.log(data);
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location = '/Findpwd/findpwdinfo';
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+</script>
+
+
+<script>
+	$('#index_box').addClass('active');
+</script>
+
+
+
+
+
+
+<include file="Public:footer" />

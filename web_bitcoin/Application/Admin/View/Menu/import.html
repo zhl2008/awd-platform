@@ -1,0 +1,41 @@
+<include file="Public:header" />
+
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">批量导入 [{$data.title|default='顶级菜单'}]</span>
+		</div>
+		<!-- 标签页导航 -->
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<!-- 表单 -->
+				<form id="form" action="{:U('import')}" method="post" class="form-horizontal">
+					<!-- 基础文档模型 -->
+					<div id="tab1" class="tab-pane in tab1">
+						<div class="form-item cf">
+							<label class="item-label">导入的内容<span class="check-tips">（请按照导入格式输入）</span></label>
+							<div class="controls">
+								<label class="textarea input-large">
+									<textarea name="tree"></textarea>
+								</label>
+							</div>
+							<span class="check-tips">导入格式：<br>标题|url(回车键)<br>标题|url</span>
+						</div>
+					</div>
+					<div class="form-item cf">
+						<button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+						<a class="btn btn-return" href="{:U('index?pid='.$pid)}">返 回</a>
+						<input type="hidden" name="pid" value="{$pid}"/>
+						<input type="hidden" name="cate_id" value="{$cate_id|default=0}">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
+
+<include file="Public:footer" />

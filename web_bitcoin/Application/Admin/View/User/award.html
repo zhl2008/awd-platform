@@ -1,0 +1,123 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">中奖管理</span>
+				1=>苹果电脑  2=>华为手机  3=>1000元  4=>小米手环  5=>100元 6=>10元   7=>1元  8=>谢谢参与  9=>1元
+										  10=>谢谢参与 
+		</div>
+		<div class="cf">
+			<div class="fl">
+				<button class="btn ajax-post confirm btn-danger" url="{:U('User/awardStatus',array('type'=>'del'))}" target-form="ids">删 除</button>
+			</div>
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<select style="width: 160px; float: left; margin-right: 10px;" name="status" class="form-control">
+							<option value=""
+							<empty name="Think.get.status">selected</empty>
+							>全部状态</option>
+							<option value="1"
+							<eq name="Think.get.status" value="1">selected</eq>
+							>未处理</option>
+							<option value="2"
+							<eq name="Think.get.status" value="2">selected</eq>
+							>处理中</option>
+							<option value="3"
+							<eq name="Think.get.status" value="3">selected</eq>
+							>已处理</option>
+						</select>
+						<select style=" width: 160px; float: left; margin-right: 10px;" name="field" class="form-control">
+							<option value="awardid"
+							<empty name="Think.get.field">selected</empty>
+							>奖项ID</option>
+							<option value="username"
+							<eq name="Think.get.field" value="username">selected</eq>
+							>用户名</option>
+						</select>
+						<input type="text" name="name" class="search-input form-control  " value="{$Think.get.name}" placeholder="请输入查询内容" style="">
+						<a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a>
+					</form>
+					<script>
+						//搜索功能
+						$(function () {
+							$('#search').click(function () {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function (e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+					<th class="">ID</th>
+					<th class="">用户名</th>
+					<th class="">中奖奖品</th>
+					<th width="">中奖时间</th>
+					<th width="">状态</th>
+					<th width="">处理时间</th>
+					<th width="">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="list">
+					<volist name="list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+							<td>{$vo.id}</td>
+							<td>{$vo['username']}
+							</td>
+							<td>{$vo.awardname}</td>
+							<td>{$vo.addtime|addtime}</td>
+							<td>
+								<eq name="vo.status" value="0">未处理</eq>
+								<eq name="vo.status" value="1">处理中</eq>
+								<eq name="vo.status" value="2">已处理</eq>
+							</td>
+							<td>{$vo.dealtime|addtime}</td>
+							<td>
+								<eq name="vo.status" value="0">
+									<a href="{:U('User/awardStatus?type=dealaward&status=1&id='.$vo['id'])}" class="ajax-get btn btn-primary btn-xs">转处理中 </a>
+								</eq>
+								<eq name="vo.status" value="1">
+									<a href="{:U('User/awardStatus?type=dealaward&status=2&id='.$vo['id'])}" class="ajax-get btn btn-primary btn-xs">转处理完毕 </a>
+								</eq>
+								<eq name="vo.status" value="2">
+									<a href="javascript:" class="btn">已经处理 </a>
+								</eq>
+							</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('User/award')}");
+	</script>
+</block>

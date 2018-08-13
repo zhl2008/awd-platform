@@ -1,0 +1,328 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h" style="font-size: 24px;">
+            <span class="h1-title">{$title|htmlspecialchars}</span>
+            <if condition="$suggest">（{$suggest|htmlspecialchars}）</if>
+            <notempty name="titleList">
+                <i class="ca"></i>[<a href="{$titleList['url']}"> {$titleList['title']|htmlspecialchars}</a> ]
+            </notempty>
+        </div>
+        <div class="tab-wrap">
+            <div class="tab-content">
+                <form id="form" action="{$savePostUrl}" method="post" class="form-horizontal">
+                    <div id="tab" class="tab-pane in tab">
+                        <div class="form-item cf">
+                            <table>
+                                <volist name="keyList" id="field">
+                                    <switch name="field.type">
+                                        <case value="hidden">
+                                            <input type="hidden" name="{$field.name}" value="{$field.value}" class="text input-large"/>
+                                        </case>
+                                        <case value="readonly">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="{$field.name}" value="{$field.value|htmlspecialchars}" disabled="disabled" style="background-color: #ECECEC;min-width: 400px;color: red;">
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+                                        <case value="text">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="{$field.name}" value="{$field.value|htmlspecialchars}" style="min-width: 400px;">
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+                                        <case value="pass">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <input type="password" class="form-control" name="{$field.name}" value="{$field.value|htmlspecialchars}" style="min-width: 400px;">
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+                                        <case value="time">
+                                            <script type="text/javascript" src="__PUBLIC__/layer/laydate/laydate.js"></script>
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <input type="text" class="form-control" name="{$field.name}" value="{$field.value|htmlspecialchars}" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" style="min-width: 400px;">
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+                                        <case value="select">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <select name="{$field.name}" class="form-control" style="min-width: 400px;">
+                                                        <volist name="field.opt" id="option">
+                                                            <option value="{$key}"
+                                                            <eq name="field['value']" value="$key">selected</eq>
+                                                            >{$option|htmlspecialchars}</option>
+                                                        </volist>
+                                                    </select>
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+                                        <case value="radio">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <volist name="field.opt" id="option">
+                                                        <label><input type="radio" name="{$field.name}" value="{$key}" style=""
+                                                            <eq name="field['value']" value="$key">checked="checked"</eq>
+                                                            > {$option|htmlspecialchars}
+                                                        </label>
+                                                    </volist>
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+
+
+                                        <case value="checkbox">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td style="    width: 400px;">
+                                                    <php>
+                                                        $field['value_array'] = explode('|', $field['value']);
+                                                    </php>
+                                                    <volist name="field.opt" id="option">
+                                                        <php>
+                                                            $checked = in_array($key,$field['value_array']) ? 1 : 0;
+                                                            $checkName = $field['name'].'_'.$key;
+                                                        </php>
+                                                        <label><input type="checkbox" name="{$checkName}" value="{$key}"
+                                                            <eq name="checked" value="1">checked="checked"</eq>
+                                                            > {$option|htmlspecialchars}
+                                                        </label>
+                                                    </volist>
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+
+
+
+
+
+
+
+
+                                        <case value="textarea">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <textarea name="{$field.name}" class="form-control " style="margin: 10px 0px;height: 100px;min-width: 400px;">{$field.value|htmlspecialchars}</textarea>
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                        </case>
+
+                                        <case value="editor">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <textarea name="{$field.name}" id="iframeName_{$field.name}" >{$field['value']}</textarea>
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                            <script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+                                            <script type="text/javascript">
+
+
+                                                var editor;
+                                                KindEditor.ready(function (K) {
+                                                    editor = K.create('textarea', {
+                                                        width: '496px',
+                                                        minWidth: 490,
+                                                        height: '220px',
+                                                        allowPreviewEmoticons: false,
+                                                        allowImageUpload: true,
+                                                        afterBlur: function () { this.sync(); },
+                                                        uploadJson: "{$field.subtitle}",//图片上传后的处理地址
+                                                        items: [
+                                                            'source',
+                                                            'removeformat',
+                                                            'fontname',
+                                                            'fontsize',
+                                                            '|',
+                                                            'forecolor',
+                                                            'hilitecolor',
+                                                            'bold',
+                                                            'italic',
+                                                            'underline',
+                                                            '|',
+                                                            'justifyleft',
+                                                            'justifycenter',
+                                                            'justifyright',
+                                                            'insertorderedlist',
+                                                            'insertunorderedlist',
+                                                            '|',
+                                                            'emoticons',
+                                                            'image',
+                                                            'link',
+                                                            'fullscreen'
+                                                        ]
+                                                    });
+                                                });
+                                            </script>
+                                        </case>
+
+
+
+
+
+
+                                        <case value="singleImage">
+                                            <tr class="controls">
+                                                <td class="item-label">{$field.title|htmlspecialchars} :</td>
+                                                <td>
+                                                    <div id="upload_single_image_{$field.name}" style="padding-bottom: 5px;">选择图片</div>
+                                                    <input id="upload_single_{$field.name}" class="attach" type="hidden" name="{$field.name}" value="{$field['value']}"/>
+                                                </td>
+                                                <td class="item-note">{$field.subtitle}</td>
+                                            </tr>
+                                            <tr id="upload_single_image_img_{$field.name}" class="controls  popup-gallery" style="display: none;">
+                                            </tr>
+                                            <notempty name="field['value']">
+                                                <tr id="upload_single_image_imga_{$field.name}" class="controls  popup-gallery">
+                                                    <td class="item-label"></td>
+                                                    <td>
+                                                        <div class="each">
+                                                            <a href="{$field.value|htmlspecialchars}" title="点击查看大图"><img src="{$field.value|htmlspecialchars}" width="{$field.opt.width}" height="{$field.opt.height}" style="margin: 10px 0px;"></a>
+                                                        </div>
+                                                    </td>
+                                                    <td class="item-note"></td>
+                                                </tr>
+                                            </notempty>
+                                            <link type="text/css" rel="stylesheet" href="__PUBLIC__/magnific/magnific-popup.css"/>
+                                            <link type="text/css" rel="stylesheet" href="__PUBLIC__/webuploader/css/webuploader.css" >
+                                            <script type="text/javascript" src="__PUBLIC__/magnific/jquery.magnific-popup.min.js"></script>
+                                            <script type="text/javascript" src="__PUBLIC__/webuploader/js/webuploader.js"></script>
+
+                                            <script>
+                                                $(function () {
+                                                    var uploader_{$field.name} = WebUploader.create({
+                                                        // 选完文件后，是否自动上传。
+                                                        auto: true,
+                                                        // swf文件路径
+                                                        swf: 'Uploader.swf',
+                                                        // 文件接收服务端。
+                                                        server: "{$field.opt.url}",
+                                                        // 选择文件的按钮。可选。
+                                                        // 内部根据当前运行是创建，可能是input元素，也可能是flash.
+                                                        pick: '#upload_single_image_{$field.name}',
+                                                        // 只允许选择图片文件
+                                                        accept: {
+                                                            title: 'Images',
+                                                            extensions: 'gif,jpg,jpeg,bmp,png',
+                                                            mimeTypes: 'image/*'
+                                                        }
+                                                    });
+                                                    uploader_{$field.name}.on('fileQueued', function (file) {
+                                                        uploader_{$field.name}.upload();
+                                                    });
+                                                    /*上传成功**/
+                                                    uploader_{$field.name}.on('uploadSuccess', function (file, data) {
+                                                        if (data.error==0) {
+                                                            $("#upload_single_image_imga_{$field.name}").hide();
+                                                            $("#upload_single_image_img_{$field.name}").show();
+                                                            $("#upload_single_{$field.name}").val(data.url);
+
+
+                                                            $("#upload_single_image_img_{$field.name}").html(
+                                                                    '<td class="item-label"></td>' +
+                                                                    '<td><div class="each"><a href="' + data.url + '" title="点击查看大图"><img src="' + data.url + '" width="{$field.opt.width}" height="{$field.opt.height}" style="margin: 10px 0px;"></a></div></td>' +
+                                                                    '<td class="item-note"></td>'
+                                                            );
+
+
+                                                            uploader_{$field.name}.reset();
+                                                        } else {
+                                                            updateAlert(data.info);
+                                                            setTimeout(function () {
+                                                                $('#top-alert').find('button').click();
+                                                                $(that).removeClass('disabled').prop('disabled', false);
+                                                            }, 1500);
+                                                        }
+                                                    });
+                                                })
+                                            </script>
+                                            <script>
+                                                $(document).ready(function () {
+                                                    $('.popup-gallery').each(function () { // the containers for all your galleries
+
+                                                        $(this).magnificPopup({
+                                                            delegate: 'a',
+                                                            type: 'image',
+                                                            tLoading: '加载中#%curr%...',
+                                                            mainClass: 'mfp-img-mobile',
+                                                            gallery: {
+                                                                enabled: true,
+                                                                navigateByImgClick: true,
+                                                                preload: [
+                                                                    0,
+                                                                    1
+                                                                ] // Will preload 0 - before current, and 1 after the current image
+
+                                                            },
+                                                            image: {
+                                                                tError: '<a href="%url%">图片#%curr%</a>图片不能加载',
+                                                                titleSrc: function (item) {
+                                                                    /*           return item.el.attr('title') + '<small>by Marsel Van Oosten</small>';*/
+                                                                    return '';
+                                                                },
+                                                                verticalFit: true
+                                                            }
+                                                        });
+                                                    });
+
+                                                });
+                                            </script>
+                                        </case>
+
+
+
+
+                                    </switch>
+                                </volist>
+                                <tr class="controls" style="margin: 10px 0px;height: 80px;">
+                                    <td class="item-label"></td>
+                                    <td>
+                                        <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+                                        <a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    //提交表单
+                    $('#submit').click(function () {
+                        $('#form').submit();
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(function () {
+
+    });
+</script>
+<include file="Public:footer"/>

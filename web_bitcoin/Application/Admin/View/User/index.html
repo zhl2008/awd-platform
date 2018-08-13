@@ -1,0 +1,203 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">用户管理   </span>
+										1=>苹果电脑  2=>华为手机  3=>1000元  4=>小米手环  5=>100元 6=>10元   7=>1元  8=>谢谢参与  9=>1元
+										  10=>谢谢参与 						 
+		</div>
+		<div class="cf">
+			<div class="fl">
+				<select style="width: 160px; float: left; margin-right: 10px;" name="awardid" class="ids form-control">
+					<option value="0"> 无奖品</option>
+					<option value="1">苹果电脑</option>
+					<option value="2">华为手机</option>
+					<option value="3">1000元现金</option>
+					<option value="4">小米手环</option>
+					<option value="5">100元现金</option>
+					<option value="6">10元现金</option>
+					<option value="7">1元现金</option>
+					<option value="9">1元现金</option>
+				</select>
+				<button class="ajax-post btn  btn-info " url="{:U('User/status',array('type'=>'award'))}" target-form="ids">设置奖项</button>
+<a class="btn btn-success  " href="{:U('User/edit')}">新 增</a>
+
+
+				<button class="ajax-post btn  btn-info " url="{:U('User/status',array('type'=>'idauth'))}" target-form="ids">通过认证</button>
+				<button class="ajax-post btn  btn-warning  ajax-post" url="{:U('User/status',array('type'=>'notidauth'))}" target-form="ids">取消认证</button>
+
+				<button class="ajax-post btn  btn-info " url="{:U('User/status',array('type'=>'resume'))}" target-form="ids">启 用</button>
+				<button class="ajax-post btn  btn-warning  ajax-post" url="{:U('User/status',array('type'=>'forbid'))}" target-form="ids">禁 用</button>
+				<button class="btn ajax-post confirm btn-danger " url="{:U('User/status',array('type'=>'del'))}" target-form="ids">删 除</button>
+				
+			</div>
+
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<select style="width: 160px; float: left; margin-right: 10px;" name="status" class="form-control">
+							<option value=""
+							<empty name="Think.get.status">selected</empty>
+							>全部状态</option>
+							
+							
+							<option value="6"
+							<eq name="Think.get.status" value="6">selected</eq>
+							>等待认证</option>
+							
+							<option value="5"
+							<eq name="Think.get.status" value="5">selected</eq>
+							>通过认证</option>
+							
+							
+							<option value="3"
+							<eq name="Think.get.status" value="3">selected</eq>
+							>已中奖</option>
+							
+							<option value="4"
+							<eq name="Think.get.status" value="4">selected</eq>
+							>未中奖</option>
+							
+							<option value="1"
+							<eq name="Think.get.status" value="1">selected</eq>
+							>冻结状态</option>
+							<option value="2"
+							<eq name="Think.get.status" value="2">selected</eq>
+							>正常状态</option>
+							
+							
+
+							
+						</select>
+						<select style=" width: 160px; float: left; margin-right: 10px;" name="field" class="form-control">
+							<option value="awardid"
+							<empty name="Think.get.field">selected</empty>
+							>奖品ID</option>
+							<option value="username"
+							<eq name="Think.get.field" value="username">selected</eq>
+							>用户名</option>
+							<option value="moble"
+							<eq name="Think.get.field" value="moble">selected</eq>
+							>手机号码</option>
+							<option value="truename"
+							<eq name="Think.get.field" value="truename">selected</eq>
+							>真实姓名</option>
+							<option value="idcard"
+							<eq name="Think.get.field" value="idcard">selected</eq>
+							>身份证号</option>
+						</select>
+						<input type="text" name="name" class="search-input form-control  " value="{$Think.get.name}" placeholder="请输入查询内容" style="">
+						<a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a>
+					</form>
+					<script>
+						//搜索功能
+						$(function () {
+							$('#search').click(function () {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function (e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected">
+						<input class="check-all" type="checkbox"/>
+					</th>
+					<th class="">ID</th>
+					<th class="">手机号码</th>
+					<th class="">身份证</th>
+					<th class="">真实姓名</th>
+					<th class="">实名认证</th>
+					<th class="">1代推荐人</th>
+					<th class="" style="display:none;">2代推荐人</th>
+					<th class="" style="display:none;">3代推荐人</th>
+					<th class="">指定奖品</th>
+					<th class="">是否中奖</th>
+					<th class="">注册时间</th>
+					<th class="">状态</th>
+					<th class="">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="list">
+					<volist name="list" id="vo">
+						<tr>
+							<td>
+								<input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/>
+							</td>
+							<td>{$vo.id}</td>
+							<td>{$vo.moble}</td>
+							<td>
+								<neq name="vo.idcardimg1" value="">
+									<font color='green'>已上传</font>
+								<else/>
+									<font color='red'>未上传</font>
+								</neq>
+							</td>
+							<td>{$vo.truename}</td>
+							<td>
+							
+								<eq name="vo.idcardauth" value="0"><font color='red'>未通过</font></eq>
+								<eq name="vo.idcardauth" value="1">已通过</eq>
+							
+							
+							</td>
+							<td>
+								<a href="{:U('User/index?name='.$vo['invit_1'].'&field=id')}">{$vo['invit_1']}</a>
+							</td>
+							<td style="display:none;">
+								<a href="{:U('User/index?name='.$vo['invit_2'].'&field=id')}">{$vo['invit_2']}</a>
+							</td>
+							<td style="display:none;">
+								<a href="{:U('User/index?name='.$vo['invit_3'].'&field=id')}">{$vo['invit_3']}</a>
+							</td>
+							<td>
+								{$vo.awardname}
+							</td>
+							<td>
+								<eq name="vo.awardstatus" value="0">未中</eq>
+								<eq name="vo.awardstatus" value="1"><font color=red>已中</font></eq>
+							</td>
+							<td>{$vo.addtime|addtime}</td>
+							<td>
+								<eq name="vo.status" value="0">冻结</eq>
+								<eq name="vo.status" value="1">正常</eq>
+							</td>
+							<td>
+								<a href="{:U('User/edit?id='.$vo['id'])}" class="btn btn-primary btn-xs" >编辑</a>
+							</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('User/index')}");
+	</script>
+</block>

@@ -1,0 +1,441 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h">
+            <span class="h1-title"><a href="{:U('Coin/index')}">币种列表</a> >></span>
+            <span class="h1-title">配置币种</span>
+
+        </div>
+        <div class="tab-wrap">
+
+            <div class="tab-content">
+                <form id="form" action="{:U('Coin/save')}" method="post" class="form-horizontal"
+                      enctype="multipart/form-data">
+                    <div id="tab" class="tab-pane in tab">
+                        <div class="form-item cf">
+                            <table>
+
+                                <tr class="controls">
+                                    <td class="item-label">英文简称 :</td>
+
+                                    <empty name="data['name']">
+                                        <td><input type="text" class="form-control" name="name" value=""></td>
+
+
+                                        <else/>
+                                        <input type="hidden" class="form-control" name="name" value="{$data.name}">
+                                        <td>{$data.name}</td>
+
+                                    </empty>
+
+
+                                    <td class="item-note">小写必须填写：但不能填写关键字比如叫 asc  desc</td>
+                                </tr>
+
+
+                                <tr class="controls">
+                                    <td class="item-label">英文名称 :</td>
+                                    <td><input type="text" class="form-control" name="js_yw" value="{$data['js_yw']}">
+                                    </td>
+
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">中文名称 :</td>
+                                    <td><input type="text" class="form-control" name="title" value="{$data['title']}">
+                                    </td>
+
+                                    <td class="item-note">必须填写不然很多地方看不到</td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">币种类型:</td>
+                                    <td><select name="type" class="input-small">
+                                        <option value="rgb"
+                                        <eq name="data.type" value="rgb">selected</eq>
+                                        >认购币
+                                        </option>
+                                        <option value="qbb"
+                                        <eq name="data.type" value="qbb">selected</eq>
+                                        >钱包币
+                                        </option>
+                                    </select></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">图标 :</td>
+                                    <td><input type="file" class="form-control" name="img" value="{$data.img}">
+                                        <notempty name="data.img">
+                                            <span style="margin-left: 20px;"><img src="__UPLOAD__/coin/{$data.img}"
+                                                                                  width="80" height="80"
+                                                                                  style=""></span>
+                                        </notempty>
+                                    </td>
+                                    <td class="item-note">80px*80px</td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">钱包服务器ip :</td>
+                                    <td><input type="text" class="form-control" name="dj_zj" value="{$data['dj_zj']}">
+                                    </td>
+
+                                    <td class="item-note">对接钱包使用 认购币类型的  不用填写</td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">钱包服务器端口 :</td>
+                                    <td><input type="text" class="form-control" name="dj_dk" value="{$data['dj_dk']}">
+                                    </td>
+
+                                    <td class="item-note">对接钱包使用 认购币类型的  不用填写</td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">钱包服务器用户名 :</td>
+                                    <td><input type="text" class="form-control" name="dj_yh" value="{$data['dj_yh']}" autocomplete="off" aria-autocomplete="none">
+                                    </td>
+
+                                    <td class="item-note">对接钱包使用 认购币类型的  不用填写</td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">钱包服务器密码 :</td>
+                                    <td><input type="password" class="form-control" name="dj_mm"
+                                               value="{$data['dj_mm']}"  autocomplete="off" aria-autocomplete="none"></td>
+
+                                    <td class="item-note">对接钱包使用 认购币类型的  不用填写</td>
+                                </tr>
+
+
+                                <tr class="controls">
+                                    <td class="item-label">挂单比例 :</td>
+                                    <td><input type="text" class="form-control" name="fee_bili" value="{$data['fee_bili']}">
+                                    </td>
+
+                                    <td class="item-note">%只能挂单当前账户的多少</td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">今日最多卖出 :</td>
+                                    <td><input type="text" class="form-control" name="fee_meitian" value="{$data['fee_meitian']}">
+                                    </td>
+                                    <td class="item-note">%，今日只能卖出账号余额的百分币</td>
+                                </tr>
+
+
+
+
+                                <tr class="controls">
+                                    <td class="item-label">转入赠送 :</td>
+                                    <td><input type="text" class="form-control" name="zr_zs" value="{$data['zr_zs']}"></td>
+
+                                    <td class="item-note">% (填写0.01-100 任意数字) 转入手续费比例,费用直接从官方手续费地址扣取</td>
+                                </tr>
+
+
+                                <tr class="controls">
+                                    <td class="item-label">转入状态 :</td>
+                                    <td>
+                                        <empty name="data['zr_jz']">
+                                                <select name="zr_jz" class="input-small" style="width: 120px">
+                                                    <option value="1"<eq name="data['zr_jz']" value="1">selected</eq>>正常转入</option>
+                                                    <option value="0"<eq name="data['zr_jz']" value="0">selected</eq>>禁止转入</option>
+                                                </select>
+                                            <else />
+                                                <select name="zr_jz" class="input-small" style="width: 120px">
+                                                    <option value="1"<eq name="data['zr_jz']" value="1">selected</eq>>正常转入</option>
+                                                    <option value="0"<eq name="data['zr_jz']" value="0">selected</eq>>禁止转入</option>
+                                                </select>
+                                        </empty>
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">确认次数 :</td>
+                                    <td>
+                                        <empty name="data['zr_dz']">
+                                                <input type="text" class="form-control" name="zr_dz" value="1">
+                                            <else />
+                                                <input type="text" class="form-control" name="zr_dz" value="{$data['zr_dz']}">
+                                        </empty>
+                                    </td>
+                                    <td class="item-note">转出确认次数必须填写,且大于0</td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">转出手续费 :</td>
+                                    <td><input type="text" class="form-control" name="zc_fee" value="{$data['zc_fee']}"></td>
+
+                                    <td class="item-note">% (填写0.01-100 任意数字) 转出手续费比例,费用直接存入官方手续费地址</td>
+                                </tr>
+
+                                <empty name="data['name']">
+                                        <tr class="controls">
+                                            <td class="item-label">官方手续费地址[重要] :</td>
+                                            <td><input type="text" class="form-control" name="zc_user" value="0" readonly></td>
+                                            <td class="item-note">[新增币种不可操作]如果要收取手续费,添加成功后复制官方某账户对应本币地址,重新编辑本币种,填写到本处即可</td>
+                                        </tr>
+                                    <else/>
+                                        <tr class="controls">
+                                            <td class="item-label">官方手续费地址[重要]  :</td>
+                                            <td><input type="text" class="form-control" name="zc_user" value="{$data['zc_user']}"></td>
+
+                                            <td class="item-note">请填写一个官方前台账户生成的本币地址到本处作为手续费(收取|扣除)账户,否则手续费比例设置无效</td>
+                                        </tr>
+                                </empty>
+
+
+
+                                <tr class="controls">
+                                    <td class="item-label">最小转出数量 :</td>
+                                    <td>
+                                        <empty name="data['zc_min']">
+                                            <input type="text" class="form-control" name="zc_min" value="0.01">
+                                            <else />
+                                            <input type="text" class="form-control" name="zc_min" value="{$data['zc_min']}">
+                                        </empty>
+                                    <td class="item-note">推荐:正数且大于0.01</td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">最大转出数量 :</td>
+                                    <td>
+                                        <empty name="data['zc_max']">
+                                            <input type="text" class="form-control" name="zc_max" value="10000">
+                                            <else />
+                                            <input type="text" class="form-control" name="zc_max" value="{$data['zc_max']}">
+                                        </empty>
+                                    <td class="item-note">推荐:正数且大于10000</td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">转出状态 :</td>
+                                    <td><select name="zc_jz" class="input-small" style="width: 120px">
+                                        <option value="1"<eq name="data['zc_jz']" value="1">selected</eq>>正常转出</option>
+                                        <option value="0"<eq name="data['zc_jz']" value="0">selected</eq>>禁止转出</option>
+                                    </select></td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">转出自动 :</td>
+                                    <td>
+                                        <empty name="data['zc_zd']">
+                                                <input type="text" class="form-control" name="zc_zd" value="100">
+                                            <else />
+                                                <input type="text" class="form-control" name="zc_zd" value="{$data['zc_zd']}">
+                                        </empty>
+                                    </td>
+
+                                    <td class="item-note">推荐:正数且大于10 (小于这个数自动转出,大于这个数后台审核 )为了安全不要设置太大</td>
+                                </tr>
+
+
+                                <!--<tr class="controls">-->
+                                    <!--<td class="item-label">转入说明 :</td>-->
+                                    <!--<td><textarea name="zr_sm">{$data.zr_sm}</textarea></td>-->
+                                    <!--<td class="item-note"></td>-->
+                                <!--</tr>-->
+                                <!--<tr class="controls">-->
+                                    <!--<td class="item-label">转出说明 :</td>-->
+                                    <!--<td><textarea name="zc_sm">{$data.zc_sm}</textarea></td>-->
+                                    <!--<td class="item-note"></td>-->
+                                <!--</tr>-->
+
+
+                                <tr class="controls">
+                                    <td class="item-label">详细介绍:</td>
+                                    <td><textarea name="js_sm">{$data.js_sm}</textarea></td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+
+                                <tr class="controls">
+                                    <td class="item-label">钱包下载 :</td>
+                                    <td><input type="text" class="form-control" name="js_qb" value="{$data['js_qb']}">
+                                    </td>
+
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">源码下载 :</td>
+                                    <td><input type="text" class="form-control" name="js_ym" value="{$data['js_ym']}">
+                                    </td>
+
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">官方链接 :</td>
+                                    <td><input type="text" class="form-control" name="js_gw" value="{$data['js_gw']}">
+                                    </td>
+
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">官方论坛 :</td>
+                                    <td><input type="text" class="form-control" name="js_lt" value="{$data['js_lt']}">
+                                    </td>
+
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">官方挖矿 :</td>
+                                    <td><input type="text" class="form-control" name="js_wk" value="{$data['js_wk']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">研发者 :</td>
+                                    <td><input type="text" class="form-control" name="cs_yf" value="{$data['cs_yf']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">核心算法:</td>
+                                    <td><input type="text" class="form-control" name="cs_sf" value="{$data['cs_sf']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">发布日期 :</td>
+                                    <td><input type="text" class="form-control" name="cs_fb" value="{$data['cs_fb']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">证明方式 :</td>
+                                    <td><input type="text" class="form-control" name="cs_zm" value="{$data['cs_zm']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+
+                                <tr class="controls">
+                                    <td class="item-label">区块速度 :</td>
+                                    <td><input type="text" class="form-control" name="cs_qk" value="{$data['cs_qk']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">发行总量 :</td>
+                                    <td><input type="text" class="form-control" name="cs_zl" value="{$data['cs_zl']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+                                <tr class="controls">
+                                    <td class="item-label">存量 :</td>
+                                    <td><input type="text" class="form-control" name="cs_cl" value="{$data['cs_cl']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">难度调整 :</td>
+                                    <td><input type="text" class="form-control" name="cs_nd" value="{$data['cs_nd']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">区块奖励 :</td>
+                                    <td><input type="text" class="form-control" name="cs_jl" value="{$data['cs_jl']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">主要特色 :</td>
+                                    <td><input type="text" class="form-control" name="cs_ts" value="{$data['cs_ts']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+                                <tr class="controls">
+                                    <td class="item-label">不足之处 :</td>
+                                    <td><input type="text" class="form-control" name="cs_bz" value="{$data['cs_bz']}">
+                                    </td>
+                                    <td class="item-note"></td>
+                                </tr>
+
+
+                                <tr class="controls">
+                                    <td class="item-label"></td>
+                                    <td>
+                                        <div class="form-item cf">
+                                            <button class= "btn submit-btn" id="submit" type="button"
+                                                    target-form="form-horizontal">确 定
+                                            </button>
+                                            <a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+                                            <notempty name="data.id"><input type="hidden" name="id" value="{$data.id}"/>
+                                            </notempty>
+                                        </div>
+                                    </td>
+                                </tr>
+
+                            </table>
+                        </div>
+                    </div>
+                </form>
+                <script type="text/javascript">
+                    var img_default = '{$data.img}';
+                    //提交表单
+                    $('#submit').click(function () {
+                        var img = $("input[name='img']").val();
+                        if(img){
+                            $('#submit').attr('type','submit');
+                            $('#submit').click();
+                        }else{
+                            var target = $('#form').attr('action');
+                            var query = $('#form').serialize();
+                            $.post(target,query).success(function(data){
+                                if (data.status==1) {
+                                    if (data.url) {
+                                        updateAlert(data.info + ' 页面即将自动跳转~','alert-success');
+                                        setTimeout(function(){
+                                            location.href=data.url;
+                                        },1500);
+                                    }else{
+                                        updateAlert(data.info ,'alert-success');
+                                        setTimeout(function(){
+                                                $('#top-alert').find('button').click();
+                                        },1500);
+                                    }
+                                }else{
+                                    updateAlert(data.info);
+                                    setTimeout(function(){
+                                        if (data.url) {
+                                            location.href=data.url;
+                                        }else{
+                                            $('#top-alert').find('button').click();
+                                        }
+                                    },1500);
+                                }
+                            });
+                        }
+                    });
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+    var editor;
+    KindEditor.ready(function (K) {
+        editor = K.create('textarea', {
+            width: '465px',
+            height: '60px',
+            items: ['source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline', 'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist', 'insertunorderedlist', '|', 'emoticons', 'link', 'fullscreen'],
+            afterBlur: function () {
+                this.sync();
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    //主导航高亮
+    $('.config-box').addClass('current');
+    $('.config-coin').addClass('current');
+</script>
+<include file="Public:footer"/>

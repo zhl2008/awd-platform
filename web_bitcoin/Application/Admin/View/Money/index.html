@@ -1,0 +1,82 @@
+<include file="Public:header" />
+<div id="main-content">
+ <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+  <button class="close fixed" style="margin-top: 4px;">&times;</button>
+  <div class="alert-content">警告内容</div>
+ </div>
+ <div id="main" class="main">
+  <div class="main-title-h">
+   <span class="h1-title">{$Title}</span>
+  </div>
+  <div class="cf">
+   <div class="fl">
+    <a class="btn  btn-success navbar-btn btn-sm" href="{:U('Money/edit')}">新 增</a>
+    <button class="btn ajax-post  btn-info navbar-btn btn-sm" url="{:U('Money/status',array('method'=>'resume'))}" target-form="ids">启 用</button>
+    <button class="btn ajax-post  btn-warning navbar-btn btn-sm" url="{:U('Money/status',array('method'=>'forbid'))}" target-form="ids">禁 用</button>
+    <button class="btn ajax-post confirm btn-danger navbar-btn btn-sm" url="{:U('Money/status',array('method'=>'delete'))}" target-form="ids">删 除</button>
+   </div>
+  </div>
+  <div class="data-table table-striped">
+   <table class="">
+    <thead>
+     <tr>
+      <th class="row-selected row-selected"><input class="check-all" type="checkbox" /></th>
+      <th class="">ID</th>
+      <th class="">理财名称</th>
+      <th class="">理财币种</th>
+      <th class="">利息币种</th>
+      <th class="">理财模式</th>
+      <th class="">理财总量</th>
+      <th class="">已理财量</th>
+      <th class="">理财周期</th>
+      <th class="">周期内限额</th>
+      <th class="">每日利息</th>
+      <th class="">排序</th>
+      <th class="">结束时间</th>
+      <th class="">状态</th>
+      <th class="">操作</th>
+     </tr>
+    </thead>
+    <tbody>
+     <notempty name="list"> <volist name="list" id="vo">
+     <tr>
+      <td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}" /></td>
+      <td>{$vo.id}</td>
+      <td>{$vo.name}</td>
+      <td>{$C['coin'][$vo['coinname']]['title']}</td>
+      <td>{$C['coin'][$vo['feecoin']]['title']}</td>
+      <td><eq name="vo.type" value="1"><font color="green">活期</font><else/><font color="#9acd32">定期</font> </eq></td>
+      <td>{$vo['num']|NumToStr}</td>
+      <td>{$vo['deal']|NumToStr}</td>
+      <td>{$vo['tian']}</td>
+      <td>{$vo['lnum']}</td>
+      <td>{$vo['fee']|NumToStr}</td>
+      <td>{$vo['sort']*1}</td>
+      <td>{$vo['endtime']|addtime}</td>
+      <td><eq name="vo.status" value="1">可用<else />禁用</eq></td>
+      <td>
+           <a href="{:U('Money/edit?id='.$vo['id'])}" class="btn btn-primary btn-xs">编辑</a>
+           <a href="{:U('Money/log',array('money_id' => $vo['id']))}" class="btn btn-warning btn-xs">日志记录</a>
+
+      </td>
+     </tr>
+     </volist> <else />
+     <td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+     </notempty>
+    </tbody>
+   </table>
+   <div class="page">
+    <div>{$page}</div>
+   </div>
+  </div>
+ </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.Money-box').addClass('current');
+		//边导航高亮
+		$('.Money-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

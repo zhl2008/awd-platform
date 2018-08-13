@@ -1,0 +1,320 @@
+/*
+Template Name: Flat Lab Dashboard build with Bootstrap v3.0.2
+Template Version: 1.2.0
+Author: Mosaddek Hossain
+Website: http://thevectorlab.net/
+*/
+
+.navbar-nav > li > a{
+    
+}
+/*state overview*/
+
+.state-overview .symbol, .state-overview .value {
+    display: inline-block;
+    text-align: center;
+}
+
+.state-overview .value  {
+    float: right;
+
+}
+
+.state-overview .value h1, .state-overview .value p  {
+    margin: 0;
+    padding: 0;
+    color: #8075C4;
+}
+
+.state-overview .value h1 {
+    font-weight: 300;
+    font-size: 41px;
+}
+
+.state-overview .symbol i {
+    color: #fff;
+    font-size: 50px;
+}
+
+.state-overview .symbol {
+    width: 40%;
+    padding: 25px 15px;
+    -webkit-border-radius: 4px 0px 0px 4px;
+    border-radius: 4px 0px 0px 4px;
+}
+
+.state-overview .value {
+    width: 58%;
+    padding-top: 21px;
+}
+
+.state-overview .terques {
+    background: #6ccac9;
+}
+
+.state-overview .red {
+    background: #ff6c60;
+}
+
+.state-overview .yellow {
+    background: #f8d347;
+}
+
+.state-overview .blue {
+    background: #57c8f2;
+}
+
+.state-overview .all-coin-wealth {
+    background: #F8D347;
+}
+
+.state-overview .all-coin-transe {
+    background: #3498db;
+}
+
+.state-overview .all-coin-fee {
+    background: #a94442;
+}
+
+.state-overview .all-coin-more {
+    background: #1abc9c;
+}
+
+/*main chart*/
+
+.border-head h3 {
+    border-bottom: 1px solid #c9cdd7;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 5px;
+    font-weight: normal;
+    font-size: 18px;
+    display: inline-block;
+    width: 100%;
+    font-weight: 300;
+}
+
+.custom-bar-chart {
+    height: 290px;
+    margin-top: 20px;
+    margin-left: 10px;
+    position: relative;
+    border-bottom: 1px solid #c9cdd7;
+}
+
+.custom-bar-chart .bar {
+    height: 100%;
+    position: relative;
+    width: 4.3%;
+    margin: 0px 2%;
+    float: left;
+    text-align: center;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    z-index: 10;
+}
+
+.custom-bar-chart .bar .title {
+    position: absolute;
+    bottom: -30px;
+    width: 100%;
+    text-align: center;
+    font-size: 12px;
+}
+
+.custom-bar-chart .bar .value {
+    position: absolute;
+    bottom: 0;
+    background: #bfc2cd;
+    color: #bfc2cd;
+    width: 100%;
+    -webkit-border-radius: 5px 5px 0 0;
+    -moz-border-radius: 5px 5px 0 0;
+    border-radius: 5px 5px 0 0;
+    -webkit-transition: all .3s ease;
+    -moz-transition: all .3s ease;
+    -ms-transition: all .3s ease;
+    -o-transition: all .3s ease;
+    transition: all .3s ease;
+}
+
+
+
+.custom-bar-chart .bar .value:hover {
+    background: #e8403f;
+    color: #fff;
+}
+
+.y-axis {
+    color: #555555;
+    position: absolute;
+    text-align: right;
+    width: 100%;
+}
+
+.y-axis li {
+    border-top: 1px dashed #dbdce0;
+    display: block;
+    height: 58px;
+    width: 100%;
+}
+
+.y-axis li:last-child {
+    border-top: none;
+}
+
+.y-axis li span {
+    display: block;
+    margin: -10px 0 0 -25px;
+    padding: 0 10px;
+    width: 40px;
+}
+
+.y-axis {
+    color: #555555;
+    text-align: right;
+}
+
+
+
+/*spark line*/
+.chart {
+    display: inline-block;
+    text-align: center;
+    width: 100%;
+}
+.chart .heading {
+    text-align: left;
+}
+.chart .heading span {
+    display: block;
+}
+.panel.green-chart .chart-tittle {
+    font-size: 16px;
+    padding: 15px;
+    display: inline-block;
+    font-weight:normal;
+    background: #99c262;
+    width: 100%;
+    -webkit-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+#barchart {
+    margin-bottom: -15px;
+    display: inline-block;
+}
+
+.chart-tittle .title {
+
+}
+
+.panel.green-chart .chart-tittle .value {
+    float: right;
+    color: #c0f080;
+}
+
+.panel.green-chart {
+    background: #a9d96c;
+    color: #fff;
+}
+
+.panel.terques-chart {
+    background: #41cac0;
+    color: #fff;
+}
+
+.panel.terques-chart .chart-tittle .value {
+    float: right;
+    color: #fff;
+}
+
+.panel.terques-chart .chart-tittle .value a {
+    color: #fff;
+    font-size: 12px;
+}
+
+.panel.terques-chart .chart-tittle .value a:hover, .panel.terques-chart .chart-tittle .value a.active {
+    color: #55f2e7;
+    font-size: 12px;
+}
+
+.panel.terques-chart .chart-tittle {
+    font-size: 16px;
+    padding: 15px;
+    display: inline-block;
+    font-weight:normal;
+    background: #39b7ac;
+    width: 100%;
+    -webkit-border-radius: 0px 0px 4px 4px;
+    border-radius: 0px 0px 4px 4px;
+}
+
+.inline-block {
+    display: inline-block;
+}
+
+/**/
+
+.panel-body.chart-texture {
+    -webkit-border-radius: 4px 4px 0px 0px;
+    border-radius: 4px 4px 0px 0px;
+}
+
+/*main content*/
+
+.header, .footer {
+    min-height: 60px;
+    padding: 0 15px;
+}
+
+.header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    z-index: 1002;
+}
+
+.white-bg {
+    background: #fff;
+    border-bottom: 1px solid #f1f2f7;
+}
+
+.wrapper {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 15px;
+    width: 100%;
+}
+
+a.logo {
+    font-size: 21px;
+    color: #2e2e2e;
+    float: left;
+    margin-top: 15px;
+    text-transform: uppercase;
+}
+
+a.logo:hover, a.logo:focus {
+    text-decoration: none;
+    outline: none;
+}
+
+a.logo span {
+    color: #FF6C60;
+}
+
+
+
+
+
+
+body {
+    color: #797979;
+    background: #f1f2f7;
+    font-size:13px;
+    min-width:1200px ;
+}
+
+

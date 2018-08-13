@@ -1,0 +1,111 @@
+<include file="Public:header_1"/>
+<div class="autobox" style=" ">
+    <div class="f_title clearfix">
+        <div class="f_title_span left" style="    margin-top: 20px;">
+						<span class="">
+
+							<a href="{:U('Shop/index')}">逛商城</a>
+						</span>
+						<span class="current">
+                            	<i></i>
+							<a href="{:U('Shop/log')}">购物记录</a>
+						</span>
+                        <span class="">
+							<a href="{:U('User/goods')}">收货地址</a>
+						</span>
+        </div>
+    </div>
+    <notempty name="prompt_text">
+        <div class="mytips" style="    margin: 0px;">
+            <h6 style="color: #ff8000;">温馨提示</h6>
+            {$prompt_text}
+        </div>
+    </notempty>
+    <div class="category-nav" style="padding-bottom: 1px;">
+    </div>
+</div>
+<div class="wrapbody">
+    <div class="main">
+        <div class="myright" style="width: 1168px;">
+            <div class="wraphtml">
+                <div class="f_body mt5">
+                    <div class="f_body_main">
+                        <div class="f_tab_body">
+                            <div>
+                                <table class="f_table" id="investLog_content">
+                                    <thead>
+                                    <tr>
+                                        <th>购买时间</th>
+                                        <th>购买商品</th>
+                                        <th>商品价格</th>
+                                        <th>购买数量</th>
+                                        <th>购买时折合人民币总金额</th>
+                                        <th>付款数量</th>
+                                        <th>收货地址</th>
+                                        <th class="">状态</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <volist name="list" id="vo">
+                                        <tr>
+                                            <td>{$vo.addtime|addtime}</td>
+                                            <td><a href="{:U('Shop/view?id='.$vo['shopid'])}">查看商品</a></td>
+                                            <td>{$vo['price']|Num}[{$vo['coinname']}]</td>
+                                            <td>{$vo['num']|Num}</td>
+                                            <td>{$vo['mum']|Num}[人民币]</td>
+                                            <td>{$vo['xuyao']|Num}[人民币]</td>
+                                            <td>{$vo['addr']}</td>
+                                            <td>
+                                                <eq name="vo.status" value="1">已完成</eq>
+                                                <eq name="vo.status" value="2">已撤销</eq>
+                                                <eq name="vo.status" value="0">未发货</eq>
+                                                <eq name="vo.status" value="3">已发货
+
+													 <a onclick="shouhuo({$vo['id']})" style="color:red;">确认收货</a>
+												
+												</eq>
+                                            </td>
+                                        </tr>
+                                    </volist>
+                                    </tbody>
+                                </table>
+                                <div class="pages">{$page}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    //菜单高亮
+    $('#shop_box').addClass('active');
+	
+	function shouhuo(id){
+	
+		$.post("/Shop/shouhuo", {
+			id: id
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				window.location = "/Shop/log";
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	
+	
+	
+	}
+	
+	
+	
+	
+	
+	
+</script>
+<include file="Public:footer_1"/>

@@ -1,0 +1,58 @@
+<include file="Public:header" />
+
+<link rel="stylesheet" href="/comfile/css/article.css"/>
+
+
+<div class="autobox">
+    <div class="now">
+        <i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页</a> &gt;
+        <a href="{:U('Article/index',array('id'=>$ArticleTypeList[$data['type']]['id']))}" class=""> {$ArticleTypeList[$data['type']]['title']} </a>   </div>
+    <div class="assets_center clear po_re ">
+        <div class="left-nav-bar" id="left-nav-bar">
+            <div class="left-nav-slider">
+                <dl class="nav-tab-list">
+				
+				
+                    <dt>
+                        <a href="{:U('Article/index',array('id'=>$ArticleTypeList[$data['type']]['id']))}"><i class="fa fa-support mr10"></i>{$ArticleTypeList[$data['type']]['title']}</a>
+                    </dt>
+                    <dt class="nav-tab-hover hover1"></dt>
+					
+					
+					
+					<volist name="ArticleTypeList" id="vo">
+
+						<dd <eq name="shang['name']" value="$key">class="active"</eq> >
+							 <a href="{:U('Article/index',array('id'=>$vo['id']))}"> 
+								 <i class="fa fa-tasks fa-lg fa-fw mr5"></i>{$vo.title}                        
+								 <i class="fa fa-angle-right fa-lg right mr10 mt17"></i> 
+							 </a>
+						</dd>
+	
+					</volist>
+                </dl>
+            </div>
+        </div>
+
+		
+        <div class="coin_menu">
+        </div>
+        <div class="assets_content w900 right bg_w mh1500">
+            <h1 class="h1news">{$data.title}</h1>
+            <div class="new_list">
+                <div class="rightcontent">
+                    <div class="articletime mt20 mb20">
+                        <span>发布时间：{$data.addtime|date="Y-m-d H:i:s",###}</span>
+                    </div>
+                    <div class="articletext " style="max-width: 900px;overflow: hidden;"><p>{$data['content']}</p><p>										</p></div>
+                </div>
+            </div>
+        </div>
+		
+    </div>
+</div>
+
+
+
+
+<include file="Public:footer" />

@@ -1,0 +1,86 @@
+<style>
+
+.sidetool{box-sizing:border-box;position: fixed;right:20px;top:40%;z-index: 333;}
+.sidetool li span{position:absolute;right:40px;top:0;text-align:center;overflow:hidden;visibility:hidden;width:0px;height:40px;background:#ff6709;line-height:40px;color:#fff;transition: width .25s ease-in-out .1s;}
+.sidetool li:hover span{box-sizing:border-box;width: 120px;visibility: visible;}
+.sidetool li span.sqrcode i{display:block;visibility:hidden;opacity: 0;transition:all .3s ease-in 0;position: absolute;bottom:-5px;font-style:normal;font-size:12px;width: 100%;text-align: center;}
+.sidetool li:hover span.sqrcode i{opacity:1;visibility: visible;}
+.sidetool li:hover span.sqrcode{width: 120px;height: 140px;padding:12px 0;}
+.sidetool ul>li{box-shadow: 0 0 5px rgba(0,0,0,.12);margin:1px 0;position:relative;padding-top:10%;width: 40px;height: 40px;background-color: #fff;box-sizing:border-box;}
+.sidetool ul>li:hover{background-color: #ff6709;}
+.sidetool ul>li>a{box-sizing:border-box;display: inline-block;width: 100%;height: 100%;}
+.sidetool .sidetool-item{margin:5px auto;width: 52%;transition:all .3s ease-in 0s;
+    height: 60%;display: block;background:url('/Public/Home/kefu/sidebar.png') no-repeat;background-position: 0 0;}
+.sidetool .sidetool-item.qq{background-position: 0 0;}
+.sidetool .sidetool-item.mobile{
+    background-position: 0 -169px;}
+.sidetool ul>li:hover .sidetool-item.mobile{
+    background-position: 0 -194px;}
+.sidetool ul>li:hover .sidetool-item.qq{background-position: 0 -24px;}
+.sidetool .sidetool-item.wechat{background-position: 0 -127px;}
+.sidetool ul>li:hover .sidetool-item.wechat{background-position: 0 -147px;}
+.sidetool .sidetool-item.tel{background-position: 0 -87px;}
+.sidetool ul>li:hover .sidetool-item.tel{background-position: 0 -107px;}
+.sidetool .sidetool-item.qrc{background-position: 0 -48px;}
+.sidetool ul>li:hover .sidetool-item.qrc{background-position: 0 -68px;}
+
+.jubi-lts-an:hover{
+	background:#eb5200;
+}
+.jubi-lts-an:hover p{
+	color: #fff;
+}
+.jubi-lts-an:hover i.jubi-lts-ant{
+	background-position: 0px -16px;
+}
+
+.jubi-lts-an {
+    width: 40px;
+    height: 83px;
+    background: #fff;
+    box-shadow: 0 0 5px rgba(0,0,0,.12);
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    cursor: pointer;
+    border-radius: 2px;
+    z-index: 10;
+    -webkit-transition: -webkit-transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    transition: transform 0.6s cubic-bezier(0.2, 1, 0.3, 1);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    padding-top: 7px;
+    box-sizing: border-box;
+}
+
+ .jubi-lts-an i.jubi-lts-ant {
+    width: 19px;
+    height: 17px;
+    display: block;
+    background-image: url('/Public/Home/kefu/jubi-lts-logo.png');
+    background-position: 0px 0px;
+    background-size: 19px;
+    margin: 0px auto 4px;
+    transition: all .3s ease-in 0s;
+}
+
+.jubi-lts-an P {
+    font-size: 14px;
+    color: #eb5200;
+    width: 19px;
+    text-align: center;
+    margin: 0px auto;
+    line-height: 15px;
+}
+ 
+ </style>
+
+  <div id="kf1" class="sidetool hidden-xs">
+   <ul>
+    <li><a href="http://wpa.qq.com/msgrd?v=3&uin={:C('contact_qq')[0]}&site=qq&menu=yes" target="_blank"><i class="sidetool-item qq"></i></a><span style="cursor:pointer;" onclick="javascript:window.open('http://wpa.qq.com/msgrd?v=3&uin={:C('contact_qq')[0]}&site=qq&menu=yes');">QQ在线客服</span></li>
+    <li><a href="#" onclick="javascript:return false;"><i class="sidetool-item wechat"></i></a><span class="sqrcode"><img src="/upload/public/{:C('contact_weixin_img')}" alt="" /><i>微信群号</i></span></li>
+    <li><a href="#" onclick="javascript:return false;"><i class="sidetool-item mobile"></i></a><span class="sqrcode"><img width="100" style="background-color: #fff;" src="/upload/public/{:C('contact_app_img')}" alt="" /><i>访问手机版</i></span></li>
+    <li><a href=""><i class="sidetool-item tel"></i></a><span>{:C('contact_moble')}</span></li>
+   </ul>
+  </div>
+  

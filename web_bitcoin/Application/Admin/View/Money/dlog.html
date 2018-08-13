@@ -1,0 +1,93 @@
+<include file="Public:header" />
+<div id="main-content">
+ <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+  <button class="close fixed" style="margin-top: 4px;">&times;</button>
+  <div class="alert-content">警告内容</div>
+ </div>
+ <div id="main" class="main">
+  <div class="main-title-h">
+   <span class="h1-title"><a href="{:U('Money/log',array('money_id' => $money_id))}">理财记录</a> &gt;&gt;</span>
+   <span class="h1-title">{$user.username} 理财详细记录</span>
+  </div>
+  <div class="cf">
+   <div class="search-form fr cf">
+    <div class="sleft">
+     <form name="formSearch" id="formSearch" method="get" name="form1">
+      <input type="text" name="name" class="search-input" value="{$Think.get.name}" placeholder="请输入用户名"> <a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i>
+     </a>
+     </form>
+     <script>
+      //搜索功能
+      $(function(){
+       $('#search').click(function(){
+        $('#formSearch').submit();
+       });
+      });
+      //回车搜索
+      $(".search-input").keyup(function(e){
+       if(e.keyCode===13){
+        $("#search").click();
+        return false;
+       }
+      });
+     </script>
+    </div>
+   </div>
+  </div>
+  <div class="data-table table-striped">
+   <table class="">
+    <thead>
+     <tr>
+      <th class="">ID</th>
+      <th>理财名称</th>
+      <th>本金币种</th>
+      <th>利息币种</th>
+      <th>费用类型</th>
+      <th>费用数量</th>
+      <th>详情</th>
+      <th>日期</th>
+     </tr>
+    </thead>
+    <tbody>
+     <notempty name="list">
+
+      <volist name="list" id="vo">
+       <tr>
+        <td>{$vo.id}</td>
+
+        <td>{$vo['money']['name']}</td>
+        <td>{$vo['money']['coinname']}</td>
+        <td>{$vo['money']['feecoin']}</td>
+        <td>
+         <eq name="vo.type" value="1">
+          <font color="green">收入</font> <else />
+          <font color="red">支出</font>
+         </eq>
+        </td>
+
+        <td>{$vo['num']|NumToStr}</td>
+        <td>{$vo['content']}</td>
+        <td>{$vo.addtime|addtime}</td>
+       </tr>
+      </volist>
+
+      <else />
+     <td colspan="13" class="text-center">Oh! 暂时还没有内容!</td>
+     </notempty>
+    </tbody>
+   </table>
+   <div class="page">
+    <div>{$page}</div>
+   </div>
+  </div>
+ </div>
+</div>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.issue-box').addClass('current');
+		//边导航高亮
+		$('.issue-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

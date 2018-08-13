@@ -1,0 +1,78 @@
+<include file="Trade:header" />
+<div class="wrapbody">
+	<div class="main">
+		<div class="myright" style="width: 1200px;padding: 0px;margin-top: 20px;">
+			<div class="wraphtml">
+
+			
+				<div class="autobox mt20 clear" style="padding-top: 0px;">
+    <div class="maintain-content">
+        <div class="coin-intro">
+            <h4 class="intro-title" style="margin-top:0;">{$C['market'][$market]['xnbtitle']}({$xnb|strtoupper})介绍</h4>
+            <div class="left-icon-area">
+                <div style="width:80px;height:80px; border:1px solid #dcdcdc;"><img width="80" height="80" src="__UPLOAD__/coin/{$C['market'][$market]['xnbimg']}" alt=""></div>
+            </div>
+            <div class="right-detail-area">
+                <div style="border-bottom:1px dotted #dcdcdc;">
+                    <h4 class="coin-detail-title">{$market_list[$market]['xnbtitle']}(英文：{$C['coin'][$xnb]['js_yw']} 缩写：{$xnb|strtoupper})</h4>
+                    <h5 style="padding:8px 0;font-weight:normal;color:#777;text-align: left;">推出日期：{$C['coin'][$xnb]['cs_fb']}</h5>
+                </div>
+                <p>{$C['coin'][$xnb]['js_sm']|htmlspecialchars_decode}</p>
+            </div>
+        </div>
+        <div class="link-cc">
+            <h4 class="intro-title">常用链接</h4>
+            <ul>
+<li style="margin-left:0;"><a target="_blank" class="btn-usul" href="{$C['coin'][$xnb]['js_qb']}">{$C['coin'][$xnb]['title']}钱包下载</a></li>
+<li><a target="_blank" class="btn-usul" href="{$C['coin'][$xnb]['js_ym']}">{$C['coin'][$xnb]['title']}源码下载</a></li>
+<li><a target="_blank" class="btn-usul" href="{$C['coin'][$xnb]['js_gw']}">{$C['coin'][$xnb]['title']}官方网站</a></li>
+<li><a target="_blank" class="btn-usul" href="{$C['coin'][$xnb]['js_lt']}">{$C['coin'][$xnb]['title']}论坛</a></li>
+<li><a target="_blank" class="btn-usul" href="{$C['coin'][$xnb]['js_wk']}">{$C['coin'][$xnb]['title']}挖矿</a></li>
+</ul>
+        </div>
+        <div class="detail-Parameter">
+            <h4 class="intro-title">详细参数</h4>
+            <table class="Parameter-table" >
+				<tbody><tr>
+					<td><span>中文名：</span>{$C['coin'][$xnb]['title']}</td>
+					<td><span>英文名：</span>{$C['coin'][$xnb]['js_yw']}</td>
+					<td><span>英文简称：</span>{$xnb|strtoupper}</td>
+				</tr>
+				<tr>
+					<td><span>研发者：</span>{$C['coin'][$xnb]['cs_yf']}</td>
+					<td><span>核心算法：</span>{$C['coin'][$xnb]['cs_sf']}</td>
+					<td><span>发布日期：</span>{$C['coin'][$xnb]['cs_fb']}</td>
+				</tr>
+				<tr>
+					<td><span>区块速度：</span>{$C['coin'][$xnb]['cs_qk']}</td>
+					<td><span>发行总量：</span>{$C['coin'][$xnb]['cs_zl']}</td>
+					<td><span>存量：</span>{$C['coin'][$xnb]['cs_cl']}</td>
+				</tr>
+				<tr>
+					<td><span>证明方式：</span>{$C['coin'][$xnb]['cs_zm']}</td>
+					<td><span>难度调整：</span>{$C['coin'][$xnb]['cs_nd']}</td>
+					<td><span>区块奖励：</span>{$C['coin'][$xnb]['cs_jl']}</td>
+				</tr>
+				<tr>
+					<td colspan="3"><span>主要特色：</span>{$C['coin'][$xnb]['cs_ts']}</td>
+				</tr>
+				<tr>
+					<td colspan="3"><span>不足之处：</span>{$C['coin'][$xnb]['cs_bz']}</td>
+				</tr>
+			</tbody></table>
+        </div>
+    </div>
+
+</div>
+			</div>
+		</div>
+	</div>
+</div>
+<br>
+<br>
+
+<script>
+	//菜单高亮
+	$('#list-tab_info').addClass('on');
+</script>
+<include file="Public:footer_1" />

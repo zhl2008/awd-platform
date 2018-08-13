@@ -1,0 +1,58 @@
+<include file="Public:header" />
+<div class="wrapbody">
+	<div class="main">
+	<include file="Game:left" />
+		<div class="myright" >
+			<div class="wraphtml">
+				<div class="f_title clearfix">
+					<div class="f_title_span left">
+						<span class="current">
+							<i></i>
+							<a href="{:U('Money/type')}">合成方式</a>
+						</span>
+						<span class="">
+							<a href="{:U('Money/index')}">立即合成</a>
+						</span>
+						<span class="">
+							<a href="{:U('Money/log')}">合成记录</a>
+						</span>
+					</div>
+				</DIV>
+				<notempty name="C['money_text_type']">
+				<div class="mytips">
+					<h6 style="color: #ff8000;">温馨提示</h6>
+					{$C['money_text_type']|htmlspecialchars_decode}
+				</div>
+				</notempty>
+				<div class="f_body">
+					<table class="f_table" id="investLog_content">
+						<thead>
+							<tr>
+								<th id="sublist-grid_c0">合成名称</th>
+								<th id="sublist-grid_c1">合成币种</th>
+								<th id="sublist-grid_c2">合成周期</th>
+								<th id="sublist-grid_c3">年利息</th>
+							</tr>
+						</thead>
+						<tbody>
+							<volist name="list" id="vo">
+							<tr>
+								<td>{$vo['name']}</td>
+								<td>{$C['coin'][$vo['coinname']]['title']}</td>
+								<td>{$vo['tian']}天</td>
+								<td>{$vo['fee']}%</td>
+							</tr>
+							</volist>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script>
+//顶部菜单高亮
+$('#menu_top_game').addClass('current');
+$('#menu_left_money').addClass('current');
+</script>
+<include file="Public:footer" />

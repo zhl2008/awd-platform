@@ -1,0 +1,21 @@
+<table class="table table-bordered table-striped table-hover ">
+    <thead>
+    <tr>
+        <th style="width: 80px">{:L("_VERSION_NUMBER_")}</th>
+        <th style="width: 150px">{:L("_RELEASE_TIME_")}</th>
+        <th>{:L("_UPDATE_LOG_")}</th>
+    </tr>
+    </thead>
+    <volist name="versionList" id="vo">
+        <tr>
+            <td>{$vo.title}</td>
+            <td>{$vo.create_time|friendlyDate}</td>
+            <td>
+                {$vo.log|formatLog}
+            </td>
+        </tr>
+    </volist>
+</table>
+<div>
+    <a href="{:U('Cloud/updateGoods',array('token'=>$token))}" class="btn btn-success btn-block">{:L("_GO_TO_UPDATE_")}</a>
+</div>

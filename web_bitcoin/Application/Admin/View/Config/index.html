@@ -1,0 +1,298 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">基本配置</span>
+		</div>
+		<div class="tab-wrap">
+			<div class="tab-content">
+				<form id="form" action="{:U('Config/edit')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">网站名称 :</td>
+									<td>
+										<input type="text" class="form-control  input-10x" name="web_name" value="{$data['web_name']}">
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站标题 :</td>
+									<td>
+										<input type="text" class="form-control  input-10x" name="web_title" value="{$data['web_title']}">
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站logo :</td>
+									<td>
+										<div id="addpicContainer">
+											<!-- 利用multiple="multiple"属性实现添加多图功能 -->
+											<!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+											<!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+											<!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+											<notempty name="data.web_logo">
+												<!--没有图片显示默认图片-->
+												<img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="/Upload/public/{$data.web_logo}">
+												<else/>
+												<!--没有图片显示默认图片-->
+												<img id="up_img" onclick="getElementById('inputfile').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+											</notempty>
+											<input type="hidden" id="img" name="web_logo" value="{$data.web_logo}">
+											<input type="file" id="inputfile" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+										</div>
+									</td>
+									<td class="item-note">250px*34px</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站关键字 :</td>
+									<td>
+										<textarea name="web_keywords" class="form-control  input-10x">{$data['web_keywords']}</textarea>
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站小logo :</td>
+									<td>
+										<div id="addpicContainer">
+											<!-- 利用multiple="multiple"属性实现添加多图功能 -->
+											<!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+											<!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+											<!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+											<notempty name="data.web_llogo_small">
+												<!--没有图片显示默认图片-->
+												<img id="up_imga" onclick="getElementById('inputfilea').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="/Upload/public/{$data.web_llogo_small}">
+												<else/>
+												<!--没有图片显示默认图片-->
+												<img id="up_imga" onclick="getElementById('inputfilea').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+											</notempty>
+											<input type="hidden" id="imga" name="web_llogo_small" value="{$data.web_llogo_small}">
+											<input type="file" id="inputfilea" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+										</div>
+									</td>
+									<td class="item-note">交易界面显示 168px*22px</td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label">网站底部logo :</td>
+									<td>
+										<div id="addpicContainer">
+											<!-- 利用multiple="multiple"属性实现添加多图功能 -->
+											<!-- position: absolute;left: 10px;top: 5px;只针对本用例将input隐至图片底下。-->
+											<!-- height:0;width:0;z-index: -1;是为了隐藏input，因为Chrome下不能使用display:none，否则无法添加文件 -->
+											<!-- onclick="getElementById('inputfile').click()" 点击图片时则点击添加文件按钮 -->
+											<notempty name="data.footer_logo">
+												<!--没有图片显示默认图片-->
+												<img id="up_imgb" onclick="getElementById('inputfileb').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="/Upload/public/{$data.footer_logo}">
+												<else/>
+												<!--没有图片显示默认图片-->
+												<img id="up_imgb" onclick="getElementById('inputfileb').click()" style="cursor:pointer;max-width:400px;" title="点击添加图片" alt="点击添加图片" src="__PUBLIC__/Admin/images/addimg.png">
+											</notempty>
+											<input type="hidden" id="imgb" name="footer_logo" value="{$data.footer_logo}">
+											<input type="file" id="inputfileb" style="height:0;width:0;z-index: -1; position: absolute;left: 10px;top: 5px;" value=""/>
+										</div>
+									</td>
+									<td class="item-note">交易界面显示 168px*22px</td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站描叙 :</td>
+									<td>
+										<textarea name="web_description" class="form-control  input-10x">{$data['web_description']}</textarea>
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">网站状态 :</td>
+									<td><select name="web_close" class="form-control  input-10x">
+										<option value="1"
+										<eq name="data['web_close']" value="1">selected</eq>
+										>正常</option>
+										<option value="0"
+										<eq name="data['web_close']" value="0">selected</eq>
+										>禁止访问</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">禁止访问原因 :</td>
+									<td>
+										<textarea name="web_close_cause" class="form-control  input-10x">{$data['web_close_cause']}</textarea>
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">备案号 :</td>
+									<td>
+										<input type="text" class="form-control  input-10x" name="web_icp" value="{$data['web_icp']}">
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">统计代码:</td>
+									<td>
+										<textarea name="web_cnzz" class="form-control input-10x">{$data['web_cnzz']}</textarea>
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">用户注册协议 :</td>
+									<td>
+										<textarea name="web_reg" class="form-control input-10x">{$data['web_reg']}</textarea>
+									</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class= "btn submit-btn ajax-post"  target-form="form-horizontal" id="submit" type="submit">确 定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function () {
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfile").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfile')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_img').attr("src", '/Upload/public/' + data);
+						$('#img').val(data);
+						$('#up_img').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+
+
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfileb").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfileb')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imgb').attr("src", '/Upload/public/' + data);
+						$('#imgb').val(data);
+						$('#up_imgb').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+
+	$(document).ready(function () {
+		//响应文件添加成功事件
+		$("#inputfilea").change(function () {
+			//创建FormData对象
+			var data = new FormData();
+			//为FormData对象添加数据
+			$.each($('#inputfilea')[0].files, function (i, file) {
+				data.append('upload_file' + i, file);
+			});
+
+
+			//发送数据
+			$.ajax({
+				url: '/Admin/Config/image',
+				type: 'POST',
+				data: data,
+				cache: false,
+				contentType: false,		//不可缺参数
+				processData: false,		//不可缺参数
+				success: function (data) {
+					if (data) {
+						$('#up_imga').attr("src", '/Upload/public/' + data);
+						$('#imga').val(data);
+						$('#up_imga').show();
+					}
+				},
+				error: function () {
+					alert('上传出错');
+					$(".loading").hide();	//加载失败移除加载图片
+				}
+			});
+
+		});
+	});
+</script>
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function (K) {
+		editor = K.create('textarea[name="web_reg"]', {
+			width: '500px',
+			height: '100px',
+			allowPreviewEmoticons: false,
+			allowImageUpload: true,
+			items: [
+				'source', 'fontname', 'fontsize', '|', 'forecolor', 'hilitecolor', 'bold', 'italic', 'underline',
+				'removeformat', '|', 'justifyleft', 'justifycenter', 'justifyright', 'insertorderedlist',
+				'insertunorderedlist', '|', 'emoticons', 'link', 'fullscreen'],
+			afterBlur: function () {
+				this.sync();
+			}
+		});
+	});
+</script>
+<include file="Public:footer"/>

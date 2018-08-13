@@ -1,0 +1,87 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <div class="main-title-h">
+            <span class="h1-title">自动升级 - 完成</span>
+        </div>
+    <div class="with-padding" style="width:700px;">
+        <div class="alert alert-info">
+            <p>当前的系统版本号<strong>{$currentVersion.name}</strong></p>
+        </div>
+        <p><strong class="text-success">1.下载更新包，获取更新文件列表-》 2.本地文件对比-》 3.代码升级-》 4.数据库升级-》升级完成</strong></p>
+        <p>
+            恭喜，升级成功，目前版本为{$currentVersion.name}
+        </p>
+
+        <p>如果发现升级之后出现问题，请找回备份文件，同时还原备份的数据库。</p>
+
+
+        <p>
+            {$path}/backup
+
+        </p>
+
+        <div class="row">
+            <div class="col-xs-7">
+                <a id="compare_btn" class="btn btn-success btn-block"
+                  href="{:U('update')}">返回自动升级首页</a>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <script>
+        function updateDB(obj) {
+            if (!confirm()) {
+                return false;
+            } else {
+                toast.showLoading();
+                $(obj).attr('disabled', 'disabled');
+                $(obj).text('{:L("_IS_UPGRADING_THE_DATABASE_PLEASE_WAIT_PATIENTLY_")}……');
+                $.post('__SELF__', function (msg) {
+                    if (msg.status) {
+                        $(obj).removeAttr('disabled');
+                        toast.hideLoading();
+                        toast.success({:L('_DATABASE_UPGRADE_SUCCESSFULLY_WITH_SINGLE_')});
+                        $(obj).text({:L('_UPGRADE_DATABASE_SUCCESSFULLY_ENTER_NEXT_WITH_SINGLE_')});
+                        $(obj).attr('href',"{:U('finish')}");
+
+                    } else {
+                        toast.error({:L('_UPGRADE_FAILED._PLEASE_CHECK_IT_AND_TRY_AGAIN_WITH_SINGLE_')})
+                    }
+                })
+            }
+        }
+        function writeFile($data) {
+            $('#file').append('<div><i class="icon-file"></i> ' + $data + '</div>');
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable() {
+            $('#compare_btn').removeAttr('disabled', '');
+        }
+    </script>
+        <include file="Public:footer"/>

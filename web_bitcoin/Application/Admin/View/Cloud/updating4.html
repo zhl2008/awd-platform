@@ -1,0 +1,102 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>{:L("_EXTENDED_AUTOMATIC_UPGRADE_")}-{:L("_UPDATE_DATABASE_")}</h2>
+    </div>
+    <div class="with-padding" style="width:700px;">
+        <include file="_updatingGoods"/>
+        <p><strong class="text-success">1.{:L("_DOWNLOAD_THE_UPDATE_PACKAGE_AND_GET_THE_UPDATED_FILE_LIST_")}-》 2.{:L("_LOCAL_FILE_CONTRAST_")}-》 3.{:L("_CODE_UPGRADE_")}-》 4.{:L("_DATABASE_UPGRADE_")}</strong>-》{:L("_UPGRADE_")}</p>
+
+        <empty name="sql">
+            <div class="alert alert-success">
+               {:L("_THIS_UPDATE_DOES_NOT_INVOLVE_DATABASE_CHANGES_YOU_CAN_SKIP_")}
+            </div>
+            <a href="{:U('updating5')}"  class="btn btn-success btn-block">{:L("_NO_UPGRADE_DATABASE_SKIP_DATABASE_UPGRADE_")}</a>
+
+            <else/>
+
+            <h4>
+               {:L("_THE_UPDATED_DATABASE_CHANGES_")}
+            </h4>
+
+            <p>{:L("_IF_YOU_CHANGE_THE_DATABASE_PLEASE_MANUALLY_CHECK_THE_FOLLOWING_DATABASE_CHANGES_SUCH_AS_THE_EXISTENCE_OF_CONFLICT_")}，{:L("_PLEASE_MODIFY_THE_DATABASE_")}，<strong>{:L("_SKIP_DATABASE_UPGRADE_")}</strong></p>
+
+            <div style="border: 1px solid #ccc;padding: 20px;height: 243px;overflow: auto">
+                {$sql}
+            </div>
+
+            <h4>{:L("_DATABASE_UPDATE_SCRIPT_LOCATION_")}</h4>
+
+            <p>
+                {$path}update.sql
+
+            </p>
+
+            <div class="row">
+                <div class="col-xs-7">
+                    <a id="compare_btn" class="btn btn-success btn-block"
+                       onclick="updateDB(this)">{:L("_I_HAVE_NOT_CHANGED_THE_DATABASE_THE_DATABASE_UPGRADE_")}</a>
+                </div>
+                <div class="col-xs-5">
+                    <a href="{:U('updating5')}" class="btn btn-default btn-block"
+                       onclick="if(!confirm('{:L("_DETERMINE_SKIP_DATABASE_UPGRADE_STEPS?_IF_YOU_ARE_NOT_A_DEVELOPER_OR_YOU_ARE_NOT_MERGED_WITH_THE_DATABASE_")}，{:L("_PLEASE_DONT_JUMP_OVER_")}')){return false}">{:L("_I_HAVE_MERGED_DATABASE_UPGRADE_SKIP_")}</a>
+                </div>
+            </div>
+
+
+
+        </empty>
+
+
+    </div>
+
+
+    <script>
+        function updateDB(obj) {
+            if (!confirm({:L('_OK_IMPORT?_STRONGLY_RECOMMENDED_FOR_DATABASE_BACKUP_BEFORE_IMPORT_WITH_SINGLE_')})) {
+                return false;
+            } else {
+                toast.showLoading();
+                $(obj).attr('disabled', 'disabled');
+                $(obj).text('{:L("_IS_UPGRADING_THE_DATABASE_PLEASE_WAIT_PATIENTLY_")}……');
+                $.post('__SELF__', function (msg) {
+                    if (msg.status) {
+                        $(obj).removeAttr('disabled');
+                        toast.hideLoading();
+                        toast.success({:L('_DATABASE_UPGRADE_SUCCESSFULLY_WITH_SINGLE_')});
+                        $(obj).text({:L('_UPGRADE_DATABASE_SUCCESSFULLY_ENTER_NEXT_WITH_SINGLE_')});
+                        $(obj).attr('href',"{:U('updating5')}");
+                        $(obj).attr('onclick','');
+                    } else {
+                        toast.error({:L('_UPGRADE_FAILED._PLEASE_CHECK_IT_AND_TRY_AGAIN_WITH_SINGLE_')})
+                    }
+                })
+            }
+        }
+        function writeFile($data) {
+            $('#file').append('<div><i class="icon-file"></i> ' + $data + '</div>');
+        }
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        };
+        function enable() {
+            $('#compare_btn').removeAttr('disabled', '');
+        }
+    </script>
+</block>

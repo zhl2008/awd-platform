@@ -1,0 +1,126 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">人民币充值</span>
+		</div>
+		<div class="cf">
+			<div class="fl">
+				<button class="btn ajax-post confirm btn-danger" url="{:U('Finance/myczStatus',array('type'=>'del'))}" target-form="ids">删 除</button>
+			</div>
+			<div class="search-form fr cf">
+				<div class="sleft">
+					<form name="formSearch" id="formSearch" method="get" name="form1">
+						<select style="width: 160px; float: left; margin-right: 10px;" name="status" class="form-control">
+							<option value=""
+							<empty name="Think.get.status">selected</empty>
+							>全部状态</option>
+							<option value="1"
+							<eq name="Think.get.status" value="1">selected</eq>
+							>未付款</option>
+							<option value="2"
+							<eq name="Think.get.status" value="2">selected</eq>
+							>成长成功</option>
+							<option value="3"
+							<eq name="Think.get.status" value="3">selected</eq>
+							>人工到账</option>
+							<option value="4"
+							<eq name="Think.get.status" value="4">selected</eq>
+							>处理中</option>
+						</select>
+						<select style=" width: 160px; float: left; margin-right: 10px;" name="field" class="form-control">
+							<option value="username"
+							<eq name="Think.get.field" value="username">selected</eq>
+							>用户名</option>
+							<option value="tradeno"
+							<eq name="Think.get.field" value="tradeno">selected</eq>
+							>订单号</option>
+						</select>
+						<input type="text" name="name" class="search-input form-control  " value="{$Think.get.name}" placeholder="请输入查询内容" style="">
+						<a class="sch-btn" href="javascript:;" id="search"> <i class="btn-search"></i> </a>
+					</form>
+					<script>
+						//搜索功能
+						$(function () {
+							$('#search').click(function () {
+								$('#formSearch').submit();
+							});
+						});
+						//回车搜索
+						$(".search-input").keyup(function (e) {
+							if (e.keyCode === 13) {
+								$("#search").click();
+								return false;
+							}
+						});
+					</script>
+				</div>
+			</div>
+		</div>
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+					<th class="">ID</th>
+					<th class="">用户名</th>
+					<th class="">充值金额</th>
+					<th width="">到账金额</th>
+					<th width="">充值方式</th>
+					<th width="">充值订单</th>
+					<th class="">充值时间</th>
+					<th width="">状态</th>
+					<th width="">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="list">
+					<volist name="list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+							<td>{$vo.id}</td>
+							<td>{$vo['username']}
+							</td>
+							<td>{$vo.num}</td>
+							<td>{$vo.mum}</td>
+							<td>{$vo.type}</td>
+							<td>{$vo.tradeno}</td>
+							<td>{$vo.addtime|addtime}</td>
+							<td>
+								<eq name="vo.status" value="0">未付款</eq>
+								<eq name="vo.status" value="1">充值成功</eq>
+								<eq name="vo.status" value="2">人工到账</eq>
+								<eq name="vo.status" value="3">处理中</eq>
+							</td>
+							<td>
+								<eq name="vo.status" value="0">
+									<a href="{:U('Finance/myczQueren?id='.$vo['id'])}" class="ajax-get btn btn-primary btn-xs">确认到账 </a>
+								</eq>
+								<eq name="vo.status" value="3">
+									<a href="{:U('Finance/myczQueren?id='.$vo['id'])}" class="ajax-get btn btn-primary btn-xs">确认到账 </a>
+								</eq>
+							</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="12" class="text-center">Oh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+			<div class="page">
+				<div>{$page}</div>
+			</div>
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>
+<block name="script">
+	<script type="text/javascript" charset="utf-8">
+		//导航高亮
+		highlight_subnav("{:U('Finance/mycz')}");
+	</script>
+</block>

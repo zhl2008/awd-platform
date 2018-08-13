@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="renderer" content="webkit">
+	<meta name="format-detection" content="telephone=no">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<title>{:C('web_title')}</title>
+	<meta name="Keywords" content="{:C('web_keywords')}">
+	<meta name="Description" content="{:C('web_description')}">
+	<meta name="baidu-site-verification" content="rxNntq61ue" />
+	<link rel="shortcut icon" href=" /favicon.ico"/>
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/zuocoin.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/style.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/slide-unlock.css"/>
+	<link rel="stylesheet" href="__PUBLIC__/Home/css/font-awesome.min.css"/>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.min.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.flot.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.cookies.2.2.0.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/Home/js/jquery.slideunlock.js"></script>
+	<script type="text/javascript" src="__PUBLIC__/layer/layer.js"></script>
+	<script>
+		var _hmt = _hmt || [];
+		(function() {
+		  var hm = document.createElement("script");
+		  hm.src = "https://hm.baidu.com/hm.js?2ca0b0d15f83707f9a4b65802faf0f48";
+		  var s = document.getElementsByTagName("script")[0]; 
+		  s.parentNode.insertBefore(hm, s);
+		})();
+	</script>
+
+</head>
+<body>
+<div class="header bg_w" id="trade_aa_header">
+	<div class="hearder_top">
+		<div class="autobox po_re zin100" id="header">
+			<div class="welcome">{:C('top_name')}</div>
+			<div class="right orange" id="login">
+				<gt name="Think.session.userId" value="0">
+					<dl class="mywallet">
+						<dt id="user-finance">
+						<div class="mywallet_name clear">
+							<a href="/finance/">{$Think.session.userName}</a><i></i>
+						</div>
+						<div class="mywallet_list" style="display: none;">
+							<div class="clear">
+								<ul class="balance_list">
+									<h4>可用余额</h4>
+									<li>
+										<a href="javascript:void(0)"><em style="margin-top: 5px;" class="deal_list_pic_cny"></em><strong>人民币：</strong><span>{$userCoin_top['cny']*1}</span></a>
+									</li>
+								</ul>
+								<ul class="freeze_list">
+									<h4>委托冻结</h4>
+									<li>
+										<a href="javascript:void(0)"><em style="margin-top: 5px;" class="deal_list_pic_cny"></em><strong>人民币：</strong><span>{$userCoin_top['cnyd']*1}</span></a>
+									</li>
+								</ul>
+							</div>
+							<div class="mywallet_btn_box">
+								<a href="/finance/mycz.html">充值</a><a href="/finance/mytx.html">提现</a><a href="/finance/myzr.html">转入</a><a href="/finance/myzc.html">转出</a><a href="/finance/mywt.html">委托管理</a><a href="/finance/mycj.html">成交查询</a>
+							</div>
+						</div>
+						</dt>
+						<dd>
+							ID：<span>{$Think.session.userId}</span>
+						</dd>
+						<dd>
+							<a href="{:U('Login/loginout')}">退出</a>
+						</dd>
+					</dl>
+					<else/> <!-- 登陆前 -->
+					<div class="orange">
+						<span class="zhuce"><a class="orange" href="{:U('Login/register')}">注册</a></span> |
+						<a href="javascript:;" class="orange" onclick="loginpop();">登录</a>
+					</div>
+				</gt>
+			</div>
+			<div class="nav  nav_po_1" id="menu_nav">
+				<ul>
+					<li style=" text-align: right; margin-right: 20px;">
+						<a href="/" id="index_box">首页</a>
+					</li>
+					<li>
+						<a id="trade_box" href="{:U('Trade/index')}"><span>交易中心</span>
+							<img src="/Public/Home/images/down.png"></a>
+						<div class="deal_list " style="display: none;    top: 36px;">
+							<dl id="menu_list_json"></dl>
+							<div class="sj"></div>
+							<div class="nocontent"></div>
+						</div>
+					</li>
+
+					<volist name="daohang" id="vo">
+						<li>
+							<a id="{$vo['name']}_box" href="/{$vo['url']}">{$vo['title']}</a>
+						</li>
+					</volist>
+
+				</ul>
+			</div>
+		</div>
+	</div>
+	<div style="clear: both;"></div>
+	<div class="autobox clear" id="trade_clear">
+		<div class="logo">
+			<a href="/"><img src="__UPLOAD__/public/{$C['web_logo']}" alt=""/></a>
+		</div>
+		<div class="phone right">
+			<span class="iphone" style=""></span><a href="http://wpa.qq.com/msgrd?V=3&amp;uin={:C('contact_qq')[0]}&amp;Site=QQ客服&amp;Menu=yes" target="_blank" class="qqkefu"></a>
+		</div>
+	</div>
+</div>
+<script>
+	$.getJSON("/Ajax/getJsonMenu?t=" + Math.random(), function (data) {
+		if (data) {
+			var list = '';
+			for (var i in data) {
+				list += '<dd><a href="/Trade/index/market/' + data[i]['name'] + '"><img src="/Upload/coin/' + data[i]['img'] + '" style="width: 18px; margin-right: 5px;">' + data[i]['title'] + '</a></dd>';
+			}
+			$("#menu_list_json").html(list);
+		}
+	});
+	$('#trade_box').hover(function () {
+		$('.deal_list').show()
+	}, function () {
+		$('.deal_list').hide()
+	});
+	$('.deal_list').hover(function () {
+		$('.deal_list').show()
+	}, function () {
+		$('.deal_list').hide()
+	});
+	$('#user-finance').hover(function () {
+		$('.mywallet_list').show();
+	}, function () {
+		$('.mywallet_list').hide()
+	});
+</script>
+<!--头部结束-->

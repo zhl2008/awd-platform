@@ -1,0 +1,166 @@
+
+<include file="Public:header"/>
+
+
+
+
+<style>
+	.f_table td{
+		border-bottom:5px solid #EDEDED;
+		font-size:14px;
+	}
+	.f_table th{
+		border-bottom:3px solid #DEDBDB;
+		font-size:14px;
+	}
+</style>
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i><a href="/" class="">首页</a> &gt; 新币投票	</div>
+	<div class="assets_content bg_w">
+				<div class="safe_center clear">
+					<h1>新币投票  <a class="right ml20" onclick="$('#hints').slideToggle();">
+						<i class="fa fa-hand-o-right fz_14 move"></i> <span class="fz_14 move">查看介绍</span>
+					</a> 					</h1>
+				</div>
+				<div id="hints" class="mytips" style="display:none;">
+					<script>
+						var hints = "0";
+						if(hints == 1){
+							$('#hints').show();
+						}
+					</script>
+					<p>
+						<notempty name="prompt_text">
+							{$prompt_text}
+						</notempty>
+					
+					</p>				
+					
+					</div>
+					<div id="slider_vote"
+     class="slider" style="height:200px;">
+
+    <!-- Loading Screen -->
+    <div class="slider-loading" data-u="loading">
+        <div class="slider-loading-a"></div>
+        <div class="slider-loading-b"></div>
+    </div>
+    <div class="slider-body" data-u="slides">
+                <div  onclick="#">
+            <a src="" style=""><img data-u="image" title="" alt="" src="/comfile/toupiao/1.png"/>
+            </a>
+        </div>
+                <div  onclick="#">
+            <a src="" style=""><img data-u="image" title="" alt="" src="/comfile/toupiao/2.png"/>
+            </a>
+        </div>
+                <div  onclick="#">
+            <a src="" style=""><img data-u="image" title="" alt="" src="/comfile/toupiao/3.png"/>
+            </a>
+        </div>
+            </div>
+        <div id="slider-body-navigator_vote"
+         class="sbn-3" data-u="navigator" style="position: absolute;
+        bottom: 16px;" data-autocenter="1">
+        <div data-u="prototype" style=""></div>
+    </div>
+    
+        <span id="slider-body-arrow-l_vote" data-u="arrowleft"
+          class="slider-body-arrowleft-1" data-autocenter="2"></span>
+    <span id="slider-body-arrow-r_vote" data-u="arrowright"
+          class="slider-body-arrowright-1" data-autocenter="2"></span>
+        <!--<div class="slick_set_block" onclick="window.location.href='/vote?idname=vote'">点击设置</div>-->
+</div>
+<textarea class="mv-hide" style="display: none;">
+    slider_run("slider_vote", [{"$Duration":1200,"x":0.3,"$SlideOut":true,"$Easing":{},"$Opacity":2}]);
+</textarea>
+
+<!--轮播图 end-->				<table class="f_table" id="investLog_content">
+					<thead>
+					<tr>
+						<th>序号</th>
+						<th>币种</th>
+						<th>名称</th>
+						<th>赞成票</th>
+						<th>反对票</th>
+						<th>总得分</th>
+						<th>操作</th>
+					</tr>
+					</thead>
+					<tbody>
+					
+					
+					
+					<volist name="list" id="vo">
+					
+					<tr>
+						<td>{$i}</td>
+						<td>
+							{$vo['name']}						
+						</td>
+						<td>{$vo['title']}</td>
+						<td><font class="green">{$vo['zhichi']}</font></td>
+						<td><font class="red">{$vo['fandui']}</font></td>
+						<td>{$vo['zongji']}</td>
+						<td>
+															<a onclick="Update(1,'{$vo['name']}','{$vo['assumnum']}','{$vo['votecoin']}','{$vo['id']}');" href="javascript:void(0)" class="green">赞成</a>
+								<a onclick="Update(2,'{$vo['name']}','{$vo['assumnum']}','{$vo['votecoin']}','{$vo['id']}');" href="javascript:void(0)" class="red">反对</a>
+													</td>
+					</tr>
+					</volist>
+					
+					
+	
+				</tbody>
+				</table>
+			</div>
+	<div class="pages">{$page} </div>
+		</div>
+	</div>
+<script type="text/javascript">
+	function Update(type,coinname,assumnum,votecoin,id) {
+
+		
+		layer.confirm('投票需要扣除'+assumnum+'个'+votecoin+',您确认投票吗', 
+		{
+			btn: ['确认','取消'], //按钮
+			shade: false, //不显示遮罩
+			title:'投票提示'
+		}, function(index){
+
+		
+			$.post("/Vote/up", {
+				type : type,
+				coinname : coinname,
+				votecoin : votecoin,
+				id : id
+			}, function (data) {
+				if (data.status == 1) {
+					layer.msg(data.info, {icon: 1});
+					window.setTimeout("window.location='/Vote/index'", 1000);
+				} else {
+					layer.msg(data.info, {icon: 2});
+					if (data.url) {
+						window.setTimeout("window.location=" + data.url, 1000);
+					}
+				}
+			}, "json");
+		
+			layer.close(index);
+		},function(index){
+			layer.close(index);
+		}
+		
+		);
+
+	}
+</script>
+
+
+
+
+<script>
+	$('#vote_box').addClass('active');
+</script>
+<include file="Public:footer"/>

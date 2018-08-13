@@ -1,0 +1,224 @@
+<include file="Public:header" />
+
+
+<script type="text/javascript" src="__PUBLIC__/layer/laydate/laydate.js"></script>
+
+<div id="main-content">
+ <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+  <button class="close fixed" style="margin-top: 4px;">&times;</button>
+  <div class="alert-content">警告内容</div>
+ </div>
+ <div id="main" class="main">
+  <div class="main-title-h">
+<span class="h1-title"><a href="{:U('Money/index')}">理财管理</a> >></span>
+   <span class="h1-title"><empty name="data">添加理财<else />编辑理财</empty></span>
+  </div>
+  <div class="tab-wrap">
+   <div class="tab-content">
+    <form id="form" action="{:U('Money/save')}" method="post" class="form-horizontal">
+     <div id="tab" class="tab-pane in tab">
+      <div class="form-item cf">
+       <table>
+        <tr class="controls">
+         <td class="item-label">理财名称 :</td>
+         <td><input type="text" class=" form-control input-4x" name="name" value="{$data.name}"></td>
+         <td class="item-note"></td>
+        </tr>
+
+        <tr class="controls">
+         <td class="item-label">理财币种 :</td>
+         <td>
+          <empty name="data">
+               <select name="coinname" class="input-small">
+                <volist name="C['coin_list']" id="v">
+                 <option value="{$v['name']}"<eq name="data['coinname']" value="$v['name']">selected</eq>>{$v['title']}
+                 </option>
+                </volist>
+               </select>
+           <else />
+             {$data['coinname']}
+          </empty>
+         </td>
+         <td class="item-note"></td>
+        </tr>
+
+        <tr class="controls">
+         <td class="item-label">理财模式 :</td>
+         <td>
+          <empty name="data">
+                <select id="type" name="type" class="input-small">
+                 <option value="1" <eq name="data['type']" value="1">selected</eq>>活期模式</option>
+                 <option value="2" <eq name="data['type']" value="2">selected</eq>>定期模式</option>
+                </select>
+           <else />
+           <eq name="data['type']" value="1">活期模式<else/> 定期模式</eq>
+          </empty>
+
+         </td>
+         <td class="item-note">活期模式:可随时提取(扣取手续费) 定期模式:只能到期取</td>
+        </tr>
+
+        <tr id="outfee" class="controls" <eq name="data['type']" value="2">style="display: none"</eq>>
+         <td class="item-label">手续费 :</td>
+         <td>
+          <input type="text" class="form-control  input-4x " name="outfee" value="{$data['outfee']*1}">
+         </td>
+         <td class="item-note">% 活期模式,提前取本金手续费比例</td>
+        </tr>
+
+
+        <tr class="controls">
+         <td class="item-label">理财总量 :</td>
+         <td><input type="text" class="form-control input-4x " name="num" value="{$data['num']*1}"></td>
+         <td class="item-note"></td>
+        </tr>
+
+
+        <tr class="controls">
+         <td class="item-label">已理财量 :</td>
+         <td><input type="text" class="form-control  input-4x " name="deal" value="{$data['deal']*1}"
+          <notempty name="data">readonly</notempty> ></td>
+         <td class="item-note"></td>
+        </tr>
+
+
+        <tr class="controls">
+         <td class="item-label">理财周期 :</td>
+         <td>
+          <input type="text" class="form-control  input-2x " style="display: inline;" name="tian" value="{$data['tian']*1}" <notempty name="data">readonly</notempty> >
+          <select name="danwei" class="form-control  input-2x" style="display: inline;" <notempty name="data">readonly</notempty> >
+            <option value="y"<eq name="data['danwei']" value="y">selected</eq>>年</option>
+            <option value="m"<eq name="data['danwei']" value="m">selected</eq>>月</option>
+            <option value="d"<eq name="data['danwei']" value="d">selected</eq>>日</option>
+            <option value="h"<eq name="data['danwei']" value="h">selected</eq>>时</option>
+            <option value="i"<eq name="data['danwei']" value="i">selected</eq>>分</option>
+           </volist>
+          </select>
+
+         </td>
+         <td class="item-note">分钟   理财奖励周期 1天 = 1440分钟 | 一个月 =  43200 分钟</td>
+        </tr>
+
+        <tr class="controls">
+         <td class="item-label">周期限额 :</td>
+         <td><input type="text" class="form-control  input-4x " name="lnum" value="{$data['lnum']*1}"></td>
+         <td class="item-note">每个利息赠送周期内,最大可选购限制</td>
+        </tr>
+
+
+        <tr class="controls">
+         <td class="item-label">周期利息 :</td>
+         <td><input type="text" class="form-control  input-4x " name="fee" value="{$data['fee']*1}"></td>
+         <td class="item-note">%</td>
+        </tr>
+
+        <tr class="controls">
+         <td class="item-label">利息币种 :</td>
+         <td>
+
+          <empty name="data">
+           <select name="feecoin" class="input-small">
+            <volist name="C['coin_list']" id="v">
+             <option value="{$v['name']}"<eq name="data['feecoin']" value="$v['name']">selected</eq>>{$v['title']}
+             </option>
+            </volist>
+           </select>
+           <else />
+           {$data['feecoin']}
+          </empty>
+
+
+         </td>
+         <td class="item-note">利息赠送到哪个币</td>
+        </tr>
+
+
+        <!--<tr class="controls">-->
+         <!--<td class="item-label">开启时间 :</td>-->
+         <!--<td><input type="text" class="form-control  input-4x " name="addtime" value="{$data['addtime']|addtime}"  onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"></td>-->
+         <!--<td class="item-note"></td>-->
+        <!--</tr>-->
+
+        <tr class="controls">
+         <td class="item-label">结束时间 :</td>
+         <td><input type="text" class="form-control  input-4x " name="endtime" value="{$data['endtime']|addtime}"  onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})"></td>
+         <td class="item-note"></td>
+        </tr>
+
+
+        <tr class="controls">
+         <td class="item-label">排序 :</td>
+         <td><input type="text" class="form-control  input-4x " name="sort" value="{$data['sort']*1}"></td>
+         <td class="item-note"></td>
+        </tr>
+
+        <tr class="controls">
+         <td class="item-label">状态 :</td>
+         <td><select name="status" class="input-small">
+           <option value="1"<eq name="data.status" value="1">selected</eq>>可用
+           </option>
+           <option value="0"<eq name="data.status" value="0">selected</eq>>禁用
+           </option>
+         </select></td>
+         <td class="item-note"></td>
+        </tr>
+
+
+        <tr class="controls">
+         <td class="item-label"></td>
+         <td>
+          <div class="form-item cf">
+           <button class="btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确 定</button>
+           <a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+           <notempty name="data.id"> <input type="hidden" name="id" value="{$data.id}" /> </notempty>
+          </div>
+         </td>
+        </tr>
+       </table>
+      </div>
+     </div>
+    </form>
+    <script type="text/javascript">
+
+     $(document).ready(function(){
+      $('#type').change(function(){
+           if($(this).val() == 1){
+               $('#outfee').fadeIn();
+            }else{
+               $('#outfee').fadeOut();
+            }
+      })
+     });
+
+
+					//提交表单
+					$('#submit').click(function(){
+						$('#form').submit();
+					});
+				</script>
+   </div>
+  </div>
+ </div>
+</div>
+
+
+
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function(K){
+		editor=K.create('textarea[name="introduce"]',{width : '610px',height : '200px',items : false,afterBlur : function(){
+			this.sync();
+		} });
+
+	});
+</script>
+<script type="text/javascript">
+	$(function(){
+		//主导航高亮
+		$('.Money-box').addClass('current');
+		//边导航高亮
+		$('.Money-index').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

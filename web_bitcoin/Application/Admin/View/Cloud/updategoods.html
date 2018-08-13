@@ -1,0 +1,119 @@
+<extend name="Public/base"/>
+<block name="body">
+    <div class="main-title">
+        <h2>{:L("_CLOUD_MARKET_EXPANSION_AUTOMATIC_UPGRADE_")}</h2>
+    </div>
+    <div class="with-padding" id="version_list" style="width: 800px">
+        <h3 style="padding-top: 0;margin-top: 0">
+           {:L("_THE_UPCOMING_UPGRADE_")}
+        </h3>
+        <ul class="module-list">
+                <li class="clearfix" style="margin-bottom: 0">
+                    <div class="cover-wrapper">
+                        <empty name="goodsInfo.version_info.goods.cover_url">
+                            <div class="cover-icon">
+                                <i class="icon-{$goodsInfo.icon}"></i>
+                            </div>
+                            <else/>
+                            <img class="cover"
+                                 src="{$goodsInfo.version_info.goods.cover_url}"/>
+                        </empty>
+
+
+                    </div>
+                    <div class="content-wrapper">
+                        <div class="title">
+                            <a href="{:U('Admin/Module/edit', array('name' => $goodsInfo['name']))}">{$goodsInfo.alias} <span class="text-muted">{$goodsInfo.name}</span></a>
+
+                            <div class="pull-right"><span class="label label-info">{$goodsInfo.version_info.title}</span>
+                                <empty name="goodsInfo.update_list">
+                                    <else/>
+                                    <a style="text-decoration: none"
+                                            ><span class=" label label-success ">{:L("_LATEST_EDITION_")}{$goodsInfo.update_list.0.title}</span></a>
+                                </empty>
+                            </div>
+                        </div>
+                        <div>
+                            <p class="text-muted text-ellipsis">{$goodsInfo.summary}</p>
+                        </div>
+                        <div>{:L("_DEVELOPER_COLON_")} <a style="color: #666">{$goodsInfo.developer}</a></div>
+                        <div class="clearfix bottom-btns">
+                            <div class="pull-right">
+                                <empty name="goodsInfo.token">
+                                    <span class="label label-circle label-danger">{:L("_LOCAL_MODULE_")}</span>
+                                    <else/>
+                                    <a target="_blank"
+                                       href="{:appstoreU('Appstore/Index/goodsDetail',array('token'=>$goodsInfo['token']))}"
+                                       class="btn btn-info">{:L("_GO_TO_THE_CLOUD_MARKET_VIEW_")}</a>
+                                </empty>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+        </ul>
+        <empty name="versionList">
+
+
+
+            <div class="alert alert-success">
+               {:L("_IS_THE_LATEST_VERSION_OF_YO_")}
+            </div>
+
+            <else/>
+            <div class="alert alert-info">
+            <p>{:L("_CURRENT_VERSION_TO_UPGRADE_COLON_")}<strong>{$versionList.0.title}</strong></p>
+
+            <p>{:L("_CURRENT_VERSION_NUMBER_")}<strong>{$version.title}</strong></p>
+        </div>
+            <h3>{:L("_CAN_BE_UPGRADED_VERSION_")}</h3>
+            <table class="table table-bordered table-striped table-hover ">
+                <thead>
+                <tr>
+                    <th style="width: 80px">{:L("_VERSION_NUMBER_")}</th>
+                    <th style="width: 150px">{:L("_RELEASE_TIME_")}</th>
+                    <th>{:L("_UPDATE_LOG_")}</th>
+                </tr>
+                </thead>
+                <volist name="versionList" id="vo">
+                    <tr>
+                        <td>{$vo.title}</td>
+                        <td>{$vo.create_time|friendlyDate}</td>
+                        <td>
+                            {$vo.log|formatLog}
+                        </td>
+                    </tr>
+                </volist>
+            </table>
+            <a href="{:U('Updating1',array('token'=>$token))}" class="btn btn-success btn-block btn-lg">{:L("_START_UPGRADING_")}</a>
+        </empty>
+
+
+
+
+
+    </div>
+
+
+    <script>
+        function writeMessage($data) {
+            $('#message').append($data);
+        }
+        function replaceMessage($data) {
+            $('#message').children().last().remove();
+            $('#message').children().last().remove();
+            $('#message').append($data);
+        }
+        var progress = {
+            'show': function () {
+                $('#progress').parent().show();
+            },
+            'setValue': function ($value) {
+                $('#progress').css('width', $value);
+            },
+            'hide': function () {
+                $('#progress').parent().hide();
+            }
+        }
+    </script>
+</block>

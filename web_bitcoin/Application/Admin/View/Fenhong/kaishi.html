@@ -1,0 +1,129 @@
+<include file="Public:header"/>
+<div id="main-content">
+    <div id="top-alert" class="fixed alert alert-error" style="display: none;">
+        <button class="close fixed" style="margin-top: 4px;">&times;</button>
+        <div class="alert-content">警告内容</div>
+    </div>
+    <div id="main" class="main">
+        <block name="body">
+            <div class="container-span">
+                <div class="span4">
+                    <div class="columns-mod">
+                        <div class="hd cf">
+                            <h5>开始分红</h5>
+                        </div>
+                        <div class="bd">
+                            <div class="sys-info">
+                                <table id="qianbao_table">
+                                    <tr>
+                                        <th>
+                                            <table id="qianbao_tablea">
+                                                <tr>
+                                                    <td>分红名称: <span style="color: red;">{$data['name']}</span> </td>
+                                                    <td>分红数量: <span style="color: red;">{$data['num']}</span> </td>
+                                                </tr>
+                                                <tr>
+                                                    <td>用户持币: <span style="color: red;">{$data['quanbu']}</span></td>
+                                                    <td>每个币分红: <span style="color: red;">{$data['meige']}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>分红币种: <span style="color: red;">{$data['coinname']}</span></td>
+                                                    <td>奖励币种: <span style="color: red;">{$data['coinjian']}</span></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>持币用户: <span style="color: red;">{$data['user']}</span>个</td>
+                                                    <td>已经处理: <span style="color:magenta;" id="chuli">0</span>个</td>
+                                                </tr>
+                                            </table>
+                                        </th>
+                                        <th>
+                                            <button class="btn" onclick="start_chk_qianbao();">开始分红</button>
+                                        </th>
+                                        <td>
+                                            <div id="loader"></div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <script type="text/javascript" src="__PUBLIC__/Admin/js/jquery.percentageloader-0.1.min.js"></script>
+                        <script type="text/javascript">
+                            var $loader;
+                            var totalKb = '{$cacheSize}';
+                            var kb = 0;
+                            var clearCacheFlag = 0;
+                            var list_len = "{$data['user']}";
+                            $loader = $("#loader").percentageLoader({
+                                width: 200,
+                                height: 200,
+                                progress: 0
+                            });
+                            $loader.setValue('等待');
+
+                            function init() {
+                                $('#qianbao_table').html('<tr> <th><button class="btn" onclick="start_chk_qianbao();">检查钱包</button></th> <td><div id="loader"></div></td> </tr>');
+                                $loader = $("#loader").percentageLoader({
+                                    width: 200,
+                                    height: 200,
+                                    progress: 0
+                                });
+                                $loader.setValue('检查');
+                            }
+
+                            var lock_click = 0;
+                            var first = 1;
+
+
+                            function start_chk_qianbao() {
+                                if (lock_click) {
+                                    layer.msg('点击太频繁...');
+                                    return;
+                                }
+                                lock_click = 1;
+                                if (!first) {
+                                    init();
+                                }
+                                first = 0;
+                                request(-1);
+                            }
+
+                            function request(id) {
+
+
+                                $loader.setProgress((id + 1 ) / list_len);
+                                $loader.setValue('分红第' + id + '个用户');
+
+                                $('#chuli').html(id+1);
+
+                                var fid =  "{$data['id']}";
+                                var dange= "{$data['meige']}";
+
+
+
+                                console.log(id);
+                                $.getJSON('/Admin/Fenhong/fenfa', {id: id,fid:fid,dange:dange}).success(function (data) {
+                                    console.log(data);
+                                    if (data.status === 1) {
+                                        $('#qianbao_table').append('<tr><td colspan="2" style="color: green">' + data.info + '</td></tr>');
+                                        request(++id);
+                                    } else if (data.status === -1) {
+                                        $('#qianbao_table').append('<tr><td colspan="2" style="color: yellowgreen;font-weight: bold">' + data.info + '</td></tr>');
+                                        request(++id);
+                                    } else if (data.status == -2) {
+                                        $('#qianbao_table').append('<tr><td colspan="2" style="color: red;font-weight: bold">' + data.info + '</td></tr>');
+                                        request(++id);
+                                    } else if (data.status == 100) {
+                                        lock_click = 0;
+                                        $('#qianbao_table').append('<tr><td colspan="2">' + data.info + '</td></tr>');
+                                    }
+                                });
+                            }
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </block>
+    </div>
+</div>
+<!-- /内容区 -->
+<include file="Public:footer"/>

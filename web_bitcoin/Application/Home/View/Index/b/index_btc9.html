@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1" /> 
+  <meta name="renderer" content="webkit" /> 
+  <meta name="keywords" content="{:C('web_keywords')}" /> 
+  <meta name="description" content="{:C('web_description')}" /> 
+  <title>{:C('web_title')}</title> 
+  <link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico" /> 
+  <link rel="stylesheet" href="__PUBLIC__/qq3479015851/css/bootstrap.min.css" /> 
+  <link rel="stylesheet" href="__PUBLIC__/qq3479015851/css/font_uzx73rskhrdlsor.css" /> 
+  <script src="__PUBLIC__/qq3479015851/js/jquery-3.1.1.min.js"></script> 
+  <script src="__PUBLIC__/qq3479015851/js/bootstrap.min.js"></script> 
+  <script src="__PUBLIC__/qq3479015851/js/handlebars-v3.0.3.js"></script> 
+  <script src="__PUBLIC__/qq3479015851/js/layer.js"></script> 
+  <script>
+var _barr=new Array();
+_barr['jsons']="/Api/jsons.html";
+</script> 
+  <link rel="stylesheet" href="__PUBLIC__/qq3479015851/css/head.css" /> 
+ </head> 
+ <body> 
+  <div class="container-full top-full"> 
+   <div class="container"> 
+    <div class="row header-top"> 
+     <div class="col-xs-6 padding-left-clear"> 
+      <span id="login_before" class="welcome">您好，欢迎来到{:C('web_name')}！ <a href="/Login/index">[登录]</a> <a href="/Reg/index" class="week-reg">[免费注册]</a></span> 
+     </div> 
+     <div class="col-xs-6 padding-right-clear"> 
+      <div class="weak-nav"> 
+       <a href="/Art/details/team_id/190.html" target="_blank" rel="nofollow" class="weak-item-a"> <span class="weak-text"><strong>关于我们</strong></span> <span class="lines-color"></span> </a> 
+       <a href="/Help/index/id/60.html" target="_blank" rel="nofollow" class="weak-item-a"> <span class="weak-text"><strong>新手引导</strong></span> <span class="lines-color"></span> </a> 
+       <a href="/Help/index/id/61.html" target="_blank" rel="nofollow" class="weak-item-a padding-right-clear"> <span class="weak-text"><strong>帮助中心</strong></span> </a> 
+      </div> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="head_nav"> 
+   <div class="container"> 
+    <div class="row"> 
+     <div class="col-xs-12 padding-clear"> 
+      <nav class="navbar-default" role="navigation"> 
+       <div class="navbar-header"> 
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> 
+        <a href="/Index"> <img style="width:151px;" src="__UPLOAD__/public/{$C['web_logo']}" alt="{:C('web_name')}" title="{:C('web_name')}" /> </a> 
+       </div> 
+       <div class="collapse navbar-collapse pull-right" id="bs-example-navbar-collapse-1"> 
+        <ul class="nav navbar-nav top_nav"> 
+         <li><a href="/Index/index.html">首页</a></li> 
+         <li class="dropdown" data-url="/trade"> <a href="/Index/index.html#trade_center" class="dropdown-toggle" data-toggle="dropdown"> 交易中心<strong class="caret"></strong></a> 
+          <ul class="dropdown-menu"> 
+           <li><a href="/trade/16"> <i class="deal_list_pic"><img src="picture/5812caa2a7280.png" /></i> Zcash(ZEC)</a></li>
+           <li><a href="/trade/18"> <i class="deal_list_pic"><img src="picture/58777d888e453.png" /></i> 比特币(BTC)</a></li>
+           <li><a href="/trade/3"> <i class="deal_list_pic"><img src="picture/571ef2da91b43.png" /></i> 莱特币(LTC)</a></li>
+           <li><a href="/trade/27"> <i class="deal_list_pic"><img src="picture/58d5009e0be50.png" /></i> 卡拉特(CAC)</a></li>
+           <li><a href="/trade/1"> <i class="deal_list_pic"><img src="picture/571f808d2da26.png" /></i> 蚂蚁币(ATC)</a></li>
+           <li><a href="/trade/11"> <i class="deal_list_pic"><img src="picture/5772161b16e92.png" /></i> 里约币(RIO)</a></li>
+           <li><a href="/trade/12"> <i class="deal_list_pic"><img src="picture/5775ce9b6a987.png" /></i> 链游股(LPS)</a></li>
+           <li><a href="/trade/8"> <i class="deal_list_pic"><img src="picture/573aebc2c1f43.png" /></i> 优滴币(UDB)</a></li>
+           <li><a href="/trade/4"> <i class="deal_list_pic"><img src="picture/571f458a708de.png" /></i> 雾霾币(WMC)</a></li>
+           <li><a href="/trade/21"> <i class="deal_list_pic"><img src="picture/58b679ba0587f.png" /></i> 达世币(DASH)</a></li>
+           <li><a href="/trade/20"> <i class="deal_list_pic"><img src="picture/58b6783fb26d9.png" /></i> 以太坊(ETH)</a></li>
+           <li><a href="/trade/14"> <i class="deal_list_pic"><img src="picture/57ea3604ace04.png" /></i> 小币(SMC)</a></li>
+           <li><a href="/trade/15"> <i class="deal_list_pic"><img src="picture/5813277f3dfa6.png" /></i> 算力合约(ZECS)</a></li>
+           <li><a href="/trade/13"> <i class="deal_list_pic"><img src="picture/57a82ed015d0d.png" /></i> 数字金(DGG)</a></li>
+           <li><a href="/trade/26"> <i class="deal_list_pic"><img src="picture/58d0e96ed1ad2.png" /></i> 门罗币(XMR)</a></li>
+           <li><a href="/trade/25"> <i class="deal_list_pic"><img src="picture/58d0e7e8e5442.png" /></i> AMP(AMP)</a></li>
+           <li><a href="/trade/24"> <i class="deal_list_pic"><img src="picture/58d0e53d3f4d9.png" /></i> 帕斯卡(PASC)</a></li>
+           <li><a href="/trade/23"> <i class="deal_list_pic"><img src="picture/58d0e4a113abd.png" /></i> 应用链(LSK)</a></li>
+           <li><a href="/trade/17"> <i class="deal_list_pic"><img src="picture/5840e0ee5ce2b.png" /></i> 帽子股(FEDS)</a></li>
+           <li><a href="/trade/2"> <i class="deal_list_pic"><img src="picture/571ef23042b62.png" /></i> 狗狗币(DOGE)</a></li>
+           <li><a href="/trade/9"> <i class="deal_list_pic"><img src="picture/572186e6f0a49.png" /></i> 币久股(BJC)</a></li> 
+          </ul> </li> 
+         <li data-url="/Safe"><a href="/Safe/index.html">安全中心</a></li> 
+         <li data-url="/User" class="pc-nav"><a href="/User/index.html">用户中心</a></li> 
+         <li data-url="/Newcoin"><a href="/Newcoin/index.html">新币投票</a></li> 
+         <li data-url="/Help" class="pc-nav"><a href="/Help/index/id/60.html">帮助中心</a></li> 
+        </ul> 
+        <div class="login-register clearfix"> 
+         <div class="lr-con"> 
+          <a class="btn btn-success btn-w100" href="/Login/index">登录</a> 
+          <a class="btn btn-danger btn-w100" href="/Reg/index">注册</a> 
+         </div> 
+        </div> 
+       </div> 
+      </nav> 
+     </div>
+    </div>
+   </div>
+  </div> 
+  <script>
+$(function(){var url=document.URL;$(".top_nav>li").each(function(){if(url.indexOf($(this).data('url'))>=0){$(this).addClass("current")}});$(".contact-us").hover(function(){$(".weak-contact-us").show();$(this).addClass("weak-hover-border")},function(){$(".weak-contact-us").hide();$(this).removeClass("weak-hover-border")});$(".weak-contact-us").hover(function(){$(".weak-contact-us").show();$(".contact-us").addClass("weak-hover-border")},function(){$(".weak-contact-us").hide();$(".contact-us").removeClass("weak-hover-border")})});
+</script> 
+  <link rel="stylesheet" href="__PUBLIC__/qq3479015851/css/index.css" /> 
+  <script type="text/javascript" src="__PUBLIC__/qq3479015851/js/jquery.flexslider-min.js"></script> 
+  <script>
+_barr['login']="/Login/checkLog.html";
+_barr['logincheck']="/Login/check.html";
+_barr['currency_list']="/Index/CurrencyList.html";
+</script> 
+  <style>
+.coin_name{width:200px;padding-right:0px;}
+</style> 
+  <div class="container-full "> 
+   <div class="container login-box"> 
+    <div class="row" style="position:relative;"> 
+     <div class="login"> 
+      <div class="login-bg"></div> 
+      <form name="loginform" id="loginform" jump-url="/User/index" method="post" action="/Login/checkLog"> 
+       <div class="login-cn"> 
+        <div class="form-group"> 
+         <h3 class="margin-top-clear login-cn-title">登录{:C('web_name')}</h3> 
+        </div> 
+        <div class="form-group"> 
+         <input style="width:100% !important;" type="text" class="form-control" id="account" name="account" placeholder="输入邮件或手机" /> 
+        </div> 
+        <div class="form-group"> 
+         <input style="width:100% !important" type="password" class="form-control" id="pwd" name="pwd" placeholder="输入密码" /> 
+        </div> 
+        <div class="form-group google hide"> 
+         <input style="width:100% !important" type="text" autocomplete="off" name="ga" class="form-control" placeholder="Google验证码" /> 
+        </div> 
+        <div class="form-group captcha hide" style="position:relative"> 
+         <input style="width:100% !important" type="text" class="form-control ident" name="captcha" placeholder="验证码" /> 
+         <a href="javacript:void(0)" onclick="$('#captchaimg').attr('src', 'picture/showverify.html?t='+Math.random())"> <img id="captchaimg" src="picture/showverify.html" style="width:120px;top:3px;" /></a> 
+        </div> 
+        <div class="form-group has-error"> 
+         <span id="indexLoginTips" class="errortips text-danger help-block"></span> 
+        </div> 
+        <div class="form-group"> 
+         <input type="button" id="loginbtn" value="登录" class="btn btn-block btn-danger" /> 
+        </div> 
+        <div class="form-group"> 
+         <a href="/Login/sendemail.html">忘记密码？</a> 
+         <a href="/Reg/index" class="pull-right">注册</a> 
+        </div> 
+       </div> 
+      </form> 
+     </div> 
+    </div> 
+   </div> 
+   <div id="shuffling" class="carousel slide carousel-fade" data-ride="carousel"> 
+    <ol class="carousel-indicators"> 
+     <li data-target="#shuffling" data-slide-to="0" class="active"></li> 
+     <li data-target="#shuffling" data-slide-to="1"></li> 
+     <li data-target="#shuffling" data-slide-to="2"></li> 
+     <li data-target="#shuffling" data-slide-to="3"></li> 
+    </ol> 
+    <div class="carousel-inner"> 
+	
+	<volist name="indexAdver" id="vo">
+     <a target="_blank" href="#" class="item <eq name='i' value='1'> active</eq>" style="background: url('__UPLOAD__/ad/{$vo.img}') no-repeat 50% 50%;height: 480px;"></a>
+    </volist>
+
+	</div> 
+   </div> 
+  </div> 
+  <div class="main_well text-center"> 
+   <i class="iconfont"></i>
+   <a href="/Art/details/id/414.html" target="_blank">【官方公告】Zcash算力合约提升挖矿收益公告</a> 
+  </div> 
+  <div class="container"> 
+   <div class="row"> 
+    <div class="col-xs-12 padding-clear"> 
+     <div id="tags_coin" class="coinarea left"> 
+      <ul id="tags" class="for_coin"> 
+       <li class="currency selectTag" data-qu="qu1"><a>CNY交易区</a></li> 
+       <li class="currency" data-qu="qu2"><a>考察交易区</a></li> 
+      </ul> 
+      <a name="trade_center"></a> 
+      <div id="tagContent"> 
+       <div class="tagContent selectTag" id="tagContent0"> 
+        <table class="table coin_list"> 
+         <thead> 
+          <tr> 
+           <th width="140" style="text-align:left !important;padding-left:30px;">数字资产名称</th> 
+           <th class="header">最新价格</th> 
+           <th class="header">24H成交量</th> 
+           <th class="header">24H涨跌</th> 
+           <th class="header"></th> 
+          </tr> 
+         </thead> 
+		 
+		 
+		 
+		 
+         <tbody id="web_coin"> 
+          <tr class="coin_num qu1 coinbtc" data-mark="btc"> 
+           <td class="coin_name"> <a href="/trades/18"> <img src="picture/58777d888e453.png" style="width:20px; height:20px;" /> 比特币BTC (火币)</a> </td> 
+           <td class="new_price"><a>--</a></td> 
+           <td class="num24"><a>--</a> BTC</td> 
+           <td class="change24"><a>--</a></td> 
+           <td> <a class="btn market-trading" href="/trades/18">去交易<i class="iconfont"></i></a> </td> 
+          </tr> 
+         </tbody> 
+         <tbody id="ok_coin"> 
+         </tbody> 
+         <tbody id="polo_coin"> 
+          <tr class="coin_num qu1 coinzec" data-mark="zec"> 
+           <td class="coin_name"> <a href="/ptrade/16"> <img src="picture/5812caa2a7280.png" style="width:20px; height:20px;" /> ZcashZEC(P网)</a> </td> 
+           <td class="new_price"><a>--</a></td> 
+           <td class="num24"><a>--</a> ZEC</td> 
+           <td class="change24"><a>--</a></td> 
+           <td> <a class="btn market-trading" href="/ptrade/16">去交易<i class="iconfont"></i></a> </td> 
+          </tr>
+
+
+
+         </tbody> 
+         <tbody id="market"> 
+          <tr class="coin_num qu1 "> 
+           <td class="coin_name"> <a href="/trade/1"> <img src="picture/571f808d2da26.png" style="width:20px; height:20px;" /> 蚂蚁币ATC</a> </td> 
+           <td class="cTrade_1"> <a class="text-red"> 0.0226 </a> <a class="text-red"> CNY ↑ </a> </td> 
+           <td><a>9532 ATC</a></td> 
+           <td> <a class="buy">+20.21%</a></td> 
+           <td> <a class="btn market-trading" href="/trade/1">去交易<i class="iconfont"></i></a> </td> 
+          </tr>
+
+          <tr class="coin_num qu1 "> 
+           <td class="coin_name"> <a href="/trade/12"> <img src="picture/5775ce9b6a987.png" style="width:20px; height:20px;" /> 链游股LPS</a> </td> 
+           <td class="cTrade_1"> <a class="text-green"> 0.07 </a> <a class="text-green"> CNY ↓ </a> </td> 
+           <td><a>0.00 LPS</a></td> 
+           <td> <a class="buy">+0.00%</a></td> 
+           <td> <a class="btn market-trading" href="/trade/12">去交易<i class="iconfont"></i></a> </td> 
+          </tr>
+         </tbody> 
+         <script id="table-template" type="text/x-handlebars-template">
+            {{#each this}}
+            <tr class="coin_num {{qu quid}}">
+              <td class="coin_name" >
+			  <a href="/trade/{{currency_id}}">
+			   <img src="picture/48e8d81728804022abb6ce4fa2d0a77c.gif" style="width:20px; height:20px;">
+               {{currency_name}} {{currency_mark}}</a>
+              </td>
+            <td class="cTrade_1">
+                <a class="{{tcss nstatus}}">{{new_price}}</a>
+				<a class="{{tcss nstatus}}">
+                    {{tmark}} {{pstatus nstatus}}
+                </a>
+            </td>
+            <td><a>{{check H24_done_num}} {{currency_mark}}</a></td>
+            <!--<td class="cTrade_2">
+                <a>{{check H24_done_money}}</a></a>
+				<a>{{tmark}}</a> 
+            </td>-->
+            <td><a class="{{ctype H24_change}}">{{cstatus H24_change}}{{check H24_change}}%</a></td>
+            <td>
+			<a class="btn market-trading" href="/trade/{{currency_id}}">去交易<i class="iconfont">&#xe64f;</i></a>
+			</td>
+            </tr>
+            {{/each}}
+            </script> 
+         <tbody></tbody> 
+        </table> 
+       </div> 
+      </div> 
+     </div> 
+    </div> 
+    <div class="col-xs-12 padding-clear"> 
+     <a href="#" target="_blank"> <img src="picture/58b80c41a8c46.jpg" alt="ad" style="width:100%;" /></a> 
+    </div> 
+   </div> 
+   <div class="row"> 
+    <div class="col-xs-12 padding-clear" style="margin-top:15px;"> 
+     <div class="row"> 
+      <div class="col-xs-4 padding-left-clear"> 
+       <div class="panel panel-default"> 
+        <div class="panel-heading"> 
+         <span class="text-left"><i class="iconfont"></i> 官方公告</span> 
+         <a href="/Art/index/id/1.html" class="pull-right">更多&gt;&gt;</a> 
+        </div> 
+        <table class="table table-hover"> 
+         <tbody class="newlist"> 
+          <tr>
+           <td> <a href="/Art/details/id/414.html"> <span class="coin_news_title text-red left">【官方公告】Zcash算力合约提升挖矿收益公告</span> </a> <span class="pull-right">05-05</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/413.html"> <span class="coin_news_title text-red left">【官方公告】关于币久网狗狗币交易将改为p网交易的通知</span> </a> <span class="pull-right">05-03</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/412.html"> <span class="coin_news_title text-red left">【官方公告】币久网2017年劳动节放假安排通知</span> </a> <span class="pull-right">04-28</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/407.html"> <span class="coin_news_title text-red left">【官方公告】币久网手续费调整以及用户资金第三方存管通知</span> </a> <span class="pull-right">04-19</span> </td>
+          </tr> 
+          <tr>
+           <td> <a href="/Art/details/id/397.html"> <span class="coin_news_title left">【升级公告】币久网3月26日晚间停机升级公告</span> </a> <span class="pull-right">03-26</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/393.html"> <span class="coin_news_title left">【网站公告】P网新增上线币种及提币公告说明</span> </a> <span class="pull-right">03-21</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/381.html"> <span class="coin_news_title left">【跨站交易】币久网跨站交易系统上线，开启P网提币公告</span> </a> <span class="pull-right">02-28</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/355.html"> <span class="coin_news_title left">【官方公告】币久网400电话实名资料升级，暂停服务</span> </a> <span class="pull-right">01-13</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/328.html"> <span class="coin_news_title left">【上币公告】帽子股上线交易公告</span> </a> <span class="pull-right">12-01</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/327.html"> <span class="coin_news_title left">【平台公告】“币久网”商标被国家工商行政管理总局受理</span> </a> <span class="pull-right">12-01</span> </td>
+          </tr> 
+         </tbody>
+        </table> 
+       </div> 
+      </div> 
+      <div class="col-xs-4 padding-clear"> 
+       <div class="panel panel-default"> 
+        <div class="panel-heading"> 
+         <span class="text-left"><i class="iconfont"></i> 数字资产资讯</span> 
+         <a href="/Art/index/id/2.html" class="pull-right">更多&gt;&gt;</a> 
+        </div> 
+        <table class="table table-hover"> 
+         <tbody class="newlist"> 
+          <tr>
+           <td> <a href="/Art/details/id/415.html"> <span class="coin_news_title left">成都首届区块链高峰论坛将举行 聚焦区块链技术应用</span> </a> <span class="pull-right">05-09</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/411.html"> <span class="coin_news_title left">互联网巨头腾讯正在创建区块链平台</span> </a> <span class="pull-right">04-27</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/410.html"> <span class="coin_news_title left">BAT布局区块链：腾讯阿里大步迈进，百度小步慢走</span> </a> <span class="pull-right">04-27</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/409.html"> <span class="coin_news_title left">全球加密货币总市值超300亿美元 为历史最高点</span> </a> <span class="pull-right">04-27</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/408.html"> <span class="coin_news_title left">比特币用户基数持续上升</span> </a> <span class="pull-right">04-20</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/406.html"> <span class="coin_news_title left">莱特币隔离见证的支持率达到75% 激活成功可能较大</span> </a> <span class="pull-right">04-14</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/404.html"> <span class="coin_news_title left">比特币钱包标准讨论在德国召开</span> </a> <span class="pull-right">04-05</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/403.html"> <span class="coin_news_title left">Bitfinex宣布成功偿还之前失窃的比特币</span> </a> <span class="pull-right">04-05</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/395.html"> <span class="coin_news_title left">央行整治比特币平台从反洗钱入手 明确义务规范</span> </a> <span class="pull-right">03-22</span> </td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/394.html"> <span class="coin_news_title left">专业评论观点称全球比特币用户年增长率高达100%</span> </a> <span class="pull-right">03-22</span> </td>
+          </tr> 
+         </tbody>
+        </table> 
+       </div> 
+      </div> 
+      <div class="col-xs-4 padding-right-clear"> 
+       <div class="panel panel-default"> 
+        <div class="panel-heading"> 
+         <span class="text-left"><i class="iconfont"></i> 币种介绍</span> 
+         <a href="/Art/index/id/127.html" class="pull-right">更多&gt;&gt;</a> 
+        </div> 
+        <table class="table table-hover"> 
+         <tbody class="newlist"> 
+          <tr>
+           <td> <a href="/Art/details/id/390.html"> <span class="coin_news_title left">卡拉特介绍</span> </a> <span class="pull-right">03-14</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/384.html"> <span class="coin_news_title left">量子链介绍</span> </a> <span class="pull-right">03-07</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/255.html"> <span class="coin_news_title left">数字金介绍</span> </a> <span class="pull-right">08-03</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/239.html"> <span class="coin_news_title left">链游股白皮书</span> </a> <span class="pull-right">07-01</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/217.html"> <span class="coin_news_title left">里约币介绍</span> </a> <span class="pull-right">06-15</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/174.html"> <span class="coin_news_title left">优滴币介绍</span> </a> <span class="pull-right">05-17</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/168.html"> <span class="coin_news_title left">比利股介绍</span> </a> <span class="pull-right">05-16</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/167.html"> <span class="coin_news_title left">比特股介绍</span> </a> <span class="pull-right">05-16</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/166.html"> <span class="coin_news_title left">狗狗币介绍</span> </a> <span class="pull-right">05-16</span></td>
+          </tr>
+          <tr>
+           <td> <a href="/Art/details/id/165.html"> <span class="coin_news_title left">莱特币介绍</span> </a> <span class="pull-right">05-16</span></td>
+          </tr> 
+         </tbody>
+        </table> 
+       </div> 
+      </div> 
+     </div> 
+    </div>
+   </div> 
+  </div> 
+  <div class="container-full"> 
+   <div class="container"> 
+    <div class="row padding-clear homepage-lump"> 
+     <div class="col-xs-4 col-sm-2"> 
+      <span class="icons "> <img src="picture/b1.png" /> </span> 
+      <span class="name"> 资金安全 </span> 
+      <span class="notice"> 100%保证金，钱包冷热隔离,确保用户资金安全. </span> 
+     </div> 
+     <div class="col-xs-4 col-sm-2"> 
+      <span class="icons "> <img src="picture/b2.png" /> </span> 
+      <span class="name"> 上线币种 </span> 
+      <span class="notice"> 严格的上币审核机制全面控制源头风险. </span> 
+     </div> 
+     <div class="col-xs-4 col-sm-2"> 
+      <span class="icons "> <img src="picture/b3.png" /> </span> 
+      <span class="name"> 服务专业 </span> 
+      <span class="notice"> 专业的服务团队、在线客服及技术支持. </span> 
+     </div> 
+     <div class="col-xs-4 col-sm-2"> 
+      <span class="icons "> <img src="picture/b4.png" /> </span> 
+      <span class="name"> ICO项目 </span> 
+      <span class="notice"> 严格的项目准入门槛,确保平台用户利益. </span> 
+     </div> 
+     <div class="col-xs-4 col-sm-2"> 
+      <span class="icons "> <img src="picture/b5.png" /> </span> 
+      <span class="name"> 快捷方便 </span> 
+      <span class="notice"> 充值即时、提现迅速，每秒万单的高性能交易引擎. </span> 
+     </div> 
+     <div class="col-xs-4 col-sm-2"> 
+      <span class="icons "> <img src="picture/b6.png" /> </span> 
+      <span class="name"> 安全有保障 </span> 
+      <span class="notice"> SSL、动态身份验证等银行级别安全技术，保障交易安全. </span> 
+     </div> 
+    </div> 
+   </div> 
+  </div> 
+  <div class="container"> 
+   <div class="row"> 
+    <div class="col-xs-12 padding-clear friendlink"> 
+     <h4>友情链接</h4> 
+     <li><a target="_blank" href="http://www.btc38.com/">比特时代</a> </li>
+     <li><a target="_blank" href="http://www.btc9.com">币久网</a> </li>
+     <li><a target="_blank" href="http://www.8xsz.com">八喜数字网</a> </li>
+     <li><a target="_blank" href="http://www.sosobtc.com">搜搜比特币</a> </li>
+     <li><a target="_blank" href="http://www.btcside.com/">比特帮</a> </li>
+     <li><a target="_blank" href="http://www.olz.com/">欧陆众筹</a> </li>
+     <li><a target="_blank" href="http://www.btc798.com/">比特币之家</a> </li>
+     <li><a target="_blank" href="http://www.jys100.com/">金钥匙</a> </li>
+     <li><a target="_blank" href="https://www.wabi.com/">挖币网</a> </li>
+     <li><a target="_blank" href="http://www.zcashfans.com/">zcash爱好者</a> </li>
+    </div> 
+   </div> 
+  </div> 
+  <script src="__PUBLIC__/qq3479015851/js/check_login.js"></script> 
+  <script src="__PUBLIC__/qq3479015851/js/index.js"></script> 
+  <script src="__PUBLIC__/qq3479015851/js/canva.index.js"></script> 
+  <footer> 
+   <div class="container"> 
+    <div class="row"> 
+     <div class="col-sm-4 text-center"> 
+      <p> <a href="/"><img src="picture/grey.png" /></a> </p> 
+     </div> 
+     <div class="col-sm-2"> 
+      <dl> 
+       <dt>
+        平台介绍
+       </dt> 
+       <dd>
+        <a href="/Art/details/team_id/190.html" target="_blank" class="left">平台简介</a>
+       </dd> 
+       <dd>
+        <a href="/Art/details/team_id/191.html" target="_blank" class="left">法律说明</a>
+       </dd> 
+       <dd>
+        <a href="/Art/details/team_id/192.html" target="_blank" class="left">注册协议</a>
+       </dd> 
+       <dd>
+        <a href="/Art/details/team_id/193.html" target="_blank" class="left">招贤纳士</a>
+       </dd> 
+      </dl> 
+     </div> 
+     <div class="col-sm-2"> 
+      <dl> 
+       <dt>
+        帮助中心
+       </dt> 
+       <dd>
+        <a href="/Help/index/id/60.html" target="_blank" class="left">注册指南</a>
+       </dd> 
+       <dd>
+        <a href="/Help/index/id/61.html" target="_blank" class="left">交易指南</a>
+       </dd> 
+       <dd>
+        <a href="/Help/index/id/62.html" target="_blank" class="left">充值指南</a>
+       </dd> 
+       <dd>
+        <a href="/Help/index/id/63.html" target="_blank" class="left">转币指南</a>
+       </dd> 
+      </dl> 
+     </div> 
+     <div class="col-sm-4 padding-clear"> 
+      <dl> 
+       <dt>
+        联系我们
+       </dt> 
+       <dd> 
+        <a href="javascript:void()" class="im_client" target="_blank">在线客服问答</a> 
+       </dd> 
+       <dd>
+        <a target="_blank" href="//shang.qq.com/wpa/qunwpa?idkey=dc7cb131f9e5dba86704e0447dbb4cce733a3a2b85a8cb0cdf88fadb8692c44c"> 用户交流QQ群:123888892 (点击加群) </a>
+       </dd> 
+       <dd>
+        电话：0791-88222822（9:30-18:00）
+       </dd> 
+      </dl> 
+     </div> 
+     <div class="col-sm-12 text-center foot_copy"> 
+      <p class="col-xs-12 col-sm-6 text-left padding-left-clear"> Copyright 2013-2017 币久网 All Rights Reserved. | 江西星烁信息技术有限公司<br /> <a target="_blank" href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=36011102000067"> <img src="picture/beian.png" height="14" /> 赣公网安备 36011102000067号</a>&nbsp;&nbsp;&nbsp;&nbsp;赣ICP备16002431号-1</p> 
+      <p class="col-xs-12 col-sm-6 text-right padding-right-clear"> <a href="https://ss.knet.cn/verifyseal.dll?sn=e16122336010065877agrp000000&amp;ct=df&amp;a=1&amp;pa=0.07779652294825179" target="_blank"><img src="picture/foot(1).jpg" /></a> <a href="http://net.china.com.cn/" target="_blank"><img src="picture/foot(2).jpg" /></a> <a href="http://webscan.360.cn/index/checkwebsite/?url=www.btc9.com" target="_blank"> <img src="picture/foot(3).jpg" /></a> <a href="http://www.cyberpolice.cn/wfjb/" target="_blank"><img src="picture/foot(4).jpg" /></a> <a href="https://v.pinpaibao.com.cn/authenticate/cert/?site=www.btc9.com&amp;at=business" target="_blank"> <img src="picture/safe.png" alt="安全认证" title="安全认证" /> </a> </p> 
+     </div> 
+    </div> 
+   </div> 
+   <div style="display:none;"> 
+    <script src="js/z_stat.php" language="JavaScript"></script> 
+   </div> 
+  </footer> 
+  <script type="text/javascript" src="js/kf_client.js"></script> 
+  <div class="side"> 
+   <ul> 
+    <li><a class="im_client" target="_blank">
+      <div class="sidebox"> 
+       <i class="iconfont"></i>在线客服 
+      </div></a></li> 
+    <li><a href="javascript:void(0)" target="_blank">
+      <div class="sidebox"> 
+       <i class="iconfont"></i> 
+       <span class="" style="left: 45px;top: 5px; position: absolute;line-height: 22px;width: 150px;"> 0791-88222822<br />(时间 9:30-18:00)</span> 
+      </div></a></li> 
+    <li><a href="http://shang.qq.com/wpa/qunwpa?idkey=dc7cb131f9e5dba86704e0447dbb4cce733a3a2b85a8cb0cdf88fadb8692c44c" target="_blank">
+      <div class="sidebox"> 
+       <i class="iconfont"></i>QQ群:123888892
+      </div></a></li> 
+    <li style="border:none;"><a href="javascript:goTop();" class="sidetop"> <i class="iconfont"></i></a></li> 
+   </ul> 
+  </div> 
+ </body>
+</html>

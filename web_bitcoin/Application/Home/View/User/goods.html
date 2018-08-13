@@ -1,0 +1,323 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i>
+		<a href="/" class="">首页 </a> &gt; 
+		<a href="/user/index.html" class="">安全中心 </a> &gt;收货地址
+		</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="User:left" />
+
+
+
+
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						收货地址					</span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				
+				<p>
+				
+					<notempty name="prompt_text">
+						{$prompt_text}
+					</notempty>
+				
+				
+				</p>			
+				
+			</div>
+			<div class="cnyin_record">
+				<div class="f_body">
+					<table class="f_table" style="width:98%;margin:0px auto;">
+						<thead>
+						<tr>
+							<th>备注名称</th>
+							<th>联系姓名</th>
+							<th>联系电话</th>
+							<th>城市</th>
+							<th>详细地址</th>
+							<th>添加时间</th>
+							<th>操作</th>
+						</tr>
+						</thead>
+						<tbody>
+						
+					  <volist name="userGoodsList" id="vo">
+					  <tr>
+					   <td>{$vo.name}</td>
+					   <td>{$vo.truename}</td>
+					   <td>{$vo.moble}</td>
+					   <td>{$vo.prov}{$vo.city}</td>
+					   <td>{$vo.addr}</td>
+					   <td>{$vo.addtime|addtime}</td>
+					   <td><a class="cancel" href="javascript:void(0)" id="{$vo['id']}" onclick="goods_del(this)">删除</a></td>
+					  </tr>
+					  </volist>
+						
+						</tbody>
+					</table>
+					<div class="pages">
+						<a href="javascript:void(0)" onclick="showA()" class="">添加一个地址</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="all_mask_loginbox" id="step1" style="display: none;">
+	<div class="login_title pl20">添加一个联系地址</div>
+	<form id="form-login" class="mask_wrap login-fb">
+		<div class="login_text zin90">
+			<div class="mask_wrap_title">地址备注：</div>
+			<input id="goods_name" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">联系姓名：</div>
+			<input id="goods_truename" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">联系电话：</div>
+			<input id="goods_moble" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">所在省市：</div>
+			<span class="controls" id="city_1">
+				<select class="prov texts" id="goods_prov" name="prov" style="width: 98px;"></select>
+				<select class="city texts" id="goods_city" name="city" style="width: 98px; display: none;"></select>
+            </span>
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">收货地址：</div>
+			<input id="goods_addr" class="texts" type="text">
+		</div>
+		<div class="login_text zin80">
+			<div class="mask_wrap_title">交易密码：</div>
+			<input id="goods_paypassword" class="texts" type="password"><a href="/findpwd/findpwd" class="move ml5">忘记?</a>
+		</div>
+		<div class="login_button">
+			<input type="button" class="btns2" value="立即添加" onclick="goods_up();" >
+		</div>
+	</form>
+	<div class="mask_wrap_close " onclick="showB()"><i class="fa fa-times fz_20 move" aria-hidden="true"></i></div>
+</div>
+<div id="step2" class="all_mask" style="height: 0px;display: none;"></div>
+
+
+
+
+<script type="text/javascript" src="/comfile/js/cityselect.js"></script>
+
+<script>
+	if ($("#user_box").length > 0) {
+		$('#user_box').addClass('active');
+	} else {
+		$('#index_box').addClass('active');
+	}
+</script>
+<script>
+					var hints = "0";
+					if(hints == 1){
+						$('#hints').show();
+					}
+				</script>
+<script>
+	function showA() {
+		$("#step1").show();
+		$("#step2").show();
+	}
+
+	function showB() {
+		$("#step1").hide();
+		$("#step2").hide();
+	}
+	$(function () {
+		var height = $(document).height();
+		if (height < 1000) {
+			height = 1000;
+		}
+
+		$('#step2').height(height);
+
+		$("#city_1").citySelect({nodata: "none", required: false});
+	});
+
+
+	function goods_up() {
+		var name        = $('#goods_name').val();
+		var truename    = $('#goods_truename').val();
+		var prov        = $('#goods_prov option:selected').val();
+		var city        = $('#goods_city option:selected').val();
+		var moble       = $('#goods_moble').val();
+		var addr        = $('#goods_addr').val();
+		var paypassword = $('#goods_paypassword').val();
+
+		if (name == "" || name == null) {
+			layer.tips('请输入备注名称', '#goods_name', {tips: 3});
+			return false;
+		}
+		if (truename == "" || truename == null) {
+			layer.tips('请输入联系姓名', '#goods_truename', {tips: 3});
+			return false;
+		}
+		if (moble == "" || moble == null) {
+			layer.tips('请输入联系电话', '#goods_moble', {tips: 3});
+			return false;
+		}
+		if (prov == "" || prov == null) {
+			layer.tips('请选择省份', '#goods_prov', {tips: 3});
+			return false;
+		}
+		if (city == "" || city == null) {
+			layer.tips('请选择城市', '#goods_city', {tips: 3});
+			return false;
+		}
+		if (addr == "" || addr == null) {
+			layer.tips('请输入联系地址', '#goods_addr', {tips: 3});
+			return false;
+		}
+		if (paypassword == "" || paypassword == null) {
+			layer.tips('请输入交易密码', '#goods_paypassword', {tips: 3});
+			return false;
+		}
+
+		$.post("/user/upgoods_qq.html", {
+			name: name,
+			truename: truename,
+			moble: moble,
+			addr: addr,
+			prov: prov,
+			city: city,
+			paypassword: paypassword
+		}, function (data) {
+			if (data.status == 1) {
+				layer.msg(data.info, {icon: 1});
+				location.reload();
+			} else {
+				layer.msg(data.info, {icon: 2});
+				if (data.url) {
+					window.location = data.url;
+				}
+			}
+		}, "json");
+	}
+
+
+	function goods_del(o) {
+		var id = $(o).attr('id');
+
+
+		layer.config({
+			extend: 'extend/layer.ext.js'
+		});
+		layer.ready(function () {
+			//默认prompt
+			layer.prompt({
+				title: '输入交易密码，并确认',
+				formType: 1
+			}, function (val) {
+				if (val) {
+					//需要执行的方法
+					$.post("/user/delgoods.html", {id: id, paypassword: val}, function (data) {
+						if (data.status == 1) {
+							layer.msg(data.info, {icon: 1});
+							location.reload();
+						} else {
+							layer.msg(data.info, {icon: 2});
+							if (data.url) {
+								window.location = data.url;
+							}
+						}
+					}, "json");
+				}
+				;
+			});
+		});
+	}
+</script>
+<script>
+	$('.user_goods').addClass('active');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<include file="Public:footer" />

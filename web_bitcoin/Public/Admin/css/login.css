@@ -1,0 +1,241 @@
+html,body {
+    font-size: 14px;
+    font-family: "微软雅黑", Helvetica, Tahoma, Arial, sans-serif;
+    color: #000;
+    background-color: #30333F;
+    margin: 0;
+    padding: 0;
+    background-color: #666666;
+	background-image: url("");
+	background-repeat: no-repeat;
+	background-position: center top;
+	background-attachment: fixed;
+	background-clip: border-box;
+	background-size: cover;
+	background-origin: padding-box;
+	width: 100%;
+	padding: 0;
+	height: 100%;
+}
+img {
+    border: 0;
+}
+.cf:before,.cf:after {
+    display: table;
+    content: "";
+}
+.cf:after {
+    clear: both;
+}
+.cf {
+    *zoom: 1;
+}
+
+/* 登陆页样式
+------------------------------------------ */
+.login-main {
+    margin: 0 auto;
+    float: left;
+    left: 40%;
+}
+.login-header {
+    height: 50px;
+    line-height: 50px;
+    background-color: #f3f3f3;
+}
+.login-body {
+   /* margin-bottom: 10px;*/
+    height: 448px;
+}
+.login-body .pr {
+    position: relative;
+    height: 448px;
+}
+.login-form {
+    width: 290px;
+    padding: 25px 30px 13px;
+    background-color: #fff;
+    box-shadow: 0 0 26px #041A36;
+    border-top: 8px solid #0096e0;
+    margin: 100px auto;
+}
+.login-form h3 {
+    font-size: 26px;
+    font-weight: normal;
+    margin: 0 0 20px;
+    padding: 0;
+    line-height: 44px;
+    text-align: center;
+    color: #8D9CAA;
+    *line-height: 50px;
+}
+.login-form .check-tips {
+    color: #ff0000;
+    margin-top: 10px;
+}
+.login-form .item-box .item {
+    border-radius: 5px;
+}
+.login-form .item {
+    padding: 3px 10px 3px 12px;
+    border: 1px solid #ececec;
+    margin-bottom:10px;
+}
+.login-form .focus {
+    border: 1px solid #A6E1F3;
+    box-shadow: 0 0 12px #BAF7FF;
+}
+.login-form .icon-login-user,
+.login-form .icon-login-pwd,
+.login-form .icon-login-verifycode {
+    display: inline-block;
+    margin-right: 6px;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    background: url("../images/icon24_login.png") no-repeat;
+}
+.login-form .icon-login-user {
+    background-position: 0 0;
+}
+.login-form .icon-login-pwd {
+    background-position: -48px 0;
+}
+.login-form .icon-login-verifycode {
+    background-position: -24px 0;
+}
+.login-form input {
+    padding: 8px 0;
+    width: 220px;
+    height: 22px;
+    line-height: 22px;
+    font-size: 16px;
+    font-family: "微软雅黑", arial, sans-serif;
+    vertical-align: middle;
+    border: 0 none;
+    background-color: #fff;
+    outline: 0;
+    resize: none;
+    color:#686868;
+    *padding: 7px 0;
+}
+#itemBox {
+    position: relative;
+}
+.placeholder_copy {
+    display: none;
+    position: absolute;
+    left: 48px;
+    font-size: 16px;
+    color: #ADADAD;
+}
+.placeholder_un {
+    top: 13px;
+}
+.placeholder_pwd {
+    top: 69px;
+}
+.placeholder_check {
+    top: 125px;
+}
+.login-form .focus   {
+}
+.login-form .verifycode input {
+    width: 166px;
+    font-size:16px;
+}
+.login-form .verifycode img {
+    vertical-align: middle;
+}
+.login-form .login_btn_panel {
+    margin: 20px 0 10px;
+}
+.login-form .login-btn {
+    padding: 3px 0;
+    width: 100%;
+    height: 48px;
+    font-size: 22px;
+    font-weight: bold;
+    font-family: '微软雅黑',arial,verdana;
+    color: #FFFFFF;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+    border: 0;
+    background-color: #40C402;
+}
+.login-form .login-btn:hover {
+    background-color: #42EC00;
+}
+.login-form .login-btn[disabled] {
+    opacity: 0.6;
+    filter: alpha(opacity=60);
+    cursor: default;
+    box-shadow: none;
+}
+.login-form .login-btn .in {
+    display: none;
+}
+.login-form .log-in .in {
+    display: inline-block;
+}
+.login-form .log-in .on {
+    display: none;
+}
+.icon-loading {
+    display: inline-block;
+    margin-right: 5px;
+    width: 16px;
+    height: 16px;
+    vertical-align: -3px;
+    background: url(../images/loading_icon.gif) no-repeat 0 0;
+}
+
+/* 底部 */
+.login-footer {
+    line-height: 2.0;
+    text-align: right;
+    color: #999;
+    position:fixed;
+    bottom:0;
+    width:100%;
+}
+.login-main p{
+    position:fixed;
+    bottom:0;
+    margin:0;
+    text-align:center;
+    left:0;
+    right:0;
+    background:#30333F;
+}
+.footer-link a {
+    color: #2A72C5;
+    text-decoration: none;
+}
+.footer-link a:hover {
+    text-decoration: underline;
+}
+.footer-link span {
+    color: #2A72C5;
+    margin: 0 4px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.welcome{
+    color:#ddd;
+    padding:1px;
+}
+
+.reloadverify{
+    color:#69C3FF;
+}
+
+img.verifyimg{
+	border: 1px solid #ececec;
+	width: 100%;
+    cursor: pointer;
+}

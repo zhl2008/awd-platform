@@ -1,0 +1,90 @@
+<include file="Public:header" />
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">编辑提示文字</span>
+			<span class="h2-title">>><a href="{:U('Text/index')}">提示文字列表</a></span>
+		</div>
+
+		<div class="tab-wrap">
+
+			<div class="tab-content">
+				<form id="form" action="{:U('Text/edit')}" method="post" class="form-horizontal" enctype="multipart/form-data">
+					<div id="tab" class="tab-pane in tab">
+						<div class="form-item cf">
+							<table>
+								<tr class="controls">
+									<td class="item-label">提示标识 :</td>
+									<td>{$data.name}</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">提示位置 :</td>
+									<td>{$data.title}</td>
+									<td class="item-note"></td>
+								</tr>
+								<tr class="controls">
+									<td class="item-label">提示内容 :</td>
+									<td><textarea name="content">{$data.content}</textarea></td>
+									<td class="item-note"></td>
+								</tr>
+								
+								<tr class="controls">
+									<td class="item-label">状态 :</td>
+									<td><select name="status" class="input-small">
+											<option value="1" <eq name="data.status" value="1">selected</eq> >可用
+											</option>
+											<option value="0" <eq name="data.status" value="0">selected</eq> >禁用
+											</option>
+									</select></td>
+									<td class="item-note"></td>
+								</tr>
+
+								<tr class="controls">
+									<td class="item-label"></td>
+									<td>
+										<div class="form-item cf">
+											<button class= "btn submit-btn ajax-post" id="submit" type="submit" target-form="form-horizontal">确
+												定</button>
+											<a class="btn btn-return" href="{$Think.server.HTTP_REFERER}">返 回</a>
+											<notempty name="data.id"> <input type="hidden" name="id" value="{$data.id}" /> </notempty>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</form>
+				<script type="text/javascript">
+					//提交表单
+					$('#submit').click(function() {
+						$('#form').submit();
+					});
+				</script>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="__PUBLIC__/kindeditor/kindeditor-min.js"></script>
+<script type="text/javascript">
+	var editor;
+	KindEditor.ready(function(K){
+		editor=K.create('textarea',{width:'465px',height:'60px',items:['source','fontname','fontsize','|','forecolor','hilitecolor','bold','italic','underline','removeformat','|','justifyleft','justifycenter','justifyright','insertorderedlist','insertunorderedlist','|','emoticons','link','fullscreen'],afterBlur: function () { this.sync(); }});
+	});
+</script>
+
+<script type="text/javascript">
+	$(function() {
+		//主导航高亮
+		$('.article-box').addClass('current');
+		//边导航高亮
+		$('.article-text').addClass('current');
+	});
+</script>
+<include file="Public:footer" />

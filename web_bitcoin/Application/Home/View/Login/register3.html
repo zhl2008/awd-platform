@@ -1,0 +1,147 @@
+<include file="Public:header" />
+<style>
+	.order li {
+		color:#fff;
+	}
+	
+	.reg_box1 {
+		margin-top: 11px;
+		margin-bottom: 48px;
+		padding-bottom: 38px;
+		min-height: 400px;
+	}
+	.reg_title {
+		color: #fff;
+	}
+	.reg_radio_box a {
+		color: #fff;
+	}
+	
+</style>
+<div class="autobox" id="reg-step3" style="position:absolute;left:50%;margin-left:-600px;">
+	<div class="login_step">
+		<ul class="order clear">
+			<li><i class="order_1"></i>用户注册<div class="order_line"></div></li>
+			<li><i class="order_2"></i>设置交易密码<div class="order_line"></div></li>
+			<li class="orange"><i class="order_3_1"></i>实名认证<div class="order_line"></div></li>
+			<li><i class="order_4"></i>成功</li>
+		</ul>
+	</div>
+	<div class="reg_box1">
+		<div class="reg_wrap pt47">
+			<div class="reg_warning"><span>根据 国家相关规定，请填写您的真实身份信息，完成实名认证</span></div>
+			<div class="reg_input_box reg-fb">
+				<div class="reg_title">真实姓名：</div>
+				<input type="text" id="regtruename" value="" />
+				<div id="regtruename-msg" class="form_explain" style="display: none" data-explain="真实姓名设置后不能修改，并且与提现账户名相同<em></em>" >真实姓名设置后不能修改，并且与提现账户名相同<em></em></div>
+			</div>
+			<div class="reg_input_box reg-fb">
+				<div class="reg_title">身份证号：</div>
+				<input type="text" id="regidcard" value="" />
+				<div id="regidcard-msg" class="form_explain" style="display: none" data-explain="真实姓名设置后不能修改，并且与提现账户名相同<em></em>" >证件号码注册后不能修改<em></em></div>
+			</div>
+
+			<div class="reg_button_box" style="width:300px;">
+				<input type="button" value="下一步" onclick="Update();"/>
+			</div>
+		</div>
+	</div>
+</div>
+
+	<section class="canvas-wrap" style="min-height:700px;">
+		<div id="canvas" class="gradient"></div>
+	</section>
+
+<div class="autobox" style="margin-bottom: 30px">
+	<ul class="safety_tips_ul clear">
+		<li>
+			<div class="safety_img safety_img_1"></div>
+			<h4>系统可靠</h4>
+			<p>银行级用户数据加密、动态身份验证，多级风险识别控制，保障交易安全</p>
+		</li>
+		<li>
+			<div class="safety_img safety_img_2"></div>
+			<h4>资金安全</h4>
+			<p>钱包多层加密，离线存储于银行保险柜，资金第三方托管，确保安全</p>
+		</li>
+		<li>
+			<div class="safety_img safety_img_3"></div>
+			<h4>快捷方便</h4>
+			<p>充值即时、提现迅速，每秒万单的高性能交易引擎，保证一切快捷方便</p>
+		</li>
+		<li>
+			<div class="safety_img safety_img_4"></div>
+			<h4>服务专业</h4>
+			<p>专业的客服团队，400电话和24小时在线QQ，VIP一对一专业服务</p>
+		</li>
+	</ul>
+</div>
+<script>
+	$('input').focus(function(){
+		var t=$(this);
+		if(t.attr('type')=='text'||t.attr('type')=='password')
+			t.css({'box-shadow':'0px 0px 3px #1583fb','border':'1px solid #1583fb'});
+		if(t.val()==t.attr('placeholder'))
+			t.val('');
+	});
+	$('input').blur(function(){
+		var t=$(this);
+		if(t.attr('type')=='text'||t.attr('type')=='password')
+			t.css({'box-shadow':'none','border':'1px solid #e1e1e1'});
+		if(t.attr('type')!='password'&&!t.val())
+			t.val(t.attr('placeholder'));
+	});
+	$('.reg_input_box input').each(function(i,d){
+		$(d).focus(function(){
+			var oRegMsg=$('#'+$(this).attr('id')+'-msg');
+			oRegMsg.attr('class')=='form_explain_error'?oRegMsg.attr('class','form_explain').html(oRegMsg.attr('data-explain')).show():oRegMsg.show();
+		})
+		$(d).blur(function(){
+			var oRegMsg=$('#'+$(this).attr('id')+'-msg');
+			$(this).parent().find('.form_explain').hide();
+		})
+	})
+	var mbTest_username=/^(?![^a-zA-Z]+$)(?!\D+$).{5,15}$/;
+	var mbTest_password=/^[a-zA-Z0-9_]{5,15}$/;
+	//输入框消息
+	function formMsg(o, status, msg){
+		$('#'+o+'-msg').attr('class', 'form_explain_'+(status?'pass':'error')).html((typeof msg == 'undefined'? '': msg)+'<em></em>').show();
+		return true;
+	}
+
+
+	function Update(){
+		var truename=$("#regtruename").val();
+		var idcard=$("#regidcard").val();
+
+		
+		if(truename==""||truename==null){
+			formMsg('regtruename', 0, '请输入真实姓名');
+			return false;
+		}
+		if(idcard==""||idcard==null){
+			formMsg('regidcard', 0, '请输入身份证号');
+			return false;
+		}
+
+
+		$.post("{:U('Login/upregister3')}",{truename:truename,idcard:idcard},function(data){
+			if(data.status==1){
+				layer.msg(data.info,{icon:1});
+				window.location='/Login/register4';
+			}else{
+				layer.msg(data.info,{icon:2});
+				if(data.url){
+					window.location=data.url;
+				}
+			}
+		},"json");
+	}
+	
+
+	
+	
+</script>
+
+
+<include file="Public:footer" />

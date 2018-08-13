@@ -1,0 +1,70 @@
+<include file="Public:header"/>
+<div id="main-content">
+	<div id="top-alert" class="fixed alert alert-error" style="display: none;">
+		<button class="close fixed" style="margin-top: 4px;">&times;</button>
+		<div class="alert-content">警告内容</div>
+	</div>
+	<div id="main" class="main">
+		<div class="main-title-h">
+			<span class="h1-title">权限管理</span>
+		</div>
+		<nav role="navigation" class="cf">
+			<div class="fl">
+				<a id="add-group" class="btn btn-success " href="{:U('User/authEdit')}">新 增</a>
+				<a url="{:U('User/authStatus',array('type'=>'resume'))}" class="btn ajax-post btn-info " target-form="ids">启 用</a>
+				<a url="{:U('User/authStatus',array('type'=>'forbid'))}" class="btn ajax-post btn-warning " target-form="ids">禁 用</a>
+				<a url="{:U('User/authStatus',array('type'=>'del'))}" class="btn ajax-post confirm btn-danger " target-form="ids">删 除</a>
+				<a url="{:U('User/authStart')}" class="btn ajax-post confirm btn-primary" target-form="ids">重新初始化权限</a>
+
+
+			</div>
+		</nav>
+		<!-- 数据列表 -->
+		<div class="data-table table-striped">
+			<table class="">
+				<thead>
+				<tr>
+					<th class="row-selected row-selected"><input class="check-all" type="checkbox"/></th>
+					<th class="">用户组</th>
+					<th class="">描述</th>
+					<th class="">授权</th>
+					<th class="">状态</th>
+					<th class="">操作</th>
+				</tr>
+				</thead>
+				<tbody>
+				<notempty name="_list">
+					<volist name="_list" id="vo">
+						<tr>
+							<td><input class="ids" type="checkbox" name="id[]" value="{$vo.id}"/></td>
+							<td>{$vo.title}</td>
+							<td><span>{:mb_strimwidth($vo['description'],0,60,"...","utf-8")}</span></td>
+							<td>
+								<a class="btn btn-warning btn-xs" href="{:U('User/authAccess?group_name='.$vo['title'].'&group_id='.$vo['id'])}">访问授权</a>
+								<a class="btn btn-info btn-xs" href="{:U('User/authUser?group_name='.$vo['title'].'&group_id='.$vo['id'])}">成员授权</a>
+							</td>
+							<td>
+							<eq name="vo.status" value="0">
+								{$vo.status_text}
+							</eq>
+							<eq name="vo.status" value="1">
+								{$vo.status_text}
+							</eq>
+							</td>
+							<td>
+								<a href="{:U('User/authEdit?id='.$vo['id'])}" class="btn btn-primary btn-xs">编辑</a>
+							</td>
+						</tr>
+					</volist>
+					<else/>
+					<td colspan="6" class="text-center"> aOh! 暂时还没有内容!</td>
+				</notempty>
+				</tbody>
+			</table>
+		</div>
+		<div class="page">
+			{$_page}
+		</div>
+	</div>
+</div>
+<include file="Public:footer"/>

@@ -1,0 +1,209 @@
+<include file="Public:header" />
+
+<div class="autobox">
+	<div class="now">
+		<i class="fa fa-home fa-lg move mr5"></i>
+		<a href="/" class="">首页 </a> &gt; 
+		<a href="/user/index.html" class="">安全中心 </a> &gt;账户预览	
+		</div>
+	<div class="main-content">
+		<style>
+	.nav-tab-list .nav-tab-hover{
+		width:100%;
+		top:60px;
+		height:50px;
+		line-height:50px;
+		background:#EAEDF4;
+		position:absolute;
+		box-sizing:content-box;
+		z-index:1;
+		transition:all 0.5s;
+		-webkit-transition:all 0.5s;
+		display:none;
+	}
+</style>
+<script type="text/javascript">
+	$(function () {
+		(function () {
+			var tab   = $('.nav-tab-list dd');
+			var hover = $('.nav-tab-hover');
+			var pos   = 0;
+			tab.each(function (index) {
+				var $this = $(this);
+				if ($this.hasClass('active')) {
+					pos = index;
+				}
+				$this.hover(function () {
+					_moveTo(index);
+				}, function () {
+					_moveTo(pos);
+				});
+			});
+			_moveTo(pos);
+			$('.nav-tab-hover').show();
+			function _moveTo(index) {
+				hover.css("top", 60 + 50 * index);
+				tab.removeClass('active');
+				tab.eq(index).addClass('active');
+			}
+		})();
+	});
+	$(window).on('scroll resize', function () {
+		if (document.body.scrollTop < 100) {
+			$('#left-nav-bar').css("top", 0);
+		} else if (document.body.scrollTop > ($('.tag-list-content').height() - $('#left-nav-bar').height() + 100)) {
+			$('#left-nav-bar').css("top", ($('.tag-list-content').height() - $('#left-nav-bar').height()));
+		} else {
+			$('#left-nav-bar').css("top", document.body.scrollTop - 100);
+		}
+	});
+</script>
+
+<include file="User:left" />
+
+
+
+
+<script>
+	if ($("#user_box").length > 0) {
+		$('#user_box').addClass('active');
+	} else {
+		$('#index_box').addClass('active');
+	}
+</script>
+		<div class="tag-list-content assets_content bg_w">
+			<div class="safe_center clear">
+				<h1>
+					<span>
+						账户预览					</span>
+					<span>
+												<a class="right" onclick="$('#hints').slideToggle();"><i class="fa fa-hand-o-right move fz_14 mr5"></i><span class="fz_12 move">查看介绍</span></a>
+											</span>
+				</h1>
+			</div>
+			<div id="hints" class="mytips" style="display:none;">
+				<script>
+					var hints = "0";
+					if(hints == 1){
+						$('#hints').show();
+					}
+				</script>
+				<notempty name="prompt_text">
+					<p>{$prompt_text}</p>		
+				</notempty>			
+			</div>
+			<ul class="sc_statu">
+				
+				<li>
+					<dl>
+							<dt>用户姓名:{$user['truename']}</dt>
+		
+					 
+							<dt>手机号码:{$user['moble']}</dt>
+					</dl>
+				
+				</li>
+			
+				<li>
+					<em class="sc_statu_type_1"></em>
+					<dl>
+						<dt>实名认证</dt>
+						
+						<eq name="user['idcardauth']" value='0'>
+							<dd class="nopass">未认证<else/><dd class="alpass">已认证</eq> 
+						
+						<a href="/user/nameauth.html">查看</a>
+						</dd>
+					</dl>
+				</li>
+
+				<li>
+					<em class="sc_statu_type_2"></em>
+					<dl>
+						<dt>手机绑定</dt>
+							<empty name="user['moble']">
+							<dd class="nopass">未绑定<else/><dd class="alpass">已绑定</empty> 
+							<a href="/user/moble.html">查看</a>
+						</dd>
+											</dl>
+				</li>
+
+			</ul>
+			<div class="sc_info_list" id="sc_info_list">
+				<dl>
+					<dt>登录密码</dt>
+					<dd>
+						<p>登录账户时需要输入的密码</p>
+					</dd>
+					<dd>
+						<div class="changepw">
+							<a href="/user/password.html">修改密码</a>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt>交易密码</dt>
+					<dd>
+						<p>在进行交易时需要输入的密码</p>
+					</dd>
+					<dd>
+						<div class="changepw">
+							<a href="/user/paypassword.html">
+							修改密码
+							</a>
+						</div>
+					</dd>
+				</dl>
+				<dl>
+					<dt>实名认证</dt>
+					<dd>
+						<p>受国家要求及为了您的资金安全需进行实名认证</p>
+					</dd>
+					<dd>
+						<div class="changepw">
+						
+							<a href="/user/nameauth.html">
+								<eq name="user['idcardauth']" value='0'>
+									<font color='#ff0000'>立即认证</font>	
+								<else/>
+									申请修改
+								</eq>
+							</a>
+						</div>
+					</dd>
+				</dl>
+
+				<dl>
+					<dt>手机绑定</dt>
+					<dd>
+						<p>在提现的时候需要使用</p>
+					</dd>
+					<dd>
+						<div class="changepw">
+														<div><a href="/user/moble.html">更换绑定</a></div>
+													</div>
+					</dd>
+				</dl>
+
+
+			</div>
+		</div>
+	</div>
+</div>
+
+<script>
+	$('.finan_index').addClass('active');
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+<include file="Public:footer" />
