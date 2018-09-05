@@ -1,1 +1,0 @@
-C:\phpStudy\php\php-5.5.38\php.exe -f  C:\phpStudy\WWW\e02b2943b3c6265b12da8f385f7cab75.php
