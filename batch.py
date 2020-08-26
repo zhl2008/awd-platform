@@ -114,7 +114,7 @@ def main():
 		copy_dir(dir,team_dir)
 		print '[*] copy %s' % team_dir
 
-		os.system('chmod 777 -R %s'%team_dir)
+		os.system('chmod -R 777 %s'%team_dir)
 		print '[*] chmod all '
 
 		open(team_dir + '/run.sh','w').write(generate_run_sh(i+1,password))
