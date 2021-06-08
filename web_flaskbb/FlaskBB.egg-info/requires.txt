@@ -35,7 +35,7 @@ Mako==1.0.7
 MarkupSafe==1.0
 mistune==0.8.3
 olefile==0.45.1
-Pillow==5.1.0
+Pillow==8.2.0
 pluggy==0.6.0
 Pygments==2.2.0
 python-dateutil==2.7.2
