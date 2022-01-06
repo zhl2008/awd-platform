@@ -4,7 +4,7 @@ attrs==17.4.0
 Babel==2.5.3
 billiard==3.5.0.2
 blinker==1.4
-celery==4.0.2
+celery==5.2.2
 certifi==2018.4.16
 chardet==3.0.4
 click==6.7
