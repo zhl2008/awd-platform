@@ -101,10 +101,10 @@ def main():
     team_number = int(sys.argv[2])
     if len(sys.argv) == 3:
         my_port = 80
-        my_image = 'web_14.04'
+        my_image = 'zhl2008/web_14.04'
     elif len(sys.argv) == 4:
         my_port = int(sys.argv[3])
-        my_image = 'web_14.04'
+        my_image = 'zhl2008/web_14.04'
     elif len(sys.argv) == 5:
         my_port = int(sys.argv[3])
         my_image = sys.argv[4]
