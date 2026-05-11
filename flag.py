@@ -1,9 +1,7 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
-import SimpleHTTPServer
-import SocketServer
-import hashlib
-import time
+from http.server import SimpleHTTPRequestHandler
+import socketserver
 
 '''
 	this script is supposed to run on the gamebox, it record the flag sent
@@ -17,21 +15,22 @@ key = 'you_should_not_guess_the_key'
 flag_path = '/flag'
 time_span = 2 * 60
 
-class my_handler(SimpleHTTPServer.SimpleHTTPRequestHandler):
+class MyHandler(SimpleHTTPRequestHandler):
     def do_GET(self):
-	request = self.path.split('/')
-	self.send_response(200)
-	self.send_header('Content-type', 'text/html')
-	self.end_headers()
-	if len(request) == 3 and request[1] == key and len(request[2]) == 32:
-	    flag = request[2]
-	    open(flag_path,'w').write(flag)
-	    self.wfile.write('hello haozigege!')
-	else:
-	    self.wfile.write('get out! hacker!') 
+        request = self.path.split('/')
+        self.send_response(200)
+        self.send_header('Content-type', 'text/html')
+        self.end_headers()
+        if len(request) == 3 and request[1] == key and len(request[2]) == 32:
+            flag = request[2]
+            with open(flag_path, 'w') as fp:
+                fp.write(flag)
+            self.wfile.write(b'hello haozigege!')
+        else:
+            self.wfile.write(b'get out! hacker!')
 
-Handler = my_handler
-httpd = SocketServer.TCPServer(("", PORT), Handler)
+Handler = MyHandler
+httpd = socketserver.TCPServer(("", PORT), Handler)
 
-print "serving at port", PORT
+print("serving at port", PORT)
 httpd.serve_forever()
