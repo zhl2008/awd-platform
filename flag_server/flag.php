@@ -2,6 +2,7 @@
 
 require 'config.php';
 $now_time = time();
+$submit_lock_file = './submit.lock';
 
 function check_time($attack_uid,$victim_uid){
     global $time_file;
@@ -47,14 +48,18 @@ if(isset($_REQUEST['token'])){
     }
     $scores[$attack_id] = 2;
     $scores[$victim_id] = -2; 
+    $lock_fp = fopen($submit_lock_file, 'c');
+    if(!$lock_fp) die('error: cannot open submit lock');
+    flock($lock_fp, LOCK_EX);
     check_time($attack_id,$victim_id);
+    update_time($attack_id,$victim_id);
+    flock($lock_fp, LOCK_UN);
+    fclose($lock_fp);
     $score = implode('|',$scores);
     file_put_contents('result.txt',$user_list[$attack_id] . ' => ' . $user_list[$victim_id]."\n", FILE_APPEND);
     $cmd = 'curl "127.0.0.1/score.php?key='.$key.'&write=1&score='.$score.'"';
     system($cmd);
-    update_time($attack_id,$victim_id);
  
 }else{
     die("error: empty token");
 }
-

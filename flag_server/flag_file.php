@@ -4,6 +4,8 @@ require 'config.php';
 #require 'pass.php';
 $now_time = time();
 $flag_file = 'xxxxxxxx_flag';
+$submitted_file = './submitted.txt';
+$submit_lock_file = './submit.lock';
 
 function check_time($attack_uid,$victim_uid){
     global $time_file;
@@ -33,7 +35,13 @@ function update_time($attack_uid,$victim_uid){
 function match_flag($flag,$flag_file){
     $flags = explode("\n",file_get_contents($flag_file));
     foreach ($flags as $real_flag) {
+        if(trim($real_flag) === ''){
+            continue;
+        }
 	$tmp = explode(":",$real_flag);
+        if(count($tmp) < 2){
+            continue;
+        }
 	$host = $tmp[0];
 	$real_flag = $tmp[1];
         if($flag==$real_flag){
@@ -42,6 +50,23 @@ function match_flag($flag,$flag_file){
     }
     return '';
 
+}
+
+function get_submission_key($attack_id,$victim_id,$flag){
+    return sha1($attack_id.'|'.$victim_id.'|'.$flag);
+}
+
+function check_duplicate_submission($submission_key){
+    global $submitted_file;
+    $submitted = file_exists($submitted_file) ? file_get_contents($submitted_file) : '';
+    if(strpos($submitted, $submission_key."\n") !== false){
+        die('error: duplicate flag');
+    }
+}
+
+function record_submission($submission_key){
+    global $submitted_file;
+    file_put_contents($submitted_file, $submission_key."\n", FILE_APPEND);
 }
 
 if(isset($_REQUEST['token']) && isset($_REQUEST['flag'])){
@@ -65,14 +90,21 @@ if(isset($_REQUEST['token']) && isset($_REQUEST['flag'])){
     }
     $scores[$attack_id] = 2;
     $scores[$victim_id] = -2; 
+    $lock_fp = fopen($submit_lock_file, 'c');
+    if(!$lock_fp) die('error: cannot open submit lock');
+    flock($lock_fp, LOCK_EX);
+    $submission_key = get_submission_key($attack_id,$victim_id,$flag);
+    check_duplicate_submission($submission_key);
     check_time($attack_id,$victim_id);
+    record_submission($submission_key);
+    update_time($attack_id,$victim_id);
+    flock($lock_fp, LOCK_UN);
+    fclose($lock_fp);
     $score = implode('|',$scores);
     file_put_contents('result.txt',$user_list[$attack_id] . ' => ' . $user_list[$victim_id]."\n", FILE_APPEND);
     $cmd = 'curl "127.0.0.1/score.php?key='.$key.'&write=1&score='.$score.'"';
     system($cmd);
-    update_time($attack_id,$victim_id);
  
 }else {
     die("error: empty token or empty target");
 }
-
